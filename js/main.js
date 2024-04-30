@@ -888,13 +888,13 @@ function showCompanyForm() {
                   </div>
                 </div>
                 <div class="d-flex">
-                <div class="col-xl-6">
+                <div class="col-xl-6 col-sm-12">
                   <div for="role" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
                     <input name="role" type="text" placeholder="Roll" />
                   </div>
                 </div>
-                <div class="col-xl-6">
+                <div class="col-xl-6 col-sm-12">
                   <div for="number of employees" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
                     <input
@@ -933,41 +933,45 @@ const contactForm = document.getElementById("contact-form");
 const form = document.getElementById("form");
 const result = document.getElementById("result");
 
-contactForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const formData = new FormData(contactForm);
-  const object = Object.fromEntries(formData);
-  const json = JSON.stringify(object);
-  form.innerHTML = "Please wait...";
+if (contactForm !== null) {
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(contactForm);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+    form.innerHTML = "Please wait...";
 
-  fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: json,
-  })
-    .then(async (response) => {
-      let json = await response.json();
-      if (response.status == 200) {
-        form.innerHTML = `<div class="single_team_text">
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: json,
+    })
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+          form.innerHTML = `<div class="single_team_text">
           <h4>Tack för ditt meddelande. Vi återkommer till dig snart</h4>
           </div>
           `;
-      } else {
-        console.log(response);
-        result.innerHTML = json.message;
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      form.innerHTML = "Something went wrong!";
-    })
-    .then(function () {
-      contactForm.reset();
-      setTimeout(() => {
-        result.style.display = "none";
-      }, 3000);
-    });
-});
+        } else {
+          console.log(response);
+          result.innerHTML = json.message;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        form.innerHTML = "Something went wrong!";
+      })
+      .then(function () {
+        contactForm.reset();
+        setTimeout(() => {
+          result.style.display = "none";
+        }, 3000);
+      });
+  });
+} else {
+  null;
+}

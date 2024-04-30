@@ -1034,7 +1034,7 @@
     =======================*/
 }
 
-@media (min-width: 576px) and (max-width: 767.99px) {
+@media (max-width: 767.99px) {
   /* =====================
         HOME PAGE START
     =======================*/
@@ -2408,7 +2408,7 @@
     align-self: center;
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: calc(100% - 0px) calc(100% - 70%);
+    background-position: calc(100% - 0px) calc(100% - 75%);
     height: 45vh;
     align-items: center;
     justify-content: space-around;
@@ -2419,4 +2419,8 @@
     text-align: center;
     color: white;
   }
+}
+
+.margin {
+  margin-top: -50px !important;
 }

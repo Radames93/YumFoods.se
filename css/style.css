@@ -365,7 +365,7 @@ button {
   font-size: 16px;
   font-weight: 600;
   color: var(--colorBlack);
-  margin: 0px 15px;
+  margin: 0px 50px;
   padding: 0;
   transition: all linear 0.3s;
   -webkit-transition: all linear 0.3s;
@@ -4944,7 +4944,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .faq_area .accordion-item h2 button {
   background: #f3f7fb;
   color: var(--colorBlack);
-  text-transform: capitalize;
+
   font-size: 16px;
   font-weight: 500;
   border: none;
@@ -6014,4 +6014,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .index-img {
   margin: 0 auto;
+}
+
+.related_product_slider .prevArrow,
+.related_product_slider .prevArrow,
+.blog_slider .prevArrow,
+.testi_slider .prevArrow,
+.team_slider .prevArrow,
+.offer_item_slider .prevArrow {
+  display: none;
+}
+
+.related_product_slider .nextArrow,
+.related_product_slider .nextArrow,
+.blog_slider .nextArrow,
+.testi_slider .nextArrow,
+.team_slider .nextArrow,
+.offer_item_slider .nextArrow {
+  display: none;
 }

@@ -206,6 +206,13 @@
                     id=""
                     style="display: none"
                   />
+                  <!--
+                  <input
+                    type="hidden"
+                    name="recaptcha_response"
+                    id="recaptchaResponse"
+                  />
+                  -->
                   <div for="name" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
                     <input name="name" type="text" placeholder="Namn" />
@@ -409,12 +416,13 @@
     <script src="js/jquery.exzoom.js"></script>
 
     <!--main/custom js-->
+    <script src="js/main.js"></script>
     <script src="https://web3forms.com/client/script.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY_HERE"></script>
+    <!--<script src="https://www.google.com/recaptcha/api.js?render=6LcGvsspAAAAAKgyMpgfHy5P8i1v0nB2kucdS6jz"></script>
     <script>
       grecaptcha.ready(function () {
         grecaptcha
-          .execute("YOUR_SITE_KEY_HERE", {
+          .execute("6LcGvsspAAAAAKgyMpgfHy5P8i1v0nB2kucdS6jz", {
             action: "contact",
           })
           .then(function (token) {
@@ -422,5 +430,6 @@
           });
       });
     </script>
+    -->
   </body>
 </html>
