@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"
+    />
+    <title>YumFoods</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/slick.css" />
+    <link rel="stylesheet" href="css/nice-select.css" />
+    <link rel="stylesheet" href="css/custom_spacing.css" />
+    <link rel="stylesheet" href="css/venobox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+
+  <body>
+    <!--=============================
+        TOPBAR START
+    ==============================-->
+    <section class="topbar">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6 col-sm-6 col-md-8">
+            <ul class="topbar_info d-flex flex-wrap d-none d-sm-flex">
+              <li>
+                <a href="mailto:example@gmail.com"
+                  ><i class="fas fa-envelope"></i> examplemail@gmail.com</a
+                >
+              </li>
+              <li class="d-none d-md-block">
+                <a href="callto:123456789"
+                  ><i class="fas fa-phone-alt"></i> +96487452145214</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-xl-6 col-sm-6 col-md-4">
+            <ul class="topbar_icon d-flex flex-wrap">
+              <li>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-behance"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=============================
+        TOPBAR END
+    ==============================-->
+
+    <!--=============================
+        MENU START
+    ==============================-->
+    <nav class="navbar navbar-expand-lg main_menu">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="images/logo.png" alt="RegFood" class="img-fluid" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="far fa-bars menu_icon_bar"></i>
+          <i class="far fa-times close_icon_close"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav m-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                >menu <i class="far fa-angle-down"></i
+              ></a>
+              <ul class="droap_menu">
+                <li><a href="menu.html">Bamba-rätter</a></li>
+                <li><a href="yum_menu.html">Yum-rätter</a></li>
+                <li><a href="daily_menu.html">Dagens-rätter</a></li>
+                <li><a href="premium_menu.html">Premium-rätter</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="subscription.html">Prenumerationer</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">Om oss</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blogs.html">Blog/Podcast</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Kontakt oss</a>
+            </li>
+          </ul>
+          <ul class="menu_icon d-flex flex-wrap">
+            <li>
+              <a class="cart_icon" href="cart_view.html"
+                ><i class="fas fa-shopping-basket"></i> <span>05</span></a
+              >
+            </li>
+            <li>
+              <a href="dashboard.html"><i class="fas fa-user"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--=============================
+        MENU END
+    ==============================-->
+
+    <!--=============================
+        BREADCRUMB START
+    ==============================-->
+    <section class="page_breadcrumb" style="background: url(images/cover.png)">
+      <div class="breadcrumb_overlay">
+        <div class="container">
+          <div class="breadcrumb_text">
+            <h1>betalning</h1>
+            <ul>
+              <li><a href="index.html">home</a></li>
+              <li><a href="#">betalning</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=============================
+        BREADCRUMB END
+    ==============================-->
+
+    <!--============================
+        PAYMENT PAGE START
+    ==============================-->
+    <section class="payment_page mt_100 xs_mt_70 mb_100 xs_mb_70">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 d-flex align-items-center">
+            <div class="payment_area">
+              <div class="row">
+                <div
+                  class="col-lg-3 col-sm-6 col-md-4 wow fadeInUp"
+                  data-wow-duration="1s"
+                >
+                  <a
+                    class="single_payment"
+                    data-bs-toggle="modal"
+                    data-bs-target="#paypalModal"
+                    href="#"
+                  >
+                    <img
+                      src="images/pay_1.jpg"
+                      alt="payment method"
+                      class="img-fluid w-100"
+                    />
+                  </a>
+                </div>
+                <div
+                  class="col-lg-3 col-sm-6 col-md-4 wow fadeInUp"
+                  data-wow-duration="1s"
+                >
+                  <a
+                    class="single_payment"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    href="#"
+                  >
+                    <img
+                      src="images/pay_2.jpg"
+                      alt="payment method"
+                      class="img-fluid w-100"
+                    />
+                  </a>
+                </div>
+                <div
+                  class="col-lg-3 col-sm-6 col-md-4 wow fadeInUp"
+                  data-wow-duration="1s"
+                >
+                  <a
+                    class="single_payment"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    href="#"
+                  >
+                    <img
+                      src="images/pay_3.jpg"
+                      alt="payment method"
+                      class="img-fluid w-100"
+                    />
+                  </a>
+                </div>
+
+                <div
+                  class="col-lg-3 col-sm-6 col-md-4 wow fadeInUp"
+                  data-wow-duration="1s"
+                >
+                  <a
+                    class="single_payment"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    href="#"
+                  >
+                    <img
+                      src="images/pay_7.jpg"
+                      alt="payment method"
+                      class="img-fluid w-100"
+                    />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-4 col-lg-5 wow fadeInUp" data-wow-duration="1s">
+            <div id="sticky_sidebar" class="cart_list_footer_button">
+              <div class="cart_list_footer_button_text">
+                <h6>total</h6>
+                <p>delsumma: <span>285kr</span></p>
+                <p>leverans: <span>0kr</span></p>
+                <p>rabatt: <span>10kr</span></p>
+                <p class="total"><span>total:</span> <span>295.00kr</span></p>
+                <form>
+                  <input type="text" placeholder=" Rabattkod" />
+                  <button type="submit">använda</button>
+                </form>
+                <a class="common_btn" href="payment.html">Betala</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--============================
+        CREDIT MODAL PAGE START
+    ==============================-->
+
+    <div class="payment_modal">
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <section
+                style="
+                  background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Others/background3.webp);
+                "
+              >
+                <div class="row d-flex justify-content-center">
+                  <div class="card rounded-3 border-0">
+                    <div class="card card-body p-4">
+                      <div class="text-center mb-4">
+                        <h3>Inställningar</h3>
+                        <h6>Betalning</h6>
+                      </div>
+                      <form class="card card-body">
+                        <div class="row">
+                          <div class="d-flex align-items-center">
+                            <img
+                              class="img-fluid"
+                              src="https://img.icons8.com/color/48/000000/mastercard-logo.png"
+                            />
+                            <div class="col px-1 mb-2">
+                              <label
+                                for="input2"
+                                class="ms-2 position-absolute"
+                                style="margin-top: -0.25rem !important"
+                              >
+                                <span class="h6 small bg-white text-muted px-1"
+                                  >Kortnummer</span
+                                >
+                              </label>
+                              <input
+                                type="text"
+                                class="form-control mt-2"
+                                id="input2"
+                                placeholder="**** **** **** 4296"
+                              />
+                            </div>
+                            <a href="#!">Ta bort kort</a>
+                          </div>
+                          <div
+                            class="d-flex flex-row align-items-center mb-4 pb-1"
+                          >
+                            <img
+                              class="img-fluid"
+                              src="https://img.icons8.com/color/48/000000/visa.png"
+                            />
+                            <div class="col px-1 mb-2">
+                              <label
+                                for="input2"
+                                class="ms-2 position-absolute"
+                                style="margin-top: -0.25rem !important"
+                              >
+                                <span class="h6 small bg-white text-muted px-1"
+                                  >Kortnummer</span
+                                >
+                              </label>
+                              <input
+                                type="text"
+                                class="form-control mt-2"
+                                id="input2"
+                                placeholder="**** **** **** 4296"
+                              />
+                            </div>
+                            <a href="#!">Ta bort kort</a>
+                          </div>
+
+                          <p class="fw-bold mb-4">Lägg till nytt kort:</p>
+
+                          <div class="col-12 px-1 mb-2">
+                            <label
+                              for="input2"
+                              class="ms-2 position-absolute"
+                              style="margin-top: -0.25rem !important"
+                            >
+                              <span class="h6 small bg-white text-muted px-1"
+                                >Kortinnehavarensnamn</span
+                              >
+                            </label>
+                            <input
+                              type="text"
+                              class="form-control mt-2"
+                              id="input2"
+                              placeholder="Anne Doe"
+                            />
+                          </div>
+                          <div class="row mb-4">
+                            <div class="col-7 px-1 mb-2">
+                              <label
+                                for="input2"
+                                class="ms-2 position-absolute"
+                                style="margin-top: -0.25rem !important"
+                              >
+                                <span class="h6 small bg-white text-muted px-1"
+                                  >Kortnummer</span
+                                >
+                              </label>
+                              <input
+                                type="text"
+                                class="form-control mt-2"
+                                id="input2"
+                                placeholder="**** **** **** 4296"
+                              />
+                            </div>
+                            <div class="col-3 px-1 mb-2">
+                              <label
+                                for="input2"
+                                class="ms-2 position-absolute"
+                                style="margin-top: -0.25rem !important"
+                              >
+                                <span class="h6 small bg-white text-muted px-1"
+                                  >Expire</span
+                                >
+                              </label>
+                              <input
+                                type="password"
+                                class="form-control mt-2"
+                                id="input2"
+                                placeholder="MM/YYYY"
+                              />
+                            </div>
+                            <div class="col-2 px-1 mb-2">
+                              <label
+                                for="input2"
+                                class="ms-2 position-absolute"
+                                style="margin-top: -0.25rem !important"
+                              >
+                                <span class="h6 small bg-white text-muted px-1"
+                                  >Cvv</span
+                                >
+                              </label>
+                              <input
+                                type="password"
+                                class="form-control mt-2"
+                                id="input2"
+                                placeholder="Cvv"
+                              />
+                            </div>
+                          </div>
+
+                          <button
+                            data-mdb-button-init
+                            data-mdb-ripple-init
+                            class="btn common_btn btn-lg btn-block"
+                          >
+                            Lägg till kort
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--============================
+        CREDIT MODAL PAGE START
+    ==============================-->
+
+    <!--============================
+        PAYPAL MODAL PAGE START
+    ==============================-->
+
+    <div class="payment_modal">
+      <div class="modal fade" id="paypalModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <section
+                style="
+                  background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Others/background3.webp);
+                "
+              >
+                <div class="row d-flex justify-content-center">
+                  <div class="card rounded-3 border-0">
+                    <div class="card card-body p-4">
+                      <div class="text-center mb-4">
+                        <h3>Inställningar</h3>
+                        <h6>Betalning</h6>
+                      </div>
+                      <form class="card card-body">
+                        <div class="row">
+                          <div class="col-12 px-1 mb-2">
+                            <label
+                              for="input2"
+                              class="ms-2 position-absolute"
+                              style="margin-top: -0.25rem !important"
+                            >
+                              <span class="h6 small bg-white text-muted px-1"
+                                >Paypal mejladress</span
+                              >
+                            </label>
+                            <input
+                              type="text"
+                              class="form-control mt-2"
+                              id="input2"
+                              placeholder="example@gmail.com"
+                            />
+                          </div>
+                          <button
+                            data-mdb-button-init
+                            data-mdb-ripple-init
+                            class="btn common_btn btn-lg btn-block"
+                          >
+                            Lägg till paypal
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--============================
+        PAYPAL MODAL PAGE START
+    ==============================-->
+
+    <!--============================
+        PAYMENT PAGE END
+    ==============================-->
+
+    <!--=============================
+        FOOTER START
+    ==============================-->
+    <footer style="background: url(images/footer_bg.jpg)">
+      <div class="footer_overlay pt_100 xs_pt_70 pb_100 xs_pb_20">
+        <div class="container wow fadeInUp" data-wow-duration="1s">
+          <div class="row justify-content-between">
+            <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-7">
+              <div class="footer_content">
+                <a class="footer_logo" href="index.html">
+                  <img
+                    src="images/footer_logo.png"
+                    alt="YumFoods"
+                    class="img-fluid w-100 mb_25"
+                  />
+                </a>
+                <ul class="social_link d-flex flex-wrap">
+                  <li>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xxl-2 col-lg-2 col-sm-5 col-md-5">
+              <div class="footer_content">
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">Om oss</a></li>
+                  <li><a href="contact.html">Kontakta oss</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xxl-2 col-lg-2 col-sm-6 col-md-5 order-md-4">
+              <div class="footer_content">
+                <ul>
+                  <li><a href="terms_condition.html">Allmänna Villkor</a></li>
+                  <li><a href="privacy_policy.html">Integritetspolicy</a></li>
+                  <li><a href="refund_policy.html">Återbetalningspolicy</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xxl-3 col-lg-4 col-sm-9 col-md-7 order-lg-4">
+              <div class="footer_content">
+                <h3>kontakta oss</h3>
+                <p class="info">
+                  <i class="fas fa-phone-alt"></i> +46 76 005 56 58
+                </p>
+                <p class="info">
+                  <i class="fas fa-envelope"></i> josef.jabarkhel@yumfoods.se
+                </p>
+                <p class="info">
+                  <i class="far fa-map-marker-alt"></i> Stora Badhusgatan 18,
+                  411 21 Göteborg
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer_bottom d-flex flex-wrap">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="footer_bottom_text">
+                <p>Copyright ©<b> RegFood</b> 2023. All Rights Reserved</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!--=============================
+        FOOTER END
+    ==============================-->
+
+    <!--=============================
+        SCROLL BUTTON START
+    ==============================-->
+    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+    <!--=============================
+        SCROLL BUTTON END 
+    ==============================-->
+
+    <!--jquery library js-->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <!--bootstrap js-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!--font-awesome js-->
+    <script src="js/Font-Awesome.js"></script>
+    <!-- slick slider -->
+    <script src="js/slick.min.js"></script>
+    <!-- isotop js -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- counter up js -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="js/jquery.exzoom.js"></script>
+
+    <!--main/custom js-->
+    <script src="js/main.js"></script>
+  </body>
+</html>
