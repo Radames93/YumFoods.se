@@ -218,6 +218,7 @@ button {
 .section_heading h2 {
   font-size: 35px;
   font-weight: 800;
+  margin-bottom: 30px;
 }
 
 .section_heading span {
@@ -1579,7 +1580,6 @@ button {
   box-shadow: var(--boxShadow);
   overflow: hidden;
   margin: 0 auto;
-  padding: 10px;
   background: var(--colorPrimary);
   position: relative;
   z-index: 1;
