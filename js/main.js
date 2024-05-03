@@ -354,14 +354,15 @@ let yum = document.getElementById("yum");
 let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
 let subscriptions = document.getElementById("subscription");
+let categories = document.getElementById("categories");
 let popup = document.getElementById("popup");
-
 const searchBar = document.getElementById("searchbar");
 
 let yumProductsList = [];
 let dailyProductsList = [];
 let premiumProductsList = [];
 let subscriptionsProductList = [];
+let categoriesProductList = [];
 let yumFiltered = [];
 let dailyFiltered = [];
 let premiumFiltered = [];
@@ -410,6 +411,7 @@ const loadProducts = async () => {
         dailyFiltered = data.daily;
         premiumFiltered = data.premium;
         subscriptionsFiltered = data.subscriptions;
+        categoriesProductList = data.categories;
         all = [
           ...yumProductsList,
           ...dailyProductsList,
@@ -420,6 +422,7 @@ const loadProducts = async () => {
     dailyProducts(dailyProductsList);
     premiumProducts(premiumProductsList);
     subscriptionsProducts(subscriptionsProductList);
+    categoriesProducts(categoriesProductList);
   } catch (err) {
     console.log(err);
   }
@@ -699,6 +702,44 @@ const subscriptionsProducts = (subscriptionProductList) => {
       })
       .join("");
     subscriptions.innerHTML = htmlString;
+  } else {
+    return null;
+  }
+};
+
+const categoriesProducts = (categoriesProductList) => {
+  if (categories !== null) {
+    const htmlString = categoriesProductList
+      .map((category) => {
+        return (
+          ` <div class="single_team_img_services">
+          <a href="` +
+          category.title +
+          ` tabindex="0">
+                  <img
+                    src="
+                    ` +
+          category.img +
+          `
+                    "
+                    alt="team"
+                    class="w-100 h-100"
+                /></a>
+              </div>
+              <div class="single_team_text">
+                <a class="add_to_cart" href=" ` +
+          category.link +
+          `" + tabindex="0"
+                  ><h4>` +
+          category.title +
+          `</h4></a
+                >
+        </div></div>
+        `
+        );
+      })
+      .join("");
+    categories.innerHTML = htmlString;
   } else {
     return null;
   }

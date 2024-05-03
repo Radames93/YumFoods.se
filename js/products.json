@@ -291,5 +291,43 @@
       "title": "'All Inclusive - 1 Person/Vecka'",
       "price": "69kr"
     }
+  ],
+  "categories": [
+    {
+      "id": 37,
+      "img": "images/premium-rätt.png",
+      "title": "Baguetter",
+      "link": "baguette_menu.html"
+    },
+    {
+      "id": 38,
+      "img": "images/Yumrattercategory.jpg",
+      "title": "Yum",
+      "link": "yum_menu.html"
+    },
+    {
+      "id": 39,
+      "img": "images/dagenrattercategory.png",
+      "title": "Daily",
+      "link": "daily.html"
+    },
+    {
+      "id": 40,
+      "img": "images/Premiumrattercategory.png",
+      "title": "Premium",
+      "link": "premium_menu.html"
+    },
+    {
+      "id": 40,
+      "img": "images/Premiumrattercategory.png",
+      "title": "Premium",
+      "link": "premium_menu.html"
+    },
+    {
+      "id": 40,
+      "img": "images/Premiumrattercategory.png",
+      "title": "Premium",
+      "link": "premium_menu.html"
+    }
   ]
 }
