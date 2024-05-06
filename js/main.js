@@ -473,7 +473,7 @@ const yumProducts = (yumProductsList) => {
           yum.id +
           " onclick='addToCart(" +
           i++ +
-          ")'>lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ")'>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -543,7 +543,7 @@ const dailyProducts = (dailyProductsList) => {
           daily.id +
           " onclick='addToCart(" +
           i++ +
-          ")'>lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ")'>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `
           <!--
           <ul class="d-flex flex-wrap justify-content-end">
@@ -614,7 +614,7 @@ const premiumProducts = (premiumProductsList) => {
           premium.id +
           " onclick='addToCart(" +
           i++ +
-          ")'>lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ")'>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `
           <!--
           <ul class="d-flex flex-wrap justify-content-end">
@@ -684,7 +684,7 @@ const subscriptionsProducts = (subscriptionProductList) => {
           subscription.id +
           " onclick='addToCart(" +
           i++ +
-          ")'>lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ")'Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `
           <!--
           <ul class="d-flex flex-wrap justify-content-end">
@@ -752,10 +752,10 @@ const sortingFunction = (el) => {
     const sortedYumArray = yumFiltered.sort((a, b) =>
       a.title > b.title ? 1 : b.title > a.title ? -1 : 0
     );
-    const sortedDailyArray = yumFiltered.sort((a, b) =>
+    const sortedDailyArray = dailyFiltered.sort((a, b) =>
       a.title > b.title ? 1 : b.title > a.title ? -1 : 0
     );
-    const sortedPremiumArray = yumFiltered.sort((a, b) =>
+    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
       a.title > b.title ? 1 : b.title > a.title ? -1 : 0
     );
     return (

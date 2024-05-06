@@ -1,5 +1,5 @@
 /* ***************************************
-Template Name: RegFood || Restaurant HTML Template
+Template Name: YumFoods || Restaurant HTML Template
 Author: ThemeFax 
 Author Email: themefaxbd@gmail.com
 website: http://www.themefax.com/
@@ -115,7 +115,7 @@ button {
   --colorWhite: #ffffff;
   --paraFont: "League Spartan", sans-serif;
   --headingFont: "Inter", sans-serif;
-  --cursiveFont: "Oleo Script", cursive;
+  --cursiveFont: "League Spartan", cursive;
   --boxShadow: rgba(100, 100, 111, 0.15) 0px 7px 29px 0px;
 }
 
@@ -216,9 +216,10 @@ button {
 }
 
 .section_heading h2 {
-  font-size: 35px;
+  font-size: 45px;
   font-weight: 800;
   margin-bottom: 30px;
+  color: var(--colorPrimary);
 }
 
 .section_heading span {
@@ -356,6 +357,7 @@ button {
 
 .main_menu .navbar-nav {
   line-height: 80px;
+  margin-left: auto;
 }
 
 .main_menu .navbar-nav .nav-item {
@@ -363,7 +365,7 @@ button {
 }
 
 .main_menu .navbar-nav .nav-item .nav-link {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--colorBlack);
   margin: 0px 50px;
@@ -455,7 +457,7 @@ button {
 .droap_menu li a {
   display: block;
   text-transform: capitalize;
-  font-size: 16px;
+  font-size: 25px;
   font-weight: 500;
   color: var(--colorBlack);
   position: relative;
@@ -519,7 +521,7 @@ button {
 }
 
 .main_menu .menu_icon li a {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 600;
   color: var(--colorBlack);
   text-transform: capitalize;
@@ -532,10 +534,12 @@ button {
   -moz-transition: all linear 0.3s;
   -ms-transition: all linear 0.3s;
   -o-transition: all linear 0.3s;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   background: #ff7c0826;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   line-height: 40px;
   border-radius: 50%;
 }
@@ -548,16 +552,19 @@ button {
 
 .main_menu .menu_icon li a span {
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: var(--colorPrimary);
   color: var(--colorWhite);
   border: 1px solid var(--colorWhite);
   line-height: 24px;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: -10px;
   right: -10px;
 }
@@ -621,7 +628,7 @@ button {
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
-  height: 160vh;
+  height: 100vh;
   position: relative;
   overflow: hidden;
 }
@@ -1432,7 +1439,6 @@ button {
   bottom: 25px;
   background: var(--colorPrimary);
   padding: 6px 10px 6px 10px;
-  text-transform: capitalize;
   font-size: 16px;
   font-weight: 600;
   color: var(--colorWhite);
@@ -1574,7 +1580,7 @@ button {
 
 .single_team_img_services {
   height: 200px;
-  border: 10px solid var(--colorPrimary);
+  border: 10px solid var(--colorWhite);
   border-radius: 50%;
   box-shadow: var(--boxShadow);
   overflow: hidden;
@@ -1938,7 +1944,7 @@ button {
   flex-direction: column;
   background-image: url("../images/index.png");
   margin-top: 120px;
-  height: 160vh;
+  height: 100vh;
   align-self: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2747,7 +2753,7 @@ footer {
 
 .about_choose_text_box {
   padding: 20px 20px 20px 55px;
-  background: #f1f0fa;
+  background: white;
   margin-top: 25px;
   border-left: 3px solid var(--colorPrimary);
   border-radius: 10px;
@@ -3997,7 +4003,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     CART VIEW PAGE START
 ========================*/
 .cart_list {
-  background: #f3f7fb;
+  background: white;
   border-radius: 5px;
   overflow: hidden;
   border: 1px solid #eee;
@@ -4025,13 +4031,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .cart_list .pro_img {
-  width: 15%;
+  width: 20%;
   padding: 10px;
   min-width: 130px;
 }
 
 .cart_list .pro_name {
-  width: 35%;
+  width: 30%;
   min-width: 240px;
 }
 
@@ -4280,7 +4286,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .cart_list_footer_button_text {
-  background: #eef6eb;
+  background: white;
+  border: 3px var(--colorPrimary) solid;
   padding: 40px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
