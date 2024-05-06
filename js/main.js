@@ -712,7 +712,8 @@ const categoriesProducts = (categoriesProductList) => {
     const htmlString = categoriesProductList
       .map((category) => {
         return (
-          ` <div class="single_team_img_services">
+          `
+          <div class="single_team_img_services"">
           <a href="` +
           category.title +
           ` tabindex="0">
@@ -734,12 +735,12 @@ const categoriesProducts = (categoriesProductList) => {
           category.title +
           `</h4></a
                 >
-        </div></div>
+        </div>
         `
         );
       })
       .join("");
-    categories.innerHTML = htmlString;
+    categories.insertAdjacentHTML("afterbegin", htmlString);
   } else {
     return null;
   }
