@@ -6,6 +6,7 @@
       "img": "images/Kålpudding.png",
       "title": "'Kålpudding'",
       "price": "75kr",
+      "diet": "images/cow.png",
       "description": "'En traditionell svensk rätt där kål är fylld med en köttfärsblandning, bakad i ugnen och serveras med brunsås och kokt potatis.'",
       "ingredients": "'Fläskfärs(20% fetthalt), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse ), kalvfond(Vatten, salt, arom, köttextrakt, tomat, kalvbuljong, modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliumsorbat)), potatis(konserveringsmedel E223), svart vinbärsgele(Råsaft av svarta vinbär, socker, vatten, pektin, citronsyra, konserveringsmedel (E202, E211)), äggnla(Pastöriserad ÄGGULA 99% (ursprung Sverige), konserveringsmedel (kaliumsorbat), surbetsreglerande medel (citronsyra)), vitkål, ljus sirap, salt, svartpeppar, kryddpeppar, gullök, persilja, rapsolja, majsstärkelse, morot, lagerblad. KYLVARA +8 grader'"
     },
@@ -15,6 +16,7 @@
       "img": "images/Jakob.png",
       "title": "'Flygande jacob'",
       "price": "75kr",
+      "diet": "images/chicken.png",
       "description": "'En svensk maträtt med kyckling, bananer, och jordnötter, gratinerad i ugnen med grädde och chilisås.'",
       "ingredients": "'Strimlad kyckling(Kyckling (83%), vatten, salt, tapiokastärkelse, stabiliseringsmedel(ESOO, E331), dextros, d-xylos, olja av SOJABÖNOR), bacon (Sidfläsk från gris (86 %), vatten, salt, glukossirap, stabiliseringsmedel (difosfat), köttbuljong (frän gris), antioxidationsmedel (natriumaskorbat, natriumcitrat), druvsocker, konserveringsmedel (natriwnnitrit), rökarom), laktosfri mat1agningsgrädde(GRÅDDE, vatten, modifierad majs och tapiokastärkelse), chilisäs(Tomatpuré (motsvarande 186 g tomater/100 g chilisås), krossade tomater ( 40 %), socker, ättika, salt, vinäger, lök, kryddor (bl.a. cayennepeppar, vitlökspulver, kryddnejlika, ingefära, chilipeppa r), surbetsreglerande medel (citronsyra), konserveringsmedel (kaliumsorbat, natriumbensoat), örtkryddor.), bananchips(Bananer torkade, kokosolja, socker, honung), kycklingfond(Vatten, salt, arom (innehåller SELLERI), kycklingextrakt, socker, modifierad potatisstärkelse, kycklingfett, kycklingkött, syra (citronsyra), konserveringsmeclel (kaliumsorbat), dragonextrakt) salt, svartpeppar, majsstärkelse, ris. KYLVARA +8 grader'"
     },
@@ -24,6 +26,7 @@
       "img": "images/Fiskivitvinssås.png",
       "title": "'Fisk i vitvinssås'",
       "price": "75kr",
+      "diet": "images/fish.png",
       "description": "'En rätt där fiskfilén är tillagad i en krämig vitvinssås, serveras med kokt potatis.'",
       "ingredients": "'Vit fisk, vitt matlagningsvin(Vatten, vitt vin, sherry, salt, pepparex-trakt, konserveringsmedel (NATRIUMSULFIT)), laktosfri matlagningsgrädde(GRÅD-DE, vatten, modifierad majs och tapiokastärkelse), potatis(KONSERVERINGSME-DEL E223), laktosfritt smör(Pastöriserad laktosfri GRÄDDE och salt. Laktosfri med hjälp av laktasenzym), såsbas(Svensk pressad rapsolja, emulgeringsmedel (citronsy-raester), arom, färgämne (betakaroten)), fiskfond(Vatten, salt, vitt vin, FISK (TORSK), modifierad potatisstärkelse, grönsakspulver (morot, palsternacka, lök), arom, syra: citronsyra, konserveringsmedel: kaliumsorbat), gullök, morot, ROTSEL-LERI, lagerblad, vitpeppar, rapsolja, majsstärkelse, dill, salt, fänkålsfrö, dillfrö. '"
     },
@@ -33,6 +36,7 @@
       "img": "images/Pannbiff.png",
       "title": "'Pannbiff med lök'",
       "price": "75kr",
+      "diet": "images/cow.png",
       "description": "'En traditionell svensk rätt med kryddade köttbiffar som serveras med brunsås och kokt potatis.'",
       "ingredients": "'Stekt pannbiff(Fläskkött (40%), nötkött (40%), lök, salt, kryddor, stärkelse, potatisfiber, socker, karamellsockersirap ), laktosfri matlagningsgräd- de(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), kalvfond(Vatten, salt, arom, köttextrakt, tomat, kalvbuljong, modifierad potatisstärkelse, syra: mjölksyra, konserveringsmedel: kaliumsorbat), stabiliseringsmedel (kalciumklorid), kryddextrakt (bl a dill och cayennepeppar), konserveringsmedel (kaliumsorbat)), svart vinbärsgele(Råsaft av svarta vinbär, socker, vatten, pektin, citronsyra, konserverings-medel (E202, E211 )), gul lök, potatismjöl, morot, rapsolja, lagerblad, salt, svartpeppar. KYLVARA + 8 Grader '"
     },
@@ -42,6 +46,7 @@
       "img": "images/Schnitzel.png",
       "title": "Schnitzel med rödvinsås'",
       "price": "75kr",
+      "diet": "images/chicken.png",
       "description": "'En österrikisk maträtt bestående av tunt skivat kött som är panerat och stekt, serveras med citron och potatis.'",
       "ingredients": "'Griskött 75%, ströbröd (VETEMJÖL, VETEstärkelse, vatten, salt, ÄGG, jäst, kryddor), f lyta nde kryddor (vatten, potatisstärkelse, druvsocker, torr glukos, salt, lökpulver, pepprextrakt), kulpotatis, oxfond(Vatten, rött vin, salt, köttextrakt, arom (innehåller SELLERI), modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliumsorbat)), rött matlagningsvin(Rött vin*, salt, peppar, konserveringsmedel (SVAVELDIOXID, kaliumsorbat), antioxidationsmedel (askorbinsyra)), gröna ÄRTER, rapsolja, gullök, morot, ROTSELLERI, tomatpu-re(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), lagerblad, svartpeppar, timjan, majsstärkelse, salt, socker. Kylvara +8 grader '"
     },
@@ -51,6 +56,7 @@
       "img": "images/Grilladkyckling.png",
       "title": "'Grillad kyckling'",
       "price": "75kr",
+      "diet": "images/chicken.png",
       "description": "'Kyckling som är grillad till perfektion, serveras med stekt potatis och en härlig brunsås.'",
       "ingredients": "'Kycklingfilé, grönpeppar(Grönpeppar, vatten, salt, surhetsreglerande medel(ättiksyra)), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), kalvfond(Vatten, salt, arom, köttextrakt, tomat, kalvbuljong, modifierad potatisstärkelse, syra (mjölksy-ra), konserveringsmedel (kaliumsorbat)), vitlök pressad(Vitlök (95,5%), salt, antioxidationsmedel (E330)), paprikapulver, chilipulver, rapsolja, salt, gul lök, lagerblad, morot, svartpeppar, potatis, rosepeppar, majsstärkelse, vitlökspulver. KYLVARA +8 grade'"
     },
@@ -60,6 +66,7 @@
       "img": "images/Boueffbourguinon.png",
       "title": "'Boueff bourguinon'",
       "price": "75kr",
+      "diet": "images/cow.png",
       "description": "'En fransk klassiker bestående av långsamt tillagat nötkött i rött vin med lök, morötter och svamp, serverad med kokt potatis eller bröd.'",
       "ingredients": "'Tärnat högrev, potatis(Potatis, KONSERERINGSMEDEL E223), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), laktosfritt smör(Pastöriserad laktos.fri GRÄDDE och salt. Laktosfri med hjälp av lak:tasenzym), pressad vitlök(Vitlök (95,5 % ) , salt, antioxidationsmedel (E330), rött matlagningsvin(Rött vin•, salt, peppar, konserveringsmedel (SVAVELDIOXID, kaliumsorbat), antioxidationsmedel (askorbinsyra)), bacon(Sidfläsk från gris (86 %), vatten, salt, glukossirap, stabiliserings-medel (difosfat), köttbuljong (från gris), antioxidationsmedel (natriumaskorbat, natriu.mcitrat), druvsocker, konserveringsmedel (natriumnitrit), rökarom), oxfond(Vatten, rött vin, salt, köttextrakt, arom (innehåller SELLERI), modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliu.msorbat)), såsbas(Svensk pressad rapsolja, emulgeringsmedel (citronsyraester), arom, färgämne (betakaroten)), morot, champinjoner, gul lök, tomatpurC(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), timjan, lagerblad, röd steklök, salt, vitpeppar. KYLVARA +8 grader '"
     },
@@ -69,6 +76,7 @@
       "img": "images/Vegetarisklasagne.png",
       "title": "'Vegetarisk lasagne'",
       "price": "75kr",
+      "diet": "images/vegetarian.png",
       "description": "'En maträtt med lager av lasagneplattor, grönsaker och ost- och tomatsås, perfekt för både vegetarianer och icke-vegetarianer. '",
       "ingredients": "'Sojafärs(Ekologiskt texturerat SOJAMJÖL, ekologiskt karamelliserat socker, salt), krossade tomater(Tmnater, surbetsreglerande medel (citronsyra)), grönsaksbuljong(Salt, maltodextrin, arom, grönsaker 15 % (lök 7,5 %, pumpa 4,0 %, palsternacka 2,5 %, vitlök 1,3 %), extra jungfruolivolja, potatisstärkelse, svampjuicekoncentrat, lagerblad, svartpeppar), mozzarel-la/cheddar(MJÖLK, salt, potatisstärkelse, syrningskultur, vegetabilisk ystenzyrn), lasagneplattor(DURUMVETE (semolina)), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), gul lök, morot, tijman, oregano, palsternacka, salt, tomatpure(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), vitpeppar, majsstärkelse. KYLVARA +8 grader '"
     },
@@ -78,6 +86,7 @@
       "img": "images/Paneradrödspätta.png",
       "title": "'Panerad rödspätta'",
       "price": "75kr",
+      "diet": "images/cow.png",
       "description": "'En maträtt där rödspättafilén är panerad och stekt, serveras med kokt potatis och sås.'",
       "ingredients": "'Panerad rödspätta(Rödspättafile 60 % (pleuronectes platessa), vetemjöl, vetestärkelse, vetekli, jäst, salt), potatis(KONSERERlNGSMEDEL E223), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), laktosfritt smör(Pastöriserad laktosfri GRÄDDE och salt. Laktosfri med hjälp av laktasenzym), såsbas(Svensk pressad rapsolja, emulgeringsmedel (citronsyraester), arom, färgärone (betakaroten)), ansjoviskryddad sill(Kryddade SILLFILEER (62,5 %) (SILL (Clupea harengus), vatten, socker, salt, kryddor (bl a peppar, kryddpeppar, nejlika, ingefära)), vatten, socker, salt, ättika, konserveringsmedel (E211), kryddarom (bl a nejlika, muskot, kryddpeppar,peppar), sandelextrakt) arom, färgärone (betakaroten)), gröna ärter, olivolja, dill, vitpeppar, salt. KYLVARA +8 grader '"
     },
@@ -87,6 +96,7 @@
       "img": "images/pasta.png",
       "title": "'Lax pasta med wokgrönsaker'",
       "price": "75kr",
+      "diet": "images/fish.png",
       "description": "'En rätt med lax och kokt pasta, serveras med wokade grönsaker och en krämig sås.'",
       "ingredients": "'PASTA (DURUMVETE/ DURUMHVEDE / DURUMHVETE - vatten / vand / vann.)SMÖR (Pastöriserad GRÄDDE, mjölksyrakultur) Orange morot 27%, gul morot 27%, broccoli 21%, minimajs 15%, vattenkastanj 10%. Produktsammansättningen kan ändras. Läs alltid ingrediensförteckningen på förpackningen. (Saltet i produkten kommer uteslutande från naturligt förekommande natrium).  '"
     },
@@ -96,6 +106,7 @@
       "img": "images/Spaghetti.png",
       "title": "'Spaghetti köttfärssås'",
       "price": "75kr",
+      "diet": "images/cow.png",
       "description": "'En klassisk italiensk rätt bestående av spaghetti serveras med en köttfärssås gjord av bland annat tomater, lök, vitlök, och köttfärs.'",
       "ingredients": "'NÖTFÄRS (Nöttfärsås, vatten, finkrossade tomater, tomatpuré, kryddblandning(Kryddor, druvsocker, salt, lök, modifierad majsstärkelse, naturlig aromer , vitlök, potatisfibrer, antioxidationsmedel (citronsyra)). Pasta 42% (vatten, DURUMVETE, rapsolja, salt), vatten, tomat, nötkött*(10%), lök, OST, tomatpuré, morot, modifierad VETESTÄRKELSE, SELLERI, salt, rapsolja, vitlök, socker, köttfond (nötkött, vatten), vitvinsvinäger, kryddor (bl. a paprikapulver '"
     },
@@ -105,6 +116,7 @@
       "img": "images/Falukorv.png",
       "title": "'Falukorv med mos'",
       "price": "75kr",
+      "diet": "images/cow.png",
       "description": "'En klassisk svensk rätt bestående av skivad falukorv serverad med potatismos, en enkel och tillfredsställande måltid.'",
       "ingredients": "'Nöt- och griskött, vatten, fett från gris, potatismjöl, salt, kryddor, torkad lök, stabiliseringsmedel E450, antioxidationsmedel E300, konserveringsmedel E250. Rökarom.SENAP(,Vatten, brunt och gult SENAPSFRÖ, socker, ättiksprit, salt och gurkmeja.RIVEN OST(Pastöriserad MJÖLK, klumpförebyggande medel: potatisstärkelse, salt, syrningskultur, ystenzym, konserveringsmedel: kaliumsorbat, kalciumklorid,POTATIS,smör ( Pastöriserad GRÄDDE, mjölksyrakultur)SALT,PEPPAR '"
     },
@@ -114,6 +126,7 @@
       "img": "images/masala.png",
       "title": "'Tikka masala'",
       "price": "75kr",
+      "diet": "images/chicken.png",
       "description": "' En populär indisk rätt bestående av kyckling tillagad i en krämig tomatsås med smör och kryddor, serveras med ris.'",
       "ingredients": "'Kokt ris 53 %: (ris, sultanrussin), Tikka Masala sås 47 %:(tomat, vatten,  Pulled Original (vatten, SOJAPROTEIN, rapsolja, kallrökt vatten, lök, SOJABÖNOR, ättika, salt, majsmjöl, äppelextrakt), soygurt (vatten, SOJABÖNOR, majsstärkelse, salt, yoghurtkultur (vegansk)), lök, morot, kryddmix (salt, spiskummin, paprika, tomat, socker, koriander, ingefära, lök, gurkmeja, krydda, kardemumma, svartpeppar, arom), tomatpuré, rapsolja, chilipeppar, citronjuicekoncentrat, ingefära, pressad vitlök, salt). '"
     },
@@ -123,6 +136,7 @@
       "img": "images/Daal.png",
       "title": "'Daal'",
       "price": "75kr",
+      "diet": "images/vegan.png",
       "description": "'En indisk rätt bestående av linser kokade i kryddig sås, serveras med ris'",
       "ingredients": "'Linser, vatten, bönor, lök, SOJAprotein, ärtor, rapsolja, majs, SOJAbönsolja, paprika, ingefära, tomatpuré, sjögräs, SOJAsåspulver (SOJA, VETE, salt), gara masala, morot, purjolök, vitlök, chili, koriander, gurkmeja, chili, spiskummin, bockhornsklöver, fänkål, kummin, anis, kardemumma, kanel, nejlika, svartpeppar, kanel, salt, naturliga aromer, syra: Näringsvärde '"
     },
@@ -132,6 +146,7 @@
       "img": "images/Vegetarisklasagne.png",
       "title": "'Lasagne'",
       "price": "75kr",
+      "diet": "images/cow.png",
       "description": "'Lasagne är en ugnsgratinerad maträtt som i huvudsak består av pastaplattor varvade med béchamelsås, ost och köttfärssås'",
       "ingredients": "'Nötfärs, lasagneplattor (DURUMVETE(semolina), laktosfri matlagningsgräd- de(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), riven mozzarella&ched-dar(MJÖLK, salt, potatisstärkelse, symingskultnr, vegetabilisk ystenzym), oxfond(Vatten, rött vin, salt, köttextrakt, arom (innehåller SELLERI), modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliumsorbat)), krossade tomater(Tomater, surhetsreglerande medel (citronsyra)), tomatpure(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), gul lök, timjan, oregano, svartpeppar, salt, majsstärkelse, morot, palsternacka. '"
     }

@@ -1125,7 +1125,13 @@ button {
   -o-border-radius: 5px;
 }
 
-.cart_popup_text .title {
+.diet_img {
+  height: 40px;
+  width: 40px;
+  padding-left: 5px;
+}
+
+.cart_popup_title {
   font-size: 27px;
   font-weight: 600;
   text-transform: capitalize;
@@ -1348,14 +1354,12 @@ button {
   -o-border-radius: 10px;
 }
 
-.menu_item_text .category {
+.category {
   text-transform: capitalize;
   font-size: 16px;
   color: var(--colorWhite);
   font-family: var(--cursiveFont);
-  position: absolute;
-  top: -16px;
-  right: 0;
+  margin: 0;
   background: var(--colorPrimary);
   padding: 3px 15px;
   box-shadow: var(--boxShadow);

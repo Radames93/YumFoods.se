@@ -167,7 +167,7 @@
       <div class="container">
         <form class="menu_search_area">
           <div class="row">
-            <div class="col-lg-6 col-md-5">
+            <div class="col-lg-5 col-md-4">
               <div class="menu_search">
                 <input
                   onchange="search(this)"
@@ -183,7 +183,7 @@
                   <select
                     class="select_js"
                     id="sort"
-                    onchange="sortingFunction(this)"
+                    onchange="sortingNamePriceFunction(this)"
                   >
                     <option value="AL">standardsortering</option>
                     <option value="name">sortera efter namn</option>
@@ -197,9 +197,22 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-2 col-md-3">
+            <div class="col-lg-3 col-md-3">
               <div class="menu_search">
-                <button class="common_btn" type="submit">Sök</button>
+                <div class="select_area">
+                  <select
+                    class="select_js"
+                    id="sort"
+                    onchange="sortingDishDietFunction(this)"
+                  >
+                    <option value="AL">Specialkostsortering</option>
+                    <option value="vegan">vegan</option>
+                    <option value="vegetarian">vegetarian</option>
+                    <option value="cow">ko</option>
+                    <option value="fish">fisk</option>
+                    <option value="chicken">kyckling</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
@@ -259,8 +272,11 @@
                 <img src="" class="img-fluid w-100" />
               </div>
 
+              <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class="cart_popup_title title"></a>
+                <img src="" alt="menu" class="diet_img diet mt_35" />
+              </div>
               <div class="cart_popup_text">
-                <a href="#" class="title"></a>
                 <!--
                 <p class="rating">
                   <i class="fas fa-star"></i>

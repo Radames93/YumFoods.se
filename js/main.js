@@ -447,19 +447,29 @@ const yumProducts = (yumProductsList) => {
                   class="img-fluid w-100"
                 />
               </div>
-              <div class="menu_item_text">
+              <div class="d-flex justify-content-between align-items-center">
+               <img
+                  src=` +
+          yum.diet +
+          `
+                  alt="menu"
+                  class="diet_img"
+                />
                 <a class="category" href="#">` +
           yum.category +
           `</a>
+          </div>
+              <div class="menu_item_text">
                 <a
                   class="title"
                   href="#"
-                   data-yum-title=${yum.title}
+                  data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
+                  data-yum-diet=${yum.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -747,7 +757,7 @@ const categoriesProducts = (categoriesProductList) => {
 };
 
 //Sort function
-const sortingFunction = (el) => {
+const sortingNamePriceFunction = (el) => {
   const option = el.value;
   if (option === "name") {
     const sortedYumArray = yumFiltered.sort((a, b) =>
@@ -829,6 +839,40 @@ const sortingFunction = (el) => {
   }
 };
 
+const sortingDishDietFunction = (el) => {
+  const option = el.value;
+  if (option === "vegan") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    yumProducts(filteredYumProducts);
+  } else if (option === "AL") {
+    const sortedYumArray = yumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    return yumProducts(sortedYumArray);
+  } else if (option === "vegetarian") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    yumProducts(filteredYumProducts);
+  } else if (option === "cow") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    yumProducts(filteredYumProducts);
+  } else if (option === "fish") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    yumProducts(filteredYumProducts);
+  } else if (option === "chicken") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    yumProducts(filteredYumProducts);
+  }
+};
 loadProducts();
 
 // Make modal fetch data from json file
@@ -842,6 +886,7 @@ if (cardModal !== null) {
     var quantityPrice = button.getAttribute("data-yum-quantity-price");
     var description = button.getAttribute("data-yum-description");
     var ingredients = button.getAttribute("data-yum-ingredients");
+    var diet = button.getAttribute("data-yum-diet");
 
     var modalTitle = cardModal.querySelector(".title");
     var modalPrice = cardModal.querySelector(".price");
@@ -849,6 +894,7 @@ if (cardModal !== null) {
     var modalQuantityPrice = cardModal.querySelector(".quantity_price");
     var modalDescription = cardModal.querySelector(".description");
     var modalIngredients = cardModal.querySelector(".ingredients");
+    var modalDiet = cardModal.querySelector(".diet");
 
     localStorage.setItem("title", (modalTitle.textContent = title));
     localStorage.setItem("price", (modalPrice.textContent = price));
@@ -865,6 +911,7 @@ if (cardModal !== null) {
       "description",
       (modalDescription.textContent = description)
     );
+    localStorage.setItem("diet", (modalDiet.src = diet));
   });
 } else {
   null;
