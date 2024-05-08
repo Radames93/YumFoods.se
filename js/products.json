@@ -154,129 +154,153 @@
   "daily": [
     {
       "id": 17,
-      "category": "Biryani",
-      "img": "images/menu3_img.png",
-      "title": "'Naanbröd'",
+      "category": "Dagens",
+      "img": "images/Naan.png",
+      "title": "'Naan bröd'",
       "price": "95kr",
+      "diet": "images/vegetarian.png",
       "description": "'Ett mjukt och luftigt indiskt bröd som gräddas i en tandoor (lerugn), perfekt som tillbehör till indiska rätter eller som en måltid i sig själv.'",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 18,
-      "category": "Biryani",
-      "img": "images/menu3_img.png",
+      "category": "Dagens",
+      "img": "images/Samosas.png",
       "title": "'Samosas'",
       "price": "95kr",
+      "diet": "images/vegetarian.png",
       "description": "'En populär indisk maträtt bestående av krispiga, triangelformade pajskal fyllda med en smakrik blandning av potatis, grönsaker och kryddor.'",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 19,
-      "category": "Biryani",
-      "img": "images/menu3_img.png",
+      "category": "Dagens",
+      "img": "images/Palak.png",
       "title": "'Palak paneer'",
       "price": "95kr",
+      "diet": "images/vegetarian.png",
       "description": "'En vegetarisk indisk rätt bestående av färsk spenat (palak) tillagad med kryddor och bitar av färskost (paneer), vilket ger en krämig och smakrik sås.'",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 20,
-      "category": "Biryani",
-      "img": "images/menu3_img.png",
+      "category": "Dagens",
+      "img": "images/Butter_chicken.png",
       "title": "'Butter chicken'",
       "price": "95kr",
+      "diet": "images/chicken.png",
       "description": "'En välkänd nordindisk rätt bestående av kyckling tillagad i en krämig tomatsås med smör, grädde och kryddor, vilket ger en fyllig och smakrik smak. '",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 21,
-      "category": "Biryani",
-      "img": "images/menu3_img.png",
+      "category": "Dagens",
+      "img": "images/Vindaloo.png",
       "title": "'Beef vindaloo'",
-      "price": "85kr",
+      "price": "95kr",
+      "diet": "images/cow.png",
       "description": "'En het och kryddig indisk rätt från Goa, bestående av nötkött marinerat i en kryddig vinägerbaserad sås, vanligtvis serverad med ris eller bröd.'",
       "ingredients": "kommer snart"
     },
     {
       "id": 22,
-      "category": "Biryani",
-      "img": "images/menu3_img.png",
+      "category": "Dagens",
+      "img": "images/Biryani.png",
       "title": "'Kyckling biryani'",
       "price": "95kr",
+      "diet": "images/chicken.png",
       "description": "' En populär indisk risrätt bestående av kryddmarinerad kyckling och basmatiris tillagad med en blandning av kryddor, lök, och andra aromatiska ingredienser, ofta serverad med raita (en kall yoghurtsås) eller sallad. '",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 23,
+      "category": "Dagens",
+      "img": "images/Tikki_masala.png",
+      "title": "'Tikka masala'",
+      "price": "95kr",
+      "diet": "images/chicken.png",
+      "description": "' Chicken Tikka Masala är en smakrik indisk rätt med grillad kyckling i en kryddig och krämig sås, serveras med ris.'",
       "ingredients": "'kommer snart'"
     }
   ],
   "premium": [
     {
       "id": 25,
-      "category": "Biryani",
-      "img": "images/menu4_img.png",
-      "title": "'Hyderabadi Biryani'",
+      "category": "Premium",
+      "img": "images/meatballs.png",
+      "title": "'Köttbullar med potatismos'",
       "price": "115kr",
+      "diet": "images/cow.png",
       "description": "'Saftiga svenska köttbullar med husets krämiga gräddsås, serveras med morötter och fluffigt potatismos.'",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 26,
-      "category": "Biryani",
-      "img": "images/menu4_img.png",
-      "title": "'Daria Shevtsova'",
+      "category": "Premium",
+      "img": "images/Schnitzel_potatoes.png",
+      "title": "'Schnitzel med rostad potatis'",
       "price": "115kr",
+      "diet": "images/cow.png",
       "description": "'Schnitzel i en rik rödvinssås, toppad med hemma lagat vitlökssmör och gyllenbrunt stekta potatisar. '",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 27,
-      "category": "Biryani",
-      "img": "images/menu4_img.png",
-      "title": "'Spicy Burger'",
+      "category": "Premium",
+      "img": "images/Cabbage_pudding.png",
+      "title": "'Kålpudding med potatis'",
       "price": "115kr",
+      "diet": "images/cow.png",
       "description": "'Pannbiff med karamelliserad lök, serveras med husets krämiga gräddsås och gyllenbrunt stekta potatisar. '",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 28,
-      "category": "Biryani",
-      "img": "images/menu4_img.png",
-      "title": "'Fried Chicken'",
+      "category": "Premium",
+      "img": "images/Spaghetti_bolognese.png",
+      "title": "' Köttfärssås med spaghetti'",
       "price": "115kr",
+      "diet": "images/cow.png",
       "description": "'Spaghetti med en smakrik köttfärssås, toppat generöst med riven grana padano. '",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 29,
-      "category": "Biryani",
-      "img": "images/menu4_img.png",
-      "title": "'Mozzarella sticks'",
+      "category": "Premium",
+      "img": "images/Chicken_curry.png",
+      "title": "'Kyckling i krämig currysås'",
       "price": "115kr",
+      "diet": "images/chicken.png",
       "description": "'Långkokt högrevsgryta smaksatt med dijonsenap, chili, tomat, serveras med fluffigt basmatiris. '",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 30,
-      "category": "Biryani",
-      "img": "images/menu4_img.png",
-      "title": "'Popcorn chicken'",
+      "category": "Premium",
+      "img": "images/Chicken_pasta.png",
+      "title": "'Italiensk kyckling pasta'",
       "price": "115kr",
+      "diet": "images/chicken.png",
       "description": "'Grillad svensk kycklingfilé serveras med en underbar risoni, krämig parmesansås och grönsaker. '",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 31,
-      "category": "Biryani",
-      "img": "images/menu4_img.png",
-      "title": "'Chicken wings'",
+      "category": "Premium",
+      "img": "images/Fish_winesauce.png",
+      "title": "'Fisk i vitvins sås'",
       "price": "115kr",
+      "diet": "images/fish.png",
       "description": "'Torskfilé i en ljuvlig vitvinssås, serveras med underbart dillslungad potatis och morötter. '",
       "ingredients": "'kommer snart'"
     },
     {
       "id": 32,
-      "category": "Biryani",
-      "img": "images/menu4_img.png",
-      "title": "'Onion rings'",
-      "price": "75kr",
+      "category": "Premium",
+      "img": "images/Meatloaf.png",
+      "title": "'Köttfärslimpa'",
+      "price": "115kr",
+      "diet": "images/cow.png",
       "description": "'Köttfärslimpa i husets krämiga gräddsås, serveras med gyllenbrunt stekta potatisar och grönsaker. '",
       "ingredients": "'kommer snart'"
     }
@@ -343,6 +367,18 @@
       "img": "images/Premiumrattercategory.png",
       "title": "Premium",
       "link": "premium_menu.html"
+    }
+  ],
+  "baguetter": [
+    {
+      "id": 41,
+      "category": "Baguetter",
+      "img": "images/baguette.png",
+      "title": "'Yum Bodega'",
+      "price": "75kr",
+      "diet": "images/cow.png",
+      "description": "'Kommer snart'",
+      "ingredients": "'kommer snart'"
     }
   ]
 }

@@ -355,18 +355,21 @@ let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
 let subscriptions = document.getElementById("subscription");
 let categories = document.getElementById("categories");
+let baguetter = document.getElementById("baguetter");
 let popup = document.getElementById("popup");
 const searchBar = document.getElementById("searchbar");
 
 let yumProductsList = [];
 let dailyProductsList = [];
 let premiumProductsList = [];
-let subscriptionsProductList = [];
-let categoriesProductList = [];
+let subscriptionsProductsList = [];
+let categoriesProductsList = [];
+let baguetterProductsList = [];
 let yumFiltered = [];
 let dailyFiltered = [];
 let premiumFiltered = [];
 let subscriptionsFiltered = [];
+let baguetterFiltered = [];
 let all = [];
 const search = () => {
   searchBar.addEventListener("keyup", (e) => {
@@ -386,10 +389,14 @@ const search = () => {
     });
     premiumProducts(filteredPremiumProducts);
   });
-  const filteredSubscriptions = subscriptionsProductList.filter((product) => {
+  const filteredSubscriptions = subscriptionsProductsList.filter((product) => {
     return product.title.toLowerCase().includes(searchString);
   });
   subscriptionsProducts(filteredSubscriptions);
+  const filteredBaguetter = baguetterProductsList.filter((product) => {
+    return product.title.toLowerCase().includes(searchString);
+  });
+  baguetterProducts(filteredBaguetter);
 };
 if (searchBar !== null) {
   searchBar.addEventListener("input", search);
@@ -406,12 +413,14 @@ const loadProducts = async () => {
         yumProductsList = data.yum;
         dailyProductsList = data.daily;
         premiumProductsList = data.premium;
-        subscriptionsProductList = data.subscriptions;
+        subscriptionsProductsList = data.subscriptions;
+        baguetterProductsList = data.baguetter;
         yumFiltered = data.yum;
         dailyFiltered = data.daily;
         premiumFiltered = data.premium;
         subscriptionsFiltered = data.subscriptions;
-        categoriesProductList = data.categories;
+        categoriesProductsList = data.categories;
+        baguetterFiltered = data.baguetter;
         all = [
           ...yumProductsList,
           ...dailyProductsList,
@@ -421,8 +430,9 @@ const loadProducts = async () => {
     yumProducts(yumProductsList);
     dailyProducts(dailyProductsList);
     premiumProducts(premiumProductsList);
-    subscriptionsProducts(subscriptionsProductList);
-    categoriesProducts(categoriesProductList);
+    subscriptionsProducts(subscriptionsProductsList);
+    categoriesProducts(categoriesProductsList);
+    baguetterProducts(baguetterProductsList);
   } catch (err) {
     console.log(err);
   }
@@ -514,7 +524,7 @@ const dailyProducts = (dailyProductsList) => {
       .map((daily) => {
         return (
           `<div
-            class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
+            class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
             data-wow-duration="1s"
                         >
           <div class="menu_item">
@@ -527,19 +537,29 @@ const dailyProducts = (dailyProductsList) => {
                   class="img-fluid w-100"
                 />
               </div>
-              <div class="menu_item_text">
+              <div class="d-flex justify-content-between align-items-center">
+               <img
+                  src=` +
+          daily.diet +
+          `
+                  alt="menu"
+                  class="diet_img"
+                />
                 <a class="category" href="#">` +
           daily.category +
           `</a>
+          </div>
+              <div class="menu_item_text">
                 <a
                   class="title"
                   href="#"
-                   data-yum-title=${daily.title}
+                  data-yum-title=${daily.title}
                   data-yum-price=${daily.price}
                   data-yum-img=${daily.img}
                   data-yum-quantity-price=${daily.price}
                   data-yum-description=${daily.description}
                   data-yum-ingredients=${daily.ingredients}
+                  data-yum-diet=${daily.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -554,8 +574,7 @@ const dailyProducts = (dailyProductsList) => {
           " onclick='addToCart(" +
           i++ +
           ")'>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
-          `
-          <!--
+          `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fal fa-heart"></i></a>
@@ -585,7 +604,7 @@ const premiumProducts = (premiumProductsList) => {
       .map((premium) => {
         return (
           `<div
-            class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
+            class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
             data-wow-duration="1s"
                         >
           <div class="menu_item">
@@ -598,19 +617,29 @@ const premiumProducts = (premiumProductsList) => {
                   class="img-fluid w-100"
                 />
               </div>
-              <div class="menu_item_text">
+              <div class="d-flex justify-content-between align-items-center">
+               <img
+                  src=` +
+          premium.diet +
+          `
+                  alt="menu"
+                  class="diet_img"
+                />
                 <a class="category" href="#">` +
           premium.category +
           `</a>
+          </div>
+              <div class="menu_item_text">
                 <a
                   class="title"
                   href="#"
-                   data-yum-title=${premium.title}
+                  data-yum-title=${premium.title}
                   data-yum-price=${premium.price}
                   data-yum-img=${premium.img}
                   data-yum-quantity-price=${premium.price}
                   data-yum-description=${premium.description}
                   data-yum-ingredients=${premium.ingredients}
+                  data-yum-diet=${premium.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -625,8 +654,7 @@ const premiumProducts = (premiumProductsList) => {
           " onclick='addToCart(" +
           i++ +
           ")'>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
-          `
-          <!--
+          `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fal fa-heart"></i></a>
@@ -648,10 +676,10 @@ const premiumProducts = (premiumProductsList) => {
   }
 };
 
-const subscriptionsProducts = (subscriptionProductList) => {
+const subscriptionsProducts = (subscriptionsProductsList) => {
   if (subscriptions !== null) {
     let i = 0;
-    const htmlString = subscriptionProductList
+    const htmlString = subscriptionsProductsList
       .map((subscription) => {
         return (
           `
@@ -717,9 +745,9 @@ const subscriptionsProducts = (subscriptionProductList) => {
   }
 };
 
-const categoriesProducts = (categoriesProductList) => {
+const categoriesProducts = (categoriesProductsList) => {
   if (categories !== null) {
-    const htmlString = categoriesProductList
+    const htmlString = categoriesProductsList
       .map((category) => {
         return (
           `
@@ -756,6 +784,86 @@ const categoriesProducts = (categoriesProductList) => {
   }
 };
 
+const baguetterProducts = (baguetterProductsList) => {
+  let i = 0;
+  if (baguetter !== null) {
+    const htmlString = baguetterProductsList
+      .map((baguetter) => {
+        return (
+          `<div
+            class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
+            data-wow-duration="1s"
+                        >
+          <div class="menu_item">
+              <div class="menu_item_img">
+                <img
+                  src=` +
+          baguetter.img +
+          `
+                  alt="menu"
+                  class="img-fluid w-100"
+                />
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+               <img
+                  src=` +
+          baguetter.diet +
+          `
+                  alt="menu"
+                  class="diet_img"
+                />
+                <a class="category" href="#">` +
+          baguetter.category +
+          `</a>
+          </div>
+          <div class="menu_item_text">
+                <a
+                  class="title"
+                  href="#"
+                   data-yum-title=${baguetter.title}
+                  data-yum-price=${baguetter.price}
+                  data-yum-img=${baguetter.img}
+                  data-yum-quantity-price=${baguetter.price}
+                  data-yum-description=${baguetter.description}
+                  data-yum-ingredients=${baguetter.ingredients}
+                  data-yum-diet=${baguetter.diet}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
+                  >` +
+          baguetter.title.replace(/'/g, "") +
+          `</a
+                >
+                <h5 class="price">` +
+          baguetter.price +
+          `</h5>` +
+          "<button class='add_to_cart' data-id=" +
+          baguetter.id +
+          " onclick='addToCart(" +
+          i++ +
+          ")'>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          `
+          <!--
+          <ul class="d-flex flex-wrap justify-content-end">
+                  <li>
+                    <a href="#"><i class="fal fa-heart"></i></a>
+                  </li>
+                  <li>
+                    <a href="menu_details.html"><i class="far fa-eye"></i></a>
+                  </li>
+                </ul>
+                -->
+              </div>
+            </div>
+          </div>`
+        );
+      })
+      .join("");
+    baguetter.innerHTML = htmlString;
+  } else {
+    return null;
+  }
+};
+
 //Sort function
 const sortingNamePriceFunction = (el) => {
   const option = el.value;
@@ -769,10 +877,14 @@ const sortingNamePriceFunction = (el) => {
     const sortedPremiumArray = premiumFiltered.sort((a, b) =>
       a.title > b.title ? 1 : b.title > a.title ? -1 : 0
     );
+    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+    );
     return (
       yumProducts(sortedYumArray),
       dailyProducts(sortedDailyArray),
-      premiumProducts(sortedPremiumArray)
+      premiumProducts(sortedPremiumArray),
+      baguetterProducts(sortedBaguetterArray)
     );
   } else if (option === "AL") {
     const sortedYumArray = yumFiltered.sort((a, b) =>
@@ -784,10 +896,14 @@ const sortingNamePriceFunction = (el) => {
     const sortedPremiumArray = premiumFiltered.sort((a, b) =>
       a.id > b.id ? 1 : b.id > a.id ? -1 : 0
     );
+    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
     return (
       yumProducts(sortedYumArray),
       dailyProducts(sortedDailyArray),
-      premiumProducts(sortedPremiumArray)
+      premiumProducts(sortedPremiumArray),
+      baguetterProducts(sortedBaguetterArray)
     );
   } else if (option === "l2h") {
     const parsePrice = (x) => parseFloat(x.replace(/^\$/, "")) || 0;
@@ -800,10 +916,14 @@ const sortingNamePriceFunction = (el) => {
     const sortedPremiumArray = premiumFiltered
       .slice()
       .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+    const sortedBaguetterArray = baguetterFiltered
+      .slice()
+      .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
     return (
       yumProducts(sortedYumArray),
       dailyProducts(sortedDailyArray),
-      premiumProducts(sortedPremiumArray)
+      premiumProducts(sortedPremiumArray),
+      baguetterProducts(sortedBaguetterArray)
     );
   } else if (option === "h2l") {
     const parsePrice = (x) => parseFloat(x.replace(/^\$/, "")) || 0;
@@ -816,10 +936,14 @@ const sortingNamePriceFunction = (el) => {
     const sortedPremiumArray = premiumFiltered
       .slice()
       .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+    const sortedBaguetterArray = baguetterFiltered
+      .slice()
+      .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
     return (
       yumProducts(sortedYumArray),
       dailyProducts(sortedDailyArray),
-      premiumProducts(sortedPremiumArray)
+      premiumProducts(sortedPremiumArray),
+      baguetterProducts(sortedBaguetterArray)
     );
   } else {
     const sortedYumArray = yumFiltered.sort((a, b) =>
@@ -831,46 +955,145 @@ const sortingNamePriceFunction = (el) => {
     const sortedPremiumArray = premiumFiltered.sort((a, b) =>
       a.id > b.id ? 1 : b.id > a.id ? -1 : 0
     );
+    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
     return (
       yumProducts(sortedYumArray),
       dailyProducts(sortedDailyArray),
-      premiumProducts(sortedPremiumArray)
+      premiumProducts(sortedPremiumArray),
+      baguetterProducts(sortedBaguetterArray)
     );
   }
 };
 
 const sortingDishDietFunction = (el) => {
   const option = el.value;
+  const message = `<div class="single_team_text">
+          <h4 style="text-transform: none">Tack för ditt meddelande. En av våra medarbetare ska
+          återkomma till dig snart</h4>
+          </div>`;
   if (option === "vegan") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet.toLowerCase().includes(option);
     });
+    const filteredDailyProducts = dailyProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    const filteredPremiumProducts = premiumProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    const filteredBaguetterProducts = baguetterProductsList.filter(
+      (product) => {
+        return product.diet.toLowerCase().includes(option);
+      }
+    );
     yumProducts(filteredYumProducts);
+    dailyProducts(filteredDailyProducts);
+    premiumProducts(filteredPremiumProducts);
+    baguetterProducts(filteredBaguetterProducts);
   } else if (option === "AL") {
     const sortedYumArray = yumFiltered.sort((a, b) =>
       a.id > b.id ? 1 : b.id > a.id ? -1 : 0
     );
-    return yumProducts(sortedYumArray);
+    const sortedDailyArray = dailyFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    yumProducts(sortedYumArray);
+    dailyProducts(sortedDailyArray);
+    premiumProducts(sortedPremiumArray);
+    baguetterProducts(sortedBaguetterArray);
   } else if (option === "vegetarian") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet.toLowerCase().includes(option);
     });
-    yumProducts(filteredYumProducts);
+    const filteredDailyProducts = dailyProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    const filteredPremiumProducts = premiumProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    const filteredBaguetterProducts = baguetterProductsList.filter(
+      (product) => {
+        return product.diet.toLowerCase().includes(option);
+      }
+    );
+    if (
+      filteredYumProducts.length ||
+      filteredDailyProducts.length ||
+      filteredPremiumProducts.length ||
+      filteredBaguetterProducts.length > 0
+    ) {
+      yumProducts(filteredYumProducts);
+      dailyProducts(filteredDailyProducts);
+      premiumProducts(filteredPremiumProducts);
+      baguetterProducts(filteredBaguetterProducts);
+    } else {
+      console.log(message);
+    }
   } else if (option === "cow") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet.toLowerCase().includes(option);
     });
+    const filteredDailyProducts = dailyProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    const filteredPremiumProducts = premiumProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    const filteredBaguetterProducts = baguetterProductsList.filter(
+      (product) => {
+        return product.diet.toLowerCase().includes(option);
+      }
+    );
     yumProducts(filteredYumProducts);
+    dailyProducts(filteredDailyProducts);
+    premiumProducts(filteredPremiumProducts);
+    baguetterProducts(filteredBaguetterProducts);
   } else if (option === "fish") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet.toLowerCase().includes(option);
     });
+    const filteredDailyProducts = dailyProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    const filteredPremiumProducts = premiumProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    const filteredBaguetterProducts = baguetterProductsList.filter(
+      (product) => {
+        return product.diet.toLowerCase().includes(option);
+      }
+    );
     yumProducts(filteredYumProducts);
+    dailyProducts(filteredDailyProducts);
+    premiumProducts(filteredPremiumProducts);
+    baguetterProducts(filteredBaguetterProducts);
   } else if (option === "chicken") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet.toLowerCase().includes(option);
     });
+    const filteredDailyProducts = dailyProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    const filteredPremiumProducts = premiumProductsList.filter((product) => {
+      return product.diet.toLowerCase().includes(option);
+    });
+    const filteredBaguetterProducts = baguetterProductsList.filter(
+      (product) => {
+        return product.diet.toLowerCase().includes(option);
+      }
+    );
     yumProducts(filteredYumProducts);
+    dailyProducts(filteredDailyProducts);
+    premiumProducts(filteredPremiumProducts);
+    baguetterProducts(filteredBaguetterProducts);
   }
 };
 loadProducts();
@@ -1028,7 +1251,9 @@ if (contactForm !== null) {
     const formData = new FormData(contactForm);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
-    form.innerHTML = "Please wait...";
+    form.innerHTML = `<div class="single_team_text">
+          <h4 style="text-transform: none">Var god vänta</h4>
+          </div>`;
 
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -1042,9 +1267,13 @@ if (contactForm !== null) {
         let json = await response.json();
         if (response.status == 200) {
           form.innerHTML = `<div class="single_team_text">
-          <h4>Tack för ditt meddelande. Vi återkommer till dig snart</h4>
+          <h4 style="text-transform: none">Tack för ditt meddelande. En av våra medarbetare ska
+          återkomma till dig snart</h4>
           </div>
           `;
+          setTimeout(() => {
+            window.location.reload();
+          }, 5000);
         } else {
           console.log(response);
           result.innerHTML = json.message;
