@@ -6,7 +6,7 @@
       "img": "images/Kålpudding.png",
       "title": "'Kålpudding'",
       "price": "75kr",
-      "diet": "images/cow.png",
+      "diet": "images/pork.png",
       "description": "'En traditionell svensk rätt där kål är fylld med en köttfärsblandning, bakad i ugnen och serveras med brunsås och kokt potatis.'",
       "ingredients": "'Fläskfärs(20% fetthalt), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse ), kalvfond(Vatten, salt, arom, köttextrakt, tomat, kalvbuljong, modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliumsorbat)), potatis(konserveringsmedel E223), svart vinbärsgele(Råsaft av svarta vinbär, socker, vatten, pektin, citronsyra, konserveringsmedel (E202, E211)), äggnla(Pastöriserad ÄGGULA 99% (ursprung Sverige), konserveringsmedel (kaliumsorbat), surbetsreglerande medel (citronsyra)), vitkål, ljus sirap, salt, svartpeppar, kryddpeppar, gullök, persilja, rapsolja, majsstärkelse, morot, lagerblad. KYLVARA +8 grader'"
     },
@@ -46,7 +46,7 @@
       "img": "images/Schnitzel.png",
       "title": "Schnitzel med rödvinsås'",
       "price": "75kr",
-      "diet": "images/chicken.png",
+      "diet": "images/pork.png",
       "description": "'En österrikisk maträtt bestående av tunt skivat kött som är panerat och stekt, serveras med citron och potatis.'",
       "ingredients": "'Griskött 75%, ströbröd (VETEMJÖL, VETEstärkelse, vatten, salt, ÄGG, jäst, kryddor), f lyta nde kryddor (vatten, potatisstärkelse, druvsocker, torr glukos, salt, lökpulver, pepprextrakt), kulpotatis, oxfond(Vatten, rött vin, salt, köttextrakt, arom (innehåller SELLERI), modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliumsorbat)), rött matlagningsvin(Rött vin*, salt, peppar, konserveringsmedel (SVAVELDIOXID, kaliumsorbat), antioxidationsmedel (askorbinsyra)), gröna ÄRTER, rapsolja, gullök, morot, ROTSELLERI, tomatpu-re(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), lagerblad, svartpeppar, timjan, majsstärkelse, salt, socker. Kylvara +8 grader '"
     },
@@ -86,7 +86,7 @@
       "img": "images/Paneradrödspätta.png",
       "title": "'Panerad rödspätta'",
       "price": "75kr",
-      "diet": "images/cow.png",
+      "diet": "images/fish.png",
       "description": "'En maträtt där rödspättafilén är panerad och stekt, serveras med kokt potatis och sås.'",
       "ingredients": "'Panerad rödspätta(Rödspättafile 60 % (pleuronectes platessa), vetemjöl, vetestärkelse, vetekli, jäst, salt), potatis(KONSERERlNGSMEDEL E223), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), laktosfritt smör(Pastöriserad laktosfri GRÄDDE och salt. Laktosfri med hjälp av laktasenzym), såsbas(Svensk pressad rapsolja, emulgeringsmedel (citronsyraester), arom, färgärone (betakaroten)), ansjoviskryddad sill(Kryddade SILLFILEER (62,5 %) (SILL (Clupea harengus), vatten, socker, salt, kryddor (bl a peppar, kryddpeppar, nejlika, ingefära)), vatten, socker, salt, ättika, konserveringsmedel (E211), kryddarom (bl a nejlika, muskot, kryddpeppar,peppar), sandelextrakt) arom, färgärone (betakaroten)), gröna ärter, olivolja, dill, vitpeppar, salt. KYLVARA +8 grader '"
     },
@@ -230,7 +230,7 @@
       "img": "images/meatballs.png",
       "title": "'Köttbullar med potatismos'",
       "price": "115kr",
-      "diet": "images/cow.png",
+      "diet": "images/gris.png",
       "description": "'Saftiga svenska köttbullar med husets krämiga gräddsås, serveras med morötter och fluffigt potatismos.'",
       "ingredients": "'kommer snart'"
     },
@@ -250,7 +250,7 @@
       "img": "images/Cabbage_pudding.png",
       "title": "'Kålpudding med potatis'",
       "price": "115kr",
-      "diet": "images/cow.png",
+      "diet": "images/gris.png",
       "description": "'Pannbiff med karamelliserad lök, serveras med husets krämiga gräddsås och gyllenbrunt stekta potatisar. '",
       "ingredients": "'kommer snart'"
     },
@@ -300,7 +300,7 @@
       "img": "images/Meatloaf.png",
       "title": "'Köttfärslimpa'",
       "price": "115kr",
-      "diet": "images/cow.png",
+      "diet": "images/pork.png",
       "description": "'Köttfärslimpa i husets krämiga gräddsås, serveras med gyllenbrunt stekta potatisar och grönsaker. '",
       "ingredients": "'kommer snart'"
     }

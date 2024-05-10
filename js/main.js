@@ -437,9 +437,13 @@ const loadProducts = async () => {
     console.log(err);
   }
 };
+
+let data = [];
+
 const yumProducts = (yumProductsList) => {
   if (yum !== null) {
     let i = 0;
+    data = yum.diet;
     const htmlString = yumProductsList
       .map((yum) => {
         return (
@@ -459,9 +463,8 @@ const yumProducts = (yumProductsList) => {
               </div>
               <div class="d-flex justify-content-between align-items-center">
                <img
-                  src=` +
-          yum.diet +
-          `
+                  src=
+                  ${yum.diet}
                   alt="menu"
                   class="diet_img"
                 />
@@ -515,6 +518,14 @@ const yumProducts = (yumProductsList) => {
     return null;
   }
 };
+
+/*function foods(data) {
+  if (Array.isArray(data)) {
+    console.log(data);
+  } else {
+    return data;
+  }
+}*/
 
 //Display daily items
 const dailyProducts = (dailyProductsList) => {
@@ -1140,6 +1151,31 @@ if (cardModal !== null) {
   null;
 }
 
+var cardModal = document.getElementById("add_to_cart");
+if (cardModal !== null) {
+  cardModal.addEventListener("click", function (event) {
+    var button = event.relatedTarget;
+    var title = button.getAttribute("data-yum-cart-title");
+    var price = button.getAttribute("data-yum-cart-price");
+    var img = button.getAttribute("data-yum-cart-img");
+    var quantityPrice = button.getAttribute("data-yum-cart-quantity-price");
+
+    var modalTitle = cardModal.querySelector(".title");
+    var modalPrice = cardModal.querySelector(".price");
+    var modalImg = cardModal.querySelector("img");
+    var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+
+    localStorage.setItem("title", (modalTitle.textContent = title));
+    localStorage.setItem("price", (modalPrice.textContent = price));
+    localStorage.setItem("img", (modalImg.src = img));
+    localStorage.setItem(
+      "quantity-price",
+      (modalQuantityPrice.textContent = quantityPrice)
+    );
+  });
+} else {
+  null;
+}
 //Show ingredients div
 function showDiv() {
   document.getElementById("welcomeDiv").classList.toggle("hide");
@@ -1162,6 +1198,23 @@ if (existingTitle !== null) {
   null;
 }
 
+//Add to cart function
+const detailsCartTitle = localStorage.getItem("cart_title");
+const detailsCartPrice = localStorage.getItem("cart_price");
+const detailsCartQuantityPrice = localStorage.getItem("cart_quantity-price");
+const detailsCartImg = localStorage.getItem("cart_img");
+const existingCartTitle = document.getElementById("cart_title");
+if (existingCartTitle !== null) {
+  document.getElementById("cart_title").textContent = detailsCartTitle;
+  document.getElementById("cart_price").textContent = detailsCartPrice;
+  document.getElementById("cart_quantity-price").textContent =
+    detailsCartQuantityPrice;
+  const imgArray = document.querySelectorAll(".zoom");
+  for (let i = 0; i < Object.entries(imgArray).length; i++)
+    imgArray[i].src = detailsCartImg;
+} else {
+  null;
+}
 //Increase or descrease quantity functionality
 
 const increase = document.querySelectorAll(".increase");
