@@ -68,7 +68,6 @@
     <!--=============================
         TOPBAR END
     ==============================-->
-
     <!--=============================
         MENU START
     ==============================-->
@@ -98,9 +97,9 @@
               <ul class="droap_menu">
                 <li><a href="baguette_menu.html">Baguetter</a></li>
                 <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
-                <li><a href="yum_menu.html">Yum-rätter</a></li>
-                <li><a href="daily_menu.html">Dagens-rätter</a></li>
-                <li><a href="premium_menu.html">Premium-rätter</a></li>
+                <li><a href="yum_menu.html">Yum</a></li>
+                <li><a href="daily_menu.html">Dagens</a></li>
+                <li><a href="premium_menu.html">Premium</a></li>
               </ul>
             </li>
             <!--
@@ -128,9 +127,8 @@
             -->
             <li>
               <a class="cart_icon" href="cart_view.html"
-                ><i class="fas fa-shopping-basket"></i>
-                <span id="count">0</span></a
-              >
+                ><i class="fas fa-shopping-basket"></i> <span id="count"></span
+              ></a>
             </li>
           </ul>
         </div>
@@ -139,7 +137,6 @@
     <!--=============================
         MENU END
     ==============================-->
-
     <!--=============================
         BREADCRUMB START
     ==============================-->
@@ -159,7 +156,6 @@
     <!--=============================
         BREADCRUMB END
     ==============================-->
-
     <!--=============================
         MENU PAGE START
     ==============================-->
@@ -219,32 +215,32 @@
         </form>
         <div id="baguetter" class="row"></div>
         <!--
-        <div class="pagination mt_50">
-          <div class="row">
-            <div class="col-12">
-              <nav aria-label="...">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#"
-                      ><i class="fas fa-long-arrow-alt-left"></i
-                    ></a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#"
-                      ><i class="fas fa-long-arrow-alt-right"></i
-                    ></a>
-                  </li>
-                </ul>
-              </nav>
+            <div class="pagination mt_50">
+              <div class="row">
+                <div class="col-12">
+                  <nav aria-label="...">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#"
+                          ><i class="fas fa-long-arrow-alt-left"></i
+                        ></a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item active">
+                        <a class="page-link" href="#">2</a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#"
+                          ><i class="fas fa-long-arrow-alt-right"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        -->
+            -->
       </div>
     </section>
 
@@ -277,21 +273,21 @@
               </div>
               <div class="cart_popup_text">
                 <!--
-                <p class="rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-                  <i class="far fa-star"></i>
-                  <span>(201)</span>
-                </p>
-                -->
+                            <p class="rating">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star-half-alt"></i>
+                              <i class="far fa-star"></i>
+                              <span>(201)</span>
+                            </p>
+                            -->
                 <h4 class="price"></h4>
                 <!--
-                <div
-                  class="details_quentity d-flex justify-content-between align-items-start"
-                >
-                -->
+                            <div
+                              class="details_quentity d-flex justify-content-between align-items-start"
+                            >
+                            -->
                 <div class="mb_25">
                   <h5>Beskrivning:</h5>
                   <p class="description"></p>
@@ -312,7 +308,7 @@
                     <button class="decrease">
                       <i class="fal fa-minus"></i>
                     </button>
-                    <input type="text" value="0" />
+                    <input type="text" value="1" />
                     <button class="increase">
                       <i class="fal fa-plus"></i>
                     </button>
@@ -321,17 +317,17 @@
                 </div>
                 <ul>
                   <li>
-                    <button class="common_btn">
+                    <button class="common_btn" onclick="modalAddToCart()">
                       lägg till<i class="fas fa-cart-plus"></i>
                     </button>
                   </li>
                   <!--
-                  <li>
-                    <a class="common_btn" href="menu_details.html"
-                      >visa alla detaljer</a
-                    >
-                  </li>
-                  -->
+                                <li>
+                                  <a class="common_btn" href="menu_details.html"
+                                    >visa alla detaljer</a
+                                  >
+                                </li>
+                                -->
                 </ul>
               </div>
             </div>
@@ -340,11 +336,9 @@
       </div>
     </div>
     <!-- CART POPUT END -->
-
     <!--=============================
         MENU PAGE END
     ==============================-->
-
     <!--=============================
         FOOTER START
     ==============================-->
@@ -363,27 +357,27 @@
                 </a>
                 <ul class="social_link d-flex flex-wrap">
                   <li>
-                    <a href="https://www.facebook.com/YumFoodsSE"
-                      ><i class="fab fa-facebook-f"></i
-                    ></a>
+                    <a href="https://www.facebook.com/YumFoodsSE">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
                   </li>
                   <li>
-                    <a href="https://www.linkedin.com/company/yum-foods/"
-                      ><i class="fab fa-linkedin-in"></i
-                    ></a>
+                    <a href="https://www.linkedin.com/company/yum-foods/">
+                      <i class="fab fa-linkedin-in"></i>
+                    </a>
                   </li>
                   <li>
-                    <a href="#"
-                      ><span class="m_0"><img src="images/twitter.png" /></span
-                    ></a>
+                    <a href="#">
+                      <span class="m_0"><img src="images/twitter.png" /></span>
+                    </a>
                   </li>
                   <li>
                     <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
                   </li>
                   <li>
-                    <a href="https://www.instagram.com/yumfoods.se/"
-                      ><i class="fab fa-instagram"></i
-                    ></a>
+                    <a href="https://www.instagram.com/yumfoods.se/">
+                      <i class="fab fa-instagram"></i>
+                    </a>
                   </li>
                   <li>
                     <a href="#"><i class="fab fa-tiktok"></i></a>
@@ -452,15 +446,13 @@
     <!--=============================
         FOOTER END
     ==============================-->
-
     <!--=============================
         SCROLL BUTTON START
     ==============================-->
     <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
     <!--=============================
-        SCROLL BUTTON END 
+        SCROLL BUTTON END
     ==============================-->
-
     <!--jquery library js-->
     <script src="js/jquery-3.6.0.min.js"></script>
     <!--bootstrap js-->

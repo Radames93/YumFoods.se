@@ -358,6 +358,7 @@ let categories = document.getElementById("categories");
 let baguetter = document.getElementById("baguetter");
 let popup = document.getElementById("popup");
 const searchBar = document.getElementById("searchbar");
+let cartItem = document.getElementById("cart-item");
 
 let yumProductsList = [];
 let dailyProductsList = [];
@@ -371,6 +372,7 @@ let premiumFiltered = [];
 let subscriptionsFiltered = [];
 let baguetterFiltered = [];
 let all = [];
+
 const search = () => {
   searchBar.addEventListener("keyup", (e) => {
     const searchString = e.target.value.toLowerCase();
@@ -491,12 +493,16 @@ const yumProducts = (yumProductsList) => {
                 >
                 <h5 class="price">` +
           yum.price +
-          `</h5>` +
-          "<button class='add_to_cart' data-id=" +
+          `kr</h5>` +
+          "<button id='cart-button' class='add_to_cart' data-id=" +
           yum.id +
-          " onclick='addToCart(" +
-          i++ +
-          ")'>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ` 
+          data-yum-title=${yum.title}
+          data-yum-price=${yum.price}
+          data-yum-img=${yum.img}
+          data-yum-quantity-price=${yum.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -579,12 +585,16 @@ const dailyProducts = (dailyProductsList) => {
                 >
                 <h5 class="price">` +
           daily.price +
-          `</h5>` +
-          "<button class='add_to_cart' data-id=" +
+          `kr</h5>` +
+          "<button id='cart-button' class='add_to_cart' data-id=" +
           daily.id +
-          " onclick='addToCart(" +
-          i++ +
-          ")'>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ` 
+          data-yum-title=${daily.title}
+          data-yum-price=${daily.price}
+          data-yum-img=${daily.img}
+          data-yum-quantity-price=${daily.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -659,12 +669,16 @@ const premiumProducts = (premiumProductsList) => {
                 >
                 <h5 class="price">` +
           premium.price +
-          `</h5>` +
-          "<button class='add_to_cart' data-id=" +
+          `kr</h5>` +
+          "<button id='cart-button' class='add_to_cart' data-id=" +
           premium.id +
-          " onclick='addToCart(" +
-          i++ +
-          ")'>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ` 
+          data-yum-title=${premium.title}
+          data-yum-price=${premium.price}
+          data-yum-img=${premium.img}
+          data-yum-quantity-price=${premium.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -728,12 +742,16 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                 >
                 <h5 class="price">` +
           subscription.price +
-          `</h5>` +
-          "<button class='add_to_cart' data-id=" +
+          `kr</h5>` +
+          "<button id='cart-button' class='add_to_cart' data-id=" +
           subscription.id +
-          " onclick='addToCart(" +
-          i++ +
-          ")'Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ` 
+          data-yum-title=${subscription.title}
+          data-yum-price=${subscription.price}
+          data-yum-img=${subscription.img}
+          data-yum-quantity-price=${subscription.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `
           <!--
           <ul class="d-flex flex-wrap justify-content-end">
@@ -846,12 +864,16 @@ const baguetterProducts = (baguetterProductsList) => {
                 >
                 <h5 class="price">` +
           baguetter.price +
-          `</h5>` +
-          "<button class='add_to_cart' data-id=" +
+          `kr</h5>` +
+          "<button id='cart-button' class='add_to_cart' data-id=" +
           baguetter.id +
-          " onclick='addToCart(" +
-          i++ +
-          ")'>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ` 
+          data-yum-title=${baguetter.title}
+          data-yum-price=${baguetter.price}
+          data-yum-img=${baguetter.img}
+          data-yum-quantity-price=${baguetter.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `
           <!--
           <ul class="d-flex flex-wrap justify-content-end">
@@ -1129,9 +1151,12 @@ if (cardModal !== null) {
     var modalDescription = cardModal.querySelector(".description");
     var modalIngredients = cardModal.querySelector(".ingredients");
     var modalDiet = cardModal.querySelector(".diet");
+    var input = cardModal.querySelector(".quantity").value;
+    input = parseInt(input);
 
+    localStorage.setItem("quantity", input);
     localStorage.setItem("title", (modalTitle.textContent = title));
-    localStorage.setItem("price", (modalPrice.textContent = price));
+    localStorage.setItem("price", (modalPrice.innerHTML = price));
     localStorage.setItem("img", (modalImg.src = img));
     localStorage.setItem(
       "quantity-price",
@@ -1151,31 +1176,6 @@ if (cardModal !== null) {
   null;
 }
 
-var cardModal = document.getElementById("add_to_cart");
-if (cardModal !== null) {
-  cardModal.addEventListener("click", function (event) {
-    var button = event.relatedTarget;
-    var title = button.getAttribute("data-yum-cart-title");
-    var price = button.getAttribute("data-yum-cart-price");
-    var img = button.getAttribute("data-yum-cart-img");
-    var quantityPrice = button.getAttribute("data-yum-cart-quantity-price");
-
-    var modalTitle = cardModal.querySelector(".title");
-    var modalPrice = cardModal.querySelector(".price");
-    var modalImg = cardModal.querySelector("img");
-    var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-
-    localStorage.setItem("title", (modalTitle.textContent = title));
-    localStorage.setItem("price", (modalPrice.textContent = price));
-    localStorage.setItem("img", (modalImg.src = img));
-    localStorage.setItem(
-      "quantity-price",
-      (modalQuantityPrice.textContent = quantityPrice)
-    );
-  });
-} else {
-  null;
-}
 //Show ingredients div
 function showDiv() {
   document.getElementById("welcomeDiv").classList.toggle("hide");
@@ -1197,24 +1197,171 @@ if (existingTitle !== null) {
 } else {
   null;
 }
+let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+
+let count = document.getElementById("count");
+if (formDataArry !== null && formDataArry.length > 0) {
+  count.insertAdjacentHTML("beforeend", formDataArry.length);
+} else {
+  count.insertAdjacentHTML("beforeend", 0);
+  formDataArry = [];
+}
+console.log(count);
+
+function realAddToCart(event) {
+  var id = event.target.dataset.id;
+  var title = event.target.dataset.yumTitle;
+  var price = event.target.dataset.yumPrice;
+  var img = event.target.dataset.yumImg;
+  var quantityPrice = event.target.dataset.yumQuantityPrice;
+  console.log(title, price, img, quantityPrice); // "test", "passed"
+
+  let formData = {};
+  formData.title = title;
+  formData.price = price;
+  formData.img = img;
+  formData.quantityPrice = quantityPrice;
+
+  formDataArry.push(formData);
+  console.log(formDataArry);
+
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  console.log(formDataArry);
+}
+
+function modalAddToCart() {
+  var modalTitle = localStorage.getItem("title");
+  var modalPrice = localStorage.getItem("price");
+  var modalQuantityPrice = localStorage.getItem("quantity-price");
+  var modalImage = localStorage.getItem("img");
+  console.log(modalTitle, modalPrice, modalQuantityPrice, modalImage); // "test", "passed"
+
+  let formData = {};
+  formData.title = modalTitle;
+  formData.price = modalPrice;
+  formData.img = modalImage;
+  formData.quantityPrice = modalQuantityPrice;
+
+  formDataArry.push(formData);
+  console.log(formDataArry);
+
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  console.log(formDataArry);
+}
+
+const displayNewCart = () => {
+  let quantity = localStorage.getItem("quantity");
+  if (cartItem !== null) {
+    const htmlString = formDataArry
+      .map((item) => {
+        return (
+          `
+          <tr>
+          <td class="pro_img">
+                        <img
+                          src="` +
+          item.img +
+          `"
+                          alt="product"
+                          class="img-fluid w-100"
+                        />
+                      </td>
+
+                      <td class="pro_name">
+                        <a href="#">` +
+          item.title?.replace(/'/g, "") +
+          `</a>
+                      </td>
+                      <td class="pro_status">
+                        <h6>` +
+          item.price +
+          `kr</h6>
+                      </td>
+
+                      <td class="pro_select">
+                        <div class="quentity_btn">
+                      <button class="decrease">
+                      <i class="fal fa-minus"></i>
+                    </button>
+                    <input type="text" value=` +
+          quantity +
+          `>
+                    <button class="increase">
+                      <i class="fal fa-plus"></i>
+                    </button>
+                  </div>
+                      </td>
+
+                      <td class="pro_tk">
+                        <h6>` +
+          item.quantityPrice +
+          `kr</h6>
+                      </td>
+
+                      <td class="pro_icon">
+                        <a href="#"><i class="far fa-times"></i></a>
+                      </td>
+                      </tr>`
+        );
+      })
+      .join("");
+    cartItem.insertAdjacentHTML("afterend", htmlString);
+  } else {
+    return null;
+  }
+};
+
+displayNewCart();
 
 //Add to cart function
-const detailsCartTitle = localStorage.getItem("cart_title");
-const detailsCartPrice = localStorage.getItem("cart_price");
-const detailsCartQuantityPrice = localStorage.getItem("cart_quantity-price");
-const detailsCartImg = localStorage.getItem("cart_img");
-const existingCartTitle = document.getElementById("cart_title");
-if (existingCartTitle !== null) {
-  document.getElementById("cart_title").textContent = detailsCartTitle;
-  document.getElementById("cart_price").textContent = detailsCartPrice;
-  document.getElementById("cart_quantity-price").textContent =
-    detailsCartQuantityPrice;
-  const imgArray = document.querySelectorAll(".zoom");
-  for (let i = 0; i < Object.entries(imgArray).length; i++)
-    imgArray[i].src = detailsCartImg;
-} else {
-  null;
+class ShoppingCart {
+  constructor() {
+    this.items = {};
+  }
+
+  // Method to add food items to the cart
+  addToCart(foodItem, quantity) {
+    console.log("clicked");
+    if (this.items[foodItem]) {
+      this.items[foodItem] += quantity;
+    } else {
+      this.items[foodItem] = quantity;
+    }
+    this.displayCart();
+  }
+
+  // Method to view items in the cart
+  viewCart() {
+    window.location.href = "cart_view.html";
+    this.displayCart();
+  }
+
+  // Method to display cart items
+  displayCart() {
+    const cartItemsDiv = document.getElementById("cart-item");
+    cartItemsDiv.innerHTML = "<h2>Cart Items:</h2>";
+
+    for (let foodItem in this.items) {
+      const itemQuantity = this.items[foodItem];
+      const itemText = `${foodItem}: ${itemQuantity}`;
+      cartItemsDiv.innerHTML += `<p>${itemText}</p>`;
+    }
+  }
 }
+
+// Create a new instance of ShoppingCart
+const cart = new ShoppingCart();
+
+// Function to add item to cart
+function addToCart(foodItem, quantity) {
+  cart.addToCart(foodItem, quantity);
+}
+
+// Function to view cart
+function viewCart() {
+  cart.viewCart();
+}
+
 //Increase or descrease quantity functionality
 
 const increase = document.querySelectorAll(".increase");
@@ -1230,12 +1377,44 @@ decrease.forEach((btn) => {
 
 function increment() {
   const inp = this.previousElementSibling;
-  inp.value = Number(inp.value) + 1;
+  if (inp.value < 20) inp.value = Number(inp.value) + 1;
+  let quantityPrice = localStorage.getItem("quantity-price");
+  let price = localStorage.getItem("price");
+  quantityPrice = parseInt(quantityPrice);
+  price = parseInt(price);
+  var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+  var input = cardModal.querySelector(".quantity");
+  let inputQuantity = inp.value;
+  let increaseQuantityPrice = price * inp.value;
+  console.log(increaseQuantityPrice);
+
+  localStorage.setItem(
+    "quantity-price",
+    (modalQuantityPrice.textContent = increaseQuantityPrice)
+  );
+  localStorage.setItem("quantity", (input.textContent = inputQuantity));
 }
 
 function decrement() {
   const inp = this.nextElementSibling;
-  if (inp.value > 0) inp.value = Number(inp.value) - 1;
+  if (inp.value > 0) {
+    inp.value = Number(inp.value) - 1;
+    let quantityPrice = localStorage.getItem("quantity-price");
+    let price = localStorage.getItem("price");
+    quantityPrice = parseInt(quantityPrice);
+    price = parseInt(price);
+    var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+    var input = cardModal.querySelector(".quantity");
+    let inputQuantity = inp.value;
+    let descreaseQuantityPrice = quantityPrice - price;
+    console.log(descreaseQuantityPrice);
+
+    localStorage.setItem(
+      "quantity-price",
+      (modalQuantityPrice.textContent = descreaseQuantityPrice)
+    );
+    localStorage.setItem("quantity", (input.textContent = inputQuantity));
+  }
 }
 
 function showCompanyForm() {

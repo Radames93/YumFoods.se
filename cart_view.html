@@ -98,9 +98,9 @@
               <ul class="droap_menu">
                 <li><a href="baguette_menu.html">Baguetter</a></li>
                 <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
-                <li><a href="yum_menu.html">Yum-rätter</a></li>
-                <li><a href="daily_menu.html">Dagens-rätter</a></li>
-                <li><a href="premium_menu.html">Premium-rätter</a></li>
+                <li><a href="yum_menu.html">Yum</a></li>
+                <li><a href="daily_menu.html">Dagens</a></li>
+                <li><a href="premium_menu.html">Premium</a></li>
               </ul>
             </li>
             <!--
@@ -128,9 +128,8 @@
             -->
             <li>
               <a class="cart_icon" href="cart_view.html"
-                ><i class="fas fa-shopping-basket"></i>
-                <span id="count">0</span></a
-              >
+                ><i class="fas fa-shopping-basket"></i> <span id="count"></span
+              ></a>
             </li>
           </ul>
         </div>
@@ -174,7 +173,7 @@
               <div class="table-responsive">
                 <table>
                   <tbody>
-                    <tr>
+                    <tr id="cart-item">
                       <th class="pro_img">bild</th>
 
                       <th class="pro_name">detaljer</th>
@@ -188,38 +187,6 @@
                       <th class="pro_icon">
                         <a class="clear_all" href="#">ta bort</a>
                       </th>
-                    </tr>
-                    <tr id="cart-item">
-                      <td class="pro_img">
-                        <img src="" alt="product" class="img-fluid w-100" />
-                      </td>
-
-                      <td class="pro_name">
-                        <a href="#" class="cart_title"></a>
-                      </td>
-                      <td class="pro_status">
-                        <h6 class="cart_price"></h6>
-                      </td>
-
-                      <td class="pro_select">
-                        <div class="quentity_btn">
-                          <button class="btn btn-danger">
-                            <i class="fal fa-minus"></i>
-                          </button>
-                          <input type="text" placeholder="1" />
-                          <button class="btn btn-success">
-                            <i class="fal fa-plus"></i>
-                          </button>
-                        </div>
-                      </td>
-
-                      <td class="pro_tk">
-                        <h6 class="cart_details_quentity"></h6>
-                      </td>
-
-                      <td class="pro_icon">
-                        <a href="#"><i class="far fa-times"></i></a>
-                      </td>
                     </tr>
                   </tbody>
                 </table>

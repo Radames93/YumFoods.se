@@ -4118,12 +4118,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   -o-transition: all 0.3s ease;
 }
 
-.cart_list table tr th,
-.cart_list table tr td {
+.cart_list table tr th {
   border: none;
   color: var(--colorBlack);
   text-align: center;
   text-transform: capitalize;
+  font-size: 16px;
+  font-weight: 900;
+  padding: 10px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #e3e3e3;
+}
+
+.cart_list table tr td {
+  border: none;
+  color: var(--colorBlack);
+  text-align: center;
   font-size: 16px;
   font-weight: 900;
   padding: 10px !important;
@@ -4160,8 +4173,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .cart_list table tbody tr td span {
   font-family: "Roboto", sans-serif;
   color: var(--paraColor);
-  text-transform: capitalize;
-  text-align: left;
   font-size: 14px;
 }
 
