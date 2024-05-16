@@ -478,6 +478,7 @@ const yumProducts = (yumProductsList) => {
                 <a
                   class="title"
                   href="#"
+                  data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -496,7 +497,8 @@ const yumProducts = (yumProductsList) => {
           `kr</h5>` +
           "<button id='cart-button' class='add_to_cart' data-id=" +
           yum.id +
-          ` 
+          `
+          data-yum-id=${yum.id} 
           data-yum-title=${yum.title}
           data-yum-price=${yum.price}
           data-yum-img=${yum.img}
@@ -570,6 +572,7 @@ const dailyProducts = (dailyProductsList) => {
                 <a
                   class="title"
                   href="#"
+                  data-yum-id=${daily.id} 
                   data-yum-title=${daily.title}
                   data-yum-price=${daily.price}
                   data-yum-img=${daily.img}
@@ -588,7 +591,8 @@ const dailyProducts = (dailyProductsList) => {
           `kr</h5>` +
           "<button id='cart-button' class='add_to_cart' data-id=" +
           daily.id +
-          ` 
+          `
+          data-yum-id=${daily.id}
           data-yum-title=${daily.title}
           data-yum-price=${daily.price}
           data-yum-img=${daily.img}
@@ -654,6 +658,7 @@ const premiumProducts = (premiumProductsList) => {
                 <a
                   class="title"
                   href="#"
+                  data-yum-id=${premium.id} 
                   data-yum-title=${premium.title}
                   data-yum-price=${premium.price}
                   data-yum-img=${premium.img}
@@ -672,7 +677,8 @@ const premiumProducts = (premiumProductsList) => {
           `kr</h5>` +
           "<button id='cart-button' class='add_to_cart' data-id=" +
           premium.id +
-          ` 
+          `
+          data-yum-id=${premium.id}
           data-yum-title=${premium.title}
           data-yum-price=${premium.price}
           data-yum-img=${premium.img}
@@ -728,6 +734,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                 <a
                   class="title"
                   href="#"
+                  data-yum-id=${subscription.id} 
                   data-yum-title=${subscription.title}
                   data-yum-price=${subscription.price}
                   data-yum-img=${subscription.img}
@@ -745,7 +752,8 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
           `kr</h5>` +
           "<button id='cart-button' class='add_to_cart' data-id=" +
           subscription.id +
-          ` 
+          `
+          data-yum-id=${subscription.id}
           data-yum-title=${subscription.title}
           data-yum-price=${subscription.price}
           data-yum-img=${subscription.img}
@@ -849,7 +857,8 @@ const baguetterProducts = (baguetterProductsList) => {
                 <a
                   class="title"
                   href="#"
-                   data-yum-title=${baguetter.title}
+                  data-yum-id=${baguetter.id} 
+                  data-yum-title=${baguetter.title}
                   data-yum-price=${baguetter.price}
                   data-yum-img=${baguetter.img}
                   data-yum-quantity-price=${baguetter.price}
@@ -867,7 +876,8 @@ const baguetterProducts = (baguetterProductsList) => {
           `kr</h5>` +
           "<button id='cart-button' class='add_to_cart' data-id=" +
           baguetter.id +
-          ` 
+          `
+          data-yum-id=${baguetter.id}
           data-yum-title=${baguetter.title}
           data-yum-price=${baguetter.price}
           data-yum-img=${baguetter.img}
@@ -1136,6 +1146,7 @@ var cardModal = document.getElementById("modal");
 if (cardModal !== null) {
   cardModal.addEventListener("show.bs.modal", function (event) {
     var button = event.relatedTarget;
+    var id = button.getAttribute("data-yum-id");
     var title = button.getAttribute("data-yum-title");
     var price = button.getAttribute("data-yum-price");
     var img = button.getAttribute("data-yum-img");
@@ -1155,6 +1166,7 @@ if (cardModal !== null) {
     input = parseInt(input);
 
     localStorage.setItem("quantity", input);
+    localStorage.setItem("id", id);
     localStorage.setItem("title", (modalTitle.textContent = title));
     localStorage.setItem("price", (modalPrice.innerHTML = price));
     localStorage.setItem("img", (modalImg.src = img));
@@ -1197,6 +1209,7 @@ if (existingTitle !== null) {
 } else {
   null;
 }
+
 let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
 let count = document.getElementById("count");
@@ -1217,19 +1230,23 @@ function realAddToCart(event) {
   console.log(title, price, img, quantityPrice); // "test", "passed"
 
   let formData = {};
+  formData.id = id;
   formData.title = title;
   formData.price = price;
   formData.img = img;
   formData.quantityPrice = quantityPrice;
+  formData.quantity = 1;
 
   formDataArry.push(formData);
   console.log(formDataArry);
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  count.innerHTML = formDataArry.length;
   console.log(formDataArry);
 }
 
 function modalAddToCart() {
+  var modalId = localStorage.getItem("id");
   var modalTitle = localStorage.getItem("title");
   var modalPrice = localStorage.getItem("price");
   var modalQuantityPrice = localStorage.getItem("quantity-price");
@@ -1237,6 +1254,7 @@ function modalAddToCart() {
   console.log(modalTitle, modalPrice, modalQuantityPrice, modalImage); // "test", "passed"
 
   let formData = {};
+  formData.id = modalId;
   formData.title = modalTitle;
   formData.price = modalPrice;
   formData.img = modalImage;
@@ -1246,11 +1264,25 @@ function modalAddToCart() {
   console.log(formDataArry);
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  count.innerHTML = formDataArry.length;
   console.log(formDataArry);
 }
 
+const loadCart = () => {
+  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  console.log("success");
+};
+
 const displayNewCart = () => {
-  let quantity = localStorage.getItem("quantity");
+  let quantity = "";
+  if (localStorage.getItem("quantity") !== null) {
+    quantity = localStorage.getItem("quantity");
+  } else {
+    for (i = 0; i < formDataArry.length; i++) {
+      quantity = parseInt(formDataArry[i].quantity);
+      console.log(quantity);
+    }
+  }
   if (cartItem !== null) {
     const htmlString = formDataArry
       .map((item) => {
@@ -1283,7 +1315,7 @@ const displayNewCart = () => {
                       <button class="decrease">
                       <i class="fal fa-minus"></i>
                     </button>
-                    <input type="text" value=` +
+                    <input class="quantity" type="text" value=` +
           quantity +
           `>
                     <button class="increase">
@@ -1293,13 +1325,15 @@ const displayNewCart = () => {
                       </td>
 
                       <td class="pro_tk">
-                        <h6>` +
+                        <h6 class="quantity_price">` +
           item.quantityPrice +
           `kr</h6>
                       </td>
 
                       <td class="pro_icon">
-                        <a href="#"><i class="far fa-times"></i></a>
+                        <button onclick="removeItem(` +
+          item.id +
+          `)" href="#"><i class="far fa-times"></i></button>
                       </td>
                       </tr>`
         );
@@ -1376,35 +1410,78 @@ decrease.forEach((btn) => {
 });
 
 function increment() {
-  const inp = this.previousElementSibling;
-  if (inp.value < 20) inp.value = Number(inp.value) + 1;
-  let quantityPrice = localStorage.getItem("quantity-price");
-  let price = localStorage.getItem("price");
-  quantityPrice = parseInt(quantityPrice);
-  price = parseInt(price);
-  var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-  var input = cardModal.querySelector(".quantity");
-  let inputQuantity = inp.value;
-  let increaseQuantityPrice = price * inp.value;
-  console.log(increaseQuantityPrice);
-
-  localStorage.setItem(
-    "quantity-price",
-    (modalQuantityPrice.textContent = increaseQuantityPrice)
-  );
-  localStorage.setItem("quantity", (input.textContent = inputQuantity));
-}
-
-function decrement() {
-  const inp = this.nextElementSibling;
-  if (inp.value > 0) {
-    inp.value = Number(inp.value) - 1;
+  if (localStorage.getItem("quantity") !== null) {
+    const inp = this.previousElementSibling;
+    if (inp.value < 20) inp.value = Number(inp.value) + 1;
     let quantityPrice = localStorage.getItem("quantity-price");
     let price = localStorage.getItem("price");
     quantityPrice = parseInt(quantityPrice);
     price = parseInt(price);
-    var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-    var input = cardModal.querySelector(".quantity");
+    if (cardModal !== null) {
+      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+      var input = cardModal.querySelector(".quantity");
+    } else {
+      price = parseInt(price);
+      var modalQuantityPrice = document.querySelector(".quantity_price");
+      var input = document.querySelector(".quantity");
+    }
+    let inputQuantity = inp.value;
+    let increaseQuantityPrice = price * inp.value;
+    console.log(increaseQuantityPrice);
+
+    localStorage.setItem(
+      "quantity-price",
+      (modalQuantityPrice.textContent = increaseQuantityPrice)
+    );
+    localStorage.setItem("quantity", (input.textContent = inputQuantity));
+  } else {
+    const inp = this.previousElementSibling;
+    if (inp.value < 20) inp.value = Number(inp.value) + 1;
+    for (i = 0; i < formDataArry.length; i++) {
+      price = parseInt(formDataArry[i].price);
+      quantityPrice = parseInt(formDataArry[i].quantityPrice);
+      quantity = parseInt(formDataArry[i].quantity);
+    }
+    if (cardModal !== null) {
+      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+      var input = cardModal.querySelector(".quantity");
+    } else {
+      price = parseInt(price);
+      var modalQuantityPrice = document.querySelector(".quantity_price");
+      var input = document.querySelector(".quantity");
+    }
+    let inputQuantity = inp.value;
+    let increaseQuantityPrice = price * inp.value;
+    console.log(increaseQuantityPrice);
+
+    formDataArry.forEach((item) => {
+      if (item.quantityPrice !== increaseQuantityPrice) {
+        item.quantityPrice = increaseQuantityPrice;
+      } else if (item.quantity !== inputQuantity) {
+        item.quantity = inputQuantity;
+      }
+    });
+    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  }
+  loadCart();
+}
+
+function decrement() {
+  if (localStorage.getItem("quantity") !== null) {
+    const inp = this.nextElementSibling;
+    if (inp.value > 0) inp.value = Number(inp.value) - 1;
+    let quantityPrice = localStorage.getItem("quantity-price");
+    let price = localStorage.getItem("price");
+    quantityPrice = parseInt(quantityPrice);
+    price = parseInt(price);
+    if (cardModal !== null) {
+      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+      var input = cardModal.querySelector(".quantity");
+    } else {
+      price = parseInt(price);
+      var modalQuantityPrice = document.querySelector(".quantity_price");
+      var input = document.querySelector(".quantity");
+    }
     let inputQuantity = inp.value;
     let descreaseQuantityPrice = quantityPrice - price;
     console.log(descreaseQuantityPrice);
@@ -1414,7 +1491,42 @@ function decrement() {
       (modalQuantityPrice.textContent = descreaseQuantityPrice)
     );
     localStorage.setItem("quantity", (input.textContent = inputQuantity));
+  } else {
+    const inp = this.nextElementSibling;
+    if (inp.value > 0) inp.value = Number(inp.value) - 1;
+    for (i = 0; i < formDataArry.length; i++) {
+      price = parseInt(formDataArry[i].price);
+      quantityPrice = parseInt(formDataArry[i].quantityPrice);
+      quantity = parseInt(formDataArry[i].quantity);
+    }
+    if (cardModal !== null) {
+      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+      var input = cardModal.querySelector(".quantity");
+    } else {
+      price = parseInt(price);
+      var modalQuantityPrice = document.querySelector(".quantity_price");
+      var input = document.querySelector(".quantity");
+    }
+    let inputQuantity = inp.value;
+    let descreaseQuantityPrice = quantityPrice - price;
+    console.log(descreaseQuantityPrice);
+
+    formDataArry.forEach((item) => {
+      if (item.quantityPrice !== descreaseQuantityPrice) {
+        item.quantityPrice = descreaseQuantityPrice;
+      } else if (item.quantity !== inputQuantity) {
+        item.quantity = inputQuantity;
+      }
+    });
+    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
+  loadCart();
+}
+
+function removeItem(id) {
+  let temp = formDataArry.filter((item) => item.id != id);
+  localStorage.setItem("formDataArry", JSON.stringify(temp)); //set item back into storage
+  loadCart();
 }
 
 function showCompanyForm() {
@@ -1525,3 +1637,87 @@ if (contactForm !== null) {
 } else {
   null;
 }
+
+let sum = 0;
+for (let i = 0; i < formDataArry.length; i++) {
+  sum += parseInt(formDataArry[i].quantityPrice);
+}
+let totalPrice = document.getElementById("total");
+if (totalPrice !== null) {
+  totalPrice.innerHTML = sum + "kr";
+  console.log(sum);
+}
+
+function sendCartToEmail() {
+  let contactForm = document.getElementById("message");
+  if (contactForm !== null) {
+    contactForm.innerHTML = `
+                    <div class="col-xl-12">
+                        <div for="message" class="contact_form_input textarea">
+                          <span><i class="fas fa-pen"></i></span>
+                          <textarea
+                            name="message"
+                            rows="5"
+                            placeholder="Meddelande"
+                          >
+                          ´order: ${formDataArry}
+                          total : ${sum}
+                          ´
+                          </textarea>
+                        </div>
+                      </div>
+                  `;
+  } else {
+    null;
+  }
+}
+
+$(document).ready(function () {
+  // inspired by http://jsfiddle.net/arunpjohny/564Lxosz/1/
+  $(".table-responsive-stack").each(function (i) {
+    var id = $(this).attr("id");
+    //alert(id);
+    $(this)
+      .find("th")
+      .each(function (i) {
+        $("#" + id + " td:nth-child(" + (i + 1) + ")").prepend(
+          '<span class="table-responsive-stack-thead">' +
+            $(this).text() +
+            ":</span> "
+        );
+        $(".table-responsive-stack-thead").hide();
+      });
+  });
+
+  $(".table-responsive-stack").each(function () {
+    var thCount = $(this).find("th").length;
+    var rowGrow = 100 / thCount + "%";
+    //console.log(rowGrow);
+    $(this).find("th, td").css("flex-basis", rowGrow);
+  });
+
+  function flexTable() {
+    if ($(window).width() < 768) {
+      $(".table-responsive-stack").each(function (i) {
+        $(this).find(".table-responsive-stack-thead").show();
+        $(this).find("thead").hide();
+      });
+
+      // window is less than 768px
+    } else {
+      $(".table-responsive-stack").each(function (i) {
+        $(this).find(".table-responsive-stack-thead").hide();
+        $(this).find("thead").show();
+      });
+    }
+    // flextable
+  }
+
+  flexTable();
+
+  window.onresize = function (event) {
+    flexTable();
+  };
+
+  // document ready
+});

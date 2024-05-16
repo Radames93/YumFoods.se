@@ -4336,6 +4336,74 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   -o-border-radius: 30px;
 }
 
+.total input {
+  width: 100%;
+  font-size: 15px;
+  font-weight: 400;
+  background: var(--colorWhite);
+  border: 1px solid #ff7c0845;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+
+.total_button_text {
+  background: white;
+  border: 3px var(--colorPrimary) solid;
+  padding: 40px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.total_button_text p {
+  text-transform: capitalize;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  color: var(--colorBlack);
+  font-weight: 500;
+}
+
+.total_button_text p span {
+  font-size: 15px;
+  color: var(--colorBlack);
+  font-weight: 500;
+}
+
+.total_button_text .total {
+  border-top: 1px solid #ff7c0845;
+  padding-top: 10px;
+  color: var(--colorBlack);
+}
+
+.total_button_text .total span {
+  font-weight: 600;
+  color: var(--colorBlack);
+  font-size: 18px;
+}
+
+.total_button_text button {
+  text-align: center;
+  border-radius: 30px;
+  background: var(--colorPrimary);
+  color: var(--colorWhite);
+  font-size: 14px;
+  font-weight: 600;
+  transition: all linear 0.3s;
+}
+
+.pro_icon button {
+  text-align: center;
+  font-size: 30px;
+  background-color: white;
+}
+
 .cart_list_footer_button button {
   text-transform: capitalize;
   padding: 5px 20px 6px 20px;
@@ -6019,4 +6087,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .team_slider .nextArrow,
 .offer_item_slider .nextArrow {
   display: none;
+}
+
+.table-responsive-stack tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.table-responsive-stack td,
+.table-responsive-stack th {
+  display: block;
+  /*      
+   flex-grow | flex-shrink | flex-basis   */
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+.table-responsive-stack .table-responsive-stack-thead {
+  font-weight: bold;
 }

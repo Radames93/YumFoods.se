@@ -194,7 +194,7 @@
             </div>
           </div>
           <div class="col-lg-12 wow fadeInUp" data-wow-duration="1s">
-            <div class="cart_list_footer_button mt_50">
+            <div class="total mt_50">
               <div class="row">
                 <div class="col-xl-7 col-md-6">
                   <div class="cart_list_footer_button_img">
@@ -206,19 +206,69 @@
                   </div>
                 </div>
                 <div class="col-xl-5 col-md-6">
-                  <div class="cart_list_footer_button_text">
-                    <h6>total</h6>
+                  <div class="total_button_text">
+                    <!--<h6>total</h6>
                     <p id="subtotal">delsumma: <span>285kr</span></p>
                     <p>leverans: <span>0kr</span></p>
                     <p>rabatt: <span>10kr</span></p>
+                    -->
                     <p class="total">
-                      <span>total:</span> <span>295.00kr</span>
+                      <span>total:</span> <span id="total"></span>
                     </p>
-                    <form>
-                      <input type="text" placeholder=" Rabattkod" />
-                      <button type="submit">använda</button>
+                    <form
+                      id="contact-form"
+                      class="contact_form text-center p_0"
+                      action="https://api.web3forms.com/submit"
+                      method="POST"
+                    >
+                      <input
+                        type="hidden"
+                        name="access_key"
+                        value="0984a5c4-eb6b-4bcf-8601-7b83fe4f470a"
+                      />
+                      <input
+                        type="hidden"
+                        name="subject"
+                        value="New Submission from Web3Forms"
+                      />
+                      <input
+                        type="checkbox"
+                        name="botcheck"
+                        id=""
+                        style="display: none"
+                      />
+                      <!--
+                  <input
+                    type="hidden"
+                    name="recaptcha_response"
+                    id="recaptchaResponse"
+                  />
+                  -->
+                      <div for="name" class="contact_form_input">
+                        <span><i class="fas fa-user"></i></span>
+                        <input name="name" type="text" placeholder="Namn" />
+                      </div>
+                      <div class="col-xl-6">
+                        <div for="email" class="contact_form_input">
+                          <span><i class="fas fa-envelope"></i></span>
+                          <input name="email" type="email" placeholder="Mejl" />
+                        </div>
+                      </div>
+                      <div class="col-xl-6">
+                        <div for="phone" class="contact_form_input">
+                          <span><i class="fas fa-phone-alt"></i></span>
+                          <input
+                            name="phone"
+                            type="text"
+                            placeholder="Telefonnummer"
+                          />
+                        </div>
+                      </div>
+                      <div id="message"></div>
+                      <button class="common_btn" type="submit">
+                        Skicka din order
+                      </button>
                     </form>
-                    <a class="common_btn" href="check_out.html">kassa</a>
                   </div>
                 </div>
               </div>
