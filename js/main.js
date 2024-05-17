@@ -1229,6 +1229,8 @@ function realAddToCart(event) {
   var quantityPrice = event.target.dataset.yumQuantityPrice;
   console.log(title, price, img, quantityPrice); // "test", "passed"
 
+  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+
   let formData = {};
   formData.id = id;
   formData.title = title;
@@ -1237,8 +1239,14 @@ function realAddToCart(event) {
   formData.quantityPrice = quantityPrice;
   formData.quantity = 1;
 
-  formDataArry.push(formData);
-  console.log(formDataArry);
+  const check_index = formDataArry.findIndex((item) => item.id === id);
+  if (check_index !== -1) {
+    formData.quantity + 1;
+    console.log("Quantity updated:", formDataArry);
+  } else {
+    formDataArry.push(formData);
+    console.log("The product has been added to cart:", formDataArry);
+  }
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   count.innerHTML = formDataArry.length;
@@ -1268,11 +1276,6 @@ function modalAddToCart() {
   console.log(formDataArry);
 }
 
-const loadCart = () => {
-  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-  console.log("success");
-};
-
 const displayNewCart = () => {
   let quantity = "";
   if (localStorage.getItem("quantity") !== null) {
@@ -1284,11 +1287,14 @@ const displayNewCart = () => {
     }
   }
   if (cartItem !== null) {
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     const htmlString = formDataArry
       .map((item) => {
         return (
           `
-          <tr>
+          <tr id= "` +
+          item.id +
+          `">
           <td class="pro_img">
                         <img
                           src="` +
@@ -1339,10 +1345,16 @@ const displayNewCart = () => {
         );
       })
       .join("");
-    cartItem.insertAdjacentHTML("afterend", htmlString);
+    cartItem.innerHTML = htmlString;
   } else {
     return null;
   }
+};
+
+const loadCart = () => {
+  _.observe(formDataArry, function () {
+    console.log("something happened");
+  });
 };
 
 displayNewCart();
@@ -1525,8 +1537,23 @@ function decrement() {
 
 function removeItem(id) {
   let temp = formDataArry.filter((item) => item.id != id);
-  localStorage.setItem("formDataArry", JSON.stringify(temp)); //set item back into storage
-  loadCart();
+  localStorage.setItem("formDataArry", JSON.stringify(temp));
+  //set item back into storage
+  displayNewCart();
+  count.innerHTML = formDataArry.length;
+  let sum = document.getElementById("total").innerHTML;
+  total = parseInt(sum);
+  for (let i = 0; i < temp.length; i++) {
+    quantity = parseInt(temp[i].quantityPrice);
+    console.log(sum);
+    console.log(quantity);
+    total = sum - quantity;
+  }
+  console.log(sum);
+  let totalPrice = document.getElementById("total");
+  if (totalPrice !== null) {
+    totalPrice.innerHTML = total + "kr";
+  }
 }
 
 function showCompanyForm() {
@@ -1671,53 +1698,3 @@ function sendCartToEmail() {
     null;
   }
 }
-
-$(document).ready(function () {
-  // inspired by http://jsfiddle.net/arunpjohny/564Lxosz/1/
-  $(".table-responsive-stack").each(function (i) {
-    var id = $(this).attr("id");
-    //alert(id);
-    $(this)
-      .find("th")
-      .each(function (i) {
-        $("#" + id + " td:nth-child(" + (i + 1) + ")").prepend(
-          '<span class="table-responsive-stack-thead">' +
-            $(this).text() +
-            ":</span> "
-        );
-        $(".table-responsive-stack-thead").hide();
-      });
-  });
-
-  $(".table-responsive-stack").each(function () {
-    var thCount = $(this).find("th").length;
-    var rowGrow = 100 / thCount + "%";
-    //console.log(rowGrow);
-    $(this).find("th, td").css("flex-basis", rowGrow);
-  });
-
-  function flexTable() {
-    if ($(window).width() < 768) {
-      $(".table-responsive-stack").each(function (i) {
-        $(this).find(".table-responsive-stack-thead").show();
-        $(this).find("thead").hide();
-      });
-
-      // window is less than 768px
-    } else {
-      $(".table-responsive-stack").each(function (i) {
-        $(this).find(".table-responsive-stack-thead").hide();
-        $(this).find("thead").show();
-      });
-    }
-    // flextable
-  }
-
-  flexTable();
-
-  window.onresize = function (event) {
-    flexTable();
-  };
-
-  // document ready
-});
