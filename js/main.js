@@ -1229,8 +1229,6 @@ function realAddToCart(event) {
   var quantityPrice = event.target.dataset.yumQuantityPrice;
   console.log(title, price, img, quantityPrice); // "test", "passed"
 
-  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-
   let formData = {};
   formData.id = id;
   formData.title = title;
@@ -1239,9 +1237,14 @@ function realAddToCart(event) {
   formData.quantityPrice = quantityPrice;
   formData.quantity = 1;
 
-  const check_index = formDataArry.findIndex((item) => item.id === id);
-  if (check_index !== -1) {
-    formData.quantity + 1;
+  const itemIndexInBasket = formDataArry.findIndex(
+    (basketEntry) => basketEntry.id === id
+  );
+  if (itemIndexInBasket !== -1) {
+    formDataArry[itemIndexInBasket].quantity++;
+    formDataArry[itemIndexInBasket].quantityPrice =
+      parseInt(formDataArry[itemIndexInBasket].quantityPrice) +
+      parseInt(formDataArry[itemIndexInBasket].price);
     console.log("Quantity updated:", formDataArry);
   } else {
     formDataArry.push(formData);
@@ -1351,12 +1354,6 @@ const displayNewCart = () => {
   }
 };
 
-const loadCart = () => {
-  _.observe(formDataArry, function () {
-    console.log("something happened");
-  });
-};
-
 displayNewCart();
 
 //Add to cart function
@@ -1421,7 +1418,7 @@ decrease.forEach((btn) => {
   btn.addEventListener("click", decrement);
 });
 
-function increment() {
+function increment(id) {
   if (localStorage.getItem("quantity") !== null) {
     const inp = this.previousElementSibling;
     if (inp.value < 20) inp.value = Number(inp.value) + 1;
@@ -1434,8 +1431,9 @@ function increment() {
       var input = cardModal.querySelector(".quantity");
     } else {
       price = parseInt(price);
-      var modalQuantityPrice = document.querySelector(".quantity_price");
-      var input = document.querySelector(".quantity");
+      var modalQuantityPrice = this.closest(".pro_tk");
+      var input = this.previousElementSibling;
+      console.log(modalQuantityPrice, input);
     }
     let inputQuantity = inp.value;
     let increaseQuantityPrice = price * inp.value;
@@ -1475,7 +1473,6 @@ function increment() {
     });
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
-  loadCart();
 }
 
 function decrement() {
@@ -1532,7 +1529,6 @@ function decrement() {
     });
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
-  loadCart();
 }
 
 function removeItem(id) {
