@@ -1183,6 +1183,7 @@ if (cardModal !== null) {
       (modalDescription.textContent = description)
     );
     localStorage.setItem("diet", (modalDiet.src = diet));
+    localStorage.setItem("quantity", (input.value = 1));
   });
 } else {
   null;
@@ -1262,6 +1263,7 @@ function modalAddToCart() {
   var modalPrice = localStorage.getItem("price");
   var modalQuantityPrice = localStorage.getItem("quantity-price");
   var modalImage = localStorage.getItem("img");
+  var modalQuantity = localStorage.getItem("quantity");
   console.log(modalTitle, modalPrice, modalQuantityPrice, modalImage); // "test", "passed"
 
   let formData = {};
@@ -1270,29 +1272,40 @@ function modalAddToCart() {
   formData.price = modalPrice;
   formData.img = modalImage;
   formData.quantityPrice = modalQuantityPrice;
+  formData.quantity = modalQuantity;
 
-  formDataArry.push(formData);
-  console.log(formDataArry);
+  const itemIndexInBasket = formDataArry.findIndex(
+    (basketEntry) => basketEntry.id === modalId
+  );
+  if (itemIndexInBasket !== -1) {
+    formDataArry[itemIndexInBasket].quantity++;
+    formDataArry[itemIndexInBasket].quantityPrice =
+      parseInt(formDataArry[itemIndexInBasket].quantityPrice) +
+      parseInt(formDataArry[itemIndexInBasket].price);
+    console.log("Quantity updated:", formDataArry);
+  } else {
+    formDataArry.push(formData);
+    console.log("The product has been added to cart:", formDataArry);
+  }
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   count.innerHTML = formDataArry.length;
   console.log(formDataArry);
+  var input = document.querySelector(".quantity");
+  input.value = 1;
 }
 
 const displayNewCart = () => {
-  let quantity = "";
-  if (localStorage.getItem("quantity") !== null) {
-    quantity = localStorage.getItem("quantity");
-  } else {
-    for (i = 0; i < formDataArry.length; i++) {
-      quantity = parseInt(formDataArry[i].quantity);
-      console.log(quantity);
-    }
-  }
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     const htmlString = formDataArry
       .map((item) => {
+        let quantity;
+        if (item.quantity == null) {
+          quantity = localStorage.getItem("quantity");
+        } else {
+          quantity = item.quantity;
+        }
         return (
           `
           <tr id= "` +
@@ -1355,7 +1368,7 @@ const displayNewCart = () => {
 };
 
 displayNewCart();
-
+totalSum();
 //Add to cart function
 class ShoppingCart {
   constructor() {
@@ -1418,26 +1431,41 @@ decrease.forEach((btn) => {
   btn.addEventListener("click", decrement);
 });
 
-function increment(id) {
+function increment() {
   if (localStorage.getItem("quantity") !== null) {
     const inp = this.previousElementSibling;
     if (inp.value < 20) inp.value = Number(inp.value) + 1;
-    let quantityPrice = localStorage.getItem("quantity-price");
+    let id = localStorage.getItem("id");
     let price = localStorage.getItem("price");
-    quantityPrice = parseInt(quantityPrice);
     price = parseInt(price);
     if (cardModal !== null) {
       var modalQuantityPrice = cardModal.querySelector(".quantity_price");
       var input = cardModal.querySelector(".quantity");
     } else {
       price = parseInt(price);
-      var modalQuantityPrice = this.closest(".pro_tk");
+      var modalQuantityPrice =
+        this.closest("td").nextElementSibling.querySelector(".quantity_price");
       var input = this.previousElementSibling;
-      console.log(modalQuantityPrice, input);
     }
     let inputQuantity = inp.value;
-    let increaseQuantityPrice = price * inp.value;
+    let increaseQuantityPrice = inp.value * price;
     console.log(increaseQuantityPrice);
+
+    formDataArry.forEach((item) => {
+      if (id === item.id) {
+        if (
+          item.quantityPrice !== increaseQuantityPrice ||
+          item.quantity !== inputQuantity
+        ) {
+          item.quantityPrice = increaseQuantityPrice;
+          modalQuantityPrice.innerHTML = increaseQuantityPrice;
+          item.quantity = inputQuantity;
+          input.value = inputQuantity;
+        }
+      }
+    });
+
+    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
 
     localStorage.setItem(
       "quantity-price",
@@ -1448,6 +1476,7 @@ function increment(id) {
     const inp = this.previousElementSibling;
     if (inp.value < 20) inp.value = Number(inp.value) + 1;
     for (i = 0; i < formDataArry.length; i++) {
+      id = parseInt(formDataArry[i].id);
       price = parseInt(formDataArry[i].price);
       quantityPrice = parseInt(formDataArry[i].quantityPrice);
       quantity = parseInt(formDataArry[i].quantity);
@@ -1457,28 +1486,37 @@ function increment(id) {
       var input = cardModal.querySelector(".quantity");
     } else {
       price = parseInt(price);
-      var modalQuantityPrice = document.querySelector(".quantity_price");
-      var input = document.querySelector(".quantity");
+      var modalQuantityPrice =
+        this.closest("td").nextElementSibling.querySelector(".quantity_price");
+      var input = this.previousElementSibling;
+      console.log(modalQuantityPrice, input);
     }
     let inputQuantity = inp.value;
-    let increaseQuantityPrice = price * inp.value;
+    let increaseQuantityPrice = inputQuantity * price;
     console.log(increaseQuantityPrice);
 
     formDataArry.forEach((item) => {
-      if (item.quantityPrice !== increaseQuantityPrice) {
+      if (
+        item.quantityPrice !== increaseQuantityPrice ||
+        item.quantity !== inputQuantity
+      ) {
         item.quantityPrice = increaseQuantityPrice;
-      } else if (item.quantity !== inputQuantity) {
+        modalQuantityPrice.innerHTML = increaseQuantityPrice;
         item.quantity = inputQuantity;
+        input.value = inputQuantity;
       }
     });
+
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
+  totalSum();
 }
 
 function decrement() {
   if (localStorage.getItem("quantity") !== null) {
     const inp = this.nextElementSibling;
     if (inp.value > 0) inp.value = Number(inp.value) - 1;
+    let id = localStorage.getItem("id");
     let quantityPrice = localStorage.getItem("quantity-price");
     let price = localStorage.getItem("price");
     quantityPrice = parseInt(quantityPrice);
@@ -1488,12 +1526,29 @@ function decrement() {
       var input = cardModal.querySelector(".quantity");
     } else {
       price = parseInt(price);
-      var modalQuantityPrice = document.querySelector(".quantity_price");
-      var input = document.querySelector(".quantity");
+      var modalQuantityPrice =
+        this.closest("td").nextElementSibling.querySelector(".quantity_price");
+      var input = this.nextElementSibling;
     }
     let inputQuantity = inp.value;
     let descreaseQuantityPrice = quantityPrice - price;
     console.log(descreaseQuantityPrice);
+
+    formDataArry.forEach((item) => {
+      if (id === item.id) {
+        if (
+          item.quantityPrice !== descreaseQuantityPrice ||
+          item.quantity !== inputQuantity
+        ) {
+          item.quantityPrice = descreaseQuantityPrice;
+          modalQuantityPrice.innerHTML = descreaseQuantityPrice;
+          item.quantity = inputQuantity;
+          input.value = inputQuantity;
+        }
+      }
+    });
+
+    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
 
     localStorage.setItem(
       "quantity-price",
@@ -1513,22 +1568,32 @@ function decrement() {
       var input = cardModal.querySelector(".quantity");
     } else {
       price = parseInt(price);
-      var modalQuantityPrice = document.querySelector(".quantity_price");
-      var input = document.querySelector(".quantity");
+      var modalQuantityPrice =
+        this.closest("td").nextElementSibling.querySelector(".quantity_price");
+      var input = this.nextElementSibling;
+      console.log(modalQuantityPrice, input);
     }
     let inputQuantity = inp.value;
     let descreaseQuantityPrice = quantityPrice - price;
     console.log(descreaseQuantityPrice);
 
     formDataArry.forEach((item) => {
-      if (item.quantityPrice !== descreaseQuantityPrice) {
+      if (
+        item.quantityPrice !== descreaseQuantityPrice ||
+        item.quantity !== inputQuantity
+      ) {
         item.quantityPrice = descreaseQuantityPrice;
-      } else if (item.quantity !== inputQuantity) {
+        modalQuantityPrice.innerHTML = descreaseQuantityPrice;
         item.quantity = inputQuantity;
+        input.value = inputQuantity;
+      } else {
+        null;
       }
     });
+
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
+  totalSum();
 }
 
 function removeItem(id) {
@@ -1537,19 +1602,7 @@ function removeItem(id) {
   //set item back into storage
   displayNewCart();
   count.innerHTML = formDataArry.length;
-  let sum = document.getElementById("total").innerHTML;
-  total = parseInt(sum);
-  for (let i = 0; i < temp.length; i++) {
-    quantity = parseInt(temp[i].quantityPrice);
-    console.log(sum);
-    console.log(quantity);
-    total = sum - quantity;
-  }
-  console.log(sum);
-  let totalPrice = document.getElementById("total");
-  if (totalPrice !== null) {
-    totalPrice.innerHTML = total + "kr";
-  }
+  totalSum();
 }
 
 function showCompanyForm() {
@@ -1661,14 +1714,17 @@ if (contactForm !== null) {
   null;
 }
 
-let sum = 0;
-for (let i = 0; i < formDataArry.length; i++) {
-  sum += parseInt(formDataArry[i].quantityPrice);
-}
-let totalPrice = document.getElementById("total");
-if (totalPrice !== null) {
-  totalPrice.innerHTML = sum + "kr";
-  console.log(sum);
+function totalSum() {
+  let totalPrice = document.getElementById("total");
+  if (totalPrice !== null) {
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    let sum = 0;
+    for (let i = 0; i < formDataArry.length; i++) {
+      sum += parseInt(formDataArry[i].quantityPrice);
+    }
+    totalPrice.innerHTML = sum + "kr";
+    console.log(sum);
+  }
 }
 
 function sendCartToEmail() {
