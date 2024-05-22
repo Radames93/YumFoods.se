@@ -216,57 +216,66 @@
                     </p>
                     <form
                       id="contact-form"
-                      class="contact_form text-center p_0"
+                      class="contact_form text-center"
                       action="https://api.web3forms.com/submit"
                       method="POST"
                     >
-                      <input
-                        type="hidden"
-                        name="access_key"
-                        value="0984a5c4-eb6b-4bcf-8601-7b83fe4f470a"
-                      />
-                      <input
-                        type="hidden"
-                        name="subject"
-                        value="New Submission from Web3Forms"
-                      />
-                      <input
-                        type="checkbox"
-                        name="botcheck"
-                        id=""
-                        style="display: none"
-                      />
-                      <!--
+                      <div id="form" class="row">
+                        <div class="col-xl-12">
+                          <input
+                            type="hidden"
+                            name="access_key"
+                            value="87201e1e-65e7-469c-a4af-2e22c4d9a017"
+                          />
+                          <input
+                            type="hidden"
+                            name="subject"
+                            value="New Submission from Web3Forms"
+                          />
+                          <input
+                            type="checkbox"
+                            name="botcheck"
+                            id=""
+                            style="display: none"
+                          />
+                          <!--
                   <input
                     type="hidden"
                     name="recaptcha_response"
                     id="recaptchaResponse"
                   />
                   -->
-                      <div for="name" class="contact_form_input">
-                        <span><i class="fas fa-user"></i></span>
-                        <input name="name" type="text" placeholder="Namn" />
-                      </div>
-                      <div class="col-xl-6">
-                        <div for="email" class="contact_form_input">
-                          <span><i class="fas fa-envelope"></i></span>
-                          <input name="email" type="email" placeholder="Mejl" />
+                          <div for="name" class="contact_form_input">
+                            <span><i class="fas fa-user"></i></span>
+                            <input name="name" type="text" placeholder="Namn" />
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-xl-6">
-                        <div for="phone" class="contact_form_input">
-                          <span><i class="fas fa-phone-alt"></i></span>
-                          <input
-                            name="phone"
-                            type="text"
-                            placeholder="Telefonnummer"
-                          />
+                        <div class="col-xl-6">
+                          <div for="email" class="contact_form_input">
+                            <span><i class="fas fa-envelope"></i></span>
+                            <input
+                              name="email"
+                              type="email"
+                              placeholder="Mejl"
+                            />
+                          </div>
                         </div>
+                        <div class="col-xl-6">
+                          <div for="phone" class="contact_form_input">
+                            <span><i class="fas fa-phone-alt"></i></span>
+                            <input
+                              name="phone"
+                              type="text"
+                              placeholder="Telefonnummer"
+                            />
+                          </div>
+                          <div class="h-captcha" data-captcha="true"></div>
+                          <button class="common_btn" type="submit">
+                            skicka meddelande
+                          </button>
+                        </div>
+                        <div id="result"></div>
                       </div>
-                      <div id="message"></div>
-                      <button class="common_btn" type="submit">
-                        Skicka din order
-                      </button>
                     </form>
                   </div>
                 </div>
@@ -296,7 +305,7 @@
                     class="img-fluid w-100 mb_25"
                   />
                 </a>
-                <ul class="social_link d-flex flex-wrap">
+                <ul class="social_link d-flex flex-wrap mx_50">
                   <li>
                     <a href="https://www.facebook.com/YumFoodsSE"
                       ><i class="fab fa-facebook-f"></i
@@ -307,6 +316,7 @@
                       ><i class="fab fa-linkedin-in"></i
                     ></a>
                   </li>
+                  <!--
                   <li>
                     <a href="#"
                       ><span class="m_0"><img src="images/twitter.png" /></span
@@ -315,14 +325,17 @@
                   <li>
                     <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
                   </li>
+                  -->
                   <li>
                     <a href="https://www.instagram.com/yumfoods.se/"
                       ><i class="fab fa-instagram"></i
                     ></a>
                   </li>
+                  <!--
                   <li>
                     <a href="#"><i class="fab fa-tiktok"></i></a>
                   </li>
+                  -->
                 </ul>
               </div>
             </div>
@@ -332,7 +345,7 @@
                   <li><a href="index.html">Hem</a></li>
                   <li><a href="about.html">Om oss</a></li>
                   <li><a href="contact.html">Kontakta oss</a></li>
-                  <li><a href="certificates.html">Certifieringar</a></li>
+                  <li><a href="certificates.html">Certificat</a></li>
                 </ul>
               </div>
             </div>

@@ -1295,11 +1295,14 @@ function modalAddToCart() {
   input.value = 1;
 }
 
+let id = "";
+
 const displayNewCart = () => {
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     const htmlString = formDataArry
       .map((item) => {
+        id = item.id;
         let quantity;
         if (item.quantity == null) {
           quantity = localStorage.getItem("quantity");
@@ -1362,6 +1365,7 @@ const displayNewCart = () => {
       })
       .join("");
     cartItem.innerHTML = htmlString;
+    return id;
   } else {
     return null;
   }
@@ -1451,19 +1455,21 @@ function increment() {
     let increaseQuantityPrice = inp.value * price;
     console.log(increaseQuantityPrice);
 
-    formDataArry.forEach((item) => {
-      if (id === item.id) {
-        if (
-          item.quantityPrice !== increaseQuantityPrice ||
-          item.quantity !== inputQuantity
-        ) {
-          item.quantityPrice = increaseQuantityPrice;
-          modalQuantityPrice.innerHTML = increaseQuantityPrice;
-          item.quantity = inputQuantity;
-          input.value = inputQuantity;
-        }
+    if (cartItem !== null) {
+      let tableId = this.closest("tr").id;
+      console.log(tableId);
+
+      let itemIndex = formDataArry.filter((el) => el.id == tableId);
+      if (itemIndex) {
+        console.log(itemIndex);
+        itemIndex[0].quantityPrice = increaseQuantityPrice;
+        modalQuantityPrice.innerHTML = increaseQuantityPrice;
+        itemIndex[0].quantity = inputQuantity;
+        input.value = inputQuantity;
       }
-    });
+    } else {
+      null;
+    }
 
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
 
@@ -1476,7 +1482,6 @@ function increment() {
     const inp = this.previousElementSibling;
     if (inp.value < 20) inp.value = Number(inp.value) + 1;
     for (i = 0; i < formDataArry.length; i++) {
-      id = parseInt(formDataArry[i].id);
       price = parseInt(formDataArry[i].price);
       quantityPrice = parseInt(formDataArry[i].quantityPrice);
       quantity = parseInt(formDataArry[i].quantity);
@@ -1495,18 +1500,17 @@ function increment() {
     let increaseQuantityPrice = inputQuantity * price;
     console.log(increaseQuantityPrice);
 
-    formDataArry.forEach((item) => {
-      if (
-        item.quantityPrice !== increaseQuantityPrice ||
-        item.quantity !== inputQuantity
-      ) {
-        item.quantityPrice = increaseQuantityPrice;
-        modalQuantityPrice.innerHTML = increaseQuantityPrice;
-        item.quantity = inputQuantity;
-        input.value = inputQuantity;
-      }
-    });
+    let tableId = this.closest("tr").id;
+    console.log(tableId);
 
+    let itemIndex = formDataArry.filter((el) => el.id == tableId);
+    if (itemIndex) {
+      console.log(itemIndex);
+      itemIndex[0].quantityPrice = increaseQuantityPrice;
+      modalQuantityPrice.innerHTML = increaseQuantityPrice;
+      itemIndex[0].quantity = inputQuantity;
+      input.value = inputQuantity;
+    }
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
   totalSum();
@@ -1534,19 +1538,17 @@ function decrement() {
     let descreaseQuantityPrice = quantityPrice - price;
     console.log(descreaseQuantityPrice);
 
-    formDataArry.forEach((item) => {
-      if (id === item.id) {
-        if (
-          item.quantityPrice !== descreaseQuantityPrice ||
-          item.quantity !== inputQuantity
-        ) {
-          item.quantityPrice = descreaseQuantityPrice;
-          modalQuantityPrice.innerHTML = descreaseQuantityPrice;
-          item.quantity = inputQuantity;
-          input.value = inputQuantity;
-        }
-      }
-    });
+    let tableId = this.closest("tr").id;
+    console.log(tableId);
+
+    let itemIndex = formDataArry.filter((el) => el.id == tableId);
+    if (itemIndex) {
+      console.log(itemIndex);
+      itemIndex[0].quantityPrice = descreaseQuantityPrice;
+      modalQuantityPrice.innerHTML = descreaseQuantityPrice;
+      itemIndex[0].quantity = inputQuantity;
+      input.value = inputQuantity;
+    }
 
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
 
@@ -1577,20 +1579,17 @@ function decrement() {
     let descreaseQuantityPrice = quantityPrice - price;
     console.log(descreaseQuantityPrice);
 
-    formDataArry.forEach((item) => {
-      if (
-        item.quantityPrice !== descreaseQuantityPrice ||
-        item.quantity !== inputQuantity
-      ) {
-        item.quantityPrice = descreaseQuantityPrice;
-        modalQuantityPrice.innerHTML = descreaseQuantityPrice;
-        item.quantity = inputQuantity;
-        input.value = inputQuantity;
-      } else {
-        null;
-      }
-    });
+    let tableId = this.closest("tr").id;
+    console.log(tableId);
 
+    let itemIndex = formDataArry.filter((el) => el.id == tableId);
+    if (itemIndex) {
+      console.log(itemIndex);
+      itemIndex[0].quantityPrice = descreaseQuantityPrice;
+      modalQuantityPrice.innerHTML = descreaseQuantityPrice;
+      itemIndex[0].quantity = inputQuantity;
+      input.value = inputQuantity;
+    }
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
   totalSum();
@@ -1716,37 +1715,73 @@ if (contactForm !== null) {
 
 function totalSum() {
   let totalPrice = document.getElementById("total");
+  let sum = 0;
   if (totalPrice !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    let sum = 0;
     for (let i = 0; i < formDataArry.length; i++) {
       sum += parseInt(formDataArry[i].quantityPrice);
     }
     totalPrice.innerHTML = sum + "kr";
     console.log(sum);
   }
+  localStorage.setItem("sum", sum);
 }
 
-function sendCartToEmail() {
-  let contactForm = document.getElementById("message");
-  if (contactForm !== null) {
-    contactForm.innerHTML = `
-                    <div class="col-xl-12">
-                        <div for="message" class="contact_form_input textarea">
-                          <span><i class="fas fa-pen"></i></span>
-                          <textarea
-                            name="message"
-                            rows="5"
-                            placeholder="Meddelande"
-                          >
-                          ´order: ${formDataArry}
-                          total : ${sum}
-                          ´
-                          </textarea>
-                        </div>
-                      </div>
-                  `;
-  } else {
-    null;
-  }
+const sendCartInfo = document.getElementById("contact-form");
+const cartForm = document.getElementById("form");
+const newResult = document.getElementById("result");
+
+if (sendCartInfo !== null) {
+  sendCartInfo.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const formData = new FormData(sendCartInfo);
+    const object = Object.fromEntries(formData);
+    const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    const sum = localStorage.getItem("sum");
+    const data = {
+      json: object,
+      order: formDataArry,
+      sum: sum,
+    };
+    cartForm.innerHTML = `<div class="single_team_text">
+          <h4 style="text-transform: none">Var god vänta</h4>
+          </div>`;
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+          cartForm.innerHTML = `<div class="single_team_text">
+          <h4 style="text-transform: none">Tack för ditt meddelande. En av våra medarbetare ska
+          återkomma till dig snart</h4>
+          </div>
+          `;
+          setTimeout(() => {
+            window.location.reload();
+          }, 5000);
+        } else {
+          console.log(response);
+          newResult.innerHTML = json.message;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        cartForm.innerHTML = "Something went wrong!";
+      })
+      .then(function () {
+        sendCartInfo.reset();
+        setTimeout(() => {
+          newResult.style.display = "none";
+        }, 3000);
+      });
+  });
+} else {
+  null;
 }
