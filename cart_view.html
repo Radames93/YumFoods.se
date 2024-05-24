@@ -173,18 +173,18 @@
               <div class="table-responsive">
                 <table id="myTable">
                   <tbody>
-                    <th class="pro_img">bild</th>
+                    <th class="pro_img">Bild</th>
 
-                    <th class="pro_name">detaljer</th>
+                    <th class="pro_name">Detaljer</th>
 
-                    <th class="pro_status">pris</th>
+                    <th class="pro_status">Pris</th>
 
-                    <th class="pro_select">kvantitet</th>
+                    <th class="pro_select">Kvantitet</th>
 
-                    <th class="pro_tk">total</th>
+                    <th class="pro_tk">Total</th>
 
                     <th class="pro_icon">
-                      <a class="clear_all" href="#">ta bort</a>
+                      <a class="clear_all" href="#">Ta bort</a>
                     </th>
                   </tbody>
                   <tbody id="cart-item"></tbody>
@@ -215,12 +215,12 @@
                       <span>total:</span> <span id="total"></span>
                     </p>
                     <form
-                      id="contact-form"
+                      id="cart-order-form"
                       class="contact_form text-center"
                       action="https://api.web3forms.com/submit"
                       method="POST"
                     >
-                      <div id="form" class="row">
+                      <div id="cart-form" class="row">
                         <div class="col-xl-12">
                           <input
                             type="hidden"
@@ -256,7 +256,7 @@
                             <input
                               name="email"
                               type="email"
-                              placeholder="Mejl"
+                              placeholder="Epost"
                             />
                           </div>
                         </div>
@@ -269,13 +269,37 @@
                               placeholder="Telefonnummer"
                             />
                           </div>
-                          <div class="h-captcha" data-captcha="true"></div>
-                          <button class="common_btn" type="submit">
-                            skicka meddelande
-                          </button>
                         </div>
-                        <div id="result"></div>
+                        <div class="col-xl-12">
+                          <div class="col-xl-6 col-sm-12">
+                            <div for="total" class="contact_form_input">
+                              <input
+                                id="sum"
+                                type="hidden"
+                                name="total"
+                                type="text"
+                                placeholder="Sum"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-12">
+                          <div for="order" class="contact_form_input textarea">
+                            <input
+                              id="cart"
+                              type="hidden"
+                              name="order"
+                              type="text"
+                              placeholder="List"
+                            />
+                          </div>
+                        </div>
+                        <div class="h-captcha" data-captcha="true"></div>
+                        <button class="common_btn" type="submit">
+                          Skicka förfrågan
+                        </button>
                       </div>
+                      <div id="cart-result"></div>
                     </form>
                   </div>
                 </div>
@@ -307,12 +331,16 @@
                 </a>
                 <ul class="social_link d-flex flex-wrap mx_50">
                   <li>
-                    <a href="https://www.facebook.com/YumFoodsSE"
+                    <a
+                      href="https://www.facebook.com/YumFoodsSE"
+                      target="_blank"
                       ><i class="fab fa-facebook-f"></i
                     ></a>
                   </li>
                   <li>
-                    <a href="https://www.linkedin.com/company/yum-foods/"
+                    <a
+                      href="https://www.linkedin.com/company/yum-foods/"
+                      target="_blank"
                       ><i class="fab fa-linkedin-in"></i
                     ></a>
                   </li>
@@ -327,7 +355,9 @@
                   </li>
                   -->
                   <li>
-                    <a href="https://www.instagram.com/yumfoods.se/"
+                    <a
+                      href="https://www.instagram.com/yumfoods.se/"
+                      target="_blank"
                       ><i class="fab fa-instagram"></i
                     ></a>
                   </li>
@@ -435,5 +465,6 @@
 
     <!--main/custom js-->
     <script src="js/main.js"></script>
+    <script src="https://web3forms.com/client/script.js"></script>
   </body>
 </html>

@@ -349,7 +349,7 @@ $(function () {
   });
 });
 
-//Search function//
+//Get elements from the DOM//
 let yum = document.getElementById("yum");
 let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
@@ -360,6 +360,7 @@ let popup = document.getElementById("popup");
 const searchBar = document.getElementById("searchbar");
 let cartItem = document.getElementById("cart-item");
 
+//Create empty array to populate with products
 let yumProductsList = [];
 let dailyProductsList = [];
 let premiumProductsList = [];
@@ -373,6 +374,7 @@ let subscriptionsFiltered = [];
 let baguetterFiltered = [];
 let all = [];
 
+// Implement search bar function
 const search = () => {
   searchBar.addEventListener("keyup", (e) => {
     const searchString = e.target.value.toLowerCase();
@@ -406,7 +408,7 @@ if (searchBar !== null) {
   removeEventListener("keyup", search);
 }
 
-//Display yum items
+//Fetch items from json
 const loadProducts = async () => {
   try {
     await fetch("./js/products.json")
@@ -440,12 +442,9 @@ const loadProducts = async () => {
   }
 };
 
-let data = [];
-
+//Display yum items
 const yumProducts = (yumProductsList) => {
   if (yum !== null) {
-    let i = 0;
-    data = yum.diet;
     const htmlString = yumProductsList
       .map((yum) => {
         return (
@@ -461,6 +460,18 @@ const yumProducts = (yumProductsList) => {
           `
                   alt="menu"
                   class="img-fluid w-100"
+                  class="title"
+                  href="#"
+                  data-yum-id=${yum.id} 
+                  data-yum-title=${yum.title}
+                  data-yum-price=${yum.price}
+                  data-yum-img=${yum.img}
+                  data-yum-quantity-price=${yum.price}
+                  data-yum-description=${yum.description}
+                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-diet=${yum.diet}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -527,14 +538,6 @@ const yumProducts = (yumProductsList) => {
   }
 };
 
-/*function foods(data) {
-  if (Array.isArray(data)) {
-    console.log(data);
-  } else {
-    return data;
-  }
-}*/
-
 //Display daily items
 const dailyProducts = (dailyProductsList) => {
   let i = 0;
@@ -554,6 +557,18 @@ const dailyProducts = (dailyProductsList) => {
           `
                   alt="menu"
                   class="img-fluid w-100"
+                  class="title"
+                  href="#"
+                  data-yum-id=${daily.id} 
+                  data-yum-title=${daily.title}
+                  data-yum-price=${daily.price}
+                  data-yum-img=${daily.img}
+                  data-yum-quantity-price=${daily.price}
+                  data-yum-description=${daily.description}
+                  data-yum-ingredients=${daily.ingredients}
+                  data-yum-diet=${daily.diet}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -621,7 +636,7 @@ const dailyProducts = (dailyProductsList) => {
   }
 };
 
-////Display premium items
+//Display premium items
 const premiumProducts = (premiumProductsList) => {
   if (premium !== null) {
     let i = 0;
@@ -640,6 +655,18 @@ const premiumProducts = (premiumProductsList) => {
           `
                   alt="menu"
                   class="img-fluid w-100"
+                  class="title"
+                  href="#"
+                  data-yum-id=${premium.id} 
+                  data-yum-title=${premium.title}
+                  data-yum-price=${premium.price}
+                  data-yum-img=${premium.img}
+                  data-yum-quantity-price=${premium.price}
+                  data-yum-description=${premium.description}
+                  data-yum-ingredients=${premium.ingredients}
+                  data-yum-diet=${premium.diet}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -707,6 +734,7 @@ const premiumProducts = (premiumProductsList) => {
   }
 };
 
+//Show subscription prducts
 const subscriptionsProducts = (subscriptionsProductsList) => {
   if (subscriptions !== null) {
     let i = 0;
@@ -725,6 +753,17 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
           `
                   alt="menu"
                   class="img-fluid w-100"
+                  class="title"
+                  href="#"
+                  data-yum-id=${subscription.id} 
+                  data-yum-title=${subscription.title}
+                  data-yum-price=${subscription.price}
+                  data-yum-img=${subscription.img}
+                  data-yum-quantity-price=${subscription.price}
+                  data-yum-description=${subscription.description}
+                  data-yum-ingredients=${subscription.ingredients}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
                 />
               </div>
               <div class="menu_item_text">
@@ -782,6 +821,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
   }
 };
 
+// Show categories
 const categoriesProducts = (categoriesProductsList) => {
   if (categories !== null) {
     const htmlString = categoriesProductsList
@@ -821,6 +861,7 @@ const categoriesProducts = (categoriesProductsList) => {
   }
 };
 
+//Show baguetter
 const baguetterProducts = (baguetterProductsList) => {
   let i = 0;
   if (baguetter !== null) {
@@ -839,6 +880,18 @@ const baguetterProducts = (baguetterProductsList) => {
           `
                   alt="menu"
                   class="img-fluid w-100"
+                  class="title"
+                  href="#"
+                  data-yum-id=${baguetter.id} 
+                  data-yum-title=${baguetter.title}
+                  data-yum-price=${baguetter.price}
+                  data-yum-img=${baguetter.img}
+                  data-yum-quantity-price=${baguetter.price}
+                  data-yum-description=${baguetter.description}
+                  data-yum-ingredients=${baguetter.ingredients}
+                  data-yum-diet=${baguetter.diet}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -907,7 +960,7 @@ const baguetterProducts = (baguetterProductsList) => {
   }
 };
 
-//Sort function
+//Sort function by name and price
 const sortingNamePriceFunction = (el) => {
   const option = el.value;
   if (option === "name") {
@@ -1010,6 +1063,7 @@ const sortingNamePriceFunction = (el) => {
   }
 };
 
+//Sort function for diet
 const sortingDishDietFunction = (el) => {
   const option = el.value;
   const message = `<div class="single_team_text">
@@ -1184,6 +1238,7 @@ if (cardModal !== null) {
     );
     localStorage.setItem("diet", (modalDiet.src = diet));
     localStorage.setItem("quantity", (input.value = 1));
+    hideDiv();
   });
 } else {
   null;
@@ -1191,7 +1246,19 @@ if (cardModal !== null) {
 
 //Show ingredients div
 function showDiv() {
-  document.getElementById("welcomeDiv").classList.toggle("hide");
+  var x = document.getElementById("welcomeDiv");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function hideDiv() {
+  var x = document.getElementById("welcomeDiv");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  }
 }
 
 //Show data into menu_details page based on the modal clicked
@@ -1213,6 +1280,7 @@ if (existingTitle !== null) {
 
 let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
+// Adding count to cart icon
 let count = document.getElementById("count");
 if (formDataArry !== null && formDataArry.length > 0) {
   count.insertAdjacentHTML("beforeend", formDataArry.length);
@@ -1222,6 +1290,7 @@ if (formDataArry !== null && formDataArry.length > 0) {
 }
 console.log(count);
 
+//Add to cart function from button
 function realAddToCart(event) {
   var id = event.target.dataset.id;
   var title = event.target.dataset.yumTitle;
@@ -1257,6 +1326,7 @@ function realAddToCart(event) {
   console.log(formDataArry);
 }
 
+//Add to cart function from modal
 function modalAddToCart() {
   var modalId = localStorage.getItem("id");
   var modalTitle = localStorage.getItem("title");
@@ -1297,9 +1367,19 @@ function modalAddToCart() {
 
 let id = "";
 
+//Display items in the cart
 const displayNewCart = () => {
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    if (formDataArry.length === 0) {
+      cartItem.insertAdjacentHTML(
+        "afterend",
+        `<h4 class="single_team_text" style="padding: 20px; text-align: center">
+          Din varukorg är tom
+        </h4>`
+      );
+      console.log(cartItem);
+    }
     const htmlString = formDataArry
       .map((item) => {
         id = item.id;
@@ -1367,62 +1447,12 @@ const displayNewCart = () => {
     cartItem.innerHTML = htmlString;
     return id;
   } else {
-    return null;
+    null;
   }
 };
 
 displayNewCart();
 totalSum();
-//Add to cart function
-class ShoppingCart {
-  constructor() {
-    this.items = {};
-  }
-
-  // Method to add food items to the cart
-  addToCart(foodItem, quantity) {
-    console.log("clicked");
-    if (this.items[foodItem]) {
-      this.items[foodItem] += quantity;
-    } else {
-      this.items[foodItem] = quantity;
-    }
-    this.displayCart();
-  }
-
-  // Method to view items in the cart
-  viewCart() {
-    window.location.href = "cart_view.html";
-    this.displayCart();
-  }
-
-  // Method to display cart items
-  displayCart() {
-    const cartItemsDiv = document.getElementById("cart-item");
-    cartItemsDiv.innerHTML = "<h2>Cart Items:</h2>";
-
-    for (let foodItem in this.items) {
-      const itemQuantity = this.items[foodItem];
-      const itemText = `${foodItem}: ${itemQuantity}`;
-      cartItemsDiv.innerHTML += `<p>${itemText}</p>`;
-    }
-  }
-}
-
-// Create a new instance of ShoppingCart
-const cart = new ShoppingCart();
-
-// Function to add item to cart
-function addToCart(foodItem, quantity) {
-  cart.addToCart(foodItem, quantity);
-}
-
-// Function to view cart
-function viewCart() {
-  cart.viewCart();
-}
-
-//Increase or descrease quantity functionality
 
 const increase = document.querySelectorAll(".increase");
 const decrease = document.querySelectorAll(".decrease");
@@ -1435,6 +1465,7 @@ decrease.forEach((btn) => {
   btn.addEventListener("click", decrement);
 });
 
+//Increment function on the + button for quantity
 function increment() {
   if (localStorage.getItem("quantity") !== null) {
     const inp = this.previousElementSibling;
@@ -1497,7 +1528,7 @@ function increment() {
       console.log(modalQuantityPrice, input);
     }
     let inputQuantity = inp.value;
-    let increaseQuantityPrice = inputQuantity * price;
+    let increaseQuantityPrice = inputQuantity * price + "kr";
     console.log(increaseQuantityPrice);
 
     let tableId = this.closest("tr").id;
@@ -1516,9 +1547,12 @@ function increment() {
   totalSum();
 }
 
+//Decrement function on the - button for quantity
 function decrement() {
   if (localStorage.getItem("quantity") !== null) {
     const inp = this.nextElementSibling;
+    button = this.closest("button");
+    console.log(inp.value);
     if (inp.value > 0) inp.value = Number(inp.value) - 1;
     let id = localStorage.getItem("id");
     let quantityPrice = localStorage.getItem("quantity-price");
@@ -1538,16 +1572,19 @@ function decrement() {
     let descreaseQuantityPrice = quantityPrice - price;
     console.log(descreaseQuantityPrice);
 
-    let tableId = this.closest("tr").id;
-    console.log(tableId);
-
-    let itemIndex = formDataArry.filter((el) => el.id == tableId);
-    if (itemIndex) {
-      console.log(itemIndex);
-      itemIndex[0].quantityPrice = descreaseQuantityPrice;
-      modalQuantityPrice.innerHTML = descreaseQuantityPrice;
-      itemIndex[0].quantity = inputQuantity;
-      input.value = inputQuantity;
+    if (cartItem !== null) {
+      let tableId = this.closest("tr").id;
+      console.log(tableId);
+      let itemIndex = formDataArry.filter((el) => el.id == tableId);
+      if (itemIndex) {
+        console.log(itemIndex);
+        itemIndex[0].quantityPrice = descreaseQuantityPrice;
+        modalQuantityPrice.innerHTML = descreaseQuantityPrice;
+        itemIndex[0].quantity = inputQuantity;
+        input.value = inputQuantity;
+      } else {
+        null;
+      }
     }
 
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
@@ -1590,11 +1627,13 @@ function decrement() {
       itemIndex[0].quantity = inputQuantity;
       input.value = inputQuantity;
     }
+
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
   totalSum();
 }
 
+//Remove item from cart
 function removeItem(id) {
   let temp = formDataArry.filter((item) => item.id != id);
   localStorage.setItem("formDataArry", JSON.stringify(temp));
@@ -1604,6 +1643,7 @@ function removeItem(id) {
   totalSum();
 }
 
+// Show additional inputs on company form
 function showCompanyForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
@@ -1622,7 +1662,7 @@ function showCompanyForm() {
                 <div class="col-xl-6 col-sm-12">
                   <div for="role" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
-                    <input name="role" type="text" placeholder="Roll" />
+                    <input name="role" type="text" placeholder="Befatning" />
                   </div>
                 </div>
                 <div class="col-xl-6 col-sm-12">
@@ -1642,6 +1682,7 @@ function showCompanyForm() {
   }
 }
 
+//Remove additional inputs on private form
 function showPrivateForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
@@ -1660,6 +1701,7 @@ if (company_button !== null || private_button !== null) {
   null;
 }
 
+// Function to send form to email
 const contactForm = document.getElementById("contact-form");
 const form = document.getElementById("form");
 const result = document.getElementById("result");
@@ -1713,6 +1755,7 @@ if (contactForm !== null) {
   null;
 }
 
+// Calculate and display total sum in the cart total
 function totalSum() {
   let totalPrice = document.getElementById("total");
   let sum = 0;
@@ -1727,22 +1770,28 @@ function totalSum() {
   localStorage.setItem("sum", sum);
 }
 
-const sendCartInfo = document.getElementById("contact-form");
-const cartForm = document.getElementById("form");
-const newResult = document.getElementById("result");
+// Function to cart content and total form to email
+const sendCartInfo = document.getElementById("cart-order-form");
+const cartForm = document.getElementById("cart-form");
+const newResult = document.getElementById("cart-result");
+const sum = localStorage.getItem("sum");
+const list = JSON.stringify(localStorage.getItem("formDataArry"));
+let sumInput = document.getElementById("sum");
+let listInput = document.getElementById("cart");
+if (sumInput && listInput !== null) {
+  sumInput.value = sum;
+  listInput.value = list;
+} else {
+  null;
+}
 
 if (sendCartInfo !== null) {
   sendCartInfo.addEventListener("submit", function (e) {
     e.preventDefault();
     const formData = new FormData(sendCartInfo);
     const object = Object.fromEntries(formData);
-    const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    const sum = localStorage.getItem("sum");
-    const data = {
-      json: object,
-      order: formDataArry,
-      sum: sum,
-    };
+    const json = JSON.stringify(object);
+
     cartForm.innerHTML = `<div class="single_team_text">
           <h4 style="text-transform: none">Var god vänta</h4>
           </div>`;
@@ -1753,16 +1802,16 @@ if (sendCartInfo !== null) {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(data),
+      body: json,
     })
       .then(async (response) => {
         let json = await response.json();
         if (response.status == 200) {
           cartForm.innerHTML = `<div class="single_team_text">
-          <h4 style="text-transform: none">Tack för ditt meddelande. En av våra medarbetare ska
-          återkomma till dig snart</h4>
+          <h4 style="text-transform: none">Tack för din förfrågan.</h4>
           </div>
           `;
+          localStorage.clear();
           setTimeout(() => {
             window.location.reload();
           }, 5000);
