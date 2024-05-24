@@ -1317,8 +1317,12 @@ function realAddToCart(event) {
       parseInt(formDataArry[itemIndexInBasket].price);
     console.log("Quantity updated:", formDataArry);
   } else {
-    formDataArry.push(formData);
-    console.log("The product has been added to cart:", formDataArry);
+    if (formData !== undefined) {
+      formDataArry.push(formData);
+      console.log("The product has been added to cart:", formDataArry);
+    } else {
+      null;
+    }
   }
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
@@ -1354,8 +1358,12 @@ function modalAddToCart() {
       parseInt(formDataArry[itemIndexInBasket].price);
     console.log("Quantity updated:", formDataArry);
   } else {
-    formDataArry.push(formData);
-    console.log("The product has been added to cart:", formDataArry);
+    if (formData !== undefined) {
+      formDataArry.push(formData);
+      console.log("The product has been added to cart:", formDataArry);
+    } else {
+      null;
+    }
   }
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
@@ -1371,7 +1379,7 @@ let id = "";
 const displayNewCart = () => {
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (formDataArry.length === 0) {
+    if (formDataArry == null) {
       cartItem.insertAdjacentHTML(
         "afterend",
         `<h4 class="single_team_text" style="padding: 20px; text-align: center">
@@ -1379,26 +1387,26 @@ const displayNewCart = () => {
         </h4>`
       );
       console.log(cartItem);
-    }
-    const htmlString = formDataArry
-      .map((item) => {
-        id = item.id;
-        let quantity;
-        if (item.quantity == null) {
-          quantity = localStorage.getItem("quantity");
-        } else {
-          quantity = item.quantity;
-        }
-        return (
-          `
+    } else {
+      const htmlString = formDataArry
+        .map((item) => {
+          id = item.id;
+          let quantity;
+          if (item.quantity == null) {
+            quantity = localStorage.getItem("quantity");
+          } else {
+            quantity = item.quantity;
+          }
+          return (
+            `
           <tr id= "` +
-          item.id +
-          `">
+            item.id +
+            `">
           <td class="pro_img">
                         <img
                           src="` +
-          item.img +
-          `"
+            item.img +
+            `"
                           alt="product"
                           class="img-fluid w-100"
                         />
@@ -1406,13 +1414,13 @@ const displayNewCart = () => {
 
                       <td class="pro_name">
                         <a href="#">` +
-          item.title?.replace(/'/g, "") +
-          `</a>
+            item.title?.replace(/'/g, "") +
+            `</a>
                       </td>
                       <td class="pro_status">
                         <h6>` +
-          item.price +
-          `kr</h6>
+            item.price +
+            `kr</h6>
                       </td>
 
                       <td class="pro_select">
@@ -1421,8 +1429,8 @@ const displayNewCart = () => {
                       <i class="fal fa-minus"></i>
                     </button>
                     <input class="quantity" type="text" value=` +
-          quantity +
-          `>
+            quantity +
+            `>
                     <button class="increase">
                       <i class="fal fa-plus"></i>
                     </button>
@@ -1431,23 +1439,22 @@ const displayNewCart = () => {
 
                       <td class="pro_tk">
                         <h6 class="quantity_price">` +
-          item.quantityPrice +
-          `kr</h6>
+            item.quantityPrice +
+            `kr</h6>
                       </td>
 
                       <td class="pro_icon">
                         <button onclick="removeItem(` +
-          item.id +
-          `)" href="#"><i class="far fa-times"></i></button>
+            item.id +
+            `)" href="#"><i class="far fa-times"></i></button>
                       </td>
                       </tr>`
-        );
-      })
-      .join("");
-    cartItem.innerHTML = htmlString;
-    return id;
-  } else {
-    null;
+          );
+        })
+        .join("");
+      cartItem.innerHTML = htmlString;
+      return id;
+    }
   }
 };
 
@@ -1528,7 +1535,7 @@ function increment() {
       console.log(modalQuantityPrice, input);
     }
     let inputQuantity = inp.value;
-    let increaseQuantityPrice = inputQuantity * price + "kr";
+    let increaseQuantityPrice = inputQuantity * price;
     console.log(increaseQuantityPrice);
 
     let tableId = this.closest("tr").id;
@@ -1569,17 +1576,16 @@ function decrement() {
       var input = this.nextElementSibling;
     }
     let inputQuantity = inp.value;
-    let descreaseQuantityPrice = quantityPrice - price;
-    console.log(descreaseQuantityPrice);
+    let decreaseQuantityPrice = "";
 
     if (cartItem !== null) {
       let tableId = this.closest("tr").id;
       console.log(tableId);
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
-        console.log(itemIndex);
-        itemIndex[0].quantityPrice = descreaseQuantityPrice;
-        modalQuantityPrice.innerHTML = descreaseQuantityPrice;
+        decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
+        itemIndex[0].quantityPrice = decreaseQuantityPrice;
+        modalQuantityPrice.innerHTML = decreaseQuantityPrice;
         itemIndex[0].quantity = inputQuantity;
         input.value = inputQuantity;
       } else {
@@ -1591,12 +1597,12 @@ function decrement() {
 
     localStorage.setItem(
       "quantity-price",
-      (modalQuantityPrice.textContent = descreaseQuantityPrice)
+      (modalQuantityPrice.textContent = decreaseQuantityPrice)
     );
     localStorage.setItem("quantity", (input.textContent = inputQuantity));
   } else {
     const inp = this.nextElementSibling;
-    if (inp.value > 0) inp.value = Number(inp.value) - 1;
+    if (inp.value < 20) inp.value = Number(inp.value) - 1;
     for (i = 0; i < formDataArry.length; i++) {
       price = parseInt(formDataArry[i].price);
       quantityPrice = parseInt(formDataArry[i].quantityPrice);
@@ -1613,21 +1619,20 @@ function decrement() {
       console.log(modalQuantityPrice, input);
     }
     let inputQuantity = inp.value;
-    let descreaseQuantityPrice = quantityPrice - price;
-    console.log(descreaseQuantityPrice);
 
     let tableId = this.closest("tr").id;
     console.log(tableId);
 
     let itemIndex = formDataArry.filter((el) => el.id == tableId);
     if (itemIndex) {
+      let decreaseQuantityPrice =
+        itemIndex[0].quantityPrice - itemIndex[0].price;
       console.log(itemIndex);
-      itemIndex[0].quantityPrice = descreaseQuantityPrice;
-      modalQuantityPrice.innerHTML = descreaseQuantityPrice;
+      itemIndex[0].quantityPrice = decreaseQuantityPrice;
+      modalQuantityPrice.innerHTML = decreaseQuantityPrice;
       itemIndex[0].quantity = inputQuantity;
       input.value = inputQuantity;
     }
-
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
   totalSum();
@@ -1641,6 +1646,9 @@ function removeItem(id) {
   displayNewCart();
   count.innerHTML = formDataArry.length;
   totalSum();
+  if (formDataArry.length == 0) {
+    localStorage.clear();
+  }
 }
 
 // Show additional inputs on company form
