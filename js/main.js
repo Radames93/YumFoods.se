@@ -1816,7 +1816,8 @@ if (sendCartInfo !== null) {
         let json = await response.json();
         if (response.status == 200) {
           cartForm.innerHTML = `<div class="single_team_text">
-          <h4 style="text-transform: none">Tack för din förfrågan.</h4>
+          <h4 style="text-transform: none">Tack för din förfrågan.En av våra medarbetare ska
+          återkomma till dig snart</h4>
           </div>
           `;
           localStorage.clear();
