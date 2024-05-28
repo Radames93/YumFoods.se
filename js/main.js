@@ -447,6 +447,40 @@ const yumProducts = (yumProductsList) => {
   if (yum !== null) {
     const htmlString = yumProductsList
       .map((yum) => {
+        let diet = "";
+        let value = "";
+        if (Array.isArray(yum.diet)) {
+          var obj = yum.diet;
+          value = JSON.stringify(obj);
+          console.log(value);
+          const imageTags = yum.diet.map((img) => {
+            return (
+              `<img id="diet"
+                  src=
+                  ` +
+              img +
+              `
+                  alt="menu"
+                  class="diet_img"
+                />
+                `
+            );
+          });
+          diet = imageTags;
+        } else {
+          const singleImage =
+            `<img id="diet"
+                  src=
+                  ` +
+            yum.diet +
+            `
+                  alt="menu"
+                  class="diet_img"
+                />
+                `;
+          diet = singleImage;
+          value = yum.diet;
+        }
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
@@ -469,18 +503,15 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${yum.diet}
+                  data-yum-diet=${value}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
-               <img
-                  src=
-                  ${yum.diet}
-                  alt="menu"
-                  class="diet_img"
-                />
+              <div class="d-flex">` +
+          diet +
+          `</div>
                 <a class="category" href="#">` +
           yum.category +
           `</a>
@@ -496,7 +527,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${yum.diet}
+                  data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -1209,6 +1240,23 @@ if (cardModal !== null) {
     var ingredients = button.getAttribute("data-yum-ingredients");
     var diet = button.getAttribute("data-yum-diet");
 
+    diet = JSON.parse(diet);
+
+    const imageTags = diet.map((img) => {
+      return (
+        `<img id="diet"
+                  src=
+                  ` +
+        img +
+        `
+                  alt="menu"
+                  class="diet_img"
+                />
+                `
+      );
+    });
+    diet = imageTags;
+
     var modalTitle = cardModal.querySelector(".title");
     var modalPrice = cardModal.querySelector(".price");
     var modalImg = cardModal.querySelector("img");
@@ -1236,7 +1284,7 @@ if (cardModal !== null) {
       "description",
       (modalDescription.textContent = description)
     );
-    localStorage.setItem("diet", (modalDiet.src = diet));
+    localStorage.setItem("diet", (modalDiet.innerHTML = diet));
     localStorage.setItem("quantity", (input.value = 1));
     hideDiv();
   });
@@ -1576,13 +1624,15 @@ function decrement() {
       var input = this.nextElementSibling;
     }
     let inputQuantity = inp.value;
-    let decreaseQuantityPrice = "";
+    let decreaseQuantityPrice = quantityPrice - price;
 
     if (cartItem !== null) {
       let tableId = this.closest("tr").id;
       console.log(tableId);
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
+        decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
+        console.log(itemIndex);
         decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
         itemIndex[0].quantityPrice = decreaseQuantityPrice;
         modalQuantityPrice.innerHTML = decreaseQuantityPrice;
@@ -1651,6 +1701,15 @@ function removeItem(id) {
   }
 }
 
+let company_button = document.getElementById("company_button");
+let private_button = document.getElementById("private_button");
+if (company_button !== null || private_button !== null) {
+  company_button.addEventListener("click", showCompanyForm);
+  private_button.addEventListener("click", showPrivateForm);
+} else {
+  null;
+}
+
 // Show additional inputs on company form
 function showCompanyForm() {
   let contactForm = document.getElementById("company");
@@ -1662,7 +1721,7 @@ function showCompanyForm() {
                     <input
                       name="company name"
                       type="text"
-                      placeholder="Företagsnamn"
+                      placeholder="Företagsnamn(bara för företag)"
                     />
                   </div>
                 </div>
@@ -1670,7 +1729,7 @@ function showCompanyForm() {
                 <div class="col-xl-6 col-sm-12">
                   <div for="role" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
-                    <input name="role" type="text" placeholder="Befatning" />
+                    <input name="role" type="text" placeholder="Befattning(bara för företag)" />
                   </div>
                 </div>
                 <div class="col-xl-6 col-sm-12">
@@ -1679,12 +1738,14 @@ function showCompanyForm() {
                     <input
                       name="number of employees"
                       type="number"
-                      placeholder="Antal anställda"
+                      placeholder="Antal anställda(bara för företag)"
                     />
                   </div>
                 </div>
                 </div>
                   `;
+    company_button.className = "focus_common_btn";
+    private_button.className = "common_btn";
   } else {
     null;
   }
@@ -1695,18 +1756,11 @@ function showPrivateForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = "";
+    private_button.className = "focus_common_btn";
+    company_button.className = "common_btn";
   } else {
     null;
   }
-}
-
-let company_button = document.getElementById("company_button");
-let private_button = document.getElementById("private_button");
-if (company_button !== null || private_button !== null) {
-  company_button.addEventListener("click", showCompanyForm);
-  private_button.addEventListener("click", showPrivateForm);
-} else {
-  null;
 }
 
 // Function to send form to email
@@ -1767,6 +1821,7 @@ if (contactForm !== null) {
 function totalSum() {
   let totalPrice = document.getElementById("total");
   let sum = 0;
+
   if (totalPrice !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     for (let i = 0; i < formDataArry.length; i++) {
