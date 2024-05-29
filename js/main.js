@@ -452,7 +452,6 @@ const yumProducts = (yumProductsList) => {
         if (Array.isArray(yum.diet)) {
           var obj = yum.diet;
           value = JSON.stringify(obj);
-          console.log(value);
           const imageTags = yum.diet.map((img) => {
             return (
               `<img id="diet"
@@ -1097,29 +1096,45 @@ const sortingNamePriceFunction = (el) => {
 //Sort function for diet
 const sortingDishDietFunction = (el) => {
   const option = el.value;
-  const message = `<div class="single_team_text">
-          <h4 style="text-transform: none">Tack för ditt meddelande. En av våra medarbetare ska
-          återkomma till dig snart</h4>
-          </div>`;
+  let message = document.getElementById("message");
   if (option === "vegan") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let vegan = "";
+      product.diet.map((img) => {
+        vegan = img.toLowerCase().includes(option);
+      });
+      return vegan;
     });
     const filteredDailyProducts = dailyProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let vegan = "";
+      product.diet.map((img) => {
+        vegan = img.toLowerCase().includes(option);
+      });
+      return vegan;
     });
     const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let vegan = "";
+      product.diet.map((img) => {
+        vegan = img.toLowerCase().includes(option);
+      });
+      return vegan;
     });
     const filteredBaguetterProducts = baguetterProductsList.filter(
       (product) => {
-        return product.diet.toLowerCase().includes(option);
+        let vegan = "";
+        product.diet.map((img) => {
+          vegan = img.toLowerCase().includes(option);
+        });
+        return vegan;
       }
     );
     yumProducts(filteredYumProducts);
     dailyProducts(filteredDailyProducts);
     premiumProducts(filteredPremiumProducts);
     baguetterProducts(filteredBaguetterProducts);
+    message.innerHTML = `<div class="single_team_text">
+          <h4 style="text-transform: none">Inga produkter att visas</h4>
+          </div>`;
   } else if (option === "AL") {
     const sortedYumArray = yumFiltered.sort((a, b) =>
       a.id > b.id ? 1 : b.id > a.id ? -1 : 0
@@ -1139,89 +1154,156 @@ const sortingDishDietFunction = (el) => {
     baguetterProducts(sortedBaguetterArray);
   } else if (option === "vegetarian") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let vegetarian = "";
+      product.diet.map((img) => {
+        vegetarian = img.toLowerCase().includes(option);
+      });
+      return vegetarian;
     });
     const filteredDailyProducts = dailyProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let vegetarian = "";
+      product.diet.map((img) => {
+        vegetarian = img.toLowerCase().includes(option);
+      });
+      return vegetarian;
     });
     const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let vegetarian = "";
+      product.diet.map((img) => {
+        vegetarian = img.toLowerCase().includes(option);
+      });
+      return vegetarian;
     });
     const filteredBaguetterProducts = baguetterProductsList.filter(
       (product) => {
-        return product.diet.toLowerCase().includes(option);
+        let vegetarian = "";
+        product.diet.map((img) => {
+          vegetarian = img.toLowerCase().includes(option);
+        });
+        return vegetarian;
       }
     );
-    if (
-      filteredYumProducts.length ||
-      filteredDailyProducts.length ||
-      filteredPremiumProducts.length ||
-      filteredBaguetterProducts.length > 0
-    ) {
-      yumProducts(filteredYumProducts);
-      dailyProducts(filteredDailyProducts);
-      premiumProducts(filteredPremiumProducts);
-      baguetterProducts(filteredBaguetterProducts);
-    } else {
-      console.log(message);
-    }
+    yumProducts(filteredYumProducts);
+    dailyProducts(filteredDailyProducts);
+    premiumProducts(filteredPremiumProducts);
+    baguetterProducts(filteredBaguetterProducts);
+    message.innerHTML = `<div class="single_team_text">
+          <h4 style="text-transform: none">Inga produkter att visas</h4>
+          </div>`;
   } else if (option === "cow") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let beef = "";
+      product.diet.map((img) => {
+        beef = img.toLowerCase().includes(option);
+      });
+      return beef;
     });
     const filteredDailyProducts = dailyProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let beef = "";
+      product.diet.map((img) => {
+        beef = img.toLowerCase().includes(option);
+      });
+      return beef;
     });
     const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let beef = "";
+      product.diet.map((img) => {
+        beef = img.toLowerCase().includes(option);
+      });
+      return beef;
     });
     const filteredBaguetterProducts = baguetterProductsList.filter(
       (product) => {
-        return product.diet.toLowerCase().includes(option);
+        let beef = "";
+        product.diet.map((img) => {
+          beef = img.toLowerCase().includes(option);
+        });
+        return beef;
       }
     );
     yumProducts(filteredYumProducts);
     dailyProducts(filteredDailyProducts);
     premiumProducts(filteredPremiumProducts);
     baguetterProducts(filteredBaguetterProducts);
+    message.innerHTML = `<div class="single_team_text">
+          <h4 style="text-transform: none">Inga produkter att visas</h4>
+          </div>`;
   } else if (option === "fish") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let fish = "";
+      product.diet.map((img) => {
+        fish = img.toLowerCase().includes(option);
+      });
+      return fish;
     });
     const filteredDailyProducts = dailyProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let fish = "";
+      product.diet.map((img) => {
+        fish = img.toLowerCase().includes(option);
+      });
+      return fish;
     });
     const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let fish = "";
+      product.diet.map((img) => {
+        fish = img.toLowerCase().includes(option);
+      });
+      return fish;
     });
     const filteredBaguetterProducts = baguetterProductsList.filter(
       (product) => {
-        return product.diet.toLowerCase().includes(option);
+        let fish = "";
+        product.diet.map((img) => {
+          fish = img.toLowerCase().includes(option);
+        });
+        return fish;
       }
     );
     yumProducts(filteredYumProducts);
     dailyProducts(filteredDailyProducts);
     premiumProducts(filteredPremiumProducts);
     baguetterProducts(filteredBaguetterProducts);
+    message.innerHTML = `<div class="single_team_text">
+          <h4 style="text-transform: none">Inga produkter att visas</h4>
+          </div>`;
   } else if (option === "chicken") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let chicken = "";
+      product.diet.map((img) => {
+        chicken = img.toLowerCase().includes(option);
+      });
+      return chicken;
     });
     const filteredDailyProducts = dailyProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let chicken = "";
+      product.diet.map((img) => {
+        chicken = img.toLowerCase().includes(option);
+      });
+      return chicken;
     });
     const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      return product.diet.toLowerCase().includes(option);
+      let chicken = "";
+      product.diet.map((img) => {
+        chicken = img.toLowerCase().includes(option);
+      });
+      return chicken;
     });
     const filteredBaguetterProducts = baguetterProductsList.filter(
       (product) => {
-        return product.diet.toLowerCase().includes(option);
+        let chicken = "";
+        product.diet.map((img) => {
+          chicken = img.toLowerCase().includes(option);
+        });
+        return chicken;
       }
     );
     yumProducts(filteredYumProducts);
     dailyProducts(filteredDailyProducts);
     premiumProducts(filteredPremiumProducts);
     baguetterProducts(filteredBaguetterProducts);
+    message.innerHTML = `<div class="single_team_text">
+          <h4 style="text-transform: none">Inga produkter att visas</h4>
+          </div>`;
   }
 };
 loadProducts();
@@ -1336,7 +1418,6 @@ if (formDataArry !== null && formDataArry.length > 0) {
   count.insertAdjacentHTML("beforeend", 0);
   formDataArry = [];
 }
-console.log(count);
 
 //Add to cart function from button
 function realAddToCart(event) {
@@ -1345,7 +1426,6 @@ function realAddToCart(event) {
   var price = event.target.dataset.yumPrice;
   var img = event.target.dataset.yumImg;
   var quantityPrice = event.target.dataset.yumQuantityPrice;
-  console.log(title, price, img, quantityPrice); // "test", "passed"
 
   let formData = {};
   formData.id = id;
@@ -1363,11 +1443,9 @@ function realAddToCart(event) {
     formDataArry[itemIndexInBasket].quantityPrice =
       parseInt(formDataArry[itemIndexInBasket].quantityPrice) +
       parseInt(formDataArry[itemIndexInBasket].price);
-    console.log("Quantity updated:", formDataArry);
   } else {
     if (formData !== undefined) {
       formDataArry.push(formData);
-      console.log("The product has been added to cart:", formDataArry);
     } else {
       null;
     }
@@ -1375,7 +1453,6 @@ function realAddToCart(event) {
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   count.innerHTML = formDataArry.length;
-  console.log(formDataArry);
 }
 
 //Add to cart function from modal
@@ -1386,7 +1463,6 @@ function modalAddToCart() {
   var modalQuantityPrice = localStorage.getItem("quantity-price");
   var modalImage = localStorage.getItem("img");
   var modalQuantity = localStorage.getItem("quantity");
-  console.log(modalTitle, modalPrice, modalQuantityPrice, modalImage); // "test", "passed"
 
   let formData = {};
   formData.id = modalId;
@@ -1404,11 +1480,9 @@ function modalAddToCart() {
     formDataArry[itemIndexInBasket].quantityPrice =
       parseInt(formDataArry[itemIndexInBasket].quantityPrice) +
       parseInt(formDataArry[itemIndexInBasket].price);
-    console.log("Quantity updated:", formDataArry);
   } else {
     if (formData !== undefined) {
       formDataArry.push(formData);
-      console.log("The product has been added to cart:", formDataArry);
     } else {
       null;
     }
@@ -1416,7 +1490,6 @@ function modalAddToCart() {
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   count.innerHTML = formDataArry.length;
-  console.log(formDataArry);
   var input = document.querySelector(".quantity");
   input.value = 1;
 }
@@ -1434,7 +1507,6 @@ const displayNewCart = () => {
           Din varukorg är tom
         </h4>`
       );
-      console.log(cartItem);
     } else {
       const htmlString = formDataArry
         .map((item) => {
@@ -1539,15 +1611,12 @@ function increment() {
     }
     let inputQuantity = inp.value;
     let increaseQuantityPrice = inp.value * price;
-    console.log(increaseQuantityPrice);
 
     if (cartItem !== null) {
       let tableId = this.closest("tr").id;
-      console.log(tableId);
 
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
-        console.log(itemIndex);
         itemIndex[0].quantityPrice = increaseQuantityPrice;
         modalQuantityPrice.innerHTML = increaseQuantityPrice;
         itemIndex[0].quantity = inputQuantity;
@@ -1580,18 +1649,14 @@ function increment() {
       var modalQuantityPrice =
         this.closest("td").nextElementSibling.querySelector(".quantity_price");
       var input = this.previousElementSibling;
-      console.log(modalQuantityPrice, input);
     }
     let inputQuantity = inp.value;
     let increaseQuantityPrice = inputQuantity * price;
-    console.log(increaseQuantityPrice);
 
     let tableId = this.closest("tr").id;
-    console.log(tableId);
 
     let itemIndex = formDataArry.filter((el) => el.id == tableId);
     if (itemIndex) {
-      console.log(itemIndex);
       itemIndex[0].quantityPrice = increaseQuantityPrice;
       modalQuantityPrice.innerHTML = increaseQuantityPrice;
       itemIndex[0].quantity = inputQuantity;
@@ -1607,7 +1672,6 @@ function decrement() {
   if (localStorage.getItem("quantity") !== null) {
     const inp = this.nextElementSibling;
     button = this.closest("button");
-    console.log(inp.value);
     if (inp.value > 0) inp.value = Number(inp.value) - 1;
     let id = localStorage.getItem("id");
     let quantityPrice = localStorage.getItem("quantity-price");
@@ -1628,11 +1692,9 @@ function decrement() {
 
     if (cartItem !== null) {
       let tableId = this.closest("tr").id;
-      console.log(tableId);
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
         decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
-        console.log(itemIndex);
         decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
         itemIndex[0].quantityPrice = decreaseQuantityPrice;
         modalQuantityPrice.innerHTML = decreaseQuantityPrice;
@@ -1666,18 +1728,15 @@ function decrement() {
       var modalQuantityPrice =
         this.closest("td").nextElementSibling.querySelector(".quantity_price");
       var input = this.nextElementSibling;
-      console.log(modalQuantityPrice, input);
     }
     let inputQuantity = inp.value;
 
     let tableId = this.closest("tr").id;
-    console.log(tableId);
 
     let itemIndex = formDataArry.filter((el) => el.id == tableId);
     if (itemIndex) {
       let decreaseQuantityPrice =
         itemIndex[0].quantityPrice - itemIndex[0].price;
-      console.log(itemIndex);
       itemIndex[0].quantityPrice = decreaseQuantityPrice;
       modalQuantityPrice.innerHTML = decreaseQuantityPrice;
       itemIndex[0].quantity = inputQuantity;
@@ -1828,7 +1887,6 @@ function totalSum() {
       sum += parseInt(formDataArry[i].quantityPrice);
     }
     totalPrice.innerHTML = sum + "kr";
-    console.log(sum);
   }
   localStorage.setItem("sum", sum);
 }

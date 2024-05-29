@@ -116,7 +116,7 @@
       "img": "images/yum/Falukorv.png",
       "title": "'Falukorv med mos'",
       "price": "75",
-      "diet": ["images/icons/pork.png", "/images/icons/cow.png"],
+      "diet": ["images/icons/pork.png", "images/icons/cow.png"],
       "description": "'En klassisk svensk rätt bestående av skivad falukorv serverad med potatismos, en enkel och tillfredsställande måltid.'",
       "ingredients": "'Nöt- och griskött, vatten, fett från gris, potatismjöl, salt, kryddor, torkad lök, stabiliseringsmedel E450, antioxidationsmedel E300, konserveringsmedel E250. Rökarom.SENAP(,Vatten, brunt och gult SENAPSFRÖ, socker, ättiksprit, salt och gurkmeja.RIVEN OST(Pastöriserad MJÖLK, klumpförebyggande medel: potatisstärkelse, salt, syrningskultur, ystenzym, konserveringsmedel: kaliumsorbat, kalciumklorid,POTATIS,smör ( Pastöriserad GRÄDDE, mjölksyrakultur)SALT,PEPPAR '"
     },
@@ -363,7 +363,7 @@
       "category": "Baguetter",
       "img": "images/baguetter/baguette.png",
       "title": "'Yum Bodega'",
-      "price": "75",
+      "price": "55",
       "diet": ["images/icons/cow.png"],
       "description": "'Kommer snart'",
       "ingredients": "'kommer snart'"
