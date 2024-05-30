@@ -1135,10 +1135,42 @@ const categoriesProducts = (categoriesProductsList) => {
 
 //Show baguetter
 const baguetterProducts = (baguetterProductsList) => {
-  let i = 0;
   if (baguetter !== null) {
     const htmlString = baguetterProductsList
       .map((baguetter) => {
+        let diet = "";
+        let value = "";
+        if (Array.isArray(baguetter.diet)) {
+          var obj = baguetter.diet;
+          value = JSON.stringify(obj);
+          const imageTags = baguetter.diet.map((img) => {
+            return (
+              `<img id="diet"
+                  src=
+                  ` +
+              img +
+              `
+                  alt="menu"
+                  class="diet_img"
+                />
+                `
+            );
+          });
+          diet = imageTags;
+        } else {
+          const singleImage =
+            `<img id="diet"
+                  src=
+                  ` +
+            baguetter.diet +
+            `
+                  alt="menu"
+                  class="diet_img"
+                />
+                `;
+          diet = singleImage;
+          value = baguetter.diet;
+        }
         return (
           `<div
             class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
@@ -1161,19 +1193,15 @@ const baguetterProducts = (baguetterProductsList) => {
                   data-yum-quantity-price=${baguetter.price}
                   data-yum-description=${baguetter.description}
                   data-yum-ingredients=${baguetter.ingredients}
-                  data-yum-diet=${baguetter.diet}
+                  data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                 />
               </div>
-              <div class="d-flex justify-content-between align-items-center">
-               <img
-                  src=` +
-          baguetter.diet +
-          `
-                  alt="menu"
-                  class="diet_img"
-                />
+               <div class="d-flex justify-content-between align-items-center">
+               <div class="d-flex">` +
+          diet +
+          `</div>
                 <a class="category" href="#">` +
           baguetter.category +
           `</a>
@@ -1189,7 +1217,7 @@ const baguetterProducts = (baguetterProductsList) => {
                   data-yum-quantity-price=${baguetter.price}
                   data-yum-description=${baguetter.description}
                   data-yum-ingredients=${baguetter.ingredients}
-                  data-yum-diet=${baguetter.diet}
+                  data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +

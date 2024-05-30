@@ -159,7 +159,7 @@
       "title": "'Naan bröd'",
       "price": "95",
       "diet": ["images/icons/vegetarian.png"],
-      "description": "'Ett mjukt och luftigt indiskt bröd som gräddas i en tandoor (lerugn), perfekt som tillbehör till indiska rätter eller som en måltid i sig själv.'",
+      "description": "'Tre mjuka och luftiga indiska bröd som gräddas i en tandoor (lerugn), perfekt som tillbehör till indiska rätter eller som en måltid i sig själv.'",
       "ingredients": "'kommer snart'"
     },
     {
@@ -169,7 +169,7 @@
       "title": "'Samosas'",
       "price": "95",
       "diet": ["images/icons/vegetarian.png"],
-      "description": "'En populär indisk maträtt bestående av krispiga, triangelformade pajskal fyllda med en smakrik blandning av potatis, grönsaker och kryddor.'",
+      "description": "'Populär indisk maträtt bestående av två stycken krispiga, triangelformade pajskal fyllda med en smakrik blandning av potatis, grönsaker och kryddor.'",
       "ingredients": "'kommer snart'"
     },
     {
