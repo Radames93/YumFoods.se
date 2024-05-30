@@ -536,7 +536,7 @@ button {
   position: relative;
 }
 
-.main_menu .menu_icon li a {
+.container > li a {
   font-size: 24px;
   font-weight: 600;
   color: var(--colorBlack);
@@ -566,7 +566,7 @@ button {
   color: var(--colorWhite);
 }
 
-.main_menu .menu_icon li a span {
+.container > li a span {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -6069,7 +6069,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   align-self: center;
   justify-content: start;
   gap: 20px;
-  padding: 20px 0;
+  padding-bottom: 20px 0;
 }
 
 .contacts-box {

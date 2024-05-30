@@ -349,6 +349,192 @@ $(function () {
   });
 });
 
+//make header and footer reusable in different html pages
+function Header() {
+  let header = document.getElementById("header");
+  header.innerHTML = `
+  <nav class="navbar navbar-expand-lg main_menu">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="images/logo.png" alt="Logo" class="img-fluid" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="far fa-bars menu_icon_bar"></i>
+        <i class="far fa-times close_icon_close"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#"
+              >Meny <i class="far fa-angle-down"></i
+            ></a>
+            <ul class="droap_menu">
+              <li><a href="baguette_menu.html">Baguetter</a></li>
+              <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
+              <li><a href="yum_menu.html">Yum</a></li>
+              <li><a href="daily_menu.html">Dagens</a></li>
+              <li><a href="premium_menu.html">Premium</a></li>
+            </ul>
+          </li>
+          <!--
+            <li class="nav-item">
+              <a class="nav-link" href="subscription.html">Prenumerationer</a>
+            </li>
+            -->
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">Om oss</a>
+          </li>
+          <!--
+            <li class="nav-item">
+              <a class="nav-link" href="blogs.html">Blog/Podcast</a>
+            </li>
+            -->
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Kontakta oss</a>
+          </li>
+        </ul>
+      </div>
+      <!--
+         <li>
+              <a href="sign_in.html"><i class="fas fa-user"></i></a>
+        </li>
+        -->
+      <li>
+        <a href="cart_view.html"
+          ><i class="fas fa-shopping-basket"></i> <span id="count"></span
+        ></a>
+      </li>
+    </div>
+  </nav>
+    `;
+}
+
+function Footer() {
+  let footer = document.getElementById("footer");
+  footer.innerHTML = `
+      <div class="footer_overlay pt_20 xs_pt_70">
+        <div class="container wow fadeInUp" data-wow-duration="1s">
+          <div class="row justify-content-around pt_50">
+            <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-7">
+              <div class="footer_content">
+                <a class="footer_logo" href="index.html">
+                  <img
+                    src="images/footer_logo_group.png"
+                    alt="YumFoods"
+                    class="img-fluid w-100 mb_25"
+                  />
+                </a>
+                <ul class="social_link d-flex flex-wrap mx_50">
+                  <li>
+                    <a
+                      href="https://www.facebook.com/YumFoodsSE"
+                      target="_blank"
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.linkedin.com/company/yum-foods/"
+                      target="_blank"
+                      ><i class="fab fa-linkedin-in"></i
+                    ></a>
+                  </li>
+                  <!--
+                  <li>
+                    <a href="#"
+                      ><span class="m_0"><img src="images/twitter.png" /></span
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
+                  </li>
+                  -->
+                  <li>
+                    <a
+                      href="https://www.instagram.com/yumfoods.se/"
+                      target="_blank"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                  </li>
+                  <!--
+                  <li>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                  </li>
+                  -->
+                </ul>
+              </div>
+            </div>
+            <div class="col-xxl-2 col-lg-2 col-sm-5 col-md-5">
+              <div class="footer_content">
+                <ul>
+                  <li><a href="index.html">Hem</a></li>
+                  <li><a href="about.html">Om oss</a></li>
+                  <li><a href="contact.html">Kontakta oss</a></li>
+                  <li><a href="certificates.html">Certificat</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xxl-2 col-lg-2 col-sm-6 col-md-5 order-md-4">
+              <div class="footer_content">
+                <ul>
+                  <li><a href="terms_condition.html">Allmänna villkor</a></li>
+                  <li><a href="privacy_policy.html">Integritetspolicy</a></li>
+                  <li>
+                    <a href="faq.html">FAQ</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row wow fadeInUp text-center" data-wow-duration="1s">
+        <div class="col-md-8 col-lg-12 col-xl-12">
+          <div class="contacts-content contacts justify-content-center w_100">
+            <div class="contacts-box">
+              <img class="contacts-img" src="./images/phone.png" alt="phone" />
+              <p>+46 76 023 49 30</p>
+            </div>
+            <div class="contacts-box">
+              <img class="contacts-img" src="./images/mail.png" alt="mail" />
+              <p>info@yumfoods.se</p>
+            </div>
+            <div class="contacts-box">
+              <img
+                class="contacts-img"
+                src="./images/location-marker.png"
+                alt="location"
+              />
+              <p>Stora Badhusgatan 18, 411 21 Göteborg</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer_bottom d-flex flex-wrap">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="footer_bottom_text">
+                <p>Copyright ©<b> YumFood</b> 2024. All Rights Reserved</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+}
+
+Header();
+Footer();
+
 //Get elements from the DOM//
 let yum = document.getElementById("yum");
 let daily = document.getElementById("daily");
@@ -502,7 +688,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${value}
+                  data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                 />
@@ -570,10 +756,42 @@ const yumProducts = (yumProductsList) => {
 
 //Display daily items
 const dailyProducts = (dailyProductsList) => {
-  let i = 0;
   if (daily !== null) {
     const htmlString = dailyProductsList
       .map((daily) => {
+        let diet = "";
+        let value = "";
+        if (Array.isArray(daily.diet)) {
+          var obj = daily.diet;
+          value = JSON.stringify(obj);
+          const imageTags = daily.diet.map((img) => {
+            return (
+              `<img id="diet"
+                  src=
+                  ` +
+              img +
+              `
+                  alt="menu"
+                  class="diet_img"
+                />
+                `
+            );
+          });
+          diet = imageTags;
+        } else {
+          const singleImage =
+            `<img id="diet"
+                  src=
+                  ` +
+            daily.diet +
+            `
+                  alt="menu"
+                  class="diet_img"
+                />
+                `;
+          diet = singleImage;
+          value = daily.diet;
+        }
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
@@ -596,19 +814,15 @@ const dailyProducts = (dailyProductsList) => {
                   data-yum-quantity-price=${daily.price}
                   data-yum-description=${daily.description}
                   data-yum-ingredients=${daily.ingredients}
-                  data-yum-diet=${daily.diet}
+                  data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
-               <img
-                  src=` +
-          daily.diet +
-          `
-                  alt="menu"
-                  class="diet_img"
-                />
+               <div class="d-flex">` +
+          diet +
+          `</div>
                 <a class="category" href="#">` +
           daily.category +
           `</a>
@@ -624,7 +838,7 @@ const dailyProducts = (dailyProductsList) => {
                   data-yum-quantity-price=${daily.price}
                   data-yum-description=${daily.description}
                   data-yum-ingredients=${daily.ingredients}
-                  data-yum-diet=${daily.diet}
+                  data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -669,9 +883,41 @@ const dailyProducts = (dailyProductsList) => {
 //Display premium items
 const premiumProducts = (premiumProductsList) => {
   if (premium !== null) {
-    let i = 0;
     const htmlString = premiumProductsList
       .map((premium) => {
+        let diet = "";
+        let value = "";
+        if (Array.isArray(premium.diet)) {
+          var obj = premium.diet;
+          value = JSON.stringify(obj);
+          const imageTags = premium.diet.map((img) => {
+            return (
+              `<img id="diet"
+                  src=
+                  ` +
+              img +
+              `
+                  alt="menu"
+                  class="diet_img"
+                />
+                `
+            );
+          });
+          diet = imageTags;
+        } else {
+          const singleImage =
+            `<img id="diet"
+                  src=
+                  ` +
+            premium.diet +
+            `
+                  alt="menu"
+                  class="diet_img"
+                />
+                `;
+          diet = singleImage;
+          value = premium.diet;
+        }
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
@@ -694,19 +940,15 @@ const premiumProducts = (premiumProductsList) => {
                   data-yum-quantity-price=${premium.price}
                   data-yum-description=${premium.description}
                   data-yum-ingredients=${premium.ingredients}
-                  data-yum-diet=${premium.diet}
+                  data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
-               <img
-                  src=` +
-          premium.diet +
-          `
-                  alt="menu"
-                  class="diet_img"
-                />
+               <div class="d-flex">` +
+          diet +
+          `</div>
                 <a class="category" href="#">` +
           premium.category +
           `</a>
@@ -722,7 +964,7 @@ const premiumProducts = (premiumProductsList) => {
                   data-yum-quantity-price=${premium.price}
                   data-yum-description=${premium.description}
                   data-yum-ingredients=${premium.ingredients}
-                  data-yum-diet=${premium.diet}
+                  data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -1192,33 +1434,33 @@ const sortingDishDietFunction = (el) => {
           </div>`;
   } else if (option === "cow") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-      let beef = "";
+      let cow = "";
       product.diet.map((img) => {
-        beef = img.toLowerCase().includes(option);
+        cow = img.toLowerCase().includes(option);
       });
-      return beef;
+      return cow;
     });
     const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let beef = "";
+      let cow = "";
       product.diet.map((img) => {
-        beef = img.toLowerCase().includes(option);
+        cow = img.toLowerCase().includes(option);
       });
-      return beef;
+      return cow;
     });
     const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let beef = "";
+      let cow = "";
       product.diet.map((img) => {
-        beef = img.toLowerCase().includes(option);
+        cow = img.toLowerCase().includes(option);
       });
-      return beef;
+      return cow;
     });
     const filteredBaguetterProducts = baguetterProductsList.filter(
       (product) => {
-        let beef = "";
+        let cow = "";
         product.diet.map((img) => {
-          beef = img.toLowerCase().includes(option);
+          cow = img.toLowerCase().includes(option);
         });
-        return beef;
+        return cow;
       }
     );
     yumProducts(filteredYumProducts);
@@ -1880,15 +2122,18 @@ if (contactForm !== null) {
 function totalSum() {
   let totalPrice = document.getElementById("total");
   let sum = 0;
-
   if (totalPrice !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    for (let i = 0; i < formDataArry.length; i++) {
-      sum += parseInt(formDataArry[i].quantityPrice);
+    if (formDataArry !== null) {
+      for (let i = 0; i < formDataArry.length; i++) {
+        sum += parseInt(formDataArry[i].quantityPrice);
+      }
+      totalPrice.innerHTML = sum + "kr";
+      localStorage.setItem("sum", sum);
+    } else {
+      null;
     }
-    totalPrice.innerHTML = sum + "kr";
   }
-  localStorage.setItem("sum", sum);
 }
 
 // Function to cart content and total form to email

@@ -362,10 +362,50 @@
       "id": 41,
       "category": "Baguetter",
       "img": "images/baguetter/baguette.png",
-      "title": "'Yum Bodega'",
-      "price": "55",
+      "title": "'Baguette Vegetarisk'",
+      "price": "49",
+      "diet": ["images/icons/vegetarian.png"],
+      "description": "'Välfylld baguett med ost, potatissallad, tomat och gurka. Innehåller gluten.'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 42,
+      "category": "Baguetter",
+      "img": "images/baguetter/baguette.png",
+      "title": "'Baguette Vegansk'",
+      "price": "49",
+      "diet": ["images/icons/vegan.png"],
+      "description": "'Välfylld baguette med avokado röra, grönsaker och veganskt bröd. Innehåller gluten'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 43,
+      "category": "Baguetter",
+      "img": "images/baguetter/baguette.png",
+      "title": "'Baguette Kyckling'",
+      "price": "49",
+      "diet": ["images/icons/chicken.png"],
+      "description": "'Välfylld baguette med kyckling curry, ägg, tomat och gurka. Innehåller gluten.'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 44,
+      "category": "Baguetter",
+      "img": "images/baguetter/baguette.png",
+      "title": "'Baguette Skagen'",
+      "price": "49",
+      "diet": ["images/icons/fish.png"],
+      "description": "'Välfylld baguette med skagenröra, ägg, tomat och gurka. Innehåller gluten.'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 45,
+      "category": "Baguetter",
+      "img": "images/baguetter/baguette.png",
+      "title": "'Baguette Kebab'",
+      "price": "49",
       "diet": ["images/icons/cow.png"],
-      "description": "'Kommer snart'",
+      "description": "'Välfylld baguette med kebabkött, pannbiff, tomat och gurka. Innehåller gluten.'",
       "ingredients": "'kommer snart'"
     }
   ]

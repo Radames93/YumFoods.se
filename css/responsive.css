@@ -1635,8 +1635,16 @@
   }
 
   .main_menu .navbar-brand {
-    width: 140px;
-    margin-left: 20px;
+    width: 100px;
+    margin-left: -10px;
+  }
+
+  .container > a {
+    order: -1;
+  }
+
+  .container > li {
+    order: -1;
   }
 
   .main_menu .navbar-toggler {
@@ -1721,7 +1729,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 327px;
     gap: 20px;
   }
 
@@ -1731,10 +1738,9 @@
   }
 
   .contacts-box {
-    width: 300px;
     display: flex;
     gap: 10px;
-    text-align: left;
+    text-align: center;
   }
 
   #imageContent {
@@ -2045,8 +2051,17 @@
     height: 200px;
   }
 
+  .social_link {
+    margin: 0 auto;
+  }
+
   .footer_content {
     margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .footer_content > ul {
+    display: inline-block;
   }
 
   .footer_content h3 {
@@ -2248,7 +2263,7 @@
   }
 
   .contact_form {
-    padding: 20px;
+    padding: 0;
     margin-top: 25px;
   }
 
@@ -2479,3 +2494,7 @@ table td:last-child {
 /* =====================
         CART VIEW DETAILS START
     =======================*/
+
+.h-captcha {
+  padding-bottom: 20px;
+}
