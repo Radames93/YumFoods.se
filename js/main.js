@@ -1867,6 +1867,9 @@ function increment() {
   if (localStorage.getItem("quantity") !== null) {
     const inp = this.previousElementSibling;
     if (inp.value < 20) inp.value = Number(inp.value) + 1;
+    if (inp.value > 0) {
+      inp.previousElementSibling.removeAttribute("disabled");
+    }
     let id = localStorage.getItem("id");
     let price = localStorage.getItem("price");
     price = parseInt(price);
@@ -1906,6 +1909,9 @@ function increment() {
   } else {
     const inp = this.previousElementSibling;
     if (inp.value < 20) inp.value = Number(inp.value) + 1;
+    if (inp.value > 0) {
+      inp.previousElementSibling.removeAttribute("disabled");
+    }
     for (i = 0; i < formDataArry.length; i++) {
       price = parseInt(formDataArry[i].price);
       quantityPrice = parseInt(formDataArry[i].quantityPrice);
@@ -1943,6 +1949,9 @@ function decrement() {
     const inp = this.nextElementSibling;
     button = this.closest("button");
     if (inp.value > 0) inp.value = Number(inp.value) - 1;
+    if (inp.value <= 0) {
+      this.setAttribute("disabled", "disabled");
+    }
     let id = localStorage.getItem("id");
     let quantityPrice = localStorage.getItem("quantity-price");
     let price = localStorage.getItem("price");
@@ -1984,7 +1993,12 @@ function decrement() {
     localStorage.setItem("quantity", (input.textContent = inputQuantity));
   } else {
     const inp = this.nextElementSibling;
-    if (inp.value < 20) inp.value = Number(inp.value) - 1;
+    if (inp.value > 0) {
+      inp.value = Number(inp.value) - 1;
+    }
+    if (inp.value <= 0) {
+      this.setAttribute("disabled", "disabled");
+    }
     for (i = 0; i < formDataArry.length; i++) {
       price = parseInt(formDataArry[i].price);
       quantityPrice = parseInt(formDataArry[i].quantityPrice);
