@@ -1714,10 +1714,10 @@ function realAddToCart(event) {
       parseInt(formDataArry[itemIndexInBasket].quantityPrice) +
       parseInt(formDataArry[itemIndexInBasket].price);
   } else {
-    if (formData !== undefined) {
+    if (id !== undefined) {
       formDataArry.push(formData);
     } else {
-      null;
+      return null;
     }
   }
 
@@ -1770,7 +1770,7 @@ let id = "";
 const displayNewCart = () => {
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (formDataArry == null) {
+    if (formDataArry === null) {
       cartItem.insertAdjacentHTML(
         "afterend",
         `<h4 class="single_team_text" style="padding: 20px; text-align: center">
@@ -1792,7 +1792,7 @@ const displayNewCart = () => {
           <tr id= "` +
             item.id +
             `">
-          <td class="pro_img">
+          <td data-label="Bild" class="pro_img">
                         <img
                           src="` +
             item.img +
@@ -1802,18 +1802,18 @@ const displayNewCart = () => {
                         />
                       </td>
 
-                      <td class="pro_name">
+                      <td data-label="Detaljer" class="pro_name">
                         <a href="#">` +
             item.title?.replace(/'/g, "") +
             `</a>
                       </td>
-                      <td class="pro_status">
+                      <td data-label="Pris" class="pro_status">
                         <h6>` +
             item.price +
             `kr</h6>
                       </td>
 
-                      <td class="pro_select">
+                      <td data-label="Kvantitet" class="pro_select">
                         <div class="quentity_btn">
                       <button class="decrease">
                       <i class="fal fa-minus"></i>
@@ -1827,13 +1827,13 @@ const displayNewCart = () => {
                   </div>
                       </td>
 
-                      <td class="pro_tk">
+                      <td data-label="Total" class="pro_tk">
                         <h6 class="quantity_price">` +
             item.quantityPrice +
             `kr</h6>
                       </td>
 
-                      <td class="pro_icon">
+                      <td data-label="Ta bort" class="pro_icon">
                         <button onclick="removeItem(` +
             item.id +
             `)" href="#"><i class="far fa-times"></i></button>
@@ -2039,9 +2039,6 @@ function removeItem(id) {
   displayNewCart();
   count.innerHTML = formDataArry.length;
   totalSum();
-  if (formDataArry.length == 0) {
-    localStorage.clear();
-  }
 }
 
 let company_button = document.getElementById("company_button");
