@@ -355,7 +355,6 @@ button {
 /* menu start */
 .main_menu {
   position: fixed;
-  top: 10px;
   width: 100%;
   background: var(--colorWhite);
   z-index: 999;
@@ -4053,7 +4052,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .tbl tr:nth-child(even) {
-  background: #ccc;
   transition: all 0.3s ease-in;
   cursor: pointer;
 }
@@ -4114,18 +4112,6 @@ td.pro_name {
 .pro_icon a {
   text-align: center;
   font-size: 30px;
-}
-
-.common_btn {
-  font-size: 12px;
-  text-transform: capitalize;
-  color: #fff !important;
-  padding: 7px 10px 5px 10px;
-  font-weight: 400;
-}
-
-.common_btn:hover {
-  color: #fff;
 }
 
 .pro_icon a {
@@ -6107,4 +6093,10 @@ table tbody tr td span {
 .team_slider .nextArrow,
 .offer_item_slider .nextArrow {
   display: none;
+}
+
+.currency {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }

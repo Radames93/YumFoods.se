@@ -1814,7 +1814,7 @@ const displayNewCart = () => {
                       </td>
 
                       <td data-label="Kvantitet" class="pro_select">
-                        <div class="quentity_btn">
+                      <div class="quentity_btn">
                       <button class="decrease">
                       <i class="fal fa-minus"></i>
                     </button>
@@ -1828,9 +1828,12 @@ const displayNewCart = () => {
                       </td>
 
                       <td data-label="Total" class="pro_tk">
+                      <div class="quentity_btn">
                         <h6 class="quantity_price">` +
             item.quantityPrice +
-            `kr</h6>
+            `</h6>
+                      <h6 class="currency mb_0">kr</h6>
+                      </div>
                       </td>
 
                       <td data-label="Ta bort" class="pro_icon">
@@ -1890,6 +1893,8 @@ function increment() {
 
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
+        price = itemIndex[0].price;
+        increaseQuantityPrice = inp.value * price;
         itemIndex[0].quantityPrice = increaseQuantityPrice;
         modalQuantityPrice.innerHTML = increaseQuantityPrice;
         itemIndex[0].quantity = inputQuantity;
@@ -1927,12 +1932,12 @@ function increment() {
       var input = this.previousElementSibling;
     }
     let inputQuantity = inp.value;
-    let increaseQuantityPrice = inputQuantity * price;
 
     let tableId = this.closest("tr").id;
 
     let itemIndex = formDataArry.filter((el) => el.id == tableId);
     if (itemIndex) {
+      let increaseQuantityPrice = inputQuantity * itemIndex[0].price;
       itemIndex[0].quantityPrice = increaseQuantityPrice;
       modalQuantityPrice.innerHTML = increaseQuantityPrice;
       itemIndex[0].quantity = inputQuantity;
@@ -1973,7 +1978,6 @@ function decrement() {
       let tableId = this.closest("tr").id;
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
-        decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
         decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
         itemIndex[0].quantityPrice = decreaseQuantityPrice;
         modalQuantityPrice.innerHTML = decreaseQuantityPrice;
@@ -2039,6 +2043,10 @@ function removeItem(id) {
   displayNewCart();
   count.innerHTML = formDataArry.length;
   totalSum();
+  if (temp.length === 0) {
+    localStorage.clear();
+    displayNewCart();
+  }
 }
 
 let company_button = document.getElementById("company_button");
