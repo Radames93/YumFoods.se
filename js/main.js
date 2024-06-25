@@ -380,8 +380,8 @@ function Header() {
               <li><a href="baguette_menu.html">Baguetter</a></li>
               <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
               <li><a href="yum_menu.html">Yum</a></li>
-              <li><a href="daily_menu.html">Dagens</a></li>
-              <li><a href="premium_menu.html">Premium</a></li>
+              <!-- <li><a href="daily_menu.html">Dagens</a></li> -->
+              <!-- <li><a href="premium_menu.html">Premium</a></li> -->
             </ul>
           </li>
           <!--
@@ -1680,15 +1680,6 @@ if (existingTitle !== null) {
 
 let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
-// Adding count to cart icon
-let count = document.getElementById("count");
-if (formDataArry !== null && formDataArry.length > 0) {
-  count.insertAdjacentHTML("beforeend", formDataArry.length);
-} else {
-  count.insertAdjacentHTML("beforeend", 0);
-  formDataArry = [];
-}
-
 //Add to cart function from button
 function realAddToCart(event) {
   var id = event.target.dataset.id;
@@ -1722,7 +1713,7 @@ function realAddToCart(event) {
   }
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-  count.innerHTML = formDataArry.length;
+  totalQuantity();
 }
 
 //Add to cart function from modal
@@ -1759,7 +1750,7 @@ function modalAddToCart() {
   }
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-  count.innerHTML = formDataArry.length;
+  totalQuantity();
   var input = document.querySelector(".quantity");
   input.value = 1;
 }
@@ -1853,6 +1844,7 @@ const displayNewCart = () => {
 
 displayNewCart();
 totalSum();
+totalQuantity();
 
 const increase = document.querySelectorAll(".increase");
 const decrease = document.querySelectorAll(".decrease");
@@ -1946,6 +1938,8 @@ function increment() {
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
   totalSum();
+  updateFields();
+  totalQuantity();
 }
 
 //Decrement function on the - button for quantity
@@ -2033,6 +2027,8 @@ function decrement() {
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   }
   totalSum();
+  updateFields();
+  totalQuantity();
 }
 
 //Remove item from cart
@@ -2041,8 +2037,9 @@ function removeItem(id) {
   localStorage.setItem("formDataArry", JSON.stringify(temp));
   //set item back into storage
   displayNewCart();
-  count.innerHTML = formDataArry.length;
+  totalQuantity();
   totalSum();
+  updateFields();
   if (temp.length === 0) {
     localStorage.clear();
     displayNewCart();
@@ -2183,17 +2180,65 @@ function totalSum() {
   }
 }
 
+//Count quantity and display in the popup cart icon
+function totalQuantity() {
+  let count = document.getElementById("count");
+  let totalQuantity = 0;
+  if (count !== null) {
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    if (formDataArry !== null) {
+      for (let i = 0; i < formDataArry.length; i++) {
+        totalQuantity += parseInt(formDataArry[i].quantity);
+      }
+      count.innerHTML = totalQuantity;
+      localStorage.setItem("totalQuantity", totalQuantity);
+    } else {
+      count.innerHTML = totalQuantity;
+      formDataArry = [];
+    }
+  }
+}
+
+// Update fiels title,quantity,quantiyPrice to send to email
+function updateFields() {
+  let dishName = document.getElementById("dishName");
+  let dishQuantity = document.getElementById("dishQuantity");
+  let dishQuantityPrice = document.getElementById("dishQuantityPrice");
+  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  let mergedTitleArray = [];
+  let mergedQuantityArray = [];
+  let mergedQuantityPriceArray = [];
+  if (formDataArry) {
+    for (i = 0; i < formDataArry.length; i++) {
+      let titleArray = formDataArry[i].title;
+      let quantityArray = formDataArry[i].quantity;
+      let quantityPriceArray = formDataArry[i].quantityPrice;
+      mergedTitleArray.push(JSON.stringify(titleArray));
+      mergedQuantityArray.push(JSON.stringify(quantityArray));
+      mergedQuantityPriceArray.push(JSON.stringify(quantityPriceArray + "kr"));
+    }
+    let titleValue = mergedTitleArray.join(", ");
+    let quantityValue = mergedQuantityArray.join(", ");
+    let quantityPriceValue = mergedQuantityPriceArray.join(", ");
+    if (dishName && dishQuantity && dishQuantityPrice) {
+      dishName.value = titleValue;
+      dishQuantity.value = quantityValue;
+      dishQuantityPrice.value = quantityPriceValue;
+    } else {
+      null;
+    }
+  }
+}
+
 // Function to cart content and total form to email
 const sendCartInfo = document.getElementById("cart-order-form");
 const cartForm = document.getElementById("cart-form");
 const newResult = document.getElementById("cart-result");
 const sum = localStorage.getItem("sum");
-const list = JSON.stringify(localStorage.getItem("formDataArry"));
 let sumInput = document.getElementById("sum");
-let listInput = document.getElementById("cart");
-if (sumInput && listInput !== null) {
-  sumInput.value = sum;
-  listInput.value = list;
+if (sumInput !== null) {
+  sumInput.value = sum + "kr";
+  updateFields();
 } else {
   null;
 }
