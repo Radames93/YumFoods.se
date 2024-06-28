@@ -29,7 +29,14 @@ CSS TABLE OF CONTENTS
 /*================================
     GLOBAL CSS START
 ================================*/
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Oleo+Script:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Oleo+Script:wght@400;700&display=swapfamily=Inter:wght@100..900&display=swap");
+
+@font-face {
+  font-family: "DIN";
+  src: url("../webfonts/DINNeuzeitGroteskStd-BdCond.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {
   margin: 0;
@@ -353,6 +360,12 @@ button {
 /* topbar end */
 
 /* menu start */
+
+.logo {
+  width: 100px;
+  height: auto;
+}
+
 .main_menu {
   position: fixed;
   width: 100%;
@@ -535,7 +548,7 @@ button {
   position: relative;
 }
 
-.container > li a {
+.container > ul li a {
   font-size: 24px;
   font-weight: 600;
   color: var(--colorBlack);
@@ -565,7 +578,7 @@ button {
   color: var(--colorWhite);
 }
 
-.container > li a span {
+.container > ul li a span {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -1394,6 +1407,27 @@ button {
   -o-border-radius: 4px 0px 0px 4px;
 }
 
+/* Temporary class until autumn*/
+.soonCategory {
+  font-size: 16px;
+  color: var(--colorWhite);
+  font-family: var(--cursiveFont);
+  margin: 0;
+  background: var(--colorPrimary);
+  padding: 12px 13px;
+  box-shadow: var(--boxShadow);
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  transition: all linear 0.3s;
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -ms-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+}
+
 .menu_item_text .category:hover {
   color: var(--colorBlack);
 }
@@ -1965,7 +1999,7 @@ button {
   display: flex;
   flex-direction: column;
   background-image: url("../images/index.png");
-  margin-top: 120px;
+  margin-top: 80px;
   height: 100vh;
   align-self: center;
   background-repeat: no-repeat;
@@ -1973,6 +2007,27 @@ button {
   background-attachment: fixed;
   align-items: center;
   justify-content: center;
+}
+
+.hero-box {
+  filter: drop-shadow(white 1rem 1rem 10px);
+}
+
+.hero-text {
+  text-align: center;
+  font-weight: 700;
+  font-size: 55px;
+  color: #252627;
+  filter: drop-shadow(white 1rem 1rem 10px);
+}
+
+.hero-header {
+  align-self: center;
+  font-size: 240px;
+  font-family: "DIN";
+  color: #fe4a0f;
+  filter: drop-shadow(white 1rem 1rem 10px);
+  height: 250px;
 }
 
 .text {
@@ -6099,4 +6154,12 @@ table tbody tr td span {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 20px;
+}
+
+.container > a {
+  order: -1;
+}
+
+.container > ul {
+  order: 0;
 }

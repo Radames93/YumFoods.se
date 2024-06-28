@@ -356,7 +356,7 @@ function Header() {
   <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="images/logo.png" alt="Logo" class="img-fluid" />
+        <img src="images/logo.png" alt="logo" class="img-fluid logo" />
       </a>
       <button
         class="navbar-toggler"
@@ -380,8 +380,8 @@ function Header() {
               <li><a href="baguette_menu.html">Baguetter</a></li>
               <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
               <li><a href="yum_menu.html">Yum</a></li>
-              <!-- <li><a href="daily_menu.html">Dagens</a></li> -->
-              <!-- <li><a href="premium_menu.html">Premium</a></li> -->
+             <li><a href="daily_menu.html">Dagens</a></li> 
+              <li><a href="premium_menu.html">Premium</a></li> 
             </ul>
           </li>
           <!--
@@ -402,6 +402,7 @@ function Header() {
           </li>
         </ul>
       </div>
+      <ul>
       <!--
          <li>
               <a href="sign_in.html"><i class="fas fa-user"></i></a>
@@ -412,6 +413,7 @@ function Header() {
           ><i class="fas fa-shopping-basket"></i> <span id="count"></span
         ></a>
       </li>
+      </ul>
     </div>
   </nav>
     `;
@@ -428,7 +430,7 @@ function Footer() {
                 <a class="footer_logo" href="index.html">
                   <img
                     src="images/footer_logo_group.png"
-                    alt="YumFoods"
+                    alt="footer-logo"
                     class="img-fluid w-100 mb_25"
                   />
                 </a>
@@ -500,18 +502,18 @@ function Footer() {
         <div class="col-md-8 col-lg-12 col-xl-12">
           <div class="contacts-content contacts justify-content-center w_100">
             <div class="contacts-box">
-              <img class="contacts-img" src="./images/phone.png" alt="phone" />
+              <img class="telefon-bild" src="./images/phone.png" alt="phone" />
               <p>+46 76 023 49 30</p>
             </div>
             <div class="contacts-box">
-              <img class="contacts-img" src="./images/mail.png" alt="mail" />
+              <img class="melj-bild" src="./images/mail.png" alt="mail" />
               <p>info@yumfoods.se</p>
             </div>
             <div class="contacts-box">
               <img
                 class="contacts-img"
                 src="./images/location-marker.png"
-                alt="location"
+                alt="läge-bild"
               />
               <p>Stora Badhusgatan 18, 411 21 Göteborg</p>
             </div>
@@ -535,7 +537,7 @@ function Footer() {
 Header();
 Footer();
 
-//Get elements from the DOM//
+//Get elements from the DOM
 let yum = document.getElementById("yum");
 let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
@@ -545,6 +547,18 @@ let baguetter = document.getElementById("baguetter");
 let popup = document.getElementById("popup");
 const searchBar = document.getElementById("searchbar");
 let cartItem = document.getElementById("cart-item");
+let yumSearchMessage = document.getElementById("search-yum-message");
+let dailySearchMessage = document.getElementById("search-daily-message");
+let premiumSearchMessage = document.getElementById("search-premium-message");
+let baguetterSearchMessage = document.getElementById(
+  "search-baguetter-message"
+);
+let yumFilterMessage = document.getElementById("filter-yum-message");
+let dailyFilterMessage = document.getElementById("filter-daily-message");
+let premiumFilterMessage = document.getElementById("filter-premium-message");
+let baguetterFilterMessage = document.getElementById(
+  "filter-baguetter-message"
+);
 
 //Create empty array to populate with products
 let yumProductsList = [];
@@ -563,6 +577,7 @@ let all = [];
 // Implement search bar function
 const search = () => {
   searchBar.addEventListener("keyup", (e) => {
+    let searchMessage = document.getElementById("search-message");
     const searchString = e.target.value.toLowerCase();
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.title.toLowerCase().includes(searchString);
@@ -578,15 +593,34 @@ const search = () => {
       return product.title.toLowerCase().includes(searchString);
     });
     premiumProducts(filteredPremiumProducts);
+
+    const filteredSubscriptions = subscriptionsProductsList.filter(
+      (product) => {
+        return product.title.toLowerCase().includes(searchString);
+      }
+    );
+    subscriptionsProducts(filteredSubscriptions);
+    const filteredBaguetter = baguetterProductsList.filter((product) => {
+      return product.title.toLowerCase().includes(searchString);
+    });
+    baguetterProducts(filteredBaguetter);
+    if (yum && yum.innerHTML === "") {
+      yumSearchMessage.classList.remove("hide");
+      yumSearchMessage.classList.add("show");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailySearchMessage.classList.remove("hide");
+      dailySearchMessage.classList.add("show");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumSearchMessage.classList.remove("hide");
+      premiumSearchMessage.classList.add("show");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterSearchMessage.classList.remove("hide");
+      baguetterSearchMessage.classList.add("show");
+    }
   });
-  const filteredSubscriptions = subscriptionsProductsList.filter((product) => {
-    return product.title.toLowerCase().includes(searchString);
-  });
-  subscriptionsProducts(filteredSubscriptions);
-  const filteredBaguetter = baguetterProductsList.filter((product) => {
-    return product.title.toLowerCase().includes(searchString);
-  });
-  baguetterProducts(filteredBaguetter);
 };
 if (searchBar !== null) {
   searchBar.addEventListener("input", search);
@@ -645,7 +679,7 @@ const yumProducts = (yumProductsList) => {
                   ` +
               img +
               `
-                  alt="menu"
+                  alt="specialkost-bild"
                   class="diet_img"
                 />
                 `
@@ -659,7 +693,7 @@ const yumProducts = (yumProductsList) => {
                   ` +
             yum.diet +
             `
-                  alt="menu"
+                  alt="specialkost-bild"
                   class="diet_img"
                 />
                 `;
@@ -677,7 +711,7 @@ const yumProducts = (yumProductsList) => {
                   src=` +
           yum.img +
           `
-                  alt="menu"
+                  alt="yum-meny-bild"
                   class="img-fluid w-100"
                   class="title"
                   href="#"
@@ -771,7 +805,7 @@ const dailyProducts = (dailyProductsList) => {
                   ` +
               img +
               `
-                  alt="menu"
+                  alt="specialkost-bild"
                   class="diet_img"
                 />
                 `
@@ -785,7 +819,7 @@ const dailyProducts = (dailyProductsList) => {
                   ` +
             daily.diet +
             `
-                  alt="menu"
+                  alt="specialkost-bild"
                   class="diet_img"
                 />
                 `;
@@ -803,7 +837,7 @@ const dailyProducts = (dailyProductsList) => {
                   src=` +
           daily.img +
           `
-                  alt="menu"
+                  alt="dagens-meny-bild"
                   class="img-fluid w-100"
                   class="title"
                   href="#"
@@ -848,7 +882,7 @@ const dailyProducts = (dailyProductsList) => {
                 <h5 class="price">` +
           daily.price +
           `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='add_to_cart' data - id=" +
           daily.id +
           `
           data-yum-id=${daily.id}
@@ -857,7 +891,7 @@ const dailyProducts = (dailyProductsList) => {
           data-yum-img=${daily.img}
           data-yum-quantity-price=${daily.price}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>-->" +
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -897,7 +931,7 @@ const premiumProducts = (premiumProductsList) => {
                   ` +
               img +
               `
-                  alt="menu"
+                  alt="specialkost-bild"
                   class="diet_img"
                 />
                 `
@@ -911,7 +945,7 @@ const premiumProducts = (premiumProductsList) => {
                   ` +
             premium.diet +
             `
-                  alt="menu"
+                  alt="specialkost-bild"
                   class="diet_img"
                 />
                 `;
@@ -929,7 +963,7 @@ const premiumProducts = (premiumProductsList) => {
                   src=` +
           premium.img +
           `
-                  alt="menu"
+                  alt="premium-meny-bild"
                   class="img-fluid w-100"
                   class="title"
                   href="#"
@@ -974,7 +1008,7 @@ const premiumProducts = (premiumProductsList) => {
                 <h5 class="price">` +
           premium.price +
           `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='add_to_cart' data-id=" +
           premium.id +
           `
           data-yum-id=${premium.id}
@@ -983,7 +1017,7 @@ const premiumProducts = (premiumProductsList) => {
           data-yum-img=${premium.img}
           data-yum-quantity-price=${premium.price}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>-->" +
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -1006,6 +1040,133 @@ const premiumProducts = (premiumProductsList) => {
   }
 };
 
+//Show baguetter
+const baguetterProducts = (baguetterProductsList) => {
+  if (baguetter !== null) {
+    const htmlString = baguetterProductsList
+      .map((baguetter) => {
+        let diet = "";
+        let value = "";
+        if (Array.isArray(baguetter.diet)) {
+          var obj = baguetter.diet;
+          value = JSON.stringify(obj);
+          const imageTags = baguetter.diet.map((img) => {
+            return (
+              `<img id="diet"
+                  src=
+                  ` +
+              img +
+              `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />
+                `
+            );
+          });
+          diet = imageTags;
+        } else {
+          const singleImage =
+            `<img id="diet"
+                  src=
+                  ` +
+            baguetter.diet +
+            `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />
+                `;
+          diet = singleImage;
+          value = baguetter.diet;
+        }
+        return (
+          `<div
+            class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
+            data-wow-duration="1s"
+                        >
+          <div class="menu_item">
+              <div class="menu_item_img">
+                <img
+                  src=` +
+          baguetter.img +
+          `
+                  alt="baguette-bild"
+                  class="img-fluid w-100"
+                  class="title"
+                  href="#"
+                  data-yum-id=${baguetter.id} 
+                  data-yum-title=${baguetter.title}
+                  data-yum-price=${baguetter.price}
+                  data-yum-img=${baguetter.img}
+                  data-yum-quantity-price=${baguetter.price}
+                  data-yum-description=${baguetter.description}
+                  data-yum-ingredients=${baguetter.ingredients}
+                  data-yum-diet=${[value]}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
+                />
+              </div>
+               <div class="d-flex justify-content-between align-items-center">
+               <div class="d-flex">` +
+          diet +
+          `</div>
+                <a class="category" href="#">` +
+          baguetter.category +
+          `</a>
+          </div>
+          <div class="menu_item_text">
+                <a
+                  class="title"
+                  href="#"
+                  data-yum-id=${baguetter.id} 
+                  data-yum-title=${baguetter.title}
+                  data-yum-price=${baguetter.price}
+                  data-yum-img=${baguetter.img}
+                  data-yum-quantity-price=${baguetter.price}
+                  data-yum-description=${baguetter.description}
+                  data-yum-ingredients=${baguetter.ingredients}
+                  data-yum-diet=${[value]}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
+                  >` +
+          baguetter.title.replace(/'/g, "") +
+          `</a
+                >
+                <h5 class="price">` +
+          baguetter.price +
+          `kr</h5>` +
+          "<button id='cart-button' class='add_to_cart' data-id=" +
+          baguetter.id +
+          `
+          data-yum-id=${baguetter.id}
+          data-yum-title=${baguetter.title}
+          data-yum-price=${baguetter.price}
+          data-yum-img=${baguetter.img}
+          data-yum-quantity-price=${baguetter.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          `
+          <!--
+          <ul class="d-flex flex-wrap justify-content-end">
+                  <li>
+                    <a href="#"><i class="fal fa-heart"></i></a>
+                  </li>
+                  <li>
+                    <a href="menu_details.html"><i class="far fa-eye"></i></a>
+                  </li>
+                </ul>
+                -->
+              </div>
+            </div>
+          </div>`
+        );
+      })
+      .join("");
+    baguetter.innerHTML = htmlString;
+  } else {
+    return null;
+  }
+};
+
 //Show subscription prducts
 const subscriptionsProducts = (subscriptionsProductsList) => {
   if (subscriptions !== null) {
@@ -1023,7 +1184,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                 <img src=` +
           subscription.img +
           `
-                  alt="menu"
+                  alt="prenumeration-bild"
                   class="img-fluid w-100"
                   class="title"
                   href="#"
@@ -1110,7 +1271,7 @@ const categoriesProducts = (categoriesProductsList) => {
           category.img +
           `
                     "
-                    alt="team"
+                    alt="kategori-bild"
                     class="w-100 h-100"
                 /></a>
               </div>
@@ -1128,133 +1289,6 @@ const categoriesProducts = (categoriesProductsList) => {
       })
       .join("");
     categories.insertAdjacentHTML("afterbegin", htmlString);
-  } else {
-    return null;
-  }
-};
-
-//Show baguetter
-const baguetterProducts = (baguetterProductsList) => {
-  if (baguetter !== null) {
-    const htmlString = baguetterProductsList
-      .map((baguetter) => {
-        let diet = "";
-        let value = "";
-        if (Array.isArray(baguetter.diet)) {
-          var obj = baguetter.diet;
-          value = JSON.stringify(obj);
-          const imageTags = baguetter.diet.map((img) => {
-            return (
-              `<img id="diet"
-                  src=
-                  ` +
-              img +
-              `
-                  alt="menu"
-                  class="diet_img"
-                />
-                `
-            );
-          });
-          diet = imageTags;
-        } else {
-          const singleImage =
-            `<img id="diet"
-                  src=
-                  ` +
-            baguetter.diet +
-            `
-                  alt="menu"
-                  class="diet_img"
-                />
-                `;
-          diet = singleImage;
-          value = baguetter.diet;
-        }
-        return (
-          `<div
-            class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
-            data-wow-duration="1s"
-                        >
-          <div class="menu_item">
-              <div class="menu_item_img">
-                <img
-                  src=` +
-          baguetter.img +
-          `
-                  alt="menu"
-                  class="img-fluid w-100"
-                  class="title"
-                  href="#"
-                  data-yum-id=${baguetter.id} 
-                  data-yum-title=${baguetter.title}
-                  data-yum-price=${baguetter.price}
-                  data-yum-img=${baguetter.img}
-                  data-yum-quantity-price=${baguetter.price}
-                  data-yum-description=${baguetter.description}
-                  data-yum-ingredients=${baguetter.ingredients}
-                  data-yum-diet=${[value]}
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal"
-                />
-              </div>
-               <div class="d-flex justify-content-between align-items-center">
-               <div class="d-flex">` +
-          diet +
-          `</div>
-                <a class="category" href="#">` +
-          baguetter.category +
-          `</a>
-          </div>
-          <div class="menu_item_text">
-                <a
-                  class="title"
-                  href="#"
-                  data-yum-id=${baguetter.id} 
-                  data-yum-title=${baguetter.title}
-                  data-yum-price=${baguetter.price}
-                  data-yum-img=${baguetter.img}
-                  data-yum-quantity-price=${baguetter.price}
-                  data-yum-description=${baguetter.description}
-                  data-yum-ingredients=${baguetter.ingredients}
-                  data-yum-diet=${[value]}
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal"
-                  >` +
-          baguetter.title.replace(/'/g, "") +
-          `</a
-                >
-                <h5 class="price">` +
-          baguetter.price +
-          `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
-          baguetter.id +
-          `
-          data-yum-id=${baguetter.id}
-          data-yum-title=${baguetter.title}
-          data-yum-price=${baguetter.price}
-          data-yum-img=${baguetter.img}
-          data-yum-quantity-price=${baguetter.price}
-          ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
-          `
-          <!--
-          <ul class="d-flex flex-wrap justify-content-end">
-                  <li>
-                    <a href="#"><i class="fal fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="menu_details.html"><i class="far fa-eye"></i></a>
-                  </li>
-                </ul>
-                -->
-              </div>
-            </div>
-          </div>`
-        );
-      })
-      .join("");
-    baguetter.innerHTML = htmlString;
   } else {
     return null;
   }
@@ -1366,7 +1400,6 @@ const sortingNamePriceFunction = (el) => {
 //Sort function for diet
 const sortingDishDietFunction = (el) => {
   const option = el.value;
-  let message = document.getElementById("message");
   if (option === "vegan") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       let vegan = "";
@@ -1402,9 +1435,34 @@ const sortingDishDietFunction = (el) => {
     dailyProducts(filteredDailyProducts);
     premiumProducts(filteredPremiumProducts);
     baguetterProducts(filteredBaguetterProducts);
-    message.innerHTML = `<div class="single_team_text">
-          <h4 style="text-transform: none">Inga produkter att visas</h4>
-          </div>`;
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
   } else if (option === "AL") {
     const sortedYumArray = yumFiltered.sort((a, b) =>
       a.id > b.id ? 1 : b.id > a.id ? -1 : 0
@@ -1422,6 +1480,22 @@ const sortingDishDietFunction = (el) => {
     dailyProducts(sortedDailyArray);
     premiumProducts(sortedPremiumArray);
     baguetterProducts(sortedBaguetterArray);
+    if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
   } else if (option === "vegetarian") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       let vegetarian = "";
@@ -1457,9 +1531,34 @@ const sortingDishDietFunction = (el) => {
     dailyProducts(filteredDailyProducts);
     premiumProducts(filteredPremiumProducts);
     baguetterProducts(filteredBaguetterProducts);
-    message.innerHTML = `<div class="single_team_text">
-          <h4 style="text-transform: none">Inga produkter att visas</h4>
-          </div>`;
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
   } else if (option === "cow") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       let cow = "";
@@ -1495,9 +1594,34 @@ const sortingDishDietFunction = (el) => {
     dailyProducts(filteredDailyProducts);
     premiumProducts(filteredPremiumProducts);
     baguetterProducts(filteredBaguetterProducts);
-    message.innerHTML = `<div class="single_team_text">
-          <h4 style="text-transform: none">Inga produkter att visas</h4>
-          </div>`;
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
   } else if (option === "fish") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       let fish = "";
@@ -1533,9 +1657,34 @@ const sortingDishDietFunction = (el) => {
     dailyProducts(filteredDailyProducts);
     premiumProducts(filteredPremiumProducts);
     baguetterProducts(filteredBaguetterProducts);
-    message.innerHTML = `<div class="single_team_text">
-          <h4 style="text-transform: none">Inga produkter att visas</h4>
-          </div>`;
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
   } else if (option === "chicken") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       let chicken = "";
@@ -1571,9 +1720,34 @@ const sortingDishDietFunction = (el) => {
     dailyProducts(filteredDailyProducts);
     premiumProducts(filteredPremiumProducts);
     baguetterProducts(filteredBaguetterProducts);
-    message.innerHTML = `<div class="single_team_text">
-          <h4 style="text-transform: none">Inga produkter att visas</h4>
-          </div>`;
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
   }
 };
 loadProducts();
@@ -1601,7 +1775,7 @@ if (cardModal !== null) {
                   ` +
         img +
         `
-                  alt="menu"
+                  alt="specialkost-bild"
                   class="diet_img"
                 />
                 `
@@ -1788,7 +1962,7 @@ const displayNewCart = () => {
                           src="` +
             item.img +
             `"
-                          alt="product"
+                          alt="rätt-bild"
                           class="img-fluid w-100"
                         />
                       </td>

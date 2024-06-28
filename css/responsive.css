@@ -271,7 +271,7 @@
     flex-direction: column;
     background-image: url(../images/index.png);
     margin-top: 120px;
-    height: 20vh;
+    height: 45vh;
     align-self: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -651,14 +651,29 @@
   .hero {
     display: flex;
     flex-direction: column;
+    margin-top: 100px;
     background-image: url("../images/index.png");
     align-self: center;
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: calc(100% - 0px) calc(100% - 80%);
+    background-position: calc(100% - 0px) calc(100% - 75%);
     height: 50vh;
     align-items: center;
     justify-content: space-around;
+  }
+
+  .hero-text {
+    text-align: center;
+    font-size: 30px;
+    color: #252627;
+  }
+
+  .hero-header {
+    text-align: center;
+    font-size: 120px;
+    font-family: "DIN";
+    color: #fe4a0f;
+    height: 130px;
   }
 
   .vectorButton {
@@ -687,7 +702,7 @@
   }
 
   .banner_slider {
-    height: 70vh;
+    height: 50vh;
   }
 
   .contacts-content {
@@ -740,7 +755,7 @@
   }
 
   .banner {
-    height: 50vh;
+    height: auto;
   }
 
   .banner_text {
@@ -1029,7 +1044,7 @@
     order: -1;
   }
 
-  .container > li {
+  .container > ul {
     order: -1;
   }
 
@@ -1079,6 +1094,14 @@
 
     .main_menu .navbar-toggler.show {
       background: var(--colorRed);
+    }
+
+    .container > a {
+      order: -1;
+    }
+
+    .container > ul {
+      order: -1;
     }
 
     .droap_menu {
@@ -1146,7 +1169,7 @@
     .hero {
       display: flex;
       flex-direction: column;
-      margin-top: 5px;
+      margin-top: 20px;
       background-image: url("../images/index.png");
       align-self: center;
       background-repeat: no-repeat;
@@ -1154,6 +1177,19 @@
       background-position: calc(100% - 0px) calc(100% - 70%);
       align-items: center;
       justify-content: space-around;
+    }
+
+    .hero-text {
+      text-align: center;
+      font-size: 30px;
+      color: #252627;
+    }
+
+    .hero-header {
+      text-align: center;
+      font-size: 100px;
+      font-family: "DIN";
+      color: #fe4a0f;
     }
 
     .banner_title {
@@ -1674,17 +1710,17 @@
     justify-content: center;
   }
 
-  .main_menu .navbar-brand {
-    width: 100px;
-    margin-left: -10px;
-  }
-
   .container > a {
     order: -1;
   }
 
-  .container > li {
+  .container > ul {
     order: -1;
+  }
+
+  .main_menu .navbar-brand {
+    width: 100px;
+    margin-left: -10px;
   }
 
   .main_menu .navbar-toggler {
@@ -2462,7 +2498,7 @@
   .hero {
     display: flex;
     flex-direction: column;
-    margin-top: 5px;
+    margin-top: 100px;
     background-image: url("../images/index.png");
     align-self: center;
     background-repeat: no-repeat;
@@ -2471,6 +2507,20 @@
     height: 45vh;
     align-items: center;
     justify-content: space-around;
+  }
+
+  .hero-text {
+    text-align: center;
+    font-size: 30px;
+    color: #252627;
+  }
+
+  .hero-header {
+    text-align: center;
+    font-size: 120px;
+    font-family: "DIN";
+    color: #fe4a0f;
+    height: 130px;
   }
 
   .text {
@@ -2524,7 +2574,7 @@
     order: -1;
   }
 
-  .container > li {
+  .container > ul {
     order: -1;
   }
 
@@ -3300,18 +3350,36 @@
         MENU DETAILS END
     =======================*/
 
+  .mobile {
+    margin-bottom: 0;
+  }
+
   .hero {
     display: flex;
     flex-direction: column;
-    margin-top: 5px;
+    margin-top: 120px;
     background-image: url("../images/index.png");
     align-self: center;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: calc(100% - 0px) calc(100% - 75%);
-    height: 45vh;
+    height: 30vh;
     align-items: center;
     justify-content: space-around;
+  }
+
+  .hero-text {
+    text-align: center;
+    font-size: 18px;
+    color: #252627;
+  }
+
+  .hero-header {
+    text-align: center;
+    font-size: 68px;
+    font-family: "DIN";
+    color: #fe4a0f;
+    height: 70px;
   }
 
   .text {

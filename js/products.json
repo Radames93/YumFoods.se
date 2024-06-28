@@ -93,7 +93,7 @@
     {
       "id": 10,
       "category": "Yum",
-      "img": "images/yum/pasta.png",
+      "img": "images/yum/Pasta.png",
       "title": "'Lax pasta med wokgrönsaker'",
       "price": "75",
       "diet": ["images/icons/fish.png"],
@@ -148,7 +148,27 @@
       "price": "75",
       "diet": ["images/icons/cow.png"],
       "description": "'Lasagne är en ugnsgratinerad maträtt som i huvudsak består av pastaplattor varvade med béchamelsås, ost och köttfärssås'",
-      "ingredients": "'Nötfärs, lasagneplattor (DURUMVETE(semolina), laktosfri matlagningsgräd- de(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), riven mozzarella&ched-dar(MJÖLK, salt, potatisstärkelse, symingskultnr, vegetabilisk ystenzym), oxfond(Vatten, rött vin, salt, köttextrakt, arom (innehåller SELLERI), modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliumsorbat)), krossade tomater(Tomater, surhetsreglerande medel (citronsyra)), tomatpure(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), gul lök, timjan, oregano, svartpeppar, salt, majsstärkelse, morot, palsternacka. '"
+      "ingredients": "'Nötfärs, lasagneplattor (DURUMVETE(semolina), laktosfri matlagningsgräd- de(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), riven mozzarella&ched-dar(MJÖLK, salt, potatisstärkelse, symingskultnr, vegetabilisk ystenzym), oxfond(Vatten, rött vin, salt, köttextrakt, arom (innehåller SELLERI), modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliumsorbat)), krossade tomater(Tomater, surhetsreglerande medel (citronsyra)), tomatpure(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), gul lök, timjan, oregano, svartpeppar, salt, majsstärkelse, morot, palsternacka.'"
+    },
+    {
+      "id": 16,
+      "category": "Yum",
+      "img": "images/yum/Kycklingpasta.png",
+      "title": "'Kyckling pasta'",
+      "price": "75",
+      "diet": ["images/icons/chicken.png"],
+      "description": "'Underbar kycklingpasta med krämig basilikasås, saftiga kycklingbitar och färsk basilika, serveras över pasta.'",
+      "ingredients": "'DURUMVETE semolina,KRÄMIG(Grädde (MJÖLK),laktasenzym, stabiliseringsmedel (E407).KYCKLING (strimlad) BASILIKASAS(Laktos fri grädde,salt, peppar,timjan,oregano,basilika) '"
+    },
+    {
+      "id": 17,
+      "category": "Yum",
+      "img": "images/yum/Vegetariskpasta.png",
+      "title": "'Vegetarisk pasta'",
+      "price": "75",
+      "diet": ["images/icons/vegetarian.png"],
+      "description": "'Vegetarisk pastarätt med grönsaker i en underbar basilikasås, serveras över pasta.'",
+      "ingredients": "'DURUMVETE semolina, KRAMIG(Grädde (LAKTOSFRI) laktasenzym, stabiliseringsmedel (E407). BASILIKASAS(Laktos fri grädde,salt.peppar,timjan,oregano,basilika) QUORN(Ingredienser: Mykoprotein(85%), naturlig arom, potatisprotein, ärtfiber, VETEGLUTEN,uppstramande medel: kalciumklorid, kalciumacetat; Rostat kornmaltextrakt, stabilisator: Carregeenan. '"
     }
   ],
   "daily": [
