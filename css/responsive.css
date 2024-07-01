@@ -37,7 +37,7 @@
         HOME PAGE START
     =======================*/
   .main_menu .navbar-nav .nav-item .nav-link {
-    margin: 0px 50px;
+    margin: 0px 30px;
   }
 
   .main_menu .navbar-brand {
@@ -214,7 +214,7 @@
         HOME PAGE START
     =======================*/
   .main_menu .navbar-nav .nav-item .nav-link {
-    margin: 0px 50px;
+    margin: 0px 30px;
   }
 
   .main_menu .navbar-brand {
@@ -2567,7 +2567,7 @@
 
   .main_menu .navbar-brand {
     width: 100px;
-    margin-left: -10px;
+    /*margin-left: -10px;*/
   }
 
   .container > a {
@@ -3357,7 +3357,7 @@
   .hero {
     display: flex;
     flex-direction: column;
-    margin-top: 120px;
+    margin-top: /*120*/ 100px;
     background-image: url("../images/index.png");
     align-self: center;
     background-repeat: no-repeat;
