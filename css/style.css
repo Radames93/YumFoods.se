@@ -214,6 +214,10 @@ button {
   left: 17px;
 }
 
+.section_heading {
+  margin-bottom: 25px;
+}
+
 .section_heading h4 {
   color: var(--colorPrimary);
   font-family: var(--cursiveFont);
@@ -241,7 +245,6 @@ button {
 .section_heading h2 {
   font-size: 45px;
   font-weight: 800;
-  margin-bottom: 30px;
   color: var(--colorPrimary);
 }
 
@@ -1579,6 +1582,10 @@ button {
 /* menu item end */
 
 /* team start */
+
+.team {
+  margin-top: 50px;
+}
 
 .team .banner_shape_1 {
   width: 200px;

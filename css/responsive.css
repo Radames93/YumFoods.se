@@ -2646,6 +2646,16 @@
 
   /* baner start */
 
+  .logo {
+    width: 100px;
+    height: auto;
+    margin-left: 10px;
+  }
+
+  .team {
+    margin-top: 25px;
+  }
+
   .content {
     display: flex;
     justify-content: center;
@@ -2823,6 +2833,10 @@
   }
 
   /* banner end */
+
+  .section_heading {
+    margin-bottom: 0;
+  }
 
   .section_heading h2 {
     font-size: 25px;
