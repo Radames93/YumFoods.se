@@ -13,6 +13,14 @@
       sizes="32x32"
       href="images/favicon-32x32.png"
     />
+    <link
+      rel="preload"
+      as="font"
+      href="./webfonts/DINNeuzeitGroteskStd-BdCond.otf"
+      type="font/otf"
+      crossorigin="anonymous"
+    />
+    <link rel="preload" as="image" href="./images/index.png" />
     <link rel="stylesheet" href="css/slick.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -42,7 +50,13 @@
         <div class="col-12">
           <div class="banner_slider">
             <div class="banner_slider_overlay">
-              <div id="hero" class="hero">
+              <div
+                id="hero"
+                class="hero"
+                sizes="auto"
+                loading="lazy"
+                alt="hero-image"
+              >
                 <div class="hero-box">
                   <h1 class="hero-header">YUM FOODS</h1>
                   <p class="hero-text">LITE BILLIGARE, LIKA YUM</p>
@@ -499,6 +513,6 @@
     <script src="js/jquery.exzoom.js"></script>
 
     <!--main/custom js-->
-    <script src="js/main.js"></script>
+    <script rel="preload" src="js/main.js"></script>
   </body>
 </html>

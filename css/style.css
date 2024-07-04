@@ -1643,6 +1643,7 @@ button {
 }
 
 .single_team_img_services {
+  width: 335px;
   height: 200px;
   border: 10px solid var(--colorWhite);
   border-radius: 50%;

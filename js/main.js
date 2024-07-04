@@ -356,7 +356,7 @@ function Header() {
   <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="images/logo.png" alt="logo" class="img-fluid logo" />
+        <img rel="preload" as="image" src="images/logo.png" alt="logo" class="img-fluid logo" />
       </a>
       <button
         class="navbar-toggler"
@@ -384,6 +384,7 @@ function Header() {
               <li><a href="premium_menu.html">Premium</a></li> 
             </ul>
           </li>
+          <!--
            <li class="nav-item">
             <a class="nav-link" href="#"
               >Våra tjänster <i class="far fa-angle-down"></i
@@ -394,6 +395,7 @@ function Header() {
               <li><a href="events.html">Evenemang</a></li>
             </ul>
           </li>
+          --
           <!--
             <li class="nav-item">
               <a class="nav-link" href="subscription.html">Prenumerationer</a>
