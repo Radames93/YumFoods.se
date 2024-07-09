@@ -2811,7 +2811,7 @@
   }
 
   .banner {
-    height: auto;
+    height: 1%;
   }
 
   .banner_img .img {
@@ -3372,12 +3372,12 @@
     display: flex;
     flex-direction: column;
     margin-top: /*120*/ 100px;
-    background-image: url("../images/mobilIndex.png");
+    background-image: url(../images/mobilIndex.png) !important;
     align-self: center;
     background-repeat: no-repeat;
-    background-size: contain;
-    background-position: calc(100% - 0px) calc(100% - 80%);
-    height: 30vh;
+    background-size: contain !important;
+    background-position: calc(100% - 0px) calc(100% - 80%) !important;
+    height: 200px !important;
     align-items: center;
     justify-content: space-around;
   }

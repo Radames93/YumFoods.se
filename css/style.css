@@ -664,12 +664,6 @@ button {
   overflow: hidden;
 }
 
-.banner_overlay,
-.banner_slider_overlay {
-  height: 100%;
-  position: relative;
-}
-
 .banner_shape_1 {
   position: absolute;
   width: 70px;
@@ -2006,12 +2000,9 @@ button {
 .hero {
   display: flex;
   flex-direction: column;
-  background-image: url("../images/index.png");
-  margin-top: 80px;
   height: 100vh;
   align-self: center;
   background-repeat: no-repeat;
-  background-size: cover;
   background-attachment: fixed;
   align-items: center;
   justify-content: center;

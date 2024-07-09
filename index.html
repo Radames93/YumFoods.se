@@ -21,6 +21,7 @@
       crossorigin="anonymous"
     />
     <link rel="preload" as="image" href="./images/index.png" />
+    <link rel="preload" as="image" href="./images/mobilIndex.png" />
     <link rel="stylesheet" href="css/slick.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -47,23 +48,24 @@
     ==============================-->
     <section class="banner">
       <div class="banner_overlay">
-        <div class="col-12">
-          <div class="banner_slider">
-            <div class="banner_slider_overlay">
-              <div
-                id="hero"
-                class="hero"
-                sizes="auto"
-                loading="lazy"
-                alt="hero-image"
-              >
-                <div class="hero-box">
-                  <h1 class="hero-header">YUM FOODS</h1>
-                  <p class="hero-text">LITE BILLIGARE, LIKA YUM</p>
-                </div>
+        <div class="banner_slider">
+          <div class="banner_slider_overlay">
+            <div
+              class="hero"
+              style="
+                background-image: url('../images/index.png');
+                background-size: cover;
+              "
+              ;
+              alt="hero-image"
+            >
+              <div class="hero-box">
+                <h1 class="hero-header">YUM FOODS</h1>
+                <p class="hero-text">LITE BILLIGARE, LIKA YUM</p>
               </div>
             </div>
-            <!--
+          </div>
+          <!--
                 <div class="vector_item_box">
                   <input
                     onclick="location.href = 'sign_in.html';"
@@ -79,7 +81,6 @@
                   />
                 </div>
                 -->
-          </div>
         </div>
       </div>
     </section>
