@@ -101,6 +101,12 @@ $(function () {
         },
       },
       {
+        breakpoint: 1120,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
         breakpoint: 992,
         settings: {
           slidesToShow: 2,
@@ -110,6 +116,19 @@ $(function () {
         breakpoint: 768,
         settings: {
           slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 765,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+      {
+        breakpoint: 650,
+        settings: {
+          arrows: false,
+          slidesToShow: 1,
         },
       },
       {

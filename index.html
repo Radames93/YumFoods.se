@@ -14,13 +14,12 @@
       href="images/favicon-32x32.png"
     />
     <link
-      rel="preload"
-      as="font"
       href="./webfonts/DINNeuzeitGroteskStd-BdCond.otf"
       type="font/otf"
       crossorigin="anonymous"
     />
     <link rel="preload" as="image" href="./images/index.png" />
+    <link rel="preload" as="image" href="./images/mobilIndex.png" />
     <link rel="stylesheet" href="css/slick.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -47,23 +46,24 @@
     ==============================-->
     <section class="banner">
       <div class="banner_overlay">
-        <div class="col-12">
-          <div class="banner_slider">
-            <div class="banner_slider_overlay">
-              <div
-                id="hero"
-                class="hero"
-                sizes="auto"
-                loading="lazy"
-                alt="hero-image"
-              >
-                <div class="hero-box">
-                  <h1 class="hero-header">YUM FOODS</h1>
-                  <p class="hero-text">LITE BILLIGARE, LIKA YUM</p>
-                </div>
+        <div class="banner_slider">
+          <div class="banner_slider_overlay">
+            <div
+              class="hero"
+              style="
+                background-image: url('../images/index.png');
+                background-size: cover;
+              "
+              ;
+              alt="hero-image"
+            >
+              <div class="hero-box">
+                <h1 class="hero-header">YUM FOODS</h1>
+                <p class="hero-text">LITE BILLIGARE, LIKA YUM</p>
               </div>
             </div>
-            <!--
+          </div>
+          <!--
                 <div class="vector_item_box">
                   <input
                     onclick="location.href = 'sign_in.html';"
@@ -79,7 +79,6 @@
                   />
                 </div>
                 -->
-          </div>
         </div>
       </div>
     </section>
@@ -96,23 +95,6 @@
           <h2 class="mobile">VÅRA MENYER</h2>
         </div>
         <div class="row team_slider">
-          <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_team">
-              <div class="single_team_img_services">
-                <a href="baguette_menu.html" tabindex="0">
-                  <img
-                    src="./images/category/baguettercategory.png"
-                    alt="kategori-baguetter"
-                    class="img-fluid w-100"
-                /></a>
-              </div>
-              <div class="single_team_text">
-                <a class="add_to_cart" href="baguette_menu.html" tabindex="0"
-                  ><h4>Baguetter</h4></a
-                >
-              </div>
-            </div>
-          </div>
           <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
             <div class="single_team">
               <div class="single_team_img_services">
