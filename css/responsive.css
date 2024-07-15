@@ -269,9 +269,8 @@
   .hero {
     display: flex;
     flex-direction: column;
-    background-image: url(../images/index.png);
     margin-top: 120px;
-    height: 45vh;
+    height: 65vh;
     align-self: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -652,7 +651,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 100px;
-    background-image: url("../images/index.png");
     align-self: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -1170,7 +1168,6 @@
       display: flex;
       flex-direction: column;
       margin-top: 20px;
-      background-image: url("../images/index.png");
       align-self: center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -2499,7 +2496,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 100px;
-    background-image: url("../images/mobilIndex.png");
     align-self: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -3372,7 +3368,6 @@
     display: flex;
     flex-direction: column;
     margin-top: /*120*/ 100px;
-    background-image: url(../images/mobilIndex.png) !important;
     align-self: center;
     background-repeat: no-repeat;
     background-size: contain !important;
