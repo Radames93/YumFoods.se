@@ -374,7 +374,7 @@ function Header() {
   header.innerHTML = `
   <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="/">
         <img rel="preload" as="image" src="images/logo.png" alt="logo" class="img-fluid logo" />
       </a>
       <button
@@ -458,7 +458,7 @@ function Footer() {
           <div class="row justify-content-around pt_50">
             <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-7">
               <div class="footer_content">
-                <a class="footer_logo" href="index.html">
+                <a class="footer_logo" href="/">
                   <img
                     src="images/footer_logo_group.png"
                     alt="footer-logo"
