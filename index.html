@@ -23,6 +23,13 @@
     <link
       rel="preload"
       as="image"
+      href="./images/index.png"
+      imagesrcset="./images/index.png 1100w, ./images/mobilIndex.png 335w"
+      imagesizes="(max-width: 1100px) 100vw, 1100px"
+    />
+    <link
+      rel="preload"
+      as="image"
       href="./images/category/yumrattercategory.jpg"
     />
     <link rel="stylesheet" href="css/slick.css" />
@@ -95,7 +102,7 @@
     ==============================-->
     <section class="team text-center">
       <div class="container">
-        <div class="section_heading">
+        <div class="section_heading mb_25">
           <h2 class="mobile">VÅRA MENYER</h2>
         </div>
         <div class="row team_slider">
@@ -116,6 +123,7 @@
               </div>
             </div>
           </div>
+          <!--
           <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
             <div class="single_team">
               <div class="single_team_img_services">
@@ -132,7 +140,8 @@
                 >
               </div>
             </div>
-          </div>
+           </div> 
+           -->
           <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
             <div class="single_team">
               <div class="single_team_img_services">
@@ -260,7 +269,7 @@
     <!--=============================
         SERVICES START
     ==============================-->
-    <section class="team mt_100 xs_mt_70 text-center">
+    <section class="team text-center">
       <div class="container">
         <div class="section_heading mb_25">
           <h2>VÅRA TJÄNSTER</h2>
@@ -488,7 +497,13 @@
     ==============================-->
 
     <!--jquery library js-->
-    <script src="js/jquery-3.6.0.min.js"></script>
+    <script
+      src="js/jquery-3.6.0.min.js"
+      rel="preload"
+      fetchpriority="high"
+    ></script>
+    <!--main/custom js-->
+    <script rel="preload" src="js/main.js" fetchpriority="high"></script>
     <!--bootstrap js-->
     <script src="js/bootstrap.bundle.min.js"></script>
     <!--font-awesome js-->
@@ -510,8 +525,5 @@
     <script src="js/wow.min.js"></script>
     <!-- ex zoom js -->
     <script src="js/jquery.exzoom.js"></script>
-
-    <!--main/custom js-->
-    <script rel="preload" as="script" src="js/main.js"></script>
   </body>
 </html>

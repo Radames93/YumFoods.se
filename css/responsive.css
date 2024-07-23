@@ -3368,6 +3368,7 @@
     flex-direction: column;
     margin-top: /*120*/ 100px;
     align-self: center;
+    background-image: url("../images/mobilIndex.png") !important;
     background-repeat: no-repeat;
     background-size: contain !important;
     background-position: calc(100% - 0px) calc(100% - 80%) !important;

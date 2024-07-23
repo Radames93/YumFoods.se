@@ -396,7 +396,7 @@ function Header() {
               >Meny <i class="far fa-angle-down"></i
             ></a>
             <ul class="droap_menu">
-              <li><a href="baguette_menu.html">Baguetter</a></li>
+              <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
               <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
               <li><a href="yum_menu.html">Yum</a></li>
              <li><a href="daily_menu.html">Dagens</a></li> 
@@ -519,7 +519,7 @@ function Footer() {
               <div class="footer_content">
                 <ul>
                   <li><a href="terms_condition.html">Allmänna villkor</a></li>
-                  <li><a href="privacy_policy.html">Integritetspolicy</a></li>
+                  <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
                   <li>
                     <a href="faq.html">FAQ</a>
                   </li>
