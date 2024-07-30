@@ -7,12 +7,14 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"
     />
     <title>YumFoods</title>
+
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
       href="images/favicon-32x32.png"
     />
+    <link href="./images/logo.png" type="image/png" rel="preload" as="image" />
     <link
       href="./webfonts/DINNeuzeitGroteskStd-BdCond.otf"
       type="font/otf"
@@ -23,16 +25,14 @@
     <link
       rel="preload"
       as="image"
-      href="./images/index.png"
-      imagesrcset="./images/index.png 1100w, ./images/mobilIndex.png 335w"
-      imagesizes="(max-width: 1100px) 100vw, 1100px"
+      href="./images/index.jpg"
+      imagesrcset="./images/mobilIndex.jpg 400w, 
+          ./images/medelIndex.jpg 518w, 
+          ./images/index.jpg 1600w"
+      imagesizes="50vw"
     />
-    <link
-      rel="preload"
-      as="image"
-      href="./images/category/yumrattercategory.jpg"
-    />
-    <link rel="stylesheet" href="css/slick.css" />
+
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/nice-select.css" />
@@ -61,19 +61,78 @@
         <div class="banner_slider">
           <div class="banner_slider_overlay">
             <div
-              class="hero"
+              class="xs_mt_100 sm_mt_50 md_mt_50 mt_100"
               style="
-                background-image: url('../images/index.png');
-                background-size: cover;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
               "
-              alt="hero-image"
             >
-              <div class="hero-box">
-                <h1 class="hero-header">YUM FOODS</h1>
-                <p class="hero-text">LITE BILLIGARE, LIKA YUM</p>
+              <div class="child1">
+                <div class="hero-box">
+                  <p class="hero-text">Billiga veckomåltider vid din dörr</p>
+                  <a href="yum_menu.html">
+                    <button class="common_btn" style="text-transform: none">
+                      Beställ nu
+                    </button></a
+                  >
+                  <p class="hero-text">LITE BILLIGARE, LIKA YUM</p>
+                  <!--
+                  <p class="new-text2">
+                    Vi erbjuder en mångsidig meny som inkluderar allt från
+                    klassiska svenska rätter till internationella favoriter.
+                  </p>
+               -->
+                </div>
+              </div>
+              <div class="child2">
+                <picture>
+                  <source
+                    media="(max-width:517px)"
+                    srcset="./images/mobilIndex.jpg"
+                  />
+                  <source
+                    media="(max-width:1200px)"
+                    srcset="./images/medelIndex.jpg"
+                  />
+                  <img
+                    fetchpriority="high"
+                    alt="hero-image"
+                    src="./images/index.jpg"
+                    style="width: 100%; height: 100%"
+                    jpg
+                  />
+                </picture>
               </div>
             </div>
           </div>
+
+          <!--
+            <div
+              class="hero"
+              style="
+                background-image: url('../images/index.jpg');
+                background-size: contain;
+              "
+              alt="hero-image"
+            >
+              <div class="hero-box2">
+                <h1 class="hero-text2">Billiga veckomåltider vid din dörr</h1>
+                <a href="yum_menu.html">
+                  <button class="common_btn" style="text-transform: none">
+                    Beställ nu
+                  </button></a
+                >
+                <p class="hero-text2">LITE BILLIGARE, LIKA YUM</p>
+              </div>
+              <p class="new-text">
+                Vi erbjuder en mångsidig meny som inkluderar allt från klassiska
+                svenska rätter till internationella favoriter.
+              </p> 
+            </div>
+          </div>
+          -->
           <!--
                 <div class="vector_item_box">
                   <input
@@ -104,77 +163,11 @@
       <div class="container">
         <div class="section_heading mb_25">
           <h2 class="mobile">VÅRA MENYER</h2>
+          <p class="new-text">Kampanj, gratis leverans</p>
         </div>
-        <div class="row team_slider">
-          <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_team">
-              <div class="single_team_img_services">
-                <a href="yum_menu.html" tabindex="0">
-                  <img
-                    src="./images/category/yumrattercategory.jpg"
-                    alt="kategori-yum-rätter"
-                    class="img-fluid w-100"
-                /></a>
-              </div>
-              <div class="single_team_text">
-                <a class="add_to_cart" href="yum_menu.html" tabindex="0"
-                  ><h4>Yum</h4></a
-                >
-              </div>
-            </div>
-          </div>
-          <!--
-          <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_team">
-              <div class="single_team_img_services">
-                <a href="baguette_menu.html" tabindex="0">
-                  <img
-                    src="./images/category/baguettercategory.png"
-                    alt="kategori-yum-rätter"
-                    class="img-fluid w-100"
-                /></a>
-              </div>
-              <div class="single_team_text">
-                <a class="add_to_cart" href="baguette_menu.html" tabindex="0"
-                  ><h4>Baguetter</h4></a
-                >
-              </div>
-            </div>
-           </div> 
-           -->
-          <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_team">
-              <div class="single_team_img_services">
-                <a href="daily_menu.html" tabindex="0">
-                  <img
-                    src="./images/category/dagenrattercategory.png"
-                    alt="kategori-dagens-rätter"
-                    class="img-fluid w-100"
-                /></a>
-              </div>
-              <div class="single_team_text">
-                <a class="add_to_cart" href="daily_menu.html" tabindex="0"
-                  ><h4>Dagens</h4></a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_team">
-              <div class="single_team_img_services">
-                <a href="premium_menu.html" tabindex="0">
-                  <img
-                    src="./images/category/premiumrattercategory.jpg"
-                    alt="kategori-premium-rätter"
-                    class="img-fluid w-100"
-                /></a>
-              </div>
-              <div class="single_team_text">
-                <a class="add_to_cart" href="premium_menu.html" tabindex="0"
-                  ><h4>Premium</h4></a
-                >
-              </div>
-            </div>
+        <div class="slide-container swiper">
+          <div class="slide-content">
+            <div id="categories" class="card-wrapper swiper-wrapper"></div>
           </div>
         </div>
       </div>
@@ -273,50 +266,65 @@
       <div class="container">
         <div class="section_heading mb_25">
           <h2>VÅRA TJÄNSTER</h2>
+          <p class="new-text">
+            Vi erbjuder er en enkel beställningsmetod, simpelt betalningssätt
+            såsom faktura eller Swish, gratis och punktiga leveranser och
+            abonnemang utan bindingstid
+          </p>
         </div>
-        <div class="row team_slider">
-          <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_team">
-              <div class="single_team_img_services">
-                <img
-                  src="images/12.png"
-                  alt="kontor-bild"
-                  class="img-fluid w-100"
-                />
+        <div class="slide-container swiper">
+          <div class="slide-content">
+            <div class="card-wrapper swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="single_team">
+                  <div class="single_team_img_services">
+                    <img
+                      width="307"
+                      height="205"
+                      src="images/12.png"
+                      alt="kontor-bild"
+                      class="img-fluid w-100"
+                    />
+                  </div>
+                  <div class="single_team_text">
+                    <h4>KONTOR</h4>
+                    <p>Daglig / Gruppbeställningar</p>
+                  </div>
+                </div>
               </div>
-              <div class="single_team_text">
-                <h4>OFFICE</h4>
-                <p>Daglig / Gruppbeställningar</p>
+              <div class="swiper-slide">
+                <div class="single_team">
+                  <div class="single_team_img_services">
+                    <img
+                      width="307"
+                      height="205"
+                      src="images/events.png"
+                      alt="evenemang-bild"
+                      class="img-fluid w-100"
+                    />
+                  </div>
+                  <div class="single_team_text">
+                    <h4>PRIVAT</h4>
+                    <p>Familjbeställningar</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_team">
-              <div class="single_team_img_services">
-                <img
-                  src="images/private.png"
-                  alt="privat-bild"
-                  class="img-fluid w-100"
-                />
-              </div>
-              <div class="single_team_text">
-                <h4>PRIVAT</h4>
-                <p>Familjbeställningar</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_team">
-              <div class="single_team_img_services">
-                <img
-                  src="images/events.png"
-                  alt="evenemang-bild"
-                  class="img-fluid w-100"
-                />
-              </div>
-              <div class="single_team_text">
-                <h4>EVENEMANG</h4>
-                <p>Beställ för dina speciella händelse</p>
+              <div class="swiper-slide">
+                <div class="single_team">
+                  <div class="single_team_img_services">
+                    <img
+                      width="307"
+                      height="205"
+                      src="images/private.png"
+                      alt="privat-bild"
+                      class="img-fluid w-100"
+                    />
+                  </div>
+                  <div class="single_team_text">
+                    <h4>EVENEMANG</h4>
+                    <p>Beställ för dina speciella händelse</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -496,6 +504,8 @@
         SCROLL BUTTON END 
     ==============================-->
 
+    <!-- swiper slider -->
+    <script src="js/swiper-bundle.min.js"></script>
     <!--jquery library js-->
     <script
       src="js/jquery-3.6.0.min.js"
@@ -508,8 +518,6 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <!--font-awesome js-->
     <script src="js/Font-Awesome.js"></script>
-    <!-- slick slider -->
-    <script rel="preload" as="script" src="js/slick.min.js"></script>
     <!-- isotop js -->
     <script src="js/isotope.pkgd.min.js"></script>
     <!-- counter up js -->

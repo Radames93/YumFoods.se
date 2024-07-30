@@ -353,14 +353,8 @@
   ],
   "categories": [
     {
-      "id": 37,
-      "img": "images/category/baguettercategory.png",
-      "title": "Baguetter",
-      "link": "baguette_menu.html"
-    },
-    {
       "id": 38,
-      "img": "images/category/Yumrattercategory.jpg",
+      "img": "images/category/yumrattercategory.jpg",
       "title": "Yum",
       "link": "yum_menu.html"
     },
@@ -368,11 +362,11 @@
       "id": 39,
       "img": "images/category/dagenrattercategory.png",
       "title": "Daily",
-      "link": "daily.html"
+      "link": "daily_menu.html"
     },
     {
       "id": 40,
-      "img": "images/category/Premiumrattercategory.png",
+      "img": "images/category/premiumrattercategory.jpg",
       "title": "Premium",
       "link": "premium_menu.html"
     }

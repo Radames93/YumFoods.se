@@ -13,9 +13,9 @@
       sizes="32x32"
       href="images/favicon-32x32.png"
     />
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/slick.css" />
     <link rel="stylesheet" href="css/nice-select.css" />
     <link rel="stylesheet" href="css/custom_spacing.css" />
     <link rel="stylesheet" href="css/venobox.min.css" />
@@ -221,6 +221,31 @@
                             type="text"
                           />
                         </div>
+                        <div
+                          class="col-xl-12"
+                          style="
+                            display: flex;
+                            width: 300px;
+                            justify-content: space-evenly;
+                            padding-bottom: 20px;
+                          "
+                        >
+                          <input
+                            style="width: 20px"
+                            type="checkbox"
+                            name="send_newsletter"
+                            id="send_newsletter"
+                            required
+                          />
+                          <label style="display: inline" for="send_newsletter"
+                            >Jag accepterar
+                            <a
+                              style="text-decoration: solid; color: #0070e0"
+                              href="./terms_condition.html"
+                              >allmänna villkor</a
+                            ></label
+                          >
+                        </div>
                         <div class="h-captcha" data-captcha="true"></div>
                         <button
                           class="common_btn"
@@ -260,14 +285,13 @@
         SCROLL BUTTON END 
     ==============================-->
 
+    <script src="js/swiper-bundle.min.js"></script>
     <!--jquery library js-->
     <script src="js/jquery-3.6.0.min.js"></script>
     <!--bootstrap js-->
     <script src="js/bootstrap.bundle.min.js"></script>
     <!--font-awesome js-->
     <script src="js/Font-Awesome.js"></script>
-    <!-- slick slider -->
-    <script src="js/slick.min.js"></script>
     <!-- isotop js -->
     <script src="js/isotope.pkgd.min.js"></script>
     <!-- counter up js -->

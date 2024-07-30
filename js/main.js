@@ -16,49 +16,6 @@ $(function () {
   $(".select_js").niceSelect();
 
   //=======OFFER ITEM SLIDER======
-  $(".offer_item_slider").slick({
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    dots: false,
-    arrows: true,
-    nextArrow: '<i class="far fa-long-arrow-right nextArrow"></i>',
-    prevArrow: '<i class="far fa-long-arrow-left prevArrow"></i>',
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          arrows: false,
-          slidesToShow: 1,
-        },
-      },
-    ],
-  });
 
   //*==========ISOTOPE==============
   var $grid = $(".grid").isotope({});
@@ -77,206 +34,8 @@ $(function () {
     event.preventDefault();
   });
 
-  //=======TEAM SLIDER======
-  $(".team_slider").slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    dots: false,
-    arrows: true,
-    nextArrow: '<i class="far fa-long-arrow-right nextArrow"></i>',
-    prevArrow: '<i class="far fa-long-arrow-left prevArrow"></i>',
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 1120,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 765,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 650,
-        settings: {
-          arrows: false,
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          arrows: false,
-          slidesToShow: 1,
-        },
-      },
-    ],
-  });
-
-  //=======DOWNLOAD SLIDER======
-  $(".download_slider_item").slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    dots: false,
-    arrows: false,
-
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  });
-
   //=======COUNTER JS=======
   $(".counter").countUp();
-
-  //=======OFFER ITEM SLIDER======
-  $(".testi_slider").slick({
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    dots: false,
-    arrows: true,
-    nextArrow: '<i class="far fa-long-arrow-right nextArrow"></i>',
-    prevArrow: '<i class="far fa-long-arrow-left prevArrow"></i>',
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          arrows: false,
-          slidesToShow: 1,
-        },
-      },
-    ],
-  });
-
-  //=======BRAND SLIDER======
-  $(".blog_slider").slick({
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    dots: false,
-    arrows: true,
-    nextArrow: '<i class="far fa-long-arrow-right nextArrow"></i>',
-    prevArrow: '<i class="far fa-long-arrow-left prevArrow"></i>',
-
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          arrows: false,
-          slidesToShow: 1,
-        },
-      },
-    ],
-  });
 
   //*=======SCROLL BUTTON=======
   $(".scroll_btn").on("click", function () {
@@ -304,52 +63,6 @@ $(function () {
   //*========STICKY SIDEBAR=======
   $("#sticky_sidebar").stickit({
     top: 10,
-  });
-
-  //=======OFFER ITEM SLIDER======
-  $(".related_product_slider").slick({
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    dots: false,
-    arrows: true,
-    nextArrow: '<i class="far fa-long-arrow-right nextArrow"></i>',
-    prevArrow: '<i class="far fa-long-arrow-left prevArrow"></i>',
-
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          arrows: false,
-          slidesToShow: 1,
-        },
-      },
-    ],
   });
 
   //======wow js=======
@@ -453,7 +166,7 @@ function Header() {
 function Footer() {
   let footer = document.getElementById("footer");
   footer.innerHTML = `
-      <div class="footer_overlay pt_20 xs_pt_70">
+      <div class="footer_overlay pt_20 xs_pt_20">
         <div class="container wow fadeInUp" data-wow-duration="1s">
           <div class="row justify-content-around pt_50">
             <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-7">
@@ -511,7 +224,7 @@ function Footer() {
                   <li><a href="index.html">Hem</a></li>
                   <li><a href="about.html">Om oss</a></li>
                   <li><a href="contact.html">Kontakta oss</a></li>
-                  <li><a href="certificates.html">Certificat</a></li>
+                  <li><a href="certificates.html">Certifikat</a></li>
                 </ul>
               </div>
             </div>
@@ -556,7 +269,7 @@ function Footer() {
           <div class="row">
             <div class="col-12">
               <div class="footer_bottom_text">
-                <p>Copyright ©<b> YumFood</b> 2024. All Rights Reserved</p>
+                <p>Copyright ©<b> Yum Foods</b> 2024. All Rights Reserved</p>
               </div>
             </div>
           </div>
@@ -1291,30 +1004,33 @@ const categoriesProducts = (categoriesProductsList) => {
     const htmlString = categoriesProductsList
       .map((category) => {
         return (
-          `
-          <div class="single_team_img_services"">
-          <a href="` +
-          category.title +
-          ` tabindex="0">
-                  <img
-                    src="
-                    ` +
+          `<div class="swiper-slide">
+                <div class="single_team">
+                  <div class="single_team_img_services">
+                    <a href="` +
+          category.link +
+          `"  tabindex="0">
+                      <img
+                        width="307"
+                        height="205"
+                        fetchpriority="high"
+                        src=` +
           category.img +
           `
                     "
-                    alt="kategori-bild"
-                    class="w-100 h-100"
-                /></a>
-              </div>
-              <div class="single_team_text">
-                <a class="add_to_cart" href=" ` +
+                        alt="kategori-yum-rätter"
+                    /></a>
+                  </div>
+                  <div class="single_team_text">
+                    <a class="add_to_cart" href="` +
           category.link +
-          `" + tabindex="0"
-                  ><h4>` +
+          `" tabindex="0"><h4>` +
           category.title +
           `</h4></a
                 >
         </div>
+                </div>
+              </div>
         `
         );
       })
@@ -2498,3 +2214,45 @@ if (sendCartInfo !== null) {
 } else {
   null;
 }
+
+var swiper = new Swiper(".slide-content", {
+  slidesPerView: 3,
+  spaceBetween: 25,
+  loop: true,
+  centerSlide: "true",
+  fade: "true",
+  grabCursor: "true",
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    dynamicBullets: true,
+  },
+  autoplay: {
+    delay: 4500,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
+});

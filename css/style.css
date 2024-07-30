@@ -1643,8 +1643,8 @@ button {
 }
 
 .single_team_img_services {
-  width: 300px;
-  height: 200px;
+  width: 307px;
+  height: 205px;
   border: 10px solid var(--colorWhite);
   border-radius: 50%;
   box-shadow: var(--boxShadow);
@@ -2007,35 +2007,92 @@ button {
   display: flex;
   flex-direction: column;
   background-image: url("../images/index.png");
-  margin-top: 80px;
-  height: 80vh;
+  margin-top: 100px;
+  height: 50vh;
   align-self: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  align-items: center;
   justify-content: center;
 }
 
-.hero-box {
-  filter: drop-shadow(white 1rem 1rem 10px);
+.child1 {
+  width: 50%;
+  height: 80vh;
+  background-color: #dee0e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.child2 {
+  width: 50%;
+  height: 80vh;
+  background-color: #dee0e1;
 }
 
 .hero-text {
+  padding: 10px;
   text-align: center;
   font-weight: 700;
-  font-size: 55px;
+  font-size: 25px;
+  color: #252627;
+}
+
+.hero-header {
+  text-align: center;
+  font-size: 50px;
+  font-family: "DIN";
+  color: var(--colorPrimary);
+  filter: drop-shadow(white 1rem 1rem 10px);
+  height: 70px;
+}
+
+.new-text {
+  text-align: center;
+  margin-top: 60px;
+  font-weight: 400;
+  font-size: 20px;
   color: #252627;
   filter: drop-shadow(white 1rem 1rem 10px);
 }
 
-.hero-header {
-  align-self: center;
-  font-size: 240px;
+.hero-box {
+  filter: drop-shadow(white 1rem 1rem 10px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-box2 {
+  filter: drop-shadow(white 1rem 1rem 10px);
+  margin-right: 30px;
+}
+
+.hero-text2 {
+  font-weight: 700;
+  font-size: 25px;
+  color: #252627;
+  filter: drop-shadow(white 1rem 1rem 10px);
+}
+
+.hero-header2 {
+  text-align: center;
+  font-size: 100px;
   font-family: "DIN";
   color: #fe4a0f;
   filter: drop-shadow(white 1rem 1rem 10px);
-  height: 250px;
+  height: 120px;
+}
+
+.new-text2 {
+  text-align: center;
+  margin-top: 60px;
+  font-weight: 400;
+  font-size: 20px;
+  color: #252627;
+  filter: drop-shadow(white 1rem 1rem 10px);
 }
 
 .text {
