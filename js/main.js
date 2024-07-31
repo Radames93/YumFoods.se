@@ -2229,6 +2229,7 @@ var swiper = new Swiper(".slide-content", {
   },
   autoplay: {
     delay: 4500,
+    disableOnInteraction: false,
   },
   navigation: {
     nextEl: ".swiper-button-next",
