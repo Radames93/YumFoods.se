@@ -325,55 +325,9 @@
       "ingredients": "'kommer snart'"
     }
   ],
-  "subscriptions": [
-    {
-      "id": 33,
-      "img": "images/subscriptions/subscriptions_bk.png",
-      "title": "'All Inclusive - 1 Person/Vecka'",
-      "price": "69"
-    },
-    {
-      "id": 34,
-      "img": "images/subscriptions/subscriptions_bk.png",
-      "title": "'All Inclusive - 1 Person/Vecka'",
-      "price": "69"
-    },
-    {
-      "id": 35,
-      "img": "images/subscriptions/subscriptions_bk.png",
-      "title": "'All Inclusive - 1 Person/Vecka'",
-      "price": "69"
-    },
-    {
-      "id": 36,
-      "img": "images/subscriptions/subscriptions_bk.png",
-      "title": "'All Inclusive - 1 Person/Vecka'",
-      "price": "69"
-    }
-  ],
-  "categories": [
-    {
-      "id": 38,
-      "img": "images/category/yumrattercategory.jpg",
-      "title": "Yum",
-      "link": "yum_menu.html"
-    },
-    {
-      "id": 39,
-      "img": "images/category/dagenrattercategory.png",
-      "title": "Daily",
-      "link": "daily_menu.html"
-    },
-    {
-      "id": 40,
-      "img": "images/category/premiumrattercategory.jpg",
-      "title": "Premium",
-      "link": "premium_menu.html"
-    }
-  ],
   "baguetter": [
     {
-      "id": 41,
+      "id": 33,
       "category": "Baguetter",
       "img": "images/baguetter/baguette.png",
       "title": "'Baguette Vegetarisk'",
@@ -383,7 +337,7 @@
       "ingredients": "'kommer snart'"
     },
     {
-      "id": 42,
+      "id": 34,
       "category": "Baguetter",
       "img": "images/baguetter/baguette.png",
       "title": "'Baguette Vegansk'",
@@ -393,7 +347,7 @@
       "ingredients": "'kommer snart'"
     },
     {
-      "id": 43,
+      "id": 35,
       "category": "Baguetter",
       "img": "images/baguetter/baguette.png",
       "title": "'Baguette Kyckling'",
@@ -403,7 +357,7 @@
       "ingredients": "'kommer snart'"
     },
     {
-      "id": 44,
+      "id": 36,
       "category": "Baguetter",
       "img": "images/baguetter/baguette.png",
       "title": "'Baguette Skagen'",
@@ -413,7 +367,7 @@
       "ingredients": "'kommer snart'"
     },
     {
-      "id": 45,
+      "id": 37,
       "category": "Baguetter",
       "img": "images/baguetter/baguette.png",
       "title": "'Baguette Kebab'",
@@ -421,6 +375,78 @@
       "diet": ["images/icons/cow.png"],
       "description": "'Välfylld baguette med kebabkött, pannbiff, tomat och gurka. Innehåller gluten.'",
       "ingredients": "'kommer snart'"
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": 38,
+      "img": "images/subscriptions/subscriptions_bk.png",
+      "title": "'All Inclusive - 1 Person/Vecka'",
+      "price": "69"
+    },
+    {
+      "id": 39,
+      "img": "images/subscriptions/subscriptions_bk.png",
+      "title": "'All Inclusive - 1 Person/Vecka'",
+      "price": "69"
+    },
+    {
+      "id": 40,
+      "img": "images/subscriptions/subscriptions_bk.png",
+      "title": "'All Inclusive - 1 Person/Vecka'",
+      "price": "69"
+    },
+    {
+      "id": 41,
+      "img": "images/subscriptions/subscriptions_bk.png",
+      "title": "'All Inclusive - 1 Person/Vecka'",
+      "price": "69"
+    }
+  ],
+  "categories": [
+    {
+      "id": 42,
+      "img": "images/category/yumrattercategory.jpg",
+      "title": "Yum",
+      "alt": "kategori-yum-rätter",
+      "link": "yum_menu.html"
+    },
+    {
+      "id": 43,
+      "img": "images/category/dagenrattercategory.png",
+      "title": "Dagens",
+      "alt": "kategori-dagens-rätter",
+      "link": "daily_menu.html"
+    },
+    {
+      "id": 44,
+      "img": "images/category/premiumrattercategory.jpg",
+      "title": "Premium",
+      "alt": "kategori-premium-rätter",
+      "link": "premium_menu.html"
+    }
+  ],
+  "services": [
+    {
+      "id": 45,
+      "img": "images/services/office.jpg",
+      "title": "KONTOR",
+      "alt": "kontor-bild",
+      "text": "Daglig / Gruppbeställningar"
+    },
+    {
+      "id": 46,
+      "img": "images/services/private.jpg",
+      "title": "PRIVAT",
+      "alt": "private-bild",
+      "text": "Familjbeställningar"
+    },
+    {
+      "id": 47,
+      "img": "images/services/events.jpg",
+      "title": "EVENEMANG",
+      "alt": "evenemang-bild",
+      "text": "Beställ för dina speciella händelser"
     }
   ]
 }

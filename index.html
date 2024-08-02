@@ -7,7 +7,6 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"
     />
     <title>YumFoods</title>
-
     <link
       rel="icon"
       type="image/png"
@@ -15,6 +14,12 @@
       href="images/favicon-32x32.png"
     />
     <link href="./images/logo.png" type="image/png" rel="preload" as="image" />
+    <link
+      href="./images/category/yumrattercategory.jpg"
+      type="image/jpg"
+      rel="preload"
+      as="image"
+    />
     <link
       href="./webfonts/DINNeuzeitGroteskStd-BdCond.otf"
       type="font/otf"
@@ -31,7 +36,6 @@
           ./images/index.jpg 1600w"
       imagesizes="50vw"
     />
-
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -274,59 +278,7 @@
         </div>
         <div class="slide-container swiper">
           <div class="slide-content">
-            <div class="card-wrapper swiper-wrapper">
-              <div class="swiper-slide">
-                <div class="single_team">
-                  <div class="single_team_img_services">
-                    <img
-                      width="307"
-                      height="205"
-                      src="images/12.png"
-                      alt="kontor-bild"
-                      class="img-fluid w-100"
-                    />
-                  </div>
-                  <div class="single_team_text">
-                    <h4>KONTOR</h4>
-                    <p>Daglig / Gruppbeställningar</p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="single_team">
-                  <div class="single_team_img_services">
-                    <img
-                      width="307"
-                      height="205"
-                      src="images/events.png"
-                      alt="evenemang-bild"
-                      class="img-fluid w-100"
-                    />
-                  </div>
-                  <div class="single_team_text">
-                    <h4>PRIVAT</h4>
-                    <p>Familjbeställningar</p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="single_team">
-                  <div class="single_team_img_services">
-                    <img
-                      width="307"
-                      height="205"
-                      src="images/private.png"
-                      alt="privat-bild"
-                      class="img-fluid w-100"
-                    />
-                  </div>
-                  <div class="single_team_text">
-                    <h4>EVENEMANG</h4>
-                    <p>Beställ för dina speciella händelse</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div id="services" class="card-wrapper swiper-wrapper"></div>
           </div>
         </div>
       </div>
@@ -505,7 +457,11 @@
     ==============================-->
 
     <!-- swiper slider -->
-    <script src="js/swiper-bundle.min.js"></script>
+    <script
+      src="js/swiper-bundle.min.js"
+      rel="preload"
+      fetchpriority="high"
+    ></script>
     <!--jquery library js-->
     <script
       src="js/jquery-3.6.0.min.js"

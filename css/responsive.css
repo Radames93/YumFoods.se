@@ -743,10 +743,8 @@
 
   .contacts-content {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: start;
-    width: 327px;
     gap: 20px;
   }
 
@@ -788,10 +786,6 @@
 
   .banner_shape_6 {
     display: none;
-  }
-
-  .banner {
-    height: 500px;
   }
 
   .banner_text {
@@ -911,10 +905,6 @@
 
   .single_blog_text .title {
     font-size: 22px;
-  }
-
-  .footer_overlay {
-    padding-bottom: 50px !important;
   }
 
   /* =====================
@@ -3508,22 +3498,26 @@
     color: #252627;
     filter: drop-shadow(white 1rem 1rem 10px);
   }
-}
 
-.margin {
-  margin-top: -50px !important;
-}
+  .margin {
+    margin-top: -50px !important;
+  }
 
-/* =====================
+  /* =====================
         CART VIEW DETAILS START
     =======================*/
 
-/* =====================
+  /* =====================
         CART VIEW DETAILS START
     =======================*/
 
-.h-captcha {
-  padding-bottom: 20px;
+  .h-captcha {
+    padding-bottom: 20px;
+  }
+
+  .slide-container {
+    height: 300px;
+  }
 }
 
 @media (min-width: 375px) and (max-width: 991.99px) {

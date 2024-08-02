@@ -1,6 +1,50 @@
 $(function () {
   "use strict";
 
+  // Function for swiper slider
+  var swiper = new Swiper(".slide-content", {
+    slidesPerView: 3,
+    spaceBetween: 10,
+    loop: true,
+    setWrappedSize: true,
+    centerSlide: "true",
+    grabCursor: "true",
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    autoplay: {
+      delay: 4500,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      576: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      992: {
+        slidesPerView: 2,
+      },
+      1120: {
+        slidesPerView: 3,
+      },
+      1400: {
+        slidesPerView: 3,
+      },
+    },
+  });
+
   //======menu fix js======
   var navoff = $(".main_menu").offset().top;
   $(window).scroll(function () {
@@ -166,16 +210,17 @@ function Header() {
 function Footer() {
   let footer = document.getElementById("footer");
   footer.innerHTML = `
-      <div class="footer_overlay pt_20 xs_pt_20">
-        <div class="container wow fadeInUp" data-wow-duration="1s">
+      <div class="pt_20 xs_pt_20">
+        <div class="container">
           <div class="row justify-content-around pt_50">
-            <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-7">
+            <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-5">
               <div class="footer_content">
                 <a class="footer_logo" href="/">
                   <img
                     src="images/footer_logo_group.png"
                     alt="footer-logo"
-                    class="img-fluid w-100 mb_25"
+                    style="width: 150px; height:93px"
+                    class="mb_25"
                   />
                 </a>
                 <ul class="social_link d-flex flex-wrap mx_50">
@@ -218,7 +263,7 @@ function Footer() {
                 </ul>
               </div>
             </div>
-            <div class="col-xxl-2 col-lg-2 col-sm-5 col-md-5">
+            <div class="col-xxl-2 col-lg-2 col-sm-5 col-md-4">
               <div class="footer_content">
                 <ul>
                   <li><a href="index.html">Hem</a></li>
@@ -228,7 +273,7 @@ function Footer() {
                 </ul>
               </div>
             </div>
-            <div class="col-xxl-2 col-lg-2 col-sm-6 col-md-5 order-md-4">
+            <div class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
               <div class="footer_content">
                 <ul>
                   <li><a href="terms_condition.html">Allmänna villkor</a></li>
@@ -242,8 +287,8 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div class="row wow fadeInUp text-center" data-wow-duration="1s">
-        <div class="col-md-8 col-lg-12 col-xl-12">
+      <div class="row text-center">
+        <div class="col-md-12 col-lg-12 col-xl-12">
           <div class="contacts-content contacts justify-content-center w_100">
             <div class="contacts-box">
               <img class="telefon-bild" src="./images/phone.png" alt="phone" />
@@ -287,6 +332,7 @@ let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
 let subscriptions = document.getElementById("subscription");
 let categories = document.getElementById("categories");
+let services = document.getElementById("services");
 let baguetter = document.getElementById("baguetter");
 let popup = document.getElementById("popup");
 const searchBar = document.getElementById("searchbar");
@@ -311,6 +357,7 @@ let premiumProductsList = [];
 let subscriptionsProductsList = [];
 let categoriesProductsList = [];
 let baguetterProductsList = [];
+let offeredServicesList = [];
 let yumFiltered = [];
 let dailyFiltered = [];
 let premiumFiltered = [];
@@ -388,6 +435,7 @@ const loadProducts = async () => {
         premiumFiltered = data.premium;
         subscriptionsFiltered = data.subscriptions;
         categoriesProductsList = data.categories;
+        offeredServicesList = data.services;
         baguetterFiltered = data.baguetter;
         all = [
           ...yumProductsList,
@@ -400,6 +448,7 @@ const loadProducts = async () => {
     premiumProducts(premiumProductsList);
     subscriptionsProducts(subscriptionsProductsList);
     categoriesProducts(categoriesProductsList);
+    offeredServices(offeredServicesList);
     baguetterProducts(baguetterProductsList);
   } catch (err) {
     console.log(err);
@@ -1011,14 +1060,16 @@ const categoriesProducts = (categoriesProductsList) => {
           category.link +
           `"  tabindex="0">
                       <img
+                      loading="lazy"
                         width="307"
                         height="205"
                         fetchpriority="high"
-                        src=` +
+                        src="` +
           category.img +
+          `"
+                        alt=` +
+          category.alt +
           `
-                    "
-                        alt="kategori-yum-rätter"
                     /></a>
                   </div>
                   <div class="single_team_text">
@@ -1036,6 +1087,50 @@ const categoriesProducts = (categoriesProductsList) => {
       })
       .join("");
     categories.insertAdjacentHTML("afterbegin", htmlString);
+  } else {
+    return null;
+  }
+};
+
+// Show services
+const offeredServices = (offeredServicesList) => {
+  if (categories !== null) {
+    const htmlString = offeredServicesList
+      .map((service) => {
+        return (
+          `
+          <div class="swiper-slide">
+                <div class="single_team">
+                  <div class="single_team_img_services">
+                    <img
+                      width="307"
+                      height="205"
+                      src="` +
+          service.img +
+          `
+                    "
+                      alt=` +
+          service.alt +
+          `
+                      "
+                    />
+                  </div>
+                  <div class="single_team_text">
+                    <h4>` +
+          service.title +
+          `</h4>
+                    <p>` +
+          service.text +
+          `</p>
+                  </div>
+                </div>
+              </div>
+          
+        `
+        );
+      })
+      .join("");
+    services.insertAdjacentHTML("afterbegin", htmlString);
   } else {
     return null;
   }
@@ -2214,46 +2309,3 @@ if (sendCartInfo !== null) {
 } else {
   null;
 }
-
-var swiper = new Swiper(".slide-content", {
-  slidesPerView: 3,
-  spaceBetween: 25,
-  loop: true,
-  centerSlide: "true",
-  fade: "true",
-  grabCursor: "true",
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-    dynamicBullets: true,
-  },
-  autoplay: {
-    delay: 4500,
-    disableOnInteraction: false,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-    },
-    576: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    992: {
-      slidesPerView: 2,
-    },
-    1120: {
-      slidesPerView: 3,
-    },
-    1400: {
-      slidesPerView: 3,
-    },
-  },
-});
