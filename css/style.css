@@ -29,15 +29,6 @@ CSS TABLE OF CONTENTS
 /*================================
     GLOBAL CSS START
 ================================*/
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&family=Oleo+Script:wght@400;700&display=swapfamily=Inter:wght@100..900&display=swap");
-
-@font-face {
-  font-family: "DIN";
-  src: url("../webfonts/DINNeuzeitGroteskStd-BdCond.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -659,7 +650,6 @@ button {
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
-
   position: relative;
   overflow: hidden;
 }
@@ -1611,35 +1601,6 @@ button {
   -moz-transition: all linear 0.3s;
   -ms-transition: all linear 0.3s;
   -o-transition: all linear 0.3s;
-}
-
-.single_team::after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 30%;
-  top: 0;
-  left: 0;
-  clip-path: polygon(0 0, 100% 0%, 100% 25%, 50% 100%, 0 25%);
-}
-
-.single_team::before {
-  position: absolute;
-  content: "";
-  background: url(../images/chefs_shapes.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 85px;
-  height: 150px;
-  bottom: 0px;
-  left: -15px;
-  transform: rotate(45deg);
-  opacity: 0.04;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
 }
 
 .single_team_img_services {

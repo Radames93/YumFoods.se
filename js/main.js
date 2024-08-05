@@ -1,50 +1,6 @@
 $(function () {
   "use strict";
 
-  // Function for swiper slider
-  var swiper = new Swiper(".slide-content", {
-    slidesPerView: 3,
-    spaceBetween: 10,
-    loop: true,
-    setWrappedSize: true,
-    centerSlide: "true",
-    grabCursor: "true",
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-      dynamicBullets: true,
-    },
-    autoplay: {
-      delay: 4500,
-      disableOnInteraction: false,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-
-    breakpoints: {
-      0: {
-        slidesPerView: 1,
-      },
-      576: {
-        slidesPerView: 1,
-      },
-      768: {
-        slidesPerView: 2,
-      },
-      992: {
-        slidesPerView: 2,
-      },
-      1120: {
-        slidesPerView: 3,
-      },
-      1400: {
-        slidesPerView: 3,
-      },
-    },
-  });
-
   //======menu fix js======
   var navoff = $(".main_menu").offset().top;
   $(window).scroll(function () {
@@ -228,6 +184,7 @@ function Footer() {
                     <a
                       href="https://www.facebook.com/YumFoodsSE"
                       target="_blank"
+                      aria-label="Länk till facebook sida"
                       ><i class="fab fa-facebook-f"></i
                     ></a>
                   </li>
@@ -235,6 +192,7 @@ function Footer() {
                     <a
                       href="https://www.linkedin.com/company/yum-foods/"
                       target="_blank"
+                      aria-label="Länk till linkedin sida"
                       ><i class="fab fa-linkedin-in"></i
                     ></a>
                   </li>
@@ -252,6 +210,7 @@ function Footer() {
                     <a
                       href="https://www.instagram.com/yumfoods.se/"
                       target="_blank"
+                      aria-label="Länk till instagram sida"
                       ><i class="fab fa-instagram"></i
                     ></a>
                   </li>
@@ -1060,13 +1019,13 @@ const categoriesProducts = (categoriesProductsList) => {
           category.link +
           `"  tabindex="0">
                       <img
-                      loading="lazy"
                         width="307"
                         height="205"
                         fetchpriority="high"
                         src="` +
           category.img +
-          `"
+          `
+                    "
                         alt=` +
           category.alt +
           `
@@ -2309,3 +2268,46 @@ if (sendCartInfo !== null) {
 } else {
   null;
 }
+
+var swiper = new Swiper(".slide-content", {
+  slidesPerView: 3,
+  spaceBetween: 25,
+  loop: true,
+  centerSlide: "true",
+  fade: "true",
+  grabCursor: "true",
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    dynamicBullets: true,
+  },
+  autoplay: {
+    delay: 4500,
+    disableOnInteraction: false,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
+});
