@@ -163,127 +163,7 @@ function Header() {
     `;
 }
 
-function Footer() {
-  let footer = document.getElementById("footer");
-  footer.innerHTML = `
-      <div class="pt_20 xs_pt_20">
-        <div class="container">
-          <div class="row justify-content-around pt_50">
-            <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-5">
-              <div class="footer_content">
-                <a class="footer_logo" href="/">
-                  <img
-                    src="images/footer_logo_group.png"
-                    alt="footer-logo"
-                    style="width: 150px; height:93px"
-                    class="mb_25"
-                  />
-                </a>
-                <ul class="social_link d-flex flex-wrap mx_50">
-                  <li>
-                    <a
-                      href="https://www.facebook.com/YumFoodsSE"
-                      target="_blank"
-                      aria-label="Länk till facebook sida"
-                      ><i class="fab fa-facebook-f"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://www.linkedin.com/company/yum-foods/"
-                      target="_blank"
-                      aria-label="Länk till linkedin sida"
-                      ><i class="fab fa-linkedin-in"></i
-                    ></a>
-                  </li>
-                  <!--
-                  <li>
-                    <a href="#"
-                      ><span class="m_0"><img src="images/twitter.png" /></span
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
-                  </li>
-                  -->
-                  <li>
-                    <a
-                      href="https://www.instagram.com/yumfoods.se/"
-                      target="_blank"
-                      aria-label="Länk till instagram sida"
-                      ><i class="fab fa-instagram"></i
-                    ></a>
-                  </li>
-                  <!--
-                  <li>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                  </li>
-                  -->
-                </ul>
-              </div>
-            </div>
-            <div class="col-xxl-2 col-lg-2 col-sm-5 col-md-4">
-              <div class="footer_content">
-                <ul>
-                  <li><a href="index.html">Hem</a></li>
-                  <li><a href="about.html">Om oss</a></li>
-                  <li><a href="contact.html">Kontakta oss</a></li>
-                  <li><a href="certificates.html">Certifikat</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
-              <div class="footer_content">
-                <ul>
-                  <li><a href="terms_condition.html">Allmänna villkor</a></li>
-                  <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
-                  <li>
-                    <a href="faq.html">FAQ</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row text-center">
-        <div class="col-md-12 col-lg-12 col-xl-12">
-          <div class="contacts-content contacts justify-content-center w_100">
-            <div class="contacts-box">
-              <img class="telefon-bild" src="./images/phone.png" alt="phone" />
-              <p>+46 76 023 49 30</p>
-            </div>
-            <div class="contacts-box">
-              <img class="melj-bild" src="./images/mail.png" alt="mail" />
-              <p>info@yumfoods.se</p>
-            </div>
-            <div class="contacts-box">
-              <img
-                class="contacts-img"
-                src="./images/location-marker.png"
-                alt="läge-bild"
-              />
-              <p>Stora Badhusgatan 18, 411 21 Göteborg</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="footer_bottom d-flex flex-wrap">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <div class="footer_bottom_text">
-                <p>Copyright ©<b> Yum Foods</b> 2024. All Rights Reserved</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-}
-
 Header();
-Footer();
 
 //Get elements from the DOM
 let yum = document.getElementById("yum");
@@ -1734,9 +1614,12 @@ let id = "";
 
 //Display items in the cart
 const displayNewCart = () => {
+  const tableHead = document.getElementById("table_head");
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     if (formDataArry === null) {
+      tableHead.classList.remove("block");
+      tableHead.classList.add("hide");
       cartItem.insertAdjacentHTML(
         "afterend",
         `<h4 class="single_team_text" style="padding: 20px; text-align: center">
@@ -1744,6 +1627,8 @@ const displayNewCart = () => {
         </h4>`
       );
     } else {
+      tableHead.classList.remove("hide");
+      tableHead.classList.add("block");
       const htmlString = formDataArry
         .map((item) => {
           id = item.id;
@@ -2207,6 +2092,7 @@ function updateFields() {
 
 // Function to cart content and total form to email
 const sendCartInfo = document.getElementById("cart-order-form");
+const cartButton = document.getElementById("cart-button");
 const cartForm = document.getElementById("cart-form");
 const newResult = document.getElementById("cart-result");
 const sum = localStorage.getItem("sum");
@@ -2214,6 +2100,14 @@ let sumInput = document.getElementById("sum");
 if (sumInput !== null) {
   sumInput.value = sum + "kr";
   updateFields();
+} else {
+  null;
+}
+
+if (sum !== null && cartButton !== null) {
+  cartButton.removeAttribute("disabled");
+} else if (sum && cartButton) {
+  cartButton.setAttribute("disabled", "disabled");
 } else {
   null;
 }
@@ -2311,3 +2205,124 @@ var swiper = new Swiper(".slide-content", {
     },
   },
 });
+
+function Footer() {
+  let footer = document.getElementById("footer");
+  footer.innerHTML = `
+      <div class="pt_20 xs_pt_20">
+        <div class="container">
+          <div class="row justify-content-around pt_50">
+            <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-5">
+              <div class="footer_content">
+                <a class="footer_logo" href="/">
+                  <img
+                    src="images/footer_logo_group.png"
+                    alt="footer-logo"
+                    style="width: 150px; height:93px"
+                    class="mb_25"
+                  />
+                </a>
+                <ul class="social_link d-flex flex-wrap mx_50">
+                  <li>
+                    <a
+                      href="https://www.facebook.com/YumFoodsSE"
+                      target="_blank"
+                      aria-label="Länk till facebook sida"
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.linkedin.com/company/yum-foods/"
+                      target="_blank"
+                      aria-label="Länk till linkedin sida"
+                      ><i class="fab fa-linkedin-in"></i
+                    ></a>
+                  </li>
+                  <!--
+                  <li>
+                    <a href="#"
+                      ><span class="m_0"><img src="images/twitter.png" /></span
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
+                  </li>
+                  -->
+                  <li>
+                    <a
+                      href="https://www.instagram.com/yumfoods.se/"
+                      target="_blank"
+                      aria-label="Länk till instagram sida"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                  </li>
+                  <!--
+                  <li>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                  </li>
+                  -->
+                </ul>
+              </div>
+            </div>
+            <div class="col-xxl-2 col-lg-2 col-sm-5 col-md-4">
+              <div class="footer_content">
+                <ul>
+                  <li><a href="index.html">Hem</a></li>
+                  <li><a href="about.html">Om oss</a></li>
+                  <li><a href="contact.html">Kontakta oss</a></li>
+                  <li><a href="certificates.html">Certifikat</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
+              <div class="footer_content">
+                <ul>
+                  <li><a href="terms_condition.html">Allmänna villkor</a></li>
+                  <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
+                  <li>
+                    <a href="faq.html">FAQ</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-12 col-lg-12 col-xl-12">
+          <div class="contacts-content contacts justify-content-center w_100">
+            <div class="contacts-box">
+              <img class="telefon-bild" src="./images/phone.png" alt="phone" />
+              <p>+46 76 023 49 30</p>
+            </div>
+            <div class="contacts-box">
+              <img class="melj-bild" src="./images/mail.png" alt="mail" />
+              <p>info@yumfoods.se</p>
+            </div>
+            <div class="contacts-box">
+              <img
+                class="contacts-img"
+                src="./images/location-marker.png"
+                alt="läge-bild"
+              />
+              <p>Stora Badhusgatan 18, 411 21 Göteborg</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer_bottom d-flex flex-wrap">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="footer_bottom_text">
+                <p>Copyright ©<b> Yum Foods</b> 2024. All Rights Reserved</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+}
+
+Footer();

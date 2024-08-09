@@ -1966,94 +1966,49 @@ button {
 
 .hero {
   display: flex;
+  margin-top: 50px;
   flex-direction: column;
-  background-image: url("../images/index.png");
-  margin-top: 100px;
-  height: 50vh;
+  height: 500px;
   align-self: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
   justify-content: center;
+  padding: 0 70px;
 }
 
-.child1 {
-  width: 50%;
-  height: 80vh;
-  background-color: #dee0e1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.hero-button {
+  background: #ff6633;
+  color: var(--colorWhite);
+  padding: 12px 40px 12px 40px;
+  border-radius: 10px;
+  font-size: 25px;
+  font-weight: 600;
+  position: relative;
+  transition: all linear 0.3s;
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -ms-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
 }
 
-.child2 {
-  width: 50%;
-  height: 80vh;
-  background-color: #dee0e1;
-}
-
-.hero-text {
-  padding: 10px;
-  text-align: center;
+.hero-slogan {
+  text-align: left;
   font-weight: 700;
   font-size: 25px;
   color: #252627;
 }
 
-.hero-header {
-  text-align: center;
-  font-size: 50px;
-  font-family: "DIN";
-  color: var(--colorPrimary);
-  filter: drop-shadow(white 1rem 1rem 10px);
-  height: 70px;
-}
-
-.new-text {
-  text-align: center;
-  margin-top: 60px;
-  font-weight: 400;
-  font-size: 20px;
+.hero-text {
+  text-align: left;
+  font-weight: 900;
+  font-size: 40px;
   color: #252627;
-  filter: drop-shadow(white 1rem 1rem 10px);
 }
 
 .hero-box {
   filter: drop-shadow(white 1rem 1rem 10px);
-  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.hero-box2 {
-  filter: drop-shadow(white 1rem 1rem 10px);
-  margin-right: 30px;
-}
-
-.hero-text2 {
-  font-weight: 700;
-  font-size: 25px;
-  color: #252627;
-  filter: drop-shadow(white 1rem 1rem 10px);
-}
-
-.hero-header2 {
-  text-align: center;
-  font-size: 100px;
-  font-family: "DIN";
-  color: #fe4a0f;
-  filter: drop-shadow(white 1rem 1rem 10px);
-  height: 120px;
-}
-
-.new-text2 {
-  text-align: center;
-  margin-top: 60px;
-  font-weight: 400;
-  font-size: 20px;
-  color: #252627;
-  filter: drop-shadow(white 1rem 1rem 10px);
+  gap: 30px;
 }
 
 .text {
@@ -4118,7 +4073,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .tbl thead {
-  display: block;
   background: #424949;
   color: #fff;
 }
@@ -6152,6 +6106,10 @@ table tbody tr td span {
 
 .hide {
   display: none;
+}
+
+.block {
+  display: block;
 }
 
 .index-img {

@@ -17,7 +17,7 @@
       rel="preload"
       as="image"
       href="./images/index.jpg"
-      imagesrcset="./images/index.jpg 1100w, ./images/mobilIndex.jpg 335w"
+      imagesrcset="./images/hero.jpg 1600w, ./images/hero-mobile.jpg 335w"
       imagesizes="(max-width: 1100px) 100vw, 1100px"
     />
     <link
@@ -52,78 +52,25 @@
         <div class="banner_slider">
           <div class="banner_slider_overlay">
             <div
-              class="xs_mt_100 sm_mt_50 md_mt_50 mt_100"
+              class="hero"
               style="
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+                background-image: url('../images/hero.jpg');
+                background-size: auto;
               "
+              alt="hero-image"
             >
-              <div class="child1">
-                <div class="hero-box">
-                  <p class="hero-text">Billiga veckomåltider vid din dörr</p>
-                  <a href="yum_menu.html">
-                    <button class="common_btn" style="text-transform: none">
-                      Beställ nu
-                    </button></a
-                  >
-                  <p class="hero-text">LITE BILLIGARE, LIKA YUM</p>
-                  <!--
-                  <p class="new-text2">
-                    Vi erbjuder en mångsidig meny som inkluderar allt från
-                    klassiska svenska rätter till internationella favoriter.
-                  </p>
-               -->
-                </div>
-              </div>
-              <div class="child2">
-                <picture>
-                  <source
-                    media="(max-width:517px)"
-                    srcset="./images/mobilIndex.jpg"
-                  />
-                  <source
-                    media="(max-width:1200px)"
-                    srcset="./images/medelIndex.jpg"
-                  />
-                  <img
-                    fetchpriority="high"
-                    alt="hero-image"
-                    src="./images/index.jpg"
-                    style="width: 100%; height: 100%"
-                    jpg
-                  />
-                </picture>
+              <div class="hero-box">
+                <p class="hero-slogan">Lite Billigare, Lika Yum</p>
+                <h1 class="hero-text">Billiga veckomåltider vid din dörr</h1>
+                <a href="yum_menu.html">
+                  <button class="hero-button" style="text-transform: none">
+                    Beställ nu!
+                  </button></a
+                >
               </div>
             </div>
           </div>
 
-          <!--
-            <div
-              class="hero"
-              style="
-                background-image: url('../images/index.jpg');
-                background-size: contain;
-              "
-              alt="hero-image"
-            >
-              <div class="hero-box2">
-                <h1 class="hero-text2">Billiga veckomåltider vid din dörr</h1>
-                <a href="yum_menu.html">
-                  <button class="common_btn" style="text-transform: none">
-                    Beställ nu
-                  </button></a
-                >
-                <p class="hero-text2">LITE BILLIGARE, LIKA YUM</p>
-              </div>
-              <p class="new-text">
-                Vi erbjuder en mångsidig meny som inkluderar allt från klassiska
-                svenska rätter till internationella favoriter.
-              </p> 
-            </div>
-          </div>
-          -->
           <!--
                 <div class="vector_item_box">
                   <input
@@ -451,7 +398,7 @@
     <!--bootstrap js-->
     <script src="js/bootstrap.bundle.min.js"></script>
     <!--font-awesome js-->
-    <script src="js/Font-Awesome.js"></script>
+    <script rel="preload" src="js/Font-Awesome.js"></script>
     <!-- isotop js -->
     <script src="js/isotope.pkgd.min.js"></script>
     <!-- counter up js -->
