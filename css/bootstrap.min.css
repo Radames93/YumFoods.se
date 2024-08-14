@@ -3675,7 +3675,7 @@ fieldset:disabled .btn {
 .navbar > .container-xxl {
   display: flex;
   flex-wrap: inherit;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
 }
 .navbar-brand {

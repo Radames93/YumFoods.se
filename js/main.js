@@ -99,14 +99,14 @@ function Header() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <i class="far fa-bars menu_icon_bar"></i>
-        <i class="far fa-times close_icon_close"></i>
+        <i class="fa fa-bars menu_icon_bar"></i>
+        <i class="fa fa-times close_icon_close"></i>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="#"
-              >Meny <i class="far fa-angle-down"></i
+              >Meny <i class="fa fa-angle-down"></i
             ></a>
             <ul class="droap_menu">
               <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
@@ -119,7 +119,7 @@ function Header() {
           <!--
            <li class="nav-item">
             <a class="nav-link" href="#"
-              >Våra tjänster <i class="far fa-angle-down"></i
+              >Våra tjänster <i class="fa fa-angle-down"></i
             ></a>
             <ul class="droap_menu">
               <li><a href="office.html">Kontor</a></li>
@@ -401,10 +401,10 @@ const yumProducts = (yumProductsList) => {
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
-                    <a href="#"><i class="fal fa-heart"></i></a>
+                    <a href="#"><i class="fa fa-heart"></i></a>
                   </li>
                   <li>
-                    <a href="menu_details.html"><i class="far fa-eye"></i></a>
+                    <a href="menu_details.html"><i class="fa fa-eye"></i></a>
                   </li>
                 </ul>
                 -->
@@ -527,10 +527,10 @@ const dailyProducts = (dailyProductsList) => {
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
-                    <a href="#"><i class="fal fa-heart"></i></a>
+                    <a href="#"><i class="fa fa-heart"></i></a>
                   </li>
                   <li>
-                    <a href="menu_details.html"><i class="far fa-eye"></i></a>
+                    <a href="menu_details.html"><i class="fa fa-eye"></i></a>
                   </li>
                 </ul>
                 -->
@@ -653,10 +653,10 @@ const premiumProducts = (premiumProductsList) => {
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
-                    <a href="#"><i class="fal fa-heart"></i></a>
+                    <a href="#"><i class="fa fa-heart"></i></a>
                   </li>
                   <li>
-                    <a href="menu_details.html"><i class="far fa-eye"></i></a>
+                    <a href="menu_details.html"><i class="fa fa-eye"></i></a>
                   </li>
                 </ul>
                 -->
@@ -780,10 +780,10 @@ const baguetterProducts = (baguetterProductsList) => {
           <!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
-                    <a href="#"><i class="fal fa-heart"></i></a>
+                    <a href="#"><i class="fa fa-heart"></i></a>
                   </li>
                   <li>
-                    <a href="menu_details.html"><i class="far fa-eye"></i></a>
+                    <a href="menu_details.html"><i class="fa fa-eye"></i></a>
                   </li>
                 </ul>
                 -->
@@ -863,7 +863,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
           data-yum-img=${subscription.img}
           data-yum-quantity-price=${subscription.price}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ") onclick='realAddToCart(event)''>Lägg till       <i class='fas fa-cart-plus'></i></button>" +
           `
           <!--
           <ul class="d-flex flex-wrap justify-content-end">
@@ -871,7 +871,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                     <a href="#"><i class="fal fa-heart"></i></a>
                   </li>
                   <li>
-                    <a href="menu_details.html"><i class="far fa-eye"></i></a>
+                    <a href="menu_details.html"><i class="fa fa-eye"></i></a>
                   </li>
                 </ul>
                 -->
@@ -899,9 +899,9 @@ const categoriesProducts = (categoriesProductsList) => {
           category.link +
           `"  tabindex="0">
                       <img
+                        loading="lazy"
                         width="307"
                         height="205"
-                        fetchpriority="high"
                         src="` +
           category.img +
           `
@@ -942,6 +942,7 @@ const offeredServices = (offeredServicesList) => {
                 <div class="single_team">
                   <div class="single_team_img_services">
                     <img
+                      loading="lazy"
                       width="307"
                       height="205"
                       src="` +
@@ -1690,7 +1691,7 @@ const displayNewCart = () => {
                       <td data-label="Ta bort" class="pro_icon">
                         <button onclick="removeItem(` +
             item.id +
-            `)" href="#"><i class="far fa-times"></i></button>
+            `)" href="#"><i class="fa fa-times"></i></button>
                       </td>
                       </tr>`
           );
@@ -2216,6 +2217,7 @@ function Footer() {
               <div class="footer_content">
                 <a class="footer_logo" href="/">
                   <img
+                    loading="lazy"
                     src="images/footer_logo_group.png"
                     alt="footer-logo"
                     style="width: 150px; height:93px"
@@ -2293,15 +2295,16 @@ function Footer() {
         <div class="col-md-12 col-lg-12 col-xl-12">
           <div class="contacts-content contacts justify-content-center w_100">
             <div class="contacts-box">
-              <img class="telefon-bild" src="./images/phone.png" alt="phone" />
+              <img loading="lazy" class="telefon-bild" src="./images/phone.png" alt="phone" />
               <p>+46 76 023 49 30</p>
             </div>
             <div class="contacts-box">
-              <img class="melj-bild" src="./images/mail.png" alt="mail" />
+              <img loading="lazy" class="melj-bild" src="./images/mail.png" alt="mail" />
               <p>info@yumfoods.se</p>
             </div>
             <div class="contacts-box">
               <img
+                loading="lazy"
                 class="contacts-img"
                 src="./images/location-marker.png"
                 alt="läge-bild"
