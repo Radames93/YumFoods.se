@@ -5183,12 +5183,11 @@ table tbody tr td span {
 }
 
 .error_text img {
-  height: 300px !important;
-  width: 500px !important;
+  height: 100px !important;
+  width: 100px !important;
 }
 
 .error_text h2 {
-  text-transform: capitalize;
   font-size: 40px;
   font-weight: 800;
   text-align: center;

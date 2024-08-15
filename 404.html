@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
   <head>
     <meta charset="UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi"
     />
     <title>YumFoods</title>
     <link
@@ -13,14 +13,11 @@
       sizes="32x32"
       href="images/favicon-32x32.png"
     />
-    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="preload" as="image" href="./images/404.png" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/nice-select.css" />
     <link rel="stylesheet" href="css/custom_spacing.css" />
-    <link rel="stylesheet" href="css/venobox.min.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
   </head>
@@ -42,10 +39,14 @@
         <div class="row">
           <div class="col-xl-5 col-md-7 m-auto">
             <div class="error_text wow fadeInUp" data-wow-duration="1s">
-              <img src="images/404_img.png" alt="404" class="img-fluid w-100" />
-              <h2>That Page Doesn't Exist!</h2>
-              <p>Sorry, the page you were looking for could not be found.</p>
-              <a class="common_btn" href="index.html">home</a>
+              <img
+                style="height: 100px !important; width: 100px !important"
+                src="images/404.png"
+                alt="404"
+              />
+              <h2>Sidan hittades inte</h2>
+              <p>Sidan du letar efter är för närvarande inte tillgänglig.</p>
+              <a class="common_btn" href="/">hem</a>
             </div>
           </div>
         </div>
@@ -71,13 +72,13 @@
         SCROLL BUTTON END 
     ==============================-->
     <!-- swiper slider -->
-    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/swiper-bundle.min.js" rel="preload"></script>
     <!--jquery library js-->
-    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/custom js-->
+    <script rel="preload" src="js/main.js"></script>
     <!--bootstrap js-->
     <script src="js/bootstrap.bundle.min.js"></script>
-    <!--font-awesome js-->
-    <script src="js/Font-Awesome.js"></script>
     <!-- isotop js -->
     <script src="js/isotope.pkgd.min.js"></script>
     <!-- counter up js -->
@@ -93,8 +94,9 @@
     <script src="js/wow.min.js"></script>
     <!-- ex zoom js -->
     <script src="js/jquery.exzoom.js"></script>
-
-    <!--main/custom js-->
-    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/venobox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="css/nice-select.css" />
   </body>
 </html>

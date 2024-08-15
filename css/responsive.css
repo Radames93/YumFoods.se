@@ -442,8 +442,8 @@
   }
 
   .error_text img {
-    height: 170px !important;
-    width: 300px !important;
+    height: 100px !important;
+    width: 100px !important;
   }
 
   /* =====================
@@ -946,8 +946,8 @@
   }
 
   .error_text img {
-    height: 170px !important;
-    width: 300px !important;
+    height: 100px !important;
+    width: 100px !important;
   }
 
   /* =====================
@@ -1586,8 +1586,8 @@
   }
 
   .error_text img {
-    height: 170px !important;
-    width: 300px !important;
+    height: 100px !important;
+    width: 100px !important;
   }
 
   /* =====================
@@ -2485,9 +2485,17 @@
     font-size: 25px;
   }
 
-  .error_text img {
-    height: 170px !important;
-    width: 300px !important;
+  .error {
+    height: 750px;
+  }
+  .error div {
+    height: 600px;
+  }
+
+  .error_text p {
+    margin: 10px 0px 20px 0px;
+    font-size: 18px;
+    text-align: center;
   }
 
   /* =====================
