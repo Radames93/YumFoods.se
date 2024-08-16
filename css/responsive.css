@@ -957,7 +957,7 @@
   /* =====================
         ABOUT PAGE START
     =======================*/
-  .page_breadcrumb {
+  .about_us_page_breadcrumb {
     background-image: url("../images/aboutus-tablet.png") !important;
     height: 307px !important;
   }
@@ -1107,6 +1107,19 @@
 
   /* =====================
         MENU DETAILS END
+    =======================*/
+
+  /* =====================
+        CART VIEW START
+    =======================*/
+
+  .cart_view_page_breadcrumb {
+    background-image: url("../images/cartview-tablet.png") !important;
+    height: 307px !important;
+  }
+
+  /* =====================
+        CART VIEW END
     =======================*/
 }
 
@@ -1602,7 +1615,7 @@
         ABOUT PAGE START
     =======================*/
 
-  .page_breadcrumb {
+  .about_us_page_breadcrumb {
     background-image: url("../images/aboutus-tablet.png") !important;
     height: 307px !important;
   }
@@ -1992,6 +2005,11 @@
   /* =====================
         CART VIEW DETAILS START
     =======================*/
+
+  .cart_view_page_breadcrumb {
+    background-image: url("../images/cartview-tablet.png") !important;
+    height: 307px !important;
+  }
 
   /* =====================
         CART VIEW DETAILS START
@@ -2515,7 +2533,7 @@
         ABOUT PAGE START
     =======================*/
 
-  .page_breadcrumb {
+  .about_us_page_breadcrumb {
     background-image: url("../images/aboutus-mobile.png") !important;
     height: 307px !important;
   }
@@ -2907,6 +2925,11 @@
   /* =====================
         CART VIEW DETAILS START
     =======================*/
+
+  .cart_view_page_breadcrumb {
+    background-image: url("../images/cartview-mobile.png") !important;
+    height: 307px !important;
+  }
 
   /* =====================
         CART VIEW DETAILS START

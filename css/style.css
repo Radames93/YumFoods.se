@@ -2502,7 +2502,14 @@ footer {
 /*============================
     ABOUT US PAGE START
 ============================*/
+
 .page_breadcrumb {
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
+.about_us_page_breadcrumb {
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
@@ -4074,6 +4081,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 /*======================
     CART VIEW PAGE START
 ========================*/
+
+.cart_view_page_breadcrumb {
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+}
+
 .container2 {
   max-width: 1440px;
   width: 100%;

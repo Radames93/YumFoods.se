@@ -13,13 +13,20 @@
       sizes="32x32"
       href="images/favicon-32x32.png"
     />
+    <link
+      rel="preload"
+      as="image"
+      href="./images/cartview.png"
+      imagesrcset="./images/cartview.png 1600w, ./images/cartview-mobile.png 335w"
+      imagesizes="(max-width: 1100px) 100vw, 1100px"
+    />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/custom_spacing.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" /></head
-  >>
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
 
   <body>
     <!--=============================
@@ -34,8 +41,8 @@
         BREADCRUMB START
     ==============================-->
     <section
-      class="page_breadcrumb"
-      style="background: url(images/cart_banner.png)"
+      class="cart_view_page_breadcrumb"
+      style="background: url(images/cartview.png)"
     >
       <div class="breadcrumb_overlay">
         <div class="container">
@@ -43,7 +50,7 @@
             <h1>Kundvagn</h1>
             <ul>
               <li><a href="index.html">Hem</a></li>
-              <li><a href="#">Kundvagn</a></li>
+              <li><p>Kundvagn</p></li>
             </ul>
           </div>
         </div>
