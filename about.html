@@ -13,6 +13,13 @@
       sizes="32x32"
       href="images/favicon-32x32.png"
     />
+    <link
+      rel="preload"
+      as="image"
+      href="./images/aboutus.png"
+      imagesrcset="./images/aboutus.png 1600w, ./images/aboutus-mobile.png 335w"
+      imagesizes="(max-width: 1100px) 100vw, 1100px"
+    />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/custom_spacing.css" />
     <link rel="stylesheet" href="css/all.min.css" />
@@ -35,7 +42,8 @@
     ==============================-->
     <section
       class="page_breadcrumb"
-      style="background: url(images/aboutus.png)"
+      style="background-image: url('../images/aboutus.png')"
+      alt="hero-image"
     >
       <div class="breadcrumb_overlay">
         <div class="container">

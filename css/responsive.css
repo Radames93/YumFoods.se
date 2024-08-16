@@ -957,6 +957,10 @@
   /* =====================
         ABOUT PAGE START
     =======================*/
+  .page_breadcrumb {
+    background-image: url("../images/aboutus-tablet.png") !important;
+    height: 307px !important;
+  }
   .breadcrumb_text h1 {
     font-size: 45px;
   }
@@ -1597,6 +1601,11 @@
   /* =====================
         ABOUT PAGE START
     =======================*/
+
+  .page_breadcrumb {
+    background-image: url("../images/aboutus-tablet.png") !important;
+    height: 307px !important;
+  }
   .breadcrumb_text h1 {
     font-size: 32px;
   }
@@ -2505,6 +2514,11 @@
   /* =====================
         ABOUT PAGE START
     =======================*/
+
+  .page_breadcrumb {
+    background-image: url("../images/aboutus-mobile.png") !important;
+    height: 307px !important;
+  }
   .breadcrumb_text h1 {
     font-size: 32px;
   }
