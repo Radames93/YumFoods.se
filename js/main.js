@@ -1669,13 +1669,13 @@ const displayNewCart = () => {
                       <td data-label="Kvantitet" class="pro_select">
                       <div class="quentity_btn">
                       <button class="decrease">
-                      <i class="fal fa-minus"></i>
+                      <i class="fa fa-minus"></i>
                     </button>
                     <input class="quantity" type="text" value=` +
             quantity +
             `>
                     <button class="increase">
-                      <i class="fal fa-plus"></i>
+                      <i class="fa fa-plus"></i>
                     </button>
                   </div>
                       </td>
