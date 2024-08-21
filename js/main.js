@@ -337,17 +337,7 @@ const yumProducts = (yumProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item">
-              <div class="menu_item_img">
-                <img
-                  src=` +
-          yum.img +
-          `
-                  alt="yum-meny-bild"
-                  class="img-fluid w-100"
-                  class="title"
-                  href="#"
-                  data-yum-id=${yum.id} 
+          <div class="menu_item"  data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -357,6 +347,17 @@ const yumProducts = (yumProductsList) => {
                   data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
+                  >
+              <div class="menu_item_img">
+                <img
+                  src=` +
+          yum.img +
+          `
+                  alt="yum-meny-bild"
+                  class="img-fluid w-100"
+                  class="title"
+                  href="#"
+                  
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -463,7 +464,16 @@ const dailyProducts = (dailyProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item">
+          <div class="menu_item" data-yum-id=${daily.id} 
+                  data-yum-title=${daily.title}
+                  data-yum-price=${daily.price}
+                  data-yum-img=${daily.img}
+                  data-yum-quantity-price=${daily.price}
+                  data-yum-description=${daily.description}
+                  data-yum-ingredients=${daily.ingredients}
+                  data-yum-diet=${[value]}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal">
               <div class="menu_item_img">
                 <img
                   src=` +
@@ -473,16 +483,7 @@ const dailyProducts = (dailyProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  data-yum-id=${daily.id} 
-                  data-yum-title=${daily.title}
-                  data-yum-price=${daily.price}
-                  data-yum-img=${daily.img}
-                  data-yum-quantity-price=${daily.price}
-                  data-yum-description=${daily.description}
-                  data-yum-ingredients=${daily.ingredients}
-                  data-yum-diet=${[value]}
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal"
+                  
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -589,7 +590,16 @@ const premiumProducts = (premiumProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item">
+          <div class="menu_item" data-yum-id=${premium.id} 
+                  data-yum-title=${premium.title}
+                  data-yum-price=${premium.price}
+                  data-yum-img=${premium.img}
+                  data-yum-quantity-price=${premium.price}
+                  data-yum-description=${premium.description}
+                  data-yum-ingredients=${premium.ingredients}
+                  data-yum-diet=${[value]}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal">
               <div class="menu_item_img">
                 <img
                   src=` +
@@ -599,16 +609,7 @@ const premiumProducts = (premiumProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  data-yum-id=${premium.id} 
-                  data-yum-title=${premium.title}
-                  data-yum-price=${premium.price}
-                  data-yum-img=${premium.img}
-                  data-yum-quantity-price=${premium.price}
-                  data-yum-description=${premium.description}
-                  data-yum-ingredients=${premium.ingredients}
-                  data-yum-diet=${[value]}
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal"
+                  
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -1668,13 +1669,13 @@ const displayNewCart = () => {
                       <td data-label="Kvantitet" class="pro_select">
                       <div class="quentity_btn">
                       <button class="decrease">
-                      <i class="fa fa-minus"></i>
+                      <i class="fal fa-minus"></i>
                     </button>
                     <input class="quantity" type="text" value=` +
             quantity +
             `>
                     <button class="increase">
-                      <i class="fa fa-plus"></i>
+                      <i class="fal fa-plus"></i>
                     </button>
                   </div>
                       </td>
