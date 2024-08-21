@@ -1352,6 +1352,7 @@ button {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+  cursor: pointer;
 }
 
 .menu_item_img {
@@ -1681,7 +1682,7 @@ button {
 }
 
 .single_team:hover {
-  margin-top: 8px;
+  margin-top: 20px;
 }
 
 .single_team:hover h4 {
