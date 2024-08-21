@@ -1691,7 +1691,7 @@ const displayNewCart = () => {
                       <td data-label="Ta bort" class="pro_icon">
                         <button onclick="removeItem(` +
             item.id +
-            `)" href="#"><i class="fa fa-times"></i></button>
+            `)" href="#"><i class="fas fa-trash-alt"></i></button>
                       </td>
                       </tr>`
           );
