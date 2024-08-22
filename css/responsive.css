@@ -1784,7 +1784,6 @@
   .contact_map {
     height: 280px;
   }
-
   /* =====================
         DASHBOARD START
     =======================*/
@@ -2994,5 +2993,29 @@
   }
   .quentity_btn {
     justify-content: end !important;
+  }
+}
+/* =====================
+    company box informatiom in shopping cart and contact page
+    =======================*/
+@media (min-width: 575.99px) and (max-width: 1200px) {
+.contact-input{
+  flex-direction: column;
+}
+.contact_form_input{
+  max-width: 100%;
+}
+.contact-input .contact-befattning{
+  margin-right:0px;
+}
+}
+@media (max-width: 575.99px){
+  .contact_form_input{
+    margin-right: 2px;
+  }
+}
+@media (min-width: 1000px){
+  .contact-input .contact-befattning{
+    margin-right:25px;
   }
 }

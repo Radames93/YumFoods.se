@@ -1922,7 +1922,7 @@ function showCompanyForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = `
-                    <div class="col-xl-12">
+                <div class="col-xl-12">
                   <div for="company name" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
                     <input
@@ -1932,9 +1932,9 @@ function showCompanyForm() {
                     />
                   </div>
                 </div>
-                <div class="d-flex">
+                <div class="d-flex contact-input">
                 <div class="col-xl-6 col-sm-12">
-                  <div for="role" class="contact_form_input">
+                  <div for="role" class="contact_form_input contact-befattning">
                     <span><i class="fas fa-user"></i></span>
                     <input name="role" type="text" placeholder="Befattning(bara för företag)" />
                   </div>
