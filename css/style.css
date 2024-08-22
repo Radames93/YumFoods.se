@@ -1526,6 +1526,10 @@ button {
   border-right: 13px solid #000000;
 }
 
+.menu_item_text .add_to_cart li {
+  pointer-events: none; 
+}
+
 .menu_item_text ul li a {
   width: 35px;
   height: 35px;
