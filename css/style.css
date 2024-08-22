@@ -1606,7 +1606,7 @@ button {
 .single_team_img_services {
   width: 307px;
   height: 205px;
-  border: 10px solid var(--colorWhite);
+  border: 5px solid var(--colorWhite);
   border-radius: 50%;
   box-shadow: var(--boxShadow);
   overflow: hidden;
@@ -1622,6 +1622,10 @@ button {
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+
+.single_team_img_services:hover {
+  border: 5px solid #ff7c08;
 }
 
 .single_team_text h4 {
@@ -2006,7 +2010,7 @@ button {
   z-index: 0;
 }
 
-.description {
+.hero-description {
   position: relative;
   display: block;
   z-index: 3;
@@ -2593,7 +2597,7 @@ footer {
 }
 
 .breadcrumb_text ul li a {
-  color: var(--colorWhite);
+  color: var(--colorPrimary);
   font-size: 16px;
   position: relative;
   padding-right: 25px;
