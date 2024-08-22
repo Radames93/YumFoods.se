@@ -2902,7 +2902,7 @@
     -o-transition: all linear 0.3s;
   }
 
-  .description {
+  .hero-description {
     position: relative;
     display: block;
     z-index: 3;
