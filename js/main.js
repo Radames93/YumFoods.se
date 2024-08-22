@@ -398,7 +398,7 @@ const yumProducts = (yumProductsList) => {
           data-yum-img=${yum.img}
           data-yum-quantity-price=${yum.price}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -650,7 +650,7 @@ const premiumProducts = (premiumProductsList) => {
           data-yum-img=${premium.img}
           data-yum-quantity-price=${premium.price}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>-->" +
+          ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -1539,11 +1539,11 @@ let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
 //Add to cart function from button
 function realAddToCart(event) {
-  var id = event.target.dataset.id;
-  var title = event.target.dataset.yumTitle;
-  var price = event.target.dataset.yumPrice;
-  var img = event.target.dataset.yumImg;
-  var quantityPrice = event.target.dataset.yumQuantityPrice;
+  var id = event.target.closest('button').dataset.id;
+  var title = event.target.closest('button').dataset.yumTitle;
+  var price = event.target.closest('button').dataset.yumPrice;
+  var img = event.target.closest('button').dataset.yumImg;
+  var quantityPrice = event.target.closest('button').dataset.yumQuantityPrice;
 
   let formData = {};
   formData.id = id;
