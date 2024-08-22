@@ -523,7 +523,7 @@ const dailyProducts = (dailyProductsList) => {
           data-yum-img=${daily.img}
           data-yum-quantity-price=${daily.price}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>-->" +
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
