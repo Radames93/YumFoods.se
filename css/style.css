@@ -3136,7 +3136,7 @@ footer {
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
   border-radius: 3px 0px 0px 3px;
-  -webkit-border-radius: 3px 0px 0px 3px;
+  -webkit-border-radius: 25px 0px 0px 25px;
   -moz-border-radius: 3px 0px 0px 3px;
   -ms-border-radius: 3px 0px 0px 3px;
   -o-border-radius: 3px 0px 0px 3px;
@@ -3145,6 +3145,11 @@ footer {
 .contact_form_input input,
 .contact_form_input textarea {
   padding: 12px 20px 12px 65px;
+}
+
+#allergi {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
 }
 
 .contact_form_input.textarea span {
