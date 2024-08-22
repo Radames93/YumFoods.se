@@ -334,7 +334,7 @@ const yumProducts = (yumProductsList) => {
         }
         return (
           `<div
-            class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
+            class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
           <div class="menu_item"  data-yum-id=${yum.id} 
@@ -461,7 +461,7 @@ const dailyProducts = (dailyProductsList) => {
         }
         return (
           `<div
-            class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
+            class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
           <div class="menu_item" data-yum-id=${daily.id} 
@@ -587,7 +587,7 @@ const premiumProducts = (premiumProductsList) => {
         }
         return (
           `<div
-            class="col-xl-4 col-sm-6 col-lg-3 wow fadeInUp "
+            class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
           <div class="menu_item" data-yum-id=${premium.id} 
