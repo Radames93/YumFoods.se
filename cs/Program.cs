@@ -10,6 +10,6 @@ class Program
     static void Main(string[] args)
     {
         // Display the number of command line arguments.
-        DbContext db = new DbContext();
+        DbContext db = new();
     }
 }
