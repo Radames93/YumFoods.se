@@ -22,7 +22,7 @@ public class DbContext
     }
     public void Connect(string query)
     {
-        string connectionString = "Server=192.168.11.85;Database=yumfoodsdb;Uid=admin;Pwd=root;";
+        string connectionString = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;";
         using (var connection = new MySqlConnection(connectionString))
         {
             connection.Open();
