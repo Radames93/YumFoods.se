@@ -1,36 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data;
+using System.Diagnostics;
 using MySql.Data.MySqlClient;
 
 namespace yumfoods.se.cs;
 
 public class DbContext
 {
-    public DbContext() 
+    internal MySqlConnection ConnectToDatabase()
     {
-        Console.WriteLine("Enter query");
-        string query = Console.ReadLine();
-        if (query == null)
-            throw new ArgumentNullException("query");
-
-        Connect(query);
-    }
-    public void Connect(string query)
-    {
-        string connectionString = "Server=192.168.11.85;Database=yumfoodsdb;Uid=admin;Pwd=root;";
-        using (var connection = new MySqlConnection(connectionString))
+        string connectionString = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;"; // FLYTTA TILL ENVAR
+        using var connection = new MySqlConnection(connectionString);
+        try
         {
             connection.Open();
-            var cmd = new MySqlCommand(query, connection);
-            cmd.ExecuteNonQuery();
-            connection.Close();
+            return connection;
         }
+        catch (Exception e) 
+        {
+            Debug.WriteLine(e.Message);
+        }
+        return null;
     }
 
+    public void SqlInsertQuery(string query)
+    {
+        var connection = ConnectToDatabase();
+        var cmd = new MySqlCommand(query, connection);
+        cmd.ExecuteNonQuery();
+        connection.Close();
+    }
 }
-
