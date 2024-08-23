@@ -2,8 +2,8 @@
 
 public class ProductExtension
 {
-    public void IEndpointRouteBuilder()
-    {
-
-    }
+    //public static IEndpointRouteBuilder MapProductEndpoints(this IEndpointRouteBuilder builder)
+    //{
+    //    return builder;
+    //}
 }
