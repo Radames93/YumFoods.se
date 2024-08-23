@@ -337,17 +337,7 @@ const yumProducts = (yumProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item"  data-yum-id=${yum.id} 
-                  data-yum-title=${yum.title}
-                  data-yum-price=${yum.price}
-                  data-yum-img=${yum.img}
-                  data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${[value]}
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal"
-                  >
+          <div class="menu_item">
               <div class="menu_item_img">
                 <img
                   src=` +
@@ -357,7 +347,16 @@ const yumProducts = (yumProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  
+                  data-yum-id=${yum.id} 
+                  data-yum-title=${yum.title}
+                  data-yum-price=${yum.price}
+                  data-yum-img=${yum.img}
+                  data-yum-quantity-price=${yum.price}
+                  data-yum-description=${yum.description}
+                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-diet=${[value]}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -1539,11 +1538,11 @@ let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
 //Add to cart function from button
 function realAddToCart(event) {
-  var id = event.target.closest('button').dataset.id;
-  var title = event.target.closest('button').dataset.yumTitle;
-  var price = event.target.closest('button').dataset.yumPrice;
-  var img = event.target.closest('button').dataset.yumImg;
-  var quantityPrice = event.target.closest('button').dataset.yumQuantityPrice;
+  var id = event.target.closest("button").dataset.id;
+  var title = event.target.closest("button").dataset.yumTitle;
+  var price = event.target.closest("button").dataset.yumPrice;
+  var img = event.target.closest("button").dataset.yumImg;
+  var quantityPrice = event.target.closest("button").dataset.yumQuantityPrice;
 
   let formData = {};
   formData.id = id;
