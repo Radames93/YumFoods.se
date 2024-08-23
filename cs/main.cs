@@ -7,5 +7,6 @@ namespace yumfoods.se.cs;
 
 internal class Main
 {
+
 }
 

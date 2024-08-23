@@ -10,16 +10,32 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{F3B86F8E-6F49-4F39-A227-118149137CEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Debug|Any CPU.Build.0 = Debug|x86
 		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Debug|x86.ActiveCfg = Debug|x86
 		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Debug|x86.Build.0 = Debug|x86
+		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Release|Any CPU.ActiveCfg = Release|x86
+		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Release|Any CPU.Build.0 = Release|x86
 		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Release|x86.ActiveCfg = Release|x86
 		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Release|x86.Build.0 = Release|x86
+		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Debug|x86.Build.0 = Debug|Any CPU
+		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Release|x86.ActiveCfg = Release|Any CPU
+		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
