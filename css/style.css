@@ -1482,10 +1482,10 @@ button {
   font-weight: 500;
 }
 
-.menu_item_text .add_to_cart {
-  position: absolute;
-  left: -12px;
-  bottom: 25px;
+.add_to_cart {
+  position: relative;
+  left: 0px;
+  bottom: 60px;
   background: var(--colorPrimary);
   padding: 6px 10px 6px 10px;
   font-size: 16px;
@@ -1499,7 +1499,7 @@ button {
   -o-transition: all linear 0.3s;
 }
 
-.menu_item_text .add_to_cart::after {
+.add_to_cart::after {
   position: absolute;
   content: "";
   top: -19px;
@@ -1517,19 +1517,18 @@ button {
   border-bottom: 0 solid transparent;
 }
 
-.menu_item_text .add_to_cart:hover {
+.add_to_cart:hover {
   background: var(--colorBlack);
 }
 
-.menu_item_text .add_to_cart:hover::after {
+.add_to_cart:hover::after {
   border-right: 13px solid #000000;
 }
-
-.menu_item_text .add_to_cart li {
+.add_to_cart li {
   pointer-events: none;
 }
 
-.menu_item_text ul li a {
+.add_to_cartul li a {
   width: 35px;
   height: 35px;
   line-height: 35px;
