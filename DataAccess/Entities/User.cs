@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Entities;
 
-internal class User
+public class User
 {
     public int Id { get; set; }
     public string FirstName { get; set; }
@@ -21,7 +21,7 @@ internal class User
     public string Country { get; set; }
     public string Cart { get; set; }
     public string Subscription { get; set; }
-
+    public string Password { get; set; }
 
 }
 

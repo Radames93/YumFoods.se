@@ -1,5 +1,4 @@
-using API.Extensions;
-using DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,19 +6,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
 
-builder.Services.AddScoped<ProductRepository>();
+// Add services to the container
+builder.Services.AddDbContext<DbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapProductEndpoints();
 
 app.Run();
