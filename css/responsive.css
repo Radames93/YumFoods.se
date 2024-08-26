@@ -413,6 +413,23 @@
     width: 150px;
   }
 
+  .footer_logo {
+    margin-left: 0px;
+  }
+
+  #contact_info {
+    width: 240px;
+    margin-left: -0px;
+  }
+
+  #social_links {
+    margin-right: 50px;
+  }
+
+  #other_links {
+    margin-right: 0px;
+  }
+
   .footer_content {
     margin-bottom: 50px;
   }
@@ -912,6 +929,42 @@
 
   .footer_content .footer_logo {
     width: 150px;
+  }
+
+  #footer-new {
+    height: 600px;
+  }
+
+  .footer_logo {
+    margin-left: 60px;
+  }
+
+  #contact_info {
+    margin-left: 50px;
+    width: 250px;
+  }
+
+  #contact_title {
+    margin-left: 60px;
+  }
+
+  #location_address {
+    width: 180px;
+    margin-right: 0px;
+  }
+
+  .fa-map-marker-alt {
+    margin-right: 0px;
+  }
+
+  #social_links {
+    width: 200px;
+    margin-left: 30px;
+  }
+
+  #other_links {
+    width: 180px;
+    margin-right: -10px;
   }
 
   .reservation_form h2 {
@@ -1550,6 +1603,67 @@
 
   .footer_content .footer_logo {
     width: 150px;
+  }
+
+  #footer-new {
+    height: 600px;
+  }
+
+  .footer_logo {
+    margin-left: -350px;
+  }
+
+  #contact_info {
+    width: 270px;
+    margin-left: 200px;
+    margin-top: -250px;
+  }
+
+  #contact_title {
+    margin-left: 100px;
+  }
+
+  #location_address {
+    width: 150px;
+    margin-right: 26px;
+  }
+
+  .fa-map-marker-alt {
+    margin-right: -10px;
+  }
+
+  .fa-phone {
+    margin-left: -10px;
+  }
+
+  #map-marker {
+    margin-left: 36px;
+  }
+
+  #social_links {
+    margin-right: 320px;
+  }
+
+  #other_links {
+    margin-left: 300px;
+    margin-top: -160px;
+  }
+
+  #link_title {
+    margin-left: 70px;
+  }
+
+  .fa-question {
+    margin-left: -140px;
+    margin-bottom: 10px;
+  }
+
+  .fa-comment {
+    margin-left: -140px;
+  }
+
+  .fa-yin-yang {
+    margin-left: -140px;
   }
 
   .reservation_form h2 {
@@ -2460,6 +2574,62 @@
 
   .footer_content .footer_logo {
     width: 150px;
+  }
+
+  #footer-new {
+    height: 600px;
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .footer_logo {
+    margin-left: -220px;
+  }
+
+  .fa-phone {
+    margin-left: -10px;
+  }
+
+  #contact_title {
+    margin-left: 140px;
+  }
+
+  #contact_info {
+    margin-top: -260px;
+    margin-left: 220px;
+  }
+
+  #map-marker {
+    margin-left: 34px;
+  }
+
+  #location_address {
+    width: 165px;
+  }
+
+  #social_links {
+    margin-left: -230px;
+  }
+
+  #social_links h2 {
+    margin-left: 220px;
+  }
+
+  #other_links {
+    margin-left: 200px;
+    margin-top: -210px;
+  }
+
+  #link_title {
+    margin-left: 273px;
+  }
+
+  .footer_links_1 {
+    margin-left: 130px;
+  }
+
+  .footer_links_2 {
+    margin-left: 130px;
   }
 
   .reservation_form h2 {
