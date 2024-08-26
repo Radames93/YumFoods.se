@@ -13,11 +13,17 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{F3B86F8E-6F49-4F39-A227-118149137CEC}"
 EndProject
 <<<<<<< HEAD
+<<<<<<< HEAD
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{DB95C9AE-9222-4D7F-9B0A-2546086BF904}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "..\DataAccess\DataAccess.csproj", "{BE419155-2178-4483-BB53-E8E36F7B49F7}"
 =======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{B7607122-0DE0-4DF7-8512-3D56656DD122}"
+>>>>>>> dev-vivian
+=======
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{B7607122-0DE0-4DF7-8512-3D56656DD122}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{D5D22E9A-9005-426B-B791-B908DE64AA98}"
 >>>>>>> dev-vivian
 EndProject
 Global
@@ -68,8 +74,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+<<<<<<< HEAD
 		{F3B86F8E-6F49-4F39-A227-118149137CEC} = {DB95C9AE-9222-4D7F-9B0A-2546086BF904}
 		{BE419155-2178-4483-BB53-E8E36F7B49F7} = {DB95C9AE-9222-4D7F-9B0A-2546086BF904}
+=======
+		{F3B86F8E-6F49-4F39-A227-118149137CEC} = {D5D22E9A-9005-426B-B791-B908DE64AA98}
+		{B7607122-0DE0-4DF7-8512-3D56656DD122} = {D5D22E9A-9005-426B-B791-B908DE64AA98}
+>>>>>>> dev-vivian
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C1337FAF-F360-4F05-9DED-6A61A6553D44}
