@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DataAccess.Repositories;
+using Microsoft.AspNetCore.Builder;
 
 namespace API.Extensions
 {
@@ -15,9 +16,10 @@ namespace API.Extensions
             return app;
         }
 
-        private static async Task GetAllOrdersAsync(HttpContext context)
+        private static async Task<IResult> GetAllOrdersAsync(OrderRepository repo)
         {
-            throw new NotImplementedException();
+            var prod = await repo.GetAllProductsAsync();
+            return Results.Ok(prod);
         }
 
         private static async Task GetOrderByIdAsync(HttpContext context)
