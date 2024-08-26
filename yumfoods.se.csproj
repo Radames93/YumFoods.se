@@ -427,7 +427,7 @@
     <Folder Include=".git\refs\tags\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cs\DbContext.cs" />
+    <Compile Include="cs\DbContextTest.cs" />
     <Compile Include="cs\Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
