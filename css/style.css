@@ -2378,8 +2378,54 @@ footer {
   background-size: cover !important;
 }
 
+#footer-new {
+  height: 350px;
+  border-top: 1px solid #ff7c08;
+  border-bottom: 1px solid #ff7c08;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
 .footer_content .footer_logo {
   width: 200px;
+}
+
+.footer_logo {
+  margin-left: -30px;
+}
+
+.footer_content h2 {
+  font-size: 18px;
+  margin-bottom: 50px;
+  margin-left: 40px;
+  color: #ff7c08;
+  width: 100px;
+  font-weight: 600;
+}
+
+#contact_info {
+  margin-top: 10px;
+  width: 350px;
+  margin-left: -100px;
+}
+
+#contact_title {
+  width: 40px;
+  padding-bottom: 20px;
+  line-height: 1;
+  margin-left: 80px;
+  color: #ff7c08;
+  font-size: 25px;
+}
+
+#social_links {
+  margin-top: 40px;
+  margin-left: -30px;
+}
+
+#other_links {
+  margin-right: 100px;
+  margin-top: 6px;
 }
 
 .footer_content span {
@@ -2450,7 +2496,20 @@ footer {
   padding-bottom: 5px;
 }
 
-.footer_content ul li a {
+#link_title {
+  font-size: 18px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+  color: #ff7c08;
+  width: 120px;
+  font-weight: 600;
+}
+
+.footer_content ul li {
+  line-height: 0.8;
+}
+
+.footer_links_1 {
   color: #000000;
   font-size: 16px;
   margin-top: 15px;
@@ -2464,12 +2523,38 @@ footer {
   -o-transition: all linear 0.3s;
 }
 
-.footer_content ul li a::after {
+.fa-question,
+.fa-comment,
+.fa-yin-yang {
+  margin-left: -30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--colorPrimary);
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+
+.footer_links_2 {
+  color: #7d7d7d;
+  font-size: 16px;
+  margin-top: 10px;
+  display: block;
+  position: relative;
+  padding-left: 15px;
+  transition: all linear 0.3s;
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -ms-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+}
+
+.footer_links_2::after {
   position: absolute;
   content: "";
   width: 7px;
   height: 7px;
-  background: var(--colorPrimary);
   top: 9px;
   left: 0;
   transition: all linear 0.3s;
@@ -6196,6 +6281,15 @@ table tbody tr td span {
   justify-content: start;
   gap: 20px;
   padding-bottom: 20px 0;
+  flex-direction: column;
+}
+
+.telefon-bild {
+  height: 25px;
+}
+
+.mejl-bild {
+  height: 25px;
 }
 
 .contacts-box {
