@@ -2195,7 +2195,7 @@ button {
   margin-top: -0px;
 }
 
-.section_heading {
+#blog-podcast .section_heading {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
