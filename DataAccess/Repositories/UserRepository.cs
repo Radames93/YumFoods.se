@@ -21,16 +21,20 @@ public class UserRepository(YumFoodsDb context)
         return await context.User.FirstOrDefaultAsync(p => p.FirstName == name);
     }
 
-    public async Task<IEnumerable<Order>> GetUserByCompanyAsync()
+    public async Task<User?> GetUserByOrginizationAsync(int organizationNumber)
     {
-        return await context.Order.ToListAsync();
+        return await context.User.FirstOrDefaultAsync(p => p.OrganizationNumber == organizationNumber);
+    }
+    public async Task<User?> GetUserByEmailAsync(string email)
+    {
+        return await context.User.FirstOrDefaultAsync(p => p.Email == email);
     }
 
 
     public async Task<bool> ValidateUserAsync(string email, string password)
     {
         var passwordVerification = new PasswordVerification();
-        var user = await context.User.FirstOrDefaultAsync(u => u.Email == email);
+        var user = await GetUserByEmailAsync(email);
 
         if (user == null)
         {

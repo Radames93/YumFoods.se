@@ -2,7 +2,7 @@
 
 namespace DataAccess.Security;
 
-internal class AuthenticationService(UserRepository userRepository)
+public class AuthenticationService(UserRepository userRepository)
 {
     public async Task<bool> LoginAsync(string username, string password)
     {
