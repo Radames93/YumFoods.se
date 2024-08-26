@@ -369,6 +369,11 @@ button {
   -moz-transition: all linear 0.3s;
   -ms-transition: all linear 0.3s;
   -o-transition: all linear 0.3s;
+  max-height: 100px;
+}
+
+.main_menu .container{
+  max-height: 100px;
 }
 
 .main_menu .navbar-brand {
@@ -377,8 +382,8 @@ button {
 }
 
 .main_menu .navbar-nav {
-  line-height: 80px;
   margin-left: auto;
+  border: none;
 }
 
 .main_menu .navbar-nav .nav-item {
@@ -565,13 +570,56 @@ button {
   border-radius: 50%;
 }
 
+.navbar-left .cart {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--colorBlack);
+  text-transform: capitalize;
+  margin: 0px 10px;
+  padding: 0;
+  position: relative;
+  cursor: pointer;
+  transition: all linear 0.3s;
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -ms-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+  width: 50px;
+  height: 50px;
+  background: #ff7c0826;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 40px;
+  border-radius: 50%;
+}
+
 .main_menu .menu_icon li a:hover,
 .main_menu .menu_icon li a.active {
   background: var(--colorPrimary);
   color: var(--colorWhite);
 }
 
-.container > ul li a span {
+.navbar-left .cart span {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--colorPrimary);
+  color: var(--colorWhite);
+  border: 1px solid var(--colorWhite);
+  line-height: 24px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -10px;
+  right: -10px;
+}
+
+.container > .cart span {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -603,6 +651,65 @@ button {
   top: 0 !important;
 }
 
+/* login button */
+.dropbtn {
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  color: white;
+  background-color:  #fa6039; 
+  padding: 4px 10px;
+  text-align: center;
+  line-height: 22px;
+  margin-left: 15px;
+}
+
+.loginBtn .dropbtn:hover{
+  color: #000000;
+}
+
+/* company button */
+.companyBtn{
+  border: 1px solid rgb(14, 13, 13);
+  border-radius: 5px;
+  padding-bottom: 4px;
+  align-items: center;
+}
+
+.company{
+  background-color: white;
+  font-size: 18px;
+  padding: 10px;
+  height: 40.5px;
+}
+
+.company:hover{
+  background-color: #FF7C082E;
+}
+
+/* language button*/
+
+.langBtn .nav-item a{
+  background-color: white;
+}
+
+.langBtn .nav-item .fa-angle-down{
+  color:  #fa6039;;
+}
+
+.separator{
+  width: 1px;
+  height: 90px;
+  background-color: orange;
+}
+
+.navbar-left{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 /* menu end */
 
 /* banner start */
@@ -624,7 +731,6 @@ button {
   height: 48px;
   background-color: #fa6039;
   color: white;
-  font-family: "Poppins";
   font-weight: 500;
   font-size: 18px;
   border: none;
