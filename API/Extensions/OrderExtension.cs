@@ -12,6 +12,10 @@ namespace API.Extensions
 
             group.MapGet("/{id}", GetOrderByIdAsync);
 
+            group.MapPost("/{id}", PostOrderAsync);
+
+            group.MapDelete("/{id}", DeleteOrderAsync);
+
             return app;
         }
 
@@ -24,6 +28,17 @@ namespace API.Extensions
         {
             throw new NotImplementedException();
         }
+
+        private static async Task PostOrderAsync(HttpContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static async Task DeleteOrderAsync(HttpContext context)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 
 }
