@@ -5,9 +5,9 @@ namespace DataAccess.Repositories;
 
 public class ProductRepository(YumFoodsDb context)
 {
-    public async Task<IEnumerable<Product>> GetAllProductsAsync()
+    public async Task<List<Product>> GetAllProductsAsync()
     {
-        return await context.Product.ToListAsync();
+        return await context.Product.Include(product => product.Id).ToListAsync();
     }
 
     public async Task<Product?> GetProductByIdAsync(int id)
