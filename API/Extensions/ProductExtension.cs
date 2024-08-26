@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DataAccess.Repositories;
+using Microsoft.AspNetCore.Builder;
 
 namespace API.Extensions;
 
@@ -21,9 +22,10 @@ public static class ProductExtension
         return app;
     }
 
-    private static async Task GetAllProductsAsync(HttpContext context)
+    private static async Task<IResult> GetAllProductsAsync(ProductRepository repo)
     {
-        throw new NotImplementedException();
+        var prod = await repo.GetAllProductsAsync();
+        return Results.Ok(prod);
     }
 
     private static async Task GetProductByIdAsync(HttpContext context)
