@@ -2214,18 +2214,38 @@ function Footer() {
   footer.innerHTML = `
       <div class="pt_20 xs_pt_20">
         <div class="container">
-          <div class="row justify-content-around pt_50">
-            <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-5">
+          <div id="footer-new" class="row justify-content-around pt_50">
+            <div class="col-xxl-2 col-lg-2 col-sm-9 col-md-5">
               <div class="footer_content">
-                <a class="footer_logo" href="/">
-                  <img
+                  <img class="footer_logo"
                     loading="lazy"
-                    src="images/footer_logo_group.png"
+                    src="images/footer_logo.png"
                     alt="footer-logo"
-                    style="width: 150px; height:93px"
+                    style="width: 200px; height:200px"
                     class="mb_25"
                   />
-                </a>
+              </div>
+            </div>
+            <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
+              <p id="contact_title">Yum Food</p>
+              <div class="contacts-content contacts justify-content-center w_40">
+                <div class="contacts-box">
+                <i style="color: #ff7c08; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
+                  <p style="margin-left: 10px;">+46 76 023 49 30</p>
+                </div>
+                <div class="contacts-box">
+                <i style="color: #ff7c08; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
+                  <p style="margin-left: 10px;">info@yumfoods.se</p>
+                </div>
+                <div id="map-marker" class="contacts-box">
+                <i style="margin-left: 2px; color: #ff7c08; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
+                  <p id="location_address" style="margin-left: 14px;">Stora Badhusgatan 18, 411 21 Göteborg</p>
+                </div>
+              </div>
+            </div>
+            <div id="social_links" class="col-xxl-3 col-lg-2 col-sm-5 col-md-4">
+              <div class="footer_content">
+              <h2>Följ oss!</h2>
                 <ul class="social_link d-flex flex-wrap mx_50">
                   <li>
                     <a
@@ -2269,49 +2289,16 @@ function Footer() {
                 </ul>
               </div>
             </div>
-            <div class="col-xxl-2 col-lg-2 col-sm-5 col-md-4">
+            <div id="other_links" class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
               <div class="footer_content">
-                <ul>
-                  <li><a href="index.html">Hem</a></li>
-                  <li><a href="about.html">Om oss</a></li>
-                  <li><a href="contact.html">Kontakta oss</a></li>
-                  <li><a href="certificates.html">Certifikat</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
-              <div class="footer_content">
-                <ul>
-                  <li><a href="terms_condition.html">Allmänna villkor</a></li>
+              <h2 id="link_title">Lorem ipsum</h2>
+              <ul>
+                  <li><i class="fas fa-question"></i><a style="margin-top: -30px;" class="footer_links_1" href="index.html">Få snabbt svar</a><a class="footer_links_2" href="faq.html">FAQ</a></li>
+                  <li><i style="margin-top: 20px;" class="fas fa-comment"></i><a style="margin-top: -32px;" class="footer_links_1" href="contact.html">Kundservice</a><a style="margin-bottom: -30px;" class="footer_links_2" href="contact.html">Kontakta oss</a></li>
+                  <li><i style="margin-top: 50px;" class="fas fa-yin-yang"></i><a style="margin-top: -35px;" class="footer_links_1" href="terms_condition.html">Lorem ipsum</a><a style="margin-top: 10px;" class="footer_links_2" href="faq.html">Lorem ipsum</a></li>
                   <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
-                  <li>
-                    <a href="faq.html">FAQ</a>
-                  </li>
                 </ul>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row text-center">
-        <div class="col-md-12 col-lg-12 col-xl-12">
-          <div class="contacts-content contacts justify-content-center w_100">
-            <div class="contacts-box">
-              <img loading="lazy" class="telefon-bild" src="./images/phone.png" alt="phone" />
-              <p>+46 76 023 49 30</p>
-            </div>
-            <div class="contacts-box">
-              <img loading="lazy" class="melj-bild" src="./images/mail.png" alt="mail" />
-              <p>info@yumfoods.se</p>
-            </div>
-            <div class="contacts-box">
-              <img
-                loading="lazy"
-                class="contacts-img"
-                src="./images/location-marker.png"
-                alt="läge-bild"
-              />
-              <p>Stora Badhusgatan 18, 411 21 Göteborg</p>
             </div>
           </div>
         </div>
