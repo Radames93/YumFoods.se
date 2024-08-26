@@ -4,7 +4,7 @@ using MySql.Data.MySqlClient;
 
 namespace yumfoods.se.cs;
 
-public class DbContext
+public class DbContextTest
 {
     internal MySqlConnection ConnectToDatabase()
     {
