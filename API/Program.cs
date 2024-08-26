@@ -1,12 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 
-var app = builder.Build();
+var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
 
-// Configure the HTTP request pipeline.
+// Add services to the container
+builder.Services.AddDbContext<DbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+
+var app = builder.Build();
 
 app.UseHttpsRedirection();
 
