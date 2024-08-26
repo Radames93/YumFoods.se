@@ -33,7 +33,7 @@ public class YumFoodsDbContext : DbContext
 
     public DbSet<Order> Orders { get; set; }
 
-    public DbSet<Subscription> Subscriptions { get; set; }
+    public DbSet<Subscription> Subscription { get; set; }
 }
 
 public class Product

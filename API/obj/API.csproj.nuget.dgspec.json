@@ -114,7 +114,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\gewer\\Source\\Repos\\yumfoods.se\\yumfoods.se.csproj": {
+                "projectPath": "C:\\Users\\gewer\\Source\\Repos\\yumfoods.se\\yumfoods.se.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -131,6 +135,22 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -149,6 +169,21 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
+      }
+    },
+    "C:\\Users\\gewer\\Source\\Repos\\yumfoods.se\\yumfoods.se.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\gewer\\Source\\Repos\\yumfoods.se\\yumfoods.se.csproj",
+        "projectName": "yumfoods.se",
+        "projectPath": "C:\\Users\\gewer\\Source\\Repos\\yumfoods.se\\yumfoods.se.csproj",
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {}
       }
     }
   }

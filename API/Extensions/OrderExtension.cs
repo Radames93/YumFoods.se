@@ -10,10 +10,17 @@ namespace API.Extensions
 
             group.MapGet("/", GetAllOrdersAsync);
 
+            group.MapGet("/{id}", GetOrderByIdAsync);
+
             return app;
         }
 
         private static async Task GetAllOrdersAsync(HttpContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static async Task GetOrderByIdAsync(HttpContext context)
         {
             throw new NotImplementedException();
         }
