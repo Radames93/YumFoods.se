@@ -373,7 +373,7 @@ button {
   max-height: 100px;
 }
 
-.main_menu .container{
+.main_menu .container {
   max-height: 100px;
 }
 
@@ -659,53 +659,53 @@ button {
   border-radius: 5px;
   outline: none;
   color: white;
-  background-color:  #fa6039; 
+  background-color: #fa6039;
   padding: 4px 10px;
   text-align: center;
   line-height: 22px;
   margin-left: 15px;
 }
 
-.loginBtn .dropbtn:hover{
+.loginBtn .dropbtn:hover {
   color: #000000;
 }
 
 /* company button */
-.companyBtn{
+.companyBtn {
   border: 1px solid rgb(14, 13, 13);
   border-radius: 5px;
   padding-bottom: 4px;
   align-items: center;
 }
 
-.company{
+.company {
   background-color: white;
   font-size: 18px;
   padding: 10px;
   height: 40.5px;
 }
 
-.company:hover{
-  background-color: #FF7C082E;
+.company:hover {
+  background-color: #ff7c082e;
 }
 
 /* language button*/
 
-.langBtn .nav-item a{
+.langBtn .nav-item a {
   background-color: white;
 }
 
-.langBtn .nav-item .fa-angle-down{
-  color:  #fa6039;;
+.langBtn .nav-item .fa-angle-down {
+  color: #fa6039;
 }
 
-.separator{
+.separator {
   width: 1px;
   height: 90px;
   background-color: orange;
 }
 
-.navbar-left{
+.navbar-left {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -1633,7 +1633,7 @@ button {
 }
 
 .menu_item_text .add_to_cart li {
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .menu_item_text ul li a {
