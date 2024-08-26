@@ -4,8 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repositories;
 
-internal class UserRepository(YumFoodsDb context)
+public class UserRepository(YumFoodsDb context)
 {
+    public async Task<IEnumerable<Order>> GetAllProductsAsync()
+    {
+        return await context.Order.ToListAsync();
+    }
+
     public async Task<User?> GetUserByIdAsync(int id)
     {
         return await context.User.FindAsync(id);
@@ -15,6 +20,12 @@ internal class UserRepository(YumFoodsDb context)
     {
         return await context.User.FirstOrDefaultAsync(p => p.FirstName == name);
     }
+
+    public async Task<IEnumerable<Order>> GetUserByCompanyAsync()
+    {
+        return await context.Order.ToListAsync();
+    }
+
 
     public async Task<bool> ValidateUserAsync(string email, string password)
     {
