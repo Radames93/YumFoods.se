@@ -221,19 +221,24 @@
     <!--=============================
         BLOG START
     ==============================-->
-    <!--
-    <section class="blog pt_95 xs_pt_65 pb_65 xs_pb_35">
+
+    <section id="blog-podcast" class="blog pt_95 xs_pt_65 pb_65 xs_pb_35">
       <div class="container">
-        <div class="row wow fadeInUp" data-wow-duration="1s">
-          <div class="col-md-8 col-lg-7 col-xl-6">
+        <div class="wow fadeInUp" data-wow-duration="1s">
+          <div>
             <div class="section_heading mb_25">
-              <h2>Vår blog and podcast</h2>
+              <h2>Our blog and podcast</h2>
+              <a href="blog_details.html">
+                <button class="learn-more-button" style="text-transform: none">
+                  <span class="learn-more-description"> Learn more! </span>
+                </button></a
+              >
             </div>
           </div>
         </div>
 
-        <div class="row blog_slider">
-          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
+        <div class="blog_slider">
+          <div id="first-grid" data-wow-duration="1s">
             <div class="single_blog">
               <div class="single_blog_img">
                 <img
@@ -248,7 +253,7 @@
                 </div>
               </div>
               <div class="single_blog_text">
-                <a class="category" href="#">food</a>
+                <a style="right: 18px" class="category" href="#">food</a>
                 <a class="title" href="blog_details.html"
                   >De hemliga tipsen & tricken för att förbereda en perfekt
                   hamburgare & pizza till våra kunder</a
@@ -267,7 +272,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
+          <div class="rest-grid" data-wow-duration="1s">
             <div class="single_blog">
               <div class="single_blog_img">
                 <img
@@ -282,14 +287,10 @@
                 </div>
               </div>
               <div class="single_blog_text">
-                <a class="category" href="#">restaurent</a>
+                <a class="category" href="#">restaurant</a>
                 <a class="title" href="blog_details.html"
                   >Pepparn: "Fördelarna med kryddig mat."</a
                 >
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam eos, odit beatae sequi tenetur quidem.
-                </p>
                 <div class="single_blog_footer">
                   <a class="read_btn" href="blog_details.html"
                     >läs mer <i class="far fa-long-arrow-right"></i
@@ -299,11 +300,11 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
+          <div class="rest-grid" data-wow-duration="1s">
             <div class="single_blog">
               <div class="single_blog_img">
                 <img
-                  src="images/podcast.png"
+                  src="images/headphones.png"
                   alt="blogg-bild"
                   class="img-fluid w-100"
                 />
@@ -321,10 +322,6 @@
                     >Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   </span></a
                 >
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam eos, odit beatae sequi tenetur quidem.
-                </p>
                 <div class="single_blog_footer">
                   <a class="read_btn" href="blog_details.html"
                     >läs mer <i class="far fa-long-arrow-right"></i
@@ -334,11 +331,11 @@
               </div>
             </div>
           </div>
-          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
+          <div class="rest-grid" data-wow-duration="1s">
             <div class="single_blog">
               <div class="single_blog_img">
                 <img
-                  src="images/authentic-flavors.png"
+                  src="images/aboutus-tablet.png"
                   alt="blogg-bild"
                   class="img-fluid w-100"
                 />
@@ -353,10 +350,37 @@
                 <a class="title" href="blog_details.html"
                   >Autentiska smaker- För ett etniskt recept</a
                 >
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam eos, odit beatae sequi tenetur quidem.
-                </p>
+                <div class="single_blog_footer">
+                  <a class="read_btn" href="blog_details.html"
+                    >läs mer <i class="far fa-long-arrow-right"></i
+                  ></a>
+                  <span><i class="far fa-comments"></i> 120</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rest-grid" data-wow-duration="1s">
+            <div class="single_blog">
+              <div class="single_blog_img">
+                <img
+                  src="images/headphones.png"
+                  alt="blogg-bild"
+                  class="img-fluid w-100"
+                />
+              </div>
+              <div class="single_blog_author">
+                <div class="text">
+                  <p>20 Apr 2023</p>
+                </div>
+              </div>
+              <div class="single_blog_text">
+                <a class="category" href="#">podcast</a>
+                <a class="title" href="blog_details.html"
+                  >Om podcast
+                  <span style="opacity: 0"
+                    >Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  </span></a
+                >
                 <div class="single_blog_footer">
                   <a class="read_btn" href="blog_details.html"
                     >läs mer <i class="far fa-long-arrow-right"></i
@@ -369,7 +393,7 @@
         </div>
       </div>
     </section>
-    -->
+
     <!--=============================
         BLOG END
     ==============================-->
