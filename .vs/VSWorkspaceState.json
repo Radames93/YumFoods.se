@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\cs"
   ],
-  "SelectedNode": "\\yumfoods.se.sln",
+  "SelectedNode": "\\cs\\DbContext.cs",
   "PreviewInSolutionExplorer": false
 }
