@@ -6,9 +6,9 @@ namespace DataAccess.Repositories;
 
 public class UserRepository(YumFoodsDb context)
 {
-    public async Task<IEnumerable<Order>> GetAllProductsAsync()
+    public async Task<IEnumerable<User>> GetAllUsersAsync()
     {
-        return await context.Order.ToListAsync();
+        return await context.User.ToListAsync();
     }
 
     public async Task<User?> GetUserByIdAsync(int id)
