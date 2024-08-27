@@ -33,7 +33,8 @@ namespace API.Extensions
 
         private static async Task PostOrderAsync(OrderRepository repo)
         {
-            throw new NotImplementedException();
+            var prod = await repo.GetAllProductsAsync();
+            return Results.Ok(prod);
         }
 
         private static async Task DeleteOrderAsync(OrderRepository repo)

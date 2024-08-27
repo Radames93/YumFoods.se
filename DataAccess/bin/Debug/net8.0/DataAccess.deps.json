@@ -689,7 +689,7 @@
           "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0"
         }
-      },
+        },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "System.Runtime.Loader/4.3.0": {
         "dependencies": {
@@ -709,7 +709,8 @@
       "System.Security.Permissions/8.0.0": {
         "dependencies": {
           "System.Windows.Extensions": "8.0.0"
-        },
+      },
+      "MySql.Data/9.0.0.0": {
         "runtime": {
           "lib/net8.0/System.Security.Permissions.dll": {
             "assemblyVersion": "8.0.0.0",
@@ -722,6 +723,7 @@
           "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
+          }
         }
       },
       "System.Text.Encoding.CodePages/8.0.0": {},
@@ -743,6 +745,7 @@
           "Microsoft.NETCore.Platforms": "1.1.0",
           "Microsoft.NETCore.Targets": "1.1.0",
           "System.Runtime": "4.3.0"
+          }
         }
       },
       "System.Threading.Tasks.Extensions/4.5.4": {},
@@ -751,8 +754,8 @@
           "lib/net8.0/System.Windows.Extensions.dll": {
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.0.23.53103"
-          }
-        },
+        }
+      },
         "runtimeTargets": {
           "runtimes/win/lib/net8.0/System.Windows.Extensions.dll": {
             "rid": "win",
