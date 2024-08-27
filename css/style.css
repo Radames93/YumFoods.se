@@ -606,7 +606,7 @@ button {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--colorPrimary);
+  background: var(--colorRed);
   color: var(--colorWhite);
   border: 1px solid var(--colorWhite);
   line-height: 24px;
@@ -659,30 +659,26 @@ button {
   border-radius: 5px;
   outline: none;
   color: white;
-  background-color: #fa6039;
-  padding: 4px 10px;
+  background-color: var(--colorRed);
+  padding: 10px;
   text-align: center;
   line-height: 22px;
   margin-left: 15px;
 }
-
-.loginBtn .dropbtn:hover {
-  color: #000000;
+.dropbtn:hover{
+  color: black;
+  background-color: white;
+  border: solid;
+  border-radius: 5px;
 }
 
 /* company button */
-.companyBtn {
-  border: 1px solid rgb(14, 13, 13);
-  border-radius: 5px;
-  padding-bottom: 4px;
-  align-items: center;
-}
-
 .company {
   background-color: white;
   font-size: 18px;
-  padding: 10px;
-  height: 40.5px;
+  padding: 5px;
+  border: solid;
+  border-radius: 5px;
 }
 
 .company:hover {
@@ -709,6 +705,16 @@ button {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.loginBtn .navbar-nav .nav-item:hover .droap_menu {
+  left: 138px;
+  visibility: visible;
+}
+
+.langBtn .navbar-nav .nav-item:hover .droap_menu {
+  left: 138px;
+  visibility: visible;
 }
 
 /* menu end */

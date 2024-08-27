@@ -144,8 +144,6 @@ function Header() {
         </li>
         </ul>
 
-        <div class="separator"></div>
-
         <button
           class="navbar-toggler"
           type="button"
