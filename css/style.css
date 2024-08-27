@@ -1651,7 +1651,8 @@ button {
   -moz-border-radius: 3px;
   -ms-border-radius: 3px;
   -o-border-radius: 3px;
-  
+}
+
 .menu_item_text .add_to_cart li {
   pointer-events: none;
 }
@@ -5467,8 +5468,8 @@ table tbody tr td span {
 ============================*/
 
 .steps-page {
-  height: 400px;
-  margin-top: 100px;
+  height: 350px;
+  margin-top: 50px;
 }
 
 .steps-page h1 {
@@ -5585,6 +5586,11 @@ table tbody tr td span {
   -moz-border-radius: 10px !important;
   -ms-border-radius: 10px !important;
   -o-border-radius: 10px !important;
+}
+
+.faq {
+  background-color: #ffdfce;
+  margin-top: 100px;
 }
 
 .faq h1 {
