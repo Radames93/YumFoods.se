@@ -21,7 +21,7 @@ public class User
     public string Country { get; set; }
     public string Cart { get; set; }
     public string Subscription { get; set; }
-    public string Password { get; set; }
+    public string PasswordHash { get; set; }
 
 }
 
