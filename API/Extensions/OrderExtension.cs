@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DataAccess.Entities;
+using DataAccess.Repositories;
+using Microsoft.AspNetCore.Builder;
 
 namespace API.Extensions
 {
@@ -19,22 +21,22 @@ namespace API.Extensions
             return app;
         }
 
-        private static async Task GetAllOrdersAsync(HttpContext context)
+        private static Task<List<Order>> GetAllOrdersAsync(OrderRepository repo)
+        {
+            return repo.GetAllOrdersAsync();
+        }
+
+        private static Task<Order?> GetOrderByIdAsync(OrderRepository repo)
         {
             throw new NotImplementedException();
         }
 
-        private static async Task GetOrderByIdAsync(HttpContext context)
+        private static async Task PostOrderAsync(OrderRepository repo)
         {
             throw new NotImplementedException();
         }
 
-        private static async Task PostOrderAsync(HttpContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static async Task DeleteOrderAsync(HttpContext context)
+        private static async Task DeleteOrderAsync(OrderRepository repo)
         {
             throw new NotImplementedException();
         }
