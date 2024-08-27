@@ -2581,7 +2581,7 @@ footer {
 }
 
 #footer-new {
-  height: 280px;
+  height: 400px;
   border-top: 1px solid #fc5633;
   border-bottom: 1px solid #fc5633;
   margin-bottom: 10px;
@@ -2592,8 +2592,13 @@ footer {
   width: 200px;
 }
 
+.footer_content {
+  margin-top: 70px;
+}
+
 .footer_logo {
   margin-left: -30px;
+  margin-top: -10px;
 }
 
 .footer_content h2 {
@@ -2606,7 +2611,7 @@ footer {
 }
 
 #contact_info {
-  margin-top: 10px;
+  margin-top: 80px;
   width: 350px;
   margin-left: -50px;
 }
