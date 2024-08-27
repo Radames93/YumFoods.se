@@ -20,7 +20,7 @@ public static class ProductExtension
 
         group.MapPut("/", UpdateProductAsync);
 
-        group.MapDelete("/{id}", DeleteProductAsync); 
+        group.MapDelete("/{id}", DeleteProductAsync);
         return app;
     }
 

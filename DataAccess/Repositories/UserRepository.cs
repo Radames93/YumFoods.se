@@ -2,7 +2,7 @@
 using DataAccess.Security;
 using Microsoft.EntityFrameworkCore;
 
-namespace DataAccess.Repositories;
+//namespace DataAccess.Repositories;
 
 public class UserRepository(YumFoodsDb context)
 {

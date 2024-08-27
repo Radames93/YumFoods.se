@@ -10,4 +10,5 @@ public class Product
     public string Description { get; set; }
     public string Ingredients { get; set; }
     public string Cuisine { get; set; }
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
 }

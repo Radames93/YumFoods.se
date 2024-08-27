@@ -1,4 +1,5 @@
-﻿using DataAccess.Repositories;
+﻿using DataAccess.Entities;
+using DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 
 namespace API.Extensions
@@ -13,19 +14,34 @@ namespace API.Extensions
 
             group.MapGet("/{id}", GetOrderByIdAsync);
 
+            group.MapPost("/{id}", PostOrderAsync);
+
+            group.MapDelete("/{id}", DeleteOrderAsync);
+
             return app;
         }
 
-        private static async Task<IResult> GetAllOrdersAsync(OrderRepository repo)
+        private static Task<List<Order>> GetAllOrdersAsync(OrderRepository repo)
+        {
+            return repo.GetAllOrdersAsync();
+        }
+
+        private static Task<Order?> GetOrderByIdAsync(OrderRepository repo)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static async Task PostOrderAsync(OrderRepository repo)
         {
             var prod = await repo.GetAllProductsAsync();
             return Results.Ok(prod);
         }
 
-        private static async Task GetOrderByIdAsync(HttpContext context)
+        private static async Task DeleteOrderAsync(OrderRepository repo)
         {
             throw new NotImplementedException();
         }
+
     }
 
 }
