@@ -21,7 +21,7 @@ public class UserRepository(YumFoodsDb context)
         return await context.User.FirstOrDefaultAsync(p => p.FirstName == name);
     }
 
-    public async Task<User?> GetUserByOrginizationAsync(int organizationNumber)
+    public async Task<User?> GetUserByOrganizationAsync(int organizationNumber)
     {
         return await context.User.FirstOrDefaultAsync(p => p.OrganizationNumber == organizationNumber);
     }
