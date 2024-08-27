@@ -38,3 +38,7 @@ C:\Users\gewer\source\repos\yumfoods.se\obj\x86\Debug\yumfoods.se.csproj.CoreCom
 C:\Users\gewer\source\repos\yumfoods.se\obj\x86\Debug\yumfoods.4D9B8029.Up2Date
 C:\Users\gewer\source\repos\yumfoods.se\obj\x86\Debug\YumFoodsBackEnd.exe
 C:\Users\gewer\source\repos\yumfoods.se\obj\x86\Debug\YumFoodsBackEnd.pdb
+C:\Users\Vivian\Documents\YF\obj\x86\Debug\yumfoods.se.csproj.AssemblyReference.cache
+C:\Users\Vivian\Documents\YF\obj\x86\Debug\yumfoods.se.csproj.CoreCompileInputs.cache
+C:\Users\Vivian\Documents\YF\obj\x86\Debug\YumFoodsBackEnd.exe
+C:\Users\Vivian\Documents\YF\obj\x86\Debug\YumFoodsBackEnd.pdb
