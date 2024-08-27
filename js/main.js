@@ -401,16 +401,7 @@ const yumProducts = (yumProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item">
-              <div class="menu_item_img">
-                <img
-                  src=` +
-          yum.img +
-          `
-                  alt="yum-meny-bild"
-                  class="img-fluid w-100"
-                  class="title"
-                  href="#"
+          <div class="menu_item"
                   data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
@@ -420,7 +411,16 @@ const yumProducts = (yumProductsList) => {
                   data-yum-ingredients=${yum.ingredients}
                   data-yum-diet=${[value]}
                   data-bs-toggle="modal"
-                  data-bs-target="#modal"
+                  data-bs-target="#modal">
+              <div class="menu_item_img">
+                <img
+                  src=` +
+          yum.img +
+          `
+                  alt="yum-meny-bild"
+                  class="img-fluid w-100"
+                  class="title"
+                  href="#"
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -451,18 +451,8 @@ const yumProducts = (yumProductsList) => {
                 >
                 <h5 class="price">` +
           yum.price +
-          `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
-          yum.id +
-          `
-          data-yum-id=${yum.id} 
-          data-yum-title=${yum.title}
-          data-yum-price=${yum.price}
-          data-yum-img=${yum.img}
-          data-yum-quantity-price=${yum.price}
-          ` +
-          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
-          `<!--
+          `kr</h5>
+          <!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -474,6 +464,18 @@ const yumProducts = (yumProductsList) => {
                 -->
               </div>
             </div>
+            ` +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+          yum.id +
+          `
+          data-yum-id=${yum.id} 
+          data-yum-title=${yum.title}
+          data-yum-price=${yum.price}
+          data-yum-img=${yum.img}
+          data-yum-quantity-price=${yum.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+          `
           </div>`
         );
       })
@@ -578,7 +580,7 @@ const dailyProducts = (dailyProductsList) => {
                 <h5 class="price">` +
           daily.price +
           `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='add_to_cart' data - id=" +
+          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='amenu_add_to_cart' data - id=" +
           daily.id +
           `
           data-yum-id=${daily.id}
@@ -704,7 +706,7 @@ const premiumProducts = (premiumProductsList) => {
                 <h5 class="price">` +
           premium.price +
           `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='add_to_cart' data-id=" +
+          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='menu_add_to_cart' data-id=" +
           premium.id +
           `
           data-yum-id=${premium.id}
@@ -830,7 +832,7 @@ const baguetterProducts = (baguetterProductsList) => {
                 <h5 class="price">` +
           baguetter.price +
           `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           baguetter.id +
           `
           data-yum-id=${baguetter.id}
@@ -918,7 +920,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                 <h5 class="price">` +
           subscription.price +
           `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           subscription.id +
           `
           data-yum-id=${subscription.id}
