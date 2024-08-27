@@ -6,7 +6,6 @@ namespace API.Extensions
     public static class SubscriptionExtension
     {
         public static IEndpointRouteBuilder MapSubscriptionEndpoints(this IEndpointRouteBuilder app)
-
         {
             var group = app.MapGroup("/subs");
 
