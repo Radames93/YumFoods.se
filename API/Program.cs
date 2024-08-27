@@ -11,8 +11,11 @@ builder.Services.AddControllers();
 
 var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
 
-// Add services to the container
-builder.Services.AddDbContext<DbContext>(options =>
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddScoped<SubscriptionRepository>();
+
+builder.Services.AddDbContext<YumFoodsDb>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddCors( options =>
@@ -39,6 +42,7 @@ var app = builder.Build();
 
 app.MapProductEndpoints();
 app.MapOrderEndpoints();
+app.MapSubscriptionEndpoints();
 
 
 app.UseHttpsRedirection();
