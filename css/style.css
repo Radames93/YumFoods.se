@@ -5587,6 +5587,16 @@ table tbody tr td span {
   -o-border-radius: 10px !important;
 }
 
+.faq h1 {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.faq h2 {
+  font-size: 25px;
+}
+
 .faq_area .accordion-item h2 button {
   background: #f3f7fb;
   color: var(--colorBlack);
@@ -5611,9 +5621,9 @@ table tbody tr td span {
 }
 
 .accordion-button::after {
-  background-image: url(../images/faq_plus.jpg);
-  width: 20px;
-  height: 20px;
+  background-image: url(../images//plus-solid.svg);
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   position: absolute;
   right: 20px;
@@ -5624,7 +5634,7 @@ table tbody tr td span {
 }
 
 .accordion-button:not(.collapsed)::after {
-  background-image: url(../images//faq_minus.jpg);
+  background-image: url(../images//minus-solid.svg);
 }
 
 .faq_area_img {
