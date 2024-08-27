@@ -24,6 +24,7 @@ var app = builder.Build();
 
 app.MapProductEndpoints();
 app.MapOrderEndpoints();
+app.MapSubscriptionEndpoints();
 
 app.UseHttpsRedirection();
 

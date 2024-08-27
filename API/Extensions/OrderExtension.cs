@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DataAccess.Entities;
+using DataAccess.Repositories;
+using Microsoft.AspNetCore.Builder;
 
 namespace API.Extensions
 {
@@ -12,6 +14,8 @@ namespace API.Extensions
 
             group.MapGet("/{id}", GetOrderByIdAsync);
 
+            //group.MapGet("/{email}", GetOrderByEmailAsync);
+
             group.MapPost("/{id}", PostOrderAsync);
 
             group.MapDelete("/{id}", DeleteOrderAsync);
@@ -19,24 +23,31 @@ namespace API.Extensions
             return app;
         }
 
-        private static async Task GetAllOrdersAsync(HttpContext context)
+        private static Task<List<Order>> GetAllOrdersAsync(OrderRepository repo)
         {
-            throw new NotImplementedException();
+            return repo.GetAllOrdersAsync();
         }
 
-        private static async Task GetOrderByIdAsync(HttpContext context)
+        private static Task GetOrderByIdAsync(OrderRepository repo, int id)
         {
-            throw new NotImplementedException();
+            return repo.GetOrderByIdAsync(id);
         }
 
-        private static async Task PostOrderAsync(HttpContext context)
+        //vänta med denna tills koppling till user db är set
+
+        //private static Task GetOrderByEmailAsync(OrderRepository repo, string email)
+        //{
+        //    return repo.GetOrderByEmailAsync(email);
+        //}
+
+        private static Task PostOrderAsync(OrderRepository repo, Order newOrder)
         {
-            throw new NotImplementedException();
+            return repo.AddOrderAsync(newOrder);
         }
 
-        private static async Task DeleteOrderAsync(HttpContext context)
+        private static Task DeleteOrderAsync(OrderRepository repo, int id)
         {
-            throw new NotImplementedException();
+            return repo.DeleteOrderAsync(id);
         }
 
     }
