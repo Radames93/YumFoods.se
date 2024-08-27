@@ -684,7 +684,7 @@
   }
 
   .footer_logo {
-    margin-left: -40px;
+    margin-left: -20px;
   }
 
   #contact_info {
@@ -1243,6 +1243,7 @@
   #contact_info {
     margin-left: 30px;
     width: 250px;
+    margin-top: 20px;
   }
 
   #contact_title {
@@ -1273,7 +1274,7 @@
   }
 
   .footer_content {
-    margin-bottom: 50px;
+    margin-top: 10px;
   }
 
   .footer_content h3 {
@@ -1903,12 +1904,16 @@
     width: 150px;
   }
 
+  .footer_content {
+    margin-top: 0px;
+  }
+
   #footer-new {
     height: 600px;
   }
 
   .footer_logo {
-    margin-left: -350px;
+    margin-left: -300px;
   }
 
   #contact_info {
@@ -1939,7 +1944,7 @@
   }
 
   #social_links {
-    margin-right: 320px;
+    margin-right: 240px;
   }
 
   #other_links {
@@ -2874,6 +2879,10 @@
     width: 150px;
   }
 
+  .footer_content {
+    margin-top: 0px;
+  }
+
   #footer-new {
     height: 600px;
     width: 100%;
@@ -2881,7 +2890,7 @@
   }
 
   .footer_logo {
-    margin-left: -220px;
+    margin-left: -250px;
   }
 
   .fa-phone {

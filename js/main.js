@@ -2281,9 +2281,9 @@ function Footer() {
               <div class="footer_content">
                   <img class="footer_logo"
                     loading="lazy"
-                    src="images/footer_logo.png"
+                    src="images/col.png"
                     alt="footer-logo"
-                    style="width: 200px; height:200px"
+                    style="width: 140px; height:200px"
                     class="mb_25"
                   />
               </div>
@@ -2355,8 +2355,8 @@ function Footer() {
               <div class="footer_content">
               <h2 id="link_title">Hjälp & Villkor</h2>
               <ul>
-                  <li><i class="fas fa-question"></i><a style="margin-top: -22px;" class="footer_links_1" href="index.html">Få snabbt svar FAQ</a></li>
-                  <li><i style="margin-top: 30px;" class="fab fa-teamspeak"></i><a style="margin-top: -22px;" class="footer_links_1" href="contact.html"> Kontakta kundservice</a></li>
+                  <li><i class="fas fa-question"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html">Få snabbt svar FAQ</a></li>
+                  <li><i style="margin-top: 30px;" class="fab fa-teamspeak"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html"> Kontakta kundservice</a></li>
                   <li><i style="margin-top: 30px;" class="fas fa-file-alt"></i><a style="margin-top: -22px;" class="footer_links_1" href="terms_condition.html">Allmänna villkor</a></li>
                   <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
                 </ul>
