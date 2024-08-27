@@ -401,7 +401,7 @@ const yumProducts = (yumProductsList) => {
               </div>
             </div>
             ` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           yum.id +
           `
           data-yum-id=${yum.id} 
@@ -516,7 +516,7 @@ const dailyProducts = (dailyProductsList) => {
                 <h5 class="price">` +
           daily.price +
           `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='add_to_cart' data - id=" +
+          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='amenu_add_to_cart' data - id=" +
           daily.id +
           `
           data-yum-id=${daily.id}
@@ -642,7 +642,7 @@ const premiumProducts = (premiumProductsList) => {
                 <h5 class="price">` +
           premium.price +
           `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='add_to_cart' data-id=" +
+          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='menu_add_to_cart' data-id=" +
           premium.id +
           `
           data-yum-id=${premium.id}
@@ -768,7 +768,7 @@ const baguetterProducts = (baguetterProductsList) => {
                 <h5 class="price">` +
           baguetter.price +
           `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           baguetter.id +
           `
           data-yum-id=${baguetter.id}
@@ -856,7 +856,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                 <h5 class="price">` +
           subscription.price +
           `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           subscription.id +
           `
           data-yum-id=${subscription.id}
