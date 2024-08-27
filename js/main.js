@@ -2291,18 +2291,18 @@ function Footer() {
               </div>
             </div>
             <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
-              <p id="contact_title">Yum Food</p>
+              <p id="contact_title">Yumfoods.se</p>
               <div class="contacts-content contacts justify-content-center w_40">
                 <div class="contacts-box">
-                <i style="color: #ff7c08; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
+                <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
                   <p style="margin-left: 10px;">+46 76 023 49 30</p>
                 </div>
                 <div class="contacts-box">
-                <i style="color: #ff7c08; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
+                <i style="color: #FC5633; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
                   <p style="margin-left: 10px;">info@yumfoods.se</p>
                 </div>
                 <div id="map-marker" class="contacts-box">
-                <i style="margin-left: 2px; color: #ff7c08; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
+                <i style="margin-left: 2px; color: #FC5633; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
                   <p id="location_address" style="margin-left: 14px;">Stora Badhusgatan 18, 411 21 Göteborg</p>
                 </div>
               </div>
@@ -2311,21 +2311,21 @@ function Footer() {
               <div class="footer_content">
               <h2>Följ oss!</h2>
                 <ul class="social_link d-flex flex-wrap mx_50">
-                  <li>
+                  <li style="margin-top: -10px; margin-left: -0px;">
                     <a
                       href="https://www.facebook.com/YumFoodsSE"
                       target="_blank"
                       aria-label="Länk till facebook sida"
                       ><i class="fab fa-facebook-f"></i
-                    ></a>
+                    ></a><p style="margin-top: 8px;">Facebook</p>
                   </li>
-                  <li>
+                  <li style="margin-top: 12px; margin-left: -10px;">
                     <a
                       href="https://www.linkedin.com/company/yum-foods/"
                       target="_blank"
                       aria-label="Länk till linkedin sida"
                       ><i class="fab fa-linkedin-in"></i
-                    ></a>
+                    ></a><p style="margin-top: 8px;">LinkedIn</p>
                   </li>
                   <!--
                   <li>
@@ -2337,13 +2337,13 @@ function Footer() {
                     <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
                   </li>
                   -->
-                  <li>
+                  <li style="margin-top: 12px;">
                     <a
                       href="https://www.instagram.com/yumfoods.se/"
                       target="_blank"
                       aria-label="Länk till instagram sida"
                       ><i class="fab fa-instagram"></i
-                    ></a>
+                    ></a><p style="margin-top: 8px;">Instagram</p>
                   </li>
                   <!--
                   <li>
@@ -2355,11 +2355,11 @@ function Footer() {
             </div>
             <div id="other_links" class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
               <div class="footer_content">
-              <h2 id="link_title">Lorem ipsum</h2>
+              <h2 id="link_title">Hjälp & Villkor</h2>
               <ul>
-                  <li><i class="fas fa-question"></i><a style="margin-top: -30px;" class="footer_links_1" href="index.html">Få snabbt svar</a><a class="footer_links_2" href="faq.html">FAQ</a></li>
-                  <li><i style="margin-top: 20px;" class="fas fa-comment"></i><a style="margin-top: -32px;" class="footer_links_1" href="contact.html">Kundservice</a><a style="margin-bottom: -30px;" class="footer_links_2" href="contact.html">Kontakta oss</a></li>
-                  <li><i style="margin-top: 50px;" class="fas fa-yin-yang"></i><a style="margin-top: -35px;" class="footer_links_1" href="terms_condition.html">Lorem ipsum</a><a style="margin-top: 10px;" class="footer_links_2" href="faq.html">Lorem ipsum</a></li>
+                  <li><i class="fas fa-question"></i><a style="margin-top: -22px;" class="footer_links_1" href="index.html">Få snabbt svar FAQ</a></li>
+                  <li><i style="margin-top: 30px;" class="fab fa-teamspeak"></i><a style="margin-top: -22px;" class="footer_links_1" href="contact.html"> Kontakta kundservice</a></li>
+                  <li><i style="margin-top: 30px;" class="fas fa-file-alt"></i><a style="margin-top: -22px;" class="footer_links_1" href="terms_condition.html">Allmänna villkor</a></li>
                   <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
                 </ul>
               </div>
