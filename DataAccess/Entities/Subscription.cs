@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Entities;
 
-internal class Subscription
+public class Subscription
 {
     public int Id { get; set; }
     public string Title { get; set; }

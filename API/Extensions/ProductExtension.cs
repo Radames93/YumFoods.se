@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DataAccess.Entities;
+using DataAccess.Repositories;
+using Microsoft.AspNetCore.Builder;
 
 namespace API.Extensions;
 
@@ -17,18 +19,17 @@ public static class ProductExtension
 
         group.MapPut("/", UpdateProductAsync);
 
-        group.MapDelete("/{id}", DeleteProductAsync); 
+        group.MapDelete("/{id}", DeleteProductAsync);
         return app;
     }
 
-    private static async Task GetAllProductsAsync(HttpContext context)
+    private static Task<List<Product>> GetAllProductsAsync(ProductRepository repo)
     {
-        throw new NotImplementedException();
+        return repo.GetAllProductsAsync();
     }
 
     private static async Task GetProductByIdAsync(HttpContext context)
     {
-        throw new NotImplementedException();
     }
 
     private static async Task GetProductByCategoryAsync(HttpContext context)
