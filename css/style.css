@@ -2078,6 +2078,11 @@ button {
 
 /* testimonial end */
 
+#location-input::placeholder {
+  color: #040404; 
+  opacity: 1;
+}
+
 .hero {
   display: flex;
   margin-top: 50px;
@@ -2094,7 +2099,7 @@ button {
 }
 
 .hero-button:hover {
-  margin-bottom: 20px;
+  margin-bottom: 2px;
 }
 
 :root {
@@ -2108,16 +2113,19 @@ button {
 .hero-button {
   background: var(--secondary);
   color: var(--white);
-  padding: 12px 40px;
+  max-height: 50px;
+  align-items: center;
+  padding: 5px 15px;
   border-radius: 10px;
-  font-size: 25px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 100;
   transition: all linear 0.3s;
   position: relative;
   cursor: pointer;
   overflow: hidden;
   border: none;
   z-index: 0;
+  margin-left: 25px;
 }
 
 .hero-description {
@@ -2126,7 +2134,7 @@ button {
   z-index: 3;
   color: var(--white);
   font-size: 25px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .hero-button:before,
@@ -2178,10 +2186,10 @@ button {
 }
 
 .hero-box {
-  filter: drop-shadow(white 1rem 1rem 10px);
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
+  top: 85px;
 }
 
 .text {

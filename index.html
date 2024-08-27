@@ -55,21 +55,28 @@
             <div
               class="hero"
               style="
-                background-image: url('../images/hero.jpg');
-                background-size: auto;
+                background-image: url('../images/hero2-.jpg');
+                background-size: cover;
+                background-position: center;
+                padding: 110px;
+                text-align: center;
               "
               alt="hero-image"
             >
-              <div class="hero-box">
+              <div class="hero-box" style="max-width: 1000px; margin: 0 auto;">
                 <p class="hero-slogan">Lite Billigare, Lika Yum</p>
-                <h1 class="hero-text">Billiga veckomåltider vid din dörr</h1>
+                <h1 class="hero-text" style="word-wrap: normal; overflow-wrap: break-word;">Billiga veckomåltider till din dörr</h1>
+                <p class="hero-slogan2" style="text-align: left;font-size: 20px;color: #110404; word-wrap: normal; overflow-wrap: break-word;" >Vi levererar endast inom Göteborgsområdet. Ange din adress för att se om vi leverera hem till dig</p>
+                <div class="address-container" style="text-align: left; margin-top: 2px;">
+                  <p style="font-size: large;"><strong>Adress</strong></p>
+                </div>
+                <div class="input-container" style="display: flex; justify-content: center; align-items: center; width: 700px;">
+                  <input type="text" id="location-input" placeholder="T.ex. Stampgatan 4, 411 03, Göteborg 📍 Hitta min plats" style="padding: 10px; color: #110404;; height:35px; border-radius: 5px; border: 1px solid #1d1a1a; flex: 1; width: 100%;">
+                  <button class="hero-button" onclick="navigateToMenuPage()" style="text-transform: none">
+                    <span class="hero-description"> Vidare till menyer <i class="fa fa-angle-right"></i> </span>
+                  </button>
+                </div> 
               </div>
-              <a href="yum_menu.html">
-                <button class="hero-button" style="text-transform: none">
-                  <span class="hero-description"> Beställ nu! </span>
-                </button></a
-              >
-            </div>
           </div>
 
           <!--

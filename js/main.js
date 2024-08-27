@@ -229,6 +229,11 @@ function toggleDropdown(){
   document.getElementById("dropdown-content").classList.toggle("show")
 }
 
+// 
+function navigateToMenuPage() {
+  window.location.href = '/yum_menu.html';
+}
+
 //Get elements from the DOM
 let yum = document.getElementById("yum");
 let daily = document.getElementById("daily");
