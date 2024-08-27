@@ -710,11 +710,13 @@ button {
 .loginBtn .navbar-nav .nav-item:hover .droap_menu {
   left: 138px;
   visibility: visible;
+  margin-top: 6px;
 }
 
 .langBtn .navbar-nav .nav-item:hover .droap_menu {
   left: 138px;
   visibility: visible;
+  margin-top: 6px;
 }
 
 /* menu end */
