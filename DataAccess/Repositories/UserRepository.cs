@@ -66,9 +66,9 @@ public class UserRepository(YumFoodsDb context)
             PasswordHash = hashedPassword,
         };
 
-        await context.User.AddAsync(user);
-        await context.SaveChangesAsync();
+//        await context.User.AddAsync(user);
+//        await context.SaveChangesAsync();
 
-    }
+//    }
 
-}
+//}
