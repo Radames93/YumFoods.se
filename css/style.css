@@ -2391,7 +2391,7 @@ footer {
 }
 
 .footer_logo {
-  margin-left: -30px;
+  margin-left: -0px;
   margin-top: -10px;
 }
 
@@ -2549,7 +2549,7 @@ footer {
 }
 
 .footer_content ul li a:hover {
-  color: var(--colorPrimary);
+  color: #fc5633;
 }
 
 .footer_social_link ul li a {
