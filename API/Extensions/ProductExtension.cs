@@ -30,7 +30,6 @@ public static class ProductExtension
 
     private static async Task GetProductByIdAsync(HttpContext context)
     {
-        throw new NotImplementedException();
     }
 
     private static async Task GetProductByCategoryAsync(HttpContext context)

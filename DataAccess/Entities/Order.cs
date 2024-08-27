@@ -6,7 +6,7 @@ public class Order
     public int UserId { get; set; }
     public DateTime OrderDate { get; set; }
     public DateTime DeliveryDate { get; set; }
-    public List<Product> Products { get; set; }
+    public ICollection<Product> Products { get; set; } = new List<Product>();
     public string DeliveryAdress { get; set; }
     public string DeliveryCity { get; set; }
     public int DeliveryPostalCode { get; set; }

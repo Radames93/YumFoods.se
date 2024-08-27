@@ -7,7 +7,7 @@ public class ProductRepository(YumFoodsDb context)
 {
     public async Task<List<Product>> GetAllProductsAsync()
     {
-        return await context.Product.Include(product => product.Id).ToListAsync();
+        return await context.Product.ToListAsync();
     }
 
     public async Task<Product?> GetProductByIdAsync(int id)

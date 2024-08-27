@@ -5,9 +5,9 @@ namespace DataAccess;
 
 public class YumFoodsUserDb : DbContext
 {
-    public YumFoodsUserDb(DbContextOptions options) : base(options)
+    public YumFoodsUserDb(DbContextOptions<YumFoodsUserDb> options) : base(options)
     {
-    
+
     }
 
     public DbSet<User> Users { get; set; }
