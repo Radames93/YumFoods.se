@@ -3820,9 +3820,12 @@
           "projectReferences": {
             "C:\\Users\\Vivian\\Documents\\YF\\DataAccess\\DataAccess.csproj": {
               "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\DataAccess\\DataAccess.csproj"
+<<<<<<< HEAD
             },
             "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj": {
               "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj"
+=======
+>>>>>>> main-backend
             }
           }
         }

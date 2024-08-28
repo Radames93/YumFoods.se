@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "PU+C+V27HLw=",
+=======
+  "dgSpecHash": "hsZWvebkCrY=",
+>>>>>>> main-backend
   "success": true,
   "projectFilePath": "C:\\Users\\Vivian\\Documents\\YF\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
