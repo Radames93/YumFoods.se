@@ -1937,7 +1937,8 @@
   }
 
   #social_links {
-    margin-right: 240px;
+    margin-right: 180px;
+    margin-top: 45px;
   }
 
   #other_links {
@@ -2901,6 +2902,7 @@
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
+    width: 100px;
   }
 
   #contact_info {
@@ -2935,6 +2937,10 @@
     margin-top: -30px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  #faq-ul {
+    margin-left: -130px;
   }
 
   #link_title {
