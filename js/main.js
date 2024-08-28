@@ -84,86 +84,169 @@ $(function () {
 //make header and footer reusable in different html pages
 function Header() {
   let header = document.getElementById("header");
+  
   header.innerHTML = `
-  <nav class="navbar navbar-expand-lg main_menu">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        <img rel="preload" as="image" src="images/logo.png" alt="logo" class="img-fluid logo" />
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fa fa-bars menu_icon_bar"></i>
-        <i class="fa fa-times close_icon_close"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#"
-              >Meny <i class="fa fa-angle-down"></i
-            ></a>
-            <ul class="droap_menu">
-              <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
-              <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
-              <li><a href="yum_menu.html">Yum</a></li>
-             <li><a href="daily_menu.html">Dagens</a></li> 
-              <li><a href="premium_menu.html">Premium</a></li> 
-            </ul>
-          </li>
-          <!--
-           <li class="nav-item">
-            <a class="nav-link" href="#"
-              >Våra tjänster <i class="fa fa-angle-down"></i
-            ></a>
-            <ul class="droap_menu">
-              <li><a href="office.html">Kontor</a></li>
-              <li><a href="private.html">Privat</a></li>
-              <li><a href="events.html">Evenemang</a></li>
-            </ul>
-          </li>
-          --
-          <!--
+  <nav class="navbar navbar-expland-lg main_menu">
+      <div class="container">
+        <div class="navbar-left"> 
+          <!--logo info-->     
+          <a class="navbar-brand" href="/">
+            <img rel="preload" as="image" src="images/logo.png" alt="logo" class="img-fluid logo" />
+          </a>
+       
+        <!-- language button-->
+        <div class="langBtn">
+          <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="subscription.html">Prenumerationer</a>
+              <a href="#" onclick="myFunction()" class="dropbtn" >
+                <span class="icone"> <i class="fa fa-globe"></i> </span>
+                <span id="current-lang">SV</span>
+                <span class="icone"> <i class="fa fa-angle-down" ></i></span>
+              </a>
+              <ul class="droap_menu">
+                <li><a href="#">Swedish</a></li>
+                <li><a href="#">English</a></li> 
+              </ul>
             </li>
-            -->
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">Om oss</a>
-          </li>
-          <!--
-            <li class="nav-item">
-              <a class="nav-link" href="blogs.html">Blog/Podcast</a>
-            </li>
-            -->
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Kontakta oss</a>
-          </li>
-        </ul>
+          </ul>
+        </div>
+
+        <!-- company button -->
+        <div class="companyBtn">
+          <button class="company" onclick="window.location.href='contact.html'"> För företag </button>
+        </div>
       </div>
-      <ul>
-      <!--
-         <li>
-              <a href="sign_in.html"><i class="fas fa-user"></i></a>
+        
+      <div class="navbar-left">
+        <!--login button-->
+        <div class="loginBtn">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="#" onclick="myFunction()" class="dropbtn" > <i class="far fa-user"></i> Logga in </a>
+              <ul class="droap_menu">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li> 
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <ul>
+        <!--
+          <li>
+                <a href="sign_in.html"><i class="fas fa-user"></i></a>
+          </li>
+          -->
+        <li>
+          <a class="cart" href="cart_view.html"
+            ><i class="fas fa-shopping-basket"></i> <span id="count"></span
+          ></a>
         </li>
-        -->
-      <li>
-        <a href="cart_view.html"
-          ><i class="fas fa-shopping-basket"></i> <span id="count"></span
-        ></a>
-      </li>
-      </ul>
-    </div>
+        </ul>
+
+        <div class="separator"></div>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa fa-bars menu_icon_bar"></i>
+          <i class="fa fa-times close_icon_close"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                >Meny <i class="fa fa-angle-down"></i
+              ></a>
+              <ul class="droap_menu">
+                <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
+                <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
+                <li><a href="yum_menu.html">Yum</a></li>
+              <li><a href="daily_menu.html">Dagens</a></li> 
+                <li><a href="premium_menu.html">Premium</a></li> 
+              </ul>
+            </li>
+            <!--
+            <li class="nav-item">
+              <a class="nav-link" href="#"
+                >Våra tjänster <i class="fa fa-angle-down"></i
+              ></a>
+              <ul class="droap_menu">
+                <li><a href="office.html">Kontor</a></li>
+                <li><a href="private.html">Privat</a></li>
+                <li><a href="events.html">Evenemang</a></li>
+              </ul>
+            </li>
+            --
+              <li class="nav-item">
+                <a class="nav-link" href="subscription.html">Prenumerationer</a>
+              </li>
+              -->
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">Om oss</a>
+            </li>
+            <!--
+              <li class="nav-item">
+                <a class="nav-link" href="blogs.html">Blog/Podcast</a>
+              </li>
+              -->
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Kontakta oss</a>
+            </li>
+          </ul>
+          </div>
+        </div>
+      </div>
   </nav>
     `;
 }
 
 Header();
+
+// js for language button in navbar
+function setLanguage(lang) {
+
+  document.getElementById("current-lang").textContent = lang.toUpperCase();
+  var elements = document.querySelectorAll("[data-lang-en]");
+  elements.forEach(function (element) {
+    if (lang === "en") {
+      element.textContent = element.getAttribute("data-lang-en");
+    } else if (lang === "sv") {
+      element.textContent = element.getAttribute("data-lang-sv");
+    }
+  });
+  closeDropdown();
+}
+function closeDropdown() {
+  document.getElementById("dropdown-content").classList.remove("show");
+}
+function toggleDropdown() {
+  document.getElementById("dropdown-content").classList.toggle("show");
+
+  document.getElementById('current-lang').textContent = lang.toUpperCase();
+  var elements = document.querySelectorAll('[data-lang-en]');
+  elements.forEach(function(element) {
+      if(lang === 'en') {
+          element.textContent = element.getAttribute('data-lang-en');
+      } else if(lang === 'sv') {
+          element.textContent = element.getAttribute('data-lang-sv');
+      }
+  });
+  closeDropdown();
+}
+function closeDropdown(){
+  document.getElementById("dropdown-content").classList.remove("show")
+}
+function toggleDropdown(){
+  document.getElementById("dropdown-content").classList.toggle("show")
+
+}
 
 //Get elements from the DOM
 let yum = document.getElementById("yum");
@@ -2214,34 +2297,54 @@ function Footer() {
   footer.innerHTML = `
       <div class="pt_20 xs_pt_20">
         <div class="container">
-          <div class="row justify-content-around pt_50">
-            <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-5">
+          <div id="footer-new" class="row justify-content-around pt_50">
+            <div class="col-xxl-2 col-lg-2 col-sm-9 col-md-5">
               <div class="footer_content">
-                <a class="footer_logo" href="/">
-                  <img
+                  <img class="footer_logo"
                     loading="lazy"
-                    src="images/footer_logo_group.png"
+                    src="images/col.png"
                     alt="footer-logo"
-                    style="width: 150px; height:93px"
+                    style="width: 140px; height:200px"
                     class="mb_25"
                   />
-                </a>
+              </div>
+            </div>
+            <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
+              <p id="contact_title">Yumfoods.se</p>
+              <div class="contacts-content contacts justify-content-center w_40">
+                <div class="contacts-box">
+                <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
+                  <p style="margin-left: 10px;">+46 76 023 49 30</p>
+                </div>
+                <div class="contacts-box">
+                <i style="color: #FC5633; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
+                  <p style="margin-left: 10px;">info@yumfoods.se</p>
+                </div>
+                <div id="map-marker" class="contacts-box">
+                <i style="margin-left: 2px; color: #FC5633; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
+                  <p id="location_address" style="margin-left: 14px;">Stora Badhusgatan 18, 411 21 Göteborg</p>
+                </div>
+              </div>
+            </div>
+            <div id="social_links" class="col-xxl-3 col-lg-2 col-sm-5 col-md-4">
+              <div class="footer_content">
+              <h2>Följ oss!</h2>
                 <ul class="social_link d-flex flex-wrap mx_50">
-                  <li>
+                  <li style="margin-top: -10px; margin-left: -0px;">
                     <a
                       href="https://www.facebook.com/YumFoodsSE"
                       target="_blank"
                       aria-label="Länk till facebook sida"
                       ><i class="fab fa-facebook-f"></i
-                    ></a>
+                    ></a><p style="margin-top: 8px;">Facebook</p>
                   </li>
-                  <li>
+                  <li style="margin-top: 12px; margin-left: -10px;">
                     <a
                       href="https://www.linkedin.com/company/yum-foods/"
                       target="_blank"
                       aria-label="Länk till linkedin sida"
                       ><i class="fab fa-linkedin-in"></i
-                    ></a>
+                    ></a><p style="margin-top: 8px;">LinkedIn</p>
                   </li>
                   <!--
                   <li>
@@ -2253,13 +2356,13 @@ function Footer() {
                     <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
                   </li>
                   -->
-                  <li>
+                  <li style="margin-top: 12px;">
                     <a
                       href="https://www.instagram.com/yumfoods.se/"
                       target="_blank"
                       aria-label="Länk till instagram sida"
                       ><i class="fab fa-instagram"></i
-                    ></a>
+                    ></a><p style="margin-top: 8px;">Instagram</p>
                   </li>
                   <!--
                   <li>
@@ -2269,49 +2372,16 @@ function Footer() {
                 </ul>
               </div>
             </div>
-            <div class="col-xxl-2 col-lg-2 col-sm-5 col-md-4">
+            <div id="other_links" class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
               <div class="footer_content">
-                <ul>
-                  <li><a href="index.html">Hem</a></li>
-                  <li><a href="about.html">Om oss</a></li>
-                  <li><a href="contact.html">Kontakta oss</a></li>
-                  <li><a href="certificates.html">Certifikat</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
-              <div class="footer_content">
-                <ul>
-                  <li><a href="terms_condition.html">Allmänna villkor</a></li>
+              <h2 id="link_title">Hjälp & Villkor</h2>
+              <ul id="faq-ul">
+                  <li><i class="fas fa-question"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html">Få snabbt svar FAQ</a></li>
+                  <li><i style="margin-top: 30px;" class="fab fa-teamspeak"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html"> Kontakta kundservice</a></li>
+                  <li><i style="margin-top: 30px;" class="fas fa-file-alt"></i><a style="margin-top: -22px;" class="footer_links_1" href="terms_condition.html">Allmänna villkor</a></li>
                   <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
-                  <li>
-                    <a href="faq.html">FAQ</a>
-                  </li>
                 </ul>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row text-center">
-        <div class="col-md-12 col-lg-12 col-xl-12">
-          <div class="contacts-content contacts justify-content-center w_100">
-            <div class="contacts-box">
-              <img loading="lazy" class="telefon-bild" src="./images/phone.png" alt="phone" />
-              <p>+46 76 023 49 30</p>
-            </div>
-            <div class="contacts-box">
-              <img loading="lazy" class="melj-bild" src="./images/mail.png" alt="mail" />
-              <p>info@yumfoods.se</p>
-            </div>
-            <div class="contacts-box">
-              <img
-                loading="lazy"
-                class="contacts-img"
-                src="./images/location-marker.png"
-                alt="läge-bild"
-              />
-              <p>Stora Badhusgatan 18, 411 21 Göteborg</p>
             </div>
           </div>
         </div>
