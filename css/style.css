@@ -5211,10 +5211,16 @@ table tbody tr td span {
   font-size: 50px;
   text-align: center;
   margin-bottom: 70px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
 }
 
 .faq h2 {
   font-size: 25px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
 }
 
 .faq_area .accordion-item h2 button {
