@@ -84,7 +84,7 @@ $(function () {
 //make header and footer reusable in different html pages
 function Header() {
   let header = document.getElementById("header");
-
+  
   header.innerHTML = `
   <nav class="navbar navbar-expland-lg main_menu">
       <div class="container">
@@ -211,6 +211,7 @@ Header();
 
 // js for language button in navbar
 function setLanguage(lang) {
+
   document.getElementById("current-lang").textContent = lang.toUpperCase();
   var elements = document.querySelectorAll("[data-lang-en]");
   elements.forEach(function (element) {
@@ -227,6 +228,24 @@ function closeDropdown() {
 }
 function toggleDropdown() {
   document.getElementById("dropdown-content").classList.toggle("show");
+
+  document.getElementById('current-lang').textContent = lang.toUpperCase();
+  var elements = document.querySelectorAll('[data-lang-en]');
+  elements.forEach(function(element) {
+      if(lang === 'en') {
+          element.textContent = element.getAttribute('data-lang-en');
+      } else if(lang === 'sv') {
+          element.textContent = element.getAttribute('data-lang-sv');
+      }
+  });
+  closeDropdown();
+}
+function closeDropdown(){
+  document.getElementById("dropdown-content").classList.remove("show")
+}
+function toggleDropdown(){
+  document.getElementById("dropdown-content").classList.toggle("show")
+
 }
 
 //Get elements from the DOM
