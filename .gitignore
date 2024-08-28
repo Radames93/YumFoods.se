@@ -107,6 +107,13 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 _NCrunch*
+# Ignore Visual Studio files
+.vs/
+
+# Ignore build output directories
+bin/
+obj/
+
 
 
 
