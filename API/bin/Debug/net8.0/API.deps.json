@@ -744,6 +744,7 @@
           "Microsoft.EntityFrameworkCore": "8.0.8",
           "Microsoft.Extensions.DependencyInjection": "8.0.0",
           "MySql.Data": "9.0.0",
+          "Shared": "1.0.0",
           "yumfoods.se": "1.0.0"
         },
         "runtime": {

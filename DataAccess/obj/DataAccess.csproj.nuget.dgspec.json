@@ -33,12 +33,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-<<<<<<< HEAD
               "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj": {
                 "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj"
               },
-=======
->>>>>>> main-backend
               "C:\\Users\\Vivian\\Documents\\YF\\yumfoods.se.csproj": {
                 "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\yumfoods.se.csproj"
               }
@@ -103,7 +100,6 @@
         }
       }
     },
-<<<<<<< HEAD
     "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -171,10 +167,6 @@
     },
     "C:\\Users\\Vivian\\Documents\\YF\\yumfoods.se.csproj": {
       "restore": {
-=======
-    "C:\\Users\\Vivian\\Documents\\YF\\yumfoods.se.csproj": {
-      "restore": {
->>>>>>> main-backend
         "projectUniqueName": "C:\\Users\\Vivian\\Documents\\YF\\yumfoods.se.csproj",
         "projectName": "yumfoods.se",
         "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\yumfoods.se.csproj",

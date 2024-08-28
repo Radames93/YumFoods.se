@@ -14,7 +14,7 @@ public static class UserExtension
         group.MapGet("/email", GetUserByEmailAsync);
         group.MapGet("/organization", GetUserByOrganizationAsync);
 
-        group.MapGet("/login", LoginUserAsync);
+        //group.MapGet("/login", LoginUserAsync);
 
         group.MapPost("/", AddUserAsync);
 
@@ -48,11 +48,11 @@ public static class UserExtension
         return Results.Ok(user);
     }
 
-    private static async Task<IResult> LoginUserAsync(AuthenticationService auth, string email, string password)
-    {
-        var user = await auth.LoginUserAsync(email, password);
-        return Results.Ok(user);
-    }
+    //private static async Task<IResult> LoginUserAsync(AuthenticationService auth, string email, string password)
+    //{
+    //    var user = await auth.LoginUserAsync(email, password);
+    //    return Results.Ok(user);
+    //}
 
     // FIXA DESSA TVÅ UNDER
 
