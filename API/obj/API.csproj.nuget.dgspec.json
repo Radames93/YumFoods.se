@@ -132,6 +132,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj"
+              },
               "C:\\Users\\Vivian\\Documents\\YF\\yumfoods.se.csproj": {
                 "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\yumfoods.se.csproj"
               }

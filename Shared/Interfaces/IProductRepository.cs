@@ -1,6 +1,6 @@
 ﻿namespace Shared.Interfaces;
 
-public interface IProductRepository
+public interface IProductRepository<T> where T : class
 {
     
 }

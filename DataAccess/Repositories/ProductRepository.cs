@@ -1,9 +1,10 @@
 ﻿using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
+using Shared.Interfaces;
 
 namespace DataAccess.Repositories;
 
-public class ProductRepository(YumFoodsDb context)
+public class ProductRepository(YumFoodsDb context) : IProductRepository<Product>
 {
     public async Task<List<Product>> GetAllProductsAsync()
     {
