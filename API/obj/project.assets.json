@@ -3695,7 +3695,8 @@
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 8.0.8",
       "Microsoft.EntityFrameworkCore >= 8.0.8",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.8",
-      "Pomelo.EntityFrameworkCore.MySql >= 8.0.2"
+      "Pomelo.EntityFrameworkCore.MySql >= 8.0.2",
+      "Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3731,6 +3732,9 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+            "C:\\Users\\gewer\\source\\repos\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\gewer\\source\\repos\\Shared\\Shared.csproj"
+            },
             "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\DataAccess\\DataAccess.csproj": {
               "projectPath": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\DataAccess\\DataAccess.csproj"
             }

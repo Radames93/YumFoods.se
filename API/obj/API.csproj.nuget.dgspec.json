@@ -98,6 +98,9 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\gewer\\source\\repos\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\gewer\\source\\repos\\Shared\\Shared.csproj"
+              },
               "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\DataAccess\\DataAccess.csproj": {
                 "projectPath": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\DataAccess\\DataAccess.csproj"
               }

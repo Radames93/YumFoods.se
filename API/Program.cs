@@ -2,6 +2,7 @@ using API.Extensions;
 using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Shared.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,7 @@ var connectionString = Environment.GetEnvironmentVariable("YumFoodsDbConnectionS
 var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnectionString");
 
 builder.Services.AddScoped<ProductRepository>();
-builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<SubscriptionRepository>();
 builder.Services.AddScoped<UserRepository>();
 
