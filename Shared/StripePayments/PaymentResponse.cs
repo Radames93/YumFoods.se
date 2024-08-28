@@ -1,6 +1,6 @@
 ﻿namespace Shared.StripePayments;
 
-public class StripeResponse
+public class PaymentResponse
 {
     public string CheckoutUrl { get; set; }
 }

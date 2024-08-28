@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using Shared.StripePayments;
 using Stripe;
 using Stripe.Checkout;
 
@@ -19,11 +20,8 @@ public class StripeClient
         StripeConfiguration.ApiKey = _stripeConfig.SecretKey;
     }
 
-    public async Task<string> Checkout(StripeRequest request)
+    public async Task<string> Checkout(PaymentRequest request)
     {
-        Console.WriteLine("hej");
-        return String.Empty;
-
         var options = new SessionCreateOptions()
         {
             Mode = "payment",
@@ -33,10 +31,28 @@ public class StripeClient
                 "card",
                 "swish",
                 "klarna",
+                "apple_pay",
                 "paypal"
             },
+            SuccessUrl = request.SuccessPaymentUrl,
+            CancelUrl = request.CancelPaymentUrl,
+            LineItems = request.Products.Select(product => new SessionLineItemOptions()
+            {
+                Quantity = product.Quantity,
+                PriceData = new SessionLineItemPriceDataOptions()
+                {
+                    Currency = "sek",
+                    UnitAmount = (long)Math.Round(product.Price) * 100,
+                    ProductData = new SessionLineItemPriceDataProductDataOptions()
+                    {
+                        Name = product.Name
+                    }
 
-
+                }
+            }).ToList()
         };
+
+        var checkoutSession = await new SessionService().CreateAsync(options);
+        return checkoutSession.Url;
     }
 }

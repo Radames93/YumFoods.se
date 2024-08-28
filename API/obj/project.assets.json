@@ -1316,6 +1316,16 @@
           "bin/placeholder/DataAccess.dll": {}
         }
       },
+      "Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Shared.dll": {}
+        }
+      },
       "yumfoods.se/1.0.0": {
         "type": "project",
         "compile": {
@@ -3752,6 +3762,11 @@
       "path": "../DataAccess/DataAccess.csproj",
       "msbuildProject": "../DataAccess/DataAccess.csproj"
     },
+    "Shared/1.0.0": {
+      "type": "project",
+      "path": "../Shared/Shared.csproj",
+      "msbuildProject": "../Shared/Shared.csproj"
+    },
     "yumfoods.se/1.0.0": {
       "type": "project",
       "path": "../yumfoods.se.csproj",
@@ -3765,6 +3780,7 @@
       "Microsoft.EntityFrameworkCore >= 8.0.8",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.8",
       "Pomelo.EntityFrameworkCore.MySql >= 8.0.2",
+      "Shared >= 1.0.0",
       "Stripe.net >= 45.9.0"
     ]
   },
@@ -3803,6 +3819,9 @@
           "projectReferences": {
             "C:\\Users\\Vivian\\Documents\\YF\\DataAccess\\DataAccess.csproj": {
               "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\DataAccess\\DataAccess.csproj"
+            },
+            "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj"
             }
           }
         }
