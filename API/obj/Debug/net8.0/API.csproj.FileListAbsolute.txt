@@ -123,3 +123,4 @@ C:\Users\gewer\source\repos\yumfoods.se\API\obj\Debug\net8.0\refint\API.dll
 C:\Users\gewer\source\repos\yumfoods.se\API\obj\Debug\net8.0\API.pdb
 C:\Users\gewer\source\repos\yumfoods.se\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 C:\Users\gewer\source\repos\yumfoods.se\API\obj\Debug\net8.0\ref\API.dll
+C:\Users\gewer\source\repos\yumfoods.se\API\bin\Debug\net8.0\BCrypt.Net-Next.dll

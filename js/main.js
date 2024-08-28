@@ -84,12 +84,68 @@ $(function () {
 //make header and footer reusable in different html pages
 function Header() {
   let header = document.getElementById("header");
+  
   header.innerHTML = `
   <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
+        <div class="navbar-left"> 
+          <!--logo info-->     
       <a class="navbar-brand" href="/">
         <img rel="preload" as="image" src="images/logo.png" alt="logo" class="img-fluid logo" />
       </a>
+       
+        <!-- language button-->
+        <div class="langBtn">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="#" onclick="myFunction()" class="dropbtn" >
+                <span class="icone"> <i class="fa fa-globe"></i> </span>
+                <span id="current-lang">SV</span>
+                <span class="icone"> <i class="fa fa-angle-down" ></i></span>
+              </a>
+              <ul class="droap_menu">
+                <li><a href="#">Swedish</a></li>
+                <li><a href="#">English</a></li> 
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <!-- company button -->
+        <div class="companyBtn">
+          <button class="company" onclick="window.location.href='contact.html'"> För företag </button>
+        </div>
+      </div>
+        
+      <div class="navbar-left">
+        <!--login button-->
+        <div class="loginBtn">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="#" onclick="myFunction()" class="dropbtn" > <i class="far fa-user"></i> Logga in </a>
+              <ul class="droap_menu">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li> 
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <ul>
+        <!--
+          <li>
+                <a href="sign_in.html"><i class="fas fa-user"></i></a>
+          </li>
+          -->
+        <li>
+          <a class="cart" href="cart_view.html"
+            ><i class="fas fa-shopping-basket"></i> <span id="count"></span
+          ></a>
+        </li>
+        </ul>
+
+        <div class="separator"></div>
+
       <button
         class="navbar-toggler"
         type="button"
@@ -159,11 +215,51 @@ function Header() {
       </li>
       </ul>
     </div>
+      </div>
   </nav>
     `;
 }
 
 Header();
+
+// js for language button in navbar
+function setLanguage(lang) {
+
+  document.getElementById("current-lang").textContent = lang.toUpperCase();
+  var elements = document.querySelectorAll("[data-lang-en]");
+  elements.forEach(function (element) {
+    if (lang === "en") {
+      element.textContent = element.getAttribute("data-lang-en");
+    } else if (lang === "sv") {
+      element.textContent = element.getAttribute("data-lang-sv");
+    }
+  });
+  closeDropdown();
+}
+function closeDropdown() {
+  document.getElementById("dropdown-content").classList.remove("show");
+}
+function toggleDropdown() {
+  document.getElementById("dropdown-content").classList.toggle("show");
+
+  document.getElementById('current-lang').textContent = lang.toUpperCase();
+  var elements = document.querySelectorAll('[data-lang-en]');
+  elements.forEach(function(element) {
+      if(lang === 'en') {
+          element.textContent = element.getAttribute('data-lang-en');
+      } else if(lang === 'sv') {
+          element.textContent = element.getAttribute('data-lang-sv');
+      }
+  });
+  closeDropdown();
+}
+function closeDropdown(){
+  document.getElementById("dropdown-content").classList.remove("show")
+}
+function toggleDropdown(){
+  document.getElementById("dropdown-content").classList.toggle("show")
+
+}
 
 //Get elements from the DOM
 let yum = document.getElementById("yum");
@@ -411,6 +507,18 @@ const yumProducts = (yumProductsList) => {
                 -->
               </div>
             </div>
+            ` +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+          yum.id +
+          `
+          data-yum-id=${yum.id} 
+          data-yum-title=${yum.title}
+          data-yum-price=${yum.price}
+          data-yum-img=${yum.img}
+          data-yum-quantity-price=${yum.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+          `
           </div>`
         );
       })

@@ -14,6 +14,7 @@ var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnec
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<OrderRepository>();
 builder.Services.AddScoped<SubscriptionRepository>();
+builder.Services.AddScoped<UserRepository>();
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -26,6 +27,7 @@ var app = builder.Build();
 app.MapProductEndpoints();
 app.MapOrderEndpoints();
 app.MapSubscriptionEndpoints();
+app.MapUserEndpoints();
 
 app.UseHttpsRedirection();
 

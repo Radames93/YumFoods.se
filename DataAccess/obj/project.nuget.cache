@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+P6Hb+jM+g+mf2eRoHkZpK4KM1QpaMF4eBvWEwMeobtjVnz+xD3oFziROxMiIaBEJbtB3pXwqfocXwlIH9F5BQ==",
+  "dgSpecHash": "R/5FRSwoQIsfro4xLuBydAe5U49rnohu6fAjCzzQtamYGw1urspxv9ERBwFi7Wv2ndRQUoPxRrlNnisi+XGQhA==",
   "success": true,
   "projectFilePath": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\DataAccess\\DataAccess.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\gewer\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\gewer\\.nuget\\packages\\bouncycastle.cryptography\\2.3.1\\bouncycastle.cryptography.2.3.1.nupkg.sha512",
     "C:\\Users\\gewer\\.nuget\\packages\\google.protobuf\\3.26.1\\google.protobuf.3.26.1.nupkg.sha512",
     "C:\\Users\\gewer\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
