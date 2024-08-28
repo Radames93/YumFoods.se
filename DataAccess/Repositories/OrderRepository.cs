@@ -5,7 +5,7 @@ namespace DataAccess.Repositories
 {
     public class OrderRepository(YumFoodsDb context)
     {
-        public async Task<List<Order>> GetAllOrdersAsync()
+        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
         {
             return await context.Order.ToListAsync();
         }

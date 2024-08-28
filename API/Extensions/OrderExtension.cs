@@ -21,7 +21,7 @@ namespace API.Extensions
             return app;
         }
 
-        private static Task<List<Order>> GetAllOrdersAsync(OrderRepository repo)
+        private static Task<IEnumerable<Order>> GetAllOrdersAsync(OrderRepository repo)
         {
             return repo.GetAllOrdersAsync();
         }
@@ -31,9 +31,9 @@ namespace API.Extensions
             throw new NotImplementedException();
         }
 
-        private static async Task PostOrderAsync(OrderRepository repo)
+        private static async Task<IResult> PostOrderAsync(OrderRepository repo)
         {
-            var prod = await repo.GetAllProductsAsync();
+            var prod = await repo.GetAllOrdersAsync();
             return Results.Ok(prod);
         }
 
