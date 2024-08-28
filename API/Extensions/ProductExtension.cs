@@ -1,5 +1,7 @@
 ﻿using DataAccess.Entities;
 using DataAccess.Repositories;
+using Microsoft.AspNetCore.Builder;
+using System.Net.WebSockets;
 
 namespace API.Extensions;
 
@@ -13,7 +15,7 @@ public static class ProductExtension
         group.MapGet("/{id}", GetProductByIdAsync);
         group.MapGet("/category", GetProductByCategoryAsync); //category
         group.MapGet("/cuisine", GetProductByCuisineAsync); //cuisine
-
+        
         group.MapPost("/", AddProductAsync);
 
         group.MapPut("/", UpdateProductAsync);
@@ -43,14 +45,14 @@ public static class ProductExtension
     private static async Task<IResult> GetProductByCuisineAsync(ProductRepository repo, string cuisine)
     {
         var prod = await repo.GetProductByCuisineAsync(cuisine);
-        return Results.Ok(prod);
+        return Results.Ok(cuisine);
     }
 
     private static async Task<IResult> AddProductAsync(ProductRepository repo, Product newProd)
     {
-
+      
         var exisitngProd = await repo.GetProductByIdAsync(newProd.Id);
-        if (exisitngProd is not null)
+        if(exisitngProd is not null)
         {
             return Results.BadRequest($"Product with id {exisitngProd} already exists");
         }
@@ -62,7 +64,7 @@ public static class ProductExtension
     private static async Task<IResult> UpdateProductAsync(ProductRepository repo, int id, Product updatedProd)
     {
         var exisitngProd = await repo.GetProductByIdAsync(updatedProd.Id);
-        if (exisitngProd is not null)
+        if(exisitngProd is not null)
         {
             return Results.BadRequest($"Product with id {exisitngProd} already exists");
         }

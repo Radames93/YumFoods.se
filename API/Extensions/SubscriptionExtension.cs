@@ -1,23 +1,17 @@
 ﻿using DataAccess.Entities;
-using DataAccess.Repositories;
-
-namespace API.Extensions
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace DataAccess.Repositories
 {
-    public static class SubscriptionExtension
+    public class SubscriptionRepository(YumFoodsDb context)
     {
-        public static IEndpointRouteBuilder MapSubscriptionEndpoints(this IEndpointRouteBuilder app)
+        public async Task<List<Subscription>> GetAllSubscriptionsAsync()
         {
-            var group = app.MapGroup("/subs");
-
-            group.MapGet("/", GetAllSubscriptionsAsync);
-
-            return app;
-
-        }
-
-        private static Task<List<Subscription>> GetAllSubscriptionsAsync(SubscriptionRepository repo)
-        {
-            return repo.GetAllSubscriptionsAsync();
+            return await context.Subscription.ToListAsync();
         }
     }
 }

@@ -3584,8 +3584,13 @@
     },
     "Shared/1.0.0": {
       "type": "project",
+<<<<<<< HEAD
       "path": "../../Shared/Shared.csproj",
       "msbuildProject": "../../Shared/Shared.csproj"
+=======
+      "path": "../Shared/Shared.csproj",
+      "msbuildProject": "../Shared/Shared.csproj"
+>>>>>>> 31c542aa52040b79356e6cf1a939a5feb013bdf2
     },
     "yumfoods.se/1.0.0": {
       "type": "project",
@@ -3605,23 +3610,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gewer\\.nuget\\packages\\": {},
+    "C:\\Users\\Vivian\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\DataAccess\\DataAccess.csproj",
+      "projectUniqueName": "C:\\Users\\Vivian\\Documents\\YF\\DataAccess\\DataAccess.csproj",
       "projectName": "DataAccess",
-      "projectPath": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\DataAccess\\DataAccess.csproj",
-      "packagesPath": "C:\\Users\\gewer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\DataAccess\\obj\\",
+      "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\DataAccess\\DataAccess.csproj",
+      "packagesPath": "C:\\Users\\Vivian\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vivian\\Documents\\YF\\DataAccess\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\gewer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vivian\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3637,11 +3642,19 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
+<<<<<<< HEAD
             "C:\\Users\\gewer\\source\\repos\\Shared\\Shared.csproj": {
               "projectPath": "C:\\Users\\gewer\\source\\repos\\Shared\\Shared.csproj"
             },
             "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\yumfoods.se.csproj": {
               "projectPath": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\yumfoods.se.csproj"
+=======
+            "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj"
+            },
+            "C:\\Users\\Vivian\\Documents\\YF\\yumfoods.se.csproj": {
+              "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\yumfoods.se.csproj"
+>>>>>>> 31c542aa52040b79356e6cf1a939a5feb013bdf2
             }
           }
         }
@@ -3700,7 +3713,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -14,8 +14,6 @@ namespace API.Extensions
 
             group.MapGet("/{id}", GetOrderByIdAsync);
 
-            //group.MapGet("/{email}", GetOrderByEmailAsync);
-
             group.MapPost("/{id}", PostOrderAsync);
 
             group.MapDelete("/{id}", DeleteOrderAsync);
@@ -23,31 +21,25 @@ namespace API.Extensions
             return app;
         }
 
-        private static Task<List<Order>> GetAllOrdersAsync(OrderRepository repo)
+        private static Task<IEnumerable<Order>> GetAllOrdersAsync(OrderRepository repo)
         {
             return repo.GetAllOrdersAsync();
         }
 
-        private static Task GetOrderByIdAsync(OrderRepository repo, int id)
+        private static Task<Order?> GetOrderByIdAsync(OrderRepository repo)
         {
-            return repo.GetOrderByIdAsync(id);
+            throw new NotImplementedException();
         }
 
-        //vänta med denna tills koppling till user db är set
-
-        //private static Task GetOrderByEmailAsync(OrderRepository repo, string email)
-        //{
-        //    return repo.GetOrderByEmailAsync(email);
-        //}
-
-        private static Task PostOrderAsync(OrderRepository repo, Order newOrder)
+        private static async Task<IResult> PostOrderAsync(OrderRepository repo)
         {
-            return repo.AddOrderAsync(newOrder);
+            var prod = await repo.GetAllOrdersAsync();
+            return Results.Ok(prod);
         }
 
-        private static Task DeleteOrderAsync(OrderRepository repo, int id)
+        private static async Task DeleteOrderAsync(OrderRepository repo)
         {
-            return repo.DeleteOrderAsync(id);
+            throw new NotImplementedException();
         }
 
     }
