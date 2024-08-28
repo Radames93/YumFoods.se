@@ -228,7 +228,6 @@ function closeDropdown(){
 function toggleDropdown(){
   document.getElementById("dropdown-content").classList.toggle("show")
 }
-
 // 
 function navigateToMenuPage() {
   window.location.href = '/yum_menu.html';
