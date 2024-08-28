@@ -4,7 +4,7 @@ using Shared.Interfaces;
 
 namespace DataAccess.Repositories;
 
-public class ProductRepository(YumFoodsDb context) : IProductRepository<Product>
+public class ProductRepository(YumFoodsDb context)
 {
     public async Task<List<Product>> GetAllProductsAsync()
     {
