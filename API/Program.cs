@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 
 // Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
@@ -23,7 +24,7 @@ var app = builder.Build();
 
 app.MapProductEndpoints();
 app.MapOrderEndpoints();
-app.MapSubscriptionEndpoints();
+//app.MapSubscriptionEndpoints();
 app.MapUserEndpoints();
 
 app.UseHttpsRedirection();
@@ -31,7 +32,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseRouting();
 app.MapControllers();
-
-app.MapProductEndpoints();
 
 app.Run();
