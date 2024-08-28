@@ -1,11 +1,12 @@
-﻿using DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Shared.Entities;
+using Shared.Interfaces;
 
 namespace DataAccess.Repositories
 {
-    public class OrderRepository(YumFoodsDb context)
+    public class OrderRepository(YumFoodsDb context) : IOrderRepository
     {
-        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
+        public async Task<List<Order>> GetAllOrdersAsync()
         {
             return await context.Order.ToListAsync();
         }

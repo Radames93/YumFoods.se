@@ -1,17 +1,14 @@
-﻿using DataAccess.Entities;
+﻿using DataAccess;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace DataAccess.Repositories
+using Shared.Entities;
+
+namespace API.Extensions
 {
     public class SubscriptionRepository(YumFoodsDb context)
     {
-        public async Task<List<Subscription>> GetAllSubscriptionsAsync()
-        {
-            return await context.Subscription.ToListAsync();
-        }
+        //public async Task<List<Subscription>> GetAllSubscriptionsAsync()
+        //{
+        //    return await context.Subscription.ToListAsync();
+        //}
     }
 }

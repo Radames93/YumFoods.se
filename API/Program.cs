@@ -3,6 +3,7 @@ using API.Stripe;
 using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
+using SubscriptionRepository = API.Extensions.SubscriptionRepository;
 
 
 // Add services to the container.

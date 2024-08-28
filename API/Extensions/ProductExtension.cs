@@ -1,7 +1,8 @@
-﻿using DataAccess.Entities;
-using DataAccess.Repositories;
+﻿using DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
 using System.Net.WebSockets;
+using Shared.Entities;
+using Shared.Interfaces;
 
 namespace API.Extensions;
 
@@ -24,31 +25,31 @@ public static class ProductExtension
         return app;
     }
 
-    private static async Task<IResult> GetAllProductsAsync(ProductRepository repo)
+    private static async Task<IResult> GetAllProductsAsync(IProductRepository repo)
     {
         var prod = await repo.GetAllProductsAsync();
         return Results.Ok(prod);
     }
 
-    private static async Task<IResult> GetProductByIdAsync(ProductRepository repo, int id)
+    private static async Task<IResult> GetProductByIdAsync(IProductRepository repo, int id)
     {
         var prod = await repo.GetProductByIdAsync(id);
         return Results.Ok(prod);
     }
 
-    private static async Task<IResult> GetProductByCategoryAsync(ProductRepository repo, string category)
+    private static async Task<IResult> GetProductByCategoryAsync(IProductRepository repo, string category)
     {
         var prod = await repo.GetProductByCategoryAsync(category);
         return Results.Ok(prod);
     }
 
-    private static async Task<IResult> GetProductByCuisineAsync(ProductRepository repo, string cuisine)
+    private static async Task<IResult> GetProductByCuisineAsync(IProductRepository repo, string cuisine)
     {
         var prod = await repo.GetProductByCuisineAsync(cuisine);
         return Results.Ok(cuisine);
     }
 
-    private static async Task<IResult> AddProductAsync(ProductRepository repo, Product newProd)
+    private static async Task<IResult> AddProductAsync(IProductRepository repo, Product newProd)
     {
       
         var exisitngProd = await repo.GetProductByIdAsync(newProd.Id);
@@ -61,7 +62,7 @@ public static class ProductExtension
         return Results.Ok();
     }
 
-    private static async Task<IResult> UpdateProductAsync(ProductRepository repo, int id, Product updatedProd)
+    private static async Task<IResult> UpdateProductAsync(IProductRepository repo, int id, Product updatedProd)
     {
         var exisitngProd = await repo.GetProductByIdAsync(updatedProd.Id);
         if(exisitngProd is not null)
@@ -73,7 +74,7 @@ public static class ProductExtension
         return Results.Ok();
     }
 
-    private static async Task<IResult> DeleteProductAsync(ProductRepository repo, int id)
+    private static async Task<IResult> DeleteProductAsync(IProductRepository repo, int id)
     {
         await repo.DeleteProductAsync(id);
         return Results.Ok();

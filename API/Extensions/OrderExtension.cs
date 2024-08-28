@@ -1,6 +1,7 @@
-﻿using DataAccess.Entities;
-using DataAccess.Repositories;
+﻿using DataAccess.Repositories;
 using Microsoft.AspNetCore.Builder;
+using Shared.Entities;
+using Shared.Interfaces;
 
 namespace API.Extensions
 {
@@ -21,25 +22,34 @@ namespace API.Extensions
             return app;
         }
 
-        private static Task<IEnumerable<Order>> GetAllOrdersAsync(OrderRepository repo)
+        private static async Task<List<Order>> GetAllOrdersAsync(IOrderRepository repo)
         {
-            return repo.GetAllOrdersAsync();
+            return await repo.GetAllOrdersAsync();
         }
 
-        private static Task<Order?> GetOrderByIdAsync(OrderRepository repo)
+        private static async Task<IResult> GetOrderByIdAsync(IOrderRepository repo, int id)
         {
-            throw new NotImplementedException();
-        }
-
-        private static async Task<IResult> PostOrderAsync(OrderRepository repo)
-        {
-            var prod = await repo.GetAllOrdersAsync();
+            var prod = await repo.GetOrderByIdAsync(id);
             return Results.Ok(prod);
         }
 
-        private static async Task DeleteOrderAsync(OrderRepository repo)
+        private static async Task<IResult> PostOrderAsync(IOrderRepository repo, Order newOrder)
         {
-            throw new NotImplementedException();
+            var order = await repo.GetOrderByIdAsync(newOrder.Id);
+            if(order is not null)
+            {
+                return Results.BadRequest($"Product with id {order} already exists");
+            }
+
+            await repo.AddOrderAsync(newOrder);
+            return Results.Ok();
+           
+        }
+
+        private static async Task<IResult> DeleteOrderAsync(IOrderRepository repo, int id)
+        {
+            await repo.DeleteOrderAsync(id);
+            return Results.Ok();
         }
 
     }

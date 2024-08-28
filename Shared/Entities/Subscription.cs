@@ -1,4 +1,4 @@
-﻿namespace DataAccess.Entities;
+﻿namespace Shared.Entities;
 
 public class Subscription
 {
