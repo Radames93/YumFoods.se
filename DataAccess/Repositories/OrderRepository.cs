@@ -29,10 +29,6 @@ namespace DataAccess.Repositories
                  OrderDate = newOrder.OrderDate,
                  DeliveryDate = newOrder.DeliveryDate,
                  Products = newOrder.Products,
-                 DeliveryAdress = newOrder.DeliveryAdress,
-                 DeliveryCity = newOrder.DeliveryCity,
-                 DeliveryPostalCode = newOrder.DeliveryPostalCode,
-                 DeliveryCountry = newOrder.DeliveryCountry,
                  Quantity = newOrder.Quantity,
                  Total = newOrder.Total
             };

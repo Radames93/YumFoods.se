@@ -1,4 +1,6 @@
-﻿namespace DataAccess.Security;
+﻿using Org.BouncyCastle.Crypto.Generators;
+
+namespace DataAccess.Security;
 
 internal class PasswordVerification
 {

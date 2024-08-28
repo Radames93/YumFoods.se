@@ -14,11 +14,11 @@ public static class UserExtension
         group.MapGet("/email", GetUserByEmailAsync);
         group.MapGet("/organization", GetUserByOrganizationAsync);
 
-        group.MapGet("/", LoginUserAsync); 
+        group.MapGet("/login", LoginUserAsync);
 
         group.MapPost("/", AddUserAsync);
 
-        group.MapDelete("/{id}", DeleteUserAsync);
+        group.MapDelete("/delete/{id}", DeleteUserAsync);
         return app;
     }
 
