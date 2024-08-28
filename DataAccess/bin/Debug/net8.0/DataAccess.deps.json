@@ -13,6 +13,7 @@
           "Microsoft.EntityFrameworkCore.Tools": "8.0.8",
           "Microsoft.Extensions.DependencyInjection": "8.0.0",
           "MySql.Data": "9.0.0",
+          "Shared": "1.0.0",
           "yumfoods.se": "1.0.0"
         },
         "runtime": {
@@ -779,6 +780,11 @@
           }
         }
       },
+      "Shared/1.0.0": {
+        "runtime": {
+          "Shared.dll": {}
+        }
+      },
       "yumfoods.se/1.0.0": {
         "runtime": {
           "YumFoodsBackEnd.exe": {}
@@ -1239,6 +1245,11 @@
       "sha512": "sha512-Z62eNBIu8E8YtbqlMy57tK3dV1+m2b9NhPeaYovB5exmLKvrGCqOhJTzrEUH5VyUWU6vwX3c1XHJGhW5HVs8dA==",
       "path": "zstdsharp.port/0.8.0",
       "hashPath": "zstdsharp.port.0.8.0.nupkg.sha512"
+    },
+    "Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "yumfoods.se/1.0.0": {
       "type": "project",
