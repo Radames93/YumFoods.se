@@ -2203,7 +2203,7 @@ button {
 }
 
 .learn-more-button {
-  background: var(--secondary);
+  background: #dd3902;
   color: var(--white);
   padding: 12px 40px;
   border-radius: 10px;
@@ -2378,7 +2378,7 @@ button {
   top: -95px;
   right: -10%;
   font-family: var(--cursiveFont);
-  background: var(--colorPrimary);
+  background: #dd3902;
   color: var(--colorWhite);
   padding: 6px 20px;
   text-transform: capitalize;
@@ -2428,7 +2428,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #ff7c0845;
+  border-top: 1px solid #dd3902;
   padding-top: 15px;
   margin-top: 20px;
 }
@@ -2450,11 +2450,11 @@ button {
 }
 
 .single_blog_footer span {
-  color: var(--colorPrimary);
+  color: #dd3902;
 }
 
 .single_blog_footer a:hover {
-  color: var(--colorPrimary);
+  color: #dd3902;
 }
 
 .single_blog:hover {
@@ -2462,7 +2462,7 @@ button {
 }
 
 .single_blog_text .title:hover {
-  color: var(--colorPrimary);
+  color: #dd3902;
 }
 
 /* blog end */
@@ -2627,7 +2627,7 @@ footer {
   width: 45px;
   height: 45px;
   line-height: 45px;
-  background: var(--colorPrimary);
+  background: #dd3902;
   border: 1px solid var(--colorWhite);
   border-radius: 50%;
   transition: all linear 0.3s;
