@@ -1,9 +1,10 @@
 ﻿using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
+using Shared.Interfaces;
 
 namespace DataAccess.Repositories
 {
-    public class OrderRepository(YumFoodsDb context)
+    public class OrderRepository(YumFoodsDb context) : IOrderRepository
     {
         public async Task<List<Order>> GetAllOrdersAsync()
         {
