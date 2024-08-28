@@ -12,7 +12,7 @@ public static class StripeExtension
         services.AddScoped<StripeClient>();
     }
 
-    public static IEndpointRouteBuilder MapPeymentsEndPoints(this IEndpointRouteBuilder app)
+    public static IEndpointRouteBuilder MapPaymentsEndPoints(this IEndpointRouteBuilder app)
     {
         var group = app.MapGroup("/payments");
 

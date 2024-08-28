@@ -11,4 +11,5 @@ public class YumFoodsUserDb : DbContext
     }
 
     public DbSet<User> Users { get; set; }
+    public DbSet<DeliveryDetails> DeliveryDetails { get; set; }
 }

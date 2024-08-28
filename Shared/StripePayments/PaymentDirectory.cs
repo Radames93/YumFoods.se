@@ -1,4 +1,6 @@
-﻿namespace Shared.StripePayments;
+﻿using Shared.Interfaces;
+
+namespace Shared.StripePayments;
 
 public class PaymentDirectory(IPaymentHttpClient paymenttHttp)
 {

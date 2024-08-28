@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Stripe;
 using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -34,8 +35,13 @@ builder.Services.AddCors( options =>
 
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddScoped<SubscriptionRepository>();
+
+builder.Services.AddOptions<StripeConfig>().BindConfiguration(nameof(StripeConfig));
+builder.Services.AddScoped<StripeClient>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
 
 
 var app = builder.Build();
@@ -43,6 +49,7 @@ var app = builder.Build();
 app.MapProductEndpoints();
 app.MapOrderEndpoints();
 //app.MapSubscriptionEndpoints();
+app.MapPaymentsEndPoints();
 
 
 app.UseHttpsRedirection();
