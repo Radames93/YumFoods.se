@@ -1,6 +1,4 @@
-﻿using System.Security.AccessControl;
-
-namespace Shared.Entities;
+﻿namespace Shared.Entities;
 
 public class Product
 {

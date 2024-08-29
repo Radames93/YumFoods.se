@@ -28,7 +28,7 @@ builder.Services.AddDbContext<YumFoodsDb>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddDbContext<YumFoodsUserDb>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString2)));
+    options.UseMySql(connectionString2, ServerVersion.AutoDetect(connectionString2)));
 
 
 builder.Services.AddCors( options =>

@@ -1,6 +1,4 @@
-﻿using DataAccess.Repositories;
-using Microsoft.AspNetCore.Builder;
-using Shared.Entities;
+﻿using Shared.Entities;
 using Shared.Interfaces;
 
 namespace API.Extensions

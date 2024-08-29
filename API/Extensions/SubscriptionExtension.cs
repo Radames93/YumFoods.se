@@ -1,6 +1,4 @@
 ﻿using DataAccess;
-using Microsoft.EntityFrameworkCore;
-using Shared.Entities;
 
 namespace API.Extensions
 {
