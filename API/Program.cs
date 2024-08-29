@@ -14,7 +14,7 @@ var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnec
 
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<SubscriptionRepository>();
+builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 builder.Services.AddScoped<UserRepository>();
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>

@@ -51,8 +51,8 @@ namespace API.Extensions
 
             await repo.AddOrderAsync(newOrder);
             return Results.Ok(newOrder);
-
         }
+
         private static async Task<IResult> DeleteOrderAsync(IOrderRepository repo, int id)
         {
             await repo.DeleteOrderAsync(id);
