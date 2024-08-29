@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shared.Entities;
+using Shared.Interfaces;
 
 namespace DataAccess.Repositories;
 
-public class OrderDetailRepository(YumFoodsUserDb context) 
+public class OrderDetailRepository(YumFoodsUserDb context) : IOrderDetailRepository
 {
     public async Task<List<OrderDetail>> GetAllOrderDetailsAsync()
     {
@@ -15,9 +16,10 @@ public class OrderDetailRepository(YumFoodsUserDb context)
         return await context.OrderDetail.FindAsync(id);
     }
 
-    public async Task<OrderDetail?> GetOrderDetailByOrderIdAsync(int id, int orderId)
+
+    public async Task<OrderDetail?> GetOrderDetailByOrderIdAsync(int orderId)
     {
         return await context.OrderDetail
-            .FirstOrDefaultAsync(od => od.Id == id && od.OrderId == orderId);
+            .FirstOrDefaultAsync(od => od.OrderId == orderId);
     }
 }
