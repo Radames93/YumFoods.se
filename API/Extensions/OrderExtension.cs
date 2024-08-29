@@ -1,6 +1,5 @@
 ﻿using DataAccess.Entities;
-using DataAccess.Repositories;
-using Microsoft.AspNetCore.Builder;
+using Shared.Interfaces;
 
 namespace API.Extensions
 {
@@ -16,21 +15,23 @@ namespace API.Extensions
 
             //group.MapGet("/{email}", GetOrderByEmailAsync);
 
-            group.MapPost("/{id}", PostOrderAsync);
+            group.MapPost("/", PostOrderAsync);
 
             group.MapDelete("/{id}", DeleteOrderAsync);
 
             return app;
         }
 
-        private static Task<List<Order>> GetAllOrdersAsync(OrderRepository repo)
+        private static async Task<IResult> GetAllOrdersAsync(IOrderRepository repo)
         {
-            return repo.GetAllOrdersAsync();
+            var orders = await repo.GetAllOrdersAsync();
+            return Results.Ok(orders);
         }
 
-        private static Task GetOrderByIdAsync(OrderRepository repo, int id)
+        private static async Task<IResult> GetOrderByIdAsync(IOrderRepository repo, int id)
         {
-            return repo.GetOrderByIdAsync(id);
+            var order = await repo.GetOrderByIdAsync(id);
+            return Results.Ok(order);
         }
 
         //vänta med denna tills koppling till user db är set
@@ -40,14 +41,22 @@ namespace API.Extensions
         //    return repo.GetOrderByEmailAsync(email);
         //}
 
-        private static Task PostOrderAsync(OrderRepository repo, Order newOrder)
+        private static async Task<IResult> PostOrderAsync(IOrderRepository repo, Order newOrder)
         {
-            return repo.AddOrderAsync(newOrder);
-        }
+            var exisitngOrder = await repo.GetOrderByIdAsync(newOrder.Id);
+            if (exisitngOrder is not null)
+            {
+                return null;
+            }
 
-        private static Task DeleteOrderAsync(OrderRepository repo, int id)
+            await repo.AddOrderAsync(newOrder);
+            return Results.Ok(newOrder);
+
+        }
+        private static async Task<IResult> DeleteOrderAsync(IOrderRepository repo, int id)
         {
-            return repo.DeleteOrderAsync(id);
+            await repo.DeleteOrderAsync(id);
+            return Results.Ok();
         }
 
     }
