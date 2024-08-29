@@ -16,7 +16,7 @@ namespace API.Extensions
 
             group.MapPost("/", PostSubscriptionAsync);
 
-            group.MapPut("/", PutSubscriptionAsync);
+            group.MapPut("/{id}", PutSubscriptionAsync);
 
             group.MapDelete("/{id}", DeleteSubcriptionAsync);
 
@@ -53,7 +53,7 @@ namespace API.Extensions
             var existingSub = await repo.GetSubscriptionByIdAsync(id);
             if (existingSub is null)
             {
-                return Results.NotFound();
+                return null;
             }
 
             await repo.UpdateSubscriptionAsync(updatedSub, id);
