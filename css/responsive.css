@@ -7,8 +7,7 @@
     text-align: center;
     padding: 0;
     border-radius: 3px;
-    background: var(--colorPrimary);
-    color: var(--colorWhite);
+    color: #000000;
     margin-right: 12px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -26,7 +25,7 @@
 
   .droap_menu {
     max-height: 250px;
-    left: 50%;
+    left: 38%;
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     -moz-transform: translateX(-50%);
@@ -50,14 +49,14 @@
     position: fixed;
     right: 0;
     top: 0;
-    height: 50%;
-    width: 40%;
+    height: 25%;
+    width: 30%;
     padding: 1rem;
     background-color: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     display: none;
     overflow-y: auto;
-    margin-top: 100px;
+    margin-top: 70px;
   }
 
   .navbar-collapse.show {
@@ -122,6 +121,53 @@
   /* =====================
         HOME PAGE START
     =======================*/
+  
+    .main_menu .navbar-toggler {
+      align-self: center;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      padding: 0;
+      border-radius: 3px;
+      color: black;
+      margin-right: 12px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+    }
+  
+    .main_menu .navbar-toggler.show {
+      background: var(--colorRed);
+    }
+  
+    .droap_menu li a {
+      text-align: left;
+    }
+  
+    .droap_menu {
+      max-height: 250px;
+      left: 37%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+    }
+  
+    .main_menu .navbar-toggler .close_icon_close {
+      display: none;
+    }
+  
+    .main_menu .navbar-toggler.show .menu_icon_bar {
+      display: none;
+    }
+  
+    .main_menu .navbar-toggler.show .close_icon_close {
+      display: block;
+    }
+
   .main_menu .navbar-toggler {
     align-self: center;
     width: 40px;
@@ -181,14 +227,14 @@
     position: fixed;
     right: 0;
     top: 0;
-    height: 50%;
-    width: 40%;
+    height: 25%;
+    width: 25%;
     padding: 1rem;
     background-color: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     display: none;
     overflow-y: auto;
-    margin-top: 97px;
+    margin-top: 86px;
   }
 
   .navbar-collapse.show {
@@ -387,8 +433,7 @@
     text-align: center;
     padding: 0;
     border-radius: 3px;
-    background: var(--colorPrimary);
-    color: var(--colorWhite);
+    color: #000000;
     margin-right: 12px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -464,14 +509,14 @@
     position: fixed;
     right: 0;
     top: 0;
-    height: 40%;
-    width: 40%;
+    height: 25%;
+    width: 25%;
     padding: 1rem;
     background-color: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     display: none;
     overflow-y: auto;
-    margin-top: 121px;
+    margin-top: 116px;
   }
 
   .navbar-collapse.show {
@@ -868,14 +913,14 @@
     position: fixed;
     right: 0;
     top: 0;
-    height: 50%;
-    width: 60%;
+    height: 30%;
+    width: 30%;
     padding: 1rem;
     background-color: white;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     display: none;
     overflow-y: auto;
-    margin-top: 121px;
+    margin-top: 115px;
   }
 
   .navbar-collapse.show {
@@ -900,8 +945,7 @@
     text-align: center;
     padding: 0;
     border-radius: 3px;
-    background: var(--colorPrimary);
-    color: var(--colorWhite);
+    color: #000000;
     margin-right: 12px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1525,8 +1569,7 @@
     text-align: center;
     padding: 0;
     border-radius: 3px;
-    background: var(--colorPrimary);
-    color: var(--colorWhite);
+    color: #000000;
     margin-right: 20px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1579,8 +1622,29 @@
     border-bottom: 1px solid var(--colorPrimary);
   }
 
-  /* menu end */
+  .dropbtn{
+    line-height: 15px;
+  }
 
+  .navbar-collapse {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 25%;
+    width: 40%;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    display: none;
+    overflow-y: auto;
+    margin-top: 114px;
+  }
+
+  .navbar-collapse.show {
+    display: block;
+  }
+
+  /* menu end */
   /* baner start */
 
   .content {
@@ -1951,6 +2015,7 @@
   }
 
   #social_links {
+    margin-right: 240px;
     margin-right: 180px;
     margin-top: 45px;
   }
@@ -2502,8 +2567,7 @@
     text-align: center;
     padding: 0;
     border-radius: 3px;
-    background: var(--colorPrimary);
-    color: var(--colorWhite);
+    color: #000000;
     margin-right: 20px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -2553,6 +2617,32 @@
     background: var(--colorWhite);
     padding-bottom: 25px;
     border-bottom: 1px solid var(--colorPrimary);
+  }
+
+  .navbar-collapse {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 27%;
+    width: 55%;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    display: none;
+    overflow-y: auto;
+    margin-top: 86px;
+  }
+
+  .navbar-collapse.show {
+    display: block;
+  }
+
+  .dropbtn{
+    display: none;
+  }
+
+  .company{
+    display: none;
   }
 
   /* menu end */
@@ -2905,6 +2995,10 @@
     margin-top: 0px;
   }
 
+  #footer-new {
+    height: 600px;
+  }
+
   .footer_content h2 {
     width: auto;
     margin-left: auto;
@@ -2918,6 +3012,7 @@
   }
 
   .footer_logo {
+    margin-left: -250px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -2927,6 +3022,12 @@
   }
 
   #contact_title {
+    margin-left: 120px;
+  }
+
+  #contact_info {
+    margin-top: -230px;
+    margin-left: 220px;
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
@@ -2948,6 +3049,20 @@
   }
 
   #social_links {
+    margin-left: 90px;
+  }
+
+  #social_links h2 {
+    margin-left: 30px;
+  }
+
+  #other_links {
+    margin-left: 200px;
+    margin-top: -276px;
+  }
+
+  #link_title {
+    margin-left: 273px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
@@ -3533,6 +3648,26 @@
     company box informatiom in shopping cart and contact page
     =======================*/
 @media (min-width: 575.99px) and (max-width: 1200px) {
+.contact-input{
+  flex-direction: column;
+}
+.contact_form_input{
+  max-width: 100%;
+}
+.contact-input .contact-befattning{
+  margin-right:0px;
+}
+}
+@media (max-width: 575.99px){
+  .contact_form_input{
+    margin-right: 3px;
+  }
+}
+@media (min-width: 1000px){
+  .contact-input .contact-befattning{
+    margin-right:25px;
+  }
+}
   .contact-input {
     flex-direction: column;
   }
