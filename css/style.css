@@ -605,7 +605,7 @@ button {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--colorPrimary);
+  background: var(--colorRed);
   color: var(--colorWhite);
   border: 1px solid var(--colorWhite);
   line-height: 24px;
@@ -658,30 +658,26 @@ button {
   border-radius: 5px;
   outline: none;
   color: white;
-  background-color: #fa6039;
-  padding: 4px 10px;
+  background-color: var(--colorRed);
+  padding: 10px;
   text-align: center;
   line-height: 22px;
   margin-left: 15px;
 }
-
-.loginBtn .dropbtn:hover {
-  color: #000000;
+.dropbtn:hover{
+  color: black;
+  background-color: white;
+  border: solid;
+  border-radius: 5px;
 }
 
 /* company button */
-.companyBtn {
-  border: 1px solid rgb(14, 13, 13);
-  border-radius: 5px;
-  padding-bottom: 4px;
-  align-items: center;
-}
-
 .company {
   background-color: white;
   font-size: 18px;
-  padding: 10px;
-  height: 40.5px;
+  padding: 5px;
+  border: solid;
+  border-radius: 5px;
 }
 
 .company:hover {
@@ -708,6 +704,18 @@ button {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.loginBtn .navbar-nav .nav-item:hover .droap_menu {
+  left: 138px;
+  visibility: visible;
+  margin-top: 6px;
+}
+
+.langBtn .navbar-nav .nav-item:hover .droap_menu {
+  left: 138px;
+  visibility: visible;
+  margin-top: 6px;
 }
 
 /* menu end */
@@ -2438,14 +2446,14 @@ button {
 
 .blog_slider {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr;
   gap: 20px;
 }
 
 #first-grid {
-  grid-column: span 2;
-  grid-row: span 2;
+  grid-column: span 1;
+  grid-row: span 1;
 }
 
 #first-grid .single_blog_img {
@@ -5470,6 +5478,7 @@ table tbody tr td span {
 .steps-page {
   height: 350px;
   margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .steps-page h1 {
@@ -5597,10 +5606,16 @@ table tbody tr td span {
   font-size: 50px;
   text-align: center;
   margin-bottom: 70px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
 }
 
 .faq h2 {
   font-size: 25px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
 }
 
 .faq_area .accordion-item h2 button {
