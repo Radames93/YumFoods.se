@@ -720,6 +720,53 @@ button {
 
 /* menu end */
 
+/*popup in start page*/
+.modal-section .modal-content{
+  background-color: #fae0c8;
+}
+
+.custom-modal-size{
+  max-width: 40%;
+  max-height: 60vh;
+  margin-top: 230px;
+}
+
+.startpage-group .btn-adress{
+  margin-right: 20px;
+  background-color: white;
+  border:  1px solid rgb(211, 211, 211);
+  padding: 0 8px;
+  color: rgb(122, 122, 122);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.startpage-group .btn-adress:hover {
+  margin-right: 20px;
+  background-color: rgb(58, 56, 56);
+  color: white;
+  padding: 0 8px;
+}
+
+.modal-section .modal-content .modal-body{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.modal-section .modal-content .modal-body p{
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.modal-section .modal-content .form-label{
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+/*End Popup in start page  */
+
+
 /* banner start */
 
 .vectorButton {

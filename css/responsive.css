@@ -230,6 +230,24 @@
     -o-transition: all linear 0.3s;
   }
 
+/* popup in start page */
+
+.modal-section .modal-content .modal-body{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.modal-section .modal-content{
+  height: 300px;
+}
+
+.modal-section .modal-content{
+  width: 100%;
+  height: auto;
+}
+/* popup end */
+
+/* banner */
   .banner_shape_1 {
     width: 50px;
     height: 50px;
@@ -516,6 +534,28 @@
   .main_menu .navbar-brand {
     width: 110px;
   }
+
+  /* popup in start page */
+  .modal-content .modal-body{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .startpage-group .form-control{
+    min-width: 80px;
+    align-items: stretch;
+  }
+
+  .startpage-group .btn{
+    margin-top:5px
+  }
+
+  .modal-section .modal-content{
+    width: 100%;
+    height: auto;
+  }
+
+  /* popup end */
 
   .banner_text h1 {
     font-size: 48px;
@@ -920,8 +960,6 @@
     position: fixed;
   }
 
-
-
   .main_menu .navbar-brand {
     width: 140px;
     margin-left: 12px;
@@ -1119,6 +1157,46 @@
     font-weight: 400;
     font-size: 30px;
   }
+
+    /* popup in start page */
+    .modal-section .modal-content{
+      margin-top: -98px;
+      padding: 10px;
+      height: 400px;
+    }
+
+    .modal-section .modal-content .modal-body{
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  
+    .startpage-group{
+      flex-direction: column;
+    }
+
+    .startpage-group .form-control{
+      align-items: stretch;
+      min-width: 120px;
+      width: 90%;
+      margin-bottom: 5px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .startpage-group .btn-adress{
+      width: 143px;
+      margin-bottom: 5px;
+      height: 40px;
+      align-self: center;
+    }
+
+    .startpage-group .btn{
+      width: 141px;
+      height: 40px;
+      margin-right: 19px;
+      border-radius: 0%;
+    }
+    /* popup end */
 
   .banner_title {
     font-family: "Playfair Display";
@@ -1622,6 +1700,44 @@
   }
 
   /* menu end */
+
+  /* popup in start page */
+  .modal-section .modal-content{
+    margin-top: -98px;
+    padding: 10px;
+  }
+  .modal-section .modal-content .modal-body{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .startpage-group{
+    flex-direction: column;
+  }
+
+  .startpage-group .form-control{
+    align-items: stretch;
+    min-width: 100px;
+    width: 90%;
+    margin-bottom: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .startpage-group .btn-adress{
+    width: 142px;
+    margin-bottom: 5px;
+    height: 40px;
+    align-self: center;
+  }
+
+  .startpage-group .btn{
+    width: 140px;
+    height: 40px;
+    margin-right: 19px;
+    border-radius: 0%;
+  }
+  /* popup end */
 
   /* baner start */
 
@@ -2596,6 +2712,40 @@
   }
 
   /* menu end */
+  /* popup in start page */
+  .custom-modal-size .modal-content{
+    width: 250px;
+    margin-left: 50%;
+    margin-top: -98px;
+  }
+  .modal-section .modal-content .modal-body{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .startpage-group .form-control{
+    align-items: stretch;
+    min-width: 100px;
+    width: 90%;
+    margin-bottom: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .startpage-group .btn-adress{
+    width: 142px;
+    margin-bottom: 5px;
+    height: 40px;
+    align-self: center;
+  }
+
+  .startpage-group .btn{
+    width: 142px;
+    height: 40px;
+    margin-right: 17px;
+    border-radius: 0%;
+  }
+  /* popup end */
 
   /* baner start */
 

@@ -101,6 +101,38 @@
         BANNER END
     ==============================-->
 
+        <!-- Popup Modal -->
+        <div class="modal modal-section fade" id="deliveryModal" tabindex="-1" aria-labelledby="deliveryModalLabel" aria-hidden="true">
+          <div class="modal-dialog custom-modal-size ">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body text-center">
+                <h5 class="modal-title" id="deliveryModalLabel">Vi levererar endast inom Göteborgsområdet.</h5>
+                <p>Ange ditt postnummer för att se om vi levererar till dig.</p>
+                <div class="mb-3">
+                  <label for="postcodeInput" class="form-label text-start w-100 mt-3">Postnummer</label>
+                  <div class="input-group startpage-group">
+                    <input type="text" class="form-control" id="postcodeInput" placeholder="t.ex 411 03">
+                    <button class="btn-adress" type="button" id="findLocationButton">
+                      <i class="far fa-location"></i>📍Hitta min plats</button>
+                    <div class="ml-3">
+                      <button class="btn btn-danger" type="button" id="confirmButton">Bekräfta</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-3" id="confirmationMessage" style="display: none;">
+                  <i class="fa fa-check-circle" style="color: green;"></i> Adress godkänd för leverans!
+                </div>
+                <div id="wrong-message" style="display: none; color: rgb(228, 29, 29);">Ej godkänd adress</div>
+                <div id="wrong-message2" style="display: none; color: rgb(228, 29, 29);"> Vänligen ange ett postnummer.</div>
+                <div id="no-place" style="display: none; color: rgb(228, 29, 29);"> Ingen plats hittades för det postnumret.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--poput finished -->
     <!--=============================
         CATEGORIES
     ==============================-->
@@ -225,29 +257,22 @@
       </div>
     </section>
 
-    <!-- test -->
-
     <!--=============================
         BLOG START
     ==============================-->
-
-    <section id="blog-podcast" class="blog pt_95 xs_pt_65 pb_65 xs_pb_35">
+    <!--
+    <section class="blog pt_95 xs_pt_65 pb_65 xs_pb_35">
       <div class="container">
-        <div class="wow fadeInUp" data-wow-duration="1s">
-          <div>
+        <div class="row wow fadeInUp" data-wow-duration="1s">
+          <div class="col-md-8 col-lg-7 col-xl-6">
             <div class="section_heading mb_25">
-              <h2>Our blog and podcast</h2>
-              <a href="blog_details.html">
-                <button class="learn-more-button" style="text-transform: none">
-                  <span class="learn-more-description"> Learn more! </span>
-                </button></a
-              >
+              <h2>Vår blog and podcast</h2>
             </div>
           </div>
         </div>
 
-        <div class="blog_slider">
-          <div id="first-grid" data-wow-duration="1s">
+        <div class="row blog_slider">
+          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
             <div class="single_blog">
               <div class="single_blog_img">
                 <img
@@ -262,7 +287,7 @@
                 </div>
               </div>
               <div class="single_blog_text">
-                <a style="right: 18px" class="category" href="#">food</a>
+                <a class="category" href="#">food</a>
                 <a class="title" href="blog_details.html"
                   >De hemliga tipsen & tricken för att förbereda en perfekt
                   hamburgare & pizza till våra kunder</a
@@ -281,7 +306,7 @@
               </div>
             </div>
           </div>
-          <div class="rest-grid" data-wow-duration="1s">
+          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
             <div class="single_blog">
               <div class="single_blog_img">
                 <img
@@ -296,10 +321,14 @@
                 </div>
               </div>
               <div class="single_blog_text">
-                <a class="category" href="#">restaurant</a>
+                <a class="category" href="#">restaurent</a>
                 <a class="title" href="blog_details.html"
                   >Pepparn: "Fördelarna med kryddig mat."</a
                 >
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Veniam eos, odit beatae sequi tenetur quidem.
+                </p>
                 <div class="single_blog_footer">
                   <a class="read_btn" href="blog_details.html"
                     >läs mer <i class="far fa-long-arrow-right"></i
@@ -309,11 +338,11 @@
               </div>
             </div>
           </div>
-          <div class="rest-grid" data-wow-duration="1s">
+          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
             <div class="single_blog">
               <div class="single_blog_img">
                 <img
-                  src="images/headphones.png"
+                  src="images/podcast.png"
                   alt="blogg-bild"
                   class="img-fluid w-100"
                 />
@@ -331,6 +360,10 @@
                     >Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   </span></a
                 >
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Veniam eos, odit beatae sequi tenetur quidem.
+                </p>
                 <div class="single_blog_footer">
                   <a class="read_btn" href="blog_details.html"
                     >läs mer <i class="far fa-long-arrow-right"></i
@@ -340,11 +373,11 @@
               </div>
             </div>
           </div>
-          <div class="rest-grid" data-wow-duration="1s">
+          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
             <div class="single_blog">
               <div class="single_blog_img">
                 <img
-                  src="images/aboutus-tablet.png"
+                  src="images/authentic-flavors.png"
                   alt="blogg-bild"
                   class="img-fluid w-100"
                 />
@@ -359,37 +392,10 @@
                 <a class="title" href="blog_details.html"
                   >Autentiska smaker- För ett etniskt recept</a
                 >
-                <div class="single_blog_footer">
-                  <a class="read_btn" href="blog_details.html"
-                    >läs mer <i class="far fa-long-arrow-right"></i
-                  ></a>
-                  <span><i class="far fa-comments"></i> 120</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="rest-grid" data-wow-duration="1s">
-            <div class="single_blog">
-              <div class="single_blog_img">
-                <img
-                  src="images/headphones.png"
-                  alt="blogg-bild"
-                  class="img-fluid w-100"
-                />
-              </div>
-              <div class="single_blog_author">
-                <div class="text">
-                  <p>20 Apr 2023</p>
-                </div>
-              </div>
-              <div class="single_blog_text">
-                <a class="category" href="#">podcast</a>
-                <a class="title" href="blog_details.html"
-                  >Om podcast
-                  <span style="opacity: 0"
-                    >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </span></a
-                >
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Veniam eos, odit beatae sequi tenetur quidem.
+                </p>
                 <div class="single_blog_footer">
                   <a class="read_btn" href="blog_details.html"
                     >läs mer <i class="far fa-long-arrow-right"></i
@@ -402,7 +408,7 @@
         </div>
       </div>
     </section>
-
+    -->
     <!--=============================
         BLOG END
     ==============================-->
