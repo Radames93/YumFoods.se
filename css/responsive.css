@@ -2099,7 +2099,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
-    width: 600px;
+    width: 500px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -2684,7 +2684,6 @@
   .contacts-box {
     display: flex;
     gap: 10px;
-    text-align: center;
   }
 
   #imageContent {
@@ -3021,8 +3020,16 @@
     margin-left: -10px;
   }
 
+  .fa-envelope {
+    margin-left: -10px;
+  }
+
+  .fa-map-marker-alt {
+    margin-right: -5px;
+  }
+
   #contact_title {
-    margin-left: 120px;
+    margin-left: -0px;
   }
 
   #contact_info {
@@ -3040,16 +3047,22 @@
     margin-right: auto;
   }
 
+  .contacts-box p {
+    width: 150px;
+  }
+
   #map-marker {
-    margin-left: 34px;
+    margin-left: 0px;
   }
 
   #location_address {
     width: 165px;
+    margin-top: -1px;
   }
 
   #social_links {
-    margin-left: 90px;
+    margin-bottom: -30px;
+    margin-top: 30px;
   }
 
   #social_links h2 {
@@ -3148,7 +3161,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
-    width: 600px;
+    width: 400px;
     margin-left: auto;
     margin-right: auto;
   }
