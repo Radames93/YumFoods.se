@@ -1,11 +1,12 @@
 ﻿using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
+using Shared.Interfaces;
 
 namespace DataAccess.Repositories
 {
-    public class OrderRepository(YumFoodsDb context)
+    public class OrderRepository(YumFoodsDb context) : IOrderRepository
     {
-        public async Task<List<Order>> GetAllOrdersAsync()
+        public async Task<IEnumerable<Order>> GetAllOrdersAsync()
         {
             return await context.Order.ToListAsync();
         }
@@ -29,10 +30,6 @@ namespace DataAccess.Repositories
                  OrderDate = newOrder.OrderDate,
                  DeliveryDate = newOrder.DeliveryDate,
                  Products = newOrder.Products,
-                 DeliveryAdress = newOrder.DeliveryAdress,
-                 DeliveryCity = newOrder.DeliveryCity,
-                 DeliveryPostalCode = newOrder.DeliveryPostalCode,
-                 DeliveryCountry = newOrder.DeliveryCountry,
                  Quantity = newOrder.Quantity,
                  Total = newOrder.Total
             };

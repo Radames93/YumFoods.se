@@ -2,9 +2,10 @@
 using DataAccess.Security;
 using Microsoft.EntityFrameworkCore;
 
-//namespace DataAccess.Repositories;
+namespace DataAccess.Repositories;
 
-public class UserRepository(YumFoodsDb context)
+
+public class UserRepository(YumFoodsUserDb context)
 {
     public async Task<IEnumerable<User>> GetAllUsersAsync()
     {
@@ -43,32 +44,34 @@ public class UserRepository(YumFoodsDb context)
 
         return passwordVerification.VerifyPassword(password, user.PasswordHash);
     }
+
     public async Task AddUserAsync(User newUser)
     {
         // Hash the password before storing the user
         var pwHasher = new PasswordEncryption();
         var hashedPassword = pwHasher.HashPassword(newUser.PasswordHash);
+    
+        
+            var user = new User()
+            {
+                FirstName = newUser.FirstName,
+                LastName = newUser.LastName,
+                UserType = newUser.UserType,
+                OrganizationNumber = newUser.OrganizationNumber,
+                Email = newUser.Email,
+                PhoneNumber = newUser.PhoneNumber,
+                Address = newUser.Address,
+                City = newUser.City,
+                PostalCode = newUser.PostalCode,
+                Country = newUser.Country,
+                Cart = newUser.Cart,
+                Subscription = newUser.Subscription,
+                PasswordHash = hashedPassword,
+            };
 
-        var user = new User()
-        {
-            FirstName = newUser.FirstName,
-            LastName = newUser.LastName,
-            UserType = newUser.UserType,
-            OrganizationNumber = newUser.OrganizationNumber,
-            Email = newUser.Email,
-            PhoneNumber = newUser.PhoneNumber,
-            Address = newUser.Address,
-            City = newUser.City,
-            PostalCode = newUser.PostalCode,
-            Country = newUser.Country,
-            Cart = newUser.Cart,
-            Subscription = newUser.Subscription,
-            PasswordHash = hashedPassword,
-        };
+            await context.User.AddAsync(user);
+            await context.SaveChangesAsync();
 
-//        await context.User.AddAsync(user);
-//        await context.SaveChangesAsync();
+        }
 
-//    }
-
-//}
+    }
