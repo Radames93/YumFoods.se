@@ -5464,6 +5464,115 @@ table tbody tr td span {
 ============================*/
 
 /*============================
+    STEPS PAGE START
+============================*/
+
+.steps-page {
+  height: 350px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.steps-page h1 {
+  text-align: center;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 10px;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.steps-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.steps-item img {
+  height: 150px;
+  width: 150px;
+  object-fit: contain;
+}
+
+.steps-page p {
+  color: grey;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.steps-description {
+  display: block;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.step-button {
+  text-align: center;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.steps-button {
+  background: #dd3902;
+  color: var(--white);
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all linear 0.3s;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  z-index: 0;
+  margin-top: 40px;
+}
+
+.steps-button:hover {
+  background-color: rgb(6, 0, 61);
+}
+
+.steps-button:before,
+.steps-button:after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.steps-button:before {
+  background: var(--secondary-blue);
+  transition: 0.6s ease-in;
+  transition-delay: 0.1s;
+}
+
+.steps-button:after {
+  background: var(--tertiary-blue);
+  transition: 0.8s ease;
+  transition-delay: 0.3s;
+}
+
+.steps-button:hover:before,
+.steps-button:hover:after {
+  transform: translate(-50%, -50%) scale(310);
+}
+
+/*============================
+    STEPS PAGE END
+============================*/
+
+/*============================
     FAQ PAGE START
 ============================*/
 .faq_area .accordion-item {
