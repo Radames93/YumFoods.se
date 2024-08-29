@@ -1286,6 +1286,20 @@
         HOME PAGE END
     =======================*/
 
+  .steps-page {
+    height: 600px;
+    margin-top: 100px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   /* =====================
         error PAGE START
     =======================*/
@@ -2010,6 +2024,20 @@
   /* =====================
         HOME PAGE END
     =======================*/
+
+  .steps-page {
+    height: 600px;
+    margin-top: 100px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   /* =====================
         error PAGE START
@@ -2995,6 +3023,20 @@
   /* =====================
         HOME PAGE END
     =======================*/
+
+  .steps-page {
+    height: 600px;
+    margin-top: 100px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   /* =====================
         error PAGE START
