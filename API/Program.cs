@@ -3,6 +3,7 @@ using API.Stripe;
 using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Shared.Interfaces;
 using SubscriptionRepository = API.Extensions.SubscriptionRepository;
 
 
@@ -13,14 +14,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
+var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
 
-builder.Services.AddScoped<ProductRepository>();
-builder.Services.AddScoped<OrderRepository>();
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<SubscriptionRepository>();
 builder.Services.AddScoped<UserRepository>();
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddDbContext<YumFoodsUserDb>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString2)));
+
 
 builder.Services.AddCors( options =>
 {

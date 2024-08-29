@@ -1,4 +1,6 @@
-﻿namespace Shared.Entities;
+﻿using System.Security.AccessControl;
+
+namespace Shared.Entities;
 
 public class Product
 {
@@ -7,6 +9,7 @@ public class Product
     public double Price { get; set; }
     public string Category { get; set; }
     public string Diet { get; set; }
+    public string DietRef { get; set; }
     public string ImgRef { get; set; }
     public string Description { get; set; }
     public string Ingredients { get; set; }

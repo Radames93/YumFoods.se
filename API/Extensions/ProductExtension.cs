@@ -14,15 +14,29 @@ public static class ProductExtension
 
         group.MapGet("/", GetAllProductsAsync);
         group.MapGet("/{id}", GetProductByIdAsync);
-        group.MapGet("/category", GetProductByCategoryAsync); //category
-        group.MapGet("/cuisine", GetProductByCuisineAsync); //cuisine
+        group.MapGet("/title/{title}", GetProductByNameAsync);
+        group.MapGet("/category/{category}", GetProductByCategoryAsync); //category
+        group.MapGet("/cuisine/{cuisine}", GetProductByCuisineAsync); //cuisine
+        group.MapGet("/diet/{diet}", GetProductsByDietAsync);
         
         group.MapPost("/", AddProductAsync);
 
-        group.MapPut("/", UpdateProductAsync);
+        group.MapPut("/{id}", UpdateProductAsync);
 
         group.MapDelete("/{id}", DeleteProductAsync);
         return app;
+    }
+
+    private static async Task<IResult> GetProductsByDietAsync(IProductRepository repo, string diet)
+    {
+        var prod = await repo.GetProductsByDietAsync(diet);
+        return Results.Ok(prod);
+    }
+
+    private static async Task<IResult> GetProductByNameAsync(IProductRepository repo, string title)
+    {
+        var prod = await repo.GetProductByNameAsync(title);
+        return Results.Ok(prod);
     }
 
     private static async Task<IResult> GetAllProductsAsync(IProductRepository repo)
@@ -46,7 +60,7 @@ public static class ProductExtension
     private static async Task<IResult> GetProductByCuisineAsync(IProductRepository repo, string cuisine)
     {
         var prod = await repo.GetProductByCuisineAsync(cuisine);
-        return Results.Ok(cuisine);
+        return Results.Ok(prod);
     }
 
     private static async Task<IResult> AddProductAsync(IProductRepository repo, Product newProd)
@@ -64,13 +78,13 @@ public static class ProductExtension
 
     private static async Task<IResult> UpdateProductAsync(IProductRepository repo, int id, Product updatedProd)
     {
-        var exisitngProd = await repo.GetProductByIdAsync(updatedProd.Id);
-        if(exisitngProd is not null)
+        var existingProd = await repo.GetProductByIdAsync(id);
+        if(existingProd is null)
         {
-            return Results.BadRequest($"Product with id {exisitngProd} already exists");
+            return Results.BadRequest($"Product with id {id} does not exist");
         }
 
-        await repo.UpdateProductAsync(exisitngProd.Id, updatedProd);
+        await repo.UpdateProductAsync(id, updatedProd);
         return Results.Ok();
     }
 

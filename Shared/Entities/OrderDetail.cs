@@ -1,6 +1,6 @@
 ﻿namespace Shared.Entities;
 
-public class DeliveryDetails
+public class OrderDetail
 {
     public int Id { get; set; }
     public int OrderId { get; set; }
