@@ -18,7 +18,7 @@ namespace API.Extensions
 
             group.MapPut("/{id}", PutSubscriptionAsync);
 
-            group.MapDelete("/{id}", DeleteSubcriptionAsync);
+            group.MapDelete("/{id}", DeleteSubscriptionAsync);
 
             return app;
 
@@ -60,7 +60,7 @@ namespace API.Extensions
             return Results.Ok(updatedSub);
         }
 
-        private static async Task<IResult> DeleteSubcriptionAsync(ISubscriptionRepository repo, int id)
+        private static async Task<IResult> DeleteSubscriptionAsync(ISubscriptionRepository repo, int id)
         {
             await repo.DeleteSubscriptionAsync(id);
             return Results.Ok();

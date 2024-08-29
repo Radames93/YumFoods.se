@@ -24,8 +24,14 @@ namespace DataAccess.Repositories
 
         public async Task AddOrderAsync(Order newOrder)
         {
+            var maxId = await context.Order
+                .MaxAsync(o => (int?)o.Id);
+
+            var newId = (maxId ?? 0) + 1;
+
             var order = new Order()
             {
+                Id = newId,
                  UserId = newOrder.UserId,
                  OrderDate = newOrder.OrderDate,
                  DeliveryDate = newOrder.DeliveryDate,

@@ -21,8 +21,14 @@ namespace DataAccess.Repositories
         }
         public async Task AddSubscriptionAsync(Subscription newSub)
         {
+            var maxId = await context.Subscription
+                .MaxAsync(o => (int?)o.Id);
+
+            var newId = (maxId ?? 0) + 1;
+
             var sub = new Subscription()
             {
+                Id = newId,
                 Title = newSub.Title,
                 ImgRef = newSub.ImgRef,
                 Price = newSub.Price
