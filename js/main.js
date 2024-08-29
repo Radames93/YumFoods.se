@@ -209,6 +209,24 @@ Header();
 
 // js for language button in navbar
 function setLanguage(lang) {
+
+  document.getElementById("current-lang").textContent = lang.toUpperCase();
+  var elements = document.querySelectorAll("[data-lang-en]");
+  elements.forEach(function (element) {
+    if (lang === "en") {
+      element.textContent = element.getAttribute("data-lang-en");
+    } else if (lang === "sv") {
+      element.textContent = element.getAttribute("data-lang-sv");
+    }
+  });
+  closeDropdown();
+}
+function closeDropdown() {
+  document.getElementById("dropdown-content").classList.remove("show");
+}
+function toggleDropdown() {
+  document.getElementById("dropdown-content").classList.toggle("show");
+
   document.getElementById('current-lang').textContent = lang.toUpperCase();
   var elements = document.querySelectorAll('[data-lang-en]');
   elements.forEach(function(element) {
@@ -225,6 +243,7 @@ function closeDropdown(){
 }
 function toggleDropdown(){
   document.getElementById("dropdown-content").classList.toggle("show")
+
 }
 
 //Get elements from the DOM
@@ -399,7 +418,8 @@ const yumProducts = (yumProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item"  data-yum-id=${yum.id} 
+          <div class="menu_item"
+                  data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -408,8 +428,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-ingredients=${yum.ingredients}
                   data-yum-diet=${[value]}
                   data-bs-toggle="modal"
-                  data-bs-target="#modal"
-                  >
+                  data-bs-target="#modal">
               <div class="menu_item_img">
                 <img
                   src=` +
@@ -419,7 +438,6 @@ const yumProducts = (yumProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -450,18 +468,8 @@ const yumProducts = (yumProductsList) => {
                 >
                 <h5 class="price">` +
           yum.price +
-          `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
-          yum.id +
-          `
-          data-yum-id=${yum.id} 
-          data-yum-title=${yum.title}
-          data-yum-price=${yum.price}
-          data-yum-img=${yum.img}
-          data-yum-quantity-price=${yum.price}
-          ` +
-          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
-          `<!--
+          `kr</h5>
+          <!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -473,6 +481,18 @@ const yumProducts = (yumProductsList) => {
                 -->
               </div>
             </div>
+            ` +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+          yum.id +
+          `
+          data-yum-id=${yum.id} 
+          data-yum-title=${yum.title}
+          data-yum-price=${yum.price}
+          data-yum-img=${yum.img}
+          data-yum-quantity-price=${yum.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+          `
           </div>`
         );
       })
@@ -577,7 +597,7 @@ const dailyProducts = (dailyProductsList) => {
                 <h5 class="price">` +
           daily.price +
           `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='add_to_cart' data - id=" +
+          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='amenu_add_to_cart' data - id=" +
           daily.id +
           `
           data-yum-id=${daily.id}
@@ -586,7 +606,7 @@ const dailyProducts = (dailyProductsList) => {
           data-yum-img=${daily.img}
           data-yum-quantity-price=${daily.price}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>-->" +
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
           `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -703,7 +723,7 @@ const premiumProducts = (premiumProductsList) => {
                 <h5 class="price">` +
           premium.price +
           `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='add_to_cart' data-id=" +
+          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='menu_add_to_cart' data-id=" +
           premium.id +
           `
           data-yum-id=${premium.id}
@@ -829,7 +849,7 @@ const baguetterProducts = (baguetterProductsList) => {
                 <h5 class="price">` +
           baguetter.price +
           `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           baguetter.id +
           `
           data-yum-id=${baguetter.id}
@@ -917,7 +937,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                 <h5 class="price">` +
           subscription.price +
           `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           subscription.id +
           `
           data-yum-id=${subscription.id}
@@ -1601,11 +1621,11 @@ let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
 //Add to cart function from button
 function realAddToCart(event) {
-  var id = event.target.closest('button').dataset.id;
-  var title = event.target.closest('button').dataset.yumTitle;
-  var price = event.target.closest('button').dataset.yumPrice;
-  var img = event.target.closest('button').dataset.yumImg;
-  var quantityPrice = event.target.closest('button').dataset.yumQuantityPrice;
+  var id = event.target.closest("button").dataset.id;
+  var title = event.target.closest("button").dataset.yumTitle;
+  var price = event.target.closest("button").dataset.yumPrice;
+  var img = event.target.closest("button").dataset.yumImg;
+  var quantityPrice = event.target.closest("button").dataset.yumQuantityPrice;
 
   let formData = {};
   formData.id = id;
@@ -1984,7 +2004,7 @@ function showCompanyForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = `
-                    <div class="col-xl-12">
+                <div class="col-xl-12">
                   <div for="company name" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
                     <input
@@ -1994,9 +2014,9 @@ function showCompanyForm() {
                     />
                   </div>
                 </div>
-                <div class="d-flex">
+                <div class="d-flex contact-input">
                 <div class="col-xl-6 col-sm-12">
-                  <div for="role" class="contact_form_input">
+                  <div for="role" class="contact_form_input contact-befattning">
                     <span><i class="fas fa-user"></i></span>
                     <input name="role" type="text" placeholder="Befattning(bara för företag)" />
                   </div>
@@ -2275,34 +2295,54 @@ function Footer() {
   footer.innerHTML = `
       <div class="pt_20 xs_pt_20">
         <div class="container">
-          <div class="row justify-content-around pt_50">
-            <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-5">
+          <div id="footer-new" class="row justify-content-around pt_50">
+            <div class="col-xxl-2 col-lg-2 col-sm-9 col-md-5">
               <div class="footer_content">
-                <a class="footer_logo" href="/">
-                  <img
+                  <img class="footer_logo"
                     loading="lazy"
-                    src="images/footer_logo_group.png"
+                    src="images/col.png"
                     alt="footer-logo"
-                    style="width: 150px; height:93px"
+                    style="width: 140px; height:200px"
                     class="mb_25"
                   />
-                </a>
+              </div>
+            </div>
+            <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
+              <p id="contact_title">Yumfoods.se</p>
+              <div class="contacts-content contacts justify-content-center w_40">
+                <div class="contacts-box">
+                <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
+                  <p style="margin-left: 10px;">+46 76 023 49 30</p>
+                </div>
+                <div class="contacts-box">
+                <i style="color: #FC5633; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
+                  <p style="margin-left: 10px;">info@yumfoods.se</p>
+                </div>
+                <div id="map-marker" class="contacts-box">
+                <i style="margin-left: 2px; color: #FC5633; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
+                  <p id="location_address" style="margin-left: 14px;">Stora Badhusgatan 18, 411 21 Göteborg</p>
+                </div>
+              </div>
+            </div>
+            <div id="social_links" class="col-xxl-3 col-lg-2 col-sm-5 col-md-4">
+              <div class="footer_content">
+              <h2>Följ oss!</h2>
                 <ul class="social_link d-flex flex-wrap mx_50">
-                  <li>
+                  <li style="margin-top: -10px; margin-left: -0px;">
                     <a
                       href="https://www.facebook.com/YumFoodsSE"
                       target="_blank"
                       aria-label="Länk till facebook sida"
                       ><i class="fab fa-facebook-f"></i
-                    ></a>
+                    ></a><p style="margin-top: 8px;">Facebook</p>
                   </li>
-                  <li>
+                  <li style="margin-top: 12px; margin-left: -10px;">
                     <a
                       href="https://www.linkedin.com/company/yum-foods/"
                       target="_blank"
                       aria-label="Länk till linkedin sida"
                       ><i class="fab fa-linkedin-in"></i
-                    ></a>
+                    ></a><p style="margin-top: 8px;">LinkedIn</p>
                   </li>
                   <!--
                   <li>
@@ -2314,13 +2354,13 @@ function Footer() {
                     <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
                   </li>
                   -->
-                  <li>
+                  <li style="margin-top: 12px;">
                     <a
                       href="https://www.instagram.com/yumfoods.se/"
                       target="_blank"
                       aria-label="Länk till instagram sida"
                       ><i class="fab fa-instagram"></i
-                    ></a>
+                    ></a><p style="margin-top: 8px;">Instagram</p>
                   </li>
                   <!--
                   <li>
@@ -2330,49 +2370,16 @@ function Footer() {
                 </ul>
               </div>
             </div>
-            <div class="col-xxl-2 col-lg-2 col-sm-5 col-md-4">
+            <div id="other_links" class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
               <div class="footer_content">
-                <ul>
-                  <li><a href="index.html">Hem</a></li>
-                  <li><a href="about.html">Om oss</a></li>
-                  <li><a href="contact.html">Kontakta oss</a></li>
-                  <li><a href="certificates.html">Certifikat</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
-              <div class="footer_content">
-                <ul>
-                  <li><a href="terms_condition.html">Allmänna villkor</a></li>
+              <h2 id="link_title">Hjälp & Villkor</h2>
+              <ul id="faq-ul">
+                  <li><i class="fas fa-question"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html">Få snabbt svar FAQ</a></li>
+                  <li><i style="margin-top: 30px;" class="fab fa-teamspeak"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html"> Kontakta kundservice</a></li>
+                  <li><i style="margin-top: 30px;" class="fas fa-file-alt"></i><a style="margin-top: -22px;" class="footer_links_1" href="terms_condition.html">Allmänna villkor</a></li>
                   <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
-                  <li>
-                    <a href="faq.html">FAQ</a>
-                  </li>
                 </ul>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row text-center">
-        <div class="col-md-12 col-lg-12 col-xl-12">
-          <div class="contacts-content contacts justify-content-center w_100">
-            <div class="contacts-box">
-              <img loading="lazy" class="telefon-bild" src="./images/phone.png" alt="phone" />
-              <p>+46 76 023 49 30</p>
-            </div>
-            <div class="contacts-box">
-              <img loading="lazy" class="melj-bild" src="./images/mail.png" alt="mail" />
-              <p>info@yumfoods.se</p>
-            </div>
-            <div class="contacts-box">
-              <img
-                loading="lazy"
-                class="contacts-img"
-                src="./images/location-marker.png"
-                alt="läge-bild"
-              />
-              <p>Stora Badhusgatan 18, 411 21 Göteborg</p>
             </div>
           </div>
         </div>
