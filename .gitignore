@@ -6,8 +6,10 @@
 *.sln.docstates
 .vs/
 # Build results
-[Dd]ebug/
-[Rr]elease/
+Debug/
+Release/
+API/obj/Debug/
+DataAccess/obj/Debug/
 x64/
 [Bb]in/
 [Oo]bj/
@@ -138,4 +140,12 @@ Message backend-dev
 /DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfo.cs
 /DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfoInputs.cache
 /DataAccess/obj/Debug/net8.0/DataAccess.csproj.AssemblyReference.cache
+<<<<<<< HEAD
 /obj/x86/Debug/yumfoods.se.csproj.AssemblyReference.cache
+=======
+>>>>>>> e062cdca04ea413946b7dea22abd0023d6227a1c
+/API/obj/Debug/net8.0/API.assets.cache
+/API/obj/Debug/net8.0/API.csproj.CoreCompileInputs.cache
+/API/obj/API.csproj.nuget.dgspec.json
+/API/obj/project.assets.json
+/API/obj/project.nuget.cache

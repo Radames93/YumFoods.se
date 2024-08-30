@@ -1,5 +1,4 @@
-﻿using DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Shared.Interfaces;
 using System;
 using System.Collections.Generic;

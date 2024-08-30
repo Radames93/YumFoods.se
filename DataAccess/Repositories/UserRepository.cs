@@ -1,6 +1,6 @@
-﻿using DataAccess.Entities;
-using DataAccess.Security;
+﻿using DataAccess.Security;
 using Microsoft.EntityFrameworkCore;
+using Shared.Entities;
 
 namespace DataAccess.Repositories;
 

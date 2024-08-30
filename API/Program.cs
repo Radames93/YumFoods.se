@@ -4,6 +4,10 @@ using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Shared.Interfaces;
+<<<<<<< HEAD
+=======
+using SubscriptionRepository = API.Extensions.SubscriptionRepository;
+>>>>>>> dev-vivian-reverted
 
 
 // Add services to the container.
@@ -13,14 +17,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
+var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
 
+<<<<<<< HEAD
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+=======
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+builder.Services.AddScoped<SubscriptionRepository>();
+>>>>>>> dev-vivian-reverted
 builder.Services.AddScoped<UserRepository>();
+
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddDbContext<YumFoodsUserDb>(options =>
+    options.UseMySql(connectionString2, ServerVersion.AutoDetect(connectionString2)));
+
 
 builder.Services.AddCors( options =>
 {
@@ -36,10 +54,6 @@ builder.Services.AddCors( options =>
     //builder.Services.AddControllers();
 });
 
-builder.Services.AddScoped<ProductRepository>();
-builder.Services.AddScoped<OrderRepository>();
-builder.Services.AddScoped<SubscriptionRepository>();
-
 builder.Services.AddOptions<StripeConfig>().BindConfiguration(nameof(StripeConfig));
 builder.Services.AddScoped<StripeClient>();
 
@@ -51,9 +65,9 @@ var app = builder.Build();
 
 app.MapProductEndpoints();
 app.MapOrderEndpoints();
+app.MapOrderDetailEndpoints();
 //app.MapSubscriptionEndpoints();
 app.MapUserEndpoints();
-//app.MapSubscriptionEndpoints();
 app.MapPaymentsEndPoints();
 
 

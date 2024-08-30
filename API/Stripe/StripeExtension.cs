@@ -1,5 +1,4 @@
 ﻿using Shared.StripePayments;
-using Stripe;
 
 namespace API.Stripe;
 

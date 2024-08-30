@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using DataAccess.Entities;
+=======
+﻿using Shared.Entities;
+>>>>>>> dev-vivian-reverted
 using Shared.Interfaces;
 
 namespace API.Extensions
@@ -27,6 +31,7 @@ namespace API.Extensions
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         private static Task<IEnumerable<Order>> GetAllOrdersAsync(OrderRepository repo)
 =======
         private static async Task<IResult> GetAllOrdersAsync(IOrderRepository repo)
@@ -38,18 +43,22 @@ namespace API.Extensions
 
 <<<<<<< HEAD
         private static Task<Order?> GetOrderByIdAsync(OrderRepository repo)
+=======
+        private static async Task<List<Order>> GetAllOrdersAsync(IOrderRepository repo)
         {
-            throw new NotImplementedException();
+            return await repo.GetAllOrdersAsync();
         }
 
-        private static async Task<IResult> PostOrderAsync(OrderRepository repo)
+        private static async Task<IResult> GetOrderByIdAsync(IOrderRepository repo, int id)
+>>>>>>> dev-vivian-reverted
         {
-            var prod = await repo.GetAllOrdersAsync();
+            var prod = await repo.GetOrderByIdAsync(id);
             return Results.Ok(prod);
         }
 
-        private static async Task DeleteOrderAsync(OrderRepository repo)
+        private static async Task<IResult> PostOrderAsync(IOrderRepository repo, Order newOrder)
         {
+<<<<<<< HEAD
             throw new NotImplementedException();
 =======
         private static async Task<IResult> GetOrderByIdAsync(IOrderRepository repo, int id)
@@ -75,13 +84,27 @@ namespace API.Extensions
 
             await repo.AddOrderAsync(newOrder);
             return Results.Ok(newOrder);
+=======
+            var order = await repo.GetOrderByIdAsync(newOrder.Id);
+            if(order is not null)
+            {
+                return Results.BadRequest($"Product with id {order} already exists");
+            }
+
+            await repo.AddOrderAsync(newOrder);
+            return Results.Ok();
+           
+>>>>>>> dev-vivian-reverted
         }
 
         private static async Task<IResult> DeleteOrderAsync(IOrderRepository repo, int id)
         {
             await repo.DeleteOrderAsync(id);
             return Results.Ok();
+<<<<<<< HEAD
 >>>>>>> dev-Geweria
+=======
+>>>>>>> dev-vivian-reverted
         }
 
     }
