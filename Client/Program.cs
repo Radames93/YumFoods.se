@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-//gör om, hämta mijövariabel???
+//gör om, hämta mijövariabel?????
 
 
 builder.Services.AddHttpClient("YumFoodsConnectionString",
