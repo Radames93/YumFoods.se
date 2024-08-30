@@ -6,8 +6,10 @@
 *.sln.docstates
 .vs/
 # Build results
-Debug/*
-Release/*
+Debug/
+Release/
+API/obj/Debug/
+DataAccess/obj/Debug/
 x64/
 [Bb]in/
 [Oo]bj/
