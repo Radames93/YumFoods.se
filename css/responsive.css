@@ -1113,6 +1113,14 @@
         CART VIEW START
     =======================*/
 
+  section.CartPayDeliver {
+    flex-direction: column;
+  }
+
+  .card-body.CartPayDeliver {
+    width: 75%;
+  }
+
   .cart_view_page_breadcrumb {
     background-image: url("../images/cartview-tablet.png") !important;
     height: 307px !important;
@@ -2008,6 +2016,14 @@
   .cart_view_page_breadcrumb {
     background-image: url("../images/cartview-tablet.png") !important;
     height: 307px !important;
+  }
+
+  section.CartPayDeliver {
+    flex-direction: column;
+  }
+
+  .card-body.CartPayDeliver {
+    width: 75%;
   }
 
   /* =====================
@@ -2943,6 +2959,17 @@
     height: 307px !important;
   }
 
+  section.CartPayDeliver {
+    flex-direction: column;
+  }
+
+  .card-body.CartPayDeliver {
+    width: 75%;
+  }
+  .img-thumbnail.CartPayDeliver {
+    width: 30px;
+  }
+
   /* =====================
         CART VIEW DETAILS START
     =======================*/
@@ -2994,28 +3021,31 @@
   .quentity_btn {
     justify-content: end !important;
   }
+  .card-body.CartPayDeliver {
+    width: 95%;
+  }
 }
 /* =====================
     company box informatiom in shopping cart and contact page
     =======================*/
 @media (min-width: 575.99px) and (max-width: 1200px) {
-.contact-input{
-  flex-direction: column;
+  .contact-input {
+    flex-direction: column;
+  }
+  .contact_form_input {
+    max-width: 100%;
+  }
+  .contact-input .contact-befattning {
+    margin-right: 0px;
+  }
 }
-.contact_form_input{
-  max-width: 100%;
-}
-.contact-input .contact-befattning{
-  margin-right:0px;
-}
-}
-@media (max-width: 575.99px){
-  .contact_form_input{
+@media (max-width: 575.99px) {
+  .contact_form_input {
     margin-right: 3px;
   }
 }
-@media (min-width: 1000px){
-  .contact-input .contact-befattning{
-    margin-right:25px;
+@media (min-width: 1000px) {
+  .contact-input .contact-befattning {
+    margin-right: 25px;
   }
 }
