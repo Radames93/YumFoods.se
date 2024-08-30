@@ -1,27 +1,12 @@
-<<<<<<< HEAD
-﻿using DataAccess.Entities;
-<<<<<<< HEAD
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace DataAccess.Repositories
-=======
-using DataAccess.Repositories;
+using Shared.Entities;
 using Shared.Interfaces;
 
 namespace API.Extensions
->>>>>>> dev-Geweria
 {
-    public class SubscriptionRepository(YumFoodsDb context)
+    public static class SubscriptionExtension
     {
-        public async Task<List<Subscription>> GetAllSubscriptionsAsync()
+        public static IEndpointRouteBuilder MapSubscriptionEndpoints(this IEndpointRouteBuilder app)
         {
-<<<<<<< HEAD
-            return await context.Subscription.ToListAsync();
-=======
             var group = app.MapGroup("/subs");
 
             group.MapGet("/", GetAllSubscriptionsAsync);
@@ -38,19 +23,19 @@ namespace API.Extensions
 
         }
 
-        private static async Task<IResult> GetAllSubscriptionsAsync(ISubscriptionRepository repo)
+        private static async Task<IResult> GetAllSubscriptionsAsync(ISubscriptionRepository<Subscription> repo)
         {
             var subs = await repo.GetAllSubscriptionsAsync();
             return Results.Ok(subs);
         }
 
-        private static async Task<IResult> GetSubscriptionByIdAsync(ISubscriptionRepository repo, int id)
+        private static async Task<IResult> GetSubscriptionByIdAsync(ISubscriptionRepository<Subscription> repo, int id)
         {
             var sub = await repo.GetSubscriptionByIdAsync(id);
             return Results.Ok(sub);
         }
 
-        private static async Task<IResult> PostSubscriptionAsync(ISubscriptionRepository repo, Subscription newSub)
+        private static async Task<IResult> PostSubscriptionAsync(ISubscriptionRepository<Subscription> repo, Subscription newSub)
         {
             var exisitngSub = await repo.GetSubscriptionByIdAsync(newSub.Id);
             if (exisitngSub is not null)
@@ -62,7 +47,7 @@ namespace API.Extensions
             return Results.Ok(newSub);
         }
 
-        private static async Task<IResult> PutSubscriptionAsync(ISubscriptionRepository repo, int id, Subscription updatedSub)
+        private static async Task<IResult> PutSubscriptionAsync(ISubscriptionRepository<Subscription> repo, int id, Subscription updatedSub)
         {
             var existingSub = await repo.GetSubscriptionByIdAsync(id);
             if (existingSub is null)
@@ -74,23 +59,10 @@ namespace API.Extensions
             return Results.Ok(updatedSub);
         }
 
-        private static async Task<IResult> DeleteSubscriptionAsync(ISubscriptionRepository repo, int id)
+        private static async Task<IResult> DeleteSubscriptionAsync(ISubscriptionRepository<Subscription> repo, int id)
         {
             await repo.DeleteSubscriptionAsync(id);
             return Results.Ok();
->>>>>>> dev-Geweria
         }
-=======
-﻿using DataAccess;
-
-namespace API.Extensions
-{
-    public class SubscriptionRepository(YumFoodsDb context)
-    {
-        //public async Task<List<Subscription>> GetAllSubscriptionsAsync()
-        //{
-        //    return await context.Subscription.ToListAsync();
-        //}
->>>>>>> dev-vivian-reverted
     }
 }

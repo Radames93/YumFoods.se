@@ -1,11 +1,9 @@
-﻿using Shared.Entities;
+﻿namespace Shared.Interfaces;
 
-namespace Shared.Interfaces;
-
-public interface IOrderRepository
+public interface IOrderRepository<T> where T : class
 {
-    Task<List<Order>> GetAllOrdersAsync();
-    Task<Order?> GetOrderByIdAsync(int id);
-    Task AddOrderAsync(Order newOrder);
+    Task<List<T>> GetAllOrdersAsync();
+    Task<T?> GetOrderByIdAsync(int id);
+    Task AddOrderAsync(T newOrder);
     Task DeleteOrderAsync(int id);
 }

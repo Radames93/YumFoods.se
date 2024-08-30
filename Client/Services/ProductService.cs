@@ -1,8 +1,7 @@
 ﻿using Shared.DTOs;
-using Shared.Entities;
 using Shared.Interfaces;
 
-namespace Shared.Services;
+namespace Client.Services;
 
 public class ProductService : IProductRepository<ProductDTO>
 {
@@ -12,7 +11,6 @@ public class ProductService : IProductRepository<ProductDTO>
     {
         _httpClient = factory.CreateClient("YumFoodsConnectionString");
     }
-
 
     public async Task<List<ProductDTO>> GetAllProductsAsync()
     {

@@ -1,19 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shared.Entities;
 using Shared.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DataAccess.Repositories
 {
-    public class SubscriptionRepository(YumFoodsDb context) : ISubscriptionRepository
+    public class SubscriptionRepository(YumFoodsDb context) : ISubscriptionRepository<Subscription>
     {
         public async Task<List<Subscription>> GetAllSubscriptionsAsync()
         {
             return await context.Subscription.ToListAsync();
         }
+
         public async Task<Subscription?> GetSubscriptionByIdAsync(int id)
         {
             return await context.Subscription.FindAsync(id);

@@ -1,6 +1,4 @@
-﻿using Shared.Entities;
-
-namespace Shared.Interfaces;
+﻿namespace Shared.Interfaces;
 
 public interface IProductRepository<T> where T : class 
 {

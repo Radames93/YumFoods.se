@@ -1,7 +1,7 @@
 using Client.Components;
+using Client.Services;
 using Shared.DTOs;
 using Shared.Interfaces;
-using Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +23,8 @@ builder.Services.AddHttpClient("YumFoodsUserConnectionString",
 
 builder.Services.AddScoped<IProductRepository<ProductDTO>, ProductService>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetailDTO>, OrderDetailService>();
+builder.Services.AddScoped<IOrderRepository<OrderDTO>, OrderService>();
+builder.Services.AddScoped<ISubscriptionRepository<SubscriptionDTO>, SubscriptionService>();
 
 
 var app = builder.Build();
