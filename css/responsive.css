@@ -3021,8 +3021,8 @@
     margin-left: -10px;
   }
 
-  #contact_title {
-    margin-left: 120px;
+  #footer-phone {
+    width: 157px;
   }
 
   #contact_info {
@@ -3049,11 +3049,8 @@
   }
 
   #social_links {
-    margin-left: 90px;
-  }
-
-  #social_links h2 {
-    margin-left: 30px;
+    margin-left: 0px;
+    margin-bottom: -60px;
   }
 
   #other_links {
