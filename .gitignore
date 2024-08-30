@@ -125,3 +125,9 @@ Message backend-dev
 
 
 
+/API/obj/Debug/net8.0/API.AssemblyInfo.cs
+/API/obj/Debug/net8.0/API.AssemblyInfoInputs.cache
+/API/obj/Debug/net8.0/API.csproj.AssemblyReference.cache
+/DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfo.cs
+/DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfoInputs.cache
+/DataAccess/obj/Debug/net8.0/DataAccess.csproj.AssemblyReference.cache
