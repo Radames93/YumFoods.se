@@ -68,7 +68,361 @@
         <div class="row">
           <div class="container2">
             <div class="tbl_content">
-              <table class="tbl">
+              <div class="accordion" id="customerHandling">
+                <div
+                  class="accordion-item CartPayDeliver rounded-4 mb-4 border border-greys border-1"
+                >
+                  <h2 class="accordion-header" id="headingOne">
+                    <button
+                      class="accordion-button collapsed rounded-2 bg-transparent CartPayDeliver"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      Varukorg
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#customerHandling"
+                  >
+                    <div class="accordion-body border-top CartPayDeliver">
+                      <!-- -------------------Content Start----------------- -->
+                      <section>
+                        <div class="container">
+                          <div class="hide" id="table_head">
+                            <!-- <img class="pro_img"></img>
+                            <div class="pro_name"></div>
+                            <div class="pro_status"></div>
+                            <div class="pro_select"></div>
+                            <div class="pro_tk"></div>
+                            <div class="pro_icon"></div> -->
+                          </div>
+                          <div class="row row-cols-1" id="cart-item"></div>
+                        </div>
+                        <div
+                          id="summary_head"
+                          style="border-top: solid 1px black"
+                        >
+                          <h6 style="padding: 10px">Har du värdekod ?</h6>
+                          <input type="text" style="width: 20%" />
+
+                          <div id="cost_summary"></div>
+                          <button
+                            class="accordion-button nextAccord"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne"
+                            aria-expanded="true"
+                            aria-controls="collapseOne"
+                          >
+                            Fortsätt till leverans
+                          </button>
+                        </div>
+                      </section>
+                      <!-- -------------------Content End------------------- -->
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="accordion-item CartPayDeliver rounded-4 mb-4 border border-greys border-1"
+                >
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button
+                      class="accordion-button collapsed rounded-2 bg-transparent CartPayDeliver"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      Leverans
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingTwo"
+                    data-bs-parent="#customerHandling"
+                  >
+                    <div class="accordion-body border-top">
+                      <section
+                        class="d-flex flex-column justify-content-center mx-auto deliverContainer"
+                      >
+                        <h4 class="mb-5 fw-bold">Välj Leverans</h4>
+
+                        <div class="mb-5">
+                          <p class="mb-2">Välj datum för leverans</p>
+                          <div
+                            class="d-flex justify-content-between deliverDate"
+                          >
+                            <button class="btn btn-primary dateBtn">
+                              date1
+                            </button>
+                            <button class="btn btn-primary dateBtn">
+                              date2
+                            </button>
+                            <button class="btn btn-primary dateBtn">
+                              date3
+                            </button>
+                            <button class="btn btn-primary dateBtn">
+                              date4
+                            </button>
+                          </div>
+                        </div>
+
+                        <div class="mb-5">
+                          <p class="mb-2">Välj tid för leverans</p>
+                          <div
+                            class="d-flex justify-content-between deliverTime"
+                          >
+                            <button class="btn btn-primary timeBtn">
+                              time1
+                            </button>
+                            <button class="btn btn-primary timeBtn">
+                              time2
+                            </button>
+                            <button class="btn btn-primary timeBtn">
+                              time3
+                            </button>
+                            <button class="btn btn-primary timeBtn">
+                              time4
+                            </button>
+                          </div>
+                        </div>
+
+                        <div class="mb-4">
+                          <p class="mb-2">Leveransadress</p>
+                          <div
+                            class="d-flex justify-content-between deliverTime"
+                          >
+                            <input class="rounded-3" type="text" />
+                          </div>
+                        </div>
+
+                        <div
+                          class="d-flex flex-row justify-content-between mb-5"
+                        >
+                          <div>
+                            <p>Portkod/Porttelefon</p>
+                            <input class="rounded-3" type="text" />
+                          </div>
+                          <div>
+                            <p>Våningsplan</p>
+                            <input class="rounded-3" type="text" />
+                          </div>
+                        </div>
+
+                        <div class="d-flex flex-row align-items-center">
+                          <div
+                            class="form-check form-switch form-check-reverse"
+                          >
+                            <label
+                              class="form-check-label mr-2"
+                              for="flexSwitchCheckDefault"
+                              >Lämna utanför dörren</label
+                            >
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="flexSwitchCheckDefault"
+                            />
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="accordion-item CartPayDeliver rounded-4 border border-greys border-1"
+                >
+                  <h2 class="accordion-header" id="headingThree">
+                    <button
+                      class="accordion-button collapsed rounded-2 bg-transparent CartPayDeliver"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      Betalning
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingOThree"
+                    data-bs-parent="#customerHandling"
+                  >
+                    <div class="accordion-body border-top">
+                      <div class="d-flex card mx-auto border-0">
+                        <div class="card-body mx-auto CartPayDeliver">
+                          <h4 class="card-title">Välj Betalsätt</h4>
+                          <div class="card CartPayDeliver">
+                            <div
+                              class="form-check m-3 d-flex align-items-center ps-0"
+                            >
+                              <input
+                                class="form-check-input me-3 CartPayDeliver"
+                                type="radio"
+                                name="paymentRadio"
+                                id="payment1"
+                              />
+                              <label class="form-check-label" for="payment1">
+                                Betala med Swish
+                              </label>
+                              <img
+                                src="./images/swishIcon.png"
+                                alt="..."
+                                class="img-thumbnail CartPayDeliver"
+                              />
+                            </div>
+                          </div>
+                          <div class="card CartPayDeliver">
+                            <div
+                              class="form-check m-3 d-flex align-items-center ps-0"
+                            >
+                              <input
+                                class="form-check-input me-3 CartPayDeliver"
+                                type="radio"
+                                name="paymentRadio"
+                                id="payment2"
+                              />
+                              <label class="form-check-label" for="payment2">
+                                Betala med Klarna
+                              </label>
+                              <img
+                                src="./images/klarnaIcon.png"
+                                alt="..."
+                                class="img-thumbnail CartPayDeliver"
+                              />
+                            </div>
+                          </div>
+                          <div class="card CartPayDeliver">
+                            <div
+                              class="form-check m-3 d-flex align-items-center ps-0"
+                            >
+                              <input
+                                class="form-check-input me-3 CartPayDeliver"
+                                type="radio"
+                                name="paymentRadio"
+                                id="payment3isChecked"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="payment3isChecked"
+                              >
+                                Betala med Kort
+                              </label>
+                              <img
+                                src="./images/creditIcon.png"
+                                alt="..."
+                                class="img-thumbnail CartPayDeliver"
+                              />
+                            </div>
+                            <div class="form-group">
+                              <section
+                                class="d-flex justify-content-evenly CartPayDeliver"
+                              >
+                                <div class="mx-2 w-75 cardfield">
+                                  <label for="cardNumber" class="form-label"
+                                    >Kortnummer</label
+                                  >
+                                  <div class="input-group mb-4">
+                                    <span
+                                      class="input-group-text"
+                                      id="addon1"
+                                    ></span>
+                                    <input
+                                      id="cardNumber"
+                                      type="number"
+                                      class="form-control"
+                                      placeholder="1234 1234 1234 1234"
+                                      aria-label="Cardnumber"
+                                      aria-describedby="addon1"
+                                      disabled
+                                    />
+                                  </div>
+                                </div>
+                                <div class="mx-2 w-50 expireField">
+                                  <label for="expiration" class="form-label"
+                                    >Utgångsdatum</label
+                                  >
+                                  <div class="input-group mb-4">
+                                    <span
+                                      class="input-group-text"
+                                      id="addon2"
+                                    ></span>
+                                    <input
+                                      id="expiration"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="MM/YY"
+                                      aria-label="Expiration"
+                                      aria-describedby="addon2"
+                                      maxlength="5"
+                                      disabled
+                                    />
+                                  </div>
+                                </div>
+                                <div class="mx-2 w-50 cvcField">
+                                  <label for="cvc" class="form-label"
+                                    >CVC/CVV</label
+                                  >
+                                  <div class="input-group mb-4">
+                                    <span
+                                      class="input-group-text"
+                                      id="addon3"
+                                    ></span>
+                                    <input
+                                      id="cvc"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="123"
+                                      aria-label="CVC"
+                                      aria-describedby="addon3"
+                                      maxlength="3"
+                                      disabled
+                                    />
+                                  </div>
+                                </div>
+                              </section>
+                            </div>
+                          </div>
+                          <div class="card CartPayDeliver">
+                            <div
+                              class="form-check m-3 d-flex align-items-center ps-0"
+                            >
+                              <input
+                                class="form-check-input me-3 CartPayDeliver"
+                                type="radio"
+                                name="paymentRadio"
+                                id="payment4"
+                              />
+                              <label class="form-check-label" for="payment4">
+                                Betala med Stripe
+                              </label>
+                              <img
+                                src="./images/stripIcon.png"
+                                alt="..."
+                                class="img-thumbnail CartPayDeliver"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <table class="tbl">
                 <thead class="hide" id="table_head">
                   <tr>
                     <th class="pro_img">Bild</th>
@@ -87,7 +441,7 @@
                   </tr>
                 </thead>
                 <tbody id="cart-item"></tbody>
-              </table>
+              </table> -->
             </div>
           </div>
           <div class="col-lg-12 wow fadeInUp" data-wow-duration="1s">
@@ -103,17 +457,24 @@
                   </div>
                 </div>
                 <div class="col-xl-5 col-md-6">
-
-                <div class="d-flex justify-content-around mb-4">
-                  <button class="common_btn" id="private_button" type="button">
-                    <span class="button_span pull-left">Privat</span>
-                    <i class="fas fa-arrow-down"></i>
-                  </button>
-                  <button class="common_btn" id="company_button" type="button">
-                    <span class="button_span pull-left">Företag</span>
-                    <i class="fas fa-arrow-down"></i>
-                  </button>
-                </div>
+                  <div class="d-flex justify-content-around mb-4">
+                    <button
+                      class="common_btn"
+                      id="private_button"
+                      type="button"
+                    >
+                      <span class="button_span pull-left">Privat</span>
+                      <i class="fas fa-arrow-down"></i>
+                    </button>
+                    <button
+                      class="common_btn"
+                      id="company_button"
+                      type="button"
+                    >
+                      <span class="button_span pull-left">Företag</span>
+                      <i class="fas fa-arrow-down"></i>
+                    </button>
+                  </div>
 
                   <div class="total_button_text">
                     <!--<h6>total</h6>
@@ -311,7 +672,7 @@
     ==============================-->
     <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
     <!--=============================
-        SCROLL BUTTON END 
+        SCROLL BUTTON END
     ==============================-->
 
     <!-- hotjar code -->

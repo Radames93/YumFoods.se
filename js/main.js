@@ -97,6 +97,50 @@ function Header() {
         <!-- language button-->
         <div class="langBtn">
           <ul class="navbar-nav">
+  <nav class="navbar navbar-expand-lg main_menu">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img rel="preload" as="image" src="images/logo.png" alt="logo" class="img-fluid logo" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fa fa-bars menu_icon_bar"></i>
+        <i class="fa fa-times close_icon_close"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#"
+              >Meny <i class="fa fa-angle-down"></i
+            ></a>
+            <ul class="droap_menu">
+              <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
+              <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
+              <li><a href="yum_menu.html">Yum</a></li>
+             <li><a href="daily_menu.html">Dagens</a></li>
+              <li><a href="premium_menu.html">Premium</a></li>
+            </ul>
+          </li>
+          <!--
+           <li class="nav-item">
+            <a class="nav-link" href="#"
+              >Våra tjänster <i class="fa fa-angle-down"></i
+            ></a>
+            <ul class="droap_menu">
+              <li><a href="office.html">Kontor</a></li>
+              <li><a href="private.html">Privat</a></li>
+              <li><a href="events.html">Evenemang</a></li>
+            </ul>
+          </li>
+          --
+          <!--
             <li class="nav-item">
               <a href="#" onclick="myFunction()" class="dropbtn" >
                 <span class="icone"> <i class="fa fa-globe"></i> </span>
@@ -247,6 +291,7 @@ function toggleDropdown(){
 }
 
 //Get elements from the DOM
+let summary = document.getElementById("cost_summary");
 let yum = document.getElementById("yum");
 let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
@@ -257,6 +302,7 @@ let baguetter = document.getElementById("baguetter");
 let popup = document.getElementById("popup");
 const searchBar = document.getElementById("searchbar");
 let cartItem = document.getElementById("cart-item");
+let option3Checked = document.getElementById("payment3isChecked");
 let yumSearchMessage = document.getElementById("search-yum-message");
 let dailySearchMessage = document.getElementById("search-daily-message");
 let premiumSearchMessage = document.getElementById("search-premium-message");
@@ -284,6 +330,33 @@ let premiumFiltered = [];
 let subscriptionsFiltered = [];
 let baguetterFiltered = [];
 let all = [];
+
+//Create a function to enable text field if appropriate radio button is checked
+function ifChecked() {
+  // option3Checked.getElementById("payment3isChecked");
+  // checks to see if the radio button is checked or not, if checked true, if not false
+  // also make sure it exists to prevent missing values (null) in other pages
+  if (option3Checked) {
+    const isChecked = option3Checked.checked;
+    // set the disabled attribute to false should the button be checked
+    document.getElementById("cardNumber").disabled = !isChecked;
+    document.getElementById("expiration").disabled = !isChecked;
+    document.getElementById("cvc").disabled = !isChecked;
+  }
+  isChanged();
+}
+// Run the function on "change" on each radio button, checking to see if the payment option 3 is picked or not
+function isChanged() {
+  if (option3Checked) {
+    document.getElementById("payment1").addEventListener("change", ifChecked);
+    document.getElementById("payment2").addEventListener("change", ifChecked);
+    document
+      .getElementById("payment3isChecked")
+      .addEventListener("change", ifChecked);
+    document.getElementById("payment4").addEventListener("change", ifChecked);
+  }
+}
+ifChecked();
 
 // Implement search bar function
 const search = () => {
@@ -420,6 +493,17 @@ const yumProducts = (yumProductsList) => {
                         >
           <div class="menu_item"
                   data-yum-id=${yum.id} 
+          <div class="menu_item">
+              <div class="menu_item_img">
+                <img
+                  src=` +
+          yum.img +
+          `
+                  alt="yum-meny-bild"
+                  class="img-fluid w-100"
+                  class="title"
+                  href="#"
+                  data-yum-id=${yum.id}
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -452,7 +536,7 @@ const yumProducts = (yumProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${yum.id} 
+                  data-yum-id=${yum.id}
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -470,6 +554,18 @@ const yumProducts = (yumProductsList) => {
           yum.price +
           `kr</h5>
           <!--
+          `kr</h5>` +
+          "<button id='cart-button' class='add_to_cart' data-id=" +
+          yum.id +
+          `
+          data-yum-id=${yum.id}
+          data-yum-title=${yum.title}
+          data-yum-price=${yum.price}
+          data-yum-img=${yum.img}
+          data-yum-quantity-price=${yum.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+          `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -546,7 +642,7 @@ const dailyProducts = (dailyProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item" data-yum-id=${daily.id} 
+          <div class="menu_item" data-yum-id=${daily.id}
                   data-yum-title=${daily.title}
                   data-yum-price=${daily.price}
                   data-yum-img=${daily.img}
@@ -565,7 +661,7 @@ const dailyProducts = (dailyProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  
+
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -580,7 +676,7 @@ const dailyProducts = (dailyProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${daily.id} 
+                  data-yum-id=${daily.id}
                   data-yum-title=${daily.title}
                   data-yum-price=${daily.price}
                   data-yum-img=${daily.img}
@@ -672,7 +768,7 @@ const premiumProducts = (premiumProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item" data-yum-id=${premium.id} 
+          <div class="menu_item" data-yum-id=${premium.id}
                   data-yum-title=${premium.title}
                   data-yum-price=${premium.price}
                   data-yum-img=${premium.img}
@@ -691,7 +787,7 @@ const premiumProducts = (premiumProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  
+
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -706,7 +802,7 @@ const premiumProducts = (premiumProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${premium.id} 
+                  data-yum-id=${premium.id}
                   data-yum-title=${premium.title}
                   data-yum-price=${premium.price}
                   data-yum-img=${premium.img}
@@ -808,7 +904,7 @@ const baguetterProducts = (baguetterProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  data-yum-id=${baguetter.id} 
+                  data-yum-id=${baguetter.id}
                   data-yum-title=${baguetter.title}
                   data-yum-price=${baguetter.price}
                   data-yum-img=${baguetter.img}
@@ -832,7 +928,7 @@ const baguetterProducts = (baguetterProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${baguetter.id} 
+                  data-yum-id=${baguetter.id}
                   data-yum-title=${baguetter.title}
                   data-yum-price=${baguetter.price}
                   data-yum-img=${baguetter.img}
@@ -903,7 +999,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  data-yum-id=${subscription.id} 
+                  data-yum-id=${subscription.id}
                   data-yum-title=${subscription.title}
                   data-yum-price=${subscription.price}
                   data-yum-img=${subscription.img}
@@ -921,7 +1017,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${subscription.id} 
+                  data-yum-id=${subscription.id}
                   data-yum-title=${subscription.title}
                   data-yum-price=${subscription.price}
                   data-yum-img=${subscription.img}
@@ -1048,7 +1144,7 @@ const offeredServices = (offeredServicesList) => {
                   </div>
                 </div>
               </div>
-          
+
         `
         );
       })
@@ -1699,20 +1795,28 @@ let id = "";
 //Display items in the cart
 const displayNewCart = () => {
   const tableHead = document.getElementById("table_head");
+  const summaryHead = document.getElementById("summary_head");
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     if (formDataArry === null) {
       tableHead.classList.remove("block");
       tableHead.classList.add("hide");
+      summaryHead.classList.remove("block");
+      summaryHead.classList.add("hide");
       cartItem.insertAdjacentHTML(
         "afterend",
-        `<h4 class="single_team_text" style="padding: 20px; text-align: center">
+        `
+        <div class="single_team_text">
+        <h3 style="padding: 20px; text-align: center">
           Din varukorg är tom
-        </h4>`
+        </h3>
+          </div>`
       );
     } else {
       tableHead.classList.remove("hide");
       tableHead.classList.add("block");
+      summaryHead.classList.remove("hide");
+      summaryHead.classList.add("block");
       const htmlString = formDataArry
         .map((item) => {
           id = item.id;
@@ -1722,61 +1826,115 @@ const displayNewCart = () => {
           } else {
             quantity = item.quantity;
           }
+          //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
           return (
             `
-          <tr id= "` +
+          <section class="col mb-4" id=` +
             item.id +
-            `">
-          <td data-label="Bild" class="pro_img">
-                        <img
-                          src="` +
+            `>
+
+              <div class="d-flex">
+                <img id="` +
+            item.id +
+            `" src="` +
             item.img +
-            `"
-                          alt="rätt-bild"
-                          class="img-fluid w-100"
-                        />
-                      </td>
+            `" alt="bild på maträtt"
+                class="pro_img cartPayDeliver"/>
+                <div>
+                  <p>` +
+            item.title +
+            `</p>
+                </div>
+                <div>
+                  <p style="color: red; border:solid 1px grey; padding: 4px; border-radius: 5px; margin-left: 3px;">Ändra<p>
+                </div>
+            </div>
 
-                      <td data-label="Detaljer" class="pro_name">
-                        <a href="#">` +
-            item.title?.replace(/'/g, "") +
-            `</a>
-                      </td>
-                      <td data-label="Pris" class="pro_status">
-                        <h6>` +
-            item.price +
-            `kr</h6>
-                      </td>
+            <div class="pro_select d-flex flex-direction-row">
+              <div class="quentity_btn">
 
-                      <td data-label="Kvantitet" class="pro_select">
-                      <div class="quentity_btn">
-                      <button class="decrease">
-                      <i class="fa fa-minus"></i>
-                    </button>
-                    <input class="quantity" type="text" value=` +
+                <button class="decrease">
+                    <i class="fa fa-minus"></i>
+                </button>
+                <input class="quantity" type="text" value=` +
             quantity +
             `>
-                    <button class="increase">
-                      <i class="fa fa-plus"></i>
-                    </button>
-                  </div>
-                      </td>
-
-                      <td data-label="Total" class="pro_tk">
-                      <div class="quentity_btn">
-                        <h6 class="quantity_price">` +
+                <button class="increase">
+                        <i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <div class="quentity_btn">
+              <h6 class="quantity_price">` +
             item.quantityPrice +
             `</h6>
-                      <h6 class="currency mb_0">kr</h6>
-                      </div>
-                      </td>
-
-                      <td data-label="Ta bort" class="pro_icon">
-                        <button onclick="removeItem(` +
+            </div>
+              <div class="pro_icon">
+              <button onclick="removeItem(` +
             item.id +
             `)" href="#"><i class="fas fa-trash-alt"></i></button>
-                      </td>
-                      </tr>`
+              </div>
+            </div>
+            </div>
+          </section>
+
+
+            `
+
+            //   `
+            // <tr id= "` +
+            //   item.id +
+            //   `">
+            // <td data-label="Bild" class="pro_img">
+            //               <img
+            //                 src="` +
+            //   item.img +
+            //   `"
+            //                 alt="rätt-bild"
+            //                 class="img-fluid w-100"
+            //               />
+            //             </td>
+
+            //             <td data-label="Detaljer" class="pro_name">
+            //               <a href="#">` +
+            //   item.title?.replace(/'/g, "") +
+            //   `</a>
+            //             </td>
+            //             <td data-label="Pris" class="pro_status">
+            //               <h6>` +
+            //   item.price +
+            //   `kr</h6>
+            //             </td>
+
+            //             <td data-label="Kvantitet" class="pro_select">
+            //             <div class="quentity_btn">
+            //             <button class="decrease">
+            //             <i class="fa fa-minus"></i2>
+            //           </button>
+            //           <input class="quantity" type="text" value=` +
+            //   quantity +
+            //   `>
+            //           <button class="increase">
+            //             <i class="fa fa-plus"></i>
+            //           </button>
+            //         </div>
+            //             </td>
+
+            //             <td data-label="Total" class="pro_tk">
+            //             <div class="quentity_btn">
+            //               <h6 class="quantity_price">` +
+            //   item.quantityPrice +
+            //   `</h6>
+            //             <h6 class="currency mb_0">kr</h6>
+            //             </div>
+            //             </td>
+
+            //             <td data-label="Ta bort" class="pro_icon">
+            //               <button onclick="removeItem(` +
+            //   item.id +
+            //   `)" href="#"><i class="fas fa-trash-alt"></i></button>
+            //             </td>
+            //             </tr>
+            //             `
           );
         })
         .join("");
@@ -1786,6 +1944,112 @@ const displayNewCart = () => {
   }
 };
 
+//Display cost summary
+const displaySummary = () => {
+  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  console.log(formDataArry);
+  summary.insertAdjacentHTML(
+    "afterend",
+    `
+      <div>
+      <p class="mb-1" style="padding:10px; background:lightgrey;">Frakt <span></span></p>
+      <p style="padding:10px; background:lightgrey; class="quantity_price">Totalt kostnad inkl.moms <span></span></p>
+      </div>
+      `
+  );
+  displaySummary();
+
+  // copy
+  // const displayNewCart = () => {
+  //   const tableHead = document.getElementById("table_head");
+  //   if (cartItem !== null) {
+  //     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  //     if (formDataArry === null) {
+  //       tableHead.classList.remove("block");
+  //       tableHead.classList.add("hide");
+  //       cartItem.insertAdjacentHTML(
+  //         "afterend",
+  //         `<h4 class="single_team_text" style="padding: 20px; text-align: center">
+  //           Din varukorg är tom
+  //         </h4>`
+  //       );
+  //     } else {
+  //       tableHead.classList.remove("hide");
+  //       tableHead.classList.add("block");
+  //       const htmlString = formDataArry
+  //         .map((item) => {
+  //           id = item.id;
+  //           let quantity;
+  //           if (item.quantity == null) {
+  //             quantity = localStorage.getItem("quantity");
+  //           } else {
+  //             quantity = item.quantity;
+  //           }
+  //           return (
+  //             `
+  //           <tr id= "` +
+  //             item.id +
+  //             `">
+  //           <td data-label="Bild" class="pro_img">
+  //                         <img
+  //                           src="` +
+  //             item.img +
+  //             `"
+  //                           alt="rätt-bild"
+  //                           class="img-fluid w-100"
+  //                         />
+  //                       </td>
+
+  //                       <td data-label="Detaljer" class="pro_name">
+  //                         <a href="#">` +
+  //             item.title?.replace(/'/g, "") +
+  //             `</a>
+  //                       </td>
+  //                       <td data-label="Pris" class="pro_status">
+  //                         <h6>` +
+  //             item.price +
+  //             `kr</h6>
+  //                       </td>
+
+  //                       <td data-label="Kvantitet" class="pro_select">
+  //                       <div class="quentity_btn">
+  //                       <button class="decrease">
+  //                       <i class="fa fa-minus"></i>
+  //                     </button>
+  //                     <input class="quantity" type="text" value=` +
+  //             quantity +
+  //             `>
+  //                     <button class="increase">
+  //                       <i class="fa fa-plus"></i>
+  //                     </button>
+  //                   </div>
+  //                       </td>
+
+  //                       <td data-label="Total" class="pro_tk">
+  //                       <div class="quentity_btn">
+  //                         <h6 class="quantity_price">` +
+  //             item.quantityPrice +
+  //             `</h6>
+  //                       <h6 class="currency mb_0">kr</h6>
+  //                       </div>
+  //                       </td>
+
+  //                       <td data-label="Ta bort" class="pro_icon">
+  //                         <button onclick="removeItem(` +
+  //             item.id +
+  //             `)" href="#"><i class="fas fa-trash-alt"></i></button>
+  //                       </td>
+  //                       </tr>`
+  //           );
+  //         })
+  //         .join("");
+  //       cartItem.innerHTML = htmlString;
+  //       return id;
+  //     }
+  //   }
+  // };
+};
+
 displayNewCart();
 totalSum();
 totalQuantity();
@@ -1793,13 +2057,16 @@ totalQuantity();
 const increase = document.querySelectorAll(".increase");
 const decrease = document.querySelectorAll(".decrease");
 
-increase.forEach((btn) => {
-  btn.addEventListener("click", increment);
-});
+function reloadBtn() {
+  increase.forEach((btn) => {
+    btn.addEventListener("click", increment);
+  });
 
-decrease.forEach((btn) => {
-  btn.addEventListener("click", decrement);
-});
+  decrease.forEach((btn) => {
+    btn.addEventListener("click", decrement);
+  });
+}
+reloadBtn();
 
 //Increment function on the + button for quantity
 function increment() {
@@ -1818,14 +2085,15 @@ function increment() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.closest("td").nextElementSibling.querySelector(".quantity_price");
+        this.parentElement.nextElementSibling.querySelector(".quantity_price");
       var input = this.previousElementSibling;
+      console.log(input);
     }
     let inputQuantity = inp.value;
     let increaseQuantityPrice = inp.value * price;
 
     if (cartItem !== null) {
-      let tableId = this.closest("tr").id;
+      let tableId = this.closest("section").id;
 
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
@@ -1864,12 +2132,13 @@ function increment() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.closest("td").nextElementSibling.querySelector(".quantity_price");
+        this.parentElement.nextElementSibling.querySelector(".quantity_price");
       var input = this.previousElementSibling;
     }
     let inputQuantity = inp.value;
 
-    let tableId = this.closest("tr").id;
+    let tableId = this.closest("section").id;
+    console.log(tableId);
 
     let itemIndex = formDataArry.filter((el) => el.id == tableId);
     if (itemIndex) {
@@ -1890,7 +2159,7 @@ function increment() {
 function decrement() {
   if (localStorage.getItem("quantity") !== null) {
     const inp = this.nextElementSibling;
-    button = this.closest("button");
+    console.log(inp);
     if (inp.value > 0) inp.value = Number(inp.value) - 1;
     if (inp.value <= 0) {
       this.setAttribute("disabled", "disabled");
@@ -1906,14 +2175,15 @@ function decrement() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.closest("td").nextElementSibling.querySelector(".quantity_price");
+        this.parentElement.nextElementSibling.querySelector(".quantity_price");
       var input = this.nextElementSibling;
     }
     let inputQuantity = inp.value;
     let decreaseQuantityPrice = quantityPrice - price;
 
     if (cartItem !== null) {
-      let tableId = this.closest("tr").id;
+      let tableId = this.closest("section").id;
+
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
         decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
@@ -1935,6 +2205,7 @@ function decrement() {
     localStorage.setItem("quantity", (input.textContent = inputQuantity));
   } else {
     const inp = this.nextElementSibling;
+    console.log(inp);
     if (inp.value > 0) {
       inp.value = Number(inp.value) - 1;
     }
@@ -1951,19 +2222,20 @@ function decrement() {
       var input = cardModal.querySelector(".quantity");
     } else {
       price = parseInt(price);
-      var modalQuantityPrice =
-        this.closest("td").nextElementSibling.querySelector(".quantity_price");
-      var input = this.nextElementSibling;
+      var modalQuantityPrice = document.querySelector(".quantity_price");
+      var input = document.querySelector(".quantity");
     }
     let inputQuantity = inp.value;
 
-    let tableId = this.closest("tr").id;
+    let tableId = this.closest("section").id;
+    console.log(tableId);
 
     let itemIndex = formDataArry.filter((el) => el.id == tableId);
     if (itemIndex) {
       let decreaseQuantityPrice =
         itemIndex[0].quantityPrice - itemIndex[0].price;
       itemIndex[0].quantityPrice = decreaseQuantityPrice;
+      console.log(modalQuantityPrice);
       modalQuantityPrice.innerHTML = decreaseQuantityPrice;
       itemIndex[0].quantity = inputQuantity;
       input.value = inputQuantity;
@@ -1978,13 +2250,14 @@ function decrement() {
 //Remove item from cart
 function removeItem(id) {
   let temp = formDataArry.filter((item) => item.id != id);
+  console.log(temp);
   localStorage.setItem("formDataArry", JSON.stringify(temp));
   //set item back into storage
   displayNewCart();
   totalQuantity();
   totalSum();
   updateFields();
-  if (temp.length === 0) {
+  if (temp.length == 0) {
     localStorage.clear();
     displayNewCart();
   }
