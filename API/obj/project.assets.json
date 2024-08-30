@@ -1304,10 +1304,10 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
+          "C:\\Users\\Vivian\\Documents\\Shared\\Shared.csproj": "1.0.0",
           "Microsoft.EntityFrameworkCore": "8.0.8",
           "Microsoft.Extensions.DependencyInjection": "8.0.0",
           "MySql.Data": "9.0.0",
-          "Shared": "1.0.0",
           "yumfoods.se": "1.0.0"
         },
         "compile": {
@@ -3765,8 +3765,8 @@
     },
     "Shared/1.0.0": {
       "type": "project",
-      "path": "../../Shared/Shared.csproj",
-      "msbuildProject": "../../Shared/Shared.csproj"
+      "path": "../Shared/Shared.csproj",
+      "msbuildProject": "../Shared/Shared.csproj"
     },
     "yumfoods.se/1.0.0": {
       "type": "project",
@@ -3776,6 +3776,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "C:\\Users\\Vivian\\Documents\\Shared\\Shared.csproj",
       "DataAccess >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 8.0.8",
       "Microsoft.EntityFrameworkCore >= 8.0.8",
@@ -3786,23 +3787,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gewer\\.nuget\\packages\\": {},
+    "C:\\Users\\Vivian\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\Vivian\\Documents\\YF\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\gewer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\API\\obj\\",
+      "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\Vivian\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Vivian\\Documents\\YF\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\gewer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Vivian\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3818,14 +3819,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\gewer\\source\\repos\\Shared\\Shared.csproj": {
-              "projectPath": "C:\\Users\\gewer\\source\\repos\\Shared\\Shared.csproj"
+            "C:\\Users\\Vivian\\Documents\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\Vivian\\Documents\\Shared\\Shared.csproj"
             },
-            "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\DataAccess\\DataAccess.csproj": {
-              "projectPath": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\DataAccess\\DataAccess.csproj"
+            "C:\\Users\\Vivian\\Documents\\YF\\DataAccess\\DataAccess.csproj": {
+              "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\DataAccess\\DataAccess.csproj"
             },
-            "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\Shared\\Shared.csproj": {
-              "projectPath": "C:\\Users\\gewer\\source\\repos\\yumfoods.se\\Shared\\Shared.csproj"
+            "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj": {
+              "projectPath": "C:\\Users\\Vivian\\Documents\\YF\\Shared\\Shared.csproj"
             }
           }
         }
@@ -3887,8 +3888,19 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Unable to find project 'C:\\Users\\Vivian\\Documents\\Shared\\Shared.csproj'. Check that the project reference is valid and that the project file exists.",
+      "libraryId": "C:\\Users\\Vivian\\Documents\\Shared\\Shared.csproj",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

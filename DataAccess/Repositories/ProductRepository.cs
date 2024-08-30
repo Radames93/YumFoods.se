@@ -1,10 +1,10 @@
-﻿using DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Shared.Entities;
 using Shared.Interfaces;
 
 namespace DataAccess.Repositories;
 
-public class ProductRepository(YumFoodsDb context)
+public class ProductRepository(YumFoodsDb context) : IProductRepository<Product> 
 {
     public async Task<List<Product>> GetAllProductsAsync()
     {
@@ -16,17 +16,28 @@ public class ProductRepository(YumFoodsDb context)
         return await context.Product.FindAsync(id);
     }
 
-    public async Task<Product?> GetProductByCategoryAsync(string category)
+    public async Task<List<Product?>> GetProductByCategoryAsync(string category)
     {
-        return await context.Product.FirstOrDefaultAsync(p => p.Category == category);
+        return await context.Product
+            .Where(p => p.Category == category)
+            .ToListAsync();
+        //return await context.Product.FirstOrDefaultAsync(p => p.Category == category);
     }
 
-    public async Task<Product?> GetProductByCuisineAsync(string cuisine)
+    public async Task<List<Product?>> GetProductByCuisineAsync(string cuisine)
     {
-        return await context.Product.FirstOrDefaultAsync(p => p.Cuisine == cuisine);
+        return await context.Product
+            .Where(p => p.Cuisine == cuisine)
+            .ToListAsync();
     }
 
-    //osäker
+    public async Task<List<Product?>> GetProductsByDietAsync(string diet)
+    {
+        return await context.Product
+            .Where(p => p.Diet == diet)
+            .ToListAsync();
+    }
+
     public async Task<Product?> GetProductByNameAsync(string name)
     {
         return await context.Product.FirstOrDefaultAsync(p => p.Title == name);
@@ -40,6 +51,7 @@ public class ProductRepository(YumFoodsDb context)
             Category = newProd.Category,
             Description = newProd.Description,
             Diet = newProd.Diet,
+            DietRef = newProd.DietRef,
             Ingredients = newProd.Ingredients,
             Price = newProd.Price,
             ImgRef = newProd.ImgRef,
@@ -57,10 +69,12 @@ public class ProductRepository(YumFoodsDb context)
             return;
         }
 
+        oldProd.Id = updatedProd.Id;
         oldProd.Title = updatedProd.Title;
         oldProd.Category = updatedProd.Category;
         oldProd.Description = updatedProd.Description;
         oldProd.Diet = updatedProd.Diet;
+        oldProd.DietRef = updatedProd.DietRef;
         oldProd.Cuisine = updatedProd.Cuisine;
         oldProd.Price = updatedProd.Price;
         oldProd.ImgRef = updatedProd.ImgRef;
