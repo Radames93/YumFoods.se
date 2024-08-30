@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using DataAccess.Entities;
 <<<<<<< HEAD
 using Microsoft.EntityFrameworkCore;
@@ -79,5 +80,17 @@ namespace API.Extensions
             return Results.Ok();
 >>>>>>> dev-Geweria
         }
+=======
+﻿using DataAccess;
+
+namespace API.Extensions
+{
+    public class SubscriptionRepository(YumFoodsDb context)
+    {
+        //public async Task<List<Subscription>> GetAllSubscriptionsAsync()
+        //{
+        //    return await context.Subscription.ToListAsync();
+        //}
+>>>>>>> dev-vivian-reverted
     }
 }

@@ -1,6 +1,4 @@
-﻿using DataAccess.Repositories;
-
-namespace DataAccess.Security;
+﻿namespace DataAccess.Security;
 
 public class AuthenticationService()
     /*(UserRepository userRepository)*/
