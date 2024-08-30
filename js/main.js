@@ -84,63 +84,19 @@ $(function () {
 //make header and footer reusable in different html pages
 function Header() {
   let header = document.getElementById("header");
-  
+
   header.innerHTML = `
   <nav class="navbar navbar-expland-lg main_menu">
       <div class="container">
-        <div class="navbar-left"> 
-          <!--logo info-->     
+        <div class="navbar-left">
+          <!--logo info-->
           <a class="navbar-brand" href="/">
             <img rel="preload" as="image" src="images/logo.png" alt="logo" class="img-fluid logo" />
           </a>
-       
+
         <!-- language button-->
         <div class="langBtn">
           <ul class="navbar-nav">
-  <nav class="navbar navbar-expand-lg main_menu">
-    <div class="container">
-      <a class="navbar-brand" href="/">
-        <img rel="preload" as="image" src="images/logo.png" alt="logo" class="img-fluid logo" />
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fa fa-bars menu_icon_bar"></i>
-        <i class="fa fa-times close_icon_close"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#"
-              >Meny <i class="fa fa-angle-down"></i
-            ></a>
-            <ul class="droap_menu">
-              <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
-              <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
-              <li><a href="yum_menu.html">Yum</a></li>
-             <li><a href="daily_menu.html">Dagens</a></li>
-              <li><a href="premium_menu.html">Premium</a></li>
-            </ul>
-          </li>
-          <!--
-           <li class="nav-item">
-            <a class="nav-link" href="#"
-              >Våra tjänster <i class="fa fa-angle-down"></i
-            ></a>
-            <ul class="droap_menu">
-              <li><a href="office.html">Kontor</a></li>
-              <li><a href="private.html">Privat</a></li>
-              <li><a href="events.html">Evenemang</a></li>
-            </ul>
-          </li>
-          --
-          <!--
             <li class="nav-item">
               <a href="#" onclick="myFunction()" class="dropbtn" >
                 <span class="icone"> <i class="fa fa-globe"></i> </span>
@@ -149,7 +105,7 @@ function Header() {
               </a>
               <ul class="droap_menu">
                 <li><a href="#">Swedish</a></li>
-                <li><a href="#">English</a></li> 
+                <li><a href="#">English</a></li>
               </ul>
             </li>
           </ul>
@@ -160,7 +116,7 @@ function Header() {
           <button class="company" onclick="window.location.href='contact.html'"> För företag </button>
         </div>
       </div>
-        
+
       <div class="navbar-left">
         <!--login button-->
         <div class="loginBtn">
@@ -169,7 +125,7 @@ function Header() {
               <a href="#" onclick="myFunction()" class="dropbtn" > <i class="far fa-user"></i> Logga in </a>
               <ul class="droap_menu">
                 <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li> 
+                <li><a href="#">Register</a></li>
               </ul>
             </li>
           </ul>
@@ -210,8 +166,8 @@ function Header() {
                 <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
                 <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
                 <li><a href="yum_menu.html">Yum</a></li>
-              <li><a href="daily_menu.html">Dagens</a></li> 
-                <li><a href="premium_menu.html">Premium</a></li> 
+              <li><a href="daily_menu.html">Dagens</a></li>
+                <li><a href="premium_menu.html">Premium</a></li>
               </ul>
             </li>
             <!--
@@ -253,7 +209,6 @@ Header();
 
 // js for language button in navbar
 function setLanguage(lang) {
-
   document.getElementById("current-lang").textContent = lang.toUpperCase();
   var elements = document.querySelectorAll("[data-lang-en]");
   elements.forEach(function (element) {
@@ -271,23 +226,22 @@ function closeDropdown() {
 function toggleDropdown() {
   document.getElementById("dropdown-content").classList.toggle("show");
 
-  document.getElementById('current-lang').textContent = lang.toUpperCase();
-  var elements = document.querySelectorAll('[data-lang-en]');
-  elements.forEach(function(element) {
-      if(lang === 'en') {
-          element.textContent = element.getAttribute('data-lang-en');
-      } else if(lang === 'sv') {
-          element.textContent = element.getAttribute('data-lang-sv');
-      }
+  document.getElementById("current-lang").textContent = lang.toUpperCase();
+  var elements = document.querySelectorAll("[data-lang-en]");
+  elements.forEach(function (element) {
+    if (lang === "en") {
+      element.textContent = element.getAttribute("data-lang-en");
+    } else if (lang === "sv") {
+      element.textContent = element.getAttribute("data-lang-sv");
+    }
   });
   closeDropdown();
 }
-function closeDropdown(){
-  document.getElementById("dropdown-content").classList.remove("show")
+function closeDropdown() {
+  document.getElementById("dropdown-content").classList.remove("show");
 }
-function toggleDropdown(){
-  document.getElementById("dropdown-content").classList.toggle("show")
-
+function toggleDropdown() {
+  document.getElementById("dropdown-content").classList.toggle("show");
 }
 
 //Get elements from the DOM
@@ -492,7 +446,7 @@ const yumProducts = (yumProductsList) => {
             data-wow-duration="1s"
                         >
           <div class="menu_item"
-                  data-yum-id=${yum.id} 
+                  data-yum-id=${yum.id}
           <div class="menu_item">
               <div class="menu_item_img">
                 <img
@@ -552,8 +506,6 @@ const yumProducts = (yumProductsList) => {
                 >
                 <h5 class="price">` +
           yum.price +
-          `kr</h5>
-          <!--
           `kr</h5>` +
           "<button id='cart-button' class='add_to_cart' data-id=" +
           yum.id +
@@ -581,7 +533,7 @@ const yumProducts = (yumProductsList) => {
           "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           yum.id +
           `
-          data-yum-id=${yum.id} 
+          data-yum-id=${yum.id}
           data-yum-title=${yum.title}
           data-yum-price=${yum.price}
           data-yum-img=${yum.img}
