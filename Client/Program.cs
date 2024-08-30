@@ -9,14 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-//gör om, hämta mijövariabel?????
+var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
+var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
 
-
-builder.Services.AddHttpClient("YumFoodsConnectionString",
+builder.Services.AddHttpClient(connectionString,
     client =>
         client.BaseAddress = new Uri("https://localhost:7216")
 );
-builder.Services.AddHttpClient("YumFoodsUserConnectionString",
+builder.Services.AddHttpClient(connectionString2,
     client =>
         client.BaseAddress = new Uri("https://localhost:7216")
 );
@@ -24,7 +24,7 @@ builder.Services.AddHttpClient("YumFoodsUserConnectionString",
 
 builder.Services.AddScoped<IProductRepository<ProductDTO>, ProductService>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetailDTO>, OrderDetailService>();
-
+builder.Services.AddScoped<IPaymentHttp, PaymentHttpService>();
 
 var app = builder.Build();
 

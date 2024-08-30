@@ -3,6 +3,7 @@ using API.Stripe;
 using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Shared.Entities;
 using Shared.Interfaces;
 using SubscriptionRepository = API.Extensions.SubscriptionRepository;
 
@@ -17,9 +18,9 @@ var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionStr
 var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
 
 
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
 builder.Services.AddScoped<SubscriptionRepository>();
 builder.Services.AddScoped<UserRepository>();
 
