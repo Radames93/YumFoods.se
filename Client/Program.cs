@@ -11,6 +11,7 @@ builder.Services.AddRazorComponents()
 
 //gör om, hämta mijövariabel???
 
+
 builder.Services.AddHttpClient("YumFoodsConnectionString",
     client =>
         client.BaseAddress = new Uri("https://localhost:7216")
