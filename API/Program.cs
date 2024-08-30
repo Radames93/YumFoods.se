@@ -3,6 +3,7 @@ using API.Stripe;
 using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Shared.Interfaces;
 
 
 // Add services to the container.
@@ -14,8 +15,8 @@ builder.Services.AddControllers();
 var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
 
 builder.Services.AddScoped<ProductRepository>();
-builder.Services.AddScoped<OrderRepository>();
-builder.Services.AddScoped<SubscriptionRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 builder.Services.AddScoped<UserRepository>();
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
