@@ -1,13 +1,27 @@
+<<<<<<< HEAD
 ﻿using DataAccess.Entities;
+<<<<<<< HEAD
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+namespace DataAccess.Repositories
+=======
 using DataAccess.Repositories;
 using Shared.Interfaces;
 
 namespace API.Extensions
+>>>>>>> dev-Geweria
 {
-    public static class SubscriptionExtension
+    public class SubscriptionRepository(YumFoodsDb context)
     {
-        public static IEndpointRouteBuilder MapSubscriptionEndpoints(this IEndpointRouteBuilder app)
+        public async Task<List<Subscription>> GetAllSubscriptionsAsync()
         {
+<<<<<<< HEAD
+            return await context.Subscription.ToListAsync();
+=======
             var group = app.MapGroup("/subs");
 
             group.MapGet("/", GetAllSubscriptionsAsync);
@@ -64,6 +78,19 @@ namespace API.Extensions
         {
             await repo.DeleteSubscriptionAsync(id);
             return Results.Ok();
+>>>>>>> dev-Geweria
         }
+=======
+﻿using DataAccess;
+
+namespace API.Extensions
+{
+    public class SubscriptionRepository(YumFoodsDb context)
+    {
+        //public async Task<List<Subscription>> GetAllSubscriptionsAsync()
+        //{
+        //    return await context.Subscription.ToListAsync();
+        //}
+>>>>>>> dev-vivian-reverted
     }
 }

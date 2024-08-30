@@ -6,8 +6,10 @@
 *.sln.docstates
 .vs/
 # Build results
-[Dd]ebug/
-[Rr]elease/
+Debug/
+Release/
+API/obj/Debug/
+DataAccess/obj/Debug/
 x64/
 [Bb]in/
 [Oo]bj/
@@ -107,6 +109,13 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 _NCrunch*
+# Ignore Visual Studio files
+.vs/
+
+# Ignore build output directories
+bin/
+obj/
+
 
 
 

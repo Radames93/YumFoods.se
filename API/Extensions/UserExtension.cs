@@ -1,5 +1,5 @@
 ﻿using DataAccess.Repositories;
-using DataAccess.Security;
+
 namespace API.Extensions;
 
 public static class UserExtension

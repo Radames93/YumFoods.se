@@ -1,21 +1,37 @@
 using API.Extensions;
+using API.Stripe;
 using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Shared.Interfaces;
+<<<<<<< HEAD
+=======
+using SubscriptionRepository = API.Extensions.SubscriptionRepository;
+>>>>>>> dev-vivian-reverted
+
+
+// Add services to the container.
 
 var builder = WebApplication.CreateBuilder(args);
-
-
+   
 builder.Services.AddControllers();
 
-var connectionString = Environment.GetEnvironmentVariable("YumFoodsDbConnectionString");
-var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnectionString");
+var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
+var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
 
+<<<<<<< HEAD
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+=======
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+builder.Services.AddScoped<SubscriptionRepository>();
+>>>>>>> dev-vivian-reverted
 builder.Services.AddScoped<UserRepository>();
+
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -23,17 +39,44 @@ builder.Services.AddDbContext<YumFoodsDb>(options =>
 builder.Services.AddDbContext<YumFoodsUserDb>(options =>
     options.UseMySql(connectionString2, ServerVersion.AutoDetect(connectionString2)));
 
+
+builder.Services.AddCors( options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        //ändra policy till ""AllowSpecificOrigin" senare skede
+        policy =>
+        {
+            //Ändra policy.WithOrigins("http://localhostxxxxx.. för frontend")
+            policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+    //builder.Services.AddControllers();
+});
+
+builder.Services.AddOptions<StripeConfig>().BindConfiguration(nameof(StripeConfig));
+builder.Services.AddScoped<StripeClient>();
+
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+
+
 var app = builder.Build();
 
 app.MapProductEndpoints();
 app.MapOrderEndpoints();
-app.MapSubscriptionEndpoints();
+app.MapOrderDetailEndpoints();
+//app.MapSubscriptionEndpoints();
 app.MapUserEndpoints();
+app.MapPaymentsEndPoints();
+
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseRouting();
 app.MapControllers();
+app.UseCors();
+
 
 app.Run();

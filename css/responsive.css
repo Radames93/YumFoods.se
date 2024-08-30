@@ -851,7 +851,6 @@
         MENU DETAILS END
     =======================*/
 }
-
 @media (min-width: 768px) and (max-width: 991.99px) {
   /* =====================
         HOME PAGE START
@@ -950,8 +949,6 @@
   .main_menu .navbar-nav {
     line-height: 60px;
     background: var(--colorWhite);
-    border-top: 1px solid var(--colorPrimary);
-    margin-top: 13px !important;
     padding-top: 15px;
     padding-bottom: 15px;
   }
@@ -1277,7 +1274,7 @@
   }
 
   .footer_content {
-    margin-bottom: 50px;
+    margin-top: 10px;
   }
 
   .footer_content h3 {
@@ -1561,10 +1558,7 @@
   }
 
   .main_menu .navbar-nav {
-    line-height: 60px;
     background: var(--colorWhite);
-    border-top: 1px solid var(--colorPrimary);
-    margin-top: 12px !important;
     padding-top: 15px;
     padding-bottom: 15px;
   }
@@ -2540,10 +2534,6 @@
   }
 
   .main_menu .navbar-nav {
-    line-height: 60px;
-    background: var(--colorWhite);
-    border-top: 1px solid var(--colorPrimary);
-    margin-top: 12px !important;
     padding-top: 15px;
     padding-bottom: 15px;
   }
@@ -3548,23 +3538,23 @@
     company box informatiom in shopping cart and contact page
     =======================*/
 @media (min-width: 575.99px) and (max-width: 1200px) {
-.contact-input{
-  flex-direction: column;
+  .contact-input {
+    flex-direction: column;
+  }
+  .contact_form_input {
+    max-width: 100%;
+  }
+  .contact-input .contact-befattning {
+    margin-right: 0px;
+  }
 }
-.contact_form_input{
-  max-width: 100%;
-}
-.contact-input .contact-befattning{
-  margin-right:0px;
-}
-}
-@media (max-width: 575.99px){
-  .contact_form_input{
+@media (max-width: 575.99px) {
+  .contact_form_input {
     margin-right: 3px;
   }
 }
-@media (min-width: 1000px){
-  .contact-input .contact-befattning{
-    margin-right:25px;
+@media (min-width: 1000px) {
+  .contact-input .contact-befattning {
+    margin-right: 25px;
   }
 }

@@ -121,7 +121,7 @@ button {
   background: var(--colorPrimary);
   text-transform: capitalize;
   color: var(--colorWhite);
-  padding: 12px 40px 12px 40px;
+  padding: 12px 20px 12px 20px;
   border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
@@ -236,7 +236,6 @@ button {
 .section_heading h2 {
   font-size: 45px;
   font-weight: 800;
-  color: var(--colorPrimary);
 }
 
 .section_heading span {
@@ -383,7 +382,6 @@ button {
 }
 
 .main_menu .navbar-nav {
-  line-height: 80px;
   margin-left: auto;
   border: none;
 }
@@ -621,7 +619,7 @@ button {
   right: -10px;
 }
 
-.container > ul li a span {
+.container > .cart span {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -733,7 +731,6 @@ button {
   height: 48px;
   background-color: #fa6039;
   color: white;
-  font-family: "Poppins";
   font-weight: 500;
   font-size: 18px;
   border: none;
@@ -1657,10 +1654,57 @@ button {
 }
 
 .menu_item_text .add_to_cart li {
-  pointer-events: none; 
+  pointer-events: none;
 }
 
-.menu_item_text ul li a {
+.menu_add_to_cart {
+  position: relative;
+  left: 0px;
+  bottom: 60px;
+  background: var(--colorPrimary);
+  padding: 6px 10px 6px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--colorWhite);
+  border-radius: 0px 4px 4px 4px;
+  transition: all linear 0.3s;
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -ms-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+}
+
+.menu_add_to_cart::after {
+  position: absolute;
+  content: "";
+  top: -19px;
+  left: 0px;
+  z-index: 1;
+  transition: all linear 0.3s;
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -ms-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-right: 13px solid #d36606;
+  border-bottom: 0 solid transparent;
+}
+
+.menu_add_to_cart:hover {
+  background: var(--colorBlack);
+}
+
+.menu_add_to_cart:hover::after {
+  border-right: 13px solid #000000;
+}
+
+.menu_add_to_cart li {
+  pointer-events: none;
+}
+
+.menu_add_to_cart ul li a {
   width: 35px;
   height: 35px;
   line-height: 35px;
@@ -2117,10 +2161,6 @@ button {
   position: absolute;
 }
 
-.hero-button:hover {
-  margin-bottom: 20px;
-}
-
 :root {
   --primary: #080808;
   --secondary: #ff7c08;
@@ -2413,14 +2453,14 @@ button {
 }
 
 .blog_slider .single_blog {
-  margin: 25px 12px 30px 12px;
+  margin: 15px 12px 0px 12px;
 }
 
 .single_blog {
   padding: 10px;
   box-shadow: var(--boxShadow);
   border-radius: 10px;
-  overflow: hidden;
+  overflow: visible;
   margin-top: 25px;
   background: var(--colorWhite);
   transition: all linear 0.3s;
@@ -2445,7 +2485,7 @@ button {
 }
 
 .single_blog_img {
-  height: 250px;
+  height: 100%;
   border-radius: 10px;
   overflow: hidden;
   -webkit-border-radius: 10px;
@@ -2497,7 +2537,7 @@ button {
 .single_blog_author .text p {
   text-transform: capitalize;
   font-size: 13px;
-  color: var(--colorPrimary);
+  color: gray;
 }
 
 .single_blog_text p {
@@ -2511,9 +2551,9 @@ button {
 .single_blog_text .category {
   position: absolute;
   top: -95px;
-  right: 18px;
+  right: -10%;
   font-family: var(--cursiveFont);
-  background: var(--colorPrimary);
+  background: #dd3902;
   color: var(--colorWhite);
   padding: 6px 20px;
   text-transform: capitalize;
@@ -2563,7 +2603,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #ff7c0845;
+  border-top: 1px solid #dd3902;
   padding-top: 15px;
   margin-top: 20px;
 }
@@ -2585,19 +2625,19 @@ button {
 }
 
 .single_blog_footer span {
-  color: var(--colorPrimary);
+  color: #dd3902;
 }
 
 .single_blog_footer a:hover {
-  color: var(--colorPrimary);
+  color: #dd3902;
 }
 
 .single_blog:hover {
-  margin-top: 20px;
+  margin-top: -0px;
 }
 
 .single_blog_text .title:hover {
-  color: var(--colorPrimary);
+  color: #dd3902;
 }
 
 /* blog end */
@@ -2673,7 +2713,7 @@ footer {
 }
 
 .footer_content .social_link {
-  width: 170px;
+  width: 70px;
   justify-content: center;
   margin-left: 40px;
   margin-top: -15px;
@@ -2688,11 +2728,11 @@ footer {
 
 .footer_content .social_link li a {
   color: var(--colorWhite);
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   text-align: center;
-  line-height: 35px;
-  background: var(--colorPrimary);
+  line-height: 30px;
+  background: #fc5633;
   border-radius: 50%;
   margin-right: 10px;
   margin-top: 0;
@@ -2743,7 +2783,20 @@ footer {
   padding-bottom: 5px;
 }
 
-.footer_content ul li a {
+#link_title {
+  font-size: 18px;
+  margin-bottom: 30px;
+  margin-left: -30px;
+  color: #fc5633;
+  width: 130px;
+  font-weight: 600;
+}
+
+.footer_content ul li {
+  line-height: 0.8;
+}
+
+.footer_links_1 {
   color: #000000;
   font-size: 16px;
   margin-top: 15px;
@@ -2757,23 +2810,21 @@ footer {
   -o-transition: all linear 0.3s;
 }
 
-.footer_content ul li a::after {
-  position: absolute;
-  content: "";
-  width: 7px;
-  height: 7px;
-  background: var(--colorPrimary);
-  top: 9px;
-  left: 0;
-  transition: all linear 0.3s;
-  -webkit-transition: all linear 0.3s;
-  -moz-transition: all linear 0.3s;
-  -ms-transition: all linear 0.3s;
-  -o-transition: all linear 0.3s;
+.fa-question,
+.fa-teamspeak,
+.fa-file-alt {
+  margin-left: -30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #fc5633;
+  text-align: center;
+  line-height: 30px;
+  color: white;
 }
 
 .footer_content ul li a:hover {
-  color: var(--colorPrimary);
+  color: #fc5633;
 }
 
 .footer_social_link ul li a {
@@ -2824,7 +2875,7 @@ footer {
   width: 45px;
   height: 45px;
   line-height: 45px;
-  background: var(--colorPrimary);
+  background: #dd3902;
   border: 1px solid var(--colorWhite);
   border-radius: 50%;
   transition: all linear 0.3s;
@@ -2855,11 +2906,11 @@ footer {
 }
 
 /* footer end */
-/*============================
+/*===========================
     HOME PAGE  END
 ============================*/
 
-/*============================
+/*===========================
     ABOUT US PAGE START
 ============================*/
 
@@ -4157,7 +4208,6 @@ footer {
   font-size: 18px;
   font-weight: 600;
   color: var(--colorBlack);
-  margin-bottom: 10px;
 }
 
 .details_size .form-check input {
@@ -5577,9 +5627,9 @@ table tbody tr td span {
 }
 
 .accordion-button::after {
-  background-image: url(../images/faq_plus.jpg);
-  width: 20px;
-  height: 20px;
+  background-image: url(../images//plus-solid.svg);
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   position: absolute;
   right: 20px;
@@ -5590,7 +5640,7 @@ table tbody tr td span {
 }
 
 .accordion-button:not(.collapsed)::after {
-  background-image: url(../images//faq_minus.jpg);
+  background-image: url(../images//minus-solid.svg);
 }
 
 .faq_area_img {
@@ -6610,7 +6660,7 @@ table tbody tr td span {
   display: flex;
   align-self: center;
   justify-content: start;
-  gap: 20px;
+  gap: 28px;
   padding-bottom: 20px 0;
   flex-direction: column;
 }
