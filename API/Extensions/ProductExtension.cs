@@ -24,56 +24,56 @@ public static class ProductExtension
         return app;
     }
 
-    private static async Task<IResult> GetProductsByDietAsync(IProductRepository repo, string diet)
+    private static async Task<IResult> GetProductsByDietAsync(IProductRepository<Product> repo, string diet)
     {
         var prod = await repo.GetProductsByDietAsync(diet);
         return Results.Ok(prod);
     }
 
-    private static async Task<IResult> GetProductByNameAsync(IProductRepository repo, string title)
+    private static async Task<IResult> GetProductByNameAsync(IProductRepository<Product> repo, string title)
     {
         var prod = await repo.GetProductByNameAsync(title);
         return Results.Ok(prod);
     }
 
-    private static async Task<IResult> GetAllProductsAsync(IProductRepository repo)
+    private static async Task<IResult> GetAllProductsAsync(IProductRepository<Product> repo)
     {
         var prod = await repo.GetAllProductsAsync();
         return Results.Ok(prod);
     }
 
-    private static async Task<IResult> GetProductByIdAsync(IProductRepository repo, int id)
+    private static async Task<IResult> GetProductByIdAsync(IProductRepository<Product> repo, int id)
     {
         var prod = await repo.GetProductByIdAsync(id);
         return Results.Ok(prod);
     }
 
-    private static async Task<IResult> GetProductByCategoryAsync(IProductRepository repo, string category)
+    private static async Task<IResult> GetProductByCategoryAsync(IProductRepository<Product> repo, string category)
     {
         var prod = await repo.GetProductByCategoryAsync(category);
         return Results.Ok(prod);
     }
 
-    private static async Task<IResult> GetProductByCuisineAsync(IProductRepository repo, string cuisine)
+    private static async Task<IResult> GetProductByCuisineAsync(IProductRepository<Product> repo, string cuisine)
     {
         var prod = await repo.GetProductByCuisineAsync(cuisine);
         return Results.Ok(prod);
     }
 
-    private static async Task<IResult> AddProductAsync(IProductRepository repo, Product newProd)
+    private static async Task<IResult> AddProductAsync(IProductRepository<Product> repo, Product newProd)
     {
       
-        var exisitngProd = await repo.GetProductByIdAsync(newProd.Id);
-        if(exisitngProd is not null)
+        var existingProd = await repo.GetProductByIdAsync(newProd.Id);
+        if(existingProd is not null)
         {
-            return Results.BadRequest($"Product with id {exisitngProd} already exists");
+            return Results.BadRequest($"Product with id {existingProd} already exists");
         }
 
         await repo.AddProductAsync(newProd);
         return Results.Ok();
     }
 
-    private static async Task<IResult> UpdateProductAsync(IProductRepository repo, int id, Product updatedProd)
+    private static async Task<IResult> UpdateProductAsync(IProductRepository<Product> repo, int id, Product updatedProd)
     {
         var existingProd = await repo.GetProductByIdAsync(id);
         if(existingProd is null)
@@ -85,7 +85,7 @@ public static class ProductExtension
         return Results.Ok();
     }
 
-    private static async Task<IResult> DeleteProductAsync(IProductRepository repo, int id)
+    private static async Task<IResult> DeleteProductAsync(IProductRepository<Product> repo, int id)
     {
         await repo.DeleteProductAsync(id);
         return Results.Ok();

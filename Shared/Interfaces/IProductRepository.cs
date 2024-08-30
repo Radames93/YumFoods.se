@@ -2,15 +2,15 @@
 
 namespace Shared.Interfaces;
 
-public interface IProductRepository
+public interface IProductRepository<T> where T : class 
 {
-    Task<List<Product>> GetAllProductsAsync();
-    Task<Product?> GetProductByIdAsync(int id);
-    Task<List<Product?>> GetProductByCategoryAsync(string category);
-    Task<List<Product?>> GetProductByCuisineAsync(string cuisine);
-    Task AddProductAsync(Product newProd);
-    Task UpdateProductAsync(int existingProdId, Product updatedProd);
+    Task<List<T>> GetAllProductsAsync();
+    Task<T?> GetProductByIdAsync(int id);
+    Task<List<T>> GetProductByCategoryAsync(string category);
+    Task<List<T>> GetProductByCuisineAsync(string cuisine);
+    Task AddProductAsync(T newProd);
+    Task UpdateProductAsync(int existingProdId, T updatedProd);
     Task DeleteProductAsync(int id);
-    Task<Product?> GetProductByNameAsync(string title);
-    Task<List<Product?>> GetProductsByDietAsync(string diet);
+    Task<T?> GetProductByNameAsync(string title);
+    Task<List<T>> GetProductsByDietAsync(string diet);
 }

@@ -4,7 +4,7 @@ using Shared.Interfaces;
 
 namespace DataAccess.Repositories;
 
-public class ProductRepository(YumFoodsDb context) : IProductRepository 
+public class ProductRepository(YumFoodsDb context) : IProductRepository<Product> 
 {
     public async Task<List<Product>> GetAllProductsAsync()
     {
@@ -74,6 +74,7 @@ public class ProductRepository(YumFoodsDb context) : IProductRepository
         oldProd.Category = updatedProd.Category;
         oldProd.Description = updatedProd.Description;
         oldProd.Diet = updatedProd.Diet;
+        oldProd.DietRef = updatedProd.DietRef;
         oldProd.Cuisine = updatedProd.Cuisine;
         oldProd.Price = updatedProd.Price;
         oldProd.ImgRef = updatedProd.ImgRef;

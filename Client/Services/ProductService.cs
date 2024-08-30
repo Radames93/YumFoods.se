@@ -4,30 +4,29 @@ using Shared.Interfaces;
 
 namespace Shared.Services;
 
-public class ProductService : IProductRepository
+public class ProductService : IProductRepository<ProductDTO>
 {
     private readonly HttpClient _httpClient;
 
-    ///måste addHttpClient i program.cs i frontend först 
     public ProductService(IHttpClientFactory factory)
     {
         _httpClient = factory.CreateClient("YumFoodsConnectionString");
     }
 
 
-    public async Task<List<Product>> GetAllProductsAsync()
+    public async Task<List<ProductDTO>> GetAllProductsAsync()
     {
         var response = await _httpClient.GetAsync("products");
         if (!response.IsSuccessStatusCode)
         {
-            return (List<Product>)Enumerable.Empty<Product>();
+            return new List<ProductDTO>();
         }
 
-        var result = await response.Content.ReadFromJsonAsync<List<Product>>();
-        return result ?? (List<Product>)Enumerable.Empty<Product>();
+        var result = await response.Content.ReadFromJsonAsync<List<ProductDTO>>();
+        return result ?? new List<ProductDTO>();
     }
 
-    public async Task<Product?> GetProductByIdAsync(int id)
+    async Task<ProductDTO?> IProductRepository<ProductDTO>.GetProductByIdAsync(int id)
     {
         var response = await _httpClient.GetAsync($"products/{id}");
         if (!response.IsSuccessStatusCode)
@@ -35,42 +34,87 @@ public class ProductService : IProductRepository
             return null;
         }
 
-        var result = await response.Content.ReadFromJsonAsync<Product>();
+        var result = await response.Content.ReadFromJsonAsync<ProductDTO>();
         return result;
     }
 
-    public async Task<List<Product?>> GetProductByCategoryAsync(string category)
+    async Task<List<ProductDTO>> IProductRepository<ProductDTO>.GetProductByCategoryAsync(string category)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync($"products/category/{category}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return new List<ProductDTO>();
+        }
+
+        var result = await response.Content.ReadFromJsonAsync<List<ProductDTO>>();
+        return result ?? new List<ProductDTO>();
     }
 
-    public async Task<List<Product?>> GetProductByCuisineAsync(string cuisine)
+    async Task<List<ProductDTO>> IProductRepository<ProductDTO>.GetProductByCuisineAsync(string cuisine)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync($"products/cuisine/{cuisine}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return new List<ProductDTO>();
+        }
+        var result = await response.Content.ReadFromJsonAsync<List<ProductDTO>>();
+        return result ?? new List<ProductDTO>();
     }
 
-    public async Task AddProductAsync(Product newProd)
+    public async Task AddProductAsync(ProductDTO newProd)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.PostAsJsonAsync("products", newProd);
+        if (!response.IsSuccessStatusCode)
+        {
+            return;
+        }
     }
 
-    public async Task UpdateProductAsync(int existingProdId, Product updatedProd)
+    public async Task UpdateProductAsync(int existingProdId, ProductDTO updatedProd)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync($"products/{existingProdId}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return;
+        }
+
+        var result = await _httpClient.PutAsJsonAsync($"products/{existingProdId}", updatedProd);
+        if (result.IsSuccessStatusCode)
+        {
+            return;
+        }
     }
+
 
     public async Task DeleteProductAsync(int id)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.DeleteAsync($"products/{id}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return;
+        }
     }
 
-    public async Task<Product?> GetProductByNameAsync(string title)
+    async Task<ProductDTO?> IProductRepository<ProductDTO>.GetProductByNameAsync(string title)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync($"products/title/{title}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return null;
+        }
+
+        var result = await response.Content.ReadFromJsonAsync<ProductDTO>();
+        return result;
     }
 
-    public async Task<List<Product?>> GetProductsByDietAsync(string diet)
+    async Task<List<ProductDTO>> IProductRepository<ProductDTO>.GetProductsByDietAsync(string diet)
     {
-        throw new NotImplementedException();
+        var response = await _httpClient.GetAsync($"products/diet/{diet}");
+        if (!response.IsSuccessStatusCode)
+        {
+            return new List<ProductDTO>();
+        }
+        var result = await response.Content.ReadFromJsonAsync<List<ProductDTO>>();
+        return result ?? new List<ProductDTO>();
     }
 }

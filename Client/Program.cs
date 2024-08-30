@@ -1,4 +1,7 @@
 using Client.Components;
+using Shared.DTOs;
+using Shared.Interfaces;
+using Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+//gör om, hämta mijövariabel???
 
 builder.Services.AddHttpClient("YumFoodsConnectionString",
     client =>
@@ -15,6 +19,10 @@ builder.Services.AddHttpClient("YumFoodsUserConnectionString",
     client =>
         client.BaseAddress = new Uri("https://localhost:7216")
 );
+
+
+builder.Services.AddScoped<IProductRepository<ProductDTO>, ProductService>();
+
 
 var app = builder.Build();
 
