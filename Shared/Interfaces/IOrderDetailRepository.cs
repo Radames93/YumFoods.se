@@ -2,9 +2,10 @@
 
 namespace Shared.Interfaces;
 
-public interface IOrderDetailRepository
+public interface IOrderDetailRepository<T> where T : class
 {
-    Task<List<OrderDetail?>> GetAllOrderDetailsAsync();
-    Task<OrderDetail?> GetOrderDetailByIdAsync(int id);
-    Task<OrderDetail?> GetOrderDetailByOrderIdAsync(int orderId);
+    Task<List<T>> GetAllOrderDetailsAsync();
+    Task<T?> GetOrderDetailByIdAsync(int id);
+    Task<T?> GetOrderDetailByOrderIdAsync(int orderId);
+    Task AddOrderDetailAsync(T oD);
 }

@@ -22,6 +22,7 @@ builder.Services.AddHttpClient("YumFoodsUserConnectionString",
 
 
 builder.Services.AddScoped<IProductRepository<ProductDTO>, ProductService>();
+builder.Services.AddScoped<IOrderDetailRepository<OrderDetailDTO>, OrderDetailService>();
 
 
 var app = builder.Build();
