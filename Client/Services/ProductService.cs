@@ -10,7 +10,7 @@ public class ProductService : IProductRepository<ProductDTO>
 
     public ProductService(IHttpClientFactory factory)
     {
-        _httpClient = factory.CreateClient("YumFoodsConnectionString");
+        _httpClient = factory.CreateClient("YumFoodsApiClient");
     }
 
 

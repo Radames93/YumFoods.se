@@ -12,13 +12,13 @@ builder.Services.AddRazorComponents()
 var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
 var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
 
-builder.Services.AddHttpClient(connectionString,
+builder.Services.AddHttpClient("YumFoodsApiClient",
     client =>
-        client.BaseAddress = new Uri("https://localhost:7216")
+        client.BaseAddress = new Uri(connectionString ?? "https://localhost:7216")
 );
-builder.Services.AddHttpClient(connectionString2,
+builder.Services.AddHttpClient("YumFoodsUserApiClient",
     client =>
-        client.BaseAddress = new Uri("https://localhost:7216")
+        client.BaseAddress = new Uri(connectionString2 ?? "https://localhost:7216")
 );
 
 
