@@ -5,20 +5,25 @@ using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Shared.Entities;
 using Shared.Interfaces;
+using SubscriptionRepository = API.Extensions.SubscriptionRepository;
+
+
+// Add services to the container.
 
 var builder = WebApplication.CreateBuilder(args);
-
-
+   
 builder.Services.AddControllers();
 
-var connectionString = Environment.GetEnvironmentVariable("YumFoodsDbConnectionString");
-var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnectionString");
+var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
+var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
+
 
 builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
-builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
-builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
-//builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<SubscriptionRepository>();
+builder.Services.AddScoped<UserRepository>();
+
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -26,7 +31,8 @@ builder.Services.AddDbContext<YumFoodsDb>(options =>
 builder.Services.AddDbContext<YumFoodsUserDb>(options =>
     options.UseMySql(connectionString2, ServerVersion.AutoDetect(connectionString2)));
 
-builder.Services.AddCors(options =>
+
+builder.Services.AddCors( options =>
 {
     options.AddPolicy("AllowAllOrigins",
         //ändra policy till ""AllowSpecificOrigin" senare skede
@@ -45,18 +51,24 @@ builder.Services.AddScoped<StripeClient>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
+
+
 var app = builder.Build();
 
 app.MapProductEndpoints();
 app.MapOrderEndpoints();
 app.MapOrderDetailEndpoints();
-app.MapSubscriptionEndpoints();
-//app.MapUserEndpoints();
+//app.MapSubscriptionEndpoints();
+app.MapUserEndpoints();
+app.MapPaymentsEndPoints();
+
 
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseRouting();
 app.MapControllers();
+app.UseCors();
+
 
 app.Run();

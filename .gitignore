@@ -16,6 +16,9 @@ x64/
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
+*.exe
+*.dll
+*.obj
 *_i.c
 *_p.c
 *_i.h
@@ -76,7 +79,7 @@ csx/
 AppPackages/
 # Others
 sql/
-*.Cache
+*.cache
 ClientBin/
 [Ss]tyle[Cc]op.*
 ![Ss]tyle[Cc]op.targets
