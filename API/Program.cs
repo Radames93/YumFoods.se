@@ -20,11 +20,6 @@ builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepos
 builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
 //builder.Services.AddScoped<UserRepository>();
 
-builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
-builder.Services.AddScoped<SubscriptionRepository>();
-builder.Services.AddScoped<UserRepository>();
 
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
@@ -58,6 +53,7 @@ app.MapProductEndpoints();
 app.MapOrderEndpoints();
 app.MapOrderDetailEndpoints();
 app.MapSubscriptionEndpoints();
+app.MapPaymentsEndPoints();
 //app.MapUserEndpoints();
 
 app.UseHttpsRedirection();

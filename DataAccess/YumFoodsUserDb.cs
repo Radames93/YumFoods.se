@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shared.Entities;
-using User = DataAccess.Entities.User;
 
 namespace DataAccess;
 
