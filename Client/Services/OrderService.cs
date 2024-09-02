@@ -38,7 +38,7 @@ namespace Client.Services
 
         public async Task AddOrderAsync(OrderDTO newOrder)
         {
-            var response = await _httpClient.PostAsJsonAsync($"/orders", newOrder);
+            var response = await _httpClient.PostAsJsonAsync("orders", newOrder);
             if (!response.IsSuccessStatusCode)
             {
                 return;
