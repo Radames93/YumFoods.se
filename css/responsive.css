@@ -3025,6 +3025,18 @@
     width: 157px;
   }
 
+  .fa-envelope {
+    margin-left: -10px;
+  }
+
+  .fa-map-marker-alt {
+    margin-right: -5px;
+  }
+
+  #contact_title {
+    margin-left: -0px;
+  }
+
   #contact_info {
     margin-top: -230px;
     margin-left: 220px;
