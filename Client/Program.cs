@@ -26,6 +26,8 @@ builder.Services.AddHttpClient("YumFoodsUserApiClient",
 
 builder.Services.AddScoped<IProductRepository<ProductDTO>, ProductService>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetailDTO>, OrderDetailService>();
+builder.Services.AddScoped<IOrderRepository<OrderDTO>, OrderService>();
+builder.Services.AddScoped<ISubscriptionRepository<SubscriptionDTO>, SubscriptionService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<ICartService, CartService>();
 

@@ -5,16 +5,16 @@ namespace Client.Services;
 
 public class OrderDetailService : IOrderDetailRepository<OrderDetailDTO>
 {
-    private readonly HttpClient _httpCLient;
+    private readonly HttpClient _httpClient;
 
     public OrderDetailService(IHttpClientFactory factory)
     {
-        _httpCLient = factory.CreateClient("YumFoodsUserApiClient");
+        _httpClient = factory.CreateClient("YumFoodsUserApiClient");
     }
 
     public async Task<List<OrderDetailDTO>> GetAllOrderDetailsAsync()
     {
-        var response = await _httpCLient.GetAsync("orderdetail");
+        var response = await _httpClient.GetAsync("orderdetail");
         if (!response.IsSuccessStatusCode)
         {
             return new List<OrderDetailDTO>();
@@ -26,7 +26,7 @@ public class OrderDetailService : IOrderDetailRepository<OrderDetailDTO>
 
     public async Task<OrderDetailDTO?> GetOrderDetailByIdAsync(int id)
     {
-        var response = await _httpCLient.GetAsync($"orderdetail/{id}");
+        var response = await _httpClient.GetAsync($"orderdetail/{id}");
         if (!response.IsSuccessStatusCode)
         {
             return null;
@@ -38,7 +38,7 @@ public class OrderDetailService : IOrderDetailRepository<OrderDetailDTO>
 
     public async Task<OrderDetailDTO?> GetOrderDetailByOrderIdAsync(int orderId)
     {
-        var response = await _httpCLient.GetAsync($"orderdetail/orderId/{orderId}");
+        var response = await _httpClient.GetAsync($"orderdetail/orderId/{orderId}");
         if (!response.IsSuccessStatusCode)
         {
             return null;
@@ -50,7 +50,7 @@ public class OrderDetailService : IOrderDetailRepository<OrderDetailDTO>
 
     public async Task AddOrderDetailAsync(OrderDetailDTO oD)
     {
-        var response = await _httpCLient.PostAsJsonAsync("orderdetail", oD);
+        var response = await _httpClient.PostAsJsonAsync("orderdetail", oD);
         if (!response.IsSuccessStatusCode)
         {
             return;

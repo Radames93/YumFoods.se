@@ -5,7 +5,6 @@ using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Shared.Entities;
 using Shared.Interfaces;
-using SubscriptionRepository = API.Extensions.SubscriptionRepository;
 
 
 // Add services to the container.
@@ -19,10 +18,10 @@ var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnecti
 
 
 builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
-builder.Services.AddScoped<SubscriptionRepository>();
-builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
+//builder.Services.AddScoped<IUserRepository<User>, UserRepository>();
 
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
@@ -58,8 +57,8 @@ var app = builder.Build();
 app.MapProductEndpoints();
 app.MapOrderEndpoints();
 app.MapOrderDetailEndpoints();
-//app.MapSubscriptionEndpoints();
-app.MapUserEndpoints();
+app.MapSubscriptionEndpoints();
+//app.MapUserEndpoints();
 app.MapPaymentsEndPoints();
 
 
