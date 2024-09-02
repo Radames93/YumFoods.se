@@ -2,6 +2,7 @@ using Client.Components;
 using Client.Services;
 using Shared.DTOs;
 using Shared.Interfaces;
+using Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
