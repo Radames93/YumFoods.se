@@ -446,7 +446,7 @@ const yumProducts = (yumProductsList) => {
             data-wow-duration="1s"
                         >
           <div class="menu_item"
-                  data-yum-id=${yum.id}
+                  data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -479,7 +479,7 @@ const yumProducts = (yumProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${yum.id}
+                  data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -512,7 +512,7 @@ const yumProducts = (yumProductsList) => {
           "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           yum.id +
           `
-          data-yum-id=${yum.id}
+          data-yum-id=${yum.id} 
           data-yum-title=${yum.title}
           data-yum-price=${yum.price}
           data-yum-img=${yum.img}
@@ -2385,6 +2385,59 @@ function updateFields() {
   }
 }
 
+//Funtion for show/hide faq accordions with button
+document.addEventListener("DOMContentLoaded", function () {
+  const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
+  const betalningBtn = document.getElementById("betalning");
+  const menyerAllergierBtn = document.getElementById("menyer-allergier");
+
+  const omWebbplatsenAccordion = document.getElementById(
+    "om-webbplatsen-accordion"
+  );
+  const betalningAccordion = document.getElementById("betalning-accordion");
+  const allergierAccordion = document.getElementById("allergier-accordion");
+
+  function hideAllAccordions() {
+    omWebbplatsenAccordion.style.display = "none";
+    betalningAccordion.style.display = "none";
+    allergierAccordion.style.display = "none";
+  }
+
+  function resetButtonStyles() {
+    omWebbplatsenBtn.classList.remove("active");
+    betalningBtn.classList.remove("active");
+    menyerAllergierBtn.classList.remove("active");
+  }
+
+  hideAllAccordions();
+  omWebbplatsenAccordion.style.display = "block";
+  omWebbplatsenBtn.classList.add("active");
+
+  omWebbplatsenBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideAllAccordions();
+    resetButtonStyles();
+    omWebbplatsenAccordion.style.display = "block";
+    omWebbplatsenBtn.classList.add("active");
+  });
+
+  betalningBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideAllAccordions();
+    resetButtonStyles();
+    betalningAccordion.style.display = "block";
+    betalningBtn.classList.add("active");
+  });
+
+  menyerAllergierBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideAllAccordions();
+    resetButtonStyles();
+    allergierAccordion.style.display = "block";
+    menyerAllergierBtn.classList.add("active");
+  });
+});
+
 // Function to cart content and total form to email
 const sendCartInfo = document.getElementById("cart-order-form");
 const cartButton = document.getElementById("cart-button");
@@ -2521,7 +2574,7 @@ function Footer() {
             <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
               <p id="contact_title">Yumfoods.se</p>
               <div class="contacts-content contacts justify-content-center w_40">
-                <div class="contacts-box">
+                <div id="footer-phone" class="contacts-box">
                 <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
                   <p style="margin-left: 10px;">+46 76 023 49 30</p>
                 </div>
