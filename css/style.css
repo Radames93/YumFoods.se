@@ -5782,6 +5782,53 @@ table tbody tr td span {
 /*============================
     FAQ PAGE START
 ============================*/
+
+.faq-buttons {
+  flex-direction: row;
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.faq-buttons2 {
+  width: 235px;
+  padding: 18px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px #dbdfd0;
+  background: #fff;
+}
+
+.faq-buttons2.active {
+  border: 1px solid #dd3902;
+}
+
+.faq-buttons i {
+  color: #fc5633;
+}
+
+.faq-buttons2:hover {
+  background-color: #dd3902;
+  color: white;
+}
+
+.faq-buttons2:hover i {
+  color: white;
+}
+
+#more-faq {
+  margin-top: 30px;
+  text-align: center;
+}
+
+#faq-contact-button {
+  text-align: center;
+  margin-bottom: -30px;
+}
+
 .faq_area .accordion-item {
   margin-top: 25px;
   border: none;
@@ -5804,7 +5851,7 @@ table tbody tr td span {
 .faq h1 {
   font-size: 50px;
   text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: 30px;
   font-weight: 600;
   font-family: "Poppins", sans-serif;
   font-style: normal;

@@ -2378,6 +2378,59 @@ function updateFields() {
   }
 }
 
+//Funtion for show/hide faq accordions with button
+document.addEventListener("DOMContentLoaded", function () {
+  const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
+  const betalningBtn = document.getElementById("betalning");
+  const menyerAllergierBtn = document.getElementById("menyer-allergier");
+
+  const omWebbplatsenAccordion = document.getElementById(
+    "om-webbplatsen-accordion"
+  );
+  const betalningAccordion = document.getElementById("betalning-accordion");
+  const allergierAccordion = document.getElementById("allergier-accordion");
+
+  function hideAllAccordions() {
+    omWebbplatsenAccordion.style.display = "none";
+    betalningAccordion.style.display = "none";
+    allergierAccordion.style.display = "none";
+  }
+
+  function resetButtonStyles() {
+    omWebbplatsenBtn.classList.remove("active");
+    betalningBtn.classList.remove("active");
+    menyerAllergierBtn.classList.remove("active");
+  }
+
+  hideAllAccordions();
+  omWebbplatsenAccordion.style.display = "block";
+  omWebbplatsenBtn.classList.add("active");
+
+  omWebbplatsenBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideAllAccordions();
+    resetButtonStyles();
+    omWebbplatsenAccordion.style.display = "block";
+    omWebbplatsenBtn.classList.add("active");
+  });
+
+  betalningBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideAllAccordions();
+    resetButtonStyles();
+    betalningAccordion.style.display = "block";
+    betalningBtn.classList.add("active");
+  });
+
+  menyerAllergierBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideAllAccordions();
+    resetButtonStyles();
+    allergierAccordion.style.display = "block";
+    menyerAllergierBtn.classList.add("active");
+  });
+});
+
 // Function to cart content and total form to email
 const sendCartInfo = document.getElementById("cart-order-form");
 const cartButton = document.getElementById("cart-button");
