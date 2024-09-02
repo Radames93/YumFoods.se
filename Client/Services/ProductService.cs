@@ -24,7 +24,7 @@ public class ProductService : IProductRepository<ProductDTO>
         return result ?? new List<ProductDTO>();
     }
 
-    async Task<ProductDTO?> IProductRepository<ProductDTO>.GetProductByIdAsync(int id)
+    public async Task<ProductDTO?> GetProductByIdAsync(int id)
     {
         var response = await _httpClient.GetAsync($"products/{id}");
         if (!response.IsSuccessStatusCode)
@@ -36,7 +36,7 @@ public class ProductService : IProductRepository<ProductDTO>
         return result;
     }
 
-    async Task<List<ProductDTO>> IProductRepository<ProductDTO>.GetProductByCategoryAsync(string category)
+    public async Task<List<ProductDTO>> GetProductByCategoryAsync(string category)
     {
         var response = await _httpClient.GetAsync($"products/category/{category}");
         if (!response.IsSuccessStatusCode)
@@ -48,7 +48,7 @@ public class ProductService : IProductRepository<ProductDTO>
         return result ?? new List<ProductDTO>();
     }
 
-    async Task<List<ProductDTO>> IProductRepository<ProductDTO>.GetProductByCuisineAsync(string cuisine)
+    public async Task<List<ProductDTO>> GetProductByCuisineAsync(string cuisine)
     {
         var response = await _httpClient.GetAsync($"products/cuisine/{cuisine}");
         if (!response.IsSuccessStatusCode)
@@ -93,7 +93,7 @@ public class ProductService : IProductRepository<ProductDTO>
         }
     }
 
-    async Task<ProductDTO?> IProductRepository<ProductDTO>.GetProductByNameAsync(string title)
+    public async Task<ProductDTO?> GetProductByNameAsync(string title)
     {
         var response = await _httpClient.GetAsync($"products/title/{title}");
         if (!response.IsSuccessStatusCode)
@@ -105,7 +105,7 @@ public class ProductService : IProductRepository<ProductDTO>
         return result;
     }
 
-    async Task<List<ProductDTO>> IProductRepository<ProductDTO>.GetProductsByDietAsync(string diet)
+    public async Task<List<ProductDTO>> GetProductsByDietAsync(string diet)
     {
         var response = await _httpClient.GetAsync($"products/diet/{diet}");
         if (!response.IsSuccessStatusCode)

@@ -13,12 +13,7 @@
           "Microsoft.EntityFrameworkCore": "8.0.8",
           "Microsoft.EntityFrameworkCore.Design": "8.0.8",
           "Pomelo.EntityFrameworkCore.MySql": "8.0.2",
-<<<<<<< HEAD
-          "Shared": "1.0.0",
           "Stripe.net": "45.9.0"
-=======
-          "Shared": "1.0.0"
->>>>>>> dev-Geweria
         },
         "runtime": {
           "API.dll": {}
