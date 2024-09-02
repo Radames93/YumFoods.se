@@ -3,9 +3,10 @@ using Shared.Interfaces;
 
 namespace Shared.StripePayments;
 
-public class PaymentDirectory(IPaymentHttp paymentHttp)
+public class PaymentDirectory(IPaymentService paymentService, ICartService cartService)
 {
-    private readonly IPaymentHttp _paymentHttp = paymentHttp;
+    private readonly IPaymentService _paymentService = paymentService;
+    private readonly ICartService _cartService = cartService;
 
     public async Task<string> GoToPayment()
     {
@@ -13,7 +14,7 @@ public class PaymentDirectory(IPaymentHttp paymentHttp)
         paymentRequest.Products = new List<CartItemDto>(); //osäker om det ska vara new list
         paymentRequest.CancelPaymentUrl = "länk till rätt sida tyvärr gick ditt köp ej igenom";
         paymentRequest.SuccessPaymentUrl = "länk till orderbekräftelse";
-        var checkoutUrl = await _paymentHttp.CreatePayment(paymentRequest);
+        var checkoutUrl = await _paymentService.CreatePayment(paymentRequest);
 
         return checkoutUrl;
         //instansiera i frontend och await denna metod vid onClick

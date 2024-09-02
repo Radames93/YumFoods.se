@@ -1,8 +1,6 @@
-﻿using Shared.Interfaces;
+﻿namespace Shared.Interfaces;
 
-namespace Shared.DTOs;
-
-public class CartItemDto : ICartItem
+public interface ICartItem
 {
     public string Id { get; set; }
     public string Name { get; set; }

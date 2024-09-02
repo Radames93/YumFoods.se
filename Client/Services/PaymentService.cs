@@ -3,11 +3,11 @@ using Shared.StripePayments;
 
 namespace Shared.Services;
 
-public class PaymentHttpService : IPaymentHttp
+public class PaymentService : IPaymentService
 {
     private readonly HttpClient _httpClient;
 
-    public PaymentHttpService(HttpClient client)
+    public PaymentService(HttpClient client)
     {
         _httpClient = client;
     }

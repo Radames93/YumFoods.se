@@ -2,7 +2,7 @@
 
 namespace Shared.Interfaces;
 
-public interface IPaymentHttp
+public interface IPaymentService
 {
     Task<string> CreatePayment(PaymentRequest request);
 }
