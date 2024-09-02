@@ -10,7 +10,7 @@ namespace Client.Services
 
         public SubscriptionService(IHttpClientFactory factory)
         {
-            _httpClient = factory.CreateClient("YumFoodsConnectionString");
+            _httpClient = factory.CreateClient("YumFoodsApiClient");
         }
 
         public async Task<List<SubscriptionDTO>> GetAllSubscriptionsAsync()

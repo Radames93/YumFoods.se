@@ -1,3 +1,4 @@
+using System.Data.Common;
 using Client.Components;
 using Client.Services;
 using Shared.DTOs;
@@ -9,15 +10,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+var connectionString = Environment.GetEnvironmentVariable("YumFoodsDbConnectionString");
+var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnectionString");
+
 //gör om, hämta mijövariabel???
 
-builder.Services.AddHttpClient("YumFoodsConnectionString",
+builder.Services.AddHttpClient("YumFoodsApiClient",
     client =>
-        client.BaseAddress = new Uri("https://localhost:7216")
+        client.BaseAddress = new Uri(connectionString ?? "https://localhost:7216")
 );
-builder.Services.AddHttpClient("YumFoodsUserConnectionString",
+builder.Services.AddHttpClient("YumFoodsUserApiClient",
     client =>
-        client.BaseAddress = new Uri("https://localhost:7216")
+        client.BaseAddress = new Uri(connectionString2 ??"https://localhost:7216")
 );
 
 
