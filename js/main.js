@@ -1763,51 +1763,45 @@ const displayNewCart = () => {
           <section class="col mb-4" id=` +
             item.id +
             `>
-
-              <div class="d-flex">
-                <img id="` +
+<div>
+   <img id="` +
             item.id +
             `" src="` +
             item.img +
             `" alt="bild på maträtt"
-                class="pro_img cartPayDeliver"/>
-                <div>
-                  <p>` +
+      class="pro_img cartPayDeliver"/>
+      <p>` +
             item.title +
-            `</p>
-                </div>
-                <div>
-                  <p style="color: red; border:solid 1px grey; padding: 4px; border-radius: 5px; margin-left: 3px;">Ändra<p>
-                </div>
-            </div>
-
-            <div class="pro_select d-flex flex-direction-row">
-              <div class="quentity_btn">
-
-                <button class="decrease">
-                    <i class="fa fa-minus"></i>
-                </button>
-                <input class="quantity" type="text" value=` +
+            `
+      </p>
+</div>
+<div class="pro_select d-flex flex-direction-row">
+   <div class="quentity_btn">
+      <button class="decrease">
+      <i class="fa fa-minus"></i>
+      </button>
+      <input class="quantity" type="text" value=` +
             quantity +
             `>
-                <button class="increase">
-                        <i class="fa fa-plus"></i>
-                </button>
-              </div>
-              <div class="quentity_btn">
-              <h6 class="quantity_price">` +
-            item.quantityPrice +
-            `</h6>
-            </div>
-              <div class="pro_icon">
-              <button onclick="removeItem(` +
+      <button class="increase">
+      <i class="fa fa-plus"></i>
+      </button>
+   </div>
+   <div class="pro_icon">
+      <button onclick="removeItem(` +
             item.id +
             `)" href="#"><i class="fas fa-trash-alt"></i></button>
-              </div>
-            </div>
-            </div>
-          </section>
-
+      <div class="quentity_btn">
+         <h6 class="quantity_price">` +
+            item.quantityPrice +
+            `
+         </h6>
+         <h6 class="currency mb_0">kr</h6>
+      </div>
+   </div>
+</div>
+</div>
+</section>
 
             `
 
@@ -1985,10 +1979,11 @@ displayNewCart();
 totalSum();
 totalQuantity();
 
-const increase = document.querySelectorAll(".increase");
-const decrease = document.querySelectorAll(".decrease");
+//Bind the buttons handling the increment and decrement buttons to a function and run it once the DOM loads. When the DOM dynamically changes (e.g. insertAdjacentHTML, removeItem()), the intitally attached addEventListeners are not there anymore and need to be reattached both on the DOM and for the "removeItem" function.
+function cartBtns() {
+  const increase = document.querySelectorAll(".increase");
+  const decrease = document.querySelectorAll(".decrease");
 
-function reloadBtn() {
   increase.forEach((btn) => {
     btn.addEventListener("click", increment);
   });
@@ -1997,7 +1992,7 @@ function reloadBtn() {
     btn.addEventListener("click", decrement);
   });
 }
-reloadBtn();
+cartBtns();
 
 //Increment function on the + button for quantity
 function increment() {
@@ -2086,14 +2081,19 @@ function increment() {
   totalQuantity();
 }
 
-//Decrement function on the - button for quantity
-function decrement() {
+//Decrement function on the button for quantity
+//In order to ensure the button pressed is the one the user really clicked on, instead of just having it look for the closest matching class or id, declare a variable to the event.target along with replacing the "this" keywords since event.target is handling that for us now.
+function decrement(event) {
+  const decBtn = event.target.closest(".decrease");
+  console.log(decBtn);
   if (localStorage.getItem("quantity") !== null) {
-    const inp = this.nextElementSibling;
-    console.log(inp);
-    if (inp.value > 0) inp.value = Number(inp.value) - 1;
+    const inp = decBtn.nextElementSibling;
+    if (inp.value > 0) {
+      inp.value = Number(inp.value) - 1;
+      console.log(inp.value);
+    }
     if (inp.value <= 0) {
-      this.setAttribute("disabled", "disabled");
+      decBtn.setAttribute("disabled", "disabled");
     }
     let id = localStorage.getItem("id");
     let quantityPrice = localStorage.getItem("quantity-price");
@@ -2106,14 +2106,16 @@ function decrement() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.parentElement.nextElementSibling.querySelector(".quantity_price");
+        decBtn.parentElement.nextElementSibling.querySelector(
+          ".quantity_price"
+        );
       var input = this.nextElementSibling;
     }
     let inputQuantity = inp.value;
     let decreaseQuantityPrice = quantityPrice - price;
 
     if (cartItem !== null) {
-      let tableId = this.closest("section").id;
+      let tableId = decBtn.closest("section").id;
 
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
@@ -2135,13 +2137,13 @@ function decrement() {
     );
     localStorage.setItem("quantity", (input.textContent = inputQuantity));
   } else {
-    const inp = this.nextElementSibling;
+    const inp = decBtn.nextElementSibling;
     console.log(inp);
     if (inp.value > 0) {
       inp.value = Number(inp.value) - 1;
     }
     if (inp.value <= 0) {
-      this.setAttribute("disabled", "disabled");
+      decBtn.setAttribute("disabled", "disabled");
     }
     for (i = 0; i < formDataArry.length; i++) {
       price = parseInt(formDataArry[i].price);
@@ -2153,12 +2155,15 @@ function decrement() {
       var input = cardModal.querySelector(".quantity");
     } else {
       price = parseInt(price);
-      var modalQuantityPrice = document.querySelector(".quantity_price");
-      var input = document.querySelector(".quantity");
+      var modalQuantityPrice =
+        decBtn.parentElement.nextElementSibling.querySelector(
+          ".quantity_price"
+        );
+      var input = this.nextElementSibling;
     }
     let inputQuantity = inp.value;
 
-    let tableId = this.closest("section").id;
+    let tableId = decBtn.closest("section").id;
     console.log(tableId);
 
     let itemIndex = formDataArry.filter((el) => el.id == tableId);
@@ -2188,6 +2193,8 @@ function removeItem(id) {
   totalQuantity();
   totalSum();
   updateFields();
+  //Reattach addEventListeners
+  cartBtns();
   if (temp.length == 0) {
     localStorage.clear();
     displayNewCart();
