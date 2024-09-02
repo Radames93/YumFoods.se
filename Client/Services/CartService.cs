@@ -1,7 +1,7 @@
 ﻿using Shared.DTOs;
 using Shared.Interfaces;
 
-namespace Shared.Services;
+namespace Client.Services;
 
 public class CartService : ICartService
 {
