@@ -12,7 +12,7 @@ public static class OrderDetailExtension
 
         group.MapGet("/", GetAllOrderDetailsAsync);
         group.MapGet("/{id}", GetOrderDetailByIdAsync);
-        group.MapGet("/orderId/{id}", GetOrderDetailByOrderIdAsync);
+        group.MapGet("/orderId/{OrderId}", GetOrderDetailByOrderIdAsync);
         // eller group.MapGet("/{odId}/order/{orderId}", GetOrderDetailByOrderIdAsync);
 
         group.MapPost("/", AddOrderDetailAsync);
