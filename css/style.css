@@ -664,7 +664,7 @@ button {
   line-height: 22px;
   margin-left: 15px;
 }
-.dropbtn:hover{
+.dropbtn:hover {
   color: black;
   background-color: white;
   border: solid;
@@ -4575,18 +4575,33 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   border-color: #fa6039;
 }
 
-.dateBtn:active,
-.timeBtn:active {
+.dateBtn:active:focus:not(:focus-visible),
+.timeBtn:active:focus:not(:focus-visible) {
   background: #fa6039;
   border-color: #fa6039;
 }
 
-.nextAccord {
-  background-color: #009d00;
+.dateBtn,
+.timeBtn .nextAccord {
+  background-color: #ffffff;
   display: flex;
-  width: 20%;
   margin: auto;
   text-align: center;
+  background-image: unset;
+}
+
+.dateBtn:focus,
+.timeBtn:focus {
+  background: #fa6039;
+  border-color: #fa6039;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: none;
+}
+
+.accordion-button::after {
+  background-image: none;
 }
 
 .tbl {
