@@ -247,6 +247,24 @@
 }
 /* popup end */
 
+ /* secound part of start page start */
+ .box2.large-box {
+  width: 91%;
+  height: auto; 
+  padding: 20px;
+  margin: 0 auto 15px; 
+  font-size: 1.1rem;
+}
+
+.box3.info-box {
+  width: 91%;
+  padding: 20px; 
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* secound part of start page end*/
+
 /* banner */
   .banner_shape_1 {
     width: 50px;
@@ -556,6 +574,22 @@
   }
 
   /* popup end */
+   /* secound part of start page start */
+ .box2.large-box {
+  width: 92%;
+  height: auto; 
+  padding: 20px;
+  margin: 0 auto 15px; 
+  font-size: 1.1rem;
+}
+
+.box3.info-box {
+  width: 92%;
+  padding: 20px; 
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+/* secound part of start page end*/
 
   .banner_text h1 {
     font-size: 48px;
@@ -1198,6 +1232,113 @@
     }
     /* popup end */
 
+    /* secound part of start page start */
+
+    .box2.large-box {
+      width: 97%;
+      height: auto; 
+      padding: 20px;
+      margin: 0 auto 15px; 
+      font-size: 1.1rem;
+    }
+
+    .box2.large-box h5,
+    .box2.large-box h6 {
+        font-size: 1rem;
+    }
+
+    .col-7 {
+      width: 90%;
+    }
+    .quantity-btn {
+        width: 90%;
+        justify-content: space-between; 
+        margin-left: -70px;
+        margin-top: 10px;
+    }
+
+    .quantity-btn button {
+        font-size: 0.9rem;
+        border: 1px solid #757474;
+    }
+
+    .quantity-btn span {
+        font-size: 1rem;
+    }
+
+    .box3.info-box {
+      width: 97%;
+      padding: 20px; 
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .box3.info-box .close{
+      margin-left: 130px;
+    }
+
+    .box3.info-box .img-fluid {
+        margin-top: -40px;
+        margin-left: -30px;
+    }
+
+    .box3.info-box ul#dish-list p {
+        font-size: 1rem; 
+    }
+
+    .box3.info-box .row.bg-light p {
+        font-size: 1rem; 
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; 
+      max-height: 677.07px;
+    }
+
+    .col-5 {
+        flex: 0 0 42%; 
+    }
+    
+    .frakt, .price {
+        margin: 0; 
+        text-align: left; 
+    }
+    
+    .price {
+        text-align: right; 
+        margin-top: -20px;
+        margin-left: 100px;
+    }
+
+    .col-md-5 .text-center{
+      margin-left: -20px;
+    }
+
+    .col-md-5 .col-5 .box{
+      width: 60%;
+    }
+
+    .row .self-kasse .img-fluid{
+      margin-left: -65px;
+      height: 40px;
+    }
+
+    .row .self-kasse .col-6 p{
+      margin-left: -130px;
+    }
+
+    .row .self-kasse .col-6 .btn{
+      margin-left: -130px;
+    }
+
+    .self-kasse{
+      margin-left: 20px;
+    }
+  
+    /* secound part of start page end */
+
   .banner_title {
     font-family: "Playfair Display";
     font-weight: 400;
@@ -1738,6 +1879,14 @@
     border-radius: 0%;
   }
   /* popup end */
+  /* secound part of start page start */
+  .container .row .col-md-5{
+    margin-left: 50px;
+  }
+  .self-kasse{
+    margin-left: 20px;
+  }
+  /* secound part of start page end*/
 
   /* baner start */
 
@@ -2746,6 +2895,42 @@
     border-radius: 0%;
   }
   /* popup end */
+  /* secound part of start page start */
+  .col-3 .box{
+    margin-left: 10px;
+  }
+  .container .row .col-md-5{
+    margin-left: 30px;
+    margin-right: 20px;
+  }
+
+  .box2.large-box {
+    width: 96%;
+    margin-left: 8px;
+  }
+
+  .box3.info-box {
+    width: 96%;
+    margin-left: 8px;
+  }
+
+  .self-kasse{
+    margin-left: 50px;
+  }
+
+  .self-kasse .img-fluid{
+    margin-left: 25px;
+  } 
+
+  .col-5 .box{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .right-part{
+    margin-top: 15px;
+  }
+
+  /* secound part of start page end*/
 
   /* baner start */
 

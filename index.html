@@ -133,6 +133,150 @@
           </div>
         </div>
         <!--poput finished -->
+     <!--=============================
+        secound part of start page
+      ==============================-->
+      <div class="container mt-5 mb-4">
+        <h2 class="text-center mb-4">Boråttom? Handla en färdig kasse!</h2>
+        <section class="row justify-content-center">
+            <!-- Vänster del -->
+            <div class="col-md-5 col-6-lg left-part">
+                <h4 class="text-center mb-4">1. Välj kosttypp</h4>
+                <div class="row">
+                    <div class="col-5">
+                        <div class="box box2">
+                            <img src="images/Ikon-veg.jpg" alt="Bild 1" class="circular-image img-fluid w-25 mb-2">
+                            <p>Proteinrik</p>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="box box2" onclick="vegetarianAlternatives();">
+                            <img src="images/Ikon.jpg" alt="Bild 2" class="circular-image img-fluid w-25 mb-2">
+                            <p>Vegetariskt</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-5">
+                        <div class="box box2">
+                            <img src="images/Ikon.jpg" alt="Bild 3" class="circular-image img-fluid w-25 mb-2">
+                            <p>Max 550 kcal</p>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="box box2">
+                            <img src="images/Ikon.jpg" alt="Bild 4" class="circular-image img-fluid w-25 mb-2">
+                            <p> Pescetariskt</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center mt-4">Kort beskrivning om den valda kosttypen.</p>
+                
+                <div class="row mt-2 self-kasse">
+                    <div class="col-2">
+                        <img src="images/Oliver.jpg" alt="Bild" class="img-fluid" style="height: 190px;">
+                    </div>
+                    <div class="col-6 d-flex flex-column justify-content-center">
+                        <p class="mb-3">Vill du plocka ihop din egna kasse?</p>
+                        <button class="btn btn-light" style="border: 1px solid black; width: 180px;" onclick="window.location.href='#categories'">Se hela menyn här</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Höger del -->
+            <div class="col-md-5 right-part">
+                <h4 class="text-center mb-4">2. Välj antal matlådor</h4>
+                <div class="row">
+                    <div class="col-3">
+                        <div class="box box4" data-value="10">10</div>
+                    </div>
+                    <div class="col-3">
+                        <div class="box box4" data-value="15">15</div>
+                    </div>
+                    <div class="col-3">
+                        <div class="box box4" data-value="20">20</div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-10">
+                      <div class="box2 large-box">
+                          <div class="row">
+                              <div class="col-7">
+                                  <h5>Välja ett eget antal</h5>
+                                  <h6>Minst 10 matlådor per beställning</h6>
+                              </div>
+                              <div class="col-3 quantity-btn d-flex align-items-center justify-content-end">
+                                  <button class="btn btn-light">-</button>
+                                  <span class="mx-2">10</span>
+                                  <button class="btn btn-light">+</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+                <div class="row">
+                    <div class="col-10">
+                        <div class="box3 info-box">
+                            <div class="row mb-4">
+                              <div class="col-4">
+                                <p class="fw-bolder">Proteinrikt</p>
+                              </div>
+                              <div class="col-6">
+                                <button type="button" class="close btn2"><i class="fa fa-times"></i></button>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-5">
+                                <img src="images/Ikon-veg.jpg" alt="Bild" class="img-fluid w-25">
+                              </div>
+                              <div class="col-5 mb-5" >
+                                <div id="dish-list">
+                                  <!-- <li>
+                                    <p>3kyckling med ris</p>
+                                  </li>
+                                  <li>
+                                    <p>3 lorem ipsum</p>
+                                  </li> -->
+                                </div>
+                              </div>
+                            </div>
+                            <div class=" justify-content-between">
+                              <div class="row bg-light mb-1 mt-2">
+                                <div class="col-5 frakt">
+                                    <p>Frakt</p>
+                                </div>
+                                <div class="col-5 price">
+                                  <p>0 kr</p>
+                                </div>
+                              </div>
+                              <div class="row bg-light">
+                                <div class="col-5 frakt">
+                                    <p>Att betala</p>
+                                </div>
+                                <div class="col-5 price">
+                                  <!-- <p>690 kr</p> -->
+                                </div>
+                              </div>
+                              <div class="row bg-light">
+                                <div class="col-5 frakt">
+                                  <p>Moms</p>
+                                </div>
+                                <div class="col-5 price">
+                                  <p>173 kr</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="mt-5 mb-4">
+                              <button class="btn btn-danger" onclick="window.location.href='payment.html'">Vidare till kassan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+ 
     <!--=============================
         CATEGORIES
     ==============================-->

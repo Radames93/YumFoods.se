@@ -242,8 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
   myModal.show();
 })
 
-
-document.getElementById('confirmButton').addEventListener('click', function () {
+  document.getElementById('confirmButton').addEventListener('click', function () {
   var postcode = document.getElementById('postcodeInput').value;
   if(postcode===""){
     document.getElementById('confirmationMessage').style.display = 'none';
@@ -299,6 +298,97 @@ document.getElementById('findLocationButton').addEventListener('click', function
   }
 })
 
+// secound part of start page
+const infoBox = document.querySelector(".info-box");
+infoBox.style.display = "none";
+
+const close= document.querySelector(".close")
+close.addEventListener("click",function(){
+  infoBox.style.display= "none"
+})
+
+const boxes = document.querySelectorAll('.box')
+boxes.forEach((box, index) => {
+  box.addEventListener('click', function() {
+    boxes.forEach(b => b.classList.remove('selected'))
+    this.classList.add('selected')
+    infoBox.style.display = "block";
+
+    let selectedCategory;
+    switch(index) {
+      case 0:
+        selectedCategory = 'proteinrik';
+        break;
+      case 1:
+        selectedCategory = 'vegetarisk';
+        break;
+      case 2:
+        selectedCategory = 'max550kcal';
+        break;
+      case 3:
+        selectedCategory = 'Pescetariskt' ;
+        break;
+    }
+  })
+})
+
+//quantity button
+document.addEventListener("DOMContentLoaded", function() {
+  const quantitySpan = document.querySelector('.quantity-btn span');
+  const increaseButton = document.querySelector('.quantity-btn button:nth-of-type(2)');
+  const decreaseButton = document.querySelector('.quantity-btn button:nth-of-type(1)');
+  
+  let currentQuantity = parseInt(quantitySpan.textContent, 10);
+
+  function updateQuantity(newQuantity) {
+    if (newQuantity >= 10 && newQuantity<=20 ) {
+      currentQuantity = newQuantity;
+      quantitySpan.textContent = currentQuantity;
+      updateBoxSelection();
+    }
+  }
+
+  function updateBoxSelection() {
+    boxes.forEach(box => {
+      const boxValue = parseInt(box.getAttribute('data-value'), 10);
+      if (boxValue === currentQuantity) {
+        box.classList.add('selected');
+      } else {
+        box.classList.remove('selected');
+      }
+    });
+  }
+
+  document.querySelectorAll('.row .box').forEach(box => {
+    box.addEventListener('click', function() {
+      const boxValue = parseInt(this.textContent, 10);
+      updateQuantity(boxValue);
+    })
+  })
+
+  increaseButton.addEventListener('click', function() {
+    updateQuantity(currentQuantity + 5);
+  })
+
+  decreaseButton.addEventListener('click', function() {
+    updateQuantity(currentQuantity - 5);
+  })
+})
+
+
+// fixed media query
+// function updateMargin() {
+//     const infoBox = document.querySelector('.info-box');
+//     const rightPart = document.querySelector('.right-part');
+
+//     if (window.getComputedStyle(infoBox).display === 'none') {
+//       if (window.matchMedia("(min-width: 768px) and (max-width: 991.99px)").matches) {
+//         rightPart.style.marginTop = '-200px';
+//       } else {
+//         rightPart.style.marginTop = '';
+//       }
+//   } 
+// }
 
 //Get elements from the DOM
 let yum = document.getElementById("yum");
@@ -428,6 +518,25 @@ const loadProducts = async () => {
     console.log(err);
   }
 };
+
+//Display vegetarian Alternatives
+const vegetarianAlternatives = () => {
+  const dishList = document.getElementById('dish-list'); 
+  const htmlString = yumProductsList.map((veg) => {
+    veg.diet.map((veggie) => {
+        if(veggie == "images/icons/vegetarian.png"){
+          console.log(veg.title)
+          return (
+             `<li>` +
+             veg.title +
+              `</li>`
+          )
+        } 
+        return "";
+    })
+}).join("");
+dishList.innerHTML += htmlString;
+} 
 
 //Display yum items
 const yumProducts = (yumProductsList) => {

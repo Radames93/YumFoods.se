@@ -766,7 +766,59 @@ button {
 
 /*End Popup in start page  */
 
+/* secound part of start page start*/
 
+.box {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.box.selected {
+  background-color: #ff7c082e;
+}
+
+.box2 {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.box3 {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.col-6 .btn2{
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  margin-left: 100px;
+}
+.circular-image {
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+}
+
+#dish-list{
+  color: #000000;
+  z-index: 1000;
+  height: 50px;
+}
+
+/* secound part of start page End*/
 /* banner start */
 
 .vectorButton {
