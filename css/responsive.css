@@ -2256,7 +2256,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
-    width: 600px;
+    width: 500px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -3396,9 +3396,10 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
-    width: 600px;
+    width: 330px;
     margin-left: auto;
     margin-right: auto;
+    justify-content: center;
   }
 
   /* =====================
