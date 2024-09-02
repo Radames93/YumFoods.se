@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi"
+    />
+    <title>YumFoods</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom_spacing.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+
+  <body>
+    <!--=============================
+        MENU START
+    ==============================-->
+    <header-component id="header"></header-component>
+    <!--=============================
+        MENU END
+    ==============================-->
+
+    <!--=============================
+        BREADCRUMB START
+    ==============================-->
+    <section class="page_breadcrumb" style="background: url(images/cover.png)">
+      <div class="breadcrumb_overlay">
+        <div class="container">
+          <div class="breadcrumb_text">
+            <h1>Användare panel</h1>
+            <ul>
+              <li><a href="index.html">Hem</a></li>
+              <li><a href="#">Användare panel</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=============================
+        BREADCRUMB END
+    ==============================-->
+
+    <!--=========================
+        DASHBOARD START
+    ==========================-->
+    <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
+      <div class="container">
+        <div class="dashboard_area">
+          <div class="row">
+            <div class="col-xl-3 col-lg-4 wow fadeInUp" data-wow-duration="1s">
+              <div class="dashboard_menu">
+                <div class="dasboard_header">
+                  <div class="dasboard_header_img">
+                    <img
+                      src="images/Avatar.png"
+                      alt="user"
+                      class="img-fluid w-100"
+                    />
+                    <label for="upload"><i class="far fa-camera"></i></label>
+                    <input type="file" id="upload" hidden />
+                  </div>
+                  <h2>Ella Olofsson</h2>
+                </div>
+                <ul>
+                  <li>
+                    <a class="active" href="dashboard.html"
+                      ><span><i class="fas fa-user"></i></span> Personligt
+                      information</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_address.html"
+                      ><span><i class="fas fa-user"></i></span>adress</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_order.html"
+                      ><span><i class="fas fa-bags-shopping"></i></span>
+                      order</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_wishlist.html"
+                      ><span><i class="far fa-heart"></i></span> önskelista</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_change_password.html"
+                      ><span><i class="fas fa-user-lock"></i></span> Byt
+                      lösenord</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><span> <i class="fas fa-sign-out-alt"></i></span> Logga
+                      ut</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-9 col-lg-8 wow fadeInUp" data-wow-duration="1s">
+              <div class="dashboard_content">
+                <div class="dashboard_body">
+                  <h3>
+                    Personligt Information
+                    <a
+                      class="dash_add_new_address"
+                      href="dashboard_info_edit.html"
+                      >redigera</a
+                    >
+                  </h3>
+
+                  <div class="dash_personal_info">
+                    <div class="personal_info_text">
+                      <p><span>Namn:</span> Olla Olofsson</p>
+                      <p><span>Melj:</span> ollaolofsson@gmail.com</p>
+                      <p><span>Telefonnumer:</span> 023 434 54354</p>
+                      <p>
+                        <span>Address:</span> Stora Badhusgatan 18, 411 21
+                        Göteborg
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=========================
+        DASHBOARD END 
+    ==========================-->
+
+    <!--=============================
+        FOOTER START
+    ==============================-->
+    <footer-component id="footer"></footer-component>
+    <!--=============================
+        FOOTER END
+    ==============================-->
+
+    <!--=============================
+        SCROLL BUTTON START
+    ==============================-->
+    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+    <!--=============================
+        SCROLL BUTTON END 
+    ==============================-->
+    <!-- hotjar code -->
+    <script src="js/hotjar.js"></script>
+    <!-- swiper slider -->
+    <script src="js/swiper-bundle.min.js" rel="preload"></script>
+    <!--jquery library js-->
+    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/custom js-->
+    <script rel="preload" src="js/main.js"></script>
+    <!--bootstrap js-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- isotop js -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- counter up js -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="js/jquery.exzoom.js"></script>
+    <link rel="stylesheet" href="css/venobox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="css/nice-select.css" />
+  </body>
+</html>

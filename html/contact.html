@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi"
+    />
+    <title>YumFoods</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom_spacing.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+
+  <body>
+    <!--=============================
+        MENU START
+    ==============================-->
+    <header-component id="header"></header-component>
+    <!--=============================
+        MENU END
+    ==============================-->
+
+    <!--=============================
+        BREADCRUMB START
+    ==============================-->
+    <section
+      class="page_breadcrumb"
+      style="background: url(images/contact-us.png)"
+    >
+      <div class="breadcrumb_overlay">
+        <div class="container">
+          <div class="breadcrumb_text">
+            <h1>Kontakta oss</h1>
+            <ul>
+              <li><a href="index.html">Hem</a></li>
+              <li><a href="#">Kontakta oss</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=============================
+        BREADCRUMB END
+    ==============================-->
+
+    <!--=============================
+        CONTACT PAGE START
+    ==============================-->
+
+    <section class="contact mt_50">
+      <div class="container">
+        <div class="contact_form_area">
+          <div
+            class="col-xl-8 col-md-6 col-lg-7 wow fadeInUp mx-auto"
+            data-wow-duration="1s"
+          >
+            <form
+              id="contact-form"
+              class="contact_form text-center"
+              action="https://api.web3forms.com/submit"
+              method="POST"
+            >
+              <div class="section_heading mb_25">
+                <h2>Kontakta oss</h2>
+              </div>
+              <div class="d-flex justify-content-around">
+                <button class="common_btn" id="private_button" type="button">
+                  <span class="button_span pull-left">Privat</span>
+                  <i class="fas fa-arrow-down"></i>
+                </button>
+                <button class="common_btn" id="company_button" type="button">
+                  <span class="button_span pull-left">Företag</span>
+                  <i class="fas fa-arrow-down"></i>
+                </button>
+              </div>
+              <div id="form" class="row">
+                <div class="col-xl-12">
+                  <input
+                    type="hidden"
+                    name="access_key"
+                    value="0984a5c4-eb6b-4bcf-8601-7b83fe4f470a"
+                  />
+                  <input
+                    type="hidden"
+                    name="subject"
+                    value="New Submission from Web3Forms"
+                  />
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    id=""
+                    style="display: none"
+                  />
+                  <!--
+                  <input
+                    type="hidden"
+                    name="recaptcha_response"
+                    id="recaptchaResponse"
+                  />
+                  -->
+                  <div for="name" class="contact_form_input">
+                    <span><i class="fas fa-user"></i></span>
+                    <input name="name" type="text" placeholder="Namn" />
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div for="email" class="contact_form_input">
+                    <span><i class="fas fa-envelope"></i></span>
+                    <input name="email" type="email" placeholder="Epost" />
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div for="phone" class="contact_form_input">
+                    <span><i class="fas fa-phone-alt"></i></span>
+                    <input
+                      name="phone"
+                      type="text"
+                      placeholder="Telefonnummer"
+                    />
+                  </div>
+                </div>
+                <div id="company"></div>
+                <div class="col-xl-12">
+                  <div for="subject" class="contact_form_input">
+                    <span><i class="fas fa-book"></i></span>
+                    <input name="subject" type="text" placeholder="Ämne" />
+                  </div>
+                </div>
+                <div class="col-xl-12">
+                  <div for="message" class="contact_form_input textarea">
+                    <span><i class="fas fa-pen"></i></span>
+                    <textarea
+                      name="message"
+                      rows="5"
+                      placeholder="Meddelande"
+                    ></textarea>
+                  </div>
+                  <div class="h-captcha" data-captcha="true"></div>
+                  <button class="common_btn" type="submit">
+                    skicka meddelande
+                  </button>
+                </div>
+                <div id="result"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="contact_map_area">
+          <div class="row mt_100 xs_mt_70">
+            <div class="col-12 wow fadeInUp" data-wow-duration="1s">
+              <div class="contact_map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2131.728182484538!2d11.954548677186757!3d57.70408774003664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464ff368082e6509%3A0xad69b995cd02abd!2sResource%20Point%20AB!5e0!3m2!1ssv!2sse!4v1712242569889!5m2!1ssv!2sse"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=============================
+        CONTACT PAGE END
+    ==============================-->
+
+    <!--=============================
+        FOOTER START
+    ==============================-->
+    <footer-component id="footer"></footer-component>
+    <!--=============================
+        FOOTER END
+    ==============================-->
+
+    <!--=============================
+        SCROLL BUTTON START
+    ==============================-->
+    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+    <!--=============================
+        SCROLL BUTTON END 
+    ==============================-->
+    <!-- hotjar code -->
+    <script src="js/hotjar.js"></script>
+    <!-- swiper slider -->
+    <script src="js/swiper-bundle.min.js" rel="preload"></script>
+    <!--jquery library js-->
+    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/custom js-->
+    <script rel="preload" src="js/main.js"></script>
+    <!--bootstrap js-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- isotop js -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- counter up js -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="js/jquery.exzoom.js"></script>
+    <link rel="stylesheet" href="css/venobox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="css/nice-select.css" />
+  </body>
+</html>

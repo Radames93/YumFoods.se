@@ -66,7 +66,7 @@ public static class ProductExtension
         var existingProd = await repo.GetProductByIdAsync(newProd.Id);
         if(existingProd is not null)
         {
-            return Results.BadRequest($"Product with id {existingProd} already exists");
+            return Results.BadRequest($"Product with product number {existingProd.Id} already exist");
         }
 
         await repo.AddProductAsync(newProd);
@@ -78,7 +78,7 @@ public static class ProductExtension
         var existingProd = await repo.GetProductByIdAsync(id);
         if(existingProd is null)
         {
-            return Results.BadRequest($"Product with id {id} does not exist");
+            return Results.BadRequest($"Product with product number {id} does not exist");
         }
 
         await repo.UpdateProductAsync(id, updatedProd);

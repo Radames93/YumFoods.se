@@ -4,6 +4,7 @@ namespace API.Stripe;
 
 public static class StripeExtension
 {
+    //kanske ta bort metod pga redan instansierad i program.cs
     public static void AddPaymentsApi(this IServiceCollection services, IConfiguration configuration )
     {
         services.AddOptions<StripeConfig>().BindConfiguration(nameof(StripeConfig));

@@ -1,7 +1,7 @@
 using Client.Components;
-using Client.Services;
 using Shared.DTOs;
 using Shared.Interfaces;
+using Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,23 +9,23 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-//gör om, hämta mijövariabel???
+var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
+var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
 
-builder.Services.AddHttpClient("YumFoodsConnectionString",
+builder.Services.AddHttpClient("YumFoodsApiClient",
     client =>
-        client.BaseAddress = new Uri("https://localhost:7216")
+        client.BaseAddress = new Uri(connectionString ?? "https://localhost:7216")
 );
-builder.Services.AddHttpClient("YumFoodsUserConnectionString",
+builder.Services.AddHttpClient("YumFoodsUserApiClient",
     client =>
-        client.BaseAddress = new Uri("https://localhost:7216")
+        client.BaseAddress = new Uri(connectionString2 ?? "https://localhost:7216")
 );
 
 
 builder.Services.AddScoped<IProductRepository<ProductDTO>, ProductService>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetailDTO>, OrderDetailService>();
-builder.Services.AddScoped<IOrderRepository<OrderDTO>, OrderService>();
-builder.Services.AddScoped<ISubscriptionRepository<SubscriptionDTO>, SubscriptionService>();
-
+builder.Services.AddScoped<IPaymentService, PaymentService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 var app = builder.Build();
 

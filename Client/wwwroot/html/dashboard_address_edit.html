@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi"
+    />
+    <title>YumFoods</title>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom_spacing.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+
+  <body>
+    <!--=============================
+        MENU START
+    ==============================-->
+    <header-component id="header"></header-component>
+    <!--=============================
+        MENU END
+    ==============================-->
+
+    <!--=============================
+        BREADCRUMB START
+    ==============================-->
+    <section class="page_breadcrumb" style="background: url(images/cover.png)">
+      <div class="breadcrumb_overlay">
+        <div class="container">
+          <div class="breadcrumb_text">
+            <h1>Användare panel</h1>
+            <ul>
+              <li><a href="index.html">Hem</a></li>
+              <li><a href="#">Användare panel</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=============================
+        BREADCRUMB END
+    ==============================-->
+
+    <!--=========================
+        DASHBOARD START
+    ==========================-->
+    <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
+      <div class="container">
+        <div class="dashboard_area">
+          <div class="row">
+            <div class="col-xl-3 col-lg-4 wow fadeInUp" data-wow-duration="1s">
+              <div class="dashboard_menu">
+                <div class="dasboard_header">
+                  <div class="dasboard_header_img">
+                    <img
+                      src="images/Avatar.png"
+                      alt="user"
+                      class="img-fluid w-100"
+                    />
+                    <label for="upload"><i class="far fa-camera"></i></label>
+                    <input type="file" id="upload" hidden />
+                  </div>
+                  <h2>Ella Olofsson</h2>
+                </div>
+                <ul>
+                  <li>
+                    <a href="dashboard.html"
+                      ><span><i class="fas fa-user"></i></span> Personligt
+                      information</a
+                    >
+                  </li>
+                  <li>
+                    <a class="active" href="dashboard_address.html"
+                      ><span><i class="fas fa-user"></i></span>adress</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_order.html"
+                      ><span><i class="fas fa-bags-shopping"></i></span>
+                      order</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_wishlist.html"
+                      ><span><i class="far fa-heart"></i></span> önskelista</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_change_password.html"
+                      ><span><i class="fas fa-user-lock"></i></span> byt
+                      lösenord</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><span> <i class="fas fa-sign-out-alt"></i></span> Logga
+                      ut</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-9 col-lg-8 wow fadeInUp" data-wow-duration="1s">
+              <div class="dashboard_content">
+                <div class="dashboard_body address_body">
+                  <h3>
+                    lägg till adress
+                    <a
+                      class="dash_add_new_address"
+                      href="dashboard_address.html"
+                      >Avbryt</a
+                    >
+                  </h3>
+                  <div class="dashboard_address">
+                    <div class="dashboard_new_address">
+                      <form>
+                        <div class="row">
+                          <div class="col-md-6 col-lg-12 col-xl-6">
+                            <div class="check_single_form">
+                              <input type="text" placeholder="Namn" />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-lg-12 col-xl-6">
+                            <div class="check_single_form">
+                              <input type="text" placeholder="Efternamn" />
+                            </div>
+                          </div>
+                          <div class="col-md-12 col-lg-12 col-xl-12">
+                            <div class="check_single_form">
+                              <input
+                                type="text"
+                                placeholder="Företagsnamn (Frivilligt)"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-lg-12 col-xl-6">
+                            <div class="check_single_form">
+                              <select class="select_js">
+                                <option value="">välja landet</option>
+                                <option value="">sverige</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-lg-12 col-xl-6">
+                            <div class="check_single_form">
+                              <input type="text" placeholder="Gatuadress" />
+                            </div>
+                          </div>
+
+                          <div class="col-md-6 col-lg-12 col-xl-6">
+                            <div class="check_single_form">
+                              <input
+                                type="text"
+                                placeholder="Lägenhet, hus (frivilligt)"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-lg-12 col-xl-6">
+                            <div class="check_single_form">
+                              <input type="text" placeholder="Stad" />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-lg-12 col-xl-6">
+                            <div class="check_single_form">
+                              <input type="text" placeholder="Län" />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-lg-12 col-xl-6">
+                            <div class="check_single_form">
+                              <input type="text" placeholder="Postkod" />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-lg-12 col-xl-6">
+                            <div class="check_single_form">
+                              <input type="text" placeholder="Telefonnumer" />
+                            </div>
+                          </div>
+                          <div class="col-md-6 col-lg-12 col-xl-6">
+                            <div class="check_single_form">
+                              <input type="email" placeholder="Mejl" />
+                            </div>
+                          </div>
+                          <div class="col-md-12 col-lg-12 col-xl-12">
+                            <div class="check_single_form">
+                              <h5>Ytterligare information</h5>
+                              <textarea
+                                cols="3"
+                                rows="4"
+                                placeholder="Anteckningar om din beställning, t.ex. särskilda anteckningar för leverans"
+                              ></textarea>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="check_single_form check_area">
+                              <div class="form-check">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="flexRadioDefault"
+                                  id="flexRadioDefault1"
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for="flexRadioDefault1"
+                                >
+                                  hem
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  name="flexRadioDefault"
+                                  id="flexRadioDefault2"
+                                />
+                                <label
+                                  class="form-check-label"
+                                  for="flexRadioDefault2"
+                                >
+                                  kontor
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <button
+                              type="reset"
+                              class="common_btn cancel_new_address"
+                            >
+                              återställa
+                            </button>
+                            <button type="submit" class="common_btn">
+                              spara
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--=========================
+        DASHBOARD END 
+    ==========================-->
+
+    <!--=============================
+        FOOTER START
+    ==============================-->
+    <footer-component id="footer"></footer-component>
+    <!--=============================
+        FOOTER END
+    ==============================-->
+
+    <!--=============================
+        SCROLL BUTTON START
+    ==============================-->
+    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+    <!--=============================
+        SCROLL BUTTON END 
+    ==============================-->
+    <!-- hotjar code -->
+    <script src="js/hotjar.js"></script>
+    <!-- swiper slider -->
+    <script src="js/swiper-bundle.min.js" rel="preload"></script>
+    <!--jquery library js-->
+    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/custom js-->
+    <script rel="preload" src="js/main.js"></script>
+    <!--bootstrap js-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- isotop js -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- counter up js -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="js/jquery.exzoom.js"></script>
+    <link rel="stylesheet" href="css/venobox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="css/nice-select.css" />
+  </body>
+</html>
