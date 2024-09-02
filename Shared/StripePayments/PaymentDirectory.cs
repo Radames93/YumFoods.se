@@ -8,6 +8,7 @@ public class PaymentDirectory(IPaymentService paymentService, ICartService cartS
     private readonly IPaymentService _paymentService = paymentService;
     private readonly ICartService _cartService = cartService;
 
+
     public async Task<string> GoToPayment()
     {
         var paymentRequest = new PaymentRequest();
