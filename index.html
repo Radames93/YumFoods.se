@@ -40,7 +40,7 @@
         MENU START
     ==============================-->
     <header-component id="header"></header-component>
-     
+
     <!--=============================
         MENU END
     ==============================-->
@@ -65,20 +65,32 @@
             >
               <div class="hero-box" style="max-width: 1000px; margin: 100px auto;">
                 <p class="hero-slogan">Lite Billigare, Lika Yum</p>
-                <h1 class="hero-text" style="word-wrap: normal; overflow-wrap: break-word;">Billiga veckomåltider till din dörr</h1>
-                <!-- <p class="hero-slogan2" style="text-align: left;font-size: 20px;color: #110404; word-wrap: normal; overflow-wrap: break-word;" >Vi levererar endast inom Göteborgsområdet. Ange din adress för att se om vi leverera hem till dig</p>
-                <div class="address-container" style="text-align: left; margin-top: 2px;">
-                  <p style="font-size: large;"><strong>Adress</strong></p>
-                </div>
-                <div class="input-container" style="display: flex; justify-content: center; align-items: center; width: 700px;">
-                  <input type="text" id="location-input" placeholder="T.ex. Stampgatan 4, 411 03, Göteborg 📍 Hitta min plats" style="padding: 10px; color: #110404;; height:35px; border-radius: 5px; border: 1px solid #1d1a1a; flex: 1; width: 100%;">
-                  <button class="hero-button" onclick="navigateToMenuPage()" style="text-transform: none">
-                    <span class="hero-description"> Vidare till menyer <i class="fa fa-angle-right"></i> </span>
-                  </button>
-                </div>  -->
+                <h1 class="hero-text">Billiga veckomåltider till din dörr</h1>
+                <p>
+                  Vi leverar endast inom Göteborgsområdet. Ange din adress för
+                  att se om vi levererar hem till dig.
+                </p>
               </div>
+              <div>
+                <p>Adress</p>
+              </div>
+              <input
+                type="text"
+                placeholder="T.ex. Stampgatan 4, 411 03, Göteborg   Hitta min plats."
+              /><i class="fa fa-location"></i>
+              <a href="yum_menu.html">
+                <button class="hero-button" style="text-transform: none">
+                  <span class="hero-description"
+                    >Vidare till menyer <i class="fa fa-angle-right"></i>
+                  </span>
+                </button>
+              </a>
+            </div>
           </div>
-          <!--
+        </div>
+      </div>
+
+      <!--
                 <div class="vector_item_box">
                   <input
                     onclick="location.href = 'sign_in.html';"
@@ -94,8 +106,6 @@
                   />
                 </div>
                 -->
-        </div>
-      </div>
     </section>
     <!--=============================
         BANNER END
@@ -380,7 +390,7 @@
     </section>
     -->
 
-    <!--=============================
+    <!--============================
         SERVICES START
     ==============================-->
     <section class="team text-center">
@@ -410,143 +420,458 @@
         <div class="row wow fadeInUp" data-wow-duration="1s">
           <div class="col-md-8 col-lg-7 col-xl-6">
             <div class="section_heading mb_25">
+              <h2>Vi erbjuder även unika tjänster</h2>
+            </div>
+            <h3>Ska du anordna ett event? Vi fixar allt du behöver!</h3>
+          </div>
+        </div>
+        <div class="blog_slider">
+          <div id="first-grid2" data-wow-duration="1s">
+            <img id="food-img-blog" src="images/Ellipse 109.png" alt="" />
+          </div>
+          <div id="first-grid" data-wow-duration="1s">
+            <div class="single_blog">
+              <div class="single_blog_img">
+                <img
+                  src="images/unsplash_5U_28ojjgms.png"
+                  alt="blogg-bild"
+                  class="img-fluid w-100"
+                />
+              </div>
+              <div class="single_blog_author">
+                <div class="text"></div>
+              </div>
+              <div class="single_blog_text">
+                <a class="title" href="blog_details.html"
+                  >Vi fyller kylen med matlådor!</a
+                >
+                <div class="single_blog_footer">
+                  <p>
+                    Som företagskund kan vi leverera och fylla era kylar med
+                    matlådor regelbundet.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider-background"></div>
+
+          <div id="first-grid" data-wow-duration="1s">
+            <div class="single_blog">
+              <div class="single_blog_img">
+                <img
+                  src="images/pexels-suzy-hazelwood-2966196 1.png"
+                  alt="blogg-bild"
+                  class="img-fluid w-100"
+                />
+              </div>
+              <div class="single_blog_author">
+                <div class="text"></div>
+              </div>
+              <div class="single_blog_text">
+                <a class="title" href="blog_details.html"
+                  >Dags för event? Vi fixar maten!</a
+                >
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Veniam eos, odit beatae sequi tenetur quidem.
+                </p>
+                <div class="single_blog_footer">
+                  <p>Vi tar emot större ordrar för events och fester!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="blog_slider2">
+            <div id="first-grid2" data-wow-duration="1s">
+              <img id="food-img-blog2" src="images/Ellipse 108.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="services-contact">
+          <p id="first-p">
+            Kontakta oss så kan vi hjälpa dig hitta bästa lösningen för just din
+            leverans!
+          </p>
+          <a style="margin-top: 30px" href="blog_details.html">
+            <button class="contact-us-button" style="text-transform: none">
+              <span class="contact-us-description"> Kontakta oss!</span>
+            </button></a
+          >
+          <div class="services-info2">
+            <div class="services-info">
+              <i
+                style="color: #fc5633; margin-top: 4px"
+                class="fas fa-phone fa-lg"
+              ></i>
+              <p style="margin-left: 10px">+46 76 023 49 30</p>
+            </div>
+            <div class="services-info">
+              <i
+                style="color: #fc5633; margin-top: 4px"
+                class="fas fa-envelope fa-lg"
+              ></i>
+              <p style="margin-left: 10px">info@yumfoods.se</p>
+            </div>
+            <div class="services-info">
+              <i
+                style="margin-left: 2px; color: #fc5633; margin-top: 2px"
+                class="fas fa-map-marker-alt fa-lg"
+              ></i>
+              <p id="location_address2" style="margin-left: 14px">
+                Stora Badhusgatan 18, 411 21 Göteborg
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--=============================
+        BLOG END
+    ==============================-->
+
+    <!--=============================
+        BLOG START
+    ==============================-->
+    <!--
+    <section class="blog pt_95 xs_pt_65 pb_65 xs_pb_35">
+      <div class="container">
+        <div class="row wow fadeInUp" data-wow-duration="1s">
+          <div class="col-md-8 col-lg-7 col-xl-6">
+            <div class="section_heading mb_25">
               <h2>Vår blog and podcast</h2>
             </div>
           </div>
         </div>
 
-        <div class="row blog_slider">
-          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_blog">
-              <div class="single_blog_img">
-                <img
-                  src="images/hamburger.png"
-                  alt="blogg-bild"
-                  class="img-fluid w-100"
-                />
+    <!--=============================
+        SERVICES END
+    ==============================-->
+
+    <!--=============================
+        STEPS START
+    ==============================-->
+
+    <section class="steps-page">
+      <h1>Hur det fungerar</h1>
+      <div class="steps">
+        <div class="steps-item"><img src="images/1st 1.png" alt="" /></div>
+        <div class="steps-item"><img src="images/2st 1.png" alt="" /></div>
+        <div class="steps-item"><img src="images/3rd 1.png" alt="" /></div>
+        <div class="steps-item"><img src="images/4th 1.png" alt="" /></div>
+      </div>
+      <p>Ta första steget idag!</p>
+      <div class="step-button">
+        <a href="yum_menu.html">
+          <button class="steps-button" style="text-transform: none">
+            <span class="steps-description"> Välj matlådor </span>
+          </button></a
+        >
+      </div>
+    </section>
+
+    <!--=============================
+        STEPS END
+    ==============================-->
+
+    <!--=============================
+        FAQ START
+    ==============================-->
+
+    <section
+      style="background-color: #ffdfce; margin-top: 100px"
+      class="faq pt_75 xs_pt_45 pb_100"
+    >
+      <div class="container">
+        <div
+          class="col-xl-7 col-md-8 col-lg-7 mx-auto wow fadeInLeft"
+          data-wow-duration="1s"
+        >
+          <h1>Frågor och svar</h1>
+          <div class="faq_area">
+            <div class="faq-buttons">
+              <div class="faq-buttons2" id="om-webbplatsen" role="button">
+                <i class="fas fa-window-maximize"></i> Om webbplatsen
               </div>
-              <div class="single_blog_author">
-                <div class="text">
-                  <p>14 maj 2023</p>
+              <div class="faq-buttons2" id="betalning" role="button">
+                <i class="fas fa-money-check"></i> Betalning
+              </div>
+              <div class="faq-buttons2" id="menyer-allergier" role="button">
+                <i class="fas fa-utensils"></i> Menyer & Allergier
+              </div>
+            </div>
+            <div id="om-webbplatsen-accordion">
+              <h2>Om webbplatsen</h2>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="false"
+                      aria-controls="collapseOne"
+                    >
+                      01. Var har ni er verksamhet?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Vi har vårt kontor i Göteborg och erbjuder
+                        premiumleverans från våra utvalda kök till företag,
+                        skolor och organisationer i närområdet.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="single_blog_text">
-                <a class="category" href="#">food</a>
-                <a class="title" href="blog_details.html"
-                  >De hemliga tipsen & tricken för att förbereda en perfekt
-                  hamburgare & pizza till våra kunder</a
-                >
-                <p>
-                  Lorem ipsum dolor sit amet consectetur of a adipiscing
-                  elitilmim semper adipiscing massa gravida nisi cras enim quis
-                  nibholm varius amet gravida ut facilisis neque egestas.
-                </p>
-                <div class="single_blog_footer">
-                  <a class="read_btn" href="blog_details.html"
-                    >läs mer <i class="far fa-long-arrow-right"></i
-                  ></a>
-                  <span><i class="far fa-comments"></i> 120</span>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      02. Vart levererar ni maten?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>Vi levererar maten till dig i Göteborg.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      03. Vilka restauranger samarbetar ni med?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Vi samarbetar med exklusivt utvalda kök och restauranger
+                        i Göteborg. Vi är noggranna med att maten ska ha hög
+                        kvalitet, vilket gör att vi testar maten och har nära
+                        samarbeten med restauranger och kök.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingFour">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour"
+                      aria-expanded="false"
+                      aria-controls="collapseFour"
+                    >
+                      04. Hur mycket ska jag betala för leveransen?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFour"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingFour"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Vid ett ordervärde av 1000 kr är det fri leverans. Om
+                        ordervärdet är mindre kan vi inte leverera eller läggs
+                        en leveranskostnad på för mellanskillnaden.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingFive">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive"
+                      aria-expanded="false"
+                      aria-controls="collapseFive"
+                    >
+                      05. Vad är leveransväntetiden?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFive"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingFive"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Beställningar ska göras 3 dagar innan utsatt
+                        leveransdatum.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_blog">
-              <div class="single_blog_img">
-                <img
-                  src="images/pepparn.jpg"
-                  alt="blogg-bild"
-                  class="img-fluid w-100"
-                />
-              </div>
-              <div class="single_blog_author">
-                <div class="text">
-                  <p>30 Jan 2023</p>
+            <div id="betalning-accordion" style="display: none">
+              <h2>Betalning</h2>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingSix">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSix"
+                      aria-expanded="false"
+                      aria-controls="collapseSix"
+                    >
+                      01. Hur gör jag min betalning?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSix"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingSix"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Du kan betala via Swish eller faktura. Vi kommer även
+                        lägga till fler betalningsmetoder i snar framtid!
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="single_blog_text">
-                <a class="category" href="#">restaurent</a>
-                <a class="title" href="blog_details.html"
-                  >Pepparn: "Fördelarna med kryddig mat."</a
-                >
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam eos, odit beatae sequi tenetur quidem.
-                </p>
-                <div class="single_blog_footer">
-                  <a class="read_btn" href="blog_details.html"
-                    >läs mer <i class="far fa-long-arrow-right"></i
-                  ></a>
-                  <span><i class="far fa-comments"></i> 120</span>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingSeven">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSeven"
+                      aria-expanded="false"
+                      aria-controls="collapseSeven"
+                    >
+                      02. Vart ska jag kontakta angående betalningsproblem?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSeven"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingSeven"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Om du stöter på några betalningsproblem eller problem
+                        med fakturering, mejla info@yumfoods.se.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingEight">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseEight"
+                      aria-expanded="false"
+                      aria-controls="collapseEight"
+                    >
+                      03. Jag är inte nöjd med maten. Vart ska jag lämna in ett
+                      klagomål, och kan jag få kompensation?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseEight"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingEight"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Du kan mejla info@yumfoods.se om fel, klagomål och för
+                        all typ av feedback.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_blog">
-              <div class="single_blog_img">
-                <img
-                  src="images/podcast.png"
-                  alt="blogg-bild"
-                  class="img-fluid w-100"
-                />
-              </div>
-              <div class="single_blog_author">
-                <div class="text">
-                  <p>20 Apr 2023</p>
-                </div>
-              </div>
-              <div class="single_blog_text">
-                <a class="category" href="#">podcast</a>
-                <a class="title" href="blog_details.html"
-                  >Om podcast
-                  <span style="opacity: 0"
-                    >Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </span></a
-                >
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam eos, odit beatae sequi tenetur quidem.
-                </p>
-                <div class="single_blog_footer">
-                  <a class="read_btn" href="blog_details.html"
-                    >läs mer <i class="far fa-long-arrow-right"></i
-                  ></a>
-                  <span><i class="far fa-comments"></i> 120</span>
+            <div id="allergier-accordion" style="display: none">
+              <h2>Menyer & Allergier</h2>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingNine">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseNine"
+                      aria-expanded="false"
+                      aria-controls="collapseNine"
+                    >
+                      01. Vart kan jag skriva mina allergier eller
+                      specialbeställningar?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseNine"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingNine"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Du kan skriva dem i beställningsfältet, vi kommer höra
+                        av oss ifall vi inte kan genomföra din förfrågan. Om ni
+                        har fler frågor angående maten, leverans, betalning,
+                        allergier kan ni mejla info@yumfoods.se
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-xl-4 col-md-6 wow fadeInUp" data-wow-duration="1s">
-            <div class="single_blog">
-              <div class="single_blog_img">
-                <img
-                  src="images/authentic-flavors.png"
-                  alt="blogg-bild"
-                  class="img-fluid w-100"
-                />
-              </div>
-              <div class="single_blog_author">
-                <div class="text">
-                  <p>21 Mar 2023</p>
-                </div>
-              </div>
-              <div class="single_blog_text">
-                <a class="category" href="#">party</a>
-                <a class="title" href="blog_details.html"
-                  >Autentiska smaker- För ett etniskt recept</a
-                >
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Veniam eos, odit beatae sequi tenetur quidem.
-                </p>
-                <div class="single_blog_footer">
-                  <a class="read_btn" href="blog_details.html"
-                    >läs mer <i class="far fa-long-arrow-right"></i
-                  ></a>
-                  <span><i class="far fa-comments"></i> 120</span>
-                </div>
-              </div>
+            <h2 id="more-faq">Fick du inte svar på frågan?</h2>
+            <div id="faq-contact-button">
+              <a style="margin-top: 30px" href="./contact.html">
+                <button class="contact-us-button" style="text-transform: none">
+                  <span class="contact-us-description"> Kontakta oss!</span>
+                </button></a
+              >
             </div>
           </div>
         </div>
@@ -554,10 +879,10 @@
     </section>
     -->
     <!--=============================
-        BLOG END
+        FAQ END
     ==============================-->
 
-    <!--=============================
+    <!--============================
         FOOTER START
     ==============================-->
     <footer-component id="footer"></footer-component>

@@ -1,6 +1,6 @@
 /* ***************************************
 Template Name: YumFoods || Restaurant HTML Template
-Author: ThemeFax 
+Author: ThemeFax
 Author Email: themefaxbd@gmail.com
 website: http://www.themefax.com/
 Version: 1.0
@@ -9,7 +9,7 @@ Description: RegFood is Multi Page HTML Template designed for Restaurants, cafes
 
 CSS TABLE OF CONTENTS
 ===================================
-01. GLOBAL CSS 
+01. GLOBAL CSS
 02. HOME PAGE
 03. ABOUT US PAGE
 04. MENU PAGE
@@ -121,7 +121,7 @@ button {
   background: var(--colorPrimary);
   text-transform: capitalize;
   color: var(--colorWhite);
-  padding: 12px 40px 12px 40px;
+  padding: 12px 20px 12px 20px;
   border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
@@ -605,7 +605,7 @@ button {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: var(--colorPrimary);
+  background: var(--colorRed);
   color: var(--colorWhite);
   border: 1px solid var(--colorWhite);
   line-height: 24px;
@@ -658,30 +658,26 @@ button {
   border-radius: 5px;
   outline: none;
   color: white;
-  background-color: #fa6039;
-  padding: 4px 10px;
+  background-color: var(--colorRed);
+  padding: 10px;
   text-align: center;
   line-height: 22px;
   margin-left: 15px;
 }
-
-.loginBtn .dropbtn:hover {
-  color: #000000;
+.dropbtn:hover {
+  color: black;
+  background-color: white;
+  border: solid;
+  border-radius: 5px;
 }
 
 /* company button */
-.companyBtn {
-  border: 1px solid rgb(14, 13, 13);
-  border-radius: 5px;
-  padding-bottom: 4px;
-  align-items: center;
-}
-
 .company {
   background-color: white;
   font-size: 18px;
-  padding: 10px;
-  height: 40.5px;
+  padding: 5px;
+  border: solid;
+  border-radius: 5px;
 }
 
 .company:hover {
@@ -716,6 +712,18 @@ button {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.loginBtn .navbar-nav .nav-item:hover .droap_menu {
+  left: 138px;
+  visibility: visible;
+  margin-top: 6px;
+}
+
+.langBtn .navbar-nav .nav-item:hover .droap_menu {
+  left: 138px;
+  visibility: visible;
+  margin-top: 6px;
 }
 
 /* menu end */
@@ -1738,11 +1746,80 @@ button {
   border-right: 13px solid #000000;
 }
 
+.menu_item_text ul li a {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background: var(--colorWhite);
+  color: var(--colorPrimary);
+  font-size: 14px;
+  margin-left: 10px;
+  border-radius: 3px;
+  transition: all linear 0.3s;
+  border: 1px solid var(--colorPrimary);
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -ms-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
 .menu_item_text .add_to_cart li {
   pointer-events: none;
 }
 
-.menu_item_text ul li a {
+.menu_add_to_cart {
+  position: relative;
+  left: 0px;
+  bottom: 60px;
+  background: var(--colorPrimary);
+  padding: 6px 10px 6px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--colorWhite);
+  border-radius: 0px 4px 4px 4px;
+  transition: all linear 0.3s;
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -ms-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+}
+
+.menu_add_to_cart::after {
+  position: absolute;
+  content: "";
+  top: -19px;
+  left: 0px;
+  z-index: 1;
+  transition: all linear 0.3s;
+  -webkit-transition: all linear 0.3s;
+  -moz-transition: all linear 0.3s;
+  -ms-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s;
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-right: 13px solid #d36606;
+  border-bottom: 0 solid transparent;
+}
+
+.menu_add_to_cart:hover {
+  background: var(--colorBlack);
+}
+
+.menu_add_to_cart:hover::after {
+  border-right: 13px solid #000000;
+}
+
+.menu_add_to_cart li {
+  pointer-events: none;
+}
+
+.menu_add_to_cart ul li a {
   width: 35px;
   height: 35px;
   line-height: 35px;
@@ -2423,11 +2500,10 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 1284px;
 }
 
 .learn-more-button {
-  background: var(--secondary);
+  background: #dd3902;
   color: var(--white);
   padding: 12px 40px;
   border-radius: 10px;
@@ -2485,16 +2561,146 @@ button {
   margin-top: 100px;
 }
 
+#blog-podcast h2 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 40px;
+}
+
+#blog-podcast h3 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  color: #dd3902;
+  font-size: 25px;
+  margin-bottom: -20px;
+}
+
 .blog_slider {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: 1fr 1fr;
   gap: 20px;
+  height: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  z-index: 1;
+}
+
+.blog_slider2 {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.slider-background {
+  width: 1441px;
+  height: 350px;
+  background: #fc5633;
+  z-index: -1;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 135px;
 }
 
 #first-grid {
-  grid-column: span 2;
-  grid-row: span 2;
+  align-items: center;
+  align-self: center;
+  width: 400px;
+}
+
+#food-img-blog {
+  margin-left: -75px;
+}
+
+#food-img-blog2 {
+  margin-right: -121px;
+}
+
+.contact-us-button {
+  background: black;
+  color: var(--white);
+  padding: 12px 40px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  transition: all linear 0.3s;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  z-index: 0;
+}
+
+.contact-us-description {
+  position: relative;
+  display: block;
+  z-index: 3;
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.contact-us-button:before,
+.contact-us-button:after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.contact-us-button:before {
+  background: #7d0015;
+  transition: 0.6s ease-in;
+  transition-delay: 0.1s;
+}
+
+.contact-us-button:after {
+  background: #eb0029;
+  transition: 0.8s ease;
+  transition-delay: 0.3s;
+}
+
+.contact-us-button:hover:before,
+.contact-us-button:hover:after {
+  transform: translate(-50%, -50%) scale(310);
+}
+
+#first-p {
+  font-weight: 600;
+}
+
+.services-contact {
+  padding: 10px;
+  margin-top: -330px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.services-info {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  padding: 10px;
+}
+
+.services-info2 {
+  display: flex;
+  flex-direction: row;
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 #first-grid .single_blog_img {
@@ -2506,10 +2712,8 @@ button {
 }
 
 .single_blog {
-  padding: 10px;
   box-shadow: var(--boxShadow);
   border-radius: 10px;
-  overflow: visible;
   margin-top: 25px;
   background: var(--colorWhite);
   transition: all linear 0.3s;
@@ -2535,12 +2739,11 @@ button {
 
 .single_blog_img {
   height: 100%;
-  border-radius: 10px;
   overflow: hidden;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 .single_blog_img img {
@@ -2554,6 +2757,7 @@ button {
 .single_blog_text {
   padding: 15px 20px 15px 20px;
   position: relative;
+  height: 150px;
 }
 
 .single_blog_author {
@@ -2602,7 +2806,7 @@ button {
   top: -95px;
   right: -10%;
   font-family: var(--cursiveFont);
-  background: var(--colorPrimary);
+  background: #dd3902;
   color: var(--colorWhite);
   padding: 6px 20px;
   text-transform: capitalize;
@@ -2624,9 +2828,9 @@ button {
 
 .single_blog_text .title {
   display: block;
-  font-size: 24px;
+  text-align: center;
+  font-size: 20px;
   font-weight: 700;
-  text-transform: capitalize;
   color: var(--colorBlack);
   font-family: var(--headingFont);
   display: -webkit-box;
@@ -2652,9 +2856,9 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #ff7c0845;
   padding-top: 15px;
-  margin-top: 20px;
+  margin-top: 0px;
+  text-align: center;
 }
 
 .single_blog_footer a {
@@ -2674,11 +2878,11 @@ button {
 }
 
 .single_blog_footer span {
-  color: var(--colorPrimary);
+  color: #dd3902;
 }
 
 .single_blog_footer a:hover {
-  color: var(--colorPrimary);
+  color: #dd3902;
 }
 
 .single_blog:hover {
@@ -2686,7 +2890,7 @@ button {
 }
 
 .single_blog_text .title:hover {
-  color: var(--colorPrimary);
+  color: #dd3902;
 }
 
 /* blog end */
@@ -2924,7 +3128,7 @@ footer {
   width: 45px;
   height: 45px;
   line-height: 45px;
-  background: var(--colorPrimary);
+  background: #dd3902;
   border: 1px solid var(--colorWhite);
   border-radius: 50%;
   transition: all linear 0.3s;
@@ -2955,11 +3159,11 @@ footer {
 }
 
 /* footer end */
-/*============================
+/*===========================
     HOME PAGE  END
 ============================*/
 
-/*============================
+/*===========================
     ABOUT US PAGE START
 ============================*/
 
@@ -4257,7 +4461,6 @@ footer {
   font-size: 18px;
   font-weight: 600;
   color: var(--colorBlack);
-  margin-bottom: 10px;
 }
 
 .details_size .form-check input {
@@ -4559,6 +4762,78 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: #fff;
 }
 
+.accordion-item.CartPayDeliver {
+  padding: 5px;
+  box-shadow: 2px 4px rgb(223, 219, 219);
+}
+
+.deliverContainer {
+  width: 65%;
+}
+
+.card.CartPayDeliver {
+  margin-top: 10px;
+}
+.card-body.CartPayDeliver {
+  padding: 0;
+  width: 60%;
+}
+
+.accordion-button.CartPayDeliver {
+  background: none;
+  color: #000000;
+}
+
+.form-check-input:checked.CartPayDeliver {
+  background-color: rgb(235, 86, 0);
+  border-color: rgb(87, 87, 87);
+}
+.form-check-input.CartPayDeliver {
+  padding: 8px;
+  margin: 0px;
+}
+
+.img-thumbnail.CartPayDeliver {
+  border: none;
+  padding: 0px;
+  width: 45px;
+  margin-left: auto;
+}
+
+.pro_img.cartPayDeliver {
+  padding: 0px;
+  margin: 0;
+}
+
+.dateBtn,
+.timeBtn {
+  width: 20%;
+  border-radius: 15px;
+  background: white;
+  color: #000000;
+  border-color: grey;
+}
+
+.dateBtn:hover,
+.timeBtn:hover {
+  background: #fa6039;
+  border-color: #fa6039;
+}
+
+.dateBtn:active,
+.timeBtn:active {
+  background: #fa6039;
+  border-color: #fa6039;
+}
+
+.nextAccord {
+  background-color: #009d00;
+  display: flex;
+  width: 20%;
+  margin: auto;
+  text-align: center;
+}
+
 .tbl {
   width: 100%;
   border-collapse: collapse;
@@ -4583,9 +4858,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 .pro_img {
-  width: 20%;
+  width: 40%;
   padding: 10px;
-  min-width: 130px;
+  min-width: 150px;
 }
 .pro_name {
   width: 30%;
@@ -5514,8 +5789,164 @@ table tbody tr td span {
 ============================*/
 
 /*============================
+    STEPS PAGE START
+============================*/
+
+.steps-page {
+  height: 350px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.steps-page h1 {
+  text-align: center;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 10px;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.steps-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.steps-item img {
+  height: 150px;
+  width: 150px;
+  object-fit: contain;
+}
+
+.steps-page p {
+  color: grey;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.steps-description {
+  display: block;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.step-button {
+  text-align: center;
+  width: 150px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.steps-button {
+  background: #dd3902;
+  color: var(--white);
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all linear 0.3s;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  z-index: 0;
+  margin-top: 40px;
+}
+
+.steps-button:hover {
+  background-color: rgb(6, 0, 61);
+}
+
+.steps-button:before,
+.steps-button:after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.steps-button:before {
+  background: var(--secondary-blue);
+  transition: 0.6s ease-in;
+  transition-delay: 0.1s;
+}
+
+.steps-button:after {
+  background: var(--tertiary-blue);
+  transition: 0.8s ease;
+  transition-delay: 0.3s;
+}
+
+.steps-button:hover:before,
+.steps-button:hover:after {
+  transform: translate(-50%, -50%) scale(310);
+}
+
+/*============================
+    STEPS PAGE END
+============================*/
+
+/*============================
     FAQ PAGE START
 ============================*/
+
+.faq-buttons {
+  flex-direction: row;
+  display: flex;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.faq-buttons2 {
+  width: 235px;
+  padding: 18px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px #dbdfd0;
+  background: #fff;
+}
+
+.faq-buttons2.active {
+  border: 1px solid #dd3902;
+}
+
+.faq-buttons i {
+  color: #fc5633;
+}
+
+.faq-buttons2:hover {
+  background-color: #dd3902;
+  color: white;
+}
+
+.faq-buttons2:hover i {
+  color: white;
+}
+
+#more-faq {
+  margin-top: 30px;
+  text-align: center;
+}
+
+#faq-contact-button {
+  text-align: center;
+  margin-bottom: -30px;
+}
+
 .faq_area .accordion-item {
   margin-top: 25px;
   border: none;
@@ -5528,6 +5959,27 @@ table tbody tr td span {
   -moz-border-radius: 10px !important;
   -ms-border-radius: 10px !important;
   -o-border-radius: 10px !important;
+}
+
+.faq {
+  background-color: #ffdfce;
+  margin-top: 100px;
+}
+
+.faq h1 {
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+
+.faq h2 {
+  font-size: 25px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
 }
 
 .faq_area .accordion-item h2 button {
@@ -5554,9 +6006,9 @@ table tbody tr td span {
 }
 
 .accordion-button::after {
-  background-image: url(../images/faq_plus.jpg);
-  width: 20px;
-  height: 20px;
+  background-image: url(../images//plus-solid.svg);
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   position: absolute;
   right: 20px;
@@ -5567,7 +6019,7 @@ table tbody tr td span {
 }
 
 .accordion-button:not(.collapsed)::after {
-  background-image: url(../images//faq_minus.jpg);
+  background-image: url(../images//minus-solid.svg);
 }
 
 .faq_area_img {
