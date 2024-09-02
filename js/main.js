@@ -446,18 +446,7 @@ const yumProducts = (yumProductsList) => {
             data-wow-duration="1s"
                         >
           <div class="menu_item"
-                  data-yum-id=${yum.id}
-          <div class="menu_item">
-              <div class="menu_item_img">
-                <img
-                  src=` +
-          yum.img +
-          `
-                  alt="yum-meny-bild"
-                  class="img-fluid w-100"
-                  class="title"
-                  href="#"
-                  data-yum-id=${yum.id}
+                  data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -490,7 +479,7 @@ const yumProducts = (yumProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${yum.id}
+                  data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -506,18 +495,8 @@ const yumProducts = (yumProductsList) => {
                 >
                 <h5 class="price">` +
           yum.price +
-          `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
-          yum.id +
-          `
-          data-yum-id=${yum.id}
-          data-yum-title=${yum.title}
-          data-yum-price=${yum.price}
-          data-yum-img=${yum.img}
-          data-yum-quantity-price=${yum.price}
-          ` +
-          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
-          `<!--
+          `kr</h5>
+          <!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -533,7 +512,7 @@ const yumProducts = (yumProductsList) => {
           "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           yum.id +
           `
-          data-yum-id=${yum.id}
+          data-yum-id=${yum.id} 
           data-yum-title=${yum.title}
           data-yum-price=${yum.price}
           data-yum-img=${yum.img}
