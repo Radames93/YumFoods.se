@@ -2,7 +2,6 @@ using Client.Components;
 using Client.Services;
 using Shared.DTOs;
 using Shared.Interfaces;
-using Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,8 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+
 var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
 var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
+
 
 builder.Services.AddHttpClient("YumFoodsApiClient",
     client =>

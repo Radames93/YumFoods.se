@@ -1,5 +1,4 @@
-﻿using DataAccess.Repositories;
-using Shared.Entities;
+﻿using Shared.Entities;
 using Shared.Interfaces;
 
 namespace API.Extensions;

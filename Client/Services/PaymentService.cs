@@ -1,7 +1,7 @@
 ﻿using Shared.Interfaces;
 using Shared.StripePayments;
 
-namespace Shared.Services;
+namespace Client.Services;
 
 public class PaymentService : IPaymentService
 {

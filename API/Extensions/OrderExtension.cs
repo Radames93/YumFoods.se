@@ -1,4 +1,4 @@
-﻿using Shared.Entities;
+using Shared.Entities;
 using Shared.Interfaces;
 
 namespace API.Extensions
@@ -13,38 +13,46 @@ namespace API.Extensions
 
             group.MapGet("/{id}", GetOrderByIdAsync);
 
-            group.MapPost("/{id}", PostOrderAsync);
+            //group.MapGet("/{email}", GetOrderByEmailAsync);
+
+            group.MapPost("/", PostOrderAsync);
 
             group.MapDelete("/{id}", DeleteOrderAsync);
-
             return app;
         }
 
-        private static async Task<List<Order>> GetAllOrdersAsync(IOrderRepository repo)
+        private static async Task<IResult> GetAllOrdersAsync(IOrderRepository<Order> repo)
         {
-            return await repo.GetAllOrdersAsync();
+            var orders = await repo.GetAllOrdersAsync();
+            return Results.Ok(orders);
         }
 
-        private static async Task<IResult> GetOrderByIdAsync(IOrderRepository repo, int id)
+        private static async Task<IResult> GetOrderByIdAsync(IOrderRepository<Order> repo, int id)
         {
-            var prod = await repo.GetOrderByIdAsync(id);
-            return Results.Ok(prod);
+            var order = await repo.GetOrderByIdAsync(id);
+            return Results.Ok(order);
         }
 
-        private static async Task<IResult> PostOrderAsync(IOrderRepository repo, Order newOrder)
+        //vänta med denna tills koppling till user db är set
+
+        //private static Task GetOrderByEmailAsync(OrderRepository repo, string email)
+        //{
+        //    return repo.GetOrderByEmailAsync(email);
+        //}
+
+        private static async Task<IResult> PostOrderAsync(IOrderRepository<Order> repo, Order newOrder)
         {
-            var order = await repo.GetOrderByIdAsync(newOrder.Id);
-            if(order is not null)
+            var exisitngOrder = await repo.GetOrderByIdAsync(newOrder.Id);
+            if (exisitngOrder is not null)
             {
-                return Results.BadRequest($"Product with id {order} already exists");
+                return null;
             }
 
             await repo.AddOrderAsync(newOrder);
-            return Results.Ok();
-           
+            return Results.Ok(newOrder);
         }
 
-        private static async Task<IResult> DeleteOrderAsync(IOrderRepository repo, int id)
+        private static async Task<IResult> DeleteOrderAsync(IOrderRepository<Order> repo, int id)
         {
             await repo.DeleteOrderAsync(id);
             return Results.Ok();

@@ -4,7 +4,7 @@ using Shared.Interfaces;
 
 namespace DataAccess.Repositories
 {
-    public class OrderRepository(YumFoodsDb context) : IOrderRepository
+    public class OrderRepository(YumFoodsDb context) : IOrderRepository<Order>
     {
         public async Task<List<Order>> GetAllOrdersAsync()
         {
@@ -24,14 +24,20 @@ namespace DataAccess.Repositories
 
         public async Task AddOrderAsync(Order newOrder)
         {
+            var maxId = await context.Order
+                .MaxAsync(o => (int?)o.Id);
+
+            var newId = (maxId ?? 0) + 1;
+
             var order = new Order()
             {
-                 UserId = newOrder.UserId,
-                 OrderDate = newOrder.OrderDate,
-                 DeliveryDate = newOrder.DeliveryDate,
-                 Products = newOrder.Products,
-                 Quantity = newOrder.Quantity,
-                 Total = newOrder.Total
+                Id = newId,
+                UserId = newOrder.UserId,
+                OrderDate = newOrder.OrderDate,
+                DeliveryDate = newOrder.DeliveryDate,
+                Products = newOrder.Products,
+                Quantity = newOrder.Quantity,
+                Total = newOrder.Total
             };
 
             await context.Order.AddAsync(order);
