@@ -1,6 +1,6 @@
 /* ***************************************
 Template Name: YumFoods || Restaurant HTML Template
-Author: ThemeFax 
+Author: ThemeFax
 Author Email: themefaxbd@gmail.com
 website: http://www.themefax.com/
 Version: 1.0
@@ -9,7 +9,7 @@ Description: RegFood is Multi Page HTML Template designed for Restaurants, cafes
 
 CSS TABLE OF CONTENTS
 ===================================
-01. GLOBAL CSS 
+01. GLOBAL CSS
 02. HOME PAGE
 03. ABOUT US PAGE
 04. MENU PAGE
@@ -4644,6 +4644,78 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: #fff;
 }
 
+.accordion-item.CartPayDeliver {
+  padding: 5px;
+  box-shadow: 2px 4px rgb(223, 219, 219);
+}
+
+.deliverContainer {
+  width: 65%;
+}
+
+.card.CartPayDeliver {
+  margin-top: 10px;
+}
+.card-body.CartPayDeliver {
+  padding: 0;
+  width: 60%;
+}
+
+.accordion-button.CartPayDeliver {
+  background: none;
+  color: #000000;
+}
+
+.form-check-input:checked.CartPayDeliver {
+  background-color: rgb(235, 86, 0);
+  border-color: rgb(87, 87, 87);
+}
+.form-check-input.CartPayDeliver {
+  padding: 8px;
+  margin: 0px;
+}
+
+.img-thumbnail.CartPayDeliver {
+  border: none;
+  padding: 0px;
+  width: 45px;
+  margin-left: auto;
+}
+
+.pro_img.cartPayDeliver {
+  padding: 0px;
+  margin: 0;
+}
+
+.dateBtn,
+.timeBtn {
+  width: 20%;
+  border-radius: 15px;
+  background: white;
+  color: #000000;
+  border-color: grey;
+}
+
+.dateBtn:hover,
+.timeBtn:hover {
+  background: #fa6039;
+  border-color: #fa6039;
+}
+
+.dateBtn:active,
+.timeBtn:active {
+  background: #fa6039;
+  border-color: #fa6039;
+}
+
+.nextAccord {
+  background-color: #009d00;
+  display: flex;
+  width: 20%;
+  margin: auto;
+  text-align: center;
+}
+
 .tbl {
   width: 100%;
   border-collapse: collapse;
@@ -4668,9 +4740,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
 .pro_img {
-  width: 20%;
+  width: 40%;
   padding: 10px;
-  min-width: 130px;
+  min-width: 150px;
 }
 .pro_name {
   width: 30%;
