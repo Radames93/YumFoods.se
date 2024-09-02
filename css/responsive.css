@@ -3274,7 +3274,9 @@
   .fa-phone {
     margin-left: -10px;
   }
-
+  
+  #footer-phone {
+    width: 157px;
   .fa-envelope {
     margin-left: -10px;
   }
@@ -3316,8 +3318,8 @@
   }
 
   #social_links {
-    margin-bottom: -30px;
-    margin-top: 30px;
+    margin-left: 0px;
+    margin-bottom: -60px;
   }
 
   #social_links h2 {

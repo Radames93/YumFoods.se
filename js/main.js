@@ -2514,7 +2514,7 @@ function Footer() {
             <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
               <p id="contact_title">Yumfoods.se</p>
               <div class="contacts-content contacts justify-content-center w_40">
-                <div class="contacts-box">
+                <div id="footer-phone" class="contacts-box">
                 <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
                   <p style="margin-left: 10px;">+46 76 023 49 30</p>
                 </div>
