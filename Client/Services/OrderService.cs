@@ -9,7 +9,7 @@ namespace Client.Services
 
         public OrderService(IHttpClientFactory factory)
         {
-            _httpClient = factory.CreateClient("YumFoodsConnectionString");
+            _httpClient = factory.CreateClient("YumFoodsApiClient");
         }
 
         public async Task<List<OrderDTO>> GetAllOrdersAsync()

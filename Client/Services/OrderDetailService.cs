@@ -9,7 +9,7 @@ public class OrderDetailService : IOrderDetailRepository<OrderDetailDTO>
 
     public OrderDetailService(IHttpClientFactory factory)
     {
-        _httpCLient = factory.CreateClient("YumFoodsUserConnectionString");
+        _httpCLient = factory.CreateClient("YumFoodsUserApiClient");
     }
 
     public async Task<List<OrderDetailDTO>> GetAllOrderDetailsAsync()
