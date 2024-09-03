@@ -2,5 +2,5 @@
 
 public class PaymentResponse
 {
-    public string CheckoutUrl { get; set; }
+    public string? CheckoutUrl { get; set; }
 }

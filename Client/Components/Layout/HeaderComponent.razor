@@ -1,4 +1,7 @@
-﻿@inject IJSRuntime IJsRuntime
+﻿@using Client.Components.Pages
+@inject IJSRuntime Jsr
+@inject NavigationManager NavigationManager
+
 
 <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
@@ -49,7 +52,7 @@
 
             <ul>
                 <li>
-                    <a class="cart" href="cart_view.html">
+                    <a class="cart" href="/html/cart_view.html">
                         <i class="fas fa-shopping-basket"></i> <span id="count"></span>
                     </a>
                 </li>
@@ -66,16 +69,16 @@
                             Meny <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="droap_menu">
-                            <li><a href="yum_menu.html">Yum</a></li>
-                            <li><a href="daily_menu.html">Dagens</a></li>
-                            <li><a href="premium_menu.html">Premium</a></li>
+                            <li><a href="/yum">Yum</a></li>
+                            <li><a href="/html/daily_menu.html">Dagens</a></li>
+                            <li><a href="/html/premium_menu.html">Premium</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">Om oss</a>
+                        <a class="nav-link" href="/html/about.html">Om oss</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Kontakta oss</a>
+                        <a class="nav-link" href="/html/contact.html">Kontakta oss</a>
                     </li>
                 </ul>
             </div>
@@ -87,11 +90,11 @@
     
         private void NavigateToContact()
         {
-            NavigationManager.NavigateTo("/yum");
+            NavigationManager.NavigateTo("/html/contact.html");
         }
     
-        [Inject]
-        private NavigationManager NavigationManager { get; set; }
+        // [Inject]
+        // private NavigationManager NavigationManager { get; set; }
     
 
 }
