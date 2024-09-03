@@ -143,5 +143,9 @@ Message backend-dev
 /DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfo.cs
 /DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfoInputs.cache
 /DataAccess/obj/Debug/net8.0/DataAccess.csproj.AssemblyReference.cache
+<<<<<<< HEAD
 /DataAccess/YumFoodsUserDb.cs
 *.html
+=======
+obj/x86/Debug/yumfoods.se.csproj.AssemblyReference.cache
+>>>>>>> 3535ebe45d84e05c2d72a2c3b73e2fd47e8dc2f5

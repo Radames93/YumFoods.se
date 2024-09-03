@@ -1,0 +1,265 @@
+﻿@page "/Yum"
+@using Client.Components.Layout
+@typeof(MainLayout)
+
+@* <!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi" />
+    <title>YumFoods</title>
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="images/favicon-32x32.png" />
+    <link rel="preload"
+          as="image"
+          href="./images/index.jpg"
+          imagesrcset="./images/hero.jpg 1600w, ./images/hero-mobile.jpg 335w"
+          imagesizes="(max-width: 1100px) 100vw, 1100px" />
+    <link rel="preload"
+          as="image"
+          href="./images/category/yumrattercategory.jpg" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/custom_spacing.css" />
+    <link rel="stylesheet" href="/css/all.min.css" />
+    <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/responsive.css" />
+    <link rel=”preload” href="js/products.json" as=”fetch”
+          type=”application/json” crossorigin=”anonymous”>
+</head> *@
+
+<body>
+<!--=============================
+        MENU START
+    ==============================-->
+<!--=============================
+        MENU END
+    ==============================-->->
+<!--=============================
+        BREADCRUMB START
+    ==============================-->
+
+<section class="page_breadcrumb" style="background: url(images/cover.png)">
+    <div class="breadcrumb_overlay">
+        <div class="container">
+            <div class="breadcrumb_text">
+                <h1>Populära Yum-rätter</h1>
+                <ul>
+                    <li><p>Yum meny</p></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=============================
+        BREADCRUMB END
+    ==============================-->
+<!--=============================
+        MENU PAGE START
+    ==============================-->
+<section class="menu_page mt_50 xs_mt_20 mb_100 xs_mb_70">
+    <div class="container">
+        <h4 class="single_team_text" style="padding: 20px; text-align: center">
+            Just nu levererar vi minst 10 rätter i Göteborg med omnejd.
+        </h4>
+        <form class="menu_search_area">
+            <div class="row">
+                <div class="col-lg-5 col-md-4">
+                    <div class="menu_search">
+                        <input onchange="search(this)"
+                               id="searchbar"
+                               type="text"
+                               placeholder="Sök..." />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div class="menu_search">
+                        <div class="select_area">
+                            <select class="select_js"
+                                    id="sort"
+                                    onchange="sortingNamePriceFunction(this)">
+                                <option value="AL">standardsortering</option>
+                                <option value="name">sortera efter namn</option>
+                                <option value="l2h">
+                                    sortera efter priset(låg till hög)
+                                </option>
+                                <option value="h2l">
+                                    sortera efter priset(hög till låg)
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <div class="menu_search">
+                        <div class="select_area">
+                            <select class="select_js"
+                                    id="sort"
+                                    onchange="sortingDishDietFunction(this)">
+                                <option value="AL">Specialkost</option>
+                                <option value="vegan">vegan</option>
+                                <option value="vegetarian">vegetarian</option>
+                                <option value="cow">nöt</option>
+                                <option value="fish">fisk</option>
+                                <option value="chicken">kyckling</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="yum" class="row"></div>
+        <div id="search-yum-message" class="single_team_text hide">
+            <h4 style="text-transform: none">Ingen sökträff</h4>
+        </div>
+        <div id="filter-yum-message" class="single_team_text hide">
+            <h4 style="text-transform: none">Inga produkter att visas</h4>
+        </div>
+        <!--
+            <div class="pagination mt_50">
+              <div class="row">
+                <div class="col-12">
+                  <nav aria-label="...">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#"
+                          ><i class="fas fa-long-arrow-alt-left"></i
+                        ></a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item active">
+                        <a class="page-link" href="#">2</a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#"
+                          ><i class="fas fa-long-arrow-alt-right"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+            </div>
+            -->
+    </div>
+</section>
+
+<!-- CART POPUT START -->
+<div class="cart_popup">
+    <div class="modal fade"
+         id="modal"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog .modal-xl">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <div class="cart_popup_img">
+                        <img src="" class="img-fluid w-100" />
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="#" class="cart_popup_title title"></a>
+                        <div class="diet"></div>
+                    </div>
+                    <div class="cart_popup_text">
+                        <!--
+                            <p class="rating">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star-half-alt"></i>
+                              <i class="far fa-star"></i>
+                              <span>(201)</span>
+                            </p>
+                            -->
+                        <div class="d-flex">
+                            <h4 class="price"></h4>
+                            <h4 class="currency">kr</h4>
+                        </div>
+                        <!--
+                            <div
+                              class="details_quentity d-flex justify-content-between align-items-start"
+                            >
+                            -->
+                        <div class="mb_25">
+                            <h5>Beskrivning:</h5>
+                            <p class="description"></p>
+                        </div>
+                        <div>
+                            <button style="text-transform: none"
+                                    class="common_btn mb_25"
+                                    onclick="showDiv()">
+                                Visa ingredienser
+                            </button>
+                            <div id="welcomeDiv" class="hide ingredients"></div>
+                        </div>
+                    </div>
+                    <div class="details_quentity">
+                        <h5>Välj kvantitet</h5>
+                        <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
+                            <div class="quentity_btn">
+                                <button class="decrease">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <input class="quantity" type="text" value="1" />
+                                <button class="increase">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="d-flex justify-content-around align-items-center">
+                                <h3 class="quantity_price"></h3>
+                                <h3 class="ml_0">kr</h3>
+                            </div>
+                        </div>
+                        <!--
+                            </div>
+                            -->
+                        <ul>
+                            <li>
+                                <button class="common_btn" onclick="modalAddToCart()">
+                                    lägg till <i class="fas fa-cart-plus"></i>
+                                </button>
+                            </li>
+                            <!--
+                                <li>
+                                  <a class="common_btn" href="menu_details.html"
+                                    >visa alla detaljer</a
+                                  >
+                                </li>
+                                -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CART POPUT END -->
+<!--=============================
+        MENU PAGE END
+    ==============================-->
+<!--=============================
+        FOOTER START
+    ==============================-->
+   
+<!--=============================
+        FOOTER END
+    ==============================-->
+<!--=============================
+        SCROLL BUTTON START
+    ==============================-->
+<div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+
+
+</body>
+@* </html> *@

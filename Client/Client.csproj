@@ -83,4 +83,12 @@
     <None Include="wwwroot\webfonts\LeagueSpartan-VariableFont_wght.ttf" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Pages\Frontpage.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\Pages\Frontpage.razor" />
+  </ItemGroup>
+
 </Project>
