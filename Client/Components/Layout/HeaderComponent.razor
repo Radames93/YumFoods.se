@@ -21,7 +21,7 @@
                             <span class="icone"><i class="fa fa-angle-down"></i></span>
                         </a>
                         <ul class="droap_menu">
-                            <li><a href="#">Swedish</a></li>
+                            <li><a href="#">Svenska</a></li>
                             <li><a href="#">English</a></li>
                         </ul>
                     </li>
@@ -86,15 +86,38 @@
     </div>
 </nav>
 
+<script>
+    function setLanguage(lang) {
+        document.getElementById("current-lang").textContent = lang.toUpperCase();
+        var elements = document.querySelectorAll("[data-lang-en]");
+        elements.forEach(function (element) {
+            if (lang === "en") {
+                element.textContent = element.getAttribute("data-lang-en");
+            } else if (lang === "sv") {
+                element.textContent = element.getAttribute("data-lang-sv");
+            }
+        });
+        closeDropdown();
+    }
+
+    function closeDropdown() {
+        document.getElementById("dropdown-content").classList.remove("show");
+    }
+
+    function toggleDropdown() {
+        document.getElementById("dropdown-content").classList.toggle("show");
+    }
+</script>
+
 @code {
-    
-        private void NavigateToContact()
-        {
-            NavigationManager.NavigateTo("/html/contact.html");
-        }
-    
-        // [Inject]
-        // private NavigationManager NavigationManager { get; set; }
-    
+
+    private void NavigateToContact()
+    {
+        NavigationManager.NavigateTo("/html/contact.html");
+    }
+
+    // [Inject]
+    // private NavigationManager NavigationManager { get; set; }
+
 
 }

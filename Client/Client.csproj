@@ -7,6 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\docs\Halal Certificate.pdf" />
+    <Content Remove="wwwroot\docs\Packages Certificate.pdf" />
+    <Content Remove="wwwroot\docs\Privacy Policy.pdf" />
     <Content Remove="wwwroot\js\products.json" />
     <Content Remove="wwwroot\webfonts\fa-brands-400.eot" />
     <Content Remove="wwwroot\webfonts\fa-brands-400.ttf" />
@@ -48,6 +51,37 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\.git\config" />
+    <None Include="wwwroot\.git\description" />
+    <None Include="wwwroot\.git\HEAD" />
+    <None Include="wwwroot\.git\hooks\applypatch-msg.sample" />
+    <None Include="wwwroot\.git\hooks\commit-msg.sample" />
+    <None Include="wwwroot\.git\hooks\fsmonitor-watchman.sample" />
+    <None Include="wwwroot\.git\hooks\post-update.sample" />
+    <None Include="wwwroot\.git\hooks\pre-applypatch.sample" />
+    <None Include="wwwroot\.git\hooks\pre-commit.sample" />
+    <None Include="wwwroot\.git\hooks\pre-merge-commit.sample" />
+    <None Include="wwwroot\.git\hooks\pre-push.sample" />
+    <None Include="wwwroot\.git\hooks\pre-rebase.sample" />
+    <None Include="wwwroot\.git\hooks\pre-receive.sample" />
+    <None Include="wwwroot\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="wwwroot\.git\hooks\push-to-checkout.sample" />
+    <None Include="wwwroot\.git\hooks\sendemail-validate.sample" />
+    <None Include="wwwroot\.git\hooks\update.sample" />
+    <None Include="wwwroot\.git\index" />
+    <None Include="wwwroot\.git\info\exclude" />
+    <None Include="wwwroot\.git\logs\HEAD" />
+    <None Include="wwwroot\.git\logs\refs\heads\main" />
+    <None Include="wwwroot\.git\logs\refs\remotes\origin\HEAD" />
+    <None Include="wwwroot\.git\objects\pack\pack-f83bc8e9f8633923e9b5dc5c5c675bce9d4ed501.idx" />
+    <None Include="wwwroot\.git\objects\pack\pack-f83bc8e9f8633923e9b5dc5c5c675bce9d4ed501.pack" />
+    <None Include="wwwroot\.git\objects\pack\pack-f83bc8e9f8633923e9b5dc5c5c675bce9d4ed501.rev" />
+    <None Include="wwwroot\.git\packed-refs" />
+    <None Include="wwwroot\.git\refs\heads\main" />
+    <None Include="wwwroot\.git\refs\remotes\origin\HEAD" />
+    <None Include="wwwroot\docs\Halal Certificate.pdf" />
+    <None Include="wwwroot\docs\Packages Certificate.pdf" />
+    <None Include="wwwroot\docs\Privacy Policy.pdf" />
     <None Include="wwwroot\js\products.json" />
     <None Include="wwwroot\webfonts\fa-brands-400.eot" />
     <None Include="wwwroot\webfonts\fa-brands-400.ttf" />
@@ -89,6 +123,11 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Components\Pages\Frontpage.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\.git\objects\info\" />
+    <Folder Include="wwwroot\.git\refs\tags\" />
   </ItemGroup>
 
 </Project>
