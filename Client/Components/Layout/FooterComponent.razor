@@ -1,0 +1,118 @@
+﻿@inject IJSRuntime IJSRuntime
+@inject NavigationManager NavigationManager
+
+
+<div id="footer"></div> <!-- Här kommer din footer att renderas -->
+<!-- Inkludera din JavaScript-kod -->
+<script>
+    function Footer() {
+        let footer = document.getElementById("footer");
+        footer.innerHTML = `
+                            <div class="pt_20 xs_pt_20">
+                                <div class="container">
+                                    <div class="row justify-content-around pt_50">
+                                        <div class="col-xxl-4 col-lg-4 col-sm-9 col-md-5">
+                                            <div class="footer_content">
+                                                <a class="footer_logo" href="/">
+                                                    <img
+                                                        loading="lazy"
+                                                        src="/images/footer_logo_group.png"
+                                                        alt="footer-logo"
+                                                        style="width: 150px; height:93px"
+                                                        class="mb_25"
+                                                    />
+                                                </a>
+                                                <ul class="social_link d-flex flex-wrap mx_50">
+                                                    <li>
+                                                        <a
+                                                            href="https://www.facebook.com/YumFoodsSE"
+                                                            target="_blank"
+                                                            aria-label="Länk till facebook sida"
+                                                        ><i class="fab fa-facebook-f"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            href="https://www.linkedin.com/company/yum-foods/"
+                                                            target="_blank"
+                                                            aria-label="Länk till linkedin sida"
+                                                        ><i class="fab fa-linkedin-in"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a
+                                                            href="https://www.instagram.com/yumfoods.se/"
+                                                            target="_blank"
+                                                            aria-label="Länk till instagram sida"
+                                                        ><i class="fab fa-instagram"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-2 col-lg-2 col-sm-5 col-md-4">
+                                            <div class="footer_content">
+                                                <ul>
+                                                    <li><a href="/html/index.html">Hem</a></li>
+                                                            <li><a href="/html/about.html">Om oss</a></li>
+                                                            <li><a href="/html/contact.html">Kontakta oss</a></li>
+                                                            <li><a href="/html/certificates.html">Certifikat</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
+                                            <div class="footer_content">
+                                                <ul>
+                                                    <li><a href="/html/terms_condition.html">Allmänna villkor</a></li>
+                                                    <li><a href="/html/faq.html">FAQ</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="col-md-12 col-lg-12 col-xl-12">
+                                    <div class="contacts-content contacts justify-content-center w_100">
+                                        <div class="contacts-box">
+                                            <img loading="lazy" class="telefon-bild" src="./images/phone.png" alt="phone" />
+                                            <p>+46 76 023 49 30</p>
+                                        </div>
+                                        <div class="contacts-box">
+                                            <img loading="lazy" class="melj-bild" src="./images/mail.png" alt="mail" />
+                                            <p>info@yumfoods.se</p>
+                                        </div>
+                                        <div class="contacts-box">
+                                            <img
+                                                loading="lazy"
+                                                class="contacts-img"
+                                                src="./images/location-marker.png"
+                                                alt="läge-bild"
+                                            />
+                                            <p>Stora Badhusgatan 18, 411 21 Göteborg</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="footer_bottom d-flex flex-wrap">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="footer_bottom_text">
+                                                <p>Copyright ©<b> Yum Foods</b> 2024. All Rights Reserved</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+    }
+
+    Footer(); // Kör funktionen för att rendera footern
+</script>
+
+@code {
+
+    // private void NavigateToContact()
+    // {
+    //     NavigationManager.NavigateTo("/html/contact.html");
+    // }
+
+}
