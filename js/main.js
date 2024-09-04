@@ -257,58 +257,110 @@ close.addEventListener("click",function(){
   infoBox.style.display= "none"
 })
 
-const boxes = document.querySelectorAll('.box')
-boxes.forEach((box, index) => {
-  box.addEventListener('click', function() {
-    boxes.forEach(b => b.classList.remove('selected'))
-    this.classList.add('selected')
-    infoBox.style.display = "block";
+let selectedCategory = null;  
+let selectedQuantity = 10; 
 
-    let selectedCategory;
-    switch(index) {
-      case 0:
-        selectedCategory = 'proteinrik';
-        break;
-      case 1:
-        selectedCategory = 'vegetarisk';
-        break;
-      case 2:
-        selectedCategory = 'max550kcal';
-        break;
-      case 3:
-        selectedCategory = 'Pescetariskt' ;
-        break;
+// categori boxes
+const dietBoxes = document.querySelectorAll('.box2')
+const chooseDietBox= dietBoxes.forEach((box, index) => {
+  box.addEventListener('click', function() {
+    this.classList.add('selected');
+    this.classList.add("selected-border")
+
+    dietBoxes.forEach(b =>{
+    if(b.hasClass="selected"){
+      b.classList.remove("selected")
+      b.classList.remove("selected-border")
+    } else {
+      b.classList.add('selected');
+      b.classList.add("selected-border")
     }
+    })
   })
 })
 
-//quantity button
+// quantity boxes
+const antalBoxes = document.querySelectorAll('.box4')
+const chooseAntalbox= antalBoxes.forEach((box, index) => {
+  box.addEventListener('click', function() {
+    this.classList.add('selected');
+    this.classList.toggle("selected-border")
+    infoBox.style.display= "block"
+
+    antalBoxes.forEach(b =>{
+      if(b.hasClass="selected"){
+        b.classList.remove("selected")
+        b.classList.remove("selected-border")
+      } else {
+        b.classList.add('selected');
+        b.classList.add("selected-border")
+      }
+    })
+  })
+})
+
+//handle click on quantity buttons
 document.addEventListener("DOMContentLoaded", function() {
   const quantitySpan = document.querySelector('.quantity-btn span');
   const increaseButton = document.querySelector('.quantity-btn button:nth-of-type(2)');
   const decreaseButton = document.querySelector('.quantity-btn button:nth-of-type(1)');
-  
+  const infoBox = document.querySelector(".info-box");
   let currentQuantity = parseInt(quantitySpan.textContent, 10);
 
   function updateQuantity(newQuantity) {
     if (newQuantity >= 10 && newQuantity<=20 ) {
       currentQuantity = newQuantity;
       quantitySpan.textContent = currentQuantity;
-      updateBoxSelection();
+      updateBox4Selection();
+
+      updateTotalPrice();
     }
   }
 
-  function updateBoxSelection() {
-    boxes.forEach(box => {
+  // update quantity boxes
+  function updateBox4Selection() {
+    document.querySelectorAll('.box4').forEach(box => {
       const boxValue = parseInt(box.getAttribute('data-value'), 10);
       if (boxValue === currentQuantity) {
-        box.classList.add('selected');
+        box.classList.add('selected', 'selected-border');
       } else {
-        box.classList.remove('selected');
+        box.classList.remove('selected', 'selected-border');
       }
     });
+    infoBox.style.display = "block";
   }
 
+    // update categorie boxes
+    const boxes2 = document.querySelectorAll('.box2'); 
+    function updateBoxSelection(currentCategory) {
+      boxes2.forEach(box => {
+        const boxValue = box.getAttribute('data-category');
+        console.log(boxValue); 
+    
+        if (boxValue === currentCategory) {
+          box.classList.add('selected');
+          box.classList.add('selected-border');
+        } else {
+          box.classList.remove('selected');
+          box.classList.remove('selected-border');
+        }
+      });
+    }
+    const boxes4= document.querySelectorAll('.box4')
+    boxes2.forEach(box => {
+      box.addEventListener('click', () => {
+        const currentCategory = box.getAttribute('data-category');
+        updateBoxSelection(currentCategory);
+        boxes4.forEach(box4 => {
+          box4.addEventListener('click', () => {
+            const currentQuantity = parseInt(box4.getAttribute('data-value'), 10);
+            updateBox4Selection(currentQuantity);
+          });
+      });
+    });
+  })
+
+  // currentQuantity, increase , decrease
   document.querySelectorAll('.row .box').forEach(box => {
     box.addEventListener('click', function() {
       const boxValue = parseInt(this.textContent, 10);
@@ -324,6 +376,48 @@ document.addEventListener("DOMContentLoaded", function() {
     updateQuantity(currentQuantity - 5);
   })
 })
+
+//Display vegetarian Alternatives 
+const vegetarianAlternatives = () => {
+  const dishList = document.getElementById('dish-list'); 
+  dishList.innerHTML = '';
+  let htmlString = ''; 
+  
+  yumProductsList.map((veg) => {
+    veg.diet.map((veggie) => {
+        if(veggie === "images/icons/vegetarian.png"){
+          const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
+          console.log(veg.title)
+          htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
+        }
+     })  
+   });
+  dishList.innerHTML += htmlString;
+} 
+
+const updateDishList = () => {
+vegetarianAlternatives();
+}
+
+// total price
+function calculateTotalPrice(quantity) {
+  const vegetarianProducts = yumProductsList.filter(product => 
+    product.diet.includes("images/icons/vegetarian.png")
+  )
+  const totalPrice = vegetarianProducts.reduce((sum, product) => 
+    sum + (product.price * quantity), 0
+  )
+  return totalPrice ;
+}
+
+function updateTotalPrice() {
+  const quantity = parseInt(document.querySelector('.quantity-btn span').textContent, 10);
+  const totalPrice = calculateTotalPrice(quantity);
+  const totalPriceElement = document.querySelector('.col-5.price');
+  totalPriceElement.innerHTML = `<p>${totalPrice} kr</p>`;
+}
+
+//end of secound part
 
 
 // fixed media query
@@ -497,25 +591,6 @@ const loadProducts = async () => {
     console.log(err);
   }
 };
-
-//Display vegetarian Alternatives
-const vegetarianAlternatives = () => {
-  const dishList = document.getElementById('dish-list'); 
-  const htmlString = yumProductsList.map((veg) => {
-    veg.diet.map((veggie) => {
-        if(veggie == "images/icons/vegetarian.png"){
-          console.log(veg.title)
-          return (
-             `<li>` +
-             veg.title +
-              `</li>`
-          )
-        } 
-        return "";
-    })
-}).join("");
-dishList.innerHTML += htmlString;
-} 
 
 //Display yum items
 const yumProducts = (yumProductsList) => {

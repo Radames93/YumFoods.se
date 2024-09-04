@@ -789,6 +789,22 @@ button {
   background-color: #ff7c082e;
 }
 
+.selected-border{
+  border: 1px solid #000000 !important;
+}
+
+.unselected-border{
+  border: 1px solid #ddd;
+}
+.box1 {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
 .box2 {
   padding: 10px;
   border: 1px solid #ddd;
@@ -820,10 +836,8 @@ button {
   margin: auto;
 }
 
-#dish-list{
-  color: #000000;
-  z-index: 1000;
-  height: 50px;
+.pricedetail{
+  color: #ff7c08;
 }
 
 /* secound part of start page End*/
