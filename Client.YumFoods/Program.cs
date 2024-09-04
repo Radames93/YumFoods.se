@@ -5,6 +5,17 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+
+//builder.Services.AddScoped<IProductRepository<ProductDTO>>();
+//builder.Services.AddScoped<IOrderDetailRepository<OrderDetailDTO>>();
+//builder.Services.AddScoped<IOrderRepository<OrderDTO>>();
+//builder.Services.AddScoped<IPaymentService>();
+//builder.Services.AddScoped<ICartService>();
+
+var app = builder.Build();
+
+//app.MapGet("/", () => "Hello World!");
 void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
     if (env.IsDevelopment())
@@ -21,21 +32,9 @@ void Configure(IApplicationBuilder app, IHostingEnvironment env)
     });
 }
 
-//builder.Services.AddScoped<IProductRepository<ProductDTO>>();
-//builder.Services.AddScoped<IOrderDetailRepository<OrderDetailDTO>>();
-//builder.Services.AddScoped<IOrderRepository<OrderDTO>>();
-//builder.Services.AddScoped<IPaymentService>();
-//builder.Services.AddScoped<ICartService>();
-
-var app = builder.Build();
-
-//app.MapGet("/", () => "Hello World!");
-
 app.UseHttpsRedirection();
-
 app.UseDefaultFiles();
 app.UseStaticFiles();
-
 
 
 app.Run();

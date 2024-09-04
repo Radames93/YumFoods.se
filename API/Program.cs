@@ -11,8 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-var connectionString = Environment.GetEnvironmentVariable("YumFoodsDbConnectionString");
-var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnectionString");
+//var connectionString = Environment.GetEnvironmentVariable("YumFoodsDbConnectionString");
+//var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnectionString");
 
 builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
@@ -20,13 +20,16 @@ builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepos
 builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
 //builder.Services.AddScoped<UserRepository>();
 
+//"C:\Users\Vivian\Documents\YF\ca-cert.pem"
 
+var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Documents\\YF\\ca-cert.pem;";
+var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Documents\\YF\\ca-cert.pem;";
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+    options.UseMySql(conn1, ServerVersion.AutoDetect(conn1)));
 
 builder.Services.AddDbContext<YumFoodsUserDb>(options =>
-    options.UseMySql(connectionString2, ServerVersion.AutoDetect(connectionString2)));
+    options.UseMySql(conn2, ServerVersion.AutoDetect(conn2)));
 
 builder.Services.AddCors(options =>
 {
@@ -57,7 +60,7 @@ app.MapPaymentsEndPoints();
 //app.MapUserEndpoints();
 
 app.UseHttpsRedirection();
-
+//app.UseCors("AllowAllOrigins");
 app.UseAuthorization();
 
 app.MapControllers();
