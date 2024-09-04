@@ -10,8 +10,6 @@
     <Content Remove="wwwroot\docs\Halal Certificate.pdf" />
     <Content Remove="wwwroot\docs\Packages Certificate.pdf" />
     <Content Remove="wwwroot\docs\Privacy Policy.pdf" />
-    <Content Remove="wwwroot\js\products.json" />
-    <Content Remove="wwwroot\webfonts\fa-brands-400.eot" />
     <Content Remove="wwwroot\webfonts\fa-brands-400.ttf" />
     <Content Remove="wwwroot\webfonts\fa-brands-400.woff" />
     <Content Remove="wwwroot\webfonts\fa-brands-400.woff2" />
@@ -43,6 +41,18 @@
     <Content Remove="wwwroot\webfonts\LeagueSpartan-SemiBold.ttf" />
     <Content Remove="wwwroot\webfonts\LeagueSpartan-Thin.ttf" />
     <Content Remove="wwwroot\webfonts\LeagueSpartan-VariableFont_wght.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\bootstrap.bundle.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\hotjar.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\isotope.pkgd.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery-3.6.0.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.countup.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.exzoom.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.nice-select.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\jquery.waypoints.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\main.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -90,6 +100,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\contact.html">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
