@@ -66,8 +66,17 @@
     <section class="cart_view mt_100 xs_mt_70 mb_100 xs_mb_70">
       <div class="container">
         <div class="row">
-          <div class="container2">
+          <div class="container2 mx-auto">
             <div class="tbl_content">
+              <!-- <div class="d-flex flex-row">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path
+                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+                  />
+                </svg>
+
+                <h2>Tillbaka</h2>
+              </div> -->
               <div class="accordion" id="customerHandling">
                 <div
                   class="accordion-item CartPayDeliver rounded-4 mb-4 border border-greys border-1"
@@ -86,7 +95,7 @@
                   </h2>
                   <div
                     id="collapseOne"
-                    class="accordion-collapse collapse"
+                    class="accordion-collapse collapse show accordOne"
                     aria-labelledby="headingOne"
                     data-bs-parent="#customerHandling"
                   >
@@ -102,7 +111,10 @@
                             <div class="pro_tk"></div>
                             <div class="pro_icon"></div> -->
                           </div>
-                          <div class="row row-cols-1" id="cart-item"></div>
+                          <div
+                            class="row row-cols-1 cart_items"
+                            id="cart-item"
+                          ></div>
                         </div>
                         <div
                           id="summary_head"
@@ -139,7 +151,8 @@
                           </div>
 
                           <button
-                            class="accordion-button d-block text-center mt-5 w-25 mx-auto nextAccord"
+                            onclick="nextAccord1()"
+                            class="accordion-button d-block text-center mt-5 w-25 mx-auto nextAccord1"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#collapseOne"
@@ -172,7 +185,7 @@
                   </h2>
                   <div
                     id="collapseTwo"
-                    class="accordion-collapse collapse"
+                    class="accordion-collapse collapse accordTwo"
                     aria-labelledby="headingTwo"
                     data-bs-parent="#customerHandling"
                   >
@@ -227,9 +240,7 @@
 
                         <div class="mb-4">
                           <p class="mb-2">Gatuadress</p>
-                          <div
-                            class="d-flex justify-content-between deliverTime"
-                          >
+                          <div class="d-flex justify-content-between">
                             <input
                               class="rounded-3"
                               type="text"
@@ -239,18 +250,18 @@
                         </div>
 
                         <div class="d-flex flex-row mb-4">
-                          <div>
+                          <div class="w-50 me-5">
                             <p>Postnummer</p>
                             <input
-                              class="rounded-3"
+                              class="rounded-3 setBoxSize"
                               type="text"
                               placeholder="T.ex. 411 19"
                             />
                           </div>
-                          <div class="ms-auto">
+                          <div class="ms-auto w-50">
                             <p>Ort</p>
                             <input
-                              class="rounded-3"
+                              class="rounded-3 setBoxSize"
                               type="text"
                               placeholder="T.ex. Göteborg"
                             />
@@ -258,14 +269,14 @@
                         </div>
 
                         <div class="d-flex flex-row mb-4">
-                          <div>
+                          <div class="w-50 me-5">
                             <p>Portkod/Porttelefonnummer</p>
-                            <input class="rounded-3" type="text" />
+                            <input class="rounded-3 setBoxSize" type="text" />
                           </div>
-                          <div class="ms-auto">
+                          <div class="ms-auto w-50">
                             <p>Våningsplan</p>
                             <input
-                              class="rounded-3"
+                              class="rounded-3 setBoxSize"
                               type="text"
                               placeholder="T.ex. 2"
                             />
@@ -274,10 +285,10 @@
 
                         <div class="d-flex flex-row">
                           <div
-                            class="form-check form-switch form-check-reverse d-flex align-items-center"
+                            class="form-check form-switch form-check d-flex align-items-center"
                           >
                             <label
-                              style="margin-right: 10px"
+                              style=""
                               class="form-check-label"
                               for="flexSwitchCheckDefault"
                               >Lämna utanför dörren</label
@@ -289,9 +300,82 @@
                             />
                           </div>
                         </div>
-                        <textarea name="" id=""></textarea>
+
+                        <h6 class="mb-3 fw-bold mt-5">Övrig information</h6>
+
+                        <div class="form-floating">
+                          <textarea
+                            style="height: 100px"
+                            class="form-control setBoxSize"
+                            placeholder="Lämna kommentar här"
+                            id="floatingTextarea"
+                          ></textarea>
+                        </div>
+
+                        <h5 class="mb-3 fw-bold mt-5">Dina uppgifter</h5>
+
+                        <div class="d-flex flex-row mb-4">
+                          <button
+                            class="btn btn-primary me-3 btn-lg customerTypeBtn"
+                          >
+                            Privat
+                          </button>
+                          <button
+                            class="btn btn-primary btn-lg customerTypeBtn mx-1"
+                          >
+                            Företag
+                          </button>
+                        </div>
+
+                        <div class="d-flex flex-row mb-4">
+                          <div class="w-50 me-5">
+                            <p>Förnamn</p>
+                            <input
+                              type="text"
+                              class="setBoxSize rounded-3"
+                              placeholder="T.ex. Johan"
+                              aria-label="Username"
+                              aria-describedby="basic-addon1"
+                            />
+                          </div>
+
+                          <div class="ms-auto w-50">
+                            <p>Efternamn</p>
+                            <input
+                              type="text"
+                              class="setBoxSize rounded-3"
+                              placeholder="T.ex. Johansson"
+                              aria-label="Username"
+                              aria-describedby="basic-addon1"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="mb-4">
+                          <p class="mb-2">Telefonnummer</p>
+                          <div class="d-flex justify-content-between">
+                            <input
+                              class="rounded-3"
+                              type="text"
+                              placeholder="T.ex. 070 123 45 67"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="mb-4">
+                          <p class="mb-2">Mejladress</p>
+                          <div class="d-flex justify-content-between">
+                            <input
+                              class="rounded-3"
+                              type="text"
+                              placeholder="T.ex. namn.efternamn@epost.se"
+                            />
+                          </div>
+                        </div>
+
                         <button
-                          class="accordion-button d-block text-center mt-5 w-25 mx-auto nextAccord"
+                          onclick="nextAccord2()"
+                          class="accordion-button d-block text-center mt-5 w-25 mx-auto nextAccord2"
                           type="button"
                           data-bs-toggle="collapse"
                           data-bs-target="#collapseTwo"
@@ -322,7 +406,7 @@
                   </h2>
                   <div
                     id="collapseThree"
-                    class="accordion-collapse collapse"
+                    class="accordion-collapse collapse accordThree"
                     aria-labelledby="headingOThree"
                     data-bs-parent="#customerHandling"
                   >
@@ -401,10 +485,6 @@
                                     >Kortnummer</label
                                   >
                                   <div class="input-group mb-4">
-                                    <span
-                                      class="input-group-text"
-                                      id="addon1"
-                                    ></span>
                                     <input
                                       id="cardNumber"
                                       type="number"
@@ -421,10 +501,6 @@
                                     >Utgångsdatum</label
                                   >
                                   <div class="input-group mb-4">
-                                    <span
-                                      class="input-group-text"
-                                      id="addon2"
-                                    ></span>
                                     <input
                                       id="expiration"
                                       type="text"
@@ -442,10 +518,6 @@
                                     >CVC/CVV</label
                                   >
                                   <div class="input-group mb-4">
-                                    <span
-                                      class="input-group-text"
-                                      id="addon3"
-                                    ></span>
                                     <input
                                       id="cvc"
                                       type="text"
@@ -475,7 +547,7 @@
                                 Betala med Stripe
                               </label>
                               <img
-                                src="./images/stripIcon.png"
+                                src="./images/stripeIcon.png"
                                 alt="..."
                                 class="img-thumbnail CartPayDeliver"
                               />
@@ -483,6 +555,16 @@
                           </div>
                         </div>
                       </div>
+                      <button
+                        class="accordion-button d-block text-center mt-5 w-25 mx-auto nextAccord1"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne"
+                        aria-expanded="true"
+                        aria-controls="collapseOne"
+                      >
+                        Slutför Köp
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -510,6 +592,7 @@
               </table> -->
             </div>
           </div>
+
           <div class="col-lg-12 wow fadeInUp" data-wow-duration="1s">
             <div class="total mt_50">
               <div class="row">

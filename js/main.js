@@ -517,6 +517,7 @@ const yumProducts = (yumProductsList) => {
           data-yum-price=${yum.price}
           data-yum-img=${yum.img}
           data-yum-quantity-price=${yum.price}
+          data-yum-description=${yum.description}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
           `
@@ -1653,6 +1654,7 @@ function realAddToCart(event) {
   var price = event.target.closest("button").dataset.yumPrice;
   var img = event.target.closest("button").dataset.yumImg;
   var quantityPrice = event.target.closest("button").dataset.yumQuantityPrice;
+  var description = event.target.closest("button").dataset.yumDescription;
 
   let formData = {};
   formData.id = id;
@@ -1661,6 +1663,7 @@ function realAddToCart(event) {
   formData.img = img;
   formData.quantityPrice = quantityPrice;
   formData.quantity = 1;
+  formData.description = description;
 
   const itemIndexInBasket = formDataArry.findIndex(
     (basketEntry) => basketEntry.id === id
@@ -1690,6 +1693,7 @@ function modalAddToCart() {
   var modalQuantityPrice = localStorage.getItem("quantity-price");
   var modalImage = localStorage.getItem("img");
   var modalQuantity = localStorage.getItem("quantity");
+  var modalDescription = localStorage.getItem("description");
 
   let formData = {};
   formData.id = modalId;
@@ -1698,6 +1702,7 @@ function modalAddToCart() {
   formData.img = modalImage;
   formData.quantityPrice = modalQuantityPrice;
   formData.quantity = modalQuantity;
+  formData.description = modalDescription;
 
   const itemIndexInBasket = formDataArry.findIndex(
     (basketEntry) => basketEntry.id === modalId
@@ -1750,8 +1755,10 @@ const displayNewCart = () => {
       summaryHead.classList.add("block");
       const htmlString = formDataArry
         .map((item) => {
+          console.log(item);
           id = item.id;
           let quantity;
+          description = item.title;
           if (item.quantity == null) {
             quantity = localStorage.getItem("quantity");
           } else {
@@ -1760,46 +1767,64 @@ const displayNewCart = () => {
           //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
           return (
             `
-          <section class="col mb-4" id=` +
+<section class="col mb-4 d-flex flex-row" id=` +
             item.id +
             `>
-<div>
-   <img id="` +
+    <div class="imgContainer">
+      <img id="` +
             item.id +
             `" src="` +
             item.img +
             `" alt="bild på maträtt"
-      class="pro_img cartPayDeliver"/>
-      <p>` +
+      class="pro_img cartPayDeliver cropImage"/>
+    </div>
+
+      <div class="cartDetailContain d-flex flex-column">
+
+      <div class="d-flex flex-row">
+          <h5 class="">` +
             item.title +
             `
-      </p>
-</div>
-<div class="pro_select d-flex flex-direction-row">
-   <div class="quentity_btn">
-      <button class="decrease">
-      <i class="fa fa-minus"></i>
-      </button>
-      <input class="quantity" type="text" value=` +
+          </h5>
+          <h5 class="ms-auto me-4">Ta Bort X</h5>
+      </div>
+
+        <p style="max-width: 250px; max-height:50px; overflow-y:scroll;">
+            ${item.description}
+        </p>
+
+        <div class="pro_select d-flex flex-direction-row" style="width: 100%;">
+
+           <div class="quentity_btn">
+              <button class="decrease">
+              -
+              </button>
+              <input class="quantity" type="text" value=` +
             quantity +
             `>
-      <button class="increase">
-      <i class="fa fa-plus"></i>
-      </button>
-   </div>
-   <div class="pro_icon">
-      <button onclick="removeItem(` +
+              <button class="increase">
+              +
+              </button>
+           </div>
+
+            <div class="pro_icon d-flex">
+                  <button class="mx-3" onclick="removeItem(` +
             item.id +
-            `)" href="#"><i class="fas fa-trash-alt"></i></button>
-      <div class="quentity_btn">
-         <h6 class="quantity_price">` +
+            `)" href="#"><i class="fas fa-trash-alt" style="font-size:17px; color:#FF6633; margin-right:10px;"></i>
+                </button>
+            </div>
+
+            <div class="d-flex flex-row align-items-center ms-auto me-4">
+                <h6 class="quantity_price currency mb_0">` +
             item.quantityPrice +
             `
-         </h6>
-         <h6 class="currency mb_0">kr</h6>
-      </div>
-   </div>
-</div>
+                </h6>
+                <h6 class="currency mb_0">kr</h6>
+            </div>
+
+          </div>
+
+        </div>
 </div>
 </section>
 
@@ -1994,6 +2019,51 @@ function cartBtns() {
 }
 cartBtns();
 
+//On page load, display the first open accordion using DOMContentLoaded event
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("headingOne").focus();
+});
+
+//Grab "jump to next accordion" buttons
+const accordOne = document.querySelector(".nextAccord1");
+const accordTwo = document.querySelector(".nextAccord2");
+
+function nextAccord1() {
+  const header = document.querySelector("#headingTwo");
+  const acc = document.querySelector(".accordOne");
+  const nextAccord = document.querySelector(".accordTwo");
+  acc.classList.remove("show");
+  nextAccord.classList.add("show");
+
+  setTimeout(() => {
+    const navHeader = document.querySelector(".main_menu").offsetHeight;
+    const fixedHeader = header.getBoundingClientRect().top + navHeader;
+    header.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 250);
+
+  // if (nextAccord.classList.contains("show")) {
+  //   header.scrollIntoView({ behavior: "smooth", block: "start" });
+  // } else {
+  //   console.log("no can do");
+  // }
+
+  // nextAccord.addEventListener("transitionend", function transitionEnd() {
+  //   nextAccord.removeEventListener("transitionend", transitionEnd);
+  //   header.scrollIntoView({ behavior: "smooth", block: "start" });
+  // });
+}
+
+function nextAccord2() {
+  const header = document.querySelector("#headingThree");
+  const acc = document.querySelector(".accordTwo");
+  const nextAccord = document.querySelector(".accordThree");
+  acc.classList.remove("show");
+  nextAccord.classList.add("show");
+  setTimeout(() => {
+    header.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 250);
+}
+
 //Increment function on the + button for quantity
 function increment() {
   if (localStorage.getItem("quantity") !== null) {
@@ -2011,7 +2081,9 @@ function increment() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.parentElement.nextElementSibling.querySelector(".quantity_price");
+        this.parentElement.nextElementSibling.nextElementSibling.querySelector(
+          ".quantity_price"
+        );
       var input = this.previousElementSibling;
       console.log(input);
     }
@@ -2058,7 +2130,9 @@ function increment() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.parentElement.nextElementSibling.querySelector(".quantity_price");
+        this.parentElement.nextElementSibling.nextElementSibling.querySelector(
+          ".quantity_price"
+        );
       var input = this.previousElementSibling;
     }
     let inputQuantity = inp.value;
@@ -2106,7 +2180,7 @@ function decrement(event) {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        decBtn.parentElement.nextElementSibling.querySelector(
+        decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
           ".quantity_price"
         );
       var input = this.nextElementSibling;
@@ -2156,7 +2230,7 @@ function decrement(event) {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        decBtn.parentElement.nextElementSibling.querySelector(
+        decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
           ".quantity_price"
         );
       var input = this.nextElementSibling;

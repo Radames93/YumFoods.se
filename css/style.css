@@ -4261,24 +4261,33 @@ footer {
   display: flex;
   align-items: center;
   justify-content: start;
+  border: solid 1px #ff6633;
+  border-radius: 7px;
+}
+
+.quentity_btn,
+.decrease {
+  border-right: solid 1px #ff6633;
 }
 
 .quentity_btn button {
-  width: 35px;
-  height: 35px;
+  /* width: 35px;
+  height: 35px; */
+  margin: 0px 20px 0px 20px;
   line-height: 35px;
-  font-size: 15px;
-  color: #fff;
-  background: var(--colorPrimary);
+  font-size: 32px;
+  /* color: #fff; */
+  background: white;
+  /* background: var(--colorPrimary); */
   outline: none;
   border: none;
-  padding: 0;
+  padding: 7px;
   transition: all linear 0.3s;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
   -webkit-transition: all linear 0.3s;
   -moz-transition: all linear 0.3s;
   -ms-transition: all linear 0.3s;
@@ -4287,22 +4296,24 @@ footer {
 
 .quentity_btn button:hover {
   background: var(--colorBlack);
+  color: white;
 }
 
 .quentity_btn input {
-  width: 60px;
+  width: 21px;
+  padding: 0px;
   text-align: center;
-  height: 35px;
-  border-radius: 30px;
-  border: 1px solid #ddd;
+  height: 16px;
+  border: none;
   margin: 0px 5px;
   font-size: 16px;
   font-weight: 400;
   color: var(--colorBlack);
+  /* border-radius: 30px;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   -ms-border-radius: 30px;
-  -o-border-radius: 30px;
+  -o-border-radius: 30px; */
 }
 
 .quentity_btn_area h3 {
@@ -4512,7 +4523,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .container2 {
-  max-width: 1440px;
+  max-width: 850px;
   width: 100%;
   background: #fff;
 }
@@ -4524,6 +4535,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .deliverContainer {
   width: 65%;
+  box-sizing: content-box;
+}
+
+.setBoxSize {
+  box-sizing: border-box;
+}
+
+.cart_items {
+  padding: 13px;
 }
 
 .card.CartPayDeliver {
@@ -4538,6 +4558,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: none;
   color: #000000;
 }
+
+.cartDetailContain {
+  width: 100%;
+}
+
+/* .accordion-body,
+.CartPayDeliver {
+  padding: 0px;
+} */
 
 .form-check-input:checked.CartPayDeliver {
   background-color: rgb(235, 86, 0);
@@ -4555,9 +4584,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-left: auto;
 }
 
-.pro_img.cartPayDeliver {
-  padding: 0px;
-  margin: 0;
+.imgContainer {
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cropImage {
+  position: absolute;
+  left: 25%;
+  transform: translateX(-50%) scale(1.5);
+
+  /* height: auto;
+  width: 150%;
+  object-fit: cover;
+  object-position: center;
+  height: auto;
+  clip-path: inset(0% 30% 0% 30%); */
 }
 
 .dateBtn,
@@ -4567,31 +4611,38 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: white;
   color: #000000;
   border-color: grey;
+  text-align: end;
+  display: flex;
+  margin: auto;
+  background-image: unset;
+}
+
+.customerTypeBtn {
+  border-radius: 15px;
+  background: white;
+  color: #000000;
+  border-color: grey;
+  text-align: end;
+  background-image: unset;
 }
 
 .dateBtn:hover,
-.timeBtn:hover {
+.timeBtn:hover,
+.customerTypeBtn:hover {
   background: #fa6039;
   border-color: #fa6039;
 }
 
 .dateBtn:active:focus:not(:focus-visible),
-.timeBtn:active:focus:not(:focus-visible) {
+.timeBtn:active:focus:not(:focus-visible),
+.customerTypeBtn:focus:not(:focus-visible) {
   background: #fa6039;
   border-color: #fa6039;
 }
 
-.dateBtn,
-.timeBtn .nextAccord {
-  background-color: #ffffff;
-  display: flex;
-  margin: auto;
-  text-align: center;
-  background-image: unset;
-}
-
 .dateBtn:focus,
-.timeBtn:focus {
+.timeBtn:focus,
+.customerTypeBtn:focus {
   background: #fa6039;
   border-color: #fa6039;
 }
@@ -4627,11 +4678,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transition: all 0.3s ease-in;
   cursor: pointer;
 }
+
 .pro_img {
   width: 40%;
   padding: 10px;
   min-width: 150px;
 }
+
 .pro_name {
   width: 30%;
   min-width: 240px;
