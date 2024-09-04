@@ -716,6 +716,44 @@
     left: -22px;
   }
 
+  .blog_slider {
+    margin-left: -40px;
+  }
+
+  #first-grid {
+    width: 300px;
+    margin-left: 40px;
+  }
+
+  #food-img-blog {
+    margin-left: -80px;
+    height: 500px;
+  }
+
+  #food-img-blog2 {
+    margin-right: -200px;
+    height: 500px;
+  }
+
+  .services-contact {
+    padding: 10px;
+    margin-top: -430px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .slider-background {
+    width: 1500px;
+    height: 300px;
+    background: #fc5633;
+    z-index: -1;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 110px;
+  }
+
   .single_blog_text {
     padding: 10px 15px 10px 15px;
   }
@@ -760,6 +798,27 @@
   .menu_filter button {
     padding: 5px 14px;
     font-size: 14px;
+  }
+
+  .faq-buttons {
+    flex-direction: row;
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+    width: 700px;
+    margin-left: -70px;
+  }
+
+  .faq-buttons2 {
+    width: 235px;
+    padding: 18px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    border: 1px #dbdfd0;
+    background: #fff;
   }
 
   /* =====================
@@ -1261,6 +1320,54 @@
     padding: 10px 15px 10px 15px;
   }
 
+  .blog_slider {
+    margin-left: -6px;
+  }
+
+  #first-grid {
+    width: 250px;
+    margin-right: -150px;
+    padding: 70px;
+  }
+
+  #food-img-blog {
+    margin-left: -130px;
+    height: 400px;
+    margin-top: 40px;
+  }
+
+  #food-img-blog2 {
+    margin-left: 130px;
+    margin-top: 40px;
+    height: 400px;
+  }
+
+  .services-contact {
+    padding: 10px;
+    margin-top: -430px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  #blog-podcast h3 {
+    margin-bottom: 20px;
+  }
+
+  .slider-background {
+    width: 1500px;
+    height: 250px;
+    background: #fc5633;
+    z-index: -1;
+    position: absolute;
+    margin-left: -100px;
+    margin-top: 115px;
+  }
+
+  .services-info2 {
+    width: 700px;
+  }
+
   .footer_content .footer_logo {
     width: 150px;
   }
@@ -1324,6 +1431,27 @@
 
   .single_blog_text .title {
     font-size: 22px;
+  }
+
+  .faq-buttons {
+    flex-direction: row;
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+    width: 700px;
+    margin-left: -110px;
+  }
+
+  .faq-buttons2 {
+    width: 235px;
+    padding: 18px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    border: 1px #dbdfd0;
+    background: #fff;
   }
 
   /* =====================
@@ -1518,14 +1646,6 @@
   /* =====================
         CART VIEW START
     =======================*/
-
-  section.CartPayDeliver {
-    flex-direction: column;
-  }
-
-  .card-body.CartPayDeliver {
-    width: 75%;
-  }
 
   .cart_view_page_breadcrumb {
     background-image: url("../images/cartview-tablet.png") !important;
@@ -1987,6 +2107,77 @@
     margin-top: 0px;
   }
 
+  .blog_slider {
+    margin-left: -6px;
+  }
+
+  #first-grid {
+    width: 220px;
+    margin-right: -10px;
+  }
+
+  #food-img-blog {
+    margin-left: -120px;
+    height: 300px;
+    margin-top: 70px;
+  }
+
+  #food-img-blog2 {
+    margin-left: 20px;
+    margin-top: 70px;
+    height: 300px;
+  }
+
+  #blog-podcast h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  #blog-podcast h3 {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+
+  .slider-background {
+    width: 1500px;
+    height: 200px;
+    background: #fc5633;
+    z-index: -1;
+    position: absolute;
+    margin-left: -100px;
+    margin-top: 115px;
+  }
+
+  .services-contact {
+    padding: 10px;
+    margin-top: -500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .services-info {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+
+  .services-info2 {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  #location_address2 {
+    width: 150px;
+    margin-right: -8px;
+  }
+
   #footer-new {
     height: 600px;
   }
@@ -2094,6 +2285,28 @@
     text-align: left;
   }
 
+  .faq-buttons {
+    flex-direction: row;
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+    width: 600px;
+    font-size: 15px;
+    margin-left: -30px;
+  }
+
+  .faq-buttons2 {
+    width: 235px;
+    padding: 15px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    border: 1px #dbdfd0;
+    background: #fff;
+  }
+
   /* =====================
         HOME PAGE END
     =======================*/
@@ -2107,7 +2320,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
-    width: 600px;
+    width: 500px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -2525,14 +2738,6 @@
   .cart_view_page_breadcrumb {
     background-image: url("../images/cartview-tablet.png") !important;
     height: 307px !important;
-  }
-
-  section.CartPayDeliver {
-    flex-direction: column;
-  }
-
-  .card-body.CartPayDeliver {
-    width: 75%;
   }
 
   /* =====================
@@ -3003,6 +3208,88 @@
     font-size: 20px;
   }
 
+  .blog_slider {
+    margin-right: 20px;
+  }
+
+  .single_blog {
+    margin-left: -00px;
+  }
+
+  #first-grid {
+    width: 220px;
+    margin-right: 0px;
+  }
+
+  #food-img-blog {
+    display: none;
+  }
+
+  #food-img-blog2 {
+    display: none;
+  }
+
+  #blog-podcast h2 {
+    margin-bottom: 20px;
+    font-size: 30px;
+  }
+
+  #blog-podcast h3 {
+    margin-bottom: 0px;
+    font-size: 20px;
+  }
+
+  .slider-background {
+    width: 1500px;
+    height: 200px;
+    background: #fc5633;
+    z-index: -1;
+    position: absolute;
+    margin-left: -100px;
+    margin-top: 115px;
+  }
+
+  .services-contact {
+    padding: 10px;
+    margin-top: -500px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .services-info {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+  }
+
+  .services-info2 {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    margin-top: 30px;
+  }
+
+  #location_address2 {
+    width: 150px;
+    margin-right: -18px;
+  }
+
+  .contact-us-button {
+    margin-left: -25px;
+  }
+
+  #first-p {
+    font-weight: 600;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .footer_content .footer_logo {
     width: 150px;
   }
@@ -3037,8 +3324,20 @@
     margin-left: -10px;
   }
 
+  #footer-phone {
+    width: 157px;
+  }
+
+  .fa-envelope {
+    margin-left: -10px;
+  }
+
+  .fa-map-marker-alt {
+    margin-right: -5px;
+  }
+
   #contact_title {
-    margin-left: 120px;
+    margin-left: -0px;
   }
 
   #contact_info {
@@ -3065,11 +3364,8 @@
   }
 
   #social_links {
-    margin-left: 90px;
-  }
-
-  #social_links h2 {
-    margin-left: 30px;
+    margin-left: 0px;
+    margin-bottom: -60px;
   }
 
   #other_links {
@@ -3151,6 +3447,29 @@
     text-align: left;
   }
 
+  .faq-buttons {
+    flex-direction: column;
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+    width: 230px;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .faq-buttons2 {
+    width: 200px;
+    padding: 15px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 12px;
+    border: 1px #dbdfd0;
+    background: #fff;
+  }
+
   /* =====================
         HOME PAGE END
     =======================*/
@@ -3164,9 +3483,10 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
-    width: 600px;
+    width: 330px;
     margin-left: auto;
     margin-right: auto;
+    justify-content: center;
   }
 
   /* =====================
@@ -3608,17 +3928,6 @@
     height: 307px !important;
   }
 
-  section.CartPayDeliver {
-    flex-direction: column;
-  }
-
-  .card-body.CartPayDeliver {
-    width: 75%;
-  }
-  .img-thumbnail.CartPayDeliver {
-    width: 30px;
-  }
-
   /* =====================
         CART VIEW DETAILS START
     =======================*/
@@ -3670,9 +3979,6 @@
   .quentity_btn {
     justify-content: end !important;
   }
-  .card-body.CartPayDeliver {
-    width: 95%;
-  }
 }
 /* =====================
     company box informatiom in shopping cart and contact page
@@ -3707,7 +4013,7 @@
 .contact-input .contact-befattning {
   margin-right: 0px;
 }
-}
+
 @media (max-width: 575.99px) {
   .contact_form_input {
     margin-right: 3px;
