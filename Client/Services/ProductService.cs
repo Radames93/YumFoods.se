@@ -17,7 +17,7 @@ public class ProductService : IProductRepository<ProductDTO>
         var response = await _httpClient.GetAsync("products");
         if (!response.IsSuccessStatusCode)
         {
-            return new List<ProductDTO>();
+            return null;
         }
 
         var result = await response.Content.ReadFromJsonAsync<List<ProductDTO>>();
@@ -41,7 +41,7 @@ public class ProductService : IProductRepository<ProductDTO>
         var response = await _httpClient.GetAsync($"products/category/{category}");
         if (!response.IsSuccessStatusCode)
         {
-            return new List<ProductDTO>();
+            return null;
         }
 
         var result = await response.Content.ReadFromJsonAsync<List<ProductDTO>>();

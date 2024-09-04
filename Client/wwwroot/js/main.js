@@ -261,7 +261,7 @@ if (searchBar !== null) {
 //Fetch items from json
 const loadProducts = async () => {
   try {
-    await fetch("./js/products.json")
+    await fetch("/products")
       .then((response) => response.json())
       .then((data) => {
         yumProductsList = data.yum;

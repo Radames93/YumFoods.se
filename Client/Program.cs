@@ -10,22 +10,23 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 
-var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
-var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
+//var connectionString = Environment.GetEnvironmentVariable("YumFoodsConnectionString");
+//var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserConnectionString");
 
 
 builder.Services.AddHttpClient("YumFoodsApiClient",
     client =>
-        client.BaseAddress = new Uri(connectionString ?? "https://localhost:7216")
+        client.BaseAddress = new Uri( "https://localhost:7216")
 );
 builder.Services.AddHttpClient("YumFoodsUserApiClient",
     client =>
-        client.BaseAddress = new Uri(connectionString2 ?? "https://localhost:7216")
+        client.BaseAddress = new Uri("https://localhost:7216")
 );
 
 
 builder.Services.AddScoped<IProductRepository<ProductDTO>, ProductService>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetailDTO>, OrderDetailService>();
+builder.Services.AddScoped<IOrderRepository<OrderDTO>, OrderService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<ICartService, CartService>();
 
@@ -43,6 +44,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseDefaultFiles();
 app.UseStaticFiles();
 app.UseAntiforgery();
 

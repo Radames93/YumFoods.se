@@ -92,26 +92,33 @@
                 <h4 style="text-transform: none">Inga produkter att visas</h4>
             </div>
 
-            @if (_contentLoading)
-            {
-                <p>Loading...</p>
-            }
-            <div class="row" style="display: flex; flex-wrap: wrap;">
-                @foreach (var product in Products)
-                {
-                    <div class="col-md-3">
-                        <div class="item-container">
-                            <div class="item-image-wrapper">
-                                <img scr="@product.ImgRef" />
-                            </div>
-                            <div class="menu-item">
-                                @product.Title
-                                @product.Price
-                            </div>
-                        </div>
 
+            <div class="row" style="display: flex; flex-wrap: wrap;">
+                @if (_contentLoading)
+                {
+                    <div class="col-md-12 text-center">
+                        <p>Loading products...</p>
                     </div>
                 }
+                else
+                {
+                    @foreach (var product in _filteredProducts)
+                    {
+                        <div class="col-md-3">
+                            <div class="item-container">
+                                <div class="item-image-wrapper">
+                                    <img scr="@product.ImgRef" />
+                                </div>
+                                <div class="menu-item">
+                                    @product.Title
+                                    @product.Price
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                }
+
                 @* <div
                 class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
                 data-wow-duration="1s"
@@ -149,7 +156,7 @@
 
 
             </div>
-           
+
         </div>
     </section>
 
@@ -270,29 +277,43 @@
 
 @code {
 
-    bool _contentLoading = true;
+    private bool _contentLoading = true;
+    private List<ProductDTO> _filteredProducts = new();
 
     public List<ProductDTO> Products
     {
-        get;
-        set;
-    }
-    public ProductDTO Product { get; set; }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
+        get => _filteredProducts;
+        set
         {
-            _contentLoading = false;
-            await LoadProducts();
+            _filteredProducts = value;
             StateHasChanged();
         }
-        await base.OnAfterRenderAsync(firstRender);
     }
 
-    public async Task LoadProducts()
+    protected override async Task OnInitializedAsync()
     {
-        Products = (await ProductService.GetAllProductsAsync()).Where(p => p.Category == "yum").ToList();
+
+        _contentLoading = false;
+        await LoadProductsAsync();
+
+        await base.OnInitializedAsync();
+    }
+
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         _contentLoading = false;
+    //         await LoadProductsAsync();
+    //     }
+    //     await base.OnAfterRenderAsync(firstRender);
+    // }
+
+    public async Task LoadProductsAsync()
+    {
+        var allProds = await ProductService.GetAllProductsAsync();
+        Products = allProds.Where(p => p.Category == "yum").ToList();
+
     }
 
 }
