@@ -446,7 +446,7 @@ const yumProducts = (yumProductsList) => {
             data-wow-duration="1s"
                         >
           <div class="menu_item"
-                  data-yum-id=${yum.id} 
+                  data-yum-id=${yum.id}
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -480,7 +480,7 @@ const yumProducts = (yumProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${yum.id} 
+                  data-yum-id=${yum.id}
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -513,7 +513,7 @@ const yumProducts = (yumProductsList) => {
           "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           yum.id +
           `
-          data-yum-id=${yum.id} 
+          data-yum-id=${yum.id}
           data-yum-title=${yum.title}
           data-yum-price=${yum.price}
           data-yum-img=${yum.img}
@@ -2070,14 +2070,22 @@ cartBtns();
 
 //On page load, display the first open accordion using DOMContentLoaded event
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("headingOne").focus();
+  const navHeader = document.querySelector(".main_menu").offsetHeight;
+  const header = document.getElementById("headingOne");
+  const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({
+    top: fixedHeader - navHeader - 50,
+    behavior: "smooth",
+  });
 });
 
-//Grab "jump to next accordion" buttons
+//Grab the "jump to next accordion" buttons
 const accordOne = document.querySelector(".nextAccord1");
 const accordTwo = document.querySelector(".nextAccord2");
 
+// Two functions with scrollTo() method for both the second and third accordions. Since the navbar is in the way and obstructing the view, we need to know its height with offsetHeight, the size and relative position of the accordion header with getBoundingClientRect() and with the Window object scroll to the appropriate accordion header with the "next" buttons. The setTimeout is a temporary fix and might be due to the animations of opening and closing the accordion having to be played out to its end before it starts scrolling, mutationObserver could be an alternate solution.
 function nextAccord1() {
+  const navHeader = document.querySelector(".main_menu").offsetHeight;
   const header = document.querySelector("#headingTwo");
   const acc = document.querySelector(".accordOne");
   const nextAccord = document.querySelector(".accordTwo");
@@ -2085,10 +2093,15 @@ function nextAccord1() {
   nextAccord.classList.add("show");
 
   setTimeout(() => {
-    const navHeader = document.querySelector(".main_menu").offsetHeight;
-    const fixedHeader = header.getBoundingClientRect().top + navHeader;
-    header.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 250);
+    const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+    console.log(fixedHeader);
+    window.scrollTo({
+      top: fixedHeader - navHeader - 100,
+      behavior: "smooth",
+    });
+  }, 230);
+
+  // header.scrollIntoView({ behavior: "smooth", block: "start" });
 
   // if (nextAccord.classList.contains("show")) {
   //   header.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -2103,15 +2116,52 @@ function nextAccord1() {
 }
 
 function nextAccord2() {
-  const header = document.querySelector("#headingThree");
-  const acc = document.querySelector(".accordTwo");
-  const nextAccord = document.querySelector(".accordThree");
-  acc.classList.remove("show");
-  nextAccord.classList.add("show");
-  setTimeout(() => {
-    header.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 250);
+  // Subject to change
+  // const navHeader = document.querySelector(".main_menu").offsetHeight;
+  // const header = document.querySelector("#headingThree");
+  // const acc = document.querySelector(".accordTwo");
+  // const nextAccord = document.querySelector(".accordThree");
+  // acc.classList.remove("show");
+  // nextAccord.classList.add("show");
+  // setTimeout(() => {
+  //   const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+  //   console.log(fixedHeader);
+  //   window.scrollTo({
+  //     top: fixedHeader - navHeader - 120,
+  //     behavior: "smooth",
+  //   });
+  // }, 250);
 }
+
+// Displaying the next 2 weeks, 3 days ahead while skipping Saturdays and Sundays
+
+// ---------------------------------- Alt 1 (current one) ----------------------------------
+// Display the upcoming 2 weeks while excluding the weekends (saturdays & sundays) while initially jumping ahead with 3 days, in total 10 days.
+// 14 days in a week, but adding 3 results in 17
+// Grab the dates, format the display for dates using the options object and inserting that to "toLocaleString"
+// with a for loop, initialize "i" with 3 representing the 3 days ahead, check the current day with "checkDay",
+// with an if statement, as long as the "checkDay" is not on a weekend, push the formatted date into an empty array
+// and finally increment the dates with '1' for the next loop with setDate
+// const dates = new Date();
+
+// const dateOptions = {day: '2-digit', month: 'short', weekday: 'short' }
+// const twoWeeks = 17
+// let threeDaysAhead = []
+// dates.setDate(dates.getDate() + 3)
+
+// for(let i = 3; i < twoWeeks; i++) {
+
+// const checkDay = dates.getDay();
+
+// if(checkDay !== 0 && checkDay !== 6) {
+// const sweDate = dates.toLocaleString('sv-SE', dateOptions)
+// threeDaysAhead.push(sweDate.toUpperCase())
+// }
+// dates.setDate(dates.getDate() + 1)
+// }
+
+// console.log(threeDaysAhead)
+// ----------------------------------
 
 //Increment function on the + button for quantity
 function increment() {
@@ -2205,7 +2255,8 @@ function increment() {
 }
 
 //Decrement function on the button for quantity
-//In order to ensure the button pressed is the one the user really clicked on, instead of just having it look for the closest matching class or id, declare a variable to the event.target along with replacing the "this" keywords since event.target is handling that for us now.
+// The "this" keyword might cause problems, we can't alway be certain its pointing to the correct button in the correct page and may cause unintended issues with decrementingh items from the cart
+//In order to ensure the button pressed is the one the user really clicked on, instead of just having it look for the closest matching class or id, assign a variable to the event.target along with replacing the "this" keywords since event.target is handling that for us now.
 function decrement(event) {
   const decBtn = event.target.closest(".decrease");
   console.log(decBtn);

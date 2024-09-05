@@ -4695,9 +4695,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 60%;
 }
 
-.accordion-button.CartPayDeliver {
+.accordion-button.CartPayDeliver::after {
   background: none;
   color: #000000;
+  background-image: none;
+}
+.accordion-button.CartPayDeliver:not(.collapsed)::after {
+  background: none;
+  color: #000000;
+  background-image: none;
 }
 
 .cartDetailContain {
