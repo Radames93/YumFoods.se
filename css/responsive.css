@@ -1652,6 +1652,10 @@
     height: 307px !important;
   }
 
+  .accordion {
+    margin-top: 100px;
+  }
+
   /* =====================
         CART VIEW END
     =======================*/
@@ -2738,6 +2742,19 @@
   .cart_view_page_breadcrumb {
     background-image: url("../images/cartview-tablet.png") !important;
     height: 307px !important;
+  }
+
+  .imgContainer {
+    width: 200px;
+  }
+
+  .imgContainer img {
+    height: 100px;
+    width: 100px;
+  }
+
+  .food-description {
+    width: 200px !important;
   }
 
   /* =====================
@@ -3926,6 +3943,22 @@
   .cart_view_page_breadcrumb {
     background-image: url("../images/cartview-mobile.png") !important;
     height: 307px !important;
+  }
+
+  .imgContainer {
+    width: 200px;
+    text-align: center;
+    margin-left: -50px;
+  }
+
+  .imgContainer img {
+    height: 80px;
+    width: 50px;
+    margin-left: 20px;
+  }
+
+  .food-description {
+    width: 200px !important;
   }
 
   /* =====================

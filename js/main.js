@@ -453,6 +453,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
+                  data-yum-diet=${yum.diet}
                   data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
@@ -518,6 +519,7 @@ const yumProducts = (yumProductsList) => {
           data-yum-img=${yum.img}
           data-yum-quantity-price=${yum.price}
           data-yum-description=${yum.description}
+          data-yum-diet=${[value]}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
           `
@@ -1655,6 +1657,10 @@ function realAddToCart(event) {
   var img = event.target.closest("button").dataset.yumImg;
   var quantityPrice = event.target.closest("button").dataset.yumQuantityPrice;
   var description = event.target.closest("button").dataset.yumDescription;
+  var dietImage = event.target.closest("button").dataset.yumDiet;
+
+  dietImage = JSON.parse(dietImage);
+  console.log(dietImage);
 
   let formData = {};
   formData.id = id;
@@ -1664,6 +1670,7 @@ function realAddToCart(event) {
   formData.quantityPrice = quantityPrice;
   formData.quantity = 1;
   formData.description = description;
+  formData.diet = dietImage;
 
   const itemIndexInBasket = formDataArry.findIndex(
     (basketEntry) => basketEntry.id === id
@@ -1694,6 +1701,7 @@ function modalAddToCart() {
   var modalImage = localStorage.getItem("img");
   var modalQuantity = localStorage.getItem("quantity");
   var modalDescription = localStorage.getItem("description");
+  var modalDiet = localStorage.getItem("diet");
 
   let formData = {};
   formData.id = modalId;
@@ -1703,6 +1711,7 @@ function modalAddToCart() {
   formData.quantityPrice = modalQuantityPrice;
   formData.quantity = modalQuantity;
   formData.description = modalDescription;
+  formData.diet = modalDiet;
 
   const itemIndexInBasket = formDataArry.findIndex(
     (basketEntry) => basketEntry.id === modalId
@@ -1755,6 +1764,8 @@ const displayNewCart = () => {
       summaryHead.classList.add("block");
       const htmlString = formDataArry
         .map((item) => {
+          let diet = "";
+          let value = "";
           console.log(item);
           id = item.id;
           let quantity;
@@ -1763,6 +1774,38 @@ const displayNewCart = () => {
             quantity = localStorage.getItem("quantity");
           } else {
             quantity = item.quantity;
+          }
+          if (Array.isArray(item.diet)) {
+            var obj = item.diet;
+            value = JSON.stringify(obj);
+            const imageTags = item.diet.map((img) => {
+              console.log(img);
+              return (
+                `<img id="diet"
+                  src=
+                  ` +
+                img +
+                `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />
+                `
+              );
+            });
+            diet = imageTags;
+          } else {
+            const singleImage =
+              `<img id="diet"
+                  src=
+                  ` +
+              item.diet +
+              `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />
+                `;
+            diet = singleImage;
+            value = item.diet;
           }
           //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
           return (
@@ -1782,14 +1825,20 @@ const displayNewCart = () => {
       <div class="cartDetailContain d-flex flex-column">
 
       <div class="d-flex flex-row">
-          <h5 class="">` +
+          <h5 id="" style="flex-direction: row; display: flex;" class="">` +
             item.title +
             `
+            <div style="padding: 10px; margin-top: -17px;" class="d-flex">` +
+            diet +
+            `</div>
+            
           </h5>
-          <h5 class="ms-auto me-4">Ta Bort X</h5>
+          <h5 style="cursor: pointer;" onclick="removeItem(` +
+            item.id +
+            `)" class="ms-auto me-4">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
       </div>
 
-        <p style="max-width: 250px; max-height:50px; overflow-y:scroll;">
+        <p class="food-description" style="width: 400px; max-height:50px; overflow-y:scroll;">
             ${item.description}
         </p>
 
@@ -1797,24 +1846,24 @@ const displayNewCart = () => {
 
            <div class="quentity_btn">
               <button class="decrease">
-              -
+              <i style="font-size: 12px; line-height: 3;" class="fas fa-minus"></i>
               </button>
               <input class="quantity" type="text" value=` +
             quantity +
             `>
               <button class="increase">
-              +
+              <i id="plus-cart" style="font-size: 12px; line-height: 3;" class="fas fa-plus"></i>
               </button>
            </div>
 
             <div class="pro_icon d-flex">
                   <button class="mx-3" onclick="removeItem(` +
             item.id +
-            `)" href="#"><i class="fas fa-trash-alt" style="font-size:17px; color:#FF6633; margin-right:10px;"></i>
+            `)" href="#"><i class="fas fa-trash-alt" style="font-size: 17px; color:#FF6633; margin-right: 10px; margin-top: 50px;"></i>
                 </button>
             </div>
 
-            <div class="d-flex flex-row align-items-center ms-auto me-4">
+            <div id="final-price" class="d-flex flex-row align-items-center ms-auto me-4">
                 <h6 class="quantity_price currency mb_0">` +
             item.quantityPrice +
             `

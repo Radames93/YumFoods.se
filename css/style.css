@@ -4390,6 +4390,7 @@ footer {
   justify-content: start;
   border: solid 1px #ff6633;
   border-radius: 7px;
+  margin-top: 40px;
 }
 
 .quentity_btn,
@@ -4397,33 +4398,37 @@ footer {
   border-right: solid 1px #ff6633;
 }
 
+.quentity_btn,
+.increase {
+  border-left: solid 1px #ff6633;
+}
+
 .quentity_btn button {
-  /* width: 35px;
-  height: 35px; */
   margin: 0px 20px 0px 20px;
   line-height: 35px;
-  font-size: 32px;
-  /* color: #fff; */
   background: white;
-  /* background: var(--colorPrimary); */
   outline: none;
-  border: none;
-  padding: 7px;
   transition: all linear 0.3s;
-  border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  -ms-border-radius: 6px;
-  -o-border-radius: 6px;
   -webkit-transition: all linear 0.3s;
   -moz-transition: all linear 0.3s;
   -ms-transition: all linear 0.3s;
   -o-transition: all linear 0.3s;
 }
 
-.quentity_btn button:hover {
-  background: var(--colorBlack);
-  color: white;
+#ta-bort-x {
+  margin-left: 3px;
+}
+
+#plus-cart {
+  margin-left: 18px;
+}
+
+#final-price {
+  margin-top: 40px;
+}
+
+.fa-minus::before {
+  margin-right: 18px;
 }
 
 .quentity_btn input {
@@ -4436,11 +4441,6 @@ footer {
   font-size: 16px;
   font-weight: 400;
   color: var(--colorBlack);
-  /* border-radius: 30px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px; */
 }
 
 .quentity_btn_area h3 {
@@ -4452,6 +4452,20 @@ footer {
 
 .details_button_area li a {
   margin-right: 10px;
+}
+
+#rabatt-kod {
+  height: 30px;
+}
+
+#rabatt-kod button {
+  padding-top: 2px;
+}
+
+#rabatt-input {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border: 1px solid #64748b;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -5972,6 +5986,31 @@ table tbody tr td span {
   background-image: url(../images//minus-solid.svg);
 }
 
+#cart-next-btn {
+  display: flex;
+  height: 48px;
+  padding: 16px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 6px;
+  border: 1px solid var(--Stroke, #dbdfd0);
+  color: white;
+  background: var(--Complementary-color, #dd3902);
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imgContainer {
+  width: 200px;
+}
+
+#cart-next-btn:hover {
+  border-radius: 6px;
+  background: #ed8b68;
+}
+
 .faq_area_img {
   margin-top: 25px;
   height: 645px;
@@ -7038,7 +7077,6 @@ table tbody tr td span {
 
 .currency {
   font-size: 20px;
-  font-weight: 600;
   margin-bottom: 20px;
 }
 
