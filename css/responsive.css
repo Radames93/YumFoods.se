@@ -1655,6 +1655,32 @@
   /* =====================
         CART VIEW END
     =======================*/
+    
+  /* =====================
+        LEVERANS START
+    =======================*/
+    
+    .calendar .date-box{
+      width: 100px;
+      gap: 10px;
+    }
+
+    .deliver .deliverTime{
+      margin-bottom: 120px;
+    }
+
+    .leverans-img{
+      width: 160px;
+    }
+
+    .deliverTime1 .tid-box.tid1,
+    .deliverTime1 .tid-box.tid2{
+      margin-bottom: 10px;
+    } 
+    
+  /* =====================
+        LEVERANS END
+    =======================*/
 }
 
 @media (min-width: 576px) and (max-width: 767.99px) {
@@ -2747,6 +2773,34 @@
   .h-captcha {
     padding-bottom: 20px;
   }
+/* =====================
+        LEVERANS START
+    =======================*/
+    
+    .calendar .date-box{
+      width: 80px;
+      gap: 5px;
+    }
+
+    .calender-arrow .right-arrow{
+       margin-right: 100px;
+    }
+    
+  .deliverTime{
+    margin-left: 50px;
+    margin-bottom: 180px;
+  }
+
+  .deliverTime1 .tid-box.tid1{
+   margin-bottom: 10px;
+  }
+
+  .deliverTime1 .tid-box.tid2{
+    margin-bottom: 10px;
+   }
+  /* =====================
+        LEVERANS END
+    =======================*/
 }
 @media (max-width: 575.99px) {
   /* =====================
@@ -3571,7 +3625,6 @@
   .about_choose_img {
     width: 300px;
     height: 350px;
-    margin-left: 0;
     margin-top: 25px;
   }
 
@@ -3939,6 +3992,65 @@
   .slide-container {
     height: 300px;
   }
+  /* =====================
+        LEVERANS START
+    =======================*/
+  /* .calendar{
+    display: flex;
+    flex-direction: column;
+  } */
+
+  .calendar .date-box{
+    width: 80px;
+  }
+    
+  .calendar .date-box.box3{
+    display: none;
+  }
+
+  .deliverDate{
+    min-width: 100px;
+   
+  }
+
+  /* .deliverDate .arrow{
+    padding: 10px;
+  } */
+    
+  .deliverTime{
+    margin-left: 50px;
+    margin-bottom: 180px;
+  }
+
+  .deliverTime1 .tid-box.tid1{
+   margin-bottom: 10px;
+  }
+
+  .deliverTime1 .tid-box.tid2{
+    margin-bottom: 10px;
+   }
+  
+    .deliverTime{
+      margin-left: 50px;
+      margin-bottom: 180px;
+    }
+    .deliverTime1 .tid-box.tid1{
+     margin-bottom: 10px;
+    }
+  
+    .deliverTime1 .tid-box.tid2{
+      margin-bottom: 10px;
+     }
+
+     .calender-holebox {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 50px;
+     }
+    /* =====================
+          LEVERANS END
+      =======================*/
 }
 
 @media (min-width: 375px) and (max-width: 991.99px) {
