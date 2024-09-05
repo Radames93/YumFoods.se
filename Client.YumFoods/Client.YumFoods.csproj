@@ -63,7 +63,6 @@
     <None Include="wwwroot\docs\Halal Certificate.pdf" />
     <None Include="wwwroot\docs\Packages Certificate.pdf" />
     <None Include="wwwroot\docs\Privacy Policy.pdf" />
-    <None Include="wwwroot\js\products.json" />
     <None Include="wwwroot\webfonts\fa-brands-400.eot" />
     <None Include="wwwroot\webfonts\fa-brands-400.ttf" />
     <None Include="wwwroot\webfonts\fa-brands-400.woff" />
