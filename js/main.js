@@ -2047,7 +2047,7 @@ function nextAccord1() {
     const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
     console.log(fixedHeader);
     window.scrollTo({
-      top: fixedHeader - navHeader - 50,
+      top: fixedHeader - navHeader - 100,
       behavior: "smooth",
     });
   }, 230);
@@ -2067,21 +2067,21 @@ function nextAccord1() {
 }
 
 function nextAccord2() {
-  const navHeader = document.querySelector(".main_menu").offsetHeight;
-  const header = document.querySelector("#headingThree");
-  const acc = document.querySelector(".accordTwo");
-  const nextAccord = document.querySelector(".accordThree");
-  acc.classList.remove("show");
-  nextAccord.classList.add("show");
-
-  setTimeout(() => {
-    const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
-    console.log(fixedHeader);
-    window.scrollTo({
-      top: fixedHeader - navHeader - 120,
-      behavior: "smooth",
-    });
-  }, 230);
+  // Subject to change
+  // const navHeader = document.querySelector(".main_menu").offsetHeight;
+  // const header = document.querySelector("#headingThree");
+  // const acc = document.querySelector(".accordTwo");
+  // const nextAccord = document.querySelector(".accordThree");
+  // acc.classList.remove("show");
+  // nextAccord.classList.add("show");
+  // setTimeout(() => {
+  //   const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+  //   console.log(fixedHeader);
+  //   window.scrollTo({
+  //     top: fixedHeader - navHeader - 120,
+  //     behavior: "smooth",
+  //   });
+  // }, 250);
 }
 
 // Displaying the next 2 weeks, 3 days ahead while skipping Saturdays and Sundays
@@ -2112,53 +2112,6 @@ function nextAccord2() {
 // }
 
 // console.log(threeDaysAhead)
-// ----------------------------------
-
-// ---------------------------------- Alt 2 ----------------------------------
-// const week = ['Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör']
-// const months = ['Jan', 'Feb', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']
-
-// const dates = new Date();
-
-// const currentMonth = months[dates.getMonth()];
-// const currentDayString = week[dates.getDay()];
-// const currentDay = dates.getDay();
-// const threeDaysAhead = []
-
-// for(let i = 3; i < 17; i++) {
-// if(currentDay === 0){
-// currentDay + 1
-// } else if(currentDay === 6) {
-// currentDay + 2
-// }
-// let grabDays = (currentDay + i) % 7;
-// threeDaysAhead.push(week[grabDays])
-// console.log(threeDaysAhead)
-// }
-// ----------------------------------
-
-//---------------------------------- Alt 3 ----------------------------------
-// const week = ['Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör']
-// const months = ['Jan', 'Feb', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec']
-
-// const dates = new Date();
-
-// const currentMonth = months[dates.getMonth()];
-// const currentDayString = week[dates.getDay()];
-// const currentDay = dates.getDay();
-// let daysShowing = 0
-// let dayIndex = currentDay
-// const threeDaysAhead = []
-
-// while(daysShowing < 10) {
-// let dayIndex = (currentDay + 3) % 7;
-
-// if(daysShowing !== 0 && daysShowing !== 6) {
-// threeDaysAhead.push(week[dayIndex])
-// daysShowing++
-// console.log(threeDaysAhead)
-// }
-// }
 // ----------------------------------
 
 //Increment function on the + button for quantity
