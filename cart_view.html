@@ -90,6 +90,14 @@
                       aria-expanded="true"
                       aria-controls="collapseOne"
                     >
+                      <i
+                        style="
+                          margin-right: 10px;
+                          color: #fc5633;
+                          font-size: 25px;
+                        "
+                        class="fas fa-cart-plus"
+                      ></i>
                       Varukorg
                     </button>
                   </h2>
@@ -99,7 +107,10 @@
                     aria-labelledby="headingOne"
                     data-bs-parent="#customerHandling"
                   >
-                    <div class="accordion-body border-top CartPayDeliver">
+                    <div
+                      style="border-top: 1px solid #fc5633"
+                      class="accordion-body border-top CartPayDeliver"
+                    >
                       <!-- -------------------Content Start----------------- -->
                       <section>
                         <div class="container">
@@ -118,13 +129,14 @@
                         </div>
                         <div
                           id="summary_head"
-                          style="border-top: solid 1px black"
+                          style="border-top: solid 1px grey"
                         >
                           <h6 style="padding: 10px; margin-top: 25px">
                             Har du värdekod ?
                           </h6>
-                          <div class="d-flex">
+                          <div id="rabatt-kod" class="d-flex">
                             <input
+                              id="rabatt-input"
                               class="rounded-left"
                               type="text"
                               style="width: 10%"
@@ -136,23 +148,45 @@
                               Aktivera
                             </button>
                           </div>
-                          <div style="margin-top: 15px">
-                            <p
+                          <div class="summary" style="margin-top: 50px">
+                            <h6
                               style="
                                 background: rgba(38, 50, 56, 0.1);
                                 margin-bottom: 5px;
                               "
                             >
-                              Frakt
-                            </p>
-                            <p style="background-color: rgba(38, 50, 56, 0.1)">
-                              Totalt belopp inkl.moms
-                            </p>
+                              <p
+                                style="
+                                  padding-top: 5px;
+                                  padding-bottom: 5px;
+                                  padding-left: 20px;
+                                "
+                              >
+                                Frakt
+                              </p>
+                            </h6>
+                            <h6 style="background-color: rgba(38, 50, 56, 0.1)">
+                              <p
+                                style="
+                                  padding-top: 5px;
+                                  padding-bottom: 5px;
+                                  padding-left: 20px;
+                                  display: flex;
+                                  justify-content: space-between;
+                                "
+                              >
+                                Totalt belopp inkl.moms
+                                <span
+                                  style="padding-right: 20px"
+                                  id="total"
+                                ></span>
+                              </p>
+                            </h6>
                           </div>
 
                           <button
+                            id="cart-next-btn"
                             onclick="nextAccord1()"
-                            class="accordion-button d-block text-center mt-5 w-25 mx-auto nextAccord1"
                             type="button"
                             data-bs-toggle="collapse"
                             data-bs-target="#collapseOne"
