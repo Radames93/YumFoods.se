@@ -1838,7 +1838,7 @@ const displayNewCart = () => {
             `)" class="ms-auto me-4">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
       </div>
 
-        <p style="max-width: 250px; max-height:50px; overflow-y:scroll;">
+        <p class="food-description" style="width: 400px; max-height:50px; overflow-y:scroll;">
             ${item.description}
         </p>
 

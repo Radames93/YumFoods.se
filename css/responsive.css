@@ -2753,6 +2753,10 @@
     width: 100px;
   }
 
+  .food-description {
+    width: 200px !important;
+  }
+
   /* =====================
         CART VIEW DETAILS START
     =======================*/
@@ -3951,6 +3955,10 @@
     height: 80px;
     width: 50px;
     margin-left: 20px;
+  }
+
+  .food-description {
+    width: 200px !important;
   }
 
   /* =====================
