@@ -1598,6 +1598,32 @@
     margin-bottom: 70px;
   }
 
+  /* =====================
+        CAROUSEL START
+    =======================*/
+
+  .box-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .box-subtitle2 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  /* =====================
+        CAROUSEL END
+    =======================*/
+
   .single_blog_img {
     height: 230px;
   }
@@ -2471,6 +2497,32 @@
   .single_counter {
     margin-bottom: 70px;
   }
+
+  /* =====================
+        CAROUSEL START
+    =======================*/
+
+  .box-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .box-subtitle2 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  /* =====================
+          CAROUSEL END
+      =======================*/
 
   .single_blog_img {
     height: 200px;
