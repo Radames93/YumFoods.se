@@ -7087,3 +7087,178 @@ table tbody tr td span {
 .container > ul {
   order: 0;
 }
+
+/*============================
+    Leverans start
+============================*/
+.deliverDate{
+  display: flex;
+  height: 63px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  margin-bottom: 24px;
+  min-width: 500px;
+}
+
+.leverans-img{
+  width: 100px;
+  margin-top: 20px;
+  margin-left: 18px;
+}
+
+.calendar .date-box{
+  display: flex;
+  width: 120px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  border: 1px solid var(--Stroke, #DBDFD0);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.calendar .date-box:hover {
+  background: var(--Secondary-color, #FFDFCE);
+}
+
+.calender-arrow .arrow{
+  background-color: white;
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.calender-arrow .arrow.right-arrow{
+  margin-left: 10px;
+}
+
+.calender-arrow .arrow.left-arrow{
+  margin-right: 10px;
+}
+
+.date-box .day{
+  align-self: center;
+  color: var(--Black-for-text, #252627);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22.4px;
+}
+
+.date-box .date{
+  align-self: center;
+  color: var(--Black-for-text, #252627);
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; 
+}
+
+.tidtittle{
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22.4px; 
+}
+
+.deliverTime1 .tid-box{
+  border-radius: 12px;
+  border: 1px solid var(--Stroke, #DBDFD0);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  width: 178px;
+  height: 53px;
+  cursor: pointer;
+}
+
+.deliverTime1 .tid-box:hover{
+  background: var(--Secondary-color, #FFDFCE);
+}
+
+.deliverTime1 .tid-box.tid1{
+  margin-right: 15px;
+}
+
+.deliverTime1 .tid-box.tid2{
+  margin-right: 15px;
+}
+
+.deliverTime{
+  display: flex;
+  height: 120px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 0 20px;
+}
+
+.deliverTime1 .time{
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22.4px;
+  padding-top: 5px;
+}
+
+.customerBtn{
+  border: 1px solid black;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  gap: 8px;
+  background-color: white;
+}
+
+.customerBtn:hover{
+  background: var(--Secondary-color, #FFDFCE);
+  border: 1px solid black;
+}
+
+.nextAccord2{
+  display: flex;
+  height: 48px;
+  padding: 16px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 6px;
+  border: 1px solid var(--Stroke, #DBDFD0);
+  background: var(--Complementary-color, #DD3902);
+}
+
+.accordion-btn.btn2{
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid var(--Stroke, #8f8f8d);
+  background: var(--Complementary-color, #DD3902);
+  height: 48px;
+  padding: 0px 24px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-bottom: 50px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.form-check-label .form-check-input:checked {
+  background-color: #FC5633;
+  border-color: #f3f0ed;
+}
+
+.form-check-label .form-check-input{
+  margin-right: 12px;
+  margin-top: -1px;
+  cursor: pointer;
+}
+
+
+/*============================
+    Leverans END
+============================*/
