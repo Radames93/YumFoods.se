@@ -1,65 +1,45 @@
-using API.Extensions;
-using API.Stripe;
-using DataAccess;
-using DataAccess.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Shared.Entities;
-using Shared.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
 
-builder.Services.AddControllers();
+builder.Services.AddHttpClient("YumFoodsApiClient",
+    client =>
+        client.BaseAddress = new Uri("https://localhost:7296")
+);
+builder.Services.AddHttpClient("YumFoodsUserApiClient",
+    client =>
+        client.BaseAddress = new Uri("https://localhost:7296")
+);
 
-//var connectionString = Environment.GetEnvironmentVariable("YumFoodsDbConnectionString");
-//var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnectionString");
 
-builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
-builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
-builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
-builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
-
-var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\FRask-laptop\\Desktop\\Yum Foods\\ca-cert.pem;";
-var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\FRask-laptop\\Desktop\\Yum Foods\\ca-cert.pem;";
-
-builder.Services.AddDbContext<YumFoodsDb>(options =>
-    options.UseMySql(conn1, ServerVersion.AutoDetect(conn1)));
-
-builder.Services.AddDbContext<YumFoodsUserDb>(options =>
-    options.UseMySql(conn2, ServerVersion.AutoDetect(conn2)));
-
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAllOrigins",
-        //ändra policy till ""AllowSpecificOrigin" senare skede
-        policy =>
-        {
-            //Ändra policy.WithOrigins("http://localhostxxxxx.. för frontend")
-            policy.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-        });
-    //builder.Services.AddControllers();
-});
-
-builder.Services.AddOptions<StripeConfig>().BindConfiguration(nameof(StripeConfig));
-builder.Services.AddScoped<StripeClient>();
-
-builder.Services.AddRouting(options => options.LowercaseUrls = true);
+//builder.Services.AddScoped<IProductRepository<ProductDTO>, ProductService>();
+//builder.Services.AddScoped<IOrderDetailRepository<OrderDetailDTO>, OrderDetailService>();
+//builder.Services.AddScoped<IOrderRepository<OrderDTO>, OrderService>();
+//builder.Services.AddScoped<ISubscriptionRepository<SubscriptionDTO>, SubscriptionService>();
+//builder.Services.AddScoped<IPaymentService, PaymentService>();
+//builder.Services.AddScoped<ICartService, CartService>();
 
 var app = builder.Build();
 
-app.MapProductEndpoints();
-app.MapOrderEndpoints();
-app.MapOrderDetailEndpoints();
-app.MapSubscriptionEndpoints();
-app.MapPaymentsEndPoints();
-//app.MapUserEndpoints();
+
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Error", createScopeForErrors: true);
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
 
 app.UseHttpsRedirection();
-app.UseCors("AllowAllOrigins");
-app.UseAuthorization();
 
-app.MapControllers();
+app.UseStaticFiles();
+app.UseAntiforgery();
+
+//app.MapRazorComponents<App>()
+//    .AddInteractiveServerRenderMode();
 
 app.Run();
