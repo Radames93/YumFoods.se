@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <ProjectReference Include="..\yumfoods.se.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2401,3 +2401,9 @@ function Footer() {
 }
 
 Footer();
+
+document.addEventListener("DOMContentLoaded", function() {
+  Header();
+  Footer();
+});
+

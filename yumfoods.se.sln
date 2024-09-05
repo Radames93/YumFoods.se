@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yumfoods.se", "yumfoods.se.csproj", "{0F08DF15-53B0-4A61-B76C-26D0BC849028}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7B7709F7-EBEC-44CE-AB1B-68FB303B043F}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.props = Directory.Build.props
@@ -23,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{976158D8-1CA6-48AA-8E56-888705E34DD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.YumFoods", "Client.YumFoods\Client.YumFoods.csproj", "{8E33EEFE-CD5E-4231-946F-1518A31B6AEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,14 +31,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Debug|Any CPU.Build.0 = Debug|x86
-		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Debug|x86.ActiveCfg = Debug|x86
-		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Debug|x86.Build.0 = Debug|x86
-		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Release|Any CPU.ActiveCfg = Release|x86
-		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Release|Any CPU.Build.0 = Release|x86
-		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Release|x86.ActiveCfg = Release|x86
-		{0F08DF15-53B0-4A61-B76C-26D0BC849028}.Release|x86.Build.0 = Release|x86
 		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3B86F8E-6F49-4F39-A227-118149137CEC}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -71,6 +63,14 @@ Global
 		{976158D8-1CA6-48AA-8E56-888705E34DD6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{976158D8-1CA6-48AA-8E56-888705E34DD6}.Release|x86.ActiveCfg = Release|Any CPU
 		{976158D8-1CA6-48AA-8E56-888705E34DD6}.Release|x86.Build.0 = Release|Any CPU
+		{8E33EEFE-CD5E-4231-946F-1518A31B6AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E33EEFE-CD5E-4231-946F-1518A31B6AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E33EEFE-CD5E-4231-946F-1518A31B6AEB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8E33EEFE-CD5E-4231-946F-1518A31B6AEB}.Debug|x86.Build.0 = Debug|Any CPU
+		{8E33EEFE-CD5E-4231-946F-1518A31B6AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E33EEFE-CD5E-4231-946F-1518A31B6AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E33EEFE-CD5E-4231-946F-1518A31B6AEB}.Release|x86.ActiveCfg = Release|Any CPU
+		{8E33EEFE-CD5E-4231-946F-1518A31B6AEB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
