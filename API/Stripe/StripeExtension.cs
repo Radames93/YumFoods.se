@@ -10,6 +10,7 @@ public static class StripeExtension
         services.AddOptions<StripeConfig>().BindConfiguration(nameof(StripeConfig));
 
         services.AddScoped<StripeClient>();
+        Console.WriteLine("hej");
     }
 
     public static IEndpointRouteBuilder MapPaymentsEndPoints(this IEndpointRouteBuilder app)
