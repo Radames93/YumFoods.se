@@ -258,168 +258,212 @@ if (searchBar !== null) {
   removeEventListener("keyup", search);
 }
 
-//Fetch items from json
+//fetch from database through api 
 const loadProducts = async () => {
-  try {
-    await fetch("/products")
-      .then((response) => response.json())
-      .then((data) => {
-        yumProductsList = data.yum;
-        dailyProductsList = data.daily;
-        premiumProductsList = data.premium;
-        subscriptionsProductsList = data.subscriptions;
-        baguetterProductsList = data.baguetter;
-        yumFiltered = data.yum;
-        dailyFiltered = data.daily;
-        premiumFiltered = data.premium;
-        subscriptionsFiltered = data.subscriptions;
-        categoriesProductsList = data.categories;
-        offeredServicesList = data.services;
-        baguetterFiltered = data.baguetter;
-        all = [
-          ...yumProductsList,
-          ...dailyProductsList,
-          ...premiumProductsList,
-        ];
-      });
-    yumProducts(yumProductsList);
-    dailyProducts(dailyProductsList);
-    premiumProducts(premiumProductsList);
-    subscriptionsProducts(subscriptionsProductsList);
-    categoriesProducts(categoriesProductsList);
-    offeredServices(offeredServicesList);
-    baguetterProducts(baguetterProductsList);
-  } catch (err) {
-    console.log(err);
-  }
+    try {
+        // Fetch data from your API endpoint
+        await fetch("https://localhost:7216/products") // Ändra till din riktiga backend-URL
+            .then((response) => response.json())
+            .then((data) => {
+                // Anpassa beroende på hur din data från API:et är strukturerad
+                yumProductsList = data.filter(item => item.category === "yum");
+                dailyProductsList = data.filter(item => item.category === "dagens");
+                premiumProductsList = data.filter(item => item.category === "premium");
+                subscriptionsProductsList = data.filter(item => item.category === "subscriptions");
+                baguetterProductsList = data.filter(item => item.category === "baguetter");
+                categoriesProductsList = [...new Set(data.map(item => item.category))];
+                offeredServicesList = []; // Om du har tjänster också i din API
+
+                // Om du vill skapa "filtered" versioner också
+                yumFiltered = yumProductsList;
+                dailyFiltered = dailyProductsList;
+                premiumFiltered = premiumProductsList;
+                subscriptionsFiltered = subscriptionsProductsList;
+                baguetterFiltered = baguetterProductsList;
+
+                all = [
+                    ...yumProductsList,
+                    ...dailyProductsList,
+                    ...premiumProductsList,
+                ];
+            });
+
+        // Display the products
+        yumProducts(yumProductsList);
+        dailyProducts(dailyProductsList);
+        premiumProducts(premiumProductsList);
+        subscriptionsProducts(subscriptionsProductsList);
+        categoriesProducts(categoriesProductsList);
+        offeredServices(offeredServicesList);
+        baguetterProducts(baguetterProductsList);
+    } catch (err) {
+        console.log(err);
+    }
 };
 
-//Display yum items
-const yumProducts = (yumProductsList) => {
-  if (yum !== null) {
-    const htmlString = yumProductsList
-      .map((yum) => {
-        let diet = "";
-        let value = "";
-        if (Array.isArray(yum.diet)) {
-          var obj = yum.diet;
-          value = JSON.stringify(obj);
-          const imageTags = yum.diet.map((img) => {
-            return (
-              `<img id="diet"
-                  src=
-                  ` +
-              img +
-              `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `
-            );
-          });
-          diet = imageTags;
-        } else {
-          const singleImage =
-            `<img id="diet"
-                  src=
-                  ` +
-            yum.diet +
-            `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `;
-          diet = singleImage;
-          value = yum.diet;
-        }
-        return (
-          `<div
-            class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
-            data-wow-duration="1s"
-                        >
-          <div class="menu_item"  data-yum-id=${yum.id} 
-                  data-yum-title=${yum.title}
-                  data-yum-price=${yum.price}
-                  data-yum-img=${yum.img}
-                  data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${[value]}
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal"
-                  >
-              <div class="menu_item_img">
-                <img
-                  src=` +
-          yum.img +
-          `
-                  alt="yum-meny-bild"
-                  class="img-fluid w-100"
-                  class="title"
-                  href="#"
+
+////Fetch items from json
+//const loadProducts = async () => {
+//  try {
+//    await fetch("/products")
+//      .then((response) => response.json())
+//      .then((data) => {
+//        yumProductsList = data.yum;
+//        dailyProductsList = data.daily;
+//        premiumProductsList = data.premium;
+//        subscriptionsProductsList = data.subscriptions;
+//        baguetterProductsList = data.baguetter;
+//        yumFiltered = data.yum;
+//        dailyFiltered = data.daily;
+//        premiumFiltered = data.premium;
+//        subscriptionsFiltered = data.subscriptions;
+//        categoriesProductsList = data.categories;
+//        offeredServicesList = data.services;
+//        baguetterFiltered = data.baguetter;
+//        all = [
+//          ...yumProductsList,
+//          ...dailyProductsList,
+//          ...premiumProductsList,
+//        ];
+//      });
+//    yumProducts(yumProductsList);
+//    dailyProducts(dailyProductsList);
+//    premiumProducts(premiumProductsList);
+//    subscriptionsProducts(subscriptionsProductsList);
+//    categoriesProducts(categoriesProductsList);
+//    offeredServices(offeredServicesList);
+//    baguetterProducts(baguetterProductsList);
+//  } catch (err) {
+//    console.log(err);
+//  }
+//};
+
+////Display yum items
+//const yumProducts = (yumProductsList) => {
+//  if (yum !== null) {
+//    const htmlString = yumProductsList
+//      .map((yum) => {
+//        let diet = "";
+//        let value = "";
+//        if (Array.isArray(yum.diet)) {
+//          var obj = yum.diet;
+//          value = JSON.stringify(obj);
+//          const imageTags = yum.diet.map((img) => {
+//            return (
+//              `<img id="diet"
+//                  src=
+//                  ` +
+//              img +
+//              `
+//                  alt="specialkost-bild"
+//                  class="diet_img"
+//                />
+//                `
+//            );
+//          });
+//          diet = imageTags;
+//        } else {
+//          const singleImage =
+//            `<img id="diet"
+//                  src=
+//                  ` +
+//            yum.diet +
+//            `
+//                  alt="specialkost-bild"
+//                  class="diet_img"
+//                />
+//                `;
+//          diet = singleImage;
+//          value = yum.diet;
+//        }
+//        return (
+//          `<div
+//            class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
+//            data-wow-duration="1s"
+//                        >
+//          <div class="menu_item"  data-yum-id=${yum.id} 
+//                  data-yum-title=${yum.title}
+//                  data-yum-price=${yum.price}
+//                  data-yum-img=${yum.img}
+//                  data-yum-quantity-price=${yum.price}
+//                  data-yum-description=${yum.description}
+//                  data-yum-ingredients=${yum.ingredients}
+//                  data-yum-diet=${[value]}
+//                  data-bs-toggle="modal"
+//                  data-bs-target="#modal"
+//                  >
+//              <div class="menu_item_img">
+//                <img
+//                  src=` +
+//          yum.img +
+//          `
+//                  alt="yum-meny-bild"
+//                  class="img-fluid w-100"
+//                  class="title"
+//                  href="#"
                   
-                />
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-              <div class="d-flex">` +
-          diet +
-          `</div>
-                <a class="category" href="#">` +
-          yum.category +
-          `</a>
-          </div>
-              <div class="menu_item_text">
-                <a
-                  class="title"
-                  href="#"
-                  data-yum-id=${yum.id} 
-                  data-yum-title=${yum.title}
-                  data-yum-price=${yum.price}
-                  data-yum-img=${yum.img}
-                  data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${[value]}
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal"
-                  >` +
-          yum.title.replace(/'/g, "") +
-          `</a
-                >
-                <h5 class="price">` +
-          yum.price +
-          `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
-          yum.id +
-          `
-          data-yum-id=${yum.id} 
-          data-yum-title=${yum.title}
-          data-yum-price=${yum.price}
-          data-yum-img=${yum.img}
-          data-yum-quantity-price=${yum.price}
-          ` +
-          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
-          `<!--
-          <ul class="d-flex flex-wrap justify-content-end">
-                  <li>
-                    <a href="#"><i class="fa fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="menu_details.html"><i class="fa fa-eye"></i></a>
-                  </li>
-                </ul>
-                -->
-              </div>
-            </div>
-          </div>`
-        );
-      })
-      .join("");
-    yum.innerHTML = htmlString;
-  } else {
-    return null;
-  }
-};
+//                />
+//              </div>
+//              <div class="d-flex justify-content-between align-items-center">
+//              <div class="d-flex">` +
+//          diet +
+//          `</div>
+//                <a class="category" href="#">` +
+//          yum.category +
+//          `</a>
+//          </div>
+//              <div class="menu_item_text">
+//                <a
+//                  class="title"
+//                  href="#"
+//                  data-yum-id=${yum.id} 
+//                  data-yum-title=${yum.title}
+//                  data-yum-price=${yum.price}
+//                  data-yum-img=${yum.img}
+//                  data-yum-quantity-price=${yum.price}
+//                  data-yum-description=${yum.description}
+//                  data-yum-ingredients=${yum.ingredients}
+//                  data-yum-diet=${[value]}
+//                  data-bs-toggle="modal"
+//                  data-bs-target="#modal"
+//                  >` +
+//          yum.title.replace(/'/g, "") +
+//          `</a
+//                >
+//                <h5 class="price">` +
+//          yum.price +
+//          `kr</h5>` +
+//          "<button id='cart-button' class='add_to_cart' data-id=" +
+//          yum.id +
+//          `
+//          data-yum-id=${yum.id} 
+//          data-yum-title=${yum.title}
+//          data-yum-price=${yum.price}
+//          data-yum-img=${yum.img}
+//          data-yum-quantity-price=${yum.price}
+//          ` +
+//          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+//          `<!--
+//          <ul class="d-flex flex-wrap justify-content-end">
+//                  <li>
+//                    <a href="#"><i class="fa fa-heart"></i></a>
+//                  </li>
+//                  <li>
+//                    <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+//                  </li>
+//                </ul>
+//                -->
+//              </div>
+//            </div>
+//          </div>`
+//        );
+//      })
+//      .join("");
+//    yum.innerHTML = htmlString;
+//  } else {
+//    return null;
+//  }
+//};
 
 //Display daily items
 const dailyProducts = (dailyProductsList) => {
@@ -2330,3 +2374,8 @@ function Footer() {
 }
 
 Footer();
+
+document.addEventListener("DOMContentLoaded", function() {
+  Header();
+  Footer();
+});
