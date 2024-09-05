@@ -397,6 +397,8 @@ const loadProducts = async () => {
     categoriesProducts(categoriesProductsList);
     offeredServices(offeredServicesList);
     baguetterProducts(baguetterProductsList);
+    CarouselFoodBoxes(yumProductsList);
+    CarouselFoodBoxes2(yumProductsList);
   } catch (err) {
     console.log(err);
   }
@@ -525,6 +527,213 @@ const yumProducts = (yumProductsList) => {
       })
       .join("");
     yum.innerHTML = htmlString;
+  } else {
+    return null;
+  }
+};
+
+const carouselContainer = document.getElementById("container");
+const carouselContainer2 = document.getElementById("container2");
+
+const CarouselFoodBoxes = (yumProductsList) => {
+  if (carouselContainer !== null) {
+    const htmlString = yumProductsList
+      .map((yum) => {
+        let diet = "";
+        let value = "";
+        if (Array.isArray(yum.diet)) {
+          var obj = yum.diet;
+          value = JSON.stringify(obj);
+          const imageTags = yum.diet.map((img) => {
+            return (
+              `<img id="diet"
+                  src=` +
+              img +
+              `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />`
+            );
+          });
+          diet = imageTags;
+        } else {
+          const singleImage =
+            `<img id="diet"
+                  src=` +
+            yum.diet +
+            `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />`;
+          diet = singleImage;
+          value = yum.diet;
+        }
+        return (
+          `
+          <div class="swiper-slide">
+            <div class="menu_item_slider"
+                data-yum-id=${yum.id} 
+                data-yum-title=${yum.title}
+                data-yum-price=${yum.price}
+                data-yum-img=${yum.img}
+                data-yum-quantity-price=${yum.price}
+                data-yum-description=${yum.description}
+                data-yum-ingredients=${yum.ingredients}
+                data-yum-diet=${[value]}
+                data-bs-toggle="modal"
+                data-bs-target="#modal">
+              
+              <div class="menu_item_slider_img">
+                <img
+                  src=` +
+          yum.img +
+          `
+                  alt="yum-meny-bild"
+                  class="img-fluid w-100"
+                />
+              </div>
+
+              <div class="menu_item_slider_text">
+                <a
+                  class="title"
+                  href="#"
+                  data-yum-id=${yum.id} 
+                  data-yum-title=${yum.title}
+                  data-yum-price=${yum.price}
+                  data-yum-img=${yum.img}
+                  data-yum-quantity-price=${yum.price}
+                  data-yum-description=${yum.description}
+                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-diet=${[value]}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
+                  >` +
+          yum.title.replace(/'/g, "") +
+          `</a>
+                <p class="description">In the new era of technology we look in the future with certainty and pride for our life.</p>
+                <h5 class="price">` +
+          yum.price +
+          ` kr</h5>
+              </div>
+            </div>
+            <button id='cart-button' class='menu_add_to_cart' data-id=` +
+          yum.id +
+          `
+              data-yum-id=${yum.id} 
+              data-yum-title=${yum.title}
+              data-yum-price=${yum.price}
+              data-yum-img=${yum.img}
+              data-yum-quantity-price=${yum.price}
+              onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
+            </button>
+          </div>
+        `
+        );
+      })
+      .join("");
+    carouselContainer.insertAdjacentHTML("afterbegin", htmlString);
+  } else {
+    return null;
+  }
+};
+
+const CarouselFoodBoxes2 = (yumProductsList) => {
+  if (carouselContainer2 !== null) {
+    const htmlString = yumProductsList
+      .map((yum) => {
+        let diet = "";
+        let value = "";
+        if (Array.isArray(yum.diet)) {
+          var obj = yum.diet;
+          value = JSON.stringify(obj);
+          const imageTags = yum.diet.map((img) => {
+            return (
+              `<img id="diet"
+                  src=` +
+              img +
+              `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />`
+            );
+          });
+          diet = imageTags;
+        } else {
+          const singleImage =
+            `<img id="diet"
+                  src=` +
+            yum.diet +
+            `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />`;
+          diet = singleImage;
+          value = yum.diet;
+        }
+        return (
+          `
+          <div class="swiper-slide">
+            <div class="menu_item_slider"
+                data-yum-id=${yum.id} 
+                data-yum-title=${yum.title}
+                data-yum-price=${yum.price}
+                data-yum-img=${yum.img}
+                data-yum-quantity-price=${yum.price}
+                data-yum-description=${yum.description}
+                data-yum-ingredients=${yum.ingredients}
+                data-yum-diet=${[value]}
+                data-bs-toggle="modal"
+                data-bs-target="#modal">
+              
+              <div class="menu_item_slider_img">
+                <img
+                  src=` +
+          yum.img +
+          `
+                  alt="yum-meny-bild"
+                  class="img-fluid w-100"
+                />
+              </div>
+
+              <div class="menu_item_slider_text">
+                <a
+                  class="title"
+                  href="#"
+                  data-yum-id=${yum.id} 
+                  data-yum-title=${yum.title}
+                  data-yum-price=${yum.price}
+                  data-yum-img=${yum.img}
+                  data-yum-quantity-price=${yum.price}
+                  data-yum-description=${yum.description}
+                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-diet=${[value]}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
+                  >` +
+          yum.title.replace(/'/g, "") +
+          `</a>
+                <p class="description">In the new era of technology we look in the future with certainty and pride for our life.</p>
+                <h5 class="price">` +
+          yum.price +
+          ` kr</h5>
+              </div>
+            </div>
+            <button id='cart-button' class='menu_add_to_cart' data-id=` +
+          yum.id +
+          `
+              data-yum-id=${yum.id} 
+              data-yum-title=${yum.title}
+              data-yum-price=${yum.price}
+              data-yum-img=${yum.img}
+              data-yum-quantity-price=${yum.price}
+              onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
+            </button>
+          </div>
+        `
+        );
+      })
+      .join("");
+    carouselContainer2.insertAdjacentHTML("afterbegin", htmlString);
   } else {
     return null;
   }
@@ -2385,6 +2594,70 @@ function updateFields() {
   }
 }
 
+//Function for carousel slider on front page
+//Carousel 1
+
+//Carousel 2
+/*
+let currentIndex2 = 0;
+const carousel2 = document.getElementById("carousel2");
+const products2 = document.querySelectorAll(".product2");
+const product2Width = products2[0].offsetWidth + 20;
+const visibleProducts2 = 3;
+const totalProducts2 = products2.length;
+
+for (let i = 0; i < visibleProducts2; i++) {
+  const firstClone = products2[i].cloneNode(true);
+  const lastClone = products2[totalProducts2 - 1 - i].cloneNode(true);
+  carousel2.appendChild(firstClone);
+  carousel2.insertBefore(lastClone, carousel2.firstChild);
+}
+
+carousel2.style.width = `${
+  (totalProducts2 + visibleProducts2 * 2) * product2Width
+}px`;
+
+carousel2.style.transform = `translateX(-${
+  product2Width * visibleProducts2
+}px)`;
+
+function scrollCarouselLeft2() {
+  console.log("Left button clicked");
+  currentIndex2--;
+  carousel2.style.transition = "transform 0.5s ease-in-out";
+  carousel2.style.transform = `translateX(-${
+    (currentIndex2 + visibleProducts2) * product2Width
+  }px)`;
+
+  if (currentIndex2 < 0) {
+    setTimeout(() => {
+      carousel2.style.transition = "none";
+      currentIndex2 = totalProducts2 - 1;
+      carousel2.style.transform = `translateX(-${
+        (currentIndex2 + visibleProducts2) * product2Width
+      }px)`;
+    }, 500);
+  }
+}
+
+function scrollCarouselRight2() {
+  currentIndex2++;
+  carousel2.style.transition = "transform 0.5s ease-in-out";
+  carousel2.style.transform = `translateX(-${
+    (currentIndex2 + visibleProducts2) * product2Width
+  }px)`;
+
+  if (currentIndex2 >= totalProducts2) {
+    setTimeout(() => {
+      carousel2.style.transition = "none";
+      currentIndex2 = 0;
+      carousel2.style.transform = `translateX(-${
+        product2Width * visibleProducts2
+      }px)`;
+    }, 500);
+  }
+}
+*/
 //Funtion for show/hide faq accordions with button
 document.addEventListener("DOMContentLoaded", function () {
   const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
@@ -2511,7 +2784,7 @@ if (sendCartInfo !== null) {
   null;
 }
 
-var swiper = new Swiper(".slide-content", {
+var swiper1 = new Swiper(".slide-content", {
   slidesPerView: 3,
   spaceBetween: 25,
   loop: true,
@@ -2523,13 +2796,48 @@ var swiper = new Swiper(".slide-content", {
     clickable: true,
     dynamicBullets: true,
   },
-  autoplay: {
-    delay: 4500,
-    disableOnInteraction: false,
-  },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
+  },
+
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
+});
+
+var swiper2 = new Swiper(".slide-content2", {
+  slidesPerView: 3,
+  spaceBetween: 25,
+  loop: true,
+  centerSlide: "true",
+  fade: "true",
+  grabCursor: "true",
+  pagination: {
+    el: ".swiper-pagination2",
+    clickable: true,
+    dynamicBullets: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next2",
+    prevEl: ".swiper-button-prev2",
   },
 
   breakpoints: {
