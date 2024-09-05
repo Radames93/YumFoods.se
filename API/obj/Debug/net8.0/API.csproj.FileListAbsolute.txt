@@ -356,10 +356,8 @@ C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\bin\Debug\net8.0\runtimes
 C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
 C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\bin\Debug\net8.0\DataAccess.dll
 C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\bin\Debug\net8.0\Shared.dll
-C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\bin\Debug\net8.0\YumFoodsBackEnd.exe
 C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\bin\Debug\net8.0\DataAccess.pdb
 C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\bin\Debug\net8.0\Shared.pdb
-C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\bin\Debug\net8.0\YumFoodsBackEnd.pdb
 C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
 C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\obj\Debug\net8.0\API.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\FRask-laptop\Documents\GitHub\yumfoods.se\API\obj\Debug\net8.0\API.AssemblyInfoInputs.cache

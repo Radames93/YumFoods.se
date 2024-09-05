@@ -777,8 +777,7 @@
           "Microsoft.EntityFrameworkCore": "8.0.8",
           "Microsoft.Extensions.DependencyInjection": "8.0.0",
           "MySql.Data": "9.0.0",
-          "Shared": "1.0.0",
-          "yumfoods.se": "1.0.0"
+          "Shared": "1.0.0"
         },
         "runtime": {
           "DataAccess.dll": {
@@ -792,14 +791,6 @@
           "Shared.dll": {
             "assemblyVersion": "1.0.0",
             "fileVersion": "1.0.0.0"
-          }
-        }
-      },
-      "yumfoods.se/1.0.0": {
-        "runtime": {
-          "YumFoodsBackEnd.exe": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": ""
           }
         }
       }
@@ -1335,11 +1326,6 @@
       "sha512": ""
     },
     "Shared/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "yumfoods.se/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

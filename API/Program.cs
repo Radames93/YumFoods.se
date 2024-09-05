@@ -18,13 +18,6 @@ builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
 builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
-<<<<<<< HEAD
-//builder.Services.AddScoped<IUserRepository<User>, UserRepository>();
-=======
-//builder.Services.AddScoped<UserRepository>();
-
-//"C:\Users\Vivian\Documents\YF\ca-cert.pem"
->>>>>>> origin/dev-vivian-reverted
 
 var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\FRask-laptop\\Desktop\\Yum Foods\\ca-cert.pem;";
 var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\FRask-laptop\\Desktop\\Yum Foods\\ca-cert.pem;";

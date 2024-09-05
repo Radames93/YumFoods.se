@@ -15,22 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
-//app.MapGet("/", () => "Hello World!");
-void Configure(IApplicationBuilder app, IHostingEnvironment env)
-{
-    if (env.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-    }
 
-    app.UseStaticFiles(); // Detta gör att din frontend blir åtkomlig via webbläsaren.
-
-    app.Run(async (context) =>
-    {
-        context.Response.ContentType = "text/html";
-        await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
-    });
-}
 
 app.UseHttpsRedirection();
 app.UseDefaultFiles();

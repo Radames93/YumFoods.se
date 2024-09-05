@@ -36,7 +36,6 @@ $(function () {
 
   //=======COUNTER JS=======
   $(".counter").countUp();
-
   //*=======SCROLL BUTTON=======
   $(".scroll_btn").on("click", function () {
     $("html, body").animate(
@@ -167,9 +166,9 @@ function Header() {
               <ul class="droap_menu">
                 <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
                 <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
-                <li><a href="/html/yum_menu.html">Yum</a></li>
-              <li><a href="html/daily_menu.html">Dagens</a></li> 
-                <li><a href="html/premium_menu.html">Premium</a></li> 
+                <li><a href="yum_menu.html">Yum</a></li>
+              <li><a href="daily_menu.html">Dagens</a></li> 
+                <li><a href="premium_menu.html">Premium</a></li> 
               </ul>
             </li>
             <!--
@@ -341,41 +340,47 @@ if (searchBar !== null) {
   removeEventListener("keyup", search);
 }
 
-//Fetch items from json
+//Fetch items from database
 const loadProducts = async () => {
-  try {
-    await fetch("./js/products.json")
-      .then((response) => response.json())
-      .then((data) => {
-        yumProductsList = data.yum;
-        dailyProductsList = data.daily;
-        premiumProductsList = data.premium;
-        subscriptionsProductsList = data.subscriptions;
-        baguetterProductsList = data.baguetter;
-        yumFiltered = data.yum;
-        dailyFiltered = data.daily;
-        premiumFiltered = data.premium;
-        subscriptionsFiltered = data.subscriptions;
-        categoriesProductsList = data.categories;
-        offeredServicesList = data.services;
-        baguetterFiltered = data.baguetter;
+    try {
+        const response = await fetch("https://localhost:7216/products");
+        const data = await response.json();
+
+        const allProducts = data;
+
+        yumProductsList = allProducts.filter(product => product.category === "Yum");
+        dailyProductsList = allProducts.filter(product => product.category === "Dagens");
+        premiumProductsList = allProducts.filter(product => product.category === "Premium");
+        subscriptionsProductsList = allProducts.filter(product => product.category === "Subscriptions");
+        baguetterProductsList = allProducts.filter(product => product.category === "Baguetter");
+
+        // Further filtering or categorization 
+        yumFiltered = yumProductsList;
+        dailyFiltered = dailyProductsList;
+        premiumFiltered = premiumProductsList;
+        subscriptionsFiltered = subscriptionsProductsList;
+        baguetterFiltered = baguetterProductsList;
+
         all = [
-          ...yumProductsList,
-          ...dailyProductsList,
-          ...premiumProductsList,
+            ...yumProductsList,
+            ...dailyProductsList,
+            ...premiumProductsList,
+            ...subscriptionsProductsList,
+            ...baguetterProductsList,
         ];
-      });
-    yumProducts(yumProductsList);
-    dailyProducts(dailyProductsList);
-    premiumProducts(premiumProductsList);
-    subscriptionsProducts(subscriptionsProductsList);
-    categoriesProducts(categoriesProductsList);
-    offeredServices(offeredServicesList);
-    baguetterProducts(baguetterProductsList);
-  } catch (err) {
-    console.log(err);
-  }
+
+        // Passing the lists to UI functions
+        yumProducts(yumProductsList);
+        dailyProducts(dailyProductsList);
+        premiumProducts(premiumProductsList);
+        subscriptionsProducts(subscriptionsProductsList);
+        baguetterProducts(baguetterProductsList);
+        // Assuming categoriesProducts and offeredServices are handled separately
+    } catch (err) {
+        console.error(err);
+    }
 };
+
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
