@@ -452,13 +452,14 @@ const yumProducts = (yumProductsList) => {
             data-wow-duration="1s"
                         >
           <div class="menu_item"
-                  data-yum-id=${yum.id} 
+                  data-yum-id=${yum.id}
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
+                  data-yum-diet=${yum.diet}
                   data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
@@ -485,7 +486,7 @@ const yumProducts = (yumProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${yum.id} 
+                  data-yum-id=${yum.id}
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.img}
@@ -518,11 +519,13 @@ const yumProducts = (yumProductsList) => {
           "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           yum.id +
           `
-          data-yum-id=${yum.id} 
+          data-yum-id=${yum.id}
           data-yum-title=${yum.title}
           data-yum-price=${yum.price}
           data-yum-img=${yum.img}
           data-yum-quantity-price=${yum.price}
+          data-yum-description=${yum.description}
+          data-yum-diet=${[value]}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
           `
@@ -1866,6 +1869,11 @@ function realAddToCart(event) {
   var price = event.target.closest("button").dataset.yumPrice;
   var img = event.target.closest("button").dataset.yumImg;
   var quantityPrice = event.target.closest("button").dataset.yumQuantityPrice;
+  var description = event.target.closest("button").dataset.yumDescription;
+  var dietImage = event.target.closest("button").dataset.yumDiet;
+
+  dietImage = JSON.parse(dietImage);
+  console.log(dietImage);
 
   let formData = {};
   formData.id = id;
@@ -1874,6 +1882,8 @@ function realAddToCart(event) {
   formData.img = img;
   formData.quantityPrice = quantityPrice;
   formData.quantity = 1;
+  formData.description = description;
+  formData.diet = dietImage;
 
   const itemIndexInBasket = formDataArry.findIndex(
     (basketEntry) => basketEntry.id === id
@@ -1903,6 +1913,8 @@ function modalAddToCart() {
   var modalQuantityPrice = localStorage.getItem("quantity-price");
   var modalImage = localStorage.getItem("img");
   var modalQuantity = localStorage.getItem("quantity");
+  var modalDescription = localStorage.getItem("description");
+  var modalDiet = localStorage.getItem("diet");
 
   let formData = {};
   formData.id = modalId;
@@ -1911,6 +1923,8 @@ function modalAddToCart() {
   formData.img = modalImage;
   formData.quantityPrice = modalQuantityPrice;
   formData.quantity = modalQuantity;
+  formData.description = modalDescription;
+  formData.diet = modalDiet;
 
   const itemIndexInBasket = formDataArry.findIndex(
     (basketEntry) => basketEntry.id === modalId
@@ -1963,56 +1977,116 @@ const displayNewCart = () => {
       summaryHead.classList.add("block");
       const htmlString = formDataArry
         .map((item) => {
+          let diet = "";
+          let value = "";
+          console.log(item);
           id = item.id;
           let quantity;
+          description = item.title;
           if (item.quantity == null) {
             quantity = localStorage.getItem("quantity");
           } else {
             quantity = item.quantity;
           }
+          if (Array.isArray(item.diet)) {
+            var obj = item.diet;
+            value = JSON.stringify(obj);
+            const imageTags = item.diet.map((img) => {
+              console.log(img);
+              return (
+                `<img id="diet"
+                  src=
+                  ` +
+                img +
+                `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />
+                `
+              );
+            });
+            diet = imageTags;
+          } else {
+            const singleImage =
+              `<img id="diet"
+                  src=
+                  ` +
+              item.diet +
+              `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />
+                `;
+            diet = singleImage;
+            value = item.diet;
+          }
           //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
           return (
             `
-          <section class="col mb-4" id=` +
+<section class="col mb-4 d-flex flex-row" id=` +
             item.id +
             `>
-<div>
-   <img id="` +
+    <div class="imgContainer">
+      <img id="` +
             item.id +
             `" src="` +
             item.img +
             `" alt="bild på maträtt"
-      class="pro_img cartPayDeliver"/>
-      <p>` +
+      class="pro_img cartPayDeliver cropImage"/>
+    </div>
+
+      <div class="cartDetailContain d-flex flex-column">
+
+      <div class="d-flex flex-row">
+          <h5 id="" style="flex-direction: row; display: flex;" class="">` +
             item.title +
             `
-      </p>
-</div>
-<div class="pro_select d-flex flex-direction-row">
-   <div class="quentity_btn">
-      <button class="decrease">
-      <i class="fa fa-minus"></i>
-      </button>
-      <input class="quantity" type="text" value=` +
+            <div style="padding: 10px; margin-top: -17px;" class="d-flex">` +
+            diet +
+            `</div>
+
+          </h5>
+          <h5 style="cursor: pointer;" onclick="removeItem(` +
+            item.id +
+            `)" class="ms-auto me-4">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
+      </div>
+
+        <p class="food-description" style="width: 400px; max-height:50px; overflow-y:scroll;">
+            ${item.description}
+        </p>
+
+        <div class="pro_select d-flex flex-direction-row" style="width: 100%;">
+
+           <div class="quentity_btn">
+              <button class="decrease">
+              <i style="font-size: 12px; line-height: 3;" class="fas fa-minus"></i>
+              </button>
+              <input class="quantity" type="text" value=` +
             quantity +
             `>
-      <button class="increase">
-      <i class="fa fa-plus"></i>
-      </button>
-   </div>
-   <div class="pro_icon">
-      <button onclick="removeItem(` +
+              <button class="increase">
+              <i id="plus-cart" style="font-size: 12px; line-height: 3;" class="fas fa-plus"></i>
+              </button>
+           </div>
+
+            <div class="pro_icon d-flex">
+                  <button class="mx-3" onclick="removeItem(` +
             item.id +
-            `)" href="#"><i class="fas fa-trash-alt"></i></button>
-      <div class="quentity_btn">
-         <h6 class="quantity_price">` +
+            `)" href="#"><i class="fas fa-trash-alt" style="font-size: 17px; color:#FF6633; margin-right: 10px; margin-top: 50px;"></i>
+                </button>
+            </div>
+
+            <div id="final-price" class="d-flex flex-row align-items-center ms-auto me-4">
+                <h6 class="quantity_price currency mb_0">` +
             item.quantityPrice +
             `
-         </h6>
-         <h6 class="currency mb_0">kr</h6>
-      </div>
-   </div>
-</div>
+                </h6>
+                <h6 class="currency mb_0">kr</h6>
+            </div>
+
+          </div>
+
+        </div>
 </div>
 </section>
 
@@ -2207,6 +2281,208 @@ function cartBtns() {
 }
 cartBtns();
 
+//On page load, display the first open accordion using DOMContentLoaded event
+document.addEventListener("DOMContentLoaded", () => {
+  const navHeader = document.querySelector(".main_menu").offsetHeight;
+  const header = document.getElementById("headingOne");
+  const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({
+    top: fixedHeader - navHeader - 50,
+    behavior: "smooth",
+  });
+});
+
+//Grab the "jump to next accordion" buttons
+const accordOne = document.querySelector(".nextAccord1");
+const accordTwo = document.querySelector(".nextAccord2");
+
+// Two functions with scrollTo() method for both the second and third accordions. Since the navbar is in the way and obstructing the view, we need to know its height with offsetHeight, the size and relative position of the accordion header with getBoundingClientRect() and with the Window object scroll to the appropriate accordion header with the "next" buttons. The setTimeout is a temporary fix and might be due to the animations of opening and closing the accordion having to be played out to its end before it starts scrolling, mutationObserver could be an alternate solution.
+function nextAccord1() {
+  const navHeader = document.querySelector(".main_menu").offsetHeight;
+  const header = document.querySelector("#headingTwo");
+  const acc = document.querySelector(".accordOne");
+  const nextAccord = document.querySelector(".accordTwo");
+  acc.classList.remove("show");
+  nextAccord.classList.add("show");
+
+  setTimeout(() => {
+    const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+    console.log(fixedHeader);
+    window.scrollTo({
+      top: fixedHeader - navHeader - 100,
+      behavior: "smooth",
+    });
+  }, 230);
+
+  // header.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  // if (nextAccord.classList.contains("show")) {
+  //   header.scrollIntoView({ behavior: "smooth", block: "start" });
+  // } else {
+  //   console.log("no can do");
+  // }
+
+  // nextAccord.addEventListener("transitionend", function transitionEnd() {
+  //   nextAccord.removeEventListener("transitionend", transitionEnd);
+  //   header.scrollIntoView({ behavior: "smooth", block: "start" });
+  // });
+}
+
+function nextAccord2() {
+  // Subject to change
+  // const navHeader = document.querySelector(".main_menu").offsetHeight;
+  // const header = document.querySelector("#headingThree");
+  // const acc = document.querySelector(".accordTwo");
+  // const nextAccord = document.querySelector(".accordThree");
+  // acc.classList.remove("show");
+  // nextAccord.classList.add("show");
+  // setTimeout(() => {
+  //   const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+  //   console.log(fixedHeader);
+  //   window.scrollTo({
+  //     top: fixedHeader - navHeader - 120,
+  //     behavior: "smooth",
+  //   });
+  // }, 250);
+}
+// Display the upcoming 2 weeks while excluding the weekends (saturdays & sundays) while initially jumping ahead 3 days, in total 10 days.
+// 14 days in a week, but adding 3 results in 17
+// Grab the dates, format the display for dates using the options object and inserting that to "toLocaleString"
+// with a for loop, initialize "i" with 3 representing the 3 days ahead, check the current day with "checkDay",
+// with an if statement, as long as the "checkDay" is not on a weekend, push the formatted date into an empty array
+// and finally increment the dates with '1' for the next loop with setDate
+
+const dates = new Date();
+const options = { day: "numeric", month: "short", weekday: "long" };
+const twoWeeks = 17;
+
+let threeDaysAhead = [];
+dates.setDate(dates.getDate() + 3);
+
+for (let i = 3; i < twoWeeks; i++) {
+  const checkDay = dates.getDay();
+  if (checkDay !== 0 && checkDay !== 6) {
+    const sweDate = dates.toLocaleString("sv-SE", options);
+    threeDaysAhead.push(sweDate.toUpperCase());
+  }
+  dates.setDate(dates.getDate() + 1);
+}
+
+console.log(threeDaysAhead);
+
+const dateStrings = threeDaysAhead
+  .map((day) => {
+    const [weekday, days, month] = day.split(" ");
+    return `
+
+ <div class="d-flex calendar justify-content-center dateWrapper">
+  <div class="date-box box1 text-center mx-2 date">
+    <div class="day">${weekday}</div>
+    <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
+  </div>
+</div>
+
+`;
+  })
+  .join("");
+
+document.getElementById("deliverDates").innerHTML = dateStrings;
+
+const theBox = document.querySelectorAll(".box1");
+
+theBox.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    theBox.forEach((b) => b.classList.remove("box-selected"));
+    btn.classList.add("box-selected");
+  });
+});
+
+// theBox.addEventListener('click', function() {
+// theBox.classList.toggle("box-selected");
+// })
+
+// Arrow buttons, add a click function to move it left and right whilst checking the clip-path to dynamically move it left and right depending where the element is being moved in order to ensure only the middle is visible
+const clipPaths = [
+  "inset(-15.33% -7.61% -24.62% -2.53%)",
+  "inset(-15.33% -113.01% -24.62% 105.95%)",
+  "inset(-15.33% -220.47% -24.62% 212.38%)",
+  "inset(-15.33% -326.13% -24.62% 319.84%)",
+];
+
+let xAxis = 0;
+let rightClicks = 0;
+let maxClicks = 3;
+let itemWidth = 415;
+document.querySelector("#leftArrow").setAttribute("disabled", true);
+
+function updateClipPath() {
+  const clipValue = clipPaths[rightClicks];
+  document.querySelector("#deliverDates").style.clipPath = clipValue;
+}
+updateClipPath();
+
+function moveLeft() {
+  if (rightClicks > 0) {
+    rightClicks--;
+    xAxis += itemWidth;
+    document.querySelector(
+      "#deliverDates"
+    ).style.transform = `translateX(${xAxis}px)`;
+    updateClipPath();
+    document.querySelector("#rightArrow").removeAttribute("disabled");
+    if (rightClicks === 0) {
+      document.querySelector("#leftArrow").setAttribute("disabled", true);
+    }
+  }
+}
+
+function moveRight() {
+  if (rightClicks < maxClicks) {
+    xAxis -= itemWidth;
+    rightClicks++;
+    document.querySelector(
+      "#deliverDates"
+    ).style.transform = `translateX(${xAxis}px)`;
+    updateClipPath();
+
+    document.querySelector("#leftArrow").removeAttribute("disabled");
+    console.log(rightClicks);
+  }
+
+  if (rightClicks === maxClicks) {
+    document.querySelector("#rightArrow").setAttribute("disabled", true);
+  }
+}
+
+document.querySelector("#rightArrow").addEventListener("click", moveRight);
+document.querySelector("#leftArrow").addEventListener("click", moveLeft);
+
+// <div>
+//     <button style="padding:5px; width:100px;">
+//     <div>${weekday}</div>
+//     <div>${days} ${month}</div>
+//     </button>
+// </div>
+
+{
+  /* <div class="d-flex calendar justify-content-center">
+<div class="date-box box1 text-center mx-2">
+  <div class="day">Måndag</div>
+  <div class="date">2 Sep</div>
+</div>
+<div class="date-box text-center mx-2">
+  <div class="day">Tisdag</div>
+  <div class="date">3 Sep</div>
+</div>
+<div class="date-box box3 text-center mx-2">
+  <div class="day">Onsdag</div>
+  <div class="date">4 Sep</div>
+</div>
+</div>  */
+}
+
+// ----------------------------------
+
 //Increment function on the + button for quantity
 function increment() {
   if (localStorage.getItem("quantity") !== null) {
@@ -2224,7 +2500,9 @@ function increment() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.parentElement.nextElementSibling.querySelector(".quantity_price");
+        this.parentElement.nextElementSibling.nextElementSibling.querySelector(
+          ".quantity_price"
+        );
       var input = this.previousElementSibling;
       console.log(input);
     }
@@ -2271,7 +2549,9 @@ function increment() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.parentElement.nextElementSibling.querySelector(".quantity_price");
+        this.parentElement.nextElementSibling.nextElementSibling.querySelector(
+          ".quantity_price"
+        );
       var input = this.previousElementSibling;
     }
     let inputQuantity = inp.value;
@@ -2295,7 +2575,8 @@ function increment() {
 }
 
 //Decrement function on the button for quantity
-//In order to ensure the button pressed is the one the user really clicked on, instead of just having it look for the closest matching class or id, declare a variable to the event.target along with replacing the "this" keywords since event.target is handling that for us now.
+// The "this" keyword might cause problems, we can't alway be certain its pointing to the correct button in the correct page and may cause unintended issues with decrementingh items from the cart
+//In order to ensure the button pressed is the one the user really clicked on, instead of just having it look for the closest matching class or id, assign a variable to the event.target along with replacing the "this" keywords since event.target is handling that for us now.
 function decrement(event) {
   const decBtn = event.target.closest(".decrease");
   console.log(decBtn);
@@ -2319,7 +2600,7 @@ function decrement(event) {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        decBtn.parentElement.nextElementSibling.querySelector(
+        decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
           ".quantity_price"
         );
       var input = this.nextElementSibling;
@@ -2369,7 +2650,7 @@ function decrement(event) {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        decBtn.parentElement.nextElementSibling.querySelector(
+        decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
           ".quantity_price"
         );
       var input = this.nextElementSibling;

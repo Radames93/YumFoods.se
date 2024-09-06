@@ -4657,48 +4657,59 @@ footer {
   display: flex;
   align-items: center;
   justify-content: start;
+  border: solid 1px #ff6633;
+  border-radius: 7px;
+  margin-top: 40px;
+}
+
+.quentity_btn,
+.decrease {
+  border-right: solid 1px #ff6633;
+}
+
+.quentity_btn,
+.increase {
+  border-left: solid 1px #ff6633;
 }
 
 .quentity_btn button {
-  width: 35px;
-  height: 35px;
+  margin: 0px 20px 0px 20px;
   line-height: 35px;
-  font-size: 15px;
-  color: #fff;
-  background: var(--colorPrimary);
+  background: white;
   outline: none;
-  border: none;
-  padding: 0;
   transition: all linear 0.3s;
-  border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
   -webkit-transition: all linear 0.3s;
   -moz-transition: all linear 0.3s;
   -ms-transition: all linear 0.3s;
   -o-transition: all linear 0.3s;
 }
 
-.quentity_btn button:hover {
-  background: var(--colorBlack);
+#ta-bort-x {
+  margin-left: 3px;
+}
+
+#plus-cart {
+  margin-left: 18px;
+}
+
+#final-price {
+  margin-top: 40px;
+}
+
+.fa-minus::before {
+  margin-right: 18px;
 }
 
 .quentity_btn input {
-  width: 60px;
+  width: 21px;
+  padding: 0px;
   text-align: center;
-  height: 35px;
-  border-radius: 30px;
-  border: 1px solid #ddd;
+  height: 16px;
+  border: none;
   margin: 0px 5px;
   font-size: 16px;
   font-weight: 400;
   color: var(--colorBlack);
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
 }
 
 .quentity_btn_area h3 {
@@ -4710,6 +4721,20 @@ footer {
 
 .details_button_area li a {
   margin-right: 10px;
+}
+
+#rabatt-kod {
+  height: 30px;
+}
+
+#rabatt-kod button {
+  padding-top: 2px;
+}
+
+#rabatt-input {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border: 1px solid #64748b;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -4908,7 +4933,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .container2 {
-  max-width: 1440px;
+  max-width: 850px;
   width: 100%;
   background: #fff;
 }
@@ -4920,6 +4945,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .deliverContainer {
   width: 65%;
+  box-sizing: content-box;
+}
+
+.setBoxSize {
+  box-sizing: border-box;
+}
+
+.cart_items {
+  padding: 13px;
 }
 
 .card.CartPayDeliver {
@@ -4930,10 +4964,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 60%;
 }
 
-.accordion-button.CartPayDeliver {
+.accordion-button.CartPayDeliver::after {
   background: none;
   color: #000000;
+  background-image: none;
 }
+.accordion-button.CartPayDeliver:not(.collapsed)::after {
+  background: none;
+  color: #000000;
+  background-image: none;
+}
+
+.cartDetailContain {
+  width: 100%;
+}
+
+/* .accordion-body,
+.CartPayDeliver {
+  padding: 0px;
+} */
 
 .form-check-input:checked.CartPayDeliver {
   background-color: rgb(235, 86, 0);
@@ -4951,9 +5000,24 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin-left: auto;
 }
 
-.pro_img.cartPayDeliver {
-  padding: 0px;
-  margin: 0;
+.imgContainer {
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cropImage {
+  position: absolute;
+  left: 25%;
+  transform: translateX(-50%) scale(1.5);
+
+  /* height: auto;
+  width: 150%;
+  object-fit: cover;
+  object-position: center;
+  height: auto;
+  clip-path: inset(0% 30% 0% 30%); */
 }
 
 .dateBtn,
@@ -4963,31 +5027,42 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: white;
   color: #000000;
   border-color: grey;
+  text-align: end;
+  display: flex;
+  margin: auto;
+  background-image: unset;
+}
+
+.dateWrapper {
+  clip-path: inset(-15.33% -4.27% -24.62% -3.3%);
+}
+
+.customerTypeBtn {
+  border-radius: 15px;
+  background: white;
+  color: #000000;
+  border-color: grey;
+  text-align: end;
+  background-image: unset;
 }
 
 .dateBtn:hover,
-.timeBtn:hover {
+.timeBtn:hover,
+.customerTypeBtn:hover {
   background: #fa6039;
   border-color: #fa6039;
 }
 
 .dateBtn:active:focus:not(:focus-visible),
-.timeBtn:active:focus:not(:focus-visible) {
+.timeBtn:active:focus:not(:focus-visible),
+.customerTypeBtn:focus:not(:focus-visible) {
   background: #fa6039;
   border-color: #fa6039;
 }
 
-.dateBtn,
-.timeBtn .nextAccord {
-  background-color: #ffffff;
-  display: flex;
-  margin: auto;
-  text-align: center;
-  background-image: unset;
-}
-
 .dateBtn:focus,
-.timeBtn:focus {
+.timeBtn:focus,
+.customerTypeBtn:focus {
   background: #fa6039;
   border-color: #fa6039;
 }
@@ -5023,11 +5098,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   transition: all 0.3s ease-in;
   cursor: pointer;
 }
+
 .pro_img {
   width: 40%;
   padding: 10px;
   min-width: 150px;
 }
+
 .pro_name {
   width: 30%;
   min-width: 240px;
@@ -6188,6 +6265,31 @@ table tbody tr td span {
   background-image: url(../images//minus-solid.svg);
 }
 
+#cart-next-btn {
+  display: flex;
+  height: 48px;
+  padding: 16px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 6px;
+  border: 1px solid var(--Stroke, #dbdfd0);
+  color: white;
+  background: var(--Complementary-color, #dd3902);
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imgContainer {
+  width: 200px;
+}
+
+#cart-next-btn:hover {
+  border-radius: 6px;
+  background: #ed8b68;
+}
+
 .faq_area_img {
   margin-top: 25px;
   height: 645px;
@@ -7254,7 +7356,6 @@ table tbody tr td span {
 
 .currency {
   font-size: 20px;
-  font-weight: 600;
   margin-bottom: 20px;
 }
 
@@ -7265,3 +7366,226 @@ table tbody tr td span {
 .container > ul {
   order: 0;
 }
+
+/*============================
+    Leverans start
+============================*/
+
+.deliverDate {
+  display: flex;
+  height: 63px;
+  align-items: center;
+  align-self: stretch;
+  margin-bottom: 24px;
+  min-width: 500px;
+  transition: transform 0.3s ease;
+  clip-path: inset(-15.33% -4.27% -24.62% -3.3%);
+}
+
+.leverans-img {
+  width: 100px;
+  margin-top: 20px;
+  margin-left: 18px;
+}
+
+.box1 {
+  display: inline-block;
+  user-select: none;
+}
+
+.calendar .date-box {
+  display: flex;
+  width: 120px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  border: 1px solid var(--Stroke, #dbdfd0);
+}
+
+.date-box {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.box-selected {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+#leftArrow {
+  z-index: 9;
+  position: relative;
+}
+
+#rightArrow {
+  z-index: 9;
+  position: relative;
+}
+
+.calendar .date-box:hover {
+  background: var(--Secondary-color, #ffdfce);
+  cursor: pointer;
+}
+
+.calendar .date-box:active {
+  /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset; */
+}
+
+.calender-arrow .arrow {
+  background-color: white;
+  border: 1px solid black;
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.calender-arrow .arrow.right-arrow {
+  margin-left: 10px;
+}
+
+.calender-arrow .arrow.left-arrow {
+  margin-right: 10px;
+}
+
+.calender-holebox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#deliverDates {
+  width: 75%;
+  background-color: white;
+  /* overflow-x: hidden; */
+  /* position: relative; */
+  z-index: 1;
+}
+
+.date-box .day {
+  align-self: center;
+  color: var(--Black-for-text, #252627);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22.4px;
+}
+
+.date-box .date {
+  align-self: center;
+  color: var(--Black-for-text, #252627);
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  word-spacing: 10px;
+  font-family: Poppins;
+}
+
+.tidtittle {
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22.4px;
+}
+
+.deliverTime1 .tid-box {
+  border-radius: 12px;
+  border: 1px solid var(--Stroke, #dbdfd0);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 178px;
+  height: 53px;
+  cursor: pointer;
+}
+
+.deliverTime1 .tid-box:active {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.deliverTime1 .tid-box:hover {
+  background: var(--Secondary-color, #ffdfce);
+}
+
+.deliverTime1 .tid-box.tid1 {
+  margin-right: 15px;
+}
+
+.deliverTime1 .tid-box.tid2 {
+  margin-right: 15px;
+}
+
+.deliverTime {
+  display: flex;
+  height: 120px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 0 20px;
+}
+
+.deliverTime1 .time {
+  color: #000;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22.4px;
+  padding-top: 5px;
+}
+
+.customerBtn {
+  border: 1px solid black;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  gap: 8px;
+  background-color: white;
+}
+
+.customerBtn:hover {
+  background: var(--Secondary-color, #ffdfce);
+  border: 1px solid black;
+}
+
+.nextAccord2 {
+  display: flex;
+  height: 48px;
+  padding: 16px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 6px;
+  border: 1px solid var(--Stroke, #dbdfd0);
+  background: var(--Complementary-color, #dd3902);
+}
+
+.accordion-btn.btn2 {
+  width: 250px;
+  border-radius: 6px;
+  border: 1px solid var(--Stroke, #8f8f8d);
+  background: var(--Complementary-color, #dd3902);
+  height: 48px;
+  padding: 0px 24px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-bottom: 50px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.form-check-label .form-check-input:checked {
+  background-color: #fc5633;
+  border-color: #f3f0ed;
+}
+
+.form-check-label .form-check-input {
+  margin-right: 12px;
+  margin-top: -1px;
+  cursor: pointer;
+}
+
+/*============================
+    Leverans END
+============================*/
