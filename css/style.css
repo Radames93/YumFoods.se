@@ -686,12 +686,12 @@ button {
 
 /* language button*/
 
-.langBtn .nav-item a{
+.langBtn .nav-item a {
   background-color: white;
 }
 
-.langBtn .nav-item .fa-angle-down{
-  color:  #fa6039;;
+.langBtn .nav-item .fa-angle-down {
+  color: #fa6039;
 }
 
 .langBtn .nav-item a {
@@ -737,20 +737,20 @@ button {
 /* menu end */
 
 /*popup in start page*/
-.modal-section .modal-content{
+.modal-section .modal-content {
   background-color: #fae0c8;
 }
 
-.custom-modal-size{
+.custom-modal-size {
   max-width: 40%;
   max-height: 60vh;
   margin-top: 230px;
 }
 
-.startpage-group .btn-adress{
+.startpage-group .btn-adress {
   margin-right: 20px;
   background-color: white;
-  border:  1px solid rgb(211, 211, 211);
+  border: 1px solid rgb(211, 211, 211);
   padding: 0 8px;
   color: rgb(122, 122, 122);
   border-top-right-radius: 5px;
@@ -764,17 +764,17 @@ button {
   padding: 0 8px;
 }
 
-.modal-section .modal-content .modal-body{
+.modal-section .modal-content .modal-body {
   margin-left: 50px;
   margin-right: 50px;
 }
 
-.modal-section .modal-content .modal-body p{
+.modal-section .modal-content .modal-body p {
   font-size: 14px;
   margin-top: 15px;
 }
 
-.modal-section .modal-content .form-label{
+.modal-section .modal-content .form-label {
   font-size: 13px;
   font-weight: 600;
   margin-bottom: 0px;
@@ -797,11 +797,11 @@ button {
   background-color: #ff7c082e;
 }
 
-.selected-border{
+.selected-border {
   border: 1px solid #000000 !important;
 }
 
-.unselected-border{
+.unselected-border {
   border: 1px solid #ddd;
 }
 .box1 {
@@ -831,7 +831,7 @@ button {
   border-radius: 10px;
 }
 
-.col-6 .btn2{
+.col-6 .btn2 {
   width: 15px;
   height: 15px;
   background-color: white;
@@ -844,11 +844,12 @@ button {
   margin: auto;
 }
 
-.pricedetail{
+.pricedetail {
   color: #ff7c08;
 }
 
 /* secound part of start page End*/
+
 /* banner start */
 
 .vectorButton {
@@ -2303,7 +2304,7 @@ button {
 
 #location-input::placeholder {
   color: #040404;
-  color: #040404; 
+  color: #040404;
   opacity: 1;
 }
 
