@@ -2299,20 +2299,24 @@ var swiper = new Swiper(".slide-content", {
 
 const submitCartForm = async (event) => {
     event.preventDefault();
-    // Hämta värden från formuläret
+
+    // Retrieve values from the form
     const name = document.querySelector('input[name="name"]').value;
     const email = document.querySelector('input[name="email"]').value;
     const phone = document.querySelector('input[name="phone"]').value;
-    const adress = document.querySelector('input[name="adress"]').value;
+    const address = document.querySelector('input[name="adress"]').value;
     const message = document.querySelector('textarea[name="message"]').value;
     const dishName = document.querySelector('input[name="dishName"]').value;
     const dishQuantity = document.querySelector('input[name=dishQuantity]').value;
-    const totalQuantity = dishQuantity.split(',')
-        .map(Number)  // Convert each part to a number
-        .reduce((sum, num) => sum + num, 0);  // Sum them all together
 
-    const dishQuantityPrice = parseFloat(document.querySelector('input[name="dishQuantityPrice"]').value);
+    // Calculate total quantity
+    const totalQuantity = dishQuantity.split(',')
+        .map(Number)
+        .reduce((sum, num) => sum + num, 0);
+
     const sum = parseFloat(document.querySelector('input[name="total"]').value);
+
+    // Validation
     if (!totalQuantity || isNaN(totalQuantity)) {
         alert("Vänligen ange en giltig numerisk mängd.");
         return;
@@ -2321,7 +2325,8 @@ const submitCartForm = async (event) => {
         alert("Vänligen ange en giltig totalsumma.");
         return;
     }
-    // Skapa PaymentRequest objektet
+
+    // Create PaymentRequest object
     const paymentRequest = {
         products: [
             {
@@ -2333,33 +2338,53 @@ const submitCartForm = async (event) => {
         customerName: name,
         customerEmail: email,
         customerPhone: phone,
-        customerAddress: adress,
+        customerAddress: address,
         message: message,
-        totalAmount: parseFloat(sum),
-        cancelPaymentUrl: "http://localhost:7216/404.html", // Du kan ändra denna till korrekt URL
-        successPaymentUrl: "http://din-webbplats.com/payment-success", // Ange din riktiga länk
+        totalAmount: sum,
+        paymentMethodTypes: ["card"],
+        cancelPaymentUrl: "http://localhost:7216/404.html",
+        successPaymentUrl: "http://din-webbplats.com/payment-success",
     };
+
     try {
         // Make a POST request to the backend API
-        const paymentRequest = {
-            products: [
-                {
-                    name: "Pizza",
-                    quantity: 2,
-                    price: 120
-                }
-            ],
-            successPaymentUrl: "http://example.com/success",
-            cancelPaymentUrl: "http://example.com/cancel"
-        };
-
-        createPayment(paymentRequest).then((checkoutUrl) => {
-            if (checkoutUrl) {
-                window.location.href = checkoutUrl; // Omdirigera användaren till checkout-sidan
-            } else {
-                alert("Betalningen misslyckades. Försök igen.");
-            }
+        const response = await fetch("https://localhost:7216/payments", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(paymentRequest),
         });
+
+        // Check if the response has JSON content
+        const contentType = response.headers.get("Content-Type");
+        let result;
+
+        if (contentType && contentType.includes("application/json")) {
+            result = await response.json();
+        } else {
+            result = await response.text();
+            console.error("Unexpected response format: ", result);
+            throw new Error("Response is not in JSON format.");
+        }
+
+        if (response.ok) {
+            // Redirect the user to Stripe Checkout
+            if (result.checkoutUrl) {
+                window.location.href = result.checkoutUrl;
+            } else {
+                throw new Error("Checkout URL missing in the response.");
+            }
+        } else {
+            console.error("Payment error: ", result);
+            alert("Tyvärr kunde vi inte bearbeta din betalning.");
+        }
+    } catch (error) {
+        console.error("Network or other error: ", error);
+        alert("Ett fel uppstod vid betalningen. Försök igen.");
+    }
+};
+
 
 
 function Footer() {
