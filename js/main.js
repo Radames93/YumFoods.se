@@ -248,6 +248,192 @@ function navigateToMenuPage() {
   window.location.href = '/yum_menu.html';
 }
 
+// secound part of start page
+const infoBox = document.querySelector(".info-box");
+infoBox.style.display = "none";
+
+const close= document.querySelector(".close")
+close.addEventListener("click",function(){
+  infoBox.style.display= "none"
+})
+
+let selectedCategory = null;  
+let selectedQuantity = 10; 
+
+// categori boxes
+const dietBoxes = document.querySelectorAll('.box2')
+const chooseDietBox= dietBoxes.forEach((box, index) => {
+  box.addEventListener('click', function() {
+    this.classList.add('selected');
+    this.classList.add("selected-border")
+
+    dietBoxes.forEach(b =>{
+    if(b.hasClass="selected"){
+      b.classList.remove("selected")
+      b.classList.remove("selected-border")
+    } else {
+      b.classList.add('selected');
+      b.classList.add("selected-border")
+    }
+    })
+  })
+})
+
+// quantity boxes
+const antalBoxes = document.querySelectorAll('.box4')
+const chooseAntalbox= antalBoxes.forEach((box, index) => {
+  box.addEventListener('click', function() {
+    this.classList.add('selected');
+    this.classList.toggle("selected-border")
+    infoBox.style.display= "block"
+
+    antalBoxes.forEach(b =>{
+      if(b.hasClass="selected"){
+        b.classList.remove("selected")
+        b.classList.remove("selected-border")
+      } else {
+        b.classList.add('selected');
+        b.classList.add("selected-border")
+      }
+    })
+  })
+})
+
+//handle click on quantity buttons
+document.addEventListener("DOMContentLoaded", function() {
+  const quantitySpan = document.querySelector('.quantity-btn span');
+  const increaseButton = document.querySelector('.quantity-btn button:nth-of-type(2)');
+  const decreaseButton = document.querySelector('.quantity-btn button:nth-of-type(1)');
+  const infoBox = document.querySelector(".info-box");
+  let currentQuantity = parseInt(quantitySpan.textContent, 10);
+
+  function updateQuantity(newQuantity) {
+    if (newQuantity >= 10 && newQuantity<=20 ) {
+      currentQuantity = newQuantity;
+      quantitySpan.textContent = currentQuantity;
+      updateBox4Selection();
+
+      updateTotalPrice();
+    }
+  }
+
+  // update quantity boxes
+  function updateBox4Selection() {
+    document.querySelectorAll('.box4').forEach(box => {
+      const boxValue = parseInt(box.getAttribute('data-value'), 10);
+      if (boxValue === currentQuantity) {
+        box.classList.add('selected', 'selected-border');
+      } else {
+        box.classList.remove('selected', 'selected-border');
+      }
+    });
+    infoBox.style.display = "block";
+  }
+
+    // update categorie boxes
+    const boxes2 = document.querySelectorAll('.box2'); 
+    function updateBoxSelection(currentCategory) {
+      boxes2.forEach(box => {
+        const boxValue = box.getAttribute('data-category');
+        console.log(boxValue); 
+    
+        if (boxValue === currentCategory) {
+          box.classList.add('selected');
+          box.classList.add('selected-border');
+        } else {
+          box.classList.remove('selected');
+          box.classList.remove('selected-border');
+        }
+      });
+    }
+    const boxes4= document.querySelectorAll('.box4')
+    boxes2.forEach(box => {
+      box.addEventListener('click', () => {
+        const currentCategory = box.getAttribute('data-category');
+        updateBoxSelection(currentCategory);
+        boxes4.forEach(box4 => {
+          box4.addEventListener('click', () => {
+            const currentQuantity = parseInt(box4.getAttribute('data-value'), 10);
+            updateBox4Selection(currentQuantity);
+          });
+      });
+    });
+  })
+
+  // currentQuantity, increase , decrease
+  document.querySelectorAll('.row .box').forEach(box => {
+    box.addEventListener('click', function() {
+      const boxValue = parseInt(this.textContent, 10);
+      updateQuantity(boxValue);
+    })
+  })
+
+  increaseButton.addEventListener('click', function() {
+    updateQuantity(currentQuantity + 5);
+  })
+
+  decreaseButton.addEventListener('click', function() {
+    updateQuantity(currentQuantity - 5);
+  })
+})
+
+//Display vegetarian Alternatives 
+const vegetarianAlternatives = () => {
+  const dishList = document.getElementById('dish-list'); 
+  dishList.innerHTML = '';
+  let htmlString = ''; 
+  
+  yumProductsList.map((veg) => {
+    veg.diet.map((veggie) => {
+        if(veggie === "images/icons/vegetarian.png"){
+          const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
+          console.log(veg.title)
+          htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
+        }
+     })  
+   });
+  dishList.innerHTML += htmlString;
+} 
+
+const updateDishList = () => {
+vegetarianAlternatives();
+}
+
+// total price
+function calculateTotalPrice(quantity) {
+  const vegetarianProducts = yumProductsList.filter(product => 
+    product.diet.includes("images/icons/vegetarian.png")
+  )
+  const totalPrice = vegetarianProducts.reduce((sum, product) => 
+    sum + (product.price * quantity), 0
+  )
+  return totalPrice ;
+}
+
+function updateTotalPrice() {
+  const quantity = parseInt(document.querySelector('.quantity-btn span').textContent, 10);
+  const totalPrice = calculateTotalPrice(quantity);
+  const totalPriceElement = document.querySelector('.col-5.price');
+  totalPriceElement.innerHTML = `<p>${totalPrice} kr</p>`;
+}
+
+//end of secound part
+
+
+// fixed media query
+// function updateMargin() {
+//     const infoBox = document.querySelector('.info-box');
+//     const rightPart = document.querySelector('.right-part');
+
+//     if (window.getComputedStyle(infoBox).display === 'none') {
+//       if (window.matchMedia("(min-width: 768px) and (max-width: 991.99px)").matches) {
+//         rightPart.style.marginTop = '-200px';
+//       } else {
+//         rightPart.style.marginTop = '';
+//       }
+//   } 
+// }
+
 //Get elements from the DOM
 let summary = document.getElementById("cost_summary");
 let yum = document.getElementById("yum");
