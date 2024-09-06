@@ -246,52 +246,6 @@
     position: fixed;
   }
 
-  .hero {
-    display: flex;
-    flex-direction: column;
-    height: 580px;
-    align-self: center;
-    background-repeat: no-repeat;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 0 40px;
-  }
-
-  .hero-button {
-    background: #ff6633;
-    color: var(--colorWhite);
-    padding: 8px 10px 8px 10px;
-    margin-top: 0;
-    border-radius: 10px;
-    font-size: 30px;
-    font-weight: 600;
-    position: relative;
-    transition: all linear 0.3s;
-    -webkit-transition: all linear 0.3s;
-    -moz-transition: all linear 0.3s;
-    -ms-transition: all linear 0.3s;
-    -o-transition: all linear 0.3s;
-  }
-
-  /* secound part of start page start */
-  .box1.large-box {
-    width: 91%;
-    height: auto;
-    padding: 20px;
-    margin: 0 auto 15px;
-    font-size: 1.1rem;
-  }
-
-  .box3.info-box {
-    width: 91%;
-    padding: 20px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-  }
-
-  /* secound part of start page end*/
-
-  /* banner */
   .banner_shape_1 {
     width: 50px;
     height: 50px;
@@ -578,44 +532,6 @@
     width: 110px;
   }
 
-  /* popup in start page */
-  .modal-content .modal-body {
-    margin-left: 5px;
-    margin-right: 5px;
-  }
-
-  .startpage-group .form-control {
-    min-width: 80px;
-    align-items: stretch;
-  }
-
-  .startpage-group .btn {
-    margin-top: 5px;
-  }
-
-  .modal-section .modal-content {
-    width: 100%;
-    height: auto;
-  }
-
-  /* popup end */
-  /* secound part of start page start */
-  .box1.large-box {
-    width: 92%;
-    height: auto;
-    padding: 20px;
-    margin: 0 auto 15px;
-    font-size: 1.1rem;
-  }
-
-  .box3.info-box {
-    width: 92%;
-    padding: 20px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-  }
-  /* secound part of start page end*/
-
   .banner_text h1 {
     font-size: 48px;
   }
@@ -663,11 +579,9 @@
 
   .hero {
     display: flex;
-    background-repeat: no-repeat;
-    background-image: url("../images/hero2.jpg") !important;
-    background-position: calc(100% - 0px) calc(100% - 75%);
     flex-direction: column;
-    height: 520px;
+    margin-top: 120px;
+    height: 500px;
     align-self: center;
     background-repeat: no-repeat;
     align-items: flex-start;
@@ -676,18 +590,18 @@
   }
 
   .hero-box {
+    filter: drop-shadow(white 1rem 1rem 10px);
     display: flex;
     text-align: left;
     justify-content: flex-start;
-    flex-wrap: wrap;
-    width: 600px;
-    gap: 8px;
+    width: 500px;
+    gap: 30px;
   }
 
   .hero-button {
     background: #ff6633;
     color: var(--colorWhite);
-    padding: 1px 10px 8px 10px;
+    padding: 12px 40px 12px 40px;
     margin-top: 0;
     border-radius: 10px;
     font-size: 30px;
@@ -1163,6 +1077,13 @@
     font-weight: 400;
   }
 
+  .banner_title {
+    font-family: "Playfair Display";
+    font-weight: 400;
+    font-size: 30px;
+    margin: 0;
+  }
+
   .login {
     width: 400px;
     height: 60px;
@@ -1178,12 +1099,12 @@
   .hero {
     display: flex;
     flex-direction: column;
-    margin-top: 50px;
+    margin-top: 150px;
     align-self: center;
     background-repeat: no-repeat;
-    background-image: url("../images/hero2.jpg") !important;
+    background-image: url("../images/hero-tablet.jpg") !important;
     background-position: calc(100% - 0px) calc(100% - 75%);
-    height: 570px;
+    height: 550px;
     padding: 0 20px;
     align-items: flex-start;
     justify-content: space-around;
@@ -1196,41 +1117,21 @@
     color: #252627;
   }
 
-  .hero-slogan2 {
-    width: 600px;
-  }
-
   .hero-text {
     text-align: left;
     font-weight: 900;
     font-size: 40px;
     color: #252627;
-    word-wrap: normal;
-    overflow-wrap: break-word;
-  }
-
-  .input-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  #location-input {
-    max-width: 450px;
-    margin-bottom: 10px;
-    padding: 20px;
-    margin-left: -240px;
   }
 
   .hero-button {
-    width: 300px;
     background: #ff6633;
     color: var(--colorWhite);
-    padding: 8px 10px 8px 10px;
+    padding: 12px 40px 12px 40px;
     margin-top: 0;
-    margin-left: -410px;
     border-radius: 10px;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 30px;
+    font-weight: 600;
     position: relative;
     transition: all linear 0.3s;
     -webkit-transition: all linear 0.3s;
@@ -1240,13 +1141,12 @@
   }
 
   .hero-box {
+    filter: drop-shadow(white 1rem 1rem 10px);
     display: flex;
     text-align: left;
     justify-content: flex-start;
-    width: 600px;
-    word-wrap: break-word;
-    flex-wrap: wrap;
-    gap: 5px;
+    width: 500px;
+    gap: 30px;
   }
 
   .vectorButton {
@@ -1267,193 +1167,6 @@
     font-size: 30px;
   }
 
-  /* popup in start page */
-  .modal-section .modal-content {
-    margin-top: -98px;
-    padding: 10px;
-    height: 400px;
-  }
-
-  .modal-section .modal-content .modal-body {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
-  .startpage-group {
-    flex-direction: column;
-  }
-
-  .startpage-group .form-control {
-    align-items: stretch;
-    min-width: 120px;
-    width: 90%;
-    margin-bottom: 5px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  .startpage-group .btn-adress {
-    width: 143px;
-    margin-bottom: 5px;
-    height: 40px;
-    align-self: center;
-  }
-
-  .startpage-group .btn {
-    width: 141px;
-    height: 40px;
-    margin-right: 19px;
-    border-radius: 0%;
-  }
-  /* popup end */
-
-  /* secound part of start page start */
-
-  .box1.large-box {
-    width: 97%;
-    height: auto;
-    padding: 20px;
-    margin: 0 auto 10px;
-    font-size: 1.1rem;
-  }
-
-  .box1.large-box h5,
-  .box1.large-box h6 {
-    font-size: 1rem;
-  }
-
-  .col-7.text {
-    width: 93%;
-  }
-
-  .quantity-btn {
-    width: 90%;
-    justify-content: space-between;
-    margin-left: -70px;
-    margin-top: 10px;
-  }
-
-  .quantity-btn button {
-    font-size: 0.9rem;
-    border: 1px solid #757474;
-  }
-
-  .quantity-btn span {
-    font-size: 1rem;
-  }
-
-  /* .box3.info-box {
-      width: 87%;
-      padding: 10px 10px; 
-      margin: 0 auto;
-      font-size: 1.1rem;
-      position: absolute;
-    } */
-
-  .box3.info-box {
-    width: 290px;
-    padding: 10px 10px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-  }
-
-  .col-md-5.right-part {
-    position: relative;
-  }
-
-  .secound-part {
-    padding-top: 30px;
-    flex-direction: column;
-  }
-
-  /* .secound-part {
-      padding-top: 30px;
-    } */
-
-  /* .col-md-5.right-part{
-      position: relative;
-      margin-top: -220px;
-    } */
-
-  .box3.info-box .close {
-    margin-left: 130px;
-  }
-
-  .box3.info-box .img-fluid {
-    margin-top: -40px;
-    margin-left: -30px;
-  }
-
-  .box3.info-box ul#dish-list p {
-    font-size: 1rem;
-  }
-
-  .box3.info-box .row.bg-light p {
-    font-size: 1rem;
-  }
-
-  .row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-height: 677.07px;
-  }
-
-  .col-5.box2 .kost {
-    flex: 0 0 48%;
-    margin-left: 80px;
-  }
-
-  .frakt {
-    margin: 0;
-    text-align: left;
-    margin-left: 2px;
-  }
-
-  .price,
-  .price2 {
-    text-align: right;
-    margin-right: 2px;
-  }
-
-  .col-md-5 .text-center {
-    margin-left: -20px;
-  }
-
-  .col-md-5 .col-5 .box {
-    width: 60%;
-  }
-
-  .row .self-kasse .img-fluid {
-    margin-left: -65px;
-    height: 40px;
-  }
-
-  .row .self-kasse .col-6 p {
-    margin-left: -130px;
-  }
-
-  .row .self-kasse .col-6 .btn {
-    margin-left: -130px;
-  }
-
-  .self-kasse {
-    margin-left: 20px;
-  }
-
-  .box3.info-box .btn-danger {
-    margin-top: -10px;
-  }
-
-  /* secound part of start page end */
-
-  .banner_title {
-    font-family: "Playfair Display";
-    font-weight: 400;
-    font-size: 30px;
-    margin: 0;
-  }
-
   .banner_title {
     font-family: "Playfair Display";
     font-weight: 400;
@@ -1463,6 +1176,23 @@
 
   .banner {
     height: 700px;
+  }
+
+  .contacts-content {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 20px;
+  }
+
+  .contacts-box {
+    text-align: left;
+  }
+
+  .section_heading h2 {
+    font-size: 25px;
+    font-size: 35px;
+    font-weight: 800;
   }
 
   .banner_shape_1 {
@@ -1517,23 +1247,6 @@
 
   .banner_img {
     margin-bottom: 100px;
-  }
-
-  .contacts-content {
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    gap: 20px;
-  }
-
-  .contacts-box {
-    text-align: left;
-  }
-
-  .section_heading h2 {
-    font-size: 25px;
-    font-size: 35px;
-    font-weight: 800;
   }
 
   .offer_item_single span {
@@ -2067,59 +1780,6 @@
     line-height: 15px;
   }
 
-  /* secound part of start page start */
-  .container .row .col-md-5 {
-    margin-left: 50px;
-  }
-  .self-kasse {
-    margin-left: 20px;
-  }
-  /* secound part of start page end*/
-
-  .navbar-collapse {
-    position: fixed;
-    right: 0;
-    top: 0;
-    height: 25%;
-    width: 40%;
-    padding: 1rem;
-    background-color: white;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    display: none;
-    overflow-y: auto;
-    margin-top: 114px;
-  }
-
-  .navbar-collapse.show {
-    display: block;
-  }
-
-  .dropbtn {
-    line-height: 15px;
-  }
-
-  .navbar-collapse {
-    position: fixed;
-    right: 0;
-    top: 0;
-    height: 25%;
-    width: 40%;
-    padding: 1rem;
-    background-color: white;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-    display: none;
-    overflow-y: auto;
-    margin-top: 114px;
-  }
-
-  .navbar-collapse.show {
-    display: block;
-  }
-
-  .dropbtn {
-    line-height: 15px;
-  }
-
   .navbar-collapse {
     position: fixed;
     right: 0;
@@ -2139,54 +1799,6 @@
   }
 
   /* menu end */
-
-  /* popup in start page */
-  .modal-section .modal-content {
-    margin-top: -98px;
-    padding: 10px;
-  }
-  .modal-section .modal-content .modal-body {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
-  .startpage-group {
-    flex-direction: column;
-  }
-
-  .startpage-group .form-control {
-    align-items: stretch;
-    min-width: 100px;
-    width: 90%;
-    margin-bottom: 5px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  .startpage-group .btn-adress {
-    width: 142px;
-    margin-bottom: 5px;
-    height: 40px;
-    align-self: center;
-  }
-
-  .startpage-group .btn {
-    width: 140px;
-    height: 40px;
-    margin-right: 19px;
-    border-radius: 0%;
-  }
-  /* popup end */
-
-  /* secound part of start page start */
-  .container .row .col-md-5 {
-    margin-left: 50px;
-  }
-  .self-kasse {
-    margin-left: 20px;
-  }
-  /* secound part of start page end*/
-
   /* baner start */
 
   .content {
@@ -3105,27 +2717,15 @@
   .hero {
     display: flex;
     flex-direction: column;
-    margin-top: 90px;
+    margin-top: 100px;
     align-self: center;
     background-repeat: no-repeat;
-    background-image: url("../images/hero2.jpg") !important;
+    background-image: url("../images/hero-tablet.jpg") !important;
     background-position: calc(100% - 0px) calc(100% - 75%);
-    height: 500px;
+    height: 512px;
     padding: 0 20px;
     align-items: flex-start;
     justify-content: space-around;
-  }
-
-  .input-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  #location-input {
-    max-width: 410px;
-    margin-bottom: 10px;
-    padding: 20px;
-    margin-left: -280px;
   }
 
   .hero-slogan {
@@ -3145,12 +2745,11 @@
   .hero-button {
     background: #ff6633;
     color: var(--colorWhite);
-    padding: 8px 10px 8px 10px;
+    padding: 12px 40px 12px 40px;
     margin-top: 0;
     border-radius: 10px;
     font-size: 30px;
     font-weight: 600;
-    margin-left: -480px;
     position: relative;
     transition: all linear 0.3s;
     -webkit-transition: all linear 0.3s;
@@ -3164,8 +2763,8 @@
     display: flex;
     text-align: left;
     justify-content: flex-start;
-    width: 400px;
-    gap: 5px;
+    width: 500px;
+    gap: 15px;
   }
 
   .text {
@@ -3320,80 +2919,6 @@
   }
 
   /* menu end */
-  /* popup in start page */
-  .custom-modal-size .modal-content {
-    width: 250px;
-    margin-left: 50%;
-    margin-top: -98px;
-  }
-  .modal-section .modal-content .modal-body {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
-  .startpage-group .form-control {
-    align-items: stretch;
-    min-width: 100px;
-    width: 90%;
-    margin-bottom: 5px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  .startpage-group .btn-adress {
-    width: 142px;
-    margin-bottom: 5px;
-    height: 40px;
-    align-self: center;
-  }
-
-  .startpage-group .btn {
-    width: 142px;
-    height: 40px;
-    margin-right: 17px;
-    border-radius: 0%;
-  }
-  /* popup end */
-  /* secound part of start page start */
-
-  .container .row .col-md-5 {
-    margin-left: 30px;
-    margin-right: 20px;
-  }
-
-  .box1.large-box {
-    width: 93%;
-    margin-left: 8px;
-  }
-
-  .box3.info-box {
-    width: 93%;
-    margin-left: 8px;
-  }
-
-  .self-kasse {
-    margin-left: 50px;
-  }
-
-  .self-kasse .img-fluid {
-    margin-left: 25px;
-  }
-
-  .col-5 .box2 {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-
-  .right-part {
-    margin-top: 15px;
-  }
-
-  .row.col-5.box2 .secound-part {
-    padding-top: 30px;
-    flex-direction: column;
-  }
-
-  /* secound part of start page end*/
 
   /* baner start */
 
@@ -3562,7 +3087,7 @@
   }
 
   .banner {
-    height: 550px;
+    height: 400px;
   }
 
   .banner_img .img {
@@ -4375,25 +3900,13 @@
     flex-direction: column;
     margin-top: 80px;
     align-self: center;
-    background-image: url("../images/hero2.jpg") !important;
+    background-image: url("../images/hero-mobile.jpg") !important;
     background-repeat: no-repeat;
     background-position: calc(100% - 0px) calc(100% - 80%) !important;
-    height: 950px !important;
+    height: 352px !important;
     align-items: flex-start;
     padding: 0 20px;
     justify-content: center;
-  }
-
-  .input-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  #location-input {
-    max-width: 402px;
-    margin-bottom: 10px;
-    padding: 20px;
-    margin-left: -440px;
   }
 
   .hero-slogan {
@@ -4401,7 +3914,6 @@
     font-weight: 700;
     font-size: 16px;
     color: #252627;
-    margin-left: -50px;
   }
 
   .hero-text {
@@ -4409,14 +3921,6 @@
     font-weight: 900;
     font-size: 20px;
     color: #252627;
-    margin-left: -50px;
-  }
-  .hero-slogan2 {
-    margin-left: -50px;
-  }
-  .address-container p {
-    margin-left: -50px;
-    color: #0a0707;
   }
 
   .hero-button {
@@ -4425,7 +3929,6 @@
     padding: 10px 20px 10px 20px;
     margin-top: 0;
     border-radius: 10px;
-    margin-left: -680px;
     font-size: 15px;
     font-weight: 600;
     position: relative;
@@ -4443,7 +3946,6 @@
     color: var(--white);
     font-size: 16px;
     font-weight: 600;
-    align-items: center;
   }
 
   .hero a {
@@ -4455,8 +3957,8 @@
     display: flex;
     text-align: left;
     justify-content: flex-start;
-    width: 300px;
-    gap: 10px;
+    width: 250px;
+    gap: 15px;
   }
 
   .text {
