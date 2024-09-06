@@ -214,3 +214,5 @@ obj/x86/Debug/yumfoods.se.csproj.AssemblyReference.cache
 >>>>>>> origin/dev-vivian-reverted
 /API/Program.cs
 /Client.YumFoods/wwwroot/js
+Client/
+
