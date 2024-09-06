@@ -389,10 +389,10 @@ const yumProducts = (yumProductsList) => {
       .map((yum) => {
         let diet = "";
         let value = "";
-        if (Array.isArray(yum.diet)) {
-          var obj = yum.diet;
+        if (Array.isArray(yum.dietRef)) {
+          var obj = yum.dietRef;
           value = JSON.stringify(obj);
-          const imageTags = yum.diet.map((img) => {
+            const imageTags = yum.dietRef.map((img) => {
             return (
               `<img id="diet"
                   src=
@@ -411,14 +411,14 @@ const yumProducts = (yumProductsList) => {
             `<img id="diet"
                   src=
                   ` +
-            yum.diet +
+              yum.dietRef +
             `
                   alt="specialkost-bild"
                   class="diet_img"
                 />
                 `;
           diet = singleImage;
-          value = yum.diet;
+            value = yum.dietRef;
         }
         return (
           `<div
@@ -439,7 +439,7 @@ const yumProducts = (yumProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          yum.img +
+          yum.imgRef +
           `
                   alt="yum-meny-bild"
                   class="img-fluid w-100"
@@ -1536,11 +1536,11 @@ if (cardModal !== null) {
     var quantityPrice = button.getAttribute("data-yum-quantity-price");
     var description = button.getAttribute("data-yum-description");
     var ingredients = button.getAttribute("data-yum-ingredients");
-    var diet = button.getAttribute("data-yum-diet");
+    var dietRef = button.getAttribute("data-yum-diet");
 
-    diet = JSON.parse(diet);
+    dietRef = JSON.parse(dietRef);
 
-    const imageTags = diet.map((img) => {
+    const imageTags = dietRef.map((img) => {
       return (
         `<img id="diet"
                   src=
@@ -1553,7 +1553,7 @@ if (cardModal !== null) {
                 `
       );
     });
-    diet = imageTags;
+    dietRef = imageTags;
 
     var modalTitle = cardModal.querySelector(".title");
     var modalPrice = cardModal.querySelector(".price");
@@ -2296,6 +2296,71 @@ var swiper = new Swiper(".slide-content", {
     },
   },
 });
+
+const submitCartForm = async (event) => {
+    event.preventDefault();
+    // Hämta värden från formuläret
+    const name = document.querySelector('input[name="name"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const phone = document.querySelector('input[name="phone"]').value;
+    const adress = document.querySelector('input[name="adress"]').value;
+    const message = document.querySelector('textarea[name="message"]').value;
+    const dishName = document.querySelector('input[name="dishName"]').value;
+    const dishQuantity = document.querySelector('input[name=dishQuantity]').value;
+    const totalQuantity = dishQuantity.split(',')
+        .map(Number)  // Convert each part to a number
+        .reduce((sum, num) => sum + num, 0);  // Sum them all together
+
+    const dishQuantityPrice = parseFloat(document.querySelector('input[name="dishQuantityPrice"]').value);
+    const sum = parseFloat(document.querySelector('input[name="total"]').value);
+    if (!totalQuantity || isNaN(totalQuantity)) {
+        alert("Vänligen ange en giltig numerisk mängd.");
+        return;
+    }
+    if (!sum || isNaN(sum)) {
+        alert("Vänligen ange en giltig totalsumma.");
+        return;
+    }
+    // Skapa PaymentRequest objektet
+    const paymentRequest = {
+        products: [
+            {
+                Name: dishName,
+                Quantity: totalQuantity,
+                Price: sum,
+            },
+        ],
+        customerName: name,
+        customerEmail: email,
+        customerPhone: phone,
+        customerAddress: adress,
+        message: message,
+        totalAmount: parseFloat(sum),
+        cancelPaymentUrl: "http://localhost:7216/404.html", // Du kan ändra denna till korrekt URL
+        successPaymentUrl: "http://din-webbplats.com/payment-success", // Ange din riktiga länk
+    };
+    try {
+        // Make a POST request to the backend API
+        const paymentRequest = {
+            products: [
+                {
+                    name: "Pizza",
+                    quantity: 2,
+                    price: 120
+                }
+            ],
+            successPaymentUrl: "http://example.com/success",
+            cancelPaymentUrl: "http://example.com/cancel"
+        };
+
+        createPayment(paymentRequest).then((checkoutUrl) => {
+            if (checkoutUrl) {
+                window.location.href = checkoutUrl; // Omdirigera användaren till checkout-sidan
+            } else {
+                alert("Betalningen misslyckades. Försök igen.");
+            }
+        });
+
 
 function Footer() {
   let footer = document.getElementById("footer");
