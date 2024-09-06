@@ -79,11 +79,13 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
-/* *,
+
+*,
 ::after,
 ::before {
   box-sizing: border-box;
-} */
+}
+
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
