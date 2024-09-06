@@ -44,6 +44,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\js\bootstrap.bundle.min.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\hotjar.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\isotope.pkgd.min.js" />
@@ -53,10 +57,6 @@
     <_ContentIncludedByDefault Remove="wwwroot\js\jquery.nice-select.min.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\jquery.waypoints.min.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\main.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include=".gitignore" />
   </ItemGroup>
 
   <ItemGroup>

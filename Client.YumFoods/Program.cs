@@ -16,6 +16,7 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 
+<<<<<<< HEAD
 //    app.Run(async (context) =>
 //    {
 //        context.Response.ContentType = "text/html";
@@ -24,6 +25,8 @@ var app = builder.Build();
 
 
 
+=======
+>>>>>>> main-backend-clean
 
 app.UseHttpsRedirection();
 app.UseDefaultFiles();
