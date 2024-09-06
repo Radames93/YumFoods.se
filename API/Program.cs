@@ -22,8 +22,8 @@ builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRe
 
 //"C:\Users\Vivian\Documents\YF\ca-cert.pem"
 
-var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\FRask-laptop\\Desktop\\Yum Foods\\ca-cert.pem;";
-var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\FRask-laptop\\Desktop\\Yum Foods\\ca-cert.pem;";
+var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Documents\\YF\\ca-cert.pem;";
+var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Documents\\YF\\ca-cert.pem;";
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
     options.UseMySql(conn1, ServerVersion.AutoDetect(conn1)));
