@@ -29,10 +29,6 @@ public class StripeClient
             PaymentMethodTypes = new List<string>
             {
                 "card",
-                "swish",
-                "klarna",
-                "apple_pay",
-                "paypal"
             },
             SuccessUrl = request.SuccessPaymentUrl,
             CancelUrl = request.CancelPaymentUrl,
