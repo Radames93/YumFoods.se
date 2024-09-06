@@ -84,16 +84,16 @@ $(function () {
 //make header and footer reusable in different html pages
 function Header() {
   let header = document.getElementById("header");
-  
+
   header.innerHTML = `
   <nav class="navbar navbar-expland-lg main_menu">
       <div class="container">
-        <div class="navbar-left"> 
-          <!--logo info-->     
+        <div class="navbar-left">
+          <!--logo info-->
           <a class="navbar-brand" href="/">
             <img rel="preload" as="image" src="images/logo.png" alt="logo" class="img-fluid logo" />
           </a>
-       
+
         <!-- language button-->
         <div class="langBtn">
           <ul class="navbar-nav">
@@ -105,7 +105,7 @@ function Header() {
               </a>
               <ul class="droap_menu">
                 <li><a href="#">Swedish</a></li>
-                <li><a href="#">English</a></li> 
+                <li><a href="#">English</a></li>
               </ul>
             </li>
           </ul>
@@ -116,7 +116,7 @@ function Header() {
           <button class="company" onclick="window.location.href='contact.html'"> För företag </button>
         </div>
       </div>
-        
+
       <div class="navbar-left">
         <!--login button-->
         <div class="loginBtn">
@@ -125,7 +125,7 @@ function Header() {
               <a href="#" onclick="myFunction()" class="dropbtn" > <i class="far fa-user"></i> Logga in </a>
               <ul class="droap_menu">
                 <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li> 
+                <li><a href="#">Register</a></li>
               </ul>
             </li>
           </ul>
@@ -143,8 +143,6 @@ function Header() {
           ></a>
         </li>
         </ul>
-
-        <div class="separator"></div>
 
         <button
           class="navbar-toggler"
@@ -168,8 +166,8 @@ function Header() {
                 <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
                 <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
                 <li><a href="yum_menu.html">Yum</a></li>
-              <li><a href="daily_menu.html">Dagens</a></li> 
-                <li><a href="premium_menu.html">Premium</a></li> 
+              <li><a href="daily_menu.html">Dagens</a></li>
+                <li><a href="premium_menu.html">Premium</a></li>
               </ul>
             </li>
             <!--
@@ -211,22 +209,39 @@ Header();
 
 // js for language button in navbar
 function setLanguage(lang) {
-  document.getElementById('current-lang').textContent = lang.toUpperCase();
-  var elements = document.querySelectorAll('[data-lang-en]');
-  elements.forEach(function(element) {
-      if(lang === 'en') {
-          element.textContent = element.getAttribute('data-lang-en');
-      } else if(lang === 'sv') {
-          element.textContent = element.getAttribute('data-lang-sv');
-      }
+  document.getElementById("current-lang").textContent = lang.toUpperCase();
+  var elements = document.querySelectorAll("[data-lang-en]");
+  elements.forEach(function (element) {
+    if (lang === "en") {
+      element.textContent = element.getAttribute("data-lang-en");
+    } else if (lang === "sv") {
+      element.textContent = element.getAttribute("data-lang-sv");
+    }
   });
   closeDropdown();
 }
-function closeDropdown(){
-  document.getElementById("dropdown-content").classList.remove("show")
+function closeDropdown() {
+  document.getElementById("dropdown-content").classList.remove("show");
 }
-function toggleDropdown(){
-  document.getElementById("dropdown-content").classList.toggle("show")
+function toggleDropdown() {
+  document.getElementById("dropdown-content").classList.toggle("show");
+
+  document.getElementById("current-lang").textContent = lang.toUpperCase();
+  var elements = document.querySelectorAll("[data-lang-en]");
+  elements.forEach(function (element) {
+    if (lang === "en") {
+      element.textContent = element.getAttribute("data-lang-en");
+    } else if (lang === "sv") {
+      element.textContent = element.getAttribute("data-lang-sv");
+    }
+  });
+  closeDropdown();
+}
+function closeDropdown() {
+  document.getElementById("dropdown-content").classList.remove("show");
+}
+function toggleDropdown() {
+  document.getElementById("dropdown-content").classList.toggle("show");
 }
 
 function navigateToMenuPage() {
@@ -234,6 +249,7 @@ function navigateToMenuPage() {
 }
 
 //Get elements from the DOM
+let summary = document.getElementById("cost_summary");
 let yum = document.getElementById("yum");
 let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
@@ -244,6 +260,7 @@ let baguetter = document.getElementById("baguetter");
 let popup = document.getElementById("popup");
 const searchBar = document.getElementById("searchbar");
 let cartItem = document.getElementById("cart-item");
+let option3Checked = document.getElementById("payment3isChecked");
 let yumSearchMessage = document.getElementById("search-yum-message");
 let dailySearchMessage = document.getElementById("search-daily-message");
 let premiumSearchMessage = document.getElementById("search-premium-message");
@@ -271,6 +288,33 @@ let premiumFiltered = [];
 let subscriptionsFiltered = [];
 let baguetterFiltered = [];
 let all = [];
+
+//Create a function to enable text field if appropriate radio button is checked
+function ifChecked() {
+  // option3Checked.getElementById("payment3isChecked");
+  // checks to see if the radio button is checked or not, if checked true, if not false
+  // also make sure it exists to prevent missing values (null) in other pages
+  if (option3Checked) {
+    const isChecked = option3Checked.checked;
+    // set the disabled attribute to false should the button be checked
+    document.getElementById("cardNumber").disabled = !isChecked;
+    document.getElementById("expiration").disabled = !isChecked;
+    document.getElementById("cvc").disabled = !isChecked;
+  }
+  isChanged();
+}
+// Run the function on "change" on each radio button, checking to see if the payment option 3 is picked or not
+function isChanged() {
+  if (option3Checked) {
+    document.getElementById("payment1").addEventListener("change", ifChecked);
+    document.getElementById("payment2").addEventListener("change", ifChecked);
+    document
+      .getElementById("payment3isChecked")
+      .addEventListener("change", ifChecked);
+    document.getElementById("payment4").addEventListener("change", ifChecked);
+  }
+}
+ifChecked();
 
 // Implement search bar function
 const search = () => {
@@ -357,6 +401,8 @@ const loadProducts = async () => {
     categoriesProducts(categoriesProductsList);
     offeredServices(offeredServicesList);
     baguetterProducts(baguetterProductsList);
+    CarouselFoodBoxes(yumProductsList);
+    CarouselFoodBoxes2(yumProductsList);
   } catch (err) {
     console.log(err);
   }
@@ -405,16 +451,7 @@ const yumProducts = (yumProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item">
-              <div class="menu_item_img">
-                <img
-                  src=` +
-          yum.img +
-          `
-                  alt="yum-meny-bild"
-                  class="img-fluid w-100"
-                  class="title"
-                  href="#"
+          <div class="menu_item"
                   data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
@@ -424,7 +461,16 @@ const yumProducts = (yumProductsList) => {
                   data-yum-ingredients=${yum.ingredients}
                   data-yum-diet=${[value]}
                   data-bs-toggle="modal"
-                  data-bs-target="#modal"
+                  data-bs-target="#modal">
+              <div class="menu_item_img">
+                <img
+                  src=` +
+          yum.img +
+          `
+                  alt="yum-meny-bild"
+                  class="img-fluid w-100"
+                  class="title"
+                  href="#"
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -455,18 +501,8 @@ const yumProducts = (yumProductsList) => {
                 >
                 <h5 class="price">` +
           yum.price +
-          `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
-          yum.id +
-          `
-          data-yum-id=${yum.id} 
-          data-yum-title=${yum.title}
-          data-yum-price=${yum.price}
-          data-yum-img=${yum.img}
-          data-yum-quantity-price=${yum.price}
-          ` +
-          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
-          `<!--
+          `kr</h5>
+          <!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -478,11 +514,230 @@ const yumProducts = (yumProductsList) => {
                 -->
               </div>
             </div>
+            ` +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+          yum.id +
+          `
+          data-yum-id=${yum.id} 
+          data-yum-title=${yum.title}
+          data-yum-price=${yum.price}
+          data-yum-img=${yum.img}
+          data-yum-quantity-price=${yum.price}
+          ` +
+          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+          `
           </div>`
         );
       })
       .join("");
     yum.innerHTML = htmlString;
+  } else {
+    return null;
+  }
+};
+
+const carouselContainer = document.getElementById("container");
+const carouselContainer2 = document.getElementById("container2");
+
+const CarouselFoodBoxes = (yumProductsList) => {
+  if (carouselContainer !== null) {
+    const htmlString = yumProductsList
+      .map((yum) => {
+        let diet = "";
+        let value = "";
+        if (Array.isArray(yum.diet)) {
+          var obj = yum.diet;
+          value = JSON.stringify(obj);
+          const imageTags = yum.diet.map((img) => {
+            return (
+              `<img id="diet"
+                  src=` +
+              img +
+              `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />`
+            );
+          });
+          diet = imageTags;
+        } else {
+          const singleImage =
+            `<img id="diet"
+                  src=` +
+            yum.diet +
+            `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />`;
+          diet = singleImage;
+          value = yum.diet;
+        }
+        return (
+          `
+          <div class="swiper-slide">
+            <div class="menu_item_slider"
+                data-yum-id=${yum.id} 
+                data-yum-title=${yum.title}
+                data-yum-price=${yum.price}
+                data-yum-img=${yum.img}
+                data-yum-quantity-price=${yum.price}
+                data-yum-description=${yum.description}
+                data-yum-ingredients=${yum.ingredients}
+                data-yum-diet=${[value]}
+                data-bs-toggle="modal"
+                data-bs-target="#modal">
+              
+              <div class="menu_item_slider_img">
+                <img
+                  src=` +
+          yum.img +
+          `
+                  alt="yum-meny-bild"
+                  class="img-fluid w-100"
+                />
+              </div>
+
+              <div class="menu_item_slider_text">
+                <a
+                  class="title"
+                  href="#"
+                  data-yum-id=${yum.id} 
+                  data-yum-title=${yum.title}
+                  data-yum-price=${yum.price}
+                  data-yum-img=${yum.img}
+                  data-yum-quantity-price=${yum.price}
+                  data-yum-description=${yum.description}
+                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-diet=${[value]}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
+                  >` +
+          yum.title.replace(/'/g, "") +
+          `</a>
+                <p class="description">In the new era of technology we look in the future with certainty and pride for our life.</p>
+                <h5 class="price">` +
+          yum.price +
+          ` kr</h5>
+              </div>
+            </div>
+            <button id='cart-button' class='menu_add_to_cart' data-id=` +
+          yum.id +
+          `
+              data-yum-id=${yum.id} 
+              data-yum-title=${yum.title}
+              data-yum-price=${yum.price}
+              data-yum-img=${yum.img}
+              data-yum-quantity-price=${yum.price}
+              onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
+            </button>
+          </div>
+        `
+        );
+      })
+      .join("");
+    carouselContainer.insertAdjacentHTML("afterbegin", htmlString);
+  } else {
+    return null;
+  }
+};
+
+const CarouselFoodBoxes2 = (yumProductsList) => {
+  if (carouselContainer2 !== null) {
+    const htmlString = yumProductsList
+      .map((yum) => {
+        let diet = "";
+        let value = "";
+        if (Array.isArray(yum.diet)) {
+          var obj = yum.diet;
+          value = JSON.stringify(obj);
+          const imageTags = yum.diet.map((img) => {
+            return (
+              `<img id="diet"
+                  src=` +
+              img +
+              `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />`
+            );
+          });
+          diet = imageTags;
+        } else {
+          const singleImage =
+            `<img id="diet"
+                  src=` +
+            yum.diet +
+            `
+                  alt="specialkost-bild"
+                  class="diet_img"
+                />`;
+          diet = singleImage;
+          value = yum.diet;
+        }
+        return (
+          `
+          <div class="swiper-slide">
+            <div class="menu_item_slider"
+                data-yum-id=${yum.id} 
+                data-yum-title=${yum.title}
+                data-yum-price=${yum.price}
+                data-yum-img=${yum.img}
+                data-yum-quantity-price=${yum.price}
+                data-yum-description=${yum.description}
+                data-yum-ingredients=${yum.ingredients}
+                data-yum-diet=${[value]}
+                data-bs-toggle="modal"
+                data-bs-target="#modal">
+              
+              <div class="menu_item_slider_img">
+                <img
+                  src=` +
+          yum.img +
+          `
+                  alt="yum-meny-bild"
+                  class="img-fluid w-100"
+                />
+              </div>
+
+              <div class="menu_item_slider_text">
+                <a
+                  class="title"
+                  href="#"
+                  data-yum-id=${yum.id} 
+                  data-yum-title=${yum.title}
+                  data-yum-price=${yum.price}
+                  data-yum-img=${yum.img}
+                  data-yum-quantity-price=${yum.price}
+                  data-yum-description=${yum.description}
+                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-diet=${[value]}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modal"
+                  >` +
+          yum.title.replace(/'/g, "") +
+          `</a>
+                <p class="description">In the new era of technology we look in the future with certainty and pride for our life.</p>
+                <h5 class="price">` +
+          yum.price +
+          ` kr</h5>
+              </div>
+            </div>
+            <button id='cart-button' class='menu_add_to_cart' data-id=` +
+          yum.id +
+          `
+              data-yum-id=${yum.id} 
+              data-yum-title=${yum.title}
+              data-yum-price=${yum.price}
+              data-yum-img=${yum.img}
+              data-yum-quantity-price=${yum.price}
+              onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
+            </button>
+          </div>
+        `
+        );
+      })
+      .join("");
+    carouselContainer2.insertAdjacentHTML("afterbegin", htmlString);
   } else {
     return null;
   }
@@ -531,7 +786,7 @@ const dailyProducts = (dailyProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item" data-yum-id=${daily.id} 
+          <div class="menu_item" data-yum-id=${daily.id}
                   data-yum-title=${daily.title}
                   data-yum-price=${daily.price}
                   data-yum-img=${daily.img}
@@ -550,7 +805,7 @@ const dailyProducts = (dailyProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  
+
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -565,7 +820,7 @@ const dailyProducts = (dailyProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${daily.id} 
+                  data-yum-id=${daily.id}
                   data-yum-title=${daily.title}
                   data-yum-price=${daily.price}
                   data-yum-img=${daily.img}
@@ -582,7 +837,7 @@ const dailyProducts = (dailyProductsList) => {
                 <h5 class="price">` +
           daily.price +
           `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='add_to_cart' data - id=" +
+          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='amenu_add_to_cart' data - id=" +
           daily.id +
           `
           data-yum-id=${daily.id}
@@ -657,7 +912,7 @@ const premiumProducts = (premiumProductsList) => {
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
-          <div class="menu_item" data-yum-id=${premium.id} 
+          <div class="menu_item" data-yum-id=${premium.id}
                   data-yum-title=${premium.title}
                   data-yum-price=${premium.price}
                   data-yum-img=${premium.img}
@@ -676,7 +931,7 @@ const premiumProducts = (premiumProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  
+
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
@@ -691,7 +946,7 @@ const premiumProducts = (premiumProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${premium.id} 
+                  data-yum-id=${premium.id}
                   data-yum-title=${premium.title}
                   data-yum-price=${premium.price}
                   data-yum-img=${premium.img}
@@ -708,7 +963,7 @@ const premiumProducts = (premiumProductsList) => {
                 <h5 class="price">` +
           premium.price +
           `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='add_to_cart' data-id=" +
+          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='menu_add_to_cart' data-id=" +
           premium.id +
           `
           data-yum-id=${premium.id}
@@ -793,7 +1048,7 @@ const baguetterProducts = (baguetterProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  data-yum-id=${baguetter.id} 
+                  data-yum-id=${baguetter.id}
                   data-yum-title=${baguetter.title}
                   data-yum-price=${baguetter.price}
                   data-yum-img=${baguetter.img}
@@ -817,7 +1072,7 @@ const baguetterProducts = (baguetterProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${baguetter.id} 
+                  data-yum-id=${baguetter.id}
                   data-yum-title=${baguetter.title}
                   data-yum-price=${baguetter.price}
                   data-yum-img=${baguetter.img}
@@ -834,7 +1089,7 @@ const baguetterProducts = (baguetterProductsList) => {
                 <h5 class="price">` +
           baguetter.price +
           `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           baguetter.id +
           `
           data-yum-id=${baguetter.id}
@@ -888,7 +1143,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                   class="img-fluid w-100"
                   class="title"
                   href="#"
-                  data-yum-id=${subscription.id} 
+                  data-yum-id=${subscription.id}
                   data-yum-title=${subscription.title}
                   data-yum-price=${subscription.price}
                   data-yum-img=${subscription.img}
@@ -906,7 +1161,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${subscription.id} 
+                  data-yum-id=${subscription.id}
                   data-yum-title=${subscription.title}
                   data-yum-price=${subscription.price}
                   data-yum-img=${subscription.img}
@@ -922,7 +1177,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                 <h5 class="price">` +
           subscription.price +
           `kr</h5>` +
-          "<button id='cart-button' class='add_to_cart' data-id=" +
+          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
           subscription.id +
           `
           data-yum-id=${subscription.id}
@@ -1033,7 +1288,7 @@ const offeredServices = (offeredServicesList) => {
                   </div>
                 </div>
               </div>
-          
+
         `
         );
       })
@@ -1684,20 +1939,28 @@ let id = "";
 //Display items in the cart
 const displayNewCart = () => {
   const tableHead = document.getElementById("table_head");
+  const summaryHead = document.getElementById("summary_head");
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     if (formDataArry === null) {
       tableHead.classList.remove("block");
       tableHead.classList.add("hide");
+      summaryHead.classList.remove("block");
+      summaryHead.classList.add("hide");
       cartItem.insertAdjacentHTML(
         "afterend",
-        `<h4 class="single_team_text" style="padding: 20px; text-align: center">
+        `
+        <div class="single_team_text">
+        <h3 style="padding: 20px; text-align: center">
           Din varukorg är tom
-        </h4>`
+        </h3>
+          </div>`
       );
     } else {
       tableHead.classList.remove("hide");
       tableHead.classList.add("block");
+      summaryHead.classList.remove("hide");
+      summaryHead.classList.add("block");
       const htmlString = formDataArry
         .map((item) => {
           id = item.id;
@@ -1707,61 +1970,109 @@ const displayNewCart = () => {
           } else {
             quantity = item.quantity;
           }
+          //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
           return (
             `
-          <tr id= "` +
+          <section class="col mb-4" id=` +
             item.id +
-            `">
-          <td data-label="Bild" class="pro_img">
-                        <img
-                          src="` +
+            `>
+<div>
+   <img id="` +
+            item.id +
+            `" src="` +
             item.img +
-            `"
-                          alt="rätt-bild"
-                          class="img-fluid w-100"
-                        />
-                      </td>
-
-                      <td data-label="Detaljer" class="pro_name">
-                        <a href="#">` +
-            item.title?.replace(/'/g, "") +
-            `</a>
-                      </td>
-                      <td data-label="Pris" class="pro_status">
-                        <h6>` +
-            item.price +
-            `kr</h6>
-                      </td>
-
-                      <td data-label="Kvantitet" class="pro_select">
-                      <div class="quentity_btn">
-                      <button class="decrease">
-                      <i class="fa fa-minus"></i>
-                    </button>
-                    <input class="quantity" type="text" value=` +
+            `" alt="bild på maträtt"
+      class="pro_img cartPayDeliver"/>
+      <p>` +
+            item.title +
+            `
+      </p>
+</div>
+<div class="pro_select d-flex flex-direction-row">
+   <div class="quentity_btn">
+      <button class="decrease">
+      <i class="fa fa-minus"></i>
+      </button>
+      <input class="quantity" type="text" value=` +
             quantity +
             `>
-                    <button class="increase">
-                      <i class="fa fa-plus"></i>
-                    </button>
-                  </div>
-                      </td>
-
-                      <td data-label="Total" class="pro_tk">
-                      <div class="quentity_btn">
-                        <h6 class="quantity_price">` +
-            item.quantityPrice +
-            `</h6>
-                      <h6 class="currency mb_0">kr</h6>
-                      </div>
-                      </td>
-
-                      <td data-label="Ta bort" class="pro_icon">
-                        <button onclick="removeItem(` +
+      <button class="increase">
+      <i class="fa fa-plus"></i>
+      </button>
+   </div>
+   <div class="pro_icon">
+      <button onclick="removeItem(` +
             item.id +
             `)" href="#"><i class="fas fa-trash-alt"></i></button>
-                      </td>
-                      </tr>`
+      <div class="quentity_btn">
+         <h6 class="quantity_price">` +
+            item.quantityPrice +
+            `
+         </h6>
+         <h6 class="currency mb_0">kr</h6>
+      </div>
+   </div>
+</div>
+</div>
+</section>
+
+            `
+
+            //   `
+            // <tr id= "` +
+            //   item.id +
+            //   `">
+            // <td data-label="Bild" class="pro_img">
+            //               <img
+            //                 src="` +
+            //   item.img +
+            //   `"
+            //                 alt="rätt-bild"
+            //                 class="img-fluid w-100"
+            //               />
+            //             </td>
+
+            //             <td data-label="Detaljer" class="pro_name">
+            //               <a href="#">` +
+            //   item.title?.replace(/'/g, "") +
+            //   `</a>
+            //             </td>
+            //             <td data-label="Pris" class="pro_status">
+            //               <h6>` +
+            //   item.price +
+            //   `kr</h6>
+            //             </td>
+
+            //             <td data-label="Kvantitet" class="pro_select">
+            //             <div class="quentity_btn">
+            //             <button class="decrease">
+            //             <i class="fa fa-minus"></i2>
+            //           </button>
+            //           <input class="quantity" type="text" value=` +
+            //   quantity +
+            //   `>
+            //           <button class="increase">
+            //             <i class="fa fa-plus"></i>
+            //           </button>
+            //         </div>
+            //             </td>
+
+            //             <td data-label="Total" class="pro_tk">
+            //             <div class="quentity_btn">
+            //               <h6 class="quantity_price">` +
+            //   item.quantityPrice +
+            //   `</h6>
+            //             <h6 class="currency mb_0">kr</h6>
+            //             </div>
+            //             </td>
+
+            //             <td data-label="Ta bort" class="pro_icon">
+            //               <button onclick="removeItem(` +
+            //   item.id +
+            //   `)" href="#"><i class="fas fa-trash-alt"></i></button>
+            //             </td>
+            //             </tr>
+            //             `
           );
         })
         .join("");
@@ -1771,20 +2082,130 @@ const displayNewCart = () => {
   }
 };
 
+//Display cost summary
+const displaySummary = () => {
+  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  console.log(formDataArry);
+  summary.insertAdjacentHTML(
+    "afterend",
+    `
+      <div>
+      <p class="mb-1" style="padding:10px; background:lightgrey;">Frakt <span></span></p>
+      <p style="padding:10px; background:lightgrey; class="quantity_price">Totalt kostnad inkl.moms <span></span></p>
+      </div>
+      `
+  );
+  displaySummary();
+
+  // copy
+  // const displayNewCart = () => {
+  //   const tableHead = document.getElementById("table_head");
+  //   if (cartItem !== null) {
+  //     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  //     if (formDataArry === null) {
+  //       tableHead.classList.remove("block");
+  //       tableHead.classList.add("hide");
+  //       cartItem.insertAdjacentHTML(
+  //         "afterend",
+  //         `<h4 class="single_team_text" style="padding: 20px; text-align: center">
+  //           Din varukorg är tom
+  //         </h4>`
+  //       );
+  //     } else {
+  //       tableHead.classList.remove("hide");
+  //       tableHead.classList.add("block");
+  //       const htmlString = formDataArry
+  //         .map((item) => {
+  //           id = item.id;
+  //           let quantity;
+  //           if (item.quantity == null) {
+  //             quantity = localStorage.getItem("quantity");
+  //           } else {
+  //             quantity = item.quantity;
+  //           }
+  //           return (
+  //             `
+  //           <tr id= "` +
+  //             item.id +
+  //             `">
+  //           <td data-label="Bild" class="pro_img">
+  //                         <img
+  //                           src="` +
+  //             item.img +
+  //             `"
+  //                           alt="rätt-bild"
+  //                           class="img-fluid w-100"
+  //                         />
+  //                       </td>
+
+  //                       <td data-label="Detaljer" class="pro_name">
+  //                         <a href="#">` +
+  //             item.title?.replace(/'/g, "") +
+  //             `</a>
+  //                       </td>
+  //                       <td data-label="Pris" class="pro_status">
+  //                         <h6>` +
+  //             item.price +
+  //             `kr</h6>
+  //                       </td>
+
+  //                       <td data-label="Kvantitet" class="pro_select">
+  //                       <div class="quentity_btn">
+  //                       <button class="decrease">
+  //                       <i class="fa fa-minus"></i>
+  //                     </button>
+  //                     <input class="quantity" type="text" value=` +
+  //             quantity +
+  //             `>
+  //                     <button class="increase">
+  //                       <i class="fa fa-plus"></i>
+  //                     </button>
+  //                   </div>
+  //                       </td>
+
+  //                       <td data-label="Total" class="pro_tk">
+  //                       <div class="quentity_btn">
+  //                         <h6 class="quantity_price">` +
+  //             item.quantityPrice +
+  //             `</h6>
+  //                       <h6 class="currency mb_0">kr</h6>
+  //                       </div>
+  //                       </td>
+
+  //                       <td data-label="Ta bort" class="pro_icon">
+  //                         <button onclick="removeItem(` +
+  //             item.id +
+  //             `)" href="#"><i class="fas fa-trash-alt"></i></button>
+  //                       </td>
+  //                       </tr>`
+  //           );
+  //         })
+  //         .join("");
+  //       cartItem.innerHTML = htmlString;
+  //       return id;
+  //     }
+  //   }
+  // };
+};
+
 displayNewCart();
 totalSum();
 totalQuantity();
 
-const increase = document.querySelectorAll(".increase");
-const decrease = document.querySelectorAll(".decrease");
+//Bind the buttons handling the increment and decrement buttons to a function and run it once the DOM loads. When the DOM dynamically changes (e.g. insertAdjacentHTML, removeItem()), the intitally attached addEventListeners are not there anymore and need to be reattached both on the DOM and for the "removeItem" function.
+function cartBtns() {
+  const increase = document.querySelectorAll(".increase");
+  const decrease = document.querySelectorAll(".decrease");
 
-increase.forEach((btn) => {
-  btn.addEventListener("click", increment);
-});
+  increase.forEach((btn) => {
+    btn.addEventListener("click", increment);
+  });
 
-decrease.forEach((btn) => {
-  btn.addEventListener("click", decrement);
-});
+  decrease.forEach((btn) => {
+    btn.addEventListener("click", decrement);
+  });
+}
+cartBtns();
 
 //Increment function on the + button for quantity
 function increment() {
@@ -1803,14 +2224,15 @@ function increment() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.closest("td").nextElementSibling.querySelector(".quantity_price");
+        this.parentElement.nextElementSibling.querySelector(".quantity_price");
       var input = this.previousElementSibling;
+      console.log(input);
     }
     let inputQuantity = inp.value;
     let increaseQuantityPrice = inp.value * price;
 
     if (cartItem !== null) {
-      let tableId = this.closest("tr").id;
+      let tableId = this.closest("section").id;
 
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
@@ -1849,12 +2271,13 @@ function increment() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.closest("td").nextElementSibling.querySelector(".quantity_price");
+        this.parentElement.nextElementSibling.querySelector(".quantity_price");
       var input = this.previousElementSibling;
     }
     let inputQuantity = inp.value;
 
-    let tableId = this.closest("tr").id;
+    let tableId = this.closest("section").id;
+    console.log(tableId);
 
     let itemIndex = formDataArry.filter((el) => el.id == tableId);
     if (itemIndex) {
@@ -1871,14 +2294,19 @@ function increment() {
   totalQuantity();
 }
 
-//Decrement function on the - button for quantity
-function decrement() {
+//Decrement function on the button for quantity
+//In order to ensure the button pressed is the one the user really clicked on, instead of just having it look for the closest matching class or id, declare a variable to the event.target along with replacing the "this" keywords since event.target is handling that for us now.
+function decrement(event) {
+  const decBtn = event.target.closest(".decrease");
+  console.log(decBtn);
   if (localStorage.getItem("quantity") !== null) {
-    const inp = this.nextElementSibling;
-    button = this.closest("button");
-    if (inp.value > 0) inp.value = Number(inp.value) - 1;
+    const inp = decBtn.nextElementSibling;
+    if (inp.value > 0) {
+      inp.value = Number(inp.value) - 1;
+      console.log(inp.value);
+    }
     if (inp.value <= 0) {
-      this.setAttribute("disabled", "disabled");
+      decBtn.setAttribute("disabled", "disabled");
     }
     let id = localStorage.getItem("id");
     let quantityPrice = localStorage.getItem("quantity-price");
@@ -1891,14 +2319,17 @@ function decrement() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.closest("td").nextElementSibling.querySelector(".quantity_price");
+        decBtn.parentElement.nextElementSibling.querySelector(
+          ".quantity_price"
+        );
       var input = this.nextElementSibling;
     }
     let inputQuantity = inp.value;
     let decreaseQuantityPrice = quantityPrice - price;
 
     if (cartItem !== null) {
-      let tableId = this.closest("tr").id;
+      let tableId = decBtn.closest("section").id;
+
       let itemIndex = formDataArry.filter((el) => el.id == tableId);
       if (itemIndex) {
         decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
@@ -1919,12 +2350,13 @@ function decrement() {
     );
     localStorage.setItem("quantity", (input.textContent = inputQuantity));
   } else {
-    const inp = this.nextElementSibling;
+    const inp = decBtn.nextElementSibling;
+    console.log(inp);
     if (inp.value > 0) {
       inp.value = Number(inp.value) - 1;
     }
     if (inp.value <= 0) {
-      this.setAttribute("disabled", "disabled");
+      decBtn.setAttribute("disabled", "disabled");
     }
     for (i = 0; i < formDataArry.length; i++) {
       price = parseInt(formDataArry[i].price);
@@ -1937,18 +2369,22 @@ function decrement() {
     } else {
       price = parseInt(price);
       var modalQuantityPrice =
-        this.closest("td").nextElementSibling.querySelector(".quantity_price");
+        decBtn.parentElement.nextElementSibling.querySelector(
+          ".quantity_price"
+        );
       var input = this.nextElementSibling;
     }
     let inputQuantity = inp.value;
 
-    let tableId = this.closest("tr").id;
+    let tableId = decBtn.closest("section").id;
+    console.log(tableId);
 
     let itemIndex = formDataArry.filter((el) => el.id == tableId);
     if (itemIndex) {
       let decreaseQuantityPrice =
         itemIndex[0].quantityPrice - itemIndex[0].price;
       itemIndex[0].quantityPrice = decreaseQuantityPrice;
+      console.log(modalQuantityPrice);
       modalQuantityPrice.innerHTML = decreaseQuantityPrice;
       itemIndex[0].quantity = inputQuantity;
       input.value = inputQuantity;
@@ -1963,13 +2399,16 @@ function decrement() {
 //Remove item from cart
 function removeItem(id) {
   let temp = formDataArry.filter((item) => item.id != id);
+  console.log(temp);
   localStorage.setItem("formDataArry", JSON.stringify(temp));
   //set item back into storage
   displayNewCart();
   totalQuantity();
   totalSum();
   updateFields();
-  if (temp.length === 0) {
+  //Reattach addEventListeners
+  cartBtns();
+  if (temp.length == 0) {
     localStorage.clear();
     displayNewCart();
   }
@@ -2159,6 +2598,123 @@ function updateFields() {
   }
 }
 
+//Function for carousel slider on front page
+//Carousel 1
+
+//Carousel 2
+/*
+let currentIndex2 = 0;
+const carousel2 = document.getElementById("carousel2");
+const products2 = document.querySelectorAll(".product2");
+const product2Width = products2[0].offsetWidth + 20;
+const visibleProducts2 = 3;
+const totalProducts2 = products2.length;
+
+for (let i = 0; i < visibleProducts2; i++) {
+  const firstClone = products2[i].cloneNode(true);
+  const lastClone = products2[totalProducts2 - 1 - i].cloneNode(true);
+  carousel2.appendChild(firstClone);
+  carousel2.insertBefore(lastClone, carousel2.firstChild);
+}
+
+carousel2.style.width = `${
+  (totalProducts2 + visibleProducts2 * 2) * product2Width
+}px`;
+
+carousel2.style.transform = `translateX(-${
+  product2Width * visibleProducts2
+}px)`;
+
+function scrollCarouselLeft2() {
+  console.log("Left button clicked");
+  currentIndex2--;
+  carousel2.style.transition = "transform 0.5s ease-in-out";
+  carousel2.style.transform = `translateX(-${
+    (currentIndex2 + visibleProducts2) * product2Width
+  }px)`;
+
+  if (currentIndex2 < 0) {
+    setTimeout(() => {
+      carousel2.style.transition = "none";
+      currentIndex2 = totalProducts2 - 1;
+      carousel2.style.transform = `translateX(-${
+        (currentIndex2 + visibleProducts2) * product2Width
+      }px)`;
+    }, 500);
+  }
+}
+
+function scrollCarouselRight2() {
+  currentIndex2++;
+  carousel2.style.transition = "transform 0.5s ease-in-out";
+  carousel2.style.transform = `translateX(-${
+    (currentIndex2 + visibleProducts2) * product2Width
+  }px)`;
+
+  if (currentIndex2 >= totalProducts2) {
+    setTimeout(() => {
+      carousel2.style.transition = "none";
+      currentIndex2 = 0;
+      carousel2.style.transform = `translateX(-${
+        product2Width * visibleProducts2
+      }px)`;
+    }, 500);
+  }
+}
+*/
+//Funtion for show/hide faq accordions with button
+document.addEventListener("DOMContentLoaded", function () {
+  const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
+  const betalningBtn = document.getElementById("betalning");
+  const menyerAllergierBtn = document.getElementById("menyer-allergier");
+
+  const omWebbplatsenAccordion = document.getElementById(
+    "om-webbplatsen-accordion"
+  );
+  const betalningAccordion = document.getElementById("betalning-accordion");
+  const allergierAccordion = document.getElementById("allergier-accordion");
+
+  function hideAllAccordions() {
+    omWebbplatsenAccordion.style.display = "none";
+    betalningAccordion.style.display = "none";
+    allergierAccordion.style.display = "none";
+  }
+
+  function resetButtonStyles() {
+    omWebbplatsenBtn.classList.remove("active");
+    betalningBtn.classList.remove("active");
+    menyerAllergierBtn.classList.remove("active");
+  }
+
+  hideAllAccordions();
+  omWebbplatsenAccordion.style.display = "block";
+  omWebbplatsenBtn.classList.add("active");
+
+  omWebbplatsenBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideAllAccordions();
+    resetButtonStyles();
+    omWebbplatsenAccordion.style.display = "block";
+    omWebbplatsenBtn.classList.add("active");
+  });
+
+  betalningBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideAllAccordions();
+    resetButtonStyles();
+    betalningAccordion.style.display = "block";
+    betalningBtn.classList.add("active");
+  });
+
+  menyerAllergierBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    hideAllAccordions();
+    resetButtonStyles();
+    allergierAccordion.style.display = "block";
+    menyerAllergierBtn.classList.add("active");
+  });
+});
+
 // Function to cart content and total form to email
 const sendCartInfo = document.getElementById("cart-order-form");
 const cartButton = document.getElementById("cart-button");
@@ -2232,7 +2788,7 @@ if (sendCartInfo !== null) {
   null;
 }
 
-var swiper = new Swiper(".slide-content", {
+var swiper1 = new Swiper(".slide-content", {
   slidesPerView: 3,
   spaceBetween: 25,
   loop: true,
@@ -2244,13 +2800,48 @@ var swiper = new Swiper(".slide-content", {
     clickable: true,
     dynamicBullets: true,
   },
-  autoplay: {
-    delay: 4500,
-    disableOnInteraction: false,
-  },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
+  },
+
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
+});
+
+var swiper2 = new Swiper(".slide-content2", {
+  slidesPerView: 3,
+  spaceBetween: 25,
+  loop: true,
+  centerSlide: "true",
+  fade: "true",
+  grabCursor: "true",
+  pagination: {
+    el: ".swiper-pagination2",
+    clickable: true,
+    dynamicBullets: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next2",
+    prevEl: ".swiper-button-prev2",
   },
 
   breakpoints: {
@@ -2295,7 +2886,7 @@ function Footer() {
             <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
               <p id="contact_title">Yumfoods.se</p>
               <div class="contacts-content contacts justify-content-center w_40">
-                <div class="contacts-box">
+                <div id="footer-phone" class="contacts-box">
                 <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
                   <p style="margin-left: 10px;">+46 76 023 49 30</p>
                 </div>
@@ -2358,7 +2949,7 @@ function Footer() {
             <div id="other_links" class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
               <div class="footer_content">
               <h2 id="link_title">Hjälp & Villkor</h2>
-              <ul>
+              <ul id="faq-ul">
                   <li><i class="fas fa-question"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html">Få snabbt svar FAQ</a></li>
                   <li><i style="margin-top: 30px;" class="fab fa-teamspeak"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html"> Kontakta kundservice</a></li>
                   <li><i style="margin-top: 30px;" class="fas fa-file-alt"></i><a style="margin-top: -22px;" class="footer_links_1" href="terms_condition.html">Allmänna villkor</a></li>
