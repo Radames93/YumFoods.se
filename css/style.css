@@ -690,12 +690,12 @@ button {
 
 /* language button*/
 
-.langBtn .nav-item a{
+.langBtn .nav-item a {
   background-color: white;
 }
 
-.langBtn .nav-item .fa-angle-down{
-  color:  #fa6039;;
+.langBtn .nav-item .fa-angle-down {
+  color: #fa6039;
 }
 
 .langBtn .nav-item a {
@@ -2086,7 +2086,7 @@ button {
 /* testimonial end */
 
 #location-input::placeholder {
-  color: #040404; 
+  color: #040404;
   opacity: 1;
 }
 
