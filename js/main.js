@@ -1831,7 +1831,7 @@ const displayNewCart = () => {
             <div style="padding: 10px; margin-top: -17px;" class="d-flex">` +
             diet +
             `</div>
-            
+
           </h5>
           <h5 style="cursor: pointer;" onclick="removeItem(` +
             item.id +
@@ -2132,35 +2132,142 @@ function nextAccord2() {
   //   });
   // }, 250);
 }
-
-// Displaying the next 2 weeks, 3 days ahead while skipping Saturdays and Sundays
-
-// ---------------------------------- Alt 1 (current one) ----------------------------------
-// Display the upcoming 2 weeks while excluding the weekends (saturdays & sundays) while initially jumping ahead with 3 days, in total 10 days.
+// Display the upcoming 2 weeks while excluding the weekends (saturdays & sundays) while initially jumping ahead 3 days, in total 10 days.
 // 14 days in a week, but adding 3 results in 17
 // Grab the dates, format the display for dates using the options object and inserting that to "toLocaleString"
 // with a for loop, initialize "i" with 3 representing the 3 days ahead, check the current day with "checkDay",
 // with an if statement, as long as the "checkDay" is not on a weekend, push the formatted date into an empty array
 // and finally increment the dates with '1' for the next loop with setDate
-// const dates = new Date();
 
-// const dateOptions = {day: '2-digit', month: 'short', weekday: 'short' }
-// const twoWeeks = 17
-// let threeDaysAhead = []
-// dates.setDate(dates.getDate() + 3)
+const dates = new Date();
+const options = { day: "numeric", month: "short", weekday: "long" };
+const twoWeeks = 17;
 
-// for(let i = 3; i < twoWeeks; i++) {
+let threeDaysAhead = [];
+dates.setDate(dates.getDate() + 3);
 
-// const checkDay = dates.getDay();
+for (let i = 3; i < twoWeeks; i++) {
+  const checkDay = dates.getDay();
+  if (checkDay !== 0 && checkDay !== 6) {
+    const sweDate = dates.toLocaleString("sv-SE", options);
+    threeDaysAhead.push(sweDate.toUpperCase());
+  }
+  dates.setDate(dates.getDate() + 1);
+}
 
-// if(checkDay !== 0 && checkDay !== 6) {
-// const sweDate = dates.toLocaleString('sv-SE', dateOptions)
-// threeDaysAhead.push(sweDate.toUpperCase())
-// }
-// dates.setDate(dates.getDate() + 1)
-// }
+console.log(threeDaysAhead);
 
-// console.log(threeDaysAhead)
+const dateStrings = threeDaysAhead
+  .map((day) => {
+    const [weekday, days, month] = day.split(" ");
+    return `
+
+ <div class="d-flex calendar justify-content-center dateWrapper">
+  <div class="date-box box1 text-center mx-2 date">
+    <div class="day">${weekday}</div>
+    <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
+  </div>
+</div>
+
+`;
+  })
+  .join("");
+
+document.getElementById("deliverDates").innerHTML = dateStrings;
+
+const theBox = document.querySelectorAll(".box1");
+
+theBox.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    theBox.forEach((b) => b.classList.remove("box-selected"));
+    btn.classList.add("box-selected");
+  });
+});
+
+// theBox.addEventListener('click', function() {
+// theBox.classList.toggle("box-selected");
+// })
+
+// Arrow buttons, add a click function to move it left and right whilst checking the clip-path to dynamically move it left and right depending where the element is being moved in order to ensure only the middle is visible
+const clipPaths = [
+  "inset(-15.33% -7.61% -24.62% -2.53%)",
+  "inset(-15.33% -113.01% -24.62% 105.95%)",
+  "inset(-15.33% -220.47% -24.62% 212.38%)",
+  "inset(-15.33% -326.13% -24.62% 319.84%)",
+];
+
+let xAxis = 0;
+let rightClicks = 0;
+let maxClicks = 3;
+let itemWidth = 415;
+document.querySelector("#leftArrow").setAttribute("disabled", true);
+
+function updateClipPath() {
+  const clipValue = clipPaths[rightClicks];
+  document.querySelector("#deliverDates").style.clipPath = clipValue;
+}
+updateClipPath();
+
+function moveLeft() {
+  if (rightClicks > 0) {
+    rightClicks--;
+    xAxis += itemWidth;
+    document.querySelector(
+      "#deliverDates"
+    ).style.transform = `translateX(${xAxis}px)`;
+    updateClipPath();
+    document.querySelector("#rightArrow").removeAttribute("disabled");
+    if (rightClicks === 0) {
+      document.querySelector("#leftArrow").setAttribute("disabled", true);
+    }
+  }
+}
+
+function moveRight() {
+  if (rightClicks < maxClicks) {
+    xAxis -= itemWidth;
+    rightClicks++;
+    document.querySelector(
+      "#deliverDates"
+    ).style.transform = `translateX(${xAxis}px)`;
+    updateClipPath();
+
+    document.querySelector("#leftArrow").removeAttribute("disabled");
+    console.log(rightClicks);
+  }
+
+  if (rightClicks === maxClicks) {
+    document.querySelector("#rightArrow").setAttribute("disabled", true);
+  }
+}
+
+document.querySelector("#rightArrow").addEventListener("click", moveRight);
+document.querySelector("#leftArrow").addEventListener("click", moveLeft);
+
+// <div>
+//     <button style="padding:5px; width:100px;">
+//     <div>${weekday}</div>
+//     <div>${days} ${month}</div>
+//     </button>
+// </div>
+
+{
+  /* <div class="d-flex calendar justify-content-center">
+<div class="date-box box1 text-center mx-2">
+  <div class="day">Måndag</div>
+  <div class="date">2 Sep</div>
+</div>
+<div class="date-box text-center mx-2">
+  <div class="day">Tisdag</div>
+  <div class="date">3 Sep</div>
+</div>
+<div class="date-box box3 text-center mx-2">
+  <div class="day">Onsdag</div>
+  <div class="date">4 Sep</div>
+</div>
+</div>  */
+}
+
 // ----------------------------------
 
 //Increment function on the + button for quantity
