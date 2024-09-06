@@ -60,10 +60,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include=".gitignore" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\docs\Halal Certificate.pdf" />
     <None Include="wwwroot\docs\Packages Certificate.pdf" />
     <None Include="wwwroot\docs\Privacy Policy.pdf" />
