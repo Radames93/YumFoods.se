@@ -2202,6 +2202,38 @@ button {
   top: 85px;
 }
 
+.first-page-description {
+  display: block;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.first-page-button {
+  text-align: center;
+  width: 150px;
+  margin-top: -280px;
+  margin-left: -6px;
+}
+
+.first-page-button1 {
+  background: #dd3902;
+  color: var(--white);
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all linear 0.3s;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  z-index: 0;
+  margin-top: 40px;
+}
+
+.first-page-button1:hover {
+  background-color: rgb(6, 0, 61);
+}
+
 .text {
   font-size: 1.4rem;
   text-align: center;
