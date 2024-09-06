@@ -273,6 +273,25 @@
     -o-transition: all linear 0.3s;
   }
 
+ /* secound part of start page start */
+ .box1.large-box {
+  width: 91%;
+  height: auto; 
+  padding: 20px;
+  margin: 0 auto 15px; 
+  font-size: 1.1rem;
+}
+
+.box3.info-box {
+  width: 91%;
+  padding: 20px; 
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+
+/* secound part of start page end*/
+
+/* banner */
   .banner_shape_1 {
     width: 50px;
     height: 50px;
@@ -558,6 +577,44 @@
   .main_menu .navbar-brand {
     width: 110px;
   }
+
+  /* popup in start page */
+  .modal-content .modal-body{
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .startpage-group .form-control{
+    min-width: 80px;
+    align-items: stretch;
+  }
+
+  .startpage-group .btn{
+    margin-top:5px
+  }
+
+  .modal-section .modal-content{
+    width: 100%;
+    height: auto;
+  }
+
+  /* popup end */
+   /* secound part of start page start */
+ .box1.large-box {
+  width: 92%;
+  height: auto; 
+  padding: 20px;
+  margin: 0 auto 15px; 
+  font-size: 1.1rem;
+}
+
+.box3.info-box {
+  width: 92%;
+  padding: 20px; 
+  margin: 0 auto;
+  font-size: 1.1rem;
+}
+/* secound part of start page end*/
 
   .banner_text h1 {
     font-size: 48px;
@@ -1217,6 +1274,185 @@
     font-size: 30px;
   }
 
+    /* popup in start page */
+    .modal-section .modal-content{
+      margin-top: -98px;
+      padding: 10px;
+      height: 400px;
+    }
+
+    .modal-section .modal-content .modal-body{
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  
+    .startpage-group{
+      flex-direction: column;
+    }
+
+    .startpage-group .form-control{
+      align-items: stretch;
+      min-width: 120px;
+      width: 90%;
+      margin-bottom: 5px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .startpage-group .btn-adress{
+      width: 143px;
+      margin-bottom: 5px;
+      height: 40px;
+      align-self: center;
+    }
+
+    .startpage-group .btn{
+      width: 141px;
+      height: 40px;
+      margin-right: 19px;
+      border-radius: 0%;
+    }
+    /* popup end */
+
+    /* secound part of start page start */
+
+    .box1.large-box {
+      width: 97%;
+      height: auto; 
+      padding: 20px;
+      margin: 0 auto 10px; 
+      font-size: 1.1rem;
+    }
+
+    .box1.large-box h5,
+    .box1.large-box h6 {
+        font-size: 1rem;
+    }
+
+    .col-7.text {
+      width: 93%;
+    }
+    
+    .quantity-btn {
+        width: 90%;
+        justify-content: space-between; 
+        margin-left: -70px;
+        margin-top: 10px;
+    }
+
+    .quantity-btn button {
+        font-size: 0.9rem;
+        border: 1px solid #757474;
+    }
+
+    .quantity-btn span {
+        font-size: 1rem;
+    }
+
+    /* .box3.info-box {
+      width: 87%;
+      padding: 10px 10px; 
+      margin: 0 auto;
+      font-size: 1.1rem;
+      position: absolute;
+    } */
+
+    .box3.info-box {
+      width: 290px;
+      padding: 10px 10px; 
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .col-md-5.right-part{
+      position: relative;
+    }
+
+    .secound-part {
+      padding-top: 30px;
+      flex-direction: column;
+    }
+
+    /* .secound-part {
+      padding-top: 30px;
+    } */
+
+    /* .col-md-5.right-part{
+      position: relative;
+      margin-top: -220px;
+    } */
+
+    .box3.info-box .close{
+      margin-left: 130px;
+    }
+
+    .box3.info-box .img-fluid {
+        margin-top: -40px;
+        margin-left: -30px;
+    }
+
+    .box3.info-box ul#dish-list p {
+        font-size: 1rem; 
+    }
+
+    .box3.info-box .row.bg-light p {
+        font-size: 1rem; 
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; 
+      max-height: 677.07px;
+    }
+
+    .col-5.box2 .kost{
+        flex: 0 0 48%; 
+        margin-left: 80px;
+    }
+    
+    .frakt {
+        margin: 0; 
+        text-align: left; 
+        margin-left: 2px;
+    }
+    
+    .price, .price2 {
+        text-align: right; 
+        margin-right: 2px;
+    }
+
+    .col-md-5 .text-center{
+      margin-left: -20px;
+    }
+
+    .col-md-5 .col-5 .box{
+      width: 60%;
+    }
+
+    .row .self-kasse .img-fluid{
+      margin-left: -65px;
+      height: 40px;
+    }
+
+    .row .self-kasse .col-6 p{
+      margin-left: -130px;
+    }
+
+    .row .self-kasse .col-6 .btn{
+      margin-left: -130px;
+    }
+
+    .self-kasse{
+      margin-left: 20px;
+    }
+  
+    .box3.info-box .btn-danger{
+      margin-top: -10px;
+    }
+
+    /* secound part of start page end */
+
   .banner_title {
     font-family: "Playfair Display";
     font-weight: 400;
@@ -1830,6 +2066,59 @@
     line-height: 15px;
   }
 
+  /* secound part of start page start */
+  .container .row .col-md-5{
+    margin-left: 50px;
+  }
+  .self-kasse{
+    margin-left: 20px;
+  }
+  /* secound part of start page end*/
+
+  .navbar-collapse {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 25%;
+    width: 40%;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    display: none;
+    overflow-y: auto;
+    margin-top: 114px;
+  }
+
+  .navbar-collapse.show {
+    display: block;
+  }
+
+  .dropbtn {
+    line-height: 15px;
+  }
+
+  .navbar-collapse {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 25%;
+    width: 40%;
+    padding: 1rem;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    display: none;
+    overflow-y: auto;
+    margin-top: 114px;
+  }
+
+  .navbar-collapse.show {
+    display: block;
+  }
+
+  .dropbtn {
+    line-height: 15px;
+  }
+
   .navbar-collapse {
     position: fixed;
     right: 0;
@@ -1849,6 +2138,52 @@
   }
 
   /* menu end */
+
+  /* popup in start page */
+  .modal-section .modal-content{
+    margin-top: -98px;
+    padding: 10px;
+  }
+  .modal-section .modal-content .modal-body{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .startpage-group{
+    flex-direction: column;
+  }
+
+  .startpage-group .form-control{
+    align-items: stretch;
+    min-width: 100px;
+    width: 90%;
+    margin-bottom: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .startpage-group .btn-adress{
+    width: 142px;
+    margin-bottom: 5px;
+    height: 40px;
+    align-self: center;
+  }
+
+  .startpage-group .btn{
+    width: 140px;
+    height: 40px;
+    margin-right: 19px;
+    border-radius: 0%;
+  }
+  /* popup end */
+  /* secound part of start page start */
+  .container .row .col-md-5{
+    margin-left: 50px;
+  }
+  .self-kasse{
+    margin-left: 20px;
+  }
+  /* secound part of start page end*/
   /* baner start */
 
   .content {
@@ -2982,6 +3317,80 @@
   }
 
   /* menu end */
+  /* popup in start page */
+  .custom-modal-size .modal-content{
+    width: 250px;
+    margin-left: 50%;
+    margin-top: -98px;
+  }
+  .modal-section .modal-content .modal-body{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .startpage-group .form-control{
+    align-items: stretch;
+    min-width: 100px;
+    width: 90%;
+    margin-bottom: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .startpage-group .btn-adress{
+    width: 142px;
+    margin-bottom: 5px;
+    height: 40px;
+    align-self: center;
+  }
+
+  .startpage-group .btn{
+    width: 142px;
+    height: 40px;
+    margin-right: 17px;
+    border-radius: 0%;
+  }
+  /* popup end */
+  /* secound part of start page start */
+ 
+  .container .row .col-md-5{
+    margin-left: 30px;
+    margin-right: 20px;
+  }
+
+  .box1.large-box {
+    width: 93%;
+    margin-left: 8px;
+  }
+  
+  .box3.info-box {
+    width: 93%;
+    margin-left: 8px;
+  }
+
+  .self-kasse{
+    margin-left: 50px;
+  }
+
+  .self-kasse .img-fluid{
+    margin-left: 25px;
+  } 
+
+  .col-5 .box2 {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .right-part{
+    margin-top: 15px;
+  }
+
+  .row.col-5.box2 .secound-part {
+    padding-top: 30px;
+    flex-direction: column;
+  }
+
+  /* secound part of start page end*/
 
   /* baner start */
 

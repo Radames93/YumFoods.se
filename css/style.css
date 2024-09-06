@@ -686,6 +686,14 @@ button {
 
 /* language button*/
 
+.langBtn .nav-item a{
+  background-color: white;
+}
+
+.langBtn .nav-item .fa-angle-down{
+  color:  #fa6039;;
+}
+
 .langBtn .nav-item a {
   background-color: white;
 }
@@ -728,6 +736,119 @@ button {
 
 /* menu end */
 
+/*popup in start page*/
+.modal-section .modal-content{
+  background-color: #fae0c8;
+}
+
+.custom-modal-size{
+  max-width: 40%;
+  max-height: 60vh;
+  margin-top: 230px;
+}
+
+.startpage-group .btn-adress{
+  margin-right: 20px;
+  background-color: white;
+  border:  1px solid rgb(211, 211, 211);
+  padding: 0 8px;
+  color: rgb(122, 122, 122);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.startpage-group .btn-adress:hover {
+  margin-right: 20px;
+  background-color: rgb(58, 56, 56);
+  color: white;
+  padding: 0 8px;
+}
+
+.modal-section .modal-content .modal-body{
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.modal-section .modal-content .modal-body p{
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.modal-section .modal-content .form-label{
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 0px;
+}
+
+/*End Popup in start page  */
+
+/* secound part of start page start*/
+
+.box {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.box.selected {
+  background-color: #ff7c082e;
+}
+
+.selected-border{
+  border: 1px solid #000000 !important;
+}
+
+.unselected-border{
+  border: 1px solid #ddd;
+}
+.box1 {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.box2 {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.box3 {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: white;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.col-6 .btn2{
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  margin-left: 100px;
+}
+.circular-image {
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: auto;
+}
+
+.pricedetail{
+  color: #ff7c08;
+}
+
+/* secound part of start page End*/
 /* banner start */
 
 .vectorButton {
@@ -2182,6 +2303,7 @@ button {
 
 #location-input::placeholder {
   color: #040404;
+  color: #040404; 
   opacity: 1;
 }
 
