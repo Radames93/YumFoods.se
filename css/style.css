@@ -694,6 +694,14 @@ button {
   color: #fa6039;
 }
 
+.langBtn .nav-item a {
+  background-color: white;
+}
+
+.langBtn .nav-item .fa-angle-down {
+  color: #fa6039;
+}
+
 .separator {
   width: 1px;
   height: 90px;
@@ -2172,6 +2180,11 @@ button {
 
 /* testimonial end */
 
+#location-input::placeholder {
+  color: #040404;
+  opacity: 1;
+}
+
 .hero {
   display: flex;
   margin-top: 50px;
@@ -2187,6 +2200,9 @@ button {
   position: absolute;
 }
 
+.hero-button:hover {
+  margin-bottom: 2px;
+}
 :root {
   --primary: #080808;
   --secondary: #ff7c08;
@@ -2202,16 +2218,19 @@ button {
 .hero-button {
   background: var(--secondary);
   color: var(--white);
-  padding: 12px 40px;
+  max-height: 50px;
+  align-items: center;
+  padding: 5px 15px;
   border-radius: 10px;
-  font-size: 25px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 100;
   transition: all linear 0.3s;
   position: relative;
   cursor: pointer;
   overflow: hidden;
   border: none;
   z-index: 0;
+  margin-left: 25px;
 }
 
 .hero-description {
@@ -2220,7 +2239,7 @@ button {
   z-index: 3;
   color: var(--white);
   font-size: 25px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .hero-button:before,
@@ -2272,10 +2291,42 @@ button {
 }
 
 .hero-box {
-  filter: drop-shadow(white 1rem 1rem 10px);
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 10px;
+  top: 85px;
+}
+
+.first-page-description {
+  display: block;
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.first-page-button {
+  text-align: center;
+  width: 150px;
+  margin-top: -280px;
+  margin-left: -6px;
+}
+
+.first-page-button1 {
+  background: #dd3902;
+  color: var(--white);
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all linear 0.3s;
+  cursor: pointer;
+  overflow: hidden;
+  border: none;
+  z-index: 0;
+  margin-top: 40px;
+}
+
+.first-page-button1:hover {
+  background-color: rgb(6, 0, 61);
 }
 
 .text {

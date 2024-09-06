@@ -244,6 +244,10 @@ function toggleDropdown() {
   document.getElementById("dropdown-content").classList.toggle("show");
 }
 
+function navigateToMenuPage() {
+  window.location.href = '/yum_menu.html';
+}
+
 //Get elements from the DOM
 let summary = document.getElementById("cost_summary");
 let yum = document.getElementById("yum");
