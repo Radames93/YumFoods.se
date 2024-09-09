@@ -28,7 +28,7 @@ public class StripeClient
             Currency = "sek",
             PaymentMethodTypes = new List<string>
             {
-                "card",
+                "card"
             },
             SuccessUrl = request.SuccessPaymentUrl,
             CancelUrl = request.CancelPaymentUrl,
@@ -43,7 +43,6 @@ public class StripeClient
                     {
                         Name = product.Name
                     }
-
                 }
             }).ToList()
         };

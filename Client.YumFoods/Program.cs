@@ -5,28 +5,16 @@ using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-//builder.Services.AddScoped<IProductRepository<ProductDTO>>();
-//builder.Services.AddScoped<IOrderDetailRepository<OrderDetailDTO>>();
-//builder.Services.AddScoped<IOrderRepository<OrderDTO>>();
-//builder.Services.AddScoped<IPaymentService>();
-//builder.Services.AddScoped<ICartService>();
-
 var app = builder.Build();
 
 
-<<<<<<< HEAD
-//    app.Run(async (context) =>
-//    {
-//        context.Response.ContentType = "text/html";
-//        await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
-//    });
 
+//app.Run(async (context) =>
+//{
+//    context.Response.ContentType = "text/html";
+//    await context.Response.SendFileAsync(Path.Combine(WebRootPath, "index.html"));
+//});
 
-
-=======
->>>>>>> main-backend-clean
 
 app.UseHttpsRedirection();
 app.UseDefaultFiles();
