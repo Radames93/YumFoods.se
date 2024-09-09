@@ -2307,25 +2307,23 @@ const submitCartForm = async (event) => {
     const address = document.querySelector('input[name="adress"]').value;
     const message = document.querySelector('textarea[name="message"]').value;
     const dishName = document.querySelector('input[name="dishName"]').value;
-    const dishQuantity = document.querySelector('input[name=dishQuantity]').value;
+    let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+    dishQuantity = dishQuantity.replace(/['"]/g, '');
 
     // Calculate total quantity
-    const totalQuantity = parseInt(dishQuantity, 10);
-    //    .map(Number)
-    //    .reduce((sum, num) => sum + num, 0);
+    //const totalQuantity = parseInt(dishQuantity, 10);
 
-    //const sum = parseFloat(document.querySelector('input[name="total"]').value);
-
-    // Validation
-    //if (!totalQuantity || isNaN(totalQuantity)) {
-    //    alert("Vänligen ange en giltig numerisk mängd.");
-    //    return;
-    //}
+     const totalQuantity = dishQuantity
+        .split(',')
+        .map(qty => parseInt(qty.trim(), 10)) // Konvertera varje del till ett heltal
+        .reduce((sum, num) => sum + num, 0); 
+  
     if (isNaN(totalQuantity) || totalQuantity <= 0) {
         alert("vänligen ange en giltig numerisk mängd.");
         return;
     }
-    if (!sum || isNaN(sum)) {
+    const sum = parseFloat(document.querySelector('input[name="total"]').value);
+    if (sum <= 0|| isNaN(sum)) {
         alert("Vänligen ange en giltig totalsumma.");
         return;
     }
@@ -2352,7 +2350,7 @@ const submitCartForm = async (event) => {
 
     try {
         // Make a POST request to the backend API
-        const response = await fetch("https://localhost:7216/payments", {s
+        const response = await fetch("https://localhost:7216/payments", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
