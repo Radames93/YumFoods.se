@@ -19,16 +19,16 @@ builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
 builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
 
-var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\FRask-laptop\\Desktop\\Yum Foods\\ca-cert.pem;";
-var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\FRask-laptop\\Desktop\\Yum Foods\\ca-cert.pem;";
+var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
+var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
 var localConn1 = "Server=localhost;Database=yumfoodsdb;Uid=root;Pwd=admin;";
 var localConn2 = "Server=localhost;Database=yumfoodsuserdb;Uid=root;Pwd=admin;";
 
 builder.Services.AddDbContext<YumFoodsDb>(options =>
-    options.UseMySql(localConn1, ServerVersion.AutoDetect(localConn1)));
+    options.UseMySql(conn1, ServerVersion.AutoDetect(conn1)));
 
 builder.Services.AddDbContext<YumFoodsUserDb>(options =>
-    options.UseMySql(localConn2, ServerVersion.AutoDetect(localConn2)));
+    options.UseMySql(conn2, ServerVersion.AutoDetect(conn2)));
 
 builder.Services.AddCors(options =>
 {

@@ -2341,7 +2341,7 @@ const submitCartForm = async (event) => {
         customerAddress: address,
         message: message,
         totalAmount: sum,
-        paymentMethodTypes: ["card"],
+        paymentMethodTypes: ["paypal"],
         cancelPaymentUrl: "http://localhost:7216/404.html",
         successPaymentUrl: "http://din-webbplats.com/payment-success",
     };
