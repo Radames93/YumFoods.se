@@ -2348,7 +2348,7 @@ const submitCartForm = async (event) => {
 
     try {
         // Make a POST request to the backend API
-        const response = await fetch("https://localhost:7216/payments", {s
+        const response = await fetch("https://localhost:7216/payments",
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
