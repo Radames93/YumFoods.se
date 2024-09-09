@@ -86,7 +86,7 @@
                   type="button"
                   id="findLocationButton"
                 >
-                  <i class="far fa-location"></i>:round_pushpin:Hitta min plats
+                  <i class="far fa-location"></i>Hitta min plats
                 </button>
                 <div class="ml-3">
                   <button
@@ -207,8 +207,13 @@
       <h2 class="text-center mb-4">Bråttom? Handla en färdig kasse!</h2>
       <section class="row justify-content-center secound-part">
         <!-- Vänster del -->
-        <div class="col-md-5 col-6-lg left-part">
-          <h4 class="text-center mb-4">1. Välj kosttyp</h4>
+        <div
+          style="margin-left: auto; margin-right: auto"
+          class="col-md-5 col-6-lg left-part"
+        >
+          <h4 style="margin-left: -100px" class="text-center mb-4">
+            1. Välj kosttyp
+          </h4>
           <div class="row">
             <div class="col-5">
               <div class="box box2 kost" data-category="Proteinrik">
@@ -338,7 +343,12 @@
               <p class="mb-3">Vill du plocka ihop din egna kasse?</p>
               <button
                 class="btn btn-light"
-                style="border: 1px solid black; width: 180px"
+                style="
+                  border: 1px solid black;
+                  width: 180px;
+                  margin-left: 30px;
+                  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                "
                 onclick="window.location.href='#categories'"
               >
                 Se hela menyn här
@@ -349,7 +359,9 @@
 
         <!-- Höger del -->
         <div class="col-md-5 right-part">
-          <h4 class="text-center mb-4">2. Välj antal matlådor</h4>
+          <h4 style="margin-left: -150px" class="text-center mb-4">
+            2. Välj antal matlådor
+          </h4>
           <div class="row">
             <div class="col-3">
               <div class="box box4" data-value="10">10</div>
