@@ -212,7 +212,4 @@ DataAccess/obj/Debug/net8.0/ref/DataAccess.dll
 DataAccess/obj/Debug/net8.0/refint/DataAccess.dll
 obj/x86/Debug/yumfoods.se.csproj.AssemblyReference.cache
 >>>>>>> origin/dev-vivian-reverted
-/API/Program.cs
-/Client.YumFoods/wwwroot/js
-Client/
-
+/Client/wwwroot

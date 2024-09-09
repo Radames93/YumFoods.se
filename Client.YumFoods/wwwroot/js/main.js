@@ -2345,18 +2345,14 @@ const submitCartForm = async (event) => {
         customerAddress: address,
         message: message,
         totalAmount: sum,
-        paymentMethodTypes: [
-            
-                "payment"
-                
-        ],
+        paymentMethodTypes: ["paypal"],
         cancelPaymentUrl: "http://localhost:7216/404.html",
         successPaymentUrl: "http://din-webbplats.com/payment-success",
     };
 
     try {
         // Make a POST request to the backend API
-        const response = await fetch("https://localhost:7216/payments", {
+        const response = await fetch("https://localhost:7216/payments", {s
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
