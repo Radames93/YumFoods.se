@@ -1900,6 +1900,33 @@ button {
 
 /* menu item end */
 
+/* order confirm start */
+
+.order-confirm {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 50px;
+  width: 30%;
+  height: 400px;
+  border-radius: 10%;
+  box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.order-confirm h1 {
+  line-height: 2;
+  font-size: 30px;
+}
+
+.order-confirm img {
+  height: 250px;
+  margin-top: -20px;
+}
+
+/* order confirm end */
+
 /* team start */
 
 .team {
