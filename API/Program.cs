@@ -19,8 +19,10 @@ builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
 builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
 
-var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\gewer\\Desktop\\ca-cert.pem;";
-var conn2 = "Server=192.168.11.85;Database=yumfoods.userdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\gewer\\Desktop\\ca-cert.pem;";
+//C: \Users\gewer\OneDrive\Skrivbord
+
+var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\gewer\\OneDrive\\Skrivbord\\ca-cert.pem;";
+var conn2 = "Server=192.168.11.85;Database=yumfoods.userdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\gewer\\OneDrive\\Skrivbord\\ca-cert.pem;";
 var localConn1 = "Server=localhost;Database=yumfoodsdb;Uid=root;Pwd=admin;";
 var localConn2 = "Server=localhost;Database=yumfoods.userdb;Uid=root;Pwd=admin;";
 
