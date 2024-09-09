@@ -2482,15 +2482,18 @@ function cartBtns() {
 cartBtns();
 
 //On page load, display the first open accordion using DOMContentLoaded event
-document.addEventListener("DOMContentLoaded", () => {
-  const navHeader = document.querySelector(".main_menu").offsetHeight;
-  const header = document.getElementById("headingOne");
-  const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
-  window.scrollTo({
-    top: fixedHeader - navHeader - 50,
-    behavior: "smooth",
+let customerHandling = document.getElementById("customerHandling");
+if (customerHandling !== null) {
+  document.addEventListener("DOMContentLoaded", () => {
+    const navHeader = document.querySelector(".main_menu").offsetHeight;
+    const header = document.getElementById("headingOne");
+    const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: fixedHeader - navHeader - 50,
+      behavior: "smooth",
+    });
   });
-});
+}
 
 //Grab the "jump to next accordion" buttons
 const accordOne = document.querySelector(".nextAccord1");
