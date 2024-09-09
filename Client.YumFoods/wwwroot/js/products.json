@@ -1,0 +1,452 @@
+{
+  "yum": [
+    {
+      "id": 1,
+      "category": "Yum",
+      "img": "images/yum/Kålpudding.png",
+      "title": "'Kålpudding'",
+      "price": "75",
+      "diet": ["images/icons/pork.png"],
+      "description": "'En traditionell svensk rätt där kål är fylld med en köttfärsblandning, bakad i ugnen och serveras med brunsås och kokt potatis.'",
+      "ingredients": "'Fläskfärs(20% fetthalt), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse ), kalvfond(Vatten, salt, arom, köttextrakt, tomat, kalvbuljong, modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliumsorbat)), potatis(konserveringsmedel E223), svart vinbärsgele(Råsaft av svarta vinbär, socker, vatten, pektin, citronsyra, konserveringsmedel (E202, E211)), äggnla(Pastöriserad ÄGGULA 99% (ursprung Sverige), konserveringsmedel (kaliumsorbat), surbetsreglerande medel (citronsyra)), vitkål, ljus sirap, salt, svartpeppar, kryddpeppar, gullök, persilja, rapsolja, majsstärkelse, morot, lagerblad. KYLVARA +8 grader'"
+    },
+    {
+      "id": 2,
+      "category": "Yum",
+      "img": "images/yum/Jakob.png",
+      "title": "'Flygande jacob'",
+      "price": "75",
+      "diet": ["images/icons/chicken.png"],
+      "description": "'En svensk maträtt med kyckling, bananer, och jordnötter, gratinerad i ugnen med grädde och chilisås.'",
+      "ingredients": "'Strimlad kyckling(Kyckling (83%), vatten, salt, tapiokastärkelse, stabiliseringsmedel(ESOO, E331), dextros, d-xylos, olja av SOJABÖNOR), bacon (Sidfläsk från gris (86 %), vatten, salt, glukossirap, stabiliseringsmedel (difosfat), köttbuljong (frän gris), antioxidationsmedel (natriumaskorbat, natriumcitrat), druvsocker, konserveringsmedel (natriwnnitrit), rökarom), laktosfri mat1agningsgrädde(GRÅDDE, vatten, modifierad majs och tapiokastärkelse), chilisäs(Tomatpuré (motsvarande 186 g tomater/100 g chilisås), krossade tomater ( 40 %), socker, ättika, salt, vinäger, lök, kryddor (bl.a. cayennepeppar, vitlökspulver, kryddnejlika, ingefära, chilipeppa r), surbetsreglerande medel (citronsyra), konserveringsmedel (kaliumsorbat, natriumbensoat), örtkryddor.), bananchips(Bananer torkade, kokosolja, socker, honung), kycklingfond(Vatten, salt, arom (innehåller SELLERI), kycklingextrakt, socker, modifierad potatisstärkelse, kycklingfett, kycklingkött, syra (citronsyra), konserveringsmeclel (kaliumsorbat), dragonextrakt) salt, svartpeppar, majsstärkelse, ris. KYLVARA +8 grader'"
+    },
+    {
+      "id": 3,
+      "category": "Yum",
+      "img": "images/yum/Fiskivitvinssås.png",
+      "title": "'Fisk i vitvinssås'",
+      "price": "75",
+      "diet": ["images/icons/fish.png"],
+      "description": "'En rätt där fiskfilén är tillagad i en krämig vitvinssås, serveras med kokt potatis.'",
+      "ingredients": "'Vit fisk, vitt matlagningsvin(Vatten, vitt vin, sherry, salt, pepparex-trakt, konserveringsmedel (NATRIUMSULFIT)), laktosfri matlagningsgrädde(GRÅD-DE, vatten, modifierad majs och tapiokastärkelse), potatis(KONSERVERINGSME-DEL E223), laktosfritt smör(Pastöriserad laktosfri GRÄDDE och salt. Laktosfri med hjälp av laktasenzym), såsbas(Svensk pressad rapsolja, emulgeringsmedel (citronsy-raester), arom, färgämne (betakaroten)), fiskfond(Vatten, salt, vitt vin, FISK (TORSK), modifierad potatisstärkelse, grönsakspulver (morot, palsternacka, lök), arom, syra: citronsyra, konserveringsmedel: kaliumsorbat), gullök, morot, ROTSEL-LERI, lagerblad, vitpeppar, rapsolja, majsstärkelse, dill, salt, fänkålsfrö, dillfrö. '"
+    },
+    {
+      "id": 4,
+      "category": "Yum",
+      "img": "images/yum/Pannbiff.png",
+      "title": "'Pannbiff med lök'",
+      "price": "75",
+      "diet": ["images/icons/pork.png", "images/icons/cow.png"],
+      "description": "'En traditionell svensk rätt med kryddade köttbiffar som serveras med brunsås och kokt potatis.'",
+      "ingredients": "'Stekt pannbiff(Fläskkött (40%), nötkött (40%), lök, salt, kryddor, stärkelse, potatisfiber, socker, karamellsockersirap ), laktosfri matlagningsgräd- de(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), kalvfond(Vatten, salt, arom, köttextrakt, tomat, kalvbuljong, modifierad potatisstärkelse, syra: mjölksyra, konserveringsmedel: kaliumsorbat), stabiliseringsmedel (kalciumklorid), kryddextrakt (bl a dill och cayennepeppar), konserveringsmedel (kaliumsorbat)), svart vinbärsgele(Råsaft av svarta vinbär, socker, vatten, pektin, citronsyra, konserverings-medel (E202, E211 )), gul lök, potatismjöl, morot, rapsolja, lagerblad, salt, svartpeppar. KYLVARA + 8 Grader '"
+    },
+    {
+      "id": 5,
+      "category": "Yum",
+      "img": "images/yum/Schnitzel.png",
+      "title": "'Schnitzel med rödvinsås'",
+      "price": "75",
+      "diet": ["images/icons/pork.png"],
+      "description": "'En österrikisk maträtt bestående av tunt skivat kött som är panerat och stekt, serveras med citron och potatis.'",
+      "ingredients": "'Griskött 75%, ströbröd (VETEMJÖL, VETEstärkelse, vatten, salt, ÄGG, jäst, kryddor), f lyta nde kryddor (vatten, potatisstärkelse, druvsocker, torr glukos, salt, lökpulver, pepprextrakt), kulpotatis, oxfond(Vatten, rött vin, salt, köttextrakt, arom (innehåller SELLERI), modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliumsorbat)), rött matlagningsvin(Rött vin*, salt, peppar, konserveringsmedel (SVAVELDIOXID, kaliumsorbat), antioxidationsmedel (askorbinsyra)), gröna ÄRTER, rapsolja, gullök, morot, ROTSELLERI, tomatpu-re(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), lagerblad, svartpeppar, timjan, majsstärkelse, salt, socker. Kylvara +8 grader '"
+    },
+    {
+      "id": 6,
+      "category": "Yum",
+      "img": "images/yum/Grilladkyckling.png",
+      "title": "'Grillad kyckling'",
+      "price": "75",
+      "diet": ["images/icons/chicken.png"],
+      "description": "'Kyckling som är grillad till perfektion, serveras med stekt potatis och en härlig brunsås.'",
+      "ingredients": "'Kycklingfilé, grönpeppar(Grönpeppar, vatten, salt, surhetsreglerande medel(ättiksyra)), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), kalvfond(Vatten, salt, arom, köttextrakt, tomat, kalvbuljong, modifierad potatisstärkelse, syra (mjölksy-ra), konserveringsmedel (kaliumsorbat)), vitlök pressad(Vitlök (95,5%), salt, antioxidationsmedel (E330)), paprikapulver, chilipulver, rapsolja, salt, gul lök, lagerblad, morot, svartpeppar, potatis, rosepeppar, majsstärkelse, vitlökspulver. KYLVARA +8 grade'"
+    },
+    {
+      "id": 7,
+      "category": "Yum",
+      "img": "images/yum/Boueffbourguinon.png",
+      "title": "'Boueff bourguinon'",
+      "price": "75",
+      "diet": ["images/icons/cow.png"],
+      "description": "'En fransk klassiker bestående av långsamt tillagat nötkött i rött vin med lök, morötter och svamp, serverad med kokt potatis eller bröd.'",
+      "ingredients": "'Tärnat högrev, potatis(Potatis, KONSERERINGSMEDEL E223), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), laktosfritt smör(Pastöriserad laktos.fri GRÄDDE och salt. Laktosfri med hjälp av lak:tasenzym), pressad vitlök(Vitlök (95,5 % ) , salt, antioxidationsmedel (E330), rött matlagningsvin(Rött vin•, salt, peppar, konserveringsmedel (SVAVELDIOXID, kaliumsorbat), antioxidationsmedel (askorbinsyra)), bacon(Sidfläsk från gris (86 %), vatten, salt, glukossirap, stabiliserings-medel (difosfat), köttbuljong (från gris), antioxidationsmedel (natriumaskorbat, natriu.mcitrat), druvsocker, konserveringsmedel (natriumnitrit), rökarom), oxfond(Vatten, rött vin, salt, köttextrakt, arom (innehåller SELLERI), modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliu.msorbat)), såsbas(Svensk pressad rapsolja, emulgeringsmedel (citronsyraester), arom, färgämne (betakaroten)), morot, champinjoner, gul lök, tomatpurC(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), timjan, lagerblad, röd steklök, salt, vitpeppar. KYLVARA +8 grader '"
+    },
+    {
+      "id": 8,
+      "category": "Yum",
+      "img": "images/yum/Vegetarisklasagne.png",
+      "title": "'Vegetarisk lasagne'",
+      "price": "75",
+      "diet": ["images/icons/vegetarian.png"],
+      "description": "'En maträtt med lager av lasagneplattor, grönsaker och ost- och tomatsås, perfekt för både vegetarianer och icke-vegetarianer. '",
+      "ingredients": "'Sojafärs(Ekologiskt texturerat SOJAMJÖL, ekologiskt karamelliserat socker, salt), krossade tomater(Tmnater, surbetsreglerande medel (citronsyra)), grönsaksbuljong(Salt, maltodextrin, arom, grönsaker 15 % (lök 7,5 %, pumpa 4,0 %, palsternacka 2,5 %, vitlök 1,3 %), extra jungfruolivolja, potatisstärkelse, svampjuicekoncentrat, lagerblad, svartpeppar), mozzarel-la/cheddar(MJÖLK, salt, potatisstärkelse, syrningskultur, vegetabilisk ystenzyrn), lasagneplattor(DURUMVETE (semolina)), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), gul lök, morot, tijman, oregano, palsternacka, salt, tomatpure(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), vitpeppar, majsstärkelse. KYLVARA +8 grader '"
+    },
+    {
+      "id": 9,
+      "category": "Yum",
+      "img": "images/yum/Paneradrödspätta.png",
+      "title": "'Panerad rödspätta'",
+      "price": "75",
+      "diet": ["images/icons/fish.png"],
+      "description": "'En maträtt där rödspättafilén är panerad och stekt, serveras med kokt potatis och sås.'",
+      "ingredients": "'Panerad rödspätta(Rödspättafile 60 % (pleuronectes platessa), vetemjöl, vetestärkelse, vetekli, jäst, salt), potatis(KONSERERlNGSMEDEL E223), laktosfri matlagningsgrädde(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), laktosfritt smör(Pastöriserad laktosfri GRÄDDE och salt. Laktosfri med hjälp av laktasenzym), såsbas(Svensk pressad rapsolja, emulgeringsmedel (citronsyraester), arom, färgärone (betakaroten)), ansjoviskryddad sill(Kryddade SILLFILEER (62,5 %) (SILL (Clupea harengus), vatten, socker, salt, kryddor (bl a peppar, kryddpeppar, nejlika, ingefära)), vatten, socker, salt, ättika, konserveringsmedel (E211), kryddarom (bl a nejlika, muskot, kryddpeppar,peppar), sandelextrakt) arom, färgärone (betakaroten)), gröna ärter, olivolja, dill, vitpeppar, salt. KYLVARA +8 grader '"
+    },
+    {
+      "id": 10,
+      "category": "Yum",
+      "img": "images/yum/Pasta.png",
+      "title": "'Lax pasta med wokgrönsaker'",
+      "price": "75",
+      "diet": ["images/icons/fish.png"],
+      "description": "'En rätt med lax och kokt pasta, serveras med wokade grönsaker och en krämig sås.'",
+      "ingredients": "'PASTA (DURUMVETE/ DURUMHVEDE / DURUMHVETE - vatten / vand / vann.)SMÖR (Pastöriserad GRÄDDE, mjölksyrakultur) Orange morot 27%, gul morot 27%, broccoli 21%, minimajs 15%, vattenkastanj 10%. Produktsammansättningen kan ändras. Läs alltid ingrediensförteckningen på förpackningen. (Saltet i produkten kommer uteslutande från naturligt förekommande natrium).  '"
+    },
+    {
+      "id": 11,
+      "category": "Yum",
+      "img": "images/yum/Spaghetti.png",
+      "title": "'Spaghetti köttfärssås'",
+      "price": "75",
+      "diet": ["images/icons/cow.png"],
+      "description": "'En klassisk italiensk rätt bestående av spaghetti serveras med en köttfärssås gjord av bland annat tomater, lök, vitlök, och köttfärs.'",
+      "ingredients": "'NÖTFÄRS (Nöttfärsås, vatten, finkrossade tomater, tomatpuré, kryddblandning(Kryddor, druvsocker, salt, lök, modifierad majsstärkelse, naturlig aromer , vitlök, potatisfibrer, antioxidationsmedel (citronsyra)). Pasta 42% (vatten, DURUMVETE, rapsolja, salt), vatten, tomat, nötkött*(10%), lök, OST, tomatpuré, morot, modifierad VETESTÄRKELSE, SELLERI, salt, rapsolja, vitlök, socker, köttfond (nötkött, vatten), vitvinsvinäger, kryddor (bl. a paprikapulver '"
+    },
+    {
+      "id": 12,
+      "category": "Yum",
+      "img": "images/yum/Falukorv.png",
+      "title": "'Falukorv med mos'",
+      "price": "75",
+      "diet": ["images/icons/pork.png", "images/icons/cow.png"],
+      "description": "'En klassisk svensk rätt bestående av skivad falukorv serverad med potatismos, en enkel och tillfredsställande måltid.'",
+      "ingredients": "'Nöt- och griskött, vatten, fett från gris, potatismjöl, salt, kryddor, torkad lök, stabiliseringsmedel E450, antioxidationsmedel E300, konserveringsmedel E250. Rökarom.SENAP(,Vatten, brunt och gult SENAPSFRÖ, socker, ättiksprit, salt och gurkmeja.RIVEN OST(Pastöriserad MJÖLK, klumpförebyggande medel: potatisstärkelse, salt, syrningskultur, ystenzym, konserveringsmedel: kaliumsorbat, kalciumklorid,POTATIS,smör ( Pastöriserad GRÄDDE, mjölksyrakultur)SALT,PEPPAR '"
+    },
+    {
+      "id": 13,
+      "category": "Yum",
+      "img": "images/yum/Masala.png",
+      "title": "'Tikka masala'",
+      "price": "75",
+      "diet": ["images/icons/chicken.png"],
+      "description": "' En populär indisk rätt bestående av kyckling tillagad i en krämig tomatsås med smör och kryddor, serveras med ris.'",
+      "ingredients": "'Kokt ris 53 %: (ris, sultanrussin), Tikka Masala sås 47 %:(tomat, vatten,  Pulled Original (vatten, SOJAPROTEIN, rapsolja, kallrökt vatten, lök, SOJABÖNOR, ättika, salt, majsmjöl, äppelextrakt), soygurt (vatten, SOJABÖNOR, majsstärkelse, salt, yoghurtkultur (vegansk)), lök, morot, kryddmix (salt, spiskummin, paprika, tomat, socker, koriander, ingefära, lök, gurkmeja, krydda, kardemumma, svartpeppar, arom), tomatpuré, rapsolja, chilipeppar, citronjuicekoncentrat, ingefära, pressad vitlök, salt). '"
+    },
+    {
+      "id": 14,
+      "category": "Yum",
+      "img": "images/yum/Daal.png",
+      "title": "'Daal'",
+      "price": "75",
+      "diet": ["images/icons/vegan.png"],
+      "description": "'En indisk rätt bestående av linser kokade i kryddig sås, serveras med ris'",
+      "ingredients": "'Linser, vatten, bönor, lök, SOJAprotein, ärtor, rapsolja, majs, SOJAbönsolja, paprika, ingefära, tomatpuré, sjögräs, SOJAsåspulver (SOJA, VETE, salt), gara masala, morot, purjolök, vitlök, chili, koriander, gurkmeja, chili, spiskummin, bockhornsklöver, fänkål, kummin, anis, kardemumma, kanel, nejlika, svartpeppar, kanel, salt, naturliga aromer, syra: Näringsvärde '"
+    },
+    {
+      "id": 15,
+      "category": "Yum",
+      "img": "images/yum/Vegetarisklasagne.png",
+      "title": "'Lasagne'",
+      "price": "75",
+      "diet": ["images/icons/cow.png"],
+      "description": "'Lasagne är en ugnsgratinerad maträtt som i huvudsak består av pastaplattor varvade med béchamelsås, ost och köttfärssås'",
+      "ingredients": "'Nötfärs, lasagneplattor (DURUMVETE(semolina), laktosfri matlagningsgräd- de(GRÄDDE, vatten, modifierad majs och tapiokastärkelse), riven mozzarella&ched-dar(MJÖLK, salt, potatisstärkelse, symingskultnr, vegetabilisk ystenzym), oxfond(Vatten, rött vin, salt, köttextrakt, arom (innehåller SELLERI), modifierad potatisstärkelse, syra (mjölksyra), konserveringsmedel (kaliumsorbat)), krossade tomater(Tomater, surhetsreglerande medel (citronsyra)), tomatpure(Tomater (99 %), salt, surhetsreglerande medel (citronsyra)), gul lök, timjan, oregano, svartpeppar, salt, majsstärkelse, morot, palsternacka.'"
+    },
+    {
+      "id": 16,
+      "category": "Yum",
+      "img": "images/yum/Kycklingpasta.png",
+      "title": "'Kyckling pasta'",
+      "price": "75",
+      "diet": ["images/icons/chicken.png"],
+      "description": "'Underbar kycklingpasta med krämig basilikasås, saftiga kycklingbitar och färsk basilika, serveras över pasta.'",
+      "ingredients": "'DURUMVETE semolina,KRÄMIG(Grädde (MJÖLK),laktasenzym, stabiliseringsmedel (E407).KYCKLING (strimlad) BASILIKASAS(Laktos fri grädde,salt, peppar,timjan,oregano,basilika) '"
+    },
+    {
+      "id": 17,
+      "category": "Yum",
+      "img": "images/yum/Vegetariskpasta.png",
+      "title": "'Vegetarisk pasta'",
+      "price": "75",
+      "diet": ["images/icons/vegetarian.png"],
+      "description": "'Vegetarisk pastarätt med grönsaker i en underbar basilikasås, serveras över pasta.'",
+      "ingredients": "'DURUMVETE semolina, KRAMIG(Grädde (LAKTOSFRI) laktasenzym, stabiliseringsmedel (E407). BASILIKASAS(Laktos fri grädde,salt.peppar,timjan,oregano,basilika) QUORN(Ingredienser: Mykoprotein(85%), naturlig arom, potatisprotein, ärtfiber, VETEGLUTEN,uppstramande medel: kalciumklorid, kalciumacetat; Rostat kornmaltextrakt, stabilisator: Carregeenan. '"
+    }
+  ],
+  "daily": [
+    {
+      "id": 17,
+      "category": "Dagens",
+      "img": "images/dagens/Naan.png",
+      "title": "'Naan bröd'",
+      "price": "95",
+      "diet": ["images/icons/vegetarian.png"],
+      "description": "'Tre mjuka och luftiga indiska bröd som gräddas i en tandoor (lerugn), perfekt som tillbehör till indiska rätter eller som en måltid i sig själv.'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 18,
+      "category": "Dagens",
+      "img": "images/dagens/Samosas.png",
+      "title": "'Samosas'",
+      "price": "95",
+      "diet": ["images/icons/vegetarian.png"],
+      "description": "'Populär indisk maträtt bestående av två stycken krispiga, triangelformade pajskal fyllda med en smakrik blandning av potatis, grönsaker och kryddor.'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 19,
+      "category": "Dagens",
+      "img": "images/dagens/Palak.png",
+      "title": "'Palak paneer'",
+      "price": "95",
+      "diet": ["images/icons/vegetarian.png"],
+      "description": "'En vegetarisk indisk rätt bestående av färsk spenat (palak) tillagad med kryddor och bitar av färskost (paneer), vilket ger en krämig och smakrik sås.'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 20,
+      "category": "Dagens",
+      "img": "images/dagens/Butter_chicken.png",
+      "title": "'Butter chicken'",
+      "price": "95",
+      "diet": ["images/icons/chicken.png"],
+      "description": "'En välkänd nordindisk rätt bestående av kyckling tillagad i en krämig tomatsås med smör, grädde och kryddor, vilket ger en fyllig och smakrik smak. '",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 21,
+      "category": "Dagens",
+      "img": "images/dagens/Vindaloo.png",
+      "title": "'Beef vindaloo'",
+      "price": "95",
+      "diet": ["images/icons/cow.png"],
+      "description": "'En het och kryddig indisk rätt från Goa, bestående av nötkött marinerat i en kryddig vinägerbaserad sås, vanligtvis serverad med ris eller bröd.'",
+      "ingredients": "kommer snart"
+    },
+    {
+      "id": 22,
+      "category": "Dagens",
+      "img": "images/dagens/Biryani.png",
+      "title": "'Kyckling biryani'",
+      "price": "95",
+      "diet": ["images/icons/chicken.png"],
+      "description": "' En populär indisk risrätt bestående av kryddmarinerad kyckling och basmatiris tillagad med en blandning av kryddor, lök, och andra aromatiska ingredienser, ofta serverad med raita (en kall yoghurtsås) eller sallad. '",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 23,
+      "category": "Dagens",
+      "img": "images/dagens/Tikki_masala.png",
+      "title": "'Tikka masala'",
+      "price": "95",
+      "diet": ["images/icons/chicken.png"],
+      "description": "' Chicken Tikka Masala är en smakrik indisk rätt med grillad kyckling i en kryddig och krämig sås, serveras med ris.'",
+      "ingredients": "'kommer snart'"
+    }
+  ],
+  "premium": [
+    {
+      "id": 25,
+      "category": "Premium",
+      "img": "images/premium/Meatballs.png",
+      "title": "'Köttbullar med potatismos'",
+      "price": "115",
+      "diet": ["images/icons/pork.png"],
+      "description": "'Saftiga svenska köttbullar med husets krämiga gräddsås, serveras med morötter och fluffigt potatismos.'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 26,
+      "category": "Premium",
+      "img": "images/premium/Schnitzel_potatoes.png",
+      "title": "'Schnitzel med potatis'",
+      "price": "115",
+      "diet": ["images/icons/cow.png"],
+      "description": "'Schnitzel i en rik rödvinssås, toppad med hemma lagat vitlökssmör och gyllenbrunt stekta potatisar. '",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 27,
+      "category": "Premium",
+      "img": "images/premium/Cabbage_pudding.png",
+      "title": "'Kålpudding med potatis'",
+      "price": "115",
+      "diet": ["images/icons/pork.png"],
+      "description": "'Pannbiff med karamelliserad lök, serveras med husets krämiga gräddsås och gyllenbrunt stekta potatisar. '",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 28,
+      "category": "Premium",
+      "img": "images/premium/Spaghetti_bolognese.png",
+      "title": "'Spaghetti med köttfärssås'",
+      "price": "115",
+      "diet": ["images/icons/cow.png"],
+      "description": "'Spaghetti med en smakrik köttfärssås, toppat generöst med riven grana padano. '",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 29,
+      "category": "Premium",
+      "img": "images/premium/Chicken_curry.png",
+      "title": "'Kyckling i krämig currysås'",
+      "price": "115",
+      "diet": ["images/icons/chicken.png"],
+      "description": "'Långkokt högrevsgryta smaksatt med dijonsenap, chili, tomat, serveras med fluffigt basmatiris. '",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 30,
+      "category": "Premium",
+      "img": "images/premium/Chicken_pasta.png",
+      "title": "'Italiensk kyckling pasta'",
+      "price": "115",
+      "diet": ["images/icons/chicken.png"],
+      "description": "'Grillad svensk kycklingfilé serveras med en underbar risoni, krämig parmesansås och grönsaker. '",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 31,
+      "category": "Premium",
+      "img": "images/premium/Fish_winesauce.png",
+      "title": "'Fisk i vitvins sås'",
+      "price": "115",
+      "diet": ["images/icons/fish.png"],
+      "description": "'Torskfilé i en ljuvlig vitvinssås, serveras med underbart dillslungad potatis och morötter. '",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 32,
+      "category": "Premium",
+      "img": "images/premium/Meatloaf.png",
+      "title": "'Köttfärslimpa'",
+      "price": "115",
+      "diet": ["images/icons/pork.png"],
+      "description": "'Köttfärslimpa i husets krämiga gräddsås, serveras med gyllenbrunt stekta potatisar och grönsaker. '",
+      "ingredients": "'kommer snart'"
+    }
+  ],
+  "baguetter": [
+    {
+      "id": 33,
+      "category": "Baguetter",
+      "img": "images/baguetter/baguette.png",
+      "title": "'Baguette Vegetarisk'",
+      "price": "49",
+      "diet": ["images/icons/vegetarian.png"],
+      "description": "'Välfylld baguett med ost, potatissallad, tomat och gurka. Innehåller gluten.'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 34,
+      "category": "Baguetter",
+      "img": "images/baguetter/baguette.png",
+      "title": "'Baguette Vegansk'",
+      "price": "49",
+      "diet": ["images/icons/vegan.png"],
+      "description": "'Välfylld baguette med avokado röra, grönsaker och veganskt bröd. Innehåller gluten'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 35,
+      "category": "Baguetter",
+      "img": "images/baguetter/baguette.png",
+      "title": "'Baguette Kyckling'",
+      "price": "49",
+      "diet": ["images/icons/chicken.png"],
+      "description": "'Välfylld baguette med kyckling curry, ägg, tomat och gurka. Innehåller gluten.'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 36,
+      "category": "Baguetter",
+      "img": "images/baguetter/baguette.png",
+      "title": "'Baguette Skagen'",
+      "price": "49",
+      "diet": ["images/icons/fish.png"],
+      "description": "'Välfylld baguette med skagenröra, ägg, tomat och gurka. Innehåller gluten.'",
+      "ingredients": "'kommer snart'"
+    },
+    {
+      "id": 37,
+      "category": "Baguetter",
+      "img": "images/baguetter/baguette.png",
+      "title": "'Baguette Kebab'",
+      "price": "49",
+      "diet": ["images/icons/cow.png"],
+      "description": "'Välfylld baguette med kebabkött, pannbiff, tomat och gurka. Innehåller gluten.'",
+      "ingredients": "'kommer snart'"
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": 38,
+      "img": "images/subscriptions/subscriptions_bk.png",
+      "title": "'All Inclusive - 1 Person/Vecka'",
+      "price": "69"
+    },
+    {
+      "id": 39,
+      "img": "images/subscriptions/subscriptions_bk.png",
+      "title": "'All Inclusive - 1 Person/Vecka'",
+      "price": "69"
+    },
+    {
+      "id": 40,
+      "img": "images/subscriptions/subscriptions_bk.png",
+      "title": "'All Inclusive - 1 Person/Vecka'",
+      "price": "69"
+    },
+    {
+      "id": 41,
+      "img": "images/subscriptions/subscriptions_bk.png",
+      "title": "'All Inclusive - 1 Person/Vecka'",
+      "price": "69"
+    }
+  ],
+  "categories": [
+    {
+      "id": 42,
+      "img": "images/category/yumrattercategory.jpg",
+      "title": "Yum",
+      "alt": "kategori-yum-rätter",
+      "link": "yum_menu.html"
+    },
+    {
+      "id": 43,
+      "img": "images/category/dagenrattercategory.jpeg",
+      "title": "Dagens",
+      "alt": "kategori-dagens-rätter",
+      "link": "daily_menu.html"
+    },
+    {
+      "id": 44,
+      "img": "images/category/premiumrattercategory.jpg",
+      "title": "Premium",
+      "alt": "kategori-premium-rätter",
+      "link": "premium_menu.html"
+    }
+  ],
+  "services": [
+    {
+      "id": 45,
+      "img": "images/services/office.jpg",
+      "title": "KONTOR",
+      "alt": "kontor-bild",
+      "text": "Daglig / Gruppbeställningar"
+    },
+    {
+      "id": 46,
+      "img": "images/services/private.jpg",
+      "title": "PRIVAT",
+      "alt": "private-bild",
+      "text": "Familjbeställningar"
+    },
+    {
+      "id": 47,
+      "img": "images/services/events.jpg",
+      "title": "EVENEMANG",
+      "alt": "evenemang-bild",
+      "text": "Beställ för dina speciella händelser"
+    }
+  ]
+}
