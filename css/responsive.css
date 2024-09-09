@@ -361,10 +361,24 @@
         HOME PAGE END
     =======================*/
 
+  /* popup in start page */
+  .modal-section .modal-content .modal-body {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .modal-section .modal-content {
+    height: 300px;
+  }
+  .modal-section .modal-content {
+    width: 100%;
+    height: auto;
+  }
+  /* popup end */
+
   /* =====================
         ABOUT PAGE START
     =======================*/
-  .about_us_img .img {
+  /* .about_us_img .img {
     height: 600px;
   }
 
@@ -373,6 +387,44 @@
     right: 0;
   }
 
+  .about_choose_img {
+    width: 450px;
+    height: 510px;
+    margin-left: 25px;
+  } */
+
+  .img-fluid-about {
+    width: 500px;
+    height: 373px;
+  }
+  .about_us_img .img {
+    height: 600px;
+  }
+  .about_us_img h3 {
+    top: 0;
+    right: 0;
+  }
+  .about_choose_img {
+    width: 450px;
+    height: 510px;
+    margin-left: 25px;
+  }
+
+  .container.certified {
+    display: flex;
+    padding: 64px 115px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: var(--Secondary-color, #ffdfce);
+  }
+  .about_us_img .img {
+    height: 600px;
+  }
+  .about_us_img h3 {
+    top: 0;
+    right: 0;
+  }
   .about_choose_img {
     width: 450px;
     height: 510px;
@@ -825,6 +877,26 @@
         HOME PAGE END
     =======================*/
 
+  /* popup in start page */
+
+  .modal-content .modal-body {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  .startpage-group .form-control {
+    min-width: 80px;
+    align-items: stretch;
+  }
+  .startpage-group .btn {
+    margin-top: 5px;
+  }
+  .modal-section .modal-content {
+    width: 100%;
+    height: auto;
+  }
+
+  /* popup end */
+
   /* =====================
         error PAGE START
     =======================*/
@@ -844,7 +916,8 @@
   /* =====================
         ABOUT PAGE START
     =======================*/
-  .breadcrumb_text h1 {
+
+  /* .breadcrumb_text h1 {
     font-size: 45px;
   }
 
@@ -869,6 +942,64 @@
     margin-top: 25px;
   }
 
+  .about_us_img h3 {
+    top: 315px;
+    right: 0px;
+  } */
+
+  .about-us.title h1 {
+    font-size: 35px;
+  }
+  .about-us.part1 h1 {
+    font-size: 35px;
+  }
+  .about_choose_img {
+    margin-left: 0;
+    width: 370px;
+    height: 430px;
+  }
+  .about_us_img .img {
+    width: 450px;
+    height: 450px;
+  }
+  .about_us_img p {
+    position: initial;
+    width: 100%;
+    margin-top: 25px;
+  }
+  .about_us_img h3 {
+    top: 315px;
+    right: 0px;
+  }
+
+  .container.certified {
+    display: flex;
+    padding: 64px 50px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: var(--Secondary-color, #ffdfce);
+  }
+  .breadcrumb_text h1 {
+    font-size: 45px;
+  }
+  .breadcrumb_overlay {
+    padding: 230px 0px 108px 0px;
+  }
+  .about_choose_img {
+    margin-left: 0;
+    width: 370px;
+    height: 430px;
+  }
+  .about_us_img .img {
+    width: 450px;
+    height: 450px;
+  }
+  .about_us_img p {
+    position: initial;
+    width: 100%;
+    margin-top: 25px;
+  }
   .about_us_img h3 {
     top: 315px;
     right: 0px;
@@ -1312,6 +1443,43 @@
     margin-bottom: 70px;
   }
 
+  /* popup in start page */
+
+  .modal-section .modal-content {
+    margin-top: -98px;
+    padding: 10px;
+    height: 400px;
+  }
+  .modal-section .modal-content .modal-body {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .startpage-group {
+    flex-direction: column;
+  }
+  .startpage-group .form-control {
+    align-items: stretch;
+    min-width: 120px;
+    width: 90%;
+    margin-bottom: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .startpage-group .btn-adress {
+    width: 143px;
+    margin-bottom: 5px;
+    height: 40px;
+    align-self: center;
+  }
+  .startpage-group .btn {
+    width: 141px;
+    height: 40px;
+    margin-right: 19px;
+    border-radius: 0%;
+  }
+
+  /* popup end */
+
   /* =====================
         CAROUSEL START
     =======================*/
@@ -1517,7 +1685,8 @@
   /* =====================
         ABOUT PAGE START
     =======================*/
-  .about_us_page_breadcrumb {
+
+  /* .about_us_page_breadcrumb {
     background-image: url("../images/aboutus-tablet.png") !important;
     height: 307px !important;
   }
@@ -1533,6 +1702,56 @@
     margin-bottom: 25px;
   }
 
+  .about_choose_img {
+    margin-left: 0;
+    margin-top: 25px;
+  } */
+
+  .img-fluid-about {
+    width: 340px;
+    height: 383px;
+    margin-top: 20px;
+  }
+  .about-us.part1 p {
+    width: 320px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  .about-us.title h1 {
+    font-size: 35px;
+  }
+  .about-us.part1 h1 {
+    font-size: 35px;
+  }
+  .about_us_img {
+    margin-bottom: 25px;
+  }
+  .about_choose_img {
+    margin-left: 0;
+    margin-top: 25px;
+  }
+
+  .container.certified {
+    display: flex;
+    padding: 64px 60px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: var(--Secondary-color, #ffdfce);
+  }
+  .about_us_page_breadcrumb {
+    background-image: url("../images/aboutus-tablet.png") !important;
+    height: 307px !important;
+  }
+  .breadcrumb_text h1 {
+    font-size: 45px;
+  }
+  .breadcrumb_overlay {
+    padding: 230px 0px 108px 0px;
+  }
+  .about_us_img {
+    margin-bottom: 25px;
+  }
   .about_choose_img {
     margin-left: 0;
     margin-top: 25px;
@@ -1829,6 +2048,43 @@
   }
 
   /* menu end */
+
+  /* popup in start page */
+
+  .modal-section .modal-content {
+    margin-top: -98px;
+    padding: 10px;
+  }
+  .modal-section .modal-content .modal-body {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .startpage-group {
+    flex-direction: column;
+  }
+  .startpage-group .form-control {
+    align-items: stretch;
+    min-width: 100px;
+    width: 90%;
+    margin-bottom: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .startpage-group .btn-adress {
+    width: 142px;
+    margin-bottom: 5px;
+    height: 40px;
+    align-self: center;
+  }
+  .startpage-group .btn {
+    width: 140px;
+    height: 40px;
+    margin-right: 19px;
+    border-radius: 0%;
+  }
+
+  /* popup end */
+
   /* baner start */
 
   .content {
@@ -2427,7 +2683,7 @@
         ABOUT PAGE START
     =======================*/
 
-  .about_us_page_breadcrumb {
+  /* .about_us_page_breadcrumb {
     background-image: url("../images/aboutus-tablet.png") !important;
     height: 307px !important;
   }
@@ -2483,6 +2739,84 @@
     height: 350px;
     margin-left: 0;
     margin-top: 25px;
+  } */
+
+  .about-us.part1 p {
+    margin-bottom: 25px;
+    width: 500px;
+  }
+  .img-fluid-about {
+    width: 490px;
+    height: 365px;
+  }
+  .about-us.title h1 {
+    margin-right: 180px;
+    font-size: x-large;
+    margin-bottom: -50px;
+    font-weight: 800;
+  }
+  .about-us.part1 h1 {
+    font-size: x-large;
+    font-weight: 700;
+  }
+  .about_us_img .img {
+    width: 300px;
+    height: 300px;
+  }
+  .about_us_img p {
+    position: initial;
+    width: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  .about_us_img h3 {
+    top: 220px;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    font-size: 35px;
+  }
+  .about_us_img h3 span {
+    font-size: 14px;
+  }
+
+  .container.certified {
+    display: flex;
+    padding: 64px 50px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: var(--Secondary-color, #ffdfce);
+  }
+  .about_us_page_breadcrumb {
+    background-image: url("../images/aboutus-tablet.png") !important;
+    height: 307px !important;
+  }
+  .breadcrumb_text h1 {
+    font-size: 32px;
+  }
+  .breadcrumb_overlay {
+    padding: 180px 0px 58px 0px;
+  }
+  .about_us_img .img {
+    width: 300px;
+    height: 300px;
+  }
+  .about_us_img p {
+    position: initial;
+    width: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  .about_us_img h3 {
+    top: 220px;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    font-size: 35px;
+  }
+  .about_us_img h3 span {
+    font-size: 14px;
   }
 
   /* =====================
@@ -2990,6 +3324,40 @@
   }
 
   /* menu end */
+
+  /* popup in start page */
+
+  .custom-modal-size .modal-content {
+    width: 250px;
+    margin-left: 50%;
+    margin-top: -98px;
+  }
+  .modal-section .modal-content .modal-body {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .startpage-group .form-control {
+    align-items: stretch;
+    min-width: 100px;
+    width: 90%;
+    margin-bottom: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .startpage-group .btn-adress {
+    width: 142px;
+    margin-bottom: 5px;
+    height: 40px;
+    align-self: center;
+  }
+  .startpage-group .btn {
+    width: 142px;
+    height: 40px;
+    margin-right: 17px;
+    border-radius: 0%;
+  }
+
+  /* popup end */
 
   /* baner start */
 
@@ -3640,7 +4008,7 @@
         ABOUT PAGE START
     =======================*/
 
-  .about_us_page_breadcrumb {
+  /* .about_us_page_breadcrumb {
     background-image: url("../images/aboutus-mobile.png") !important;
     height: 307px !important;
   }
@@ -3695,6 +4063,63 @@
     width: 300px;
     height: 350px;
     margin-top: 25px;
+  } */
+
+  .about-us.part1 p {
+    margin-bottom: 25px;
+    width: 360px;
+    margin-left: 30px;
+  }
+  .img-fluid-about {
+    width: 360px;
+    height: 365px;
+    margin-left: 30px;
+  }
+  .about-us.title {
+    flex-direction: row;
+  }
+  .about-us.title .link {
+    margin-top: -120px;
+    margin-left: 10px;
+  }
+  .about-us.title h1 {
+    font-size: x-large;
+    margin-bottom: -50px;
+    margin-top: 20px;
+    margin-left: 30px;
+    font-weight: 800;
+    text-align: left;
+  }
+  .about-us.part1 h1 {
+    font-size: x-large;
+    font-weight: 700;
+    margin-left: 30px;
+  }
+
+  .container.certified {
+    display: flex;
+    padding: 64px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: var(--Secondary-color, #ffdfce);
+  }
+  .about_us_img .img {
+    width: 300px;
+    height: 300px;
+  }
+  .about_us_img p {
+    position: initial;
+    width: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  .about_us_img h3 {
+    top: 220px;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    font-size: 35px;
   }
 
   /* =====================

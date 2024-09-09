@@ -3024,6 +3024,91 @@ if (contactForm !== null) {
   null;
 }
 
+//popup in start page
+document.addEventListener("DOMContentLoaded", function () {
+  var myModal = new bootstrap.Modal(document.getElementById("deliveryModal"), {
+    backdrop: "static",
+    keyboard: false,
+  });
+  myModal.show();
+});
+document.getElementById("confirmButton").addEventListener("click", function () {
+  var postcode = document.getElementById("postcodeInput").value;
+  if (postcode === "") {
+    document.getElementById("confirmationMessage").style.display = "none";
+    document.getElementById("wrong-message").style.display = "none";
+    document.getElementById("wrong-message2").style.display = "block";
+    document.getElementById("no-place").style.display = "none";
+  } else if (postcode) {
+    document.getElementById("confirmationMessage").style.display = "block";
+    document.getElementById("wrong-message").style.display = "none";
+    document.getElementById("wrong-message2").style.display = "none";
+    document.getElementById("no-place").style.display = "none";
+    localStorage.setItem("Postcode", postcode);
+    console.log(localStorage.getItem("Postcode"));
+  } else {
+    document.getElementById("wrong-message").style.display = "block";
+    document.getElementById("confirmationMessage").style.display = "none";
+    document.getElementById("wrong-message2").style.display = "none";
+    document.getElementById("no-place").style.display = "none";
+  }
+});
+document
+  .getElementById("findLocationButton")
+  .addEventListener("click", function () {
+    var postcode = document.getElementById("postcodeInput").value;
+    if (postcode === "") {
+      document.getElementById("confirmationMessage").style.display = "none";
+      document.getElementById("wrong-message").style.display = "none";
+      document.getElementById("wrong-message2").style.display = "block";
+      document.getElementById("no-place").style.display = "none";
+    } else if (postcode && postcode.length === 5 && /^[0-9]+$/) {
+      fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=API_KEY`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "OK") {
+            var address = data.results[0].formatted_address;
+            alert("Platsen hittades: " + address);
+          } else {
+            document.getElementById("no-place").style.display = "block";
+            document.getElementById("wrong-message").style.display = "none";
+            document.getElementById("confirmationMessage").style.display =
+              "none";
+            document.getElementById("wrong-message2").style.display = "none";
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Ett fel uppstod vid sökningen.");
+        });
+    } else {
+      document.getElementById("wrong-message2").style.display = "none";
+      document.getElementById("wrong-message").style.display = "block";
+      document.getElementById("confirmationMessage").style.display = "none";
+      document.getElementById("no-place").style.display = "none";
+    }
+  });
+//Count quantity and display in the popup cart icon
+function totalQuantity() {
+  let count = document.getElementById("count");
+  let totalQuantity = 0;
+  if (count !== null) {
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    if (formDataArry !== null) {
+      for (let i = 0; i < formDataArry.length; i++) {
+        totalQuantity += parseInt(formDataArry[i].quantity);
+      }
+      count.innerHTML = totalQuantity;
+      localStorage.setItem("totalQuantity", totalQuantity);
+    } else {
+      count.innerHTML = totalQuantity;
+      formDataArry = [];
+    }
+  }
+}
+
 // Calculate and display total sum in the cart total
 function totalSum() {
   let totalPrice = document.getElementById("total");
