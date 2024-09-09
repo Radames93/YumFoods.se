@@ -839,6 +839,10 @@ button {
   margin: auto;
 }
 
+#short-description {
+  margin-left: -52px;
+}
+
 .pricedetail {
   color: #ff7c08;
 }
@@ -1517,8 +1521,6 @@ button {
   z-index: 1;
 }
 
-.blog::after,
-.blog::before,
 .menu::after,
 .menu::before {
   position: absolute;
@@ -1531,7 +1533,6 @@ button {
   opacity: 0.4;
 }
 
-.blog::after,
 .menu::after {
   top: auto;
   left: auto;
