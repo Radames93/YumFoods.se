@@ -452,6 +452,10 @@
     width: 82%;
   }
 
+  #food-img-blog {
+    margin-left: -112px;
+  }
+
   /* =====================
         BLOG DETAILS END
     =======================*/
