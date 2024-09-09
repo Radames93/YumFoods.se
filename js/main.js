@@ -610,39 +610,6 @@ const yumProducts = (yumProductsList) => {
   if (yum !== null) {
     const htmlString = yumProductsList
       .map((yum) => {
-        let diet = "";
-        let value = "";
-        if (Array.isArray(yum.diet)) {
-          var obj = yum.diet;
-          value = JSON.stringify(obj);
-          const imageTags = yum.diet.map((img) => {
-            return (
-              `<img id="diet"
-                  src=
-                  ` +
-              img +
-              `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `
-            );
-          });
-          diet = imageTags;
-        } else {
-          const singleImage =
-            `<img id="diet"
-                  src=
-                  ` +
-            yum.diet +
-            `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `;
-          diet = singleImage;
-          value = yum.diet;
-        }
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
@@ -657,7 +624,6 @@ const yumProducts = (yumProductsList) => {
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
                   data-yum-diet=${yum.diet}
-                  data-yum-diet=${[value]}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
               <div class="menu_item_img">
@@ -672,9 +638,15 @@ const yumProducts = (yumProductsList) => {
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
-              <div class="d-flex">` +
-          diet +
-          `</div>
+              <div class="d-flex"><img
+                  src=` +
+          yum.diet +
+          `
+                  alt="dagens-meny-bild"
+                  class="img-fluid w-100 diet_img"
+                  href="#"
+
+                /></div>
                 <a class="category" href="#">` +
           yum.category +
           `</a>
@@ -690,7 +662,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${[value]}
+                  data-yum-diet=${yum.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -722,7 +694,7 @@ const yumProducts = (yumProductsList) => {
           data-yum-img=${yum.img}
           data-yum-quantity-price=${yum.price}
           data-yum-description=${yum.description}
-          data-yum-diet=${[value]}
+          data-yum-diet=${yum.diet}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
           `
@@ -743,35 +715,6 @@ const CarouselFoodBoxes = (yumProductsList) => {
   if (carouselContainer !== null) {
     const htmlString = yumProductsList
       .map((yum) => {
-        let diet = "";
-        let value = "";
-        if (Array.isArray(yum.diet)) {
-          var obj = yum.diet;
-          value = JSON.stringify(obj);
-          const imageTags = yum.diet.map((img) => {
-            return (
-              `<img id="diet"
-                  src=` +
-              img +
-              `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />`
-            );
-          });
-          diet = imageTags;
-        } else {
-          const singleImage =
-            `<img id="diet"
-                  src=` +
-            yum.diet +
-            `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />`;
-          diet = singleImage;
-          value = yum.diet;
-        }
         return (
           `
           <div class="swiper-slide">
@@ -783,7 +726,7 @@ const CarouselFoodBoxes = (yumProductsList) => {
                 data-yum-quantity-price=${yum.price}
                 data-yum-description=${yum.description}
                 data-yum-ingredients=${yum.ingredients}
-                data-yum-diet=${[value]}
+                data-yum-diet=${yum.diet}
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
               
@@ -808,7 +751,7 @@ const CarouselFoodBoxes = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${[value]}
+                  data-yum-diet=${yum.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -829,7 +772,7 @@ const CarouselFoodBoxes = (yumProductsList) => {
               data-yum-img=${yum.img}
               data-yum-quantity-price=${yum.price}
               data-yum-description=${yum.description}
-              data-yum-diet=${[value]}
+              data-yum-diet=${yum.diet}
               onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
             </button>
           </div>
@@ -847,35 +790,6 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
   if (carouselContainer2 !== null) {
     const htmlString = yumProductsList
       .map((yum) => {
-        let diet = "";
-        let value = "";
-        if (Array.isArray(yum.diet)) {
-          var obj = yum.diet;
-          value = JSON.stringify(obj);
-          const imageTags = yum.diet.map((img) => {
-            return (
-              `<img id="diet"
-                  src=` +
-              img +
-              `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />`
-            );
-          });
-          diet = imageTags;
-        } else {
-          const singleImage =
-            `<img id="diet"
-                  src=` +
-            yum.diet +
-            `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />`;
-          diet = singleImage;
-          value = yum.diet;
-        }
         return (
           `
           <div class="swiper-slide">
@@ -887,7 +801,7 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                 data-yum-quantity-price=${yum.price}
                 data-yum-description=${yum.description}
                 data-yum-ingredients=${yum.ingredients}
-                data-yum-diet=${[value]}
+                data-yum-diet=${yum.diet}
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
               
@@ -912,7 +826,7 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${[value]}
+                  data-yum-diet=${yum.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -933,7 +847,7 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
               data-yum-img=${yum.img}
               data-yum-quantity-price=${yum.price}
               data-yum-description=${yum.description}
-              data-yum-diet=${[value]}
+              data-yum-diet=${yum.diet}
               onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
             </button>
           </div>
@@ -952,39 +866,6 @@ const dailyProducts = (dailyProductsList) => {
   if (daily !== null) {
     const htmlString = dailyProductsList
       .map((daily) => {
-        let diet = "";
-        let value = "";
-        if (Array.isArray(daily.diet)) {
-          var obj = daily.diet;
-          value = JSON.stringify(obj);
-          const imageTags = daily.diet.map((img) => {
-            return (
-              `<img id="diet"
-                  src=
-                  ` +
-              img +
-              `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `
-            );
-          });
-          diet = imageTags;
-        } else {
-          const singleImage =
-            `<img id="diet"
-                  src=
-                  ` +
-            daily.diet +
-            `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `;
-          diet = singleImage;
-          value = daily.diet;
-        }
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
@@ -997,7 +878,7 @@ const dailyProducts = (dailyProductsList) => {
                   data-yum-quantity-price=${daily.price}
                   data-yum-description=${daily.description}
                   data-yum-ingredients=${daily.ingredients}
-                  data-yum-diet=${[value]}
+                  data-yum-diet=${daily.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
               <div class="menu_item_img">
@@ -1013,9 +894,16 @@ const dailyProducts = (dailyProductsList) => {
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
-               <div class="d-flex">` +
-          diet +
-          `</div>
+               <div class="d-flex">
+               <img
+                  src=` +
+          daily.diet +
+          `
+                  alt="dagens-meny-bild"
+                  class="img-fluid w-100 diet_img"
+                  href="#"
+
+                /></div>
                 <a class="category" href="#">` +
           daily.category +
           `</a>
@@ -1031,7 +919,7 @@ const dailyProducts = (dailyProductsList) => {
                   data-yum-quantity-price=${daily.price}
                   data-yum-description=${daily.description}
                   data-yum-ingredients=${daily.ingredients}
-                  data-yum-diet=${[value]}
+                  data-yum-diet=${daily.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -1049,6 +937,8 @@ const dailyProducts = (dailyProductsList) => {
           data-yum-price=${daily.price}
           data-yum-img=${daily.img}
           data-yum-quantity-price=${daily.price}
+          data-yum-description=${daily.description}
+          data-yum-diet=${daily.diet}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
           `<!--
@@ -1078,39 +968,6 @@ const premiumProducts = (premiumProductsList) => {
   if (premium !== null) {
     const htmlString = premiumProductsList
       .map((premium) => {
-        let diet = "";
-        let value = "";
-        if (Array.isArray(premium.diet)) {
-          var obj = premium.diet;
-          value = JSON.stringify(obj);
-          const imageTags = premium.diet.map((img) => {
-            return (
-              `<img id="diet"
-                  src=
-                  ` +
-              img +
-              `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `
-            );
-          });
-          diet = imageTags;
-        } else {
-          const singleImage =
-            `<img id="diet"
-                  src=
-                  ` +
-            premium.diet +
-            `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `;
-          diet = singleImage;
-          value = premium.diet;
-        }
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
@@ -1123,7 +980,7 @@ const premiumProducts = (premiumProductsList) => {
                   data-yum-quantity-price=${premium.price}
                   data-yum-description=${premium.description}
                   data-yum-ingredients=${premium.ingredients}
-                  data-yum-diet=${[value]}
+                  data-yum-diet=${premium.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
               <div class="menu_item_img">
@@ -1139,9 +996,16 @@ const premiumProducts = (premiumProductsList) => {
                 />
               </div>
               <div class="d-flex justify-content-between align-items-center">
-               <div class="d-flex">` +
-          diet +
-          `</div>
+               <div class="d-flex">
+               <img
+                  src=` +
+          premium.diet +
+          `
+                  alt="dagens-meny-bild"
+                  class="img-fluid w-100 diet_img"
+                  href="#"
+
+                /></div>
                 <a class="category" href="#">` +
           premium.category +
           `</a>
@@ -1157,7 +1021,7 @@ const premiumProducts = (premiumProductsList) => {
                   data-yum-quantity-price=${premium.price}
                   data-yum-description=${premium.description}
                   data-yum-ingredients=${premium.ingredients}
-                  data-yum-diet=${[value]}
+                  data-yum-diet=${premium.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -1175,6 +1039,8 @@ const premiumProducts = (premiumProductsList) => {
           data-yum-price=${premium.price}
           data-yum-img=${premium.img}
           data-yum-quantity-price=${premium.price}
+          data-yum-description=${premium.description}
+          data-yum-diet=${premium.diet}
           ` +
           ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
           `<!--
@@ -1204,39 +1070,6 @@ const baguetterProducts = (baguetterProductsList) => {
   if (baguetter !== null) {
     const htmlString = baguetterProductsList
       .map((baguetter) => {
-        let diet = "";
-        let value = "";
-        if (Array.isArray(baguetter.diet)) {
-          var obj = baguetter.diet;
-          value = JSON.stringify(obj);
-          const imageTags = baguetter.diet.map((img) => {
-            return (
-              `<img id="diet"
-                  src=
-                  ` +
-              img +
-              `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `
-            );
-          });
-          diet = imageTags;
-        } else {
-          const singleImage =
-            `<img id="diet"
-                  src=
-                  ` +
-            baguetter.diet +
-            `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `;
-          diet = singleImage;
-          value = baguetter.diet;
-        }
         return (
           `<div
             class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
@@ -1259,15 +1092,21 @@ const baguetterProducts = (baguetterProductsList) => {
                   data-yum-quantity-price=${baguetter.price}
                   data-yum-description=${baguetter.description}
                   data-yum-ingredients=${baguetter.ingredients}
-                  data-yum-diet=${[value]}
+                  data-yum-diet=${baguetter.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                 />
               </div>
                <div class="d-flex justify-content-between align-items-center">
-               <div class="d-flex">` +
-          diet +
-          `</div>
+               <div class="d-flex"><img
+                  src=` +
+          baguetter.diet +
+          `
+                  alt="dagens-meny-bild"
+                  class="img-fluid w-100 diet_img"
+                  href="#"
+
+                /></div>
                 <a class="category" href="#">` +
           baguetter.category +
           `</a>
@@ -1283,7 +1122,7 @@ const baguetterProducts = (baguetterProductsList) => {
                   data-yum-quantity-price=${baguetter.price}
                   data-yum-description=${baguetter.description}
                   data-yum-ingredients=${baguetter.ingredients}
-                  data-yum-diet=${[value]}
+                  data-yum-diet=${baguetter.diet}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -1301,6 +1140,8 @@ const baguetterProducts = (baguetterProductsList) => {
           data-yum-price=${baguetter.price}
           data-yum-img=${baguetter.img}
           data-yum-quantity-price=${baguetter.price}
+          data-yum-description=${baguetter.description}
+          data-yum-diet=${baguetter.diet}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `
@@ -1975,30 +1816,13 @@ if (cardModal !== null) {
     var ingredients = button.getAttribute("data-yum-ingredients");
     var diet = button.getAttribute("data-yum-diet");
 
-    diet = JSON.parse(diet);
-
-    const imageTags = diet.map((img) => {
-      return (
-        `<img id="diet"
-                  src=
-                  ` +
-        img +
-        `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `
-      );
-    });
-    diet = imageTags;
-
     var modalTitle = cardModal.querySelector(".title");
     var modalPrice = cardModal.querySelector(".price");
-    var modalImg = cardModal.querySelector("img");
+    var modalImg = cardModal.querySelector(".dish_img");
     var modalQuantityPrice = cardModal.querySelector(".quantity_price");
     var modalDescription = cardModal.querySelector(".description");
     var modalIngredients = cardModal.querySelector(".ingredients");
-    var modalDiet = cardModal.querySelector(".diet");
+    var modalDiet = cardModal.querySelector(".diet_img");
     var input = cardModal.querySelector(".quantity").value;
     input = parseInt(input);
 
@@ -2019,7 +1843,7 @@ if (cardModal !== null) {
       "description",
       (modalDescription.textContent = description)
     );
-    localStorage.setItem("diet", (modalDiet.innerHTML = diet));
+    localStorage.setItem("diet", (modalDiet.src = diet));
     localStorage.setItem("quantity", (input.value = 1));
     hideDiv();
   });
@@ -2072,8 +1896,6 @@ function realAddToCart(event) {
   var quantityPrice = event.target.closest("button").dataset.yumQuantityPrice;
   var description = event.target.closest("button").dataset.yumDescription;
   var dietImage = event.target.closest("button").dataset.yumDiet;
-
-  dietImage = JSON.parse(dietImage);
 
   let formData = {};
   formData.id = id;
