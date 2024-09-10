@@ -53,7 +53,7 @@ public class StripeClient
                 PriceData = new SessionLineItemPriceDataOptions()
                 {
                     Currency = "sek",
-                    UnitAmount = (long)Math.Round(product.Price) * 100,
+                    UnitAmount = (long)(product.Price * 100),
                     ProductData = new SessionLineItemPriceDataProductDataOptions()
                     {
                         Name = product.Name

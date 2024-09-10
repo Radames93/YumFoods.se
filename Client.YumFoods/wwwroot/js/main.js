@@ -2307,11 +2307,9 @@ const submitCartForm = async (event) => {
     const address = document.querySelector('input[name="adress"]').value;
     const message = document.querySelector('textarea[name="message"]').value;
     const dishName = document.querySelector('input[name="dishName"]').value;
-    let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+    const dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+  
     dishQuantity = dishQuantity.replace(/['"]/g, '');
-
-    // Calculate total quantity
-    //const totalQuantity = parseInt(dishQuantity, 10);
 
      const totalQuantity = dishQuantity
         .split(',')
@@ -2322,8 +2320,11 @@ const submitCartForm = async (event) => {
         alert("vänligen ange en giltig numerisk mängd.");
         return;
     }
+    
     const sum = parseFloat(document.querySelector('input[name="total"]').value);
-    if (sum <= 0|| isNaN(sum)) {
+    const unitPrice = parseFloat(document.querySelector('input[name="unitPrice"]').value);
+
+    if (isNaN(unitPrice) || unitPrice <= 0) {
         alert("Vänligen ange en giltig totalsumma.");
         return;
     }
@@ -2334,7 +2335,7 @@ const submitCartForm = async (event) => {
             {
                 Name: dishName,
                 Quantity: totalQuantity,
-                Price: sum,
+                Price: unitPrice,
             },
         ],
         customerName: name,
