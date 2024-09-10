@@ -2306,68 +2306,51 @@ const submitCartForm = async (event) => {
     const phone = document.querySelector('input[name="phone"]').value;
     const address = document.querySelector('input[name="adress"]').value;
     const message = document.querySelector('textarea[name="message"]').value;
+    const dishName = document.querySelector('input[name="dishName"]').value;
+    let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+    dishQuantity = dishQuantity.replace(/['"]/g, '');
 
-    // Assuming `cartItems` is a global or previously defined array of cart items
-    const groupedItems = cartItems.reduce((acc, item) => {
-        // If the dish is already in the accumulator, increment the quantity
-        if (acc[item.name]) {
-            acc[item.name].quantity += item.quantity;
-        } else {
-            // Otherwise, add it to the accumulator
-            acc[item.name] = { quantity: item.quantity, price: item.price };
-        }
-        return acc;
-    }, {});
+    // Calculate total quantity
+    //const totalQuantity = parseInt(dishQuantity, 10);
 
-    // Convert the grouped items into a display format (e.g., "2x Potato")
-    const dishQuantitiesFormatted = Object.keys(groupedItems).map(dishName => {
-        const { quantity, price } = groupedItems[dishName];
-        return `${quantity}x ${dishName} ${price.toFixed(2)} SEK`;
-    });
+    const totalQuantity = dishQuantity
+        .split(',')
+        .map(qty => parseInt(qty.trim(), 10)) // Konvertera varje del till ett heltal
+        .reduce((sum, num) => sum + num, 0);
 
-    // Calculate total quantity and total price
-    const totalQuantity = Object.values(groupedItems).reduce((sum, item) => sum + item.quantity, 0);
-    const totalPrice = Object.values(groupedItems).reduce((sum, item) => sum + (item.quantity * item.price), 0);
-
-    // Update the total value in the form
-    document.querySelector('input[name="total"]').value = totalPrice.toFixed(2);
-
-    // Validation
-    if (totalQuantity <= 0) {
-        alert("Vänligen ange en giltig numerisk mängd.");
+    if (isNaN(totalQuantity) || totalQuantity <= 0) {
+        alert("vänligen ange en giltig numerisk mängd.");
         return;
     }
-    if (isNaN(totalPrice) || totalPrice <= 0) {
+    const sum = parseFloat(document.querySelector('input[name="total"]').value);
+    if (sum <= 0 || isNaN(sum)) {
         alert("Vänligen ange en giltig totalsumma.");
         return;
     }
 
     // Create PaymentRequest object
     const paymentRequest = {
-        products: Object.keys(groupedItems).map(dishName => {
-            const { quantity, price } = groupedItems[dishName];
-            return {
+        products: [
+            {
                 Name: dishName,
-                Quantity: quantity,
-                Price: price
-            };
-        }),
+                Quantity: totalQuantity,
+                Price: sum,
+            },
+        ],
         customerName: name,
         customerEmail: email,
         customerPhone: phone,
         customerAddress: address,
         message: message,
-        totalAmount: totalPrice.toFixed(2),
+        totalAmount: sum,
         paymentMethodTypes: ["card", "klarna", "paypal"],
         cancelPaymentUrl: "http://localhost:7216/404.html",
         successPaymentUrl: "http://din-webbplats.com/payment-success",
     };
 
-    // Log paymentRequest for debugging
-    console.log("Payment Request:", paymentRequest);
     try {
         // Make a POST request to the backend API
-        const response = await fetch("https://localhost:7216/payments",
+        const response = await fetch("https://localhost:7216/payments", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -2403,7 +2386,6 @@ const submitCartForm = async (event) => {
         alert("Ett fel uppstod vid betalningen. Försök igen.");
     }
 };
-
 
 
 function Footer() {
