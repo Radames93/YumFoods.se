@@ -45,6 +45,85 @@
         MENU END
     ==============================-->
 
+    <!-- Popup Modal -->
+    <div
+      class="modal modal-section fade"
+      id="deliveryModal"
+      tabindex="-1"
+      aria-labelledby="deliveryModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog custom-modal-size">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center">
+            <h5 class="modal-title" id="deliveryModalLabel">
+              Vi levererar endast inom Göteborgsområdet.
+            </h5>
+            <p>Ange ditt postnummer för att se om vi levererar till dig.</p>
+            <div class="mb-3">
+              <label
+                for="postcodeInput"
+                class="form-label text-start w-100 mt-3"
+                >Postnummer</label
+              >
+              <div class="input-group startpage-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="postcodeInput"
+                  placeholder="t.ex 411 03"
+                />
+                <button
+                  class="btn-adress"
+                  type="button"
+                  id="findLocationButton"
+                >
+                  <i class="far fa-location"></i>Hitta min plats
+                </button>
+                <div class="ml-3">
+                  <button
+                    class="btn btn-danger"
+                    type="button"
+                    id="confirmButton"
+                  >
+                    Bekräfta
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3" id="confirmationMessage" style="display: none">
+              <i class="fa fa-check-circle" style="color: green"></i> Adress
+              godkänd för leverans!
+            </div>
+            <div
+              id="wrong-message"
+              style="display: none; color: rgb(228, 29, 29)"
+            >
+              Ej godkänd adress
+            </div>
+            <div
+              id="wrong-message2"
+              style="display: none; color: rgb(228, 29, 29)"
+            >
+              Vänligen ange ett postnummer.
+            </div>
+            <div id="no-place" style="display: none; color: rgb(228, 29, 29)">
+              Ingen plats hittades för det postnumret.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Popup finished -->
+
     <!--=============================
         BANNER START
     ==============================-->
@@ -55,32 +134,49 @@
             <div
               class="hero"
               style="
-                background-image: url('../images/hero.jpg');
-                background-size: auto;
+                background-image: url('../images/hero2-.jpg');
+                background-size: cover;
+                background-position: center;
+                padding: 100px;
+                text-align: center;
               "
               alt="hero-image"
             >
-              <div class="hero-box">
+              <div
+                class="hero-box"
+                style="max-width: 1000px; margin: 50px auto"
+              >
+                <h1
+                  class="hero-text"
+                  style="word-wrap: normal; overflow-wrap: break-word"
+                >
+                  Billiga veckomåltider till din dörr
+                </h1>
                 <p class="hero-slogan">Lite Billigare, Lika Yum</p>
-                <h1 class="hero-text">Billiga veckomåltider till din dörr</h1>
-                <p>Vi leverar endast inom Göteborgsområdet. Ange din adress för att se om vi levererar hem till dig.</p>
-              </div>
-              <div>
-                <p>Adress</p>
-                <form>
-                </div>
-                  <input type="text" placeholder="T.ex. Stampgatan 4, 411 03, Göteborg   Hitta min plats."><i class="fa fa-location"></i>
+                <div class="first-page-button">
                   <a href="yum_menu.html">
-                    <button class="hero-button" style="text-transform: none">
-                      <span class="hero-description">Vidare till menyer <i class="fa fa-angle-right"></i> </span>
-                    </button>
-                  </a>
+                    <button
+                      class="first-page-button1"
+                      style="text-transform: none"
+                    >
+                      <span class="first-page-description"> Se matlådor </span>
+                    </button></a
+                  >
                 </div>
+
+                <!-- <p class="hero-slogan2" style="text-align: left; font-size: 20px; color: #110404; word-wrap: normal; overflow-wrap: break-word;" >Vi levererar endast inom Göteborgsområdet. Ange din adress för att se om vi leverera hem till dig</p>
+                <div class="address-container" style="text-align: left; margin-top: 2px;">
+                  <p style="font-size: large;"><strong>Adress</strong></p>
+                </div>
+                <div class="input-container" style="display: flex; justify-content: center; align-items: center; width: 700px;">
+                  <input type="text" id="location-input" placeholder="T.ex. Stampgatan 4, 411 03, Göteborg 📍 Hitta min plats" style="padding: 10px; color: #110404;; height:35px; border-radius: 5px; border: 1px solid #1d1a1a; flex: 1; width: 100%;">
+                  <button class="hero-button" onclick="navigateToMenuPage()" style="text-transform: none">
+                    <span class="hero-description"> Vidare till menyer <i class="fa fa-angle-right"></i> </span>
+                  </button>
+                </div>  -->
               </div>
             </div>
-          </div>
-
-          <!--
+            <!--
                 <div class="vector_item_box">
                   <input
                     onclick="location.href = 'sign_in.html';"
@@ -96,6 +192,7 @@
                   />
                 </div>
                 -->
+          </div>
         </div>
       </div>
     </section>
@@ -103,131 +200,502 @@
         BANNER END
     ==============================-->
 
-    <!--=============================
-        CATEGORIES
-    ==============================-->
-    <section class="team text-center">
-      <div class="container">
-        <div class="section_heading mb_25">
-          <h2 class="mobile">VÅRA MENYER</h2>
-          <p class="new-text">Kampanj, gratis leverans</p>
-        </div>
-        <div class="slide-container swiper">
-          <div class="slide-content">
-            <div id="categories" class="card-wrapper swiper-wrapper"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!--=============================
-        TEAM END
-    ==============================-->
-
-    <!--=============================
-        OFFER ITEM START
-    ==============================-->
-    <!--
-    <section class="offer_item pb_100 xs_pt_65 xs_pb_70">
-      <div class="container">
-        <div class="row wow fadeInUp" data-wow-duration="1s">
-          <div class="col-md-8 col-lg-7 col-xl-6">
-            <div class="section_heading mb_25">
-              <h2>Prenumerationer</h2>
-            </div>
-          </div>
-        </div>
-        <div class="row gy-3">
-          <div class="col-xl-6">
-            <div class="offer_item_single">
-              <img
-                class="subscription_image"
-                src="/images/subscriptions_bk.png"
-                alt="prenumerationer"
-              />
-              <div class="subscription_text_box">
-                <a class="title" href="subscription.html"
-                  >All Inclusive – 1 person/vecka</a
-                >
-                <p class="subscription_paragraph">69 kr</p>
-                <p class="subscription_paragraph">I lager</p>
-                <ul class="d-flex flex-wrap">
-                  <li>
-                    <a href="#"><i class="fas fa-shopping-basket"></i></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fal fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="bundles_details.html"
-                      ><i class="far fa-eye"></i
-                    ></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6">
-            <div class="offer_item_single">
-              <img
-                class="subscription_image"
-                src="/images/subscriptions_bk.png"
-                alt="prenumerationer"
-              />
-              <div class="subscription_text_box">
-                <a class="title" href="subscription.html"
-                  >All Inclusive – 1 person/vecka</a
-                >
-                <p class="subscription_paragraph">69 kr</p>
-                <p class="subscription_paragraph">I lager</p>
-                <ul class="d-flex flex-wrap">
-                  <li>
-                    <a
-                      href="#"
-                      data-bs-toggle="modal"
-                      data-bs-target="#bundlesModal"
-                      ><i class="fas fa-shopping-basket"></i
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fal fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="bundles_details.html"
-                      ><i class="far fa-eye"></i
-                    ></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    -->
-
-    <!--============================
-        SERVICES START
-    ==============================-->
-    <section class="team text-center">
-      <div class="container">
-        <div class="section_heading mb_25">
-          <h2>VÅRA TJÄNSTER</h2>
-          <p class="new-text">
-            Vi erbjuder er en enkel beställningsmetod, simpelt betalningssätt
-            såsom faktura eller Swish, gratis och punktiga leveranser och
-            abonnemang utan bindingstid
-          </p>
-        </div>
-        <div class="slide-container swiper">
-          <div class="slide-content">
-            <div id="services" class="card-wrapper swiper-wrapper"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- test -->
+
+    <!--=============================
+        secound part of start page start
+      ==============================-->
+    <div class="container mt-5 mb-4">
+      <h2 class="text-center mb-4">Bråttom? Handla en färdig kasse!</h2>
+      <section class="row justify-content-center secound-part">
+        <!-- Vänster del -->
+        <div
+          style="margin-left: auto; margin-right: auto"
+          class="col-md-5 col-6-lg left-part"
+        >
+          <h4 style="margin-left: -100px" class="text-center mb-4">
+            1. Välj kosttyp
+          </h4>
+          <div class="row">
+            <div class="col-5">
+              <div class="box box2 kost" data-category="Proteinrik">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="pic1"
+                  style="display: none"
+                  width="35"
+                  height="35"
+                  viewBox="0 0 46 45"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M23 39.375C25.2161 39.375 27.4104 38.9385 29.4578 38.0905C31.5052 37.2424 33.3654 35.9994 34.9324 34.4324C36.4994 32.8654 37.7424 31.0052 38.5905 28.9578C39.4385 26.9104 39.875 24.7161 39.875 22.5C39.875 20.2839 39.4385 18.0896 38.5905 16.0422C37.7424 13.9948 36.4994 12.1346 34.9324 10.5676C33.3654 9.00058 31.5052 7.75758 29.4578 6.90953C27.4104 6.06148 25.2161 5.625 23 5.625C18.5245 5.625 14.2322 7.4029 11.0676 10.5676C7.9029 13.7322 6.125 18.0245 6.125 22.5C6.125 26.9755 7.9029 31.2677 11.0676 34.4324C14.2322 37.5971 18.5245 39.375 23 39.375ZM22.565 29.325L31.94 18.075L29.06 15.675L20.9975 25.3481L16.8256 21.1744L14.1744 23.8256L19.7994 29.4506L21.2506 30.9019L22.565 29.325Z"
+                    fill="#367A30"
+                  />
+                </svg>
+                <img
+                  src="images/Ikon-veg.jpg"
+                  alt="Bild 1"
+                  class="circular-image img-fluid w-25 mb-2"
+                />
+                <p>Proteinrik</p>
+              </div>
+            </div>
+            <div class="col-5">
+              <div
+                class="box box2 kost"
+                data-category="vegetariskt"
+                onclick="vegetarianAlternatives();"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="pic2"
+                  style="display: none"
+                  width="35"
+                  height="35"
+                  viewBox="0 0 46 45"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M23 39.375C25.2161 39.375 27.4104 38.9385 29.4578 38.0905C31.5052 37.2424 33.3654 35.9994 34.9324 34.4324C36.4994 32.8654 37.7424 31.0052 38.5905 28.9578C39.4385 26.9104 39.875 24.7161 39.875 22.5C39.875 20.2839 39.4385 18.0896 38.5905 16.0422C37.7424 13.9948 36.4994 12.1346 34.9324 10.5676C33.3654 9.00058 31.5052 7.75758 29.4578 6.90953C27.4104 6.06148 25.2161 5.625 23 5.625C18.5245 5.625 14.2322 7.4029 11.0676 10.5676C7.9029 13.7322 6.125 18.0245 6.125 22.5C6.125 26.9755 7.9029 31.2677 11.0676 34.4324C14.2322 37.5971 18.5245 39.375 23 39.375ZM22.565 29.325L31.94 18.075L29.06 15.675L20.9975 25.3481L16.8256 21.1744L14.1744 23.8256L19.7994 29.4506L21.2506 30.9019L22.565 29.325Z"
+                    fill="#367A30"
+                  />
+                </svg>
+                <img
+                  src="images/Ikon.jpg"
+                  alt="Bild 2"
+                  class="circular-image img-fluid w-25 mb-2"
+                />
+                <p>Vegetariskt</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-5">
+              <div class="box box2 kost" data-category="veg">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="pic3"
+                  style="display: none"
+                  width="35"
+                  height="35"
+                  viewBox="0 0 46 45"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M23 39.375C25.2161 39.375 27.4104 38.9385 29.4578 38.0905C31.5052 37.2424 33.3654 35.9994 34.9324 34.4324C36.4994 32.8654 37.7424 31.0052 38.5905 28.9578C39.4385 26.9104 39.875 24.7161 39.875 22.5C39.875 20.2839 39.4385 18.0896 38.5905 16.0422C37.7424 13.9948 36.4994 12.1346 34.9324 10.5676C33.3654 9.00058 31.5052 7.75758 29.4578 6.90953C27.4104 6.06148 25.2161 5.625 23 5.625C18.5245 5.625 14.2322 7.4029 11.0676 10.5676C7.9029 13.7322 6.125 18.0245 6.125 22.5C6.125 26.9755 7.9029 31.2677 11.0676 34.4324C14.2322 37.5971 18.5245 39.375 23 39.375ZM22.565 29.325L31.94 18.075L29.06 15.675L20.9975 25.3481L16.8256 21.1744L14.1744 23.8256L19.7994 29.4506L21.2506 30.9019L22.565 29.325Z"
+                    fill="#367A30"
+                  />
+                </svg>
+                <img
+                  src="images/Ikon.jpg"
+                  alt="Bild 3"
+                  class="circular-image img-fluid w-25 mb-2"
+                />
+                <p>Vegetariskt</p>
+              </div>
+            </div>
+            <div class="col-5">
+              <div class="box box2 kost" data-category="fisk">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="pic4"
+                  style="display: none"
+                  width="35"
+                  height="35"
+                  viewBox="0 0 46 45"
+                  fill="none"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M23 39.375C25.2161 39.375 27.4104 38.9385 29.4578 38.0905C31.5052 37.2424 33.3654 35.9994 34.9324 34.4324C36.4994 32.8654 37.7424 31.0052 38.5905 28.9578C39.4385 26.9104 39.875 24.7161 39.875 22.5C39.875 20.2839 39.4385 18.0896 38.5905 16.0422C37.7424 13.9948 36.4994 12.1346 34.9324 10.5676C33.3654 9.00058 31.5052 7.75758 29.4578 6.90953C27.4104 6.06148 25.2161 5.625 23 5.625C18.5245 5.625 14.2322 7.4029 11.0676 10.5676C7.9029 13.7322 6.125 18.0245 6.125 22.5C6.125 26.9755 7.9029 31.2677 11.0676 34.4324C14.2322 37.5971 18.5245 39.375 23 39.375ZM22.565 29.325L31.94 18.075L29.06 15.675L20.9975 25.3481L16.8256 21.1744L14.1744 23.8256L19.7994 29.4506L21.2506 30.9019L22.565 29.325Z"
+                    fill="#367A30"
+                  />
+                </svg>
+                <img
+                  src="images/Ikon.jpg"
+                  alt="Bild 4"
+                  class="circular-image img-fluid w-25 mb-2"
+                />
+                <p>Vegetariskt</p>
+              </div>
+            </div>
+          </div>
+          <p id="short-description" class="text-center mt-4">
+            Kort beskrivning om den valda kosttypen.
+          </p>
+
+          <div class="row mt-2 self-kasse">
+            <div class="col-2">
+              <img
+                src="images/Oliver.jpg"
+                alt="Bild"
+                class="img-fluid"
+                style="height: 190px"
+              />
+            </div>
+            <div class="col-6 d-flex flex-column justify-content-center">
+              <p class="mb-3">Vill du plocka ihop din egna kasse?</p>
+              <button
+                class="btn btn-light"
+                style="
+                  border: 1px solid black;
+                  width: 180px;
+                  margin-left: 30px;
+                  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+                "
+                onclick="window.location.href='#categories'"
+              >
+                Se hela menyn här
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Höger del -->
+        <div class="col-md-5 right-part">
+          <h4 style="margin-left: -150px" class="text-center mb-4">
+            2. Välj antal matlådor
+          </h4>
+          <div class="row">
+            <div class="col-3">
+              <div class="box box4" data-value="10">10</div>
+            </div>
+            <div class="col-3">
+              <div class="box box4" data-value="15">15</div>
+            </div>
+            <div class="col-3">
+              <div class="box box4" data-value="20">20</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10">
+              <div class="box1 large-box">
+                <div class="row">
+                  <div class="col-7 text">
+                    <h5>Välja ett eget antal</h5>
+                    <h6>Minst 10 matlådor per beställning</h6>
+                  </div>
+                  <div
+                    class="col-3 quantity-btn d-flex align-items-center justify-content-end"
+                  >
+                    <button
+                      class="btn btn-light"
+                      style="border: 1px solid rgb(98, 96, 96)"
+                    >
+                      -
+                    </button>
+                    <span class="mx-2">10</span>
+                    <button
+                      class="btn btn-light"
+                      style="border: 1px solid rgb(98, 96, 96)"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-10">
+              <div class="box3 info-box">
+                <div class="row mb-4">
+                  <div class="col-4">
+                    <p class="fw-bolder">Proteinrikt</p>
+                  </div>
+                  <div class="col-6">
+                    <button type="button" class="close btn2">
+                      <i class="fa fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-5">
+                    <img
+                      src="images/Ikon-veg.jpg"
+                      alt="Bild"
+                      class="img-fluid w-25"
+                    />
+                  </div>
+                  <div class="col-5 mb-5">
+                    <div id="dish-list">
+                      <!-- <li>
+                                    <p>3kyckling med ris</p>
+                                  </li>
+                                  <li>
+                                    <p>3 lorem ipsum</p>
+                                  </li> -->
+                    </div>
+                  </div>
+                </div>
+                <div class="justify-content-between">
+                  <div class="row bg-light mb-1 mt-1">
+                    <div class="col-5 frakt">
+                      <p>Frakt</p>
+                    </div>
+                    <div class="col-5 price2">
+                      <p>0 kr</p>
+                    </div>
+                  </div>
+                  <div class="row bg-light">
+                    <div class="col-5 frakt">
+                      <p>Att betala</p>
+                    </div>
+                    <div class="col-5 price">
+                      <p>0 kr</p>
+                    </div>
+                  </div>
+                  <div class="row bg-light">
+                    <div class="col-5 frakt">
+                      <p>Moms</p>
+                    </div>
+                    <div class="col-5 price2">
+                      <p>173 kr</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5 mb-4">
+                  <button
+                    class="btn btn-danger"
+                    onclick="window.location.href='payment.html'"
+                  >
+                    Vidare till kassan
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!--=============================
+        secound part of start page end
+      ==============================-->
+
+    <!--=============================
+        CAROUSEL START
+    ==============================-->
+
+    <section class="carousel-section">
+      <h2 id="carousel-title">Välj din matlösning</h2>
+      <div id="hemlagat">
+        <h3>Få hemlagade rätter levererade direkt till dig!</h3>
+      </div>
+      <div class="carousel-box">
+        <h2 class="box-title">Populära matlådor</h2>
+        <p class="box-subtitle">
+          <i
+            style="color: #fc5633; font-size: 25px; margin-right: 20px"
+            class="fas fa-hamburger"
+          ></i>
+          Beställ enstaka eller flera matlådor för en snabb och smidig
+          måltidslösning
+        </p>
+        <div class="swiper-button-next" id="arrow-left"></div>
+        <div class="slider-items">
+          <div class="slide-container swiper">
+            <div class="slide-content">
+              <div id="container" class="card-wrapper swiper-wrapper"></div>
+            </div>
+          </div>
+          <div class="swiper-button-prev" id="arrow-right"></div>
+        </div>
+        <div id="yum-menu-btn">
+          <a
+            style="margin-top: 30px; margin-bottom: -10px"
+            href="yum_menu.html"
+          >
+            <button class="contact-us-button" style="text-transform: none">
+              <span class="contact-us-description"> Se våra matlådor</span>
+            </button></a
+          >
+        </div>
+        <h2 class="box-title">Våra färdiga matkassar</h2>
+        <p class="box-subtitle2">
+          <i
+            style="color: #fc5633; font-size: 25px; margin-right: 20px"
+            class="fas fa-shopping-bag"
+          ></i>
+          Upptäck våra färdiga kassar - perfekt för de dagar då du vill spara
+          tid och få allt serverat
+        </p>
+        <div class="swiper-button-next2" id="arrow-left2"></div>
+        <div class="slider-items">
+          <div class="slide-container2 swiper">
+            <div class="slide-content2">
+              <div id="container2" class="card-wrapper swiper-wrapper"></div>
+            </div>
+          </div>
+          <div class="swiper-button-prev2" id="arrow-right2"></div>
+        </div>
+        <div id="yum-menu-btn">
+          <a style="margin-top: 15px" href="yum_menu.html">
+            <button class="contact-us-button" style="text-transform: none">
+              <span class="contact-us-description">
+                Se våra färdiga kassar</span
+              >
+            </button></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!--=============================
+        CAROUSEL END
+    ==============================-->
+
+    <!--=============================
+        BLOG START
+    ==============================-->
+
+    <section id="blog-podcast" class="blog pt_95 xs_pt_65 pb_65 xs_pb_35">
+      <div class="container">
+        <div class="wow fadeInUp" data-wow-duration="1s">
+          <div>
+            <div class="section_heading mb_25">
+              <h2>Vi erbjuder även unika tjänster</h2>
+            </div>
+            <h3>Ska du anordna ett event? Vi fixar allt du behöver!</h3>
+          </div>
+        </div>
+        <div class="blog_slider">
+          <div id="first-grid2" data-wow-duration="1s">
+            <img id="food-img-blog" src="images/Ellipse 109.png" alt="" />
+          </div>
+          <div id="first-grid" data-wow-duration="1s">
+            <div class="single_blog">
+              <div class="single_blog_img">
+                <img
+                  src="images/unsplash_5U_28ojjgms.png"
+                  alt="blogg-bild"
+                  class="img-fluid w-100"
+                />
+              </div>
+              <div class="single_blog_author">
+                <div class="text"></div>
+              </div>
+              <div class="single_blog_text">
+                <a class="title" href="blog_details.html"
+                  >Vi fyller kylen med matlådor!</a
+                >
+                <div class="single_blog_footer">
+                  <p>
+                    Som företagskund kan vi leverera och fylla era kylar med
+                    matlådor regelbundet.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider-background"></div>
+
+          <div id="first-grid" data-wow-duration="1s">
+            <div class="single_blog">
+              <div class="single_blog_img">
+                <img
+                  src="images/pexels-suzy-hazelwood-2966196 1.png"
+                  alt="blogg-bild"
+                  class="img-fluid w-100"
+                />
+              </div>
+              <div class="single_blog_author">
+                <div class="text"></div>
+              </div>
+              <div class="single_blog_text">
+                <a class="title" href="blog_details.html"
+                  >Dags för event? Vi fixar maten!</a
+                >
+                <div class="single_blog_footer">
+                  <p>Vi tar emot större ordrar för events och fester!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="blog_slider2">
+            <div id="first-grid2" data-wow-duration="1s">
+              <img id="food-img-blog2" src="images/Ellipse 108.png" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="services-contact">
+          <p id="first-p">
+            Kontakta oss så kan vi hjälpa dig hitta bästa lösningen för just din
+            leverans!
+          </p>
+          <a style="margin-top: 30px" href="blog_details.html">
+            <button class="contact-us-button" style="text-transform: none">
+              <span class="contact-us-description"> Kontakta oss!</span>
+            </button></a
+          >
+          <div class="services-info2">
+            <div class="services-info">
+              <i
+                style="color: #fc5633; margin-top: 4px"
+                class="fas fa-phone fa-lg"
+              ></i>
+              <p style="margin-left: 10px">+46 76 023 49 30</p>
+            </div>
+            <div class="services-info">
+              <i
+                style="color: #fc5633; margin-top: 4px"
+                class="fas fa-envelope fa-lg"
+              ></i>
+              <p style="margin-left: 10px">info@yumfoods.se</p>
+            </div>
+            <div class="services-info">
+              <i
+                style="margin-left: 2px; color: #fc5633; margin-top: 2px"
+                class="fas fa-map-marker-alt fa-lg"
+              ></i>
+              <p id="location_address2" style="margin-left: 14px">
+                Stora Badhusgatan 18, 411 21 Göteborg
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--=============================
+        BLOG END
+    ==============================-->
+
+    <!--=============================
+        STEPS START
+    ==============================-->
+
+    <section class="steps-page">
+      <h1>Hur det fungerar</h1>
+      <div class="steps">
+        <div class="steps-item"><img src="images/1st 1.png" alt="" /></div>
+        <div class="steps-item"><img src="images/2st 1.png" alt="" /></div>
+        <div class="steps-item"><img src="images/3rd 1.png" alt="" /></div>
+        <div class="steps-item"><img src="images/4th 1.png" alt="" /></div>
+      </div>
+      <p>Ta första steget idag!</p>
+      <div class="step-button">
+        <a href="yum_menu.html">
+          <button class="steps-button" style="text-transform: none">
+            <span class="steps-description"> Välj matlådor </span>
+          </button></a
+        >
+      </div>
+    </section>
+
+    <!--=============================
+        STEPS END
+    ==============================-->
+
     <!--=============================
         FAQ START
     ==============================-->
@@ -243,145 +711,160 @@
         >
           <h1>Frågor och svar</h1>
           <div class="faq_area">
-            <h2>Om webbplatsen</h2>
-            <div class="accordion" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne"
-                    aria-expanded="false"
-                    aria-controls="collapseOne"
+            <div class="faq-buttons">
+              <div class="faq-buttons2" id="om-webbplatsen" role="button">
+                <i class="fas fa-window-maximize"></i> Om webbplatsen
+              </div>
+              <div class="faq-buttons2" id="betalning" role="button">
+                <i class="fas fa-money-check"></i> Betalning
+              </div>
+              <div class="faq-buttons2" id="menyer-allergier" role="button">
+                <i class="fas fa-utensils"></i> Menyer & Allergier
+              </div>
+            </div>
+            <div id="om-webbplatsen-accordion">
+              <h2>Om webbplatsen</h2>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="false"
+                      aria-controls="collapseOne"
+                    >
+                      01. Var har ni er verksamhet?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample"
                   >
-                    01. Var har ni er verksamhet?
-                  </button>
-                </h2>
-                <div
-                  id="collapseOne"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body">
-                    <p>
-                      Vi har vårt kontor i Göteborg och erbjuder premiumleverans
-                      från våra utvalda kök till företag, skolor och
-                      organisationer i närområdet.
-                    </p>
+                    <div class="accordion-body">
+                      <p>
+                        Vi har vårt kontor i Göteborg och erbjuder
+                        premiumleverans från våra utvalda kök till företag,
+                        skolor och organisationer i närområdet.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      02. Vart levererar ni maten?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>Vi levererar maten till dig i Göteborg.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      03. Vilka restauranger samarbetar ni med?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Vi samarbetar med exklusivt utvalda kök och restauranger
+                        i Göteborg. Vi är noggranna med att maten ska ha hög
+                        kvalitet, vilket gör att vi testar maten och har nära
+                        samarbeten med restauranger och kök.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingFour">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour"
+                      aria-expanded="false"
+                      aria-controls="collapseFour"
+                    >
+                      04. Hur mycket ska jag betala för leveransen?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFour"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingFour"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Vid ett ordervärde av 1000 kr är det fri leverans. Om
+                        ordervärdet är mindre kan vi inte leverera eller läggs
+                        en leveranskostnad på för mellanskillnaden.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingFive">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive"
+                      aria-expanded="false"
+                      aria-controls="collapseFive"
+                    >
+                      05. Vad är leveransväntetiden?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFive"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingFive"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Beställningar ska göras 3 dagar innan utsatt
+                        leveransdatum.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo"
-                  >
-                    02. Vart levererar ni maten?
-                  </button>
-                </h2>
-                <div
-                  id="collapseTwo"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingTwo"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body">
-                    <p>Vi levererar maten till dig i Göteborg.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree"
-                    aria-expanded="false"
-                    aria-controls="collapseThree"
-                  >
-                    03. Vilka restauranger samarbetar ni med?
-                  </button>
-                </h2>
-                <div
-                  id="collapseThree"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingThree"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body">
-                    <p>
-                      Vi samarbetar med exklusivt utvalda kök och restauranger i
-                      Göteborg. Vi är noggranna med att maten ska ha hög
-                      kvalitet, vilket gör att vi testar maten och har nära
-                      samarbeten med restauranger och kök.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFour">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseFour"
-                    aria-expanded="false"
-                    aria-controls="collapseFour"
-                  >
-                    04. Hur mycket ska jag betala för leveransen?
-                  </button>
-                </h2>
-                <div
-                  id="collapseFour"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingFour"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body">
-                    <p>
-                      Vid ett ordervärde av 1000 kr är det fri leverans. Om
-                      ordervärdet är mindre kan vi inte leverera eller läggs en
-                      leveranskostnad på för mellanskillnaden.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFive">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseFive"
-                    aria-expanded="false"
-                    aria-controls="collapseFive"
-                  >
-                    05. Vad är leveransväntetiden?
-                  </button>
-                </h2>
-                <div
-                  id="collapseFive"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingFour"
-                  data-bs-parent="#accordionExample"
-                >
-                  <div class="accordion-body">
-                    <p>
-                      Beställningar ska göras 3 dagar innan utsatt
-                      leveransdatum.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <h2 class="mt_20">Betalning</h2>
+            </div>
+            <div id="betalning-accordion" style="display: none">
+              <h2>Betalning</h2>
               <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingSix">
@@ -465,7 +948,11 @@
                     </div>
                   </div>
                 </div>
-                <h2 class="mt_20">Menyer & Allergier</h2>
+              </div>
+            </div>
+            <div id="allergier-accordion" style="display: none">
+              <h2>Menyer & Allergier</h2>
+              <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="headingNine">
                     <button
@@ -498,158 +985,20 @@
                 </div>
               </div>
             </div>
+            <h2 id="more-faq">Fick du inte svar på frågan?</h2>
+            <div id="faq-contact-button">
+              <a style="margin-top: 30px" href="./contact.html">
+                <button class="contact-us-button" style="text-transform: none">
+                  <span class="contact-us-description"> Kontakta oss!</span>
+                </button></a
+              >
+            </div>
           </div>
         </div>
       </div>
     </section>
-
     <!--=============================
         FAQ END
-    ==============================-->
-
-    <!--=============================
-        BLOG START
-    ==============================-->
-    <!--
-    <section class="blog pt_95 xs_pt_65 pb_65 xs_pb_35">
-      <div class="container">
-        <div class="row wow fadeInUp" data-wow-duration="1s">
-          <div class="col-md-8 col-lg-7 col-xl-6">
-            <div class="section_heading mb_25">
-              <h2>Vår blog and podcast</h2>
-            </div>
-          </div>
-        </div>
-
-    <!--=============================
-        SERVICES END
-    ==============================-->
-
-    <!--=============================
-        STEPS START
-    ==============================-->
-
-    <section class="steps-page">
-      <h1>Hur det fungerar</h1>
-      <div class="steps">
-        <div class="steps-item"><img src="images/1st 1.png" alt="" /></div>
-        <div class="steps-item"><img src="images/2st 1.png" alt="" /></div>
-        <div class="steps-item"><img src="images/3rd 1.png" alt="" /></div>
-        <div class="steps-item"><img src="images/4th 1.png" alt="" /></div>
-      </div>
-      <p>Ta första steget idag!</p>
-      <div class="step-button">
-        <a href="yum_menu.html">
-          <button class="steps-button" style="text-transform: none">
-            <span class="steps-description"> Välj matlådor </span>
-          </button></a
-        >
-      </div>
-    </section>
-
-    <!--=============================
-        STEPS END
-    ==============================-->
-
-    <!--=============================
-        BLOG START
-    ==============================-->
-
-    <section id="blog-podcast" class="blog pt_95 xs_pt_65 pb_65 xs_pb_35">
-      <div class="container">
-        <div class="wow fadeInUp" data-wow-duration="1s">
-          <div>
-            <div class="section_heading mb_25">
-              <h2>Vi erbjuder även unika tjänster</h2>
-            </div>
-            <h3>Ska du anordna ett event? Vi fixar allt du behöver!</h3>
-          </div>
-        </div>
-        <div class="blog_slider">
-          <div id="first-grid2" data-wow-duration="1s">
-              <img id="food-img-blog" src="images/Ellipse 109.png" alt="">
-            </div>
-          <div id="first-grid" data-wow-duration="1s">
-            <div class="single_blog">
-              <div class="single_blog_img">
-                <img
-                  src="images/unsplash_5U_28ojjgms.png"
-                  alt="blogg-bild"
-                  class="img-fluid w-100"
-                />
-              </div>
-              <div class="single_blog_author">
-                <div class="text">
-                </div>
-              </div>
-              <div class="single_blog_text">
-                <a class="title" href="blog_details.html"
-                  >Vi fyller kylen med matlådor!</a
-                >
-                <div class="single_blog_footer">
-                  <p>Som företagskund kan vi leverera och fylla era kylar med matlådor regelbundet.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="slider-background"></div>
-
-          <div id="first-grid" data-wow-duration="1s">
-            <div class="single_blog">
-              <div class="single_blog_img">
-                <img
-                  src="images/pexels-suzy-hazelwood-2966196 1.png"
-                  alt="blogg-bild"
-                  class="img-fluid w-100"
-                />
-              </div>
-              <div class="single_blog_author">
-                <div class="text">
-                </div>
-              </div>
-              <div class="single_blog_text">
-                <a class="title" href="blog_details.html"
-                  >Dags för event? Vi fixar maten!</a
-                >
-                <div class="single_blog_footer">
-                  <p>Vi tar emot större ordrar för events och fester!</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="blog_slider2">
-            <div id="first-grid2" data-wow-duration="1s">
-                <img id="food-img-blog2" src="images/Ellipse 108.png" alt="">
-              </div>
-            </div>
-        </div>
-        <div class="services-contact">
-          <p id="first-p">Kontakta oss så kan vi hjälpa dig hitta bästa lösningen för just din leverans!</p>
-          <a style="margin-top: 30px;" href="blog_details.html">
-            <button class="contact-us-button" style="text-transform: none">
-              <span class="contact-us-description"> Kontakta oss!</span>
-            </button></a>
-            <div class="services-info2">
-            <div class="services-info">
-              <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
-                <p style="margin-left: 10px;">+46 76 023 49 30</p>
-              </div>
-              <div class="services-info">
-              <i style="color: #FC5633; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
-                <p style="margin-left: 10px;">info@yumfoods.se</p>
-              </div>
-              <div class="services-info">
-              <i style="margin-left: 2px; color: #FC5633; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
-                <p id="location_address2" style="margin-left: 14px;">Stora Badhusgatan 18, 411 21 Göteborg</p>
-              </div>
-            </div>
-        </div>
-      </div>
-    </section>
-
-    <!--=============================
-        BLOG END
     ==============================-->
 
     <!--============================

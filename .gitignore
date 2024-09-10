@@ -6,14 +6,19 @@
 *.sln.docstates
 .vs/
 # Build results
-[Dd]ebug/
-[Rr]elease/
+Debug/
+Release/
+API/obj/Debug/
+DataAccess/obj/Debug/
 x64/
 [Bb]in/
 [Oo]bj/
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
+*.exe
+*.dll
+*.obj
 *_i.c
 *_p.c
 *_i.h
@@ -74,7 +79,7 @@ csx/
 AppPackages/
 # Others
 sql/
-*.Cache
+*.cache
 ClientBin/
 [Ss]tyle[Cc]op.*
 ![Ss]tyle[Cc]op.targets
@@ -107,3 +112,103 @@ $RECYCLE.BIN/
 # Mac desktop service store files
 .DS_Store
 _NCrunch*
+# Ignore Visual Studio files
+.vs/
+
+# Ignore build output directories
+bin/
+obj/
+
+
+
+
+
+
+
+
+
+
+
+
+Message backend-dev
+
+
+
+
+
+
+/API/obj/Debug/net8.0/API.AssemblyInfo.cs
+/API/obj/Debug/net8.0/API.AssemblyInfoInputs.cache
+/API/obj/Debug/net8.0/API.csproj.AssemblyReference.cache
+/DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfo.cs
+/DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfoInputs.cache
+/DataAccess/obj/Debug/net8.0/DataAccess.csproj.AssemblyReference.cache
+<<<<<<< HEAD
+<<<<<<< HEAD
+/DataAccess/YumFoodsUserDb.cs
+*.html
+<<<<<<< HEAD
+=======
+obj/x86/Debug/yumfoods.se.csproj.AssemblyReference.cache
+>>>>>>> 3535ebe45d84e05c2d72a2c3b73e2fd47e8dc2f5
+=======
+/obj/x86/Debug/yumfoods.se.csproj.AssemblyReference.cache
+>>>>>>> dev-Geweria
+DataAccess/obj/Debug/net8.0/DataAccess.sourcelink.json
+DataAccess/obj/Debug/net8.0/DataAccess.csproj.FileListAbsolute.txt
+DataAccess/obj/Debug/net8.0/DataAccess.csproj.CoreCompileInputs.cache
+API/obj/Debug/net8.0/refint/API.dll
+API/obj/Debug/net8.0/apphost.exe
+API/obj/Debug/net8.0/API.sourcelink.json
+API/obj/Debug/net8.0/API.pdb
+API/obj/Debug/net8.0/API.dll
+API/obj/Debug/net8.0/API.csproj.FileListAbsolute.txt
+API/obj/Debug/net8.0/API.csproj.FileListAbsolute.txt
+API/obj/Debug/net8.0/API.dll
+API/obj/Debug/net8.0/API.pdb
+API/obj/Debug/net8.0/API.sourcelink.json
+API/obj/Debug/net8.0/apphost.exe
+API/obj/Debug/net8.0/refint/API.dll
+DataAccess/obj/Debug/net8.0/DataAccess.csproj.CoreCompileInputs.cache
+DataAccess/obj/Debug/net8.0/DataAccess.csproj.FileListAbsolute.txt
+DataAccess/obj/Debug/net8.0/DataAccess.sourcelink.json
+Dockerfile
+=======
+API/bin/Debug/net8.0/API.deps.json
+API/bin/Debug/net8.0/API.dll
+API/bin/Debug/net8.0/API.exe
+API/bin/Debug/net8.0/API.pdb
+API/bin/Debug/net8.0/DataAccess.dll
+API/bin/Debug/net8.0/DataAccess.pdb
+API/obj/Debug/net8.0/API.csproj.FileListAbsolute.txt
+API/obj/Debug/net8.0/API.dll
+API/obj/Debug/net8.0/API.pdb
+API/obj/Debug/net8.0/API.sourcelink.json
+API/obj/Debug/net8.0/apphost.exe
+API/obj/Debug/net8.0/ref/API.dll
+API/obj/Debug/net8.0/refint/API.dll
+API/bin/Debug/net8.0/API.deps.json
+API/bin/Debug/net8.0/API.dll
+API/bin/Debug/net8.0/API.exe
+API/bin/Debug/net8.0/API.pdb
+API/bin/Debug/net8.0/DataAccess.dll
+API/bin/Debug/net8.0/DataAccess.pdb
+API/obj/Debug/net8.0/API.csproj.FileListAbsolute.txt
+API/obj/Debug/net8.0/API.dll
+API/obj/Debug/net8.0/API.pdb
+API/obj/Debug/net8.0/API.sourcelink.json
+API/obj/Debug/net8.0/apphost.exe
+API/obj/Debug/net8.0/ref/API.dll
+API/obj/Debug/net8.0/refint/API.dll
+DataAccess/bin/Debug/net8.0/DataAccess.deps.json
+DataAccess/bin/Debug/net8.0/DataAccess.dll
+DataAccess/bin/Debug/net8.0/DataAccess.pdb
+DataAccess/obj/Debug/net8.0/DataAccess.csproj.CoreCompileInputs.cache
+DataAccess/obj/Debug/net8.0/DataAccess.csproj.FileListAbsolute.txt
+DataAccess/obj/Debug/net8.0/DataAccess.dll
+DataAccess/obj/Debug/net8.0/DataAccess.pdb
+DataAccess/obj/Debug/net8.0/DataAccess.sourcelink.json
+DataAccess/obj/Debug/net8.0/ref/DataAccess.dll
+DataAccess/obj/Debug/net8.0/refint/DataAccess.dll
+obj/x86/Debug/yumfoods.se.csproj.AssemblyReference.cache
+>>>>>>> origin/dev-vivian-reverted
