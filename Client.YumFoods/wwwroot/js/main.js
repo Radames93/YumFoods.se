@@ -3312,20 +3312,6 @@ const submitCartForm = async (event) => {
         return;
     }
 
-    // Simulate static data for testing
-    const staticData = [
-        { dishName: "Kålpudding", quantity: 2, pricePerUnit: 75 },
-        { dishName: "Flygande Jakob", quantity: 1, pricePerUnit: 75 },
-        { dishName: "Fiskgratäng", quantity: 1, pricePerUnit: 75 }
-    ];
-
-    populateCart(staticData);
-
-    if (!data || data.length === 0) {
-        alert("No product data available.");
-        return;
-    }
-
     // Create PaymentRequest object
     const paymentRequest = {
         products: [
@@ -3384,6 +3370,7 @@ const submitCartForm = async (event) => {
         alert("Ett fel uppstod vid betalningen. Försök igen.");
     }
 };
+
 
 
 function Footer() {
