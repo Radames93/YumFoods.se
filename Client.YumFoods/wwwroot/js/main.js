@@ -304,86 +304,92 @@ const chooseAntalbox = antalBoxes.forEach((box, index) => {
 
 //handle click on quantity buttons
 document.addEventListener("DOMContentLoaded", function () {
-  const quantitySpan = document.querySelector(".quantity-btn span");
-  const increaseButton = document.querySelector(
-    ".quantity-btn button:nth-of-type(2)"
-  );
-  const decreaseButton = document.querySelector(
-    ".quantity-btn button:nth-of-type(1)"
-  );
-  const infoBox = document.querySelector(".info-box");
-  let currentQuantity = parseInt(quantitySpan.textContent, 10);
-
-  function updateQuantity(newQuantity) {
-    if (newQuantity >= 10 && newQuantity <= 20) {
-      currentQuantity = newQuantity;
-      quantitySpan.textContent = currentQuantity;
-      updateBox4Selection();
-
-      updateTotalPrice();
+    const quantitySpan = document.querySelector(".quantity-btn span");
+    const increaseButton = document.querySelector(
+        ".quantity-btn button:nth-of-type(2)"
+    );
+    const decreaseButton = document.querySelector(
+        ".quantity-btn button:nth-of-type(1)"
+    );
+    if (quantitySpan !== null) {
+        let currentQuantity = parseInt(quantitySpan.textContent, 10)
     }
-  }
 
-  // update quantity boxes
-  function updateBox4Selection() {
-    document.querySelectorAll(".box4").forEach((box) => {
-      const boxValue = parseInt(box.getAttribute("data-value"), 10);
-      if (boxValue === currentQuantity) {
-        box.classList.add("selected", "selected-border");
-      } else {
-        box.classList.remove("selected", "selected-border");
-      }
-    });
-    infoBox.style.display = "block";
-  }
+    function updateQuantity(newQuantity) {
+        if (newQuantity >= 10 && newQuantity <= 20) {
+            currentQuantity = newQuantity;
+            quantitySpan.textContent = currentQuantity;
+            updateBox4Selection();
 
-  // update categorie boxes
-  const boxes2 = document.querySelectorAll(".box2");
-  function updateBoxSelection(currentCategory) {
-    boxes2.forEach((box) => {
-      const boxValue = box.getAttribute("data-category");
-      console.log(boxValue);
+            updateTotalPrice();
+        }
+    }
 
-      if (boxValue === currentCategory) {
-        box.classList.add("selected");
-        box.classList.add("selected-border");
-      } else {
-        box.classList.remove("selected");
-        box.classList.remove("selected-border");
-      }
-    });
-  }
-  const boxes4 = document.querySelectorAll(".box4");
-  boxes2.forEach((box) => {
-    box.addEventListener("click", () => {
-      const currentCategory = box.getAttribute("data-category");
-      updateBoxSelection(currentCategory);
-      boxes4.forEach((box4) => {
-        box4.addEventListener("click", () => {
-          const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
-          updateBox4Selection(currentQuantity);
+    // update quantity boxes
+    function updateBox4Selection() {
+        document.querySelectorAll(".box4").forEach((box) => {
+            const boxValue = parseInt(box.getAttribute("data-value"), 10);
+            if (boxValue === currentQuantity) {
+                box.classList.add("selected", "selected-border");
+            } else {
+                box.classList.remove("selected", "selected-border");
+            }
         });
-      });
+        infoBox.style.display = "block";
+    }
+
+    // update categorie boxes
+    const boxes2 = document.querySelectorAll(".box2");
+    function updateBoxSelection(currentCategory) {
+        boxes2.forEach((box) => {
+            const boxValue = box.getAttribute("data-category");
+            console.log(boxValue);
+
+            if (boxValue === currentCategory) {
+                box.classList.add("selected");
+                box.classList.add("selected-border");
+            } else {
+                box.classList.remove("selected");
+                box.classList.remove("selected-border");
+            }
+        });
+    }
+    const boxes4 = document.querySelectorAll(".box4");
+    boxes2.forEach((box) => {
+        box.addEventListener("click", () => {
+            const currentCategory = box.getAttribute("data-category");
+            updateBoxSelection(currentCategory);
+            boxes4.forEach((box4) => {
+                box4.addEventListener("click", () => {
+                    const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
+                    updateBox4Selection(currentQuantity);
+                });
+            });
+        });
     });
-  });
 
-  // currentQuantity, increase , decrease
-  document.querySelectorAll(".row .box").forEach((box) => {
-    box.addEventListener("click", function () {
-      const boxValue = parseInt(this.textContent, 10);
-      updateQuantity(boxValue);
-    });
-  });
+    // currentQuantity, increase , decrease
+    let rowBox = document.querySelectorAll(".row .box");
+    if (rowBox !== null) {
+        rowBox.forEach((box) => {
+            box.addEventListener("click", function () {
+                const boxValue = parseInt(this.textContent, 10);
+                updateQuantity(boxValue);
+            });
+        });
+    }
+    if (increaseButton !== null) {
+        increaseButton.addEventListener("click", function () {
+            updateQuantity(currentQuantity + 5);
+        });
+    }
 
-  increaseButton.addEventListener("click", function () {
-    updateQuantity(currentQuantity + 5);
-  });
-
-  decreaseButton.addEventListener("click", function () {
-    updateQuantity(currentQuantity - 5);
-  });
-});
-
+    if (decreaseButton !== null) {
+        decreaseButton.addEventListener("click", function () {
+            updateQuantity(currentQuantity - 5);
+        });
+    }
+})
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {
   const dishList = document.getElementById("dish-list");
@@ -2900,14 +2906,9 @@ if (contactForm !== null) {
 }
 
 //popup in start page
-document.addEventListener("DOMContentLoaded", function () {
-  var myModal = new bootstrap.Modal(document.getElementById("deliveryModal"), {
-    backdrop: "static",
-    keyboard: false,
-  });
-  myModal.show();
-});
-document.getElementById("confirmButton").addEventListener("click", function () {
+let confirmButton = document.getElementById("confirmButton");
+if (confirmButton !== null) {
+    confirmButton.addEventListener("click", function () {
   var postcode = document.getElementById("postcodeInput").value;
   if (postcode === "") {
     document.getElementById("confirmationMessage").style.display = "none";
@@ -2928,9 +2929,12 @@ document.getElementById("confirmButton").addEventListener("click", function () {
     document.getElementById("no-place").style.display = "none";
   }
 });
-document
-  .getElementById("findLocationButton")
-  .addEventListener("click", function () {
+}
+let findLocation = document
+    .getElementById("findLocationButton")
+
+if (findLocation !== null) {
+    findLocation.addEventListener("click", function () {
     var postcode = document.getElementById("postcodeInput").value;
     if (postcode === "") {
       document.getElementById("confirmationMessage").style.display = "none";
@@ -2965,6 +2969,7 @@ document
       document.getElementById("no-place").style.display = "none";
     }
   });
+}
 //Count quantity and display in the popup cart icon
 function totalQuantity() {
   let count = document.getElementById("count");
@@ -3117,57 +3122,6 @@ function scrollCarouselRight2() {
 }
 */
 //Funtion for show/hide faq accordions with button
-document.addEventListener("DOMContentLoaded", function () {
-  const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
-  const betalningBtn = document.getElementById("betalning");
-  const menyerAllergierBtn = document.getElementById("menyer-allergier");
-
-  const omWebbplatsenAccordion = document.getElementById(
-    "om-webbplatsen-accordion"
-  );
-  const betalningAccordion = document.getElementById("betalning-accordion");
-  const allergierAccordion = document.getElementById("allergier-accordion");
-
-  function hideAllAccordions() {
-    omWebbplatsenAccordion.style.display = "none";
-    betalningAccordion.style.display = "none";
-    allergierAccordion.style.display = "none";
-  }
-
-  function resetButtonStyles() {
-    omWebbplatsenBtn.classList.remove("active");
-    betalningBtn.classList.remove("active");
-    menyerAllergierBtn.classList.remove("active");
-  }
-
-  hideAllAccordions();
-  omWebbplatsenAccordion.style.display = "block";
-  omWebbplatsenBtn.classList.add("active");
-
-  omWebbplatsenBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    hideAllAccordions();
-    resetButtonStyles();
-    omWebbplatsenAccordion.style.display = "block";
-    omWebbplatsenBtn.classList.add("active");
-  });
-
-  betalningBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    hideAllAccordions();
-    resetButtonStyles();
-    betalningAccordion.style.display = "block";
-    betalningBtn.classList.add("active");
-  });
-
-  menyerAllergierBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    hideAllAccordions();
-    resetButtonStyles();
-    allergierAccordion.style.display = "block";
-    menyerAllergierBtn.classList.add("active");
-  });
-});
 
 // Function to cart content and total form to email
 const sendCartInfo = document.getElementById("cart-order-form");
