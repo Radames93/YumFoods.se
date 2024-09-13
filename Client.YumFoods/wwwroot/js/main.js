@@ -621,6 +621,9 @@ const yumProducts = (yumProductsList) => {
   if (yum !== null) {
     const htmlString = yumProductsList
         .map((yum) => {
+            let title = JSON.stringify(yum.title)
+            let description = JSON.stringify(yum.description)
+            let ingredients = JSON.stringify(yum.ingredients)
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
@@ -628,12 +631,12 @@ const yumProducts = (yumProductsList) => {
                         >
           <div class="menu_item"
                   data-yum-id=${yum.id}
-                  data-yum-title=${yum.title}
+                  data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
@@ -667,12 +670,12 @@ const yumProducts = (yumProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${yum.id}
-                  data-yum-title=${yum.title}
+                  data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -700,11 +703,11 @@ const yumProducts = (yumProductsList) => {
           yum.id +
           `
           data-yum-id=${yum.id}
-          data-yum-title=${yum.title}
+          data-yum-title=${title}
           data-yum-price=${yum.price}
           data-yum-img=${yum.imgRef}
           data-yum-quantity-price=${yum.price}
-          data-yum-description=${yum.description}
+          data-yum-description=${description}
           data-yum-diet=${yum.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
@@ -877,18 +880,21 @@ const dailyProducts = (dailyProductsList) => {
   if (daily !== null) {
     const htmlString = dailyProductsList
         .map((daily) => {
+            let title = JSON.stringify(daily.title)
+            let description = JSON.stringify(daily.description)
+            let ingredients = JSON.stringify(daily.ingredients)
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
           <div class="menu_item" data-yum-id=${daily.id}
-                  data-yum-title=${daily.title}
+                  data-yum-title=${title}
                   data-yum-price=${daily.price}
                   data-yum-img=${daily.imgRef}
                   data-yum-quantity-price=${daily.price}
-                  data-yum-description=${daily.description}
-                  data-yum-ingredients=${daily.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${daily.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
@@ -924,12 +930,12 @@ const dailyProducts = (dailyProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${daily.id}
-                  data-yum-title=${daily.title}
+                  data-yum-title=${title}
                   data-yum-price=${daily.price}
                   data-yum-img=${daily.img}
                   data-yum-quantity-price=${daily.price}
-                  data-yum-description=${daily.description}
-                  data-yum-ingredients=${daily.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${daily.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -944,11 +950,11 @@ const dailyProducts = (dailyProductsList) => {
           daily.id +
           `
           data-yum-id=${daily.id}
-          data-yum-title=${daily.title}
+          data-yum-title=${title}
           data-yum-price=${daily.price}
           data-yum-img=${daily.imgRef}
           data-yum-quantity-price=${daily.price}
-          data-yum-description=${daily.description}
+          data-yum-description=${description}
           data-yum-diet=${daily.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
@@ -978,19 +984,22 @@ const dailyProducts = (dailyProductsList) => {
 const premiumProducts = (premiumProductsList) => {
   if (premium !== null) {
     const htmlString = premiumProductsList
-      .map((premium) => {
+        .map((premium) => {
+            let title = JSON.stringify(premium.title)
+            let description = JSON.stringify(premium.description)
+            let ingredients = JSON.stringify(premium.ingredients)
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
           <div class="menu_item" data-yum-id=${premium.id}
-                  data-yum-title=${premium.title}
+                  data-yum-title=${title}
                   data-yum-price=${premium.price}
                   data-yum-img=${premium.imgRef}
                   data-yum-quantity-price=${premium.price}
-                  data-yum-description=${premium.description}
-                  data-yum-ingredients=${premium.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${premium.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
@@ -1026,12 +1035,12 @@ const premiumProducts = (premiumProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${premium.id}
-                  data-yum-title=${premium.title}
+                  data-yum-title=${title}
                   data-yum-price=${premium.price}
                   data-yum-img=${premium.imgRef}
                   data-yum-quantity-price=${premium.price}
-                  data-yum-description=${premium.description}
-                  data-yum-ingredients=${premium.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${premium.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -1046,11 +1055,11 @@ const premiumProducts = (premiumProductsList) => {
           premium.id +
           `
           data-yum-id=${premium.id}
-          data-yum-title=${premium.title}
+          data-yum-title=${title}
           data-yum-price=${premium.price}
           data-yum-img=${premium.imgRef}
           data-yum-quantity-price=${premium.price}
-          data-yum-description=${premium.description}
+          data-yum-description=${description}
           data-yum-diet=${premium.dietRef}
           ` +
           ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
@@ -1080,7 +1089,10 @@ const premiumProducts = (premiumProductsList) => {
 const baguetterProducts = (baguetterProductsList) => {
   if (baguetter !== null) {
     const htmlString = baguetterProductsList
-      .map((baguetter) => {
+        .map((baguetter) => {
+            let title = JSON.stringify(baguetter.title)
+            let description = JSON.stringify(baguetter.description)
+            let ingredients = JSON.stringify(baguetter.ingredients)
         return (
           `<div
             class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
@@ -1097,12 +1109,12 @@ const baguetterProducts = (baguetterProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${baguetter.id}
-                  data-yum-title=${baguetter.title}
+                  data-yum-title=${title}
                   data-yum-price=${baguetter.price}
                   data-yum-img=${baguetter.imgRef}
                   data-yum-quantity-price=${baguetter.price}
-                  data-yum-description=${baguetter.description}
-                  data-yum-ingredients=${baguetter.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${baguetter.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -1127,12 +1139,12 @@ const baguetterProducts = (baguetterProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${baguetter.id}
-                  data-yum-title=${baguetter.title}
+                  data-yum-title=${title}
                   data-yum-price=${baguetter.price}
                   data-yum-img=${baguetter.imgRef}
                   data-yum-quantity-price=${baguetter.price}
-                  data-yum-description=${baguetter.description}
-                  data-yum-ingredients=${baguetter.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${baguetter.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -1147,11 +1159,11 @@ const baguetterProducts = (baguetterProductsList) => {
           baguetter.id +
           `
           data-yum-id=${baguetter.id}
-          data-yum-title=${baguetter.title}
+          data-yum-title=${title}
           data-yum-price=${baguetter.price}
           data-yum-img=${baguetter.imgRef}
           data-yum-quantity-price=${baguetter.price}
-          data-yum-description=${baguetter.description}
+          data-yum-description=${description}
           data-yum-diet=${baguetter.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
@@ -1183,7 +1195,10 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
   if (subscriptions !== null) {
     let i = 0;
     const htmlString = subscriptionsProductsList
-      .map((subscription) => {
+        .map((subscription) => {
+            let title = JSON.stringify(subscription.title)
+            let description = JSON.stringify(subscription.description)
+            let ingredients = JSON.stringify(subscription.ingredients)
         return (
           `
           <div
@@ -1200,12 +1215,12 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${subscription.id}
-                  data-yum-title=${subscription.title}
+                  data-yum-title=${title}
                   data-yum-price=${subscription.price}
                   data-yum-img=${subscription.img}
                   data-yum-quantity-price=${subscription.price}
-                  data-yum-description=${subscription.description}
-                  data-yum-ingredients=${subscription.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                 />
@@ -1218,12 +1233,12 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${subscription.id}
-                  data-yum-title=${subscription.title}
+                  data-yum-title=${title}
                   data-yum-price=${subscription.price}
                   data-yum-img=${subscription.img}
                   data-yum-quantity-price=${subscription.price}
-                  data-yum-description=${subscription.description}
-                  data-yum-ingredients=${subscription.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -1237,10 +1252,12 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
           subscription.id +
           `
           data-yum-id=${subscription.id}
-          data-yum-title=${subscription.title}
+          data-yum-title=${title}
           data-yum-price=${subscription.price}
           data-yum-img=${subscription.img}
           data-yum-quantity-price=${subscription.price}
+          data-yum-description=${description}
+          data-yum-diet=${subscription.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till       <i class='fas fa-cart-plus'></i></button>" +
           `
