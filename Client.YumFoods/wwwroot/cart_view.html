@@ -75,606 +75,379 @@
       <div class="container">
         <div class="row">
           <div class="container2 mx-auto">
-            <div class="tbl_content">
-              <!-- <div class="d-flex flex-row">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                  <path
-                    d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
-                  />
-                </svg>
+              <div class="tbl_content">
+                  <!-- <div class="d-flex flex-row">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path
+          d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"
+        />
+      </svg>
 
-                <h2>Tillbaka</h2>
-              </div> -->
-              <div class="accordion" id="customerHandling">
-                <div
-                  class="accordion-item CartPayDeliver rounded-4 mb-4 border border-greys border-1"
-                >
-                  <h2 class="accordion-header" id="headingOne">
-                    <button
-                      class="accordion-button collapsed rounded-2 bg-transparent CartPayDeliver"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseOne"
-                      aria-expanded="true"
-                      aria-controls="collapseOne"
-                    >
-                      <i
-                        style="
-                          margin-right: 10px;
-                          color: #fc5633;
-                          font-size: 25px;
-                        "
-                        class="fas fa-cart-plus"
-                      ></i>
-                      Varukorg
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseOne"
-                    class="accordion-collapse collapse show accordOne"
-                    aria-labelledby="headingOne"
-                    data-bs-parent="#customerHandling"
-                  >
-                    <div
-                      style="border-top: 1px solid #fc5633"
-                      class="accordion-body border-top CartPayDeliver"
-                    >
-                      <!-- -------------------Content Start----------------- -->
-                      <section>
-                        <div class="container">
-                          <div class="hide" id="table_head">
-                            <!-- <img class="pro_img"></img>
-                            <div class="pro_name"></div>
-                            <div class="pro_status"></div>
-                            <div class="pro_select"></div>
-                            <div class="pro_tk"></div>
-                            <div class="pro_icon"></div> -->
-                          </div>
-                          <div
-                            class="row row-cols-1 cart_items"
-                            id="cart-item"
-                          ></div>
-                        </div>
-                        <div
-                          id="summary_head"
-                          style="border-top: solid 1px grey"
-                        >
-                          <h6 style="padding: 10px; margin-top: 25px">
-                            Har du värdekod ?
-                          </h6>
-                          <div id="rabatt-kod" class="d-flex">
-                            <input
-                              id="rabatt-input"
-                              class="rounded-left"
-                              type="text"
-                              style="width: 10%"
-                            />
-                            <button
-                              type="button"
-                              class="btn btn-dark rounded-0"
-                            >
-                              Aktivera
-                            </button>
-                          </div>
-                          <div class="summary" style="margin-top: 50px">
-                            <h6
-                              style="
-                                background: rgba(38, 50, 56, 0.1);
-                                margin-bottom: 5px;
-                              "
-                            >
-                              <p
-                                style="
-                                  padding-top: 5px;
-                                  padding-bottom: 5px;
-                                  padding-left: 20px;
-                                "
-                              >
-                                Frakt
-                              </p>
-                            </h6>
-                            <h6 style="background-color: rgba(38, 50, 56, 0.1)">
-                              <p
-                                style="
-                                  padding-top: 5px;
-                                  padding-bottom: 5px;
-                                  padding-left: 20px;
-                                  display: flex;
-                                  justify-content: space-between;
-                                "
-                              >
-                                Totalt belopp inkl.moms
-                                <span
-                                  style="padding-right: 20px"
-                                  id="total"
-                                ></span>
-                              </p>
-                            </h6>
-                          </div>
+      <h2>Tillbaka</h2>
+    </div> -->
+                  <div class="accordion" id="customerHandling">
+                      <div class="accordion-item CartPayDeliver rounded-4 mb-4 border border-greys border-1">
+                          <h2 class="accordion-header" id="headingOne">
+                              <button class="accordion-button collapsed rounded-2 bg-transparent CartPayDeliver"
+                                      type="button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#collapseOne"
+                                      aria-expanded="true"
+                                      aria-controls="collapseOne">
+                                  <i style="margin-right: 10px; color: #fc5633; font-size: 25px;" class="fas fa-cart-plus"></i>
+                                  Varukorg
+                              </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse show accordOne" aria-labelledby="headingOne" data-bs-parent="#customerHandling">
+                              <div style="border-top: 1px solid #fc5633" class="accordion-body border-top CartPayDeliver">
+                                  <!-- -------------------Content Start----------------- -->
+                                  <section>
+                                      <div class="container">
+                                          <!-- Hidden inputs to store cart data -->
+                                          <div id="cart-info">
+                                              <input type="hidden" id="dishName" name="dishName" />
+                                              <input type="hidden" id="dishQuantity" name="dishQuantity" />
+                                              <input type="hidden" id="dishQuantityPrice" name="dishQuantityPrice" />
+                                          </div>
 
-                          <button
-                            id="cart-next-btn"
-                            onclick="nextAccord1()"
-                            type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne"
-                            aria-expanded="true"
-                            aria-controls="collapseOne"
-                          >
-                            Fortsätt till leverans
-                          </button>
-                        </div>
-                      </section>
-                      <!-- -------------------Content End------------------- -->
-                    </div>
-                  </div>
-                </div>
+                                          <div class="row row-cols-1 cart_items" id="cart-item"></div>
+                                      </div>
+                                      <div id="summary_head" style="border-top: solid 1px grey">
+                                          <h6 style="padding: 10px; margin-top: 25px">Har du värdekod ?</h6>
+                                          <div id="rabatt-kod" class="d-flex">
+                                              <input id="rabatt-input" class="rounded-left" type="text" style="width: 10%" />
+                                              <button type="button" class="btn btn-dark rounded-0">Aktivera</button>
+                                          </div>
+                                          <div class="summary" style="margin-top: 50px">
+                                              <h6 style="background: rgba(38, 50, 56, 0.1); margin-bottom: 5px;">
+                                                  <p style="padding-top: 5px; padding-bottom: 5px; padding-left: 20px;">Frakt</p>
+                                              </h6>
+                                              <h6 style="background-color: rgba(38, 50, 56, 0.1)">
+                                                  <p style="padding-top: 5px; padding-bottom: 5px; padding-left: 20px; display: flex; justify-content: space-between;">
+                                                      Totalt belopp inkl.moms
+                                                      <span style="padding-right: 20px" id="total"></span>
+                                                  </p>
+                                              </h6>
+                                          </div>
 
-                <div
-                  class="accordion-item CartPayDeliver rounded-4 mb-4 border border-greys border-1"
-                >
-                  <h2 class="accordion-header" id="headingTwo">
-                    <button
-                      class="accordion-button collapsed rounded-2 bg-transparent CartPayDeliver"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseTwo"
-                      aria-expanded="false"
-                      aria-controls="collapseTwo"
-                    >
-                      <i
-                        style="
-                          margin-right: 10px;
-                          color: #fc5633;
-                          font-size: 25px;
-                        "
-                        class="fas fa-truck"
-                      ></i>
-                      Leverans
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseTwo"
-                    class="accordion-collapse collapse accordTwo"
-                    aria-labelledby="headingTwo"
-                    data-bs-parent="#customerHandling"
-                  >
-                    <div class="accordion-body border-top">
-                      <section
-                        class="d-flex flex-column justify-content-center mx-auto deliverContainer"
-                      >
+                                          <button id="cart-next-btn"
+                                                  onclick="nextAccord1()"
+                                                  type="button"
+                                                  data-bs-toggle="collapse"
+                                                  data-bs-target="#collapseOne"
+                                                  aria-expanded="true"
+                                                  aria-controls="collapseOne">
+                                              Fortsätt till leverans
+                                          </button>
+                                      </div>
+                                  </section>
+                                  <!-- -------------------Content End------------------- -->
+                              </div>
+                          </div>
+                      </div>
+
+                      <!--
+        <div class="accordion-item CartPayDeliver rounded-4 mb-4 border border-greys border-1">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed rounded-2 bg-transparent CartPayDeliver"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo">
+                    <i style="margin-right: 10px; color: #fc5633; font-size: 25px;" class="fas fa-truck"></i>
+                    Leverans
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse accordTwo" aria-labelledby="headingTwo" data-bs-parent="#customerHandling">
+                <div class="accordion-body border-top">
+                    <section class="d-flex flex-column justify-content-center mx-auto deliverContainer">
                         <h4 class="mb-5 fw-bold">Välj leveranstid</h4>
 
-                        <p class="mb-2">
-                          Du kan endast välja leveranser 3 dagar efter din
-                          bokning.
-                        </p>
+                        <p class="mb-2">Du kan endast välja leveranser 3 dagar efter din bokning.</p>
                         <div class="mb-4">
-                          <div class="d-flex flex-row deliverDate">
-                            <div
-                              class="col-auto justify-content-start calender-arrow"
-                            >
-                              <button id="leftArrow" class="arrow left-arrow">
-                                <i class="fa fa-chevron-left"></i>
-                              </button>
+                            <div class="d-flex flex-row deliverDate">
+                                <div class="col-auto justify-content-start calender-arrow">
+                                    <button id="leftArrow" class="arrow left-arrow">
+                                        <i class="fa fa-chevron-left"></i>
+                                    </button>
+                                </div>
+                                <div class="col-lg-6 col-md-4 col-sm-4 calender-holebox justify-content-between" id="deliverDates"></div>
+                                <div class="col-auto justify-content-end calender-arrow ms-auto">
+                                    <button id="rightArrow" class="arrow right-arrow">
+                                        <i class="fa fa-chevron-right"></i>
+                                    </button>
+                                </div>
                             </div>
-
-                            <div
-                              class="col-lg-6 col-md-4 col-sm-4 calender-holebox justify-content-between"
-                              id="deliverDates"
-                            ></div>
-                            <!-- innerHTML goes here -->
-                            <div
-                              class="col-auto justify-content-end calender-arrow ms-auto"
-                            >
-                              <button id="rightArrow" class="arrow right-arrow">
-                                <i class="fa fa-chevron-right"></i>
-                              </button>
-                            </div>
-                          </div>
                         </div>
 
                         <p class="tidtittle mb-2">Tillgängliga tider</p>
                         <div class="mb-5" style="margin: auto">
-                          <div
-                            class="d-flex justify-content-between align-item-center flex-row deliver"
-                          >
-                            <div
-                              class="d-flex justify-content-between align-item-center flex-column deliverTime"
-                            >
-                              <div class="row mb-4 deliverTime1">
-                                <div
-                                  class="col-md-5 d-flex flex-column align-items-center tid-box tid1"
-                                >
-                                  <div class="time">10.00-12.00</div>
-                                  <div class="price">39 kr</div>
+                            <div class="d-flex justify-content-between align-item-center flex-row deliver">
+                                <div class="d-flex justify-content-between align-item-center flex-column deliverTime">
+                                    <div class="row mb-4 deliverTime1">
+                                        <div class="col-md-5 d-flex flex-column align-items-center tid-box tid1">
+                                            <div class="time">10.00-12.00</div>
+                                            <div class="price">39 kr</div>
+                                        </div>
+                                        <div class="col-md-5 d-flex flex-column align-items-center tid-box">
+                                            <div class="time">12.00-14.00</div>
+                                            <div class="price">39 kr</div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-4 deliverTime1">
+                                        <div class="col-md-5 d-flex flex-column align-items-center tid-box tid2">
+                                            <div class="time">14.00-16.00</div>
+                                            <div class="price">39 kr</div>
+                                        </div>
+                                        <div class="col-md-5 d-flex flex-column align-items-center tid-box">
+                                            <div class="time">16.00-18.00</div>
+                                            <div class="price">39 kr</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div
-                                  class="col-md-5 d-flex flex-column align-items-center tid-box"
-                                >
-                                  <div class="time">12.00-14.00</div>
-                                  <div class="price">39 kr</div>
-                                </div>
-                              </div>
-                              <div class="row mb-4 deliverTime1">
-                                <div
-                                  class="col-md-5 d-flex flex-column align-items-center tid-box tid2"
-                                >
-                                  <div class="time">14.00-16.00</div>
-                                  <div class="price">39 kr</div>
-                                </div>
-                                <div
-                                  class="col-md-5 d-flex flex-column align-items-center tid-box"
-                                >
-                                  <div class="time">16.00-18.00</div>
-                                  <div class="price">39 kr</div>
-                                </div>
-                              </div>
-                            </div>
 
-                            <img
-                              src="images/Leverans inom Göteborg.jpg"
-                              alt="leverans"
-                              class="leverans-img"
-                            />
-                          </div>
-                          <p class="mt-4" style="color: red; display: none">
-                            OBS! Vi levererar endast inom Göteborgområdet!
-                          </p>
+                                <img src="images/Leverans inom Göteborg.jpg" alt="leverans" class="leverans-img" />
+                            </div>
+                            <p class="mt-4" style="color: red; display: none">OBS! Vi levererar endast inom Göteborgområdet!</p>
                         </div>
 
                         <div class="mb-4">
-                          <p class="mb-2">Gatuadress*</p>
-                          <div class="d-flex justify-content-between">
-                            <input
-                              class="rounded-3"
-                              type="text"
-                              placeholder="Ange gatuadress"
-                            />
-                          </div>
+                            <p class="mb-2">Gatuadress*</p>
+                            <div class="d-flex justify-content-between">
+                                <input class="rounded-3" type="text" placeholder="Ange gatuadress" />
+                            </div>
                         </div>
 
                         <div class="d-flex flex-row mb-4">
-                          <div class="w-50 me-5">
-                            <p>Postnummer</p>
-                            <input
-                              class="rounded-3 setBoxSize"
-                              type="text"
-                              placeholder="Ange postnummer"
-                            />
-                          </div>
-                          <div class="ms-auto w-50">
-                            <p>Ort</p>
-                            <input
-                              class="rounded-3 setBoxSize"
-                              type="text"
-                              placeholder="Ange ort"
-                            />
-                          </div>
+                            <div class="w-50 me-5">
+                                <p>Postnummer</p>
+                                <input class="rounded-3 setBoxSize" type="text" placeholder="Ange postnummer" />
+                            </div>
+                            <div class="ms-auto w-50">
+                                <p>Ort</p>
+                                <input class="rounded-3 setBoxSize" type="text" placeholder="Ange ort" />
+                            </div>
                         </div>
 
                         <div class="d-flex flex-row mb-4">
-                          <div class="w-50 me-5">
-                            <p>Portkod/Porttelefon</p>
-                            <input
-                              class="rounded-3 setBoxSize"
-                              type="text"
-                              placeholder="Ange portkod/porttelefon"
-                            />
-                          </div>
-                          <div class="ms-auto w-50">
-                            <p>Våningsplan</p>
-                            <input
-                              class="rounded-3 setBoxSize"
-                              type="text"
-                              placeholder="Ange våningsplan"
-                            />
-                          </div>
+                            <div class="w-50 me-5">
+                                <p>Portkod/Porttelefon</p>
+                                <input class="rounded-3 setBoxSize" type="text" placeholder="Ange portkod/porttelefon" />
+                            </div>
+                            <div class="ms-auto w-50">
+                                <p>Våningsplan</p>
+                                <input class="rounded-3 setBoxSize" type="text" placeholder="Ange våningsplan" />
+                            </div>
                         </div>
 
                         <div class="d-flex flex-row">
-                          <div
-                            class="form-check form-switch form-check d-flex align-items-center"
-                          >
-                            <label
-                              class="form-check-label"
-                              for="flexSwitchCheckDefault"
-                            >
-                              <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="flexSwitchCheckDefault"
-                              />
-                              Lämna utanför dörren</label
-                            >
-                          </div>
+                            <div class="form-check form-switch form-check d-flex align-items-center">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                                    Lämna utanför dörren
+                                </label>
+                            </div>
                         </div>
 
                         <h6 class="mb-3 fw-bold mt-5">Övrig information</h6>
                         <div class="form-floating">
-                          <textarea
-                            style="height: 100px"
-                            class="form-control setBoxSize"
-                            placeholder="Lämna kommentar här"
-                            id="floatingTextarea"
-                          ></textarea>
+                            <textarea style="height: 100px" class="form-control setBoxSize" placeholder="Lämna kommentar här" id="floatingTextarea"></textarea>
                         </div>
 
                         <h5 class="mb-3 fw-bold mt-5">Dina uppgifter</h5>
 
                         <div class="d-flex flex-row mb-4">
-                          <button class="btn btn-light me-3 btn-lg customerBtn">
-                            Privat
-                          </button>
-                          <button class="btn btn-light btn-lg customerBtn mx-1">
-                            Företag
-                          </button>
+                            <button class="btn btn-light me-3 btn-lg customerBtn">Privat</button>
+                            <button class="btn btn-light btn-lg customerBtn mx-1">Företag</button>
                         </div>
 
                         <div class="d-flex flex-row mb-4">
-                          <div class="w-50 me-5">
-                            <p>Förnamn</p>
-                            <input
-                              type="text"
-                              class="setBoxSize rounded-3"
-                              placeholder="Ange förnamn"
-                              aria-label="Username"
-                              aria-describedby="basic-addon1"
-                            />
-                          </div>
+                            <div class="w-50 me-5">
+                                <p>Förnamn</p>
+                                <input type="text" class="setBoxSize rounded-3" placeholder="Ange förnamn" aria-label="Username" aria-describedby="basic-addon1" />
+                            </div>
 
-                          <div class="ms-auto w-50">
-                            <p>Efternamn</p>
-                            <input
-                              type="text"
-                              class="setBoxSize rounded-3"
-                              placeholder="Ange efternamn"
-                              aria-label="Username"
-                              aria-describedby="basic-addon1"
-                            />
-                          </div>
+                            <div class="ms-auto w-50">
+                                <p>Efternamn</p>
+                                <input type="text" class="setBoxSize rounded-3" placeholder="Ange efternamn" aria-label="Username" aria-describedby="basic-addon1" />
+                            </div>
                         </div>
 
                         <div class="mb-4">
-                          <p class="mb-2">Telefonnummer</p>
-                          <div class="d-flex justify-content-between">
-                            <input
-                              class="rounded-3"
-                              type="text"
-                              placeholder="Ange Telefonnummer"
-                            />
-                          </div>
+                            <p class="mb-2">Telefonnummer</p>
+                            <div class="d-flex justify-content-between">
+                                <input class="rounded-3" type="text" placeholder="Ange Telefonnummer" />
+                            </div>
                         </div>
 
                         <div class="mb-4">
-                          <p class="mb-2">Mejladress</p>
-                          <div class="d-flex justify-content-between">
-                            <input
-                              class="rounded-3"
-                              type="text"
-                              placeholder="Ange mejladress"
-                            />
-                          </div>
+                            <p class="mb-2">Mejladress</p>
+                            <div class="d-flex justify-content-between">
+                                <input class="rounded-3" type="text" placeholder="Ange mejladress" />
+                            </div>
                         </div>
 
-                        <button
-                          onclick="nextAccord1()"
-                          class="accordion-btn btn2 d-block text-center mt-5 mx-auto nextAccord1"
-                          type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapseOne"
-                          aria-expanded="true"
-                          aria-controls="collapseOne"
-                        >
-                          Fortsätt till Betalning
+                        <button onclick="nextAccord1()" class="accordion-btn btn2 d-block text-center mt-5 mx-auto nextAccord1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Fortsätt till Betalning
                         </button>
-                      </section>
-                    </div>
-                  </div>
+                    </section>
                 </div>
-                <!--
-                <div
-                  class="accordion-item CartPayDeliver rounded-4 border border-greys border-1"
-                >
-                  <h2 class="accordion-header" id="headingThree">
-                    <button
-                      class="accordion-button collapsed rounded-2 bg-transparent CartPayDeliver"
-                      type="button"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#collapseThree"
-                      aria-expanded="false"
-                      aria-controls="collapseThree"
-                    >
-                      Betalning
-                    </button>
-                  </h2>
-                  <div
-                    id="collapseThree"
-                    class="accordion-collapse collapse accordThree"
-                    aria-labelledby="headingOThree"
-                    data-bs-parent="#customerHandling"
-                  >
-                    <div class="accordion-body border-top">
-                      <div class="d-flex card mx-auto border-0">
-                        <div class="card-body mx-auto CartPayDeliver">
-                          <h4 class="card-title">Välj Betalsätt</h4>
-                          <div class="card CartPayDeliver">
-                            <div
-                              class="form-check m-3 d-flex align-items-center ps-0"
-                            >
-                              <input
-                                class="form-check-input me-3 CartPayDeliver"
-                                type="radio"
-                                name="paymentRadio"
-                                id="payment1"
-                              />
-                              <label class="form-check-label" for="payment1">
-                                Betala med Swish
-                              </label>
-                              <img
-                                src="./images/swishIcon.png"
-                                alt="..."
-                                class="img-thumbnail CartPayDeliver"
-                              />
-                            </div>
-                          </div>
-                          <div class="card CartPayDeliver">
-                            <div
-                              class="form-check m-3 d-flex align-items-center ps-0"
-                            >
-                              <input
-                                class="form-check-input me-3 CartPayDeliver"
-                                type="radio"
-                                name="paymentRadio"
-                                id="payment2"
-                              />
-                              <label class="form-check-label" for="payment2">
-                                Betala med Klarna
-                              </label>
-                              <img
-                                src="./images/klarnaIcon.png"
-                                alt="..."
-                                class="img-thumbnail CartPayDeliver"
-                              />
-                            </div>
-                          </div>
-                          <div class="card CartPayDeliver">
-                            <div
-                              class="form-check m-3 d-flex align-items-center ps-0"
-                            >
-                              <input
-                                class="form-check-input me-3 CartPayDeliver"
-                                type="radio"
-                                name="paymentRadio"
-                                id="payment3isChecked"
-                              />
-                              <label
-                                class="form-check-label"
-                                for="payment3isChecked"
-                              >
-                                Betala med Kort
-                              </label>
-                              <img
-                                src="./images/creditIcon.png"
-                                alt="..."
-                                class="img-thumbnail CartPayDeliver"
-                              />
-                            </div>
-                            <div class="form-group">
-                              <section
-                                class="d-flex justify-content-evenly CartPayDeliver"
-                              >
-                                <div class="mx-2 w-75 cardfield">
-                                  <label for="cardNumber" class="form-label"
-                                    >Kortnummer</label
-                                  >
-                                  <div class="input-group mb-4">
-                                    <input
-                                      id="cardNumber"
-                                      type="number"
-                                      class="form-control"
-                                      placeholder="1234 1234 1234 1234"
-                                      aria-label="Cardnumber"
-                                      aria-describedby="addon1"
-                                      disabled
-                                    />
+            </div>
+        </div>
+        -->
+
+                      <div class="accordion-item CartPayDeliver rounded-4 border border-greys border-1">
+                          <h2 class="accordion-header" id="headingThree">
+                              <button class="accordion-button collapsed rounded-2 bg-transparent CartPayDeliver"
+                                      type="button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#collapseThree"
+                                      aria-expanded="false"
+                                      aria-controls="collapseThree">
+                                  Betalning
+                              </button>
+                          </h2>
+                          <div id="collapseThree"
+                               class="accordion-collapse collapse accordThree"
+                               aria-labelledby="headingThree"
+                               data-bs-parent="#customerHandling">
+                              <div class="accordion-body border-top">
+                                  <div class="d-flex card mx-auto border-0">
+                                      <div class="card-body mx-auto CartPayDeliver">
+                                          <h4 class="card-title">Välj Betalsätt</h4>
+                                          <div class="card CartPayDeliver">
+                                              <div class="form-check m-3 d-flex align-items-center ps-0">
+                                                  <input class="form-check-input me-3 CartPayDeliver"
+                                                         type="radio"
+                                                         name="paymentRadio"
+                                                         id="payment1" />
+                                                  <label class="form-check-label" for="payment1">
+                                                      Betala med Swish
+                                                  </label>
+                                                  <img src="./images/swishIcon.png"
+                                                       alt="Swish"
+                                                       class="img-thumbnail CartPayDeliver" />
+                                              </div>
+                                          </div>
+                                          <div class="card CartPayDeliver">
+                                              <div class="form-check m-3 d-flex align-items-center ps-0">
+                                                  <input class="form-check-input me-3 CartPayDeliver"
+                                                         type="radio"
+                                                         name="paymentRadio"
+                                                         id="payment2" />
+                                                  <label class="form-check-label" for="payment2">
+                                                      Betala med Klarna
+                                                  </label>
+                                                  <img src="./images/klarnaIcon.png"
+                                                       alt="Klarna"
+                                                       class="img-thumbnail CartPayDeliver" />
+                                              </div>
+                                          </div>
+                                          <div class="card CartPayDeliver">
+                                              <div class="form-check m-3 d-flex align-items-center ps-0">
+                                                  <input class="form-check-input me-3 CartPayDeliver"
+                                                         type="radio"
+                                                         name="paymentRadio"
+                                                         id="payment3isChecked" />
+                                                  <label class="form-check-label"
+                                                         for="payment3isChecked">
+                                                      Betala med Kort
+                                                  </label>
+                                                  <img src="./images/creditIcon.png"
+                                                       alt="Kort"
+                                                       class="img-thumbnail CartPayDeliver" />
+                                              </div>
+                                              <div class="form-group">
+                                                  <section class="d-flex justify-content-evenly CartPayDeliver">
+                                                      <div class="mx-2 w-75 cardfield">
+                                                          <label for="cardNumber" class="form-label">Kortnummer</label>
+                                                          <div class="input-group mb-4">
+                                                              <input id="cardNumber"
+                                                                     type="number"
+                                                                     class="form-control"
+                                                                     placeholder="1234 1234 1234 1234"
+                                                                     aria-label="Cardnumber"
+                                                                     aria-describedby="addon1"
+                                                                     disabled />
+                                                          </div>
+                                                      </div>
+                                                      <div class="mx-2 w-50 expireField">
+                                                          <label for="expiration" class="form-label">Utgångsdatum</label>
+                                                          <div class="input-group mb-4">
+                                                              <input id="expiration"
+                                                                     type="text"
+                                                                     class="form-control"
+                                                                     placeholder="MM/YY"
+                                                                     aria-label="Expiration"
+                                                                     aria-describedby="addon2"
+                                                                     maxlength="5"
+                                                                     disabled />
+                                                          </div>
+                                                      </div>
+                                                      <div class="mx-2 w-50 cvcField">
+                                                          <label for="cvc" class="form-label">CVC/CVV</label>
+                                                          <div class="input-group mb-4">
+                                                              <input id="cvc"
+                                                                     type="text"
+                                                                     class="form-control"
+                                                                     placeholder="123"
+                                                                     aria-label="CVC"
+                                                                     aria-describedby="addon3"
+                                                                     maxlength="3"
+                                                                     disabled />
+                                                          </div>
+                                                      </div>
+                                                  </section>
+                                              </div>
+                                          </div>
+                                          <div class="card CartPayDeliver">
+                                              <div class="form-check m-3 d-flex align-items-center ps-0">
+                                                  <input class="form-check-input me-3 CartPayDeliver"
+                                                         type="radio"
+                                                         name="paymentRadio"
+                                                         id="payment4" />
+                                                  <label class="form-check-label" for="payment4">
+                                                      Betala med Stripe
+                                                  </label>
+                                                  <img src="./images/stripeIcon.png"
+                                                       alt="Stripe"
+                                                       class="img-thumbnail CartPayDeliver" />
+                                              </div>
+                                          </div>
+                                      </div>
                                   </div>
-                                </div>
-                                <div class="mx-2 w-50 expireField">
-                                  <label for="expiration" class="form-label"
-                                    >Utgångsdatum</label
-                                  >
-                                  <div class="input-group mb-4">
-                                    <input
-                                      id="expiration"
-                                      type="text"
-                                      class="form-control"
-                                      placeholder="MM/YY"
-                                      aria-label="Expiration"
-                                      aria-describedby="addon2"
-                                      maxlength="5"
-                                      disabled
-                                    />
-                                  </div>
-                                </div>
-                                <div class="mx-2 w-50 cvcField">
-                                  <label for="cvc" class="form-label"
-                                    >CVC/CVV</label
-                                  >
-                                  <div class="input-group mb-4">
-                                    <input
-                                      id="cvc"
-                                      type="text"
-                                      class="form-control"
-                                      placeholder="123"
-                                      aria-label="CVC"
-                                      aria-describedby="addon3"
-                                      maxlength="3"
-                                      disabled
-                                    />
-                                  </div>
-                                </div>
-                              </section>
-                            </div>
+                                  <button class="accordion-button d-block text-center mt-5 w-25 mx-auto nextAccord1"
+                                          type="submit"
+                                          onclick="submitCartForm(event)">
+                                      Slutför Köp
+                                  </button>
+                              </div>
                           </div>
-                          <div class="card CartPayDeliver">
-                            <div
-                              class="form-check m-3 d-flex align-items-center ps-0"
-                            >
-                              <input
-                                class="form-check-input me-3 CartPayDeliver"
-                                type="radio"
-                                name="paymentRadio"
-                                id="payment4"
-                              />
-                              <label class="form-check-label" for="payment4">
-                                Betala med Stripe
-                              </label>
-                              <img
-                                src="./images/stripeIcon.png"
-                                alt="..."
-                                class="img-thumbnail CartPayDeliver"
-                              />
-                            </div>
-                          </div>
-                        </div>
                       </div>
-                      <button
-                        class="accordion-button d-block text-center mt-5 w-25 mx-auto nextAccord1"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne"
-                        aria-expanded="true"
-                        aria-controls="collapseOne"
-                      >
-                        Slutför Köp
-                      </button>
-                    </div>
                   </div>
-                </div>
-              </div>
-              -->
 
-                <!-- <table class="tbl">
-                <thead class="hide" id="table_head">
-                  <tr>
-                    <th class="pro_img">Bild</th>
 
-                    <th class="pro_name">Detaljer</th>
+                  <table class="tbl">
+                      <thead class="hide" id="table_head">
+                          <!--<tr>
+                              <th class="pro_img">Bild</th>
 
-                    <th class="pro_status">Pris</th>
+                              <th class="pro_name">Detaljer</th>
 
-                    <th class="pro_select">Kvantitet</th>
+                              <th class="pro_status">Pris</th>
 
-                    <th class="pro_tk">Total</th>
+                              <th class="pro_select">Kvantitet</th>
 
-                    <th class="pro_icon">
-                      <a class="clear_all" href="#">Ta bort</a>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody id="cart-item"></tbody>
-              </table> -->
+                              <th class="pro_tk">Total</th>
+
+                              <th class="pro_icon">
+                                  <a class="clear_all" href="#">Ta bort</a>
+                              </th>
+                          </tr>-->
+                      </thead>
+                      <tbody id="cart-item"></tbody>
+                  </table>
               </div>
             </div>
 

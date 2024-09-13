@@ -2328,7 +2328,6 @@ const dateStrings = threeDaysAhead
     <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
   </div>
 </div>
-
 `;
   })
   .join("");
@@ -3140,33 +3139,14 @@ var swiper2 = new Swiper(".slide-content2", {
 const submitCartForm = async (event) => {
     event.preventDefault();
 
-    // Retrieve values from the form
-    const name = document.querySelector('input[name="name"]').value;
-    const email = document.querySelector('input[name="email"]').value;
-    const phone = document.querySelector('input[name="phone"]').value;
-    const address = document.querySelector('input[name="adress"]').value;
-    const message = document.querySelector('textarea[name="message"]').value;
-    const dishName = document.querySelector('input[name="dishName"]').value;
+    // Retrieve values from the cart
+    const dishName = document.getElementById('dishName').value;
+
     let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+
     dishQuantity = dishQuantity.replace(/['"]/g, '');
 
-    // Calculate total quantity
-    //const totalQuantity = parseInt(dishQuantity, 10);
-
-    const totalQuantity = dishQuantity
-        .split(',')
-        .map(qty => parseInt(qty.trim(), 10)) // Konvertera varje del till ett heltal
-        .reduce((sum, num) => sum + num, 0);
-
-    if (isNaN(totalQuantity) || totalQuantity <= 0) {
-        alert("vänligen ange en giltig numerisk mängd.");
-        return;
-    }
-    const sum = parseFloat(document.querySelector('input[name="total"]').value);
-    if (sum <= 0 || isNaN(sum)) {
-        alert("Vänligen ange en giltig totalsumma.");
-        return;
-    }
+    const sum = parseFloat(document.getElementById('dishQuantityPrice').value);
 
     // Create PaymentRequest object
     const paymentRequest = {
@@ -3177,12 +3157,6 @@ const submitCartForm = async (event) => {
                 Price: sum,
             },
         ],
-        customerName: name,
-        customerEmail: email,
-        customerPhone: phone,
-        customerAddress: address,
-        message: message,
-        totalAmount: sum,
         paymentMethodTypes: ["card", "klarna", "paypal"],
         cancelPaymentUrl: "http://localhost:7216/404.html",
         successPaymentUrl: "http://din-webbplats.com/payment-success",
@@ -3190,7 +3164,7 @@ const submitCartForm = async (event) => {
 
     try {
         // Make a POST request to the backend API
-        const response = await fetch("https://localhost:7216/payments", {
+        const response = await fetch("https://localhost:7216/payments/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -3226,8 +3200,6 @@ const submitCartForm = async (event) => {
         alert("Ett fel uppstod vid betalningen. Försök igen.");
     }
 };
-
-
 function Footer() {
   let footer = document.getElementById("footer");
   footer.innerHTML = `
