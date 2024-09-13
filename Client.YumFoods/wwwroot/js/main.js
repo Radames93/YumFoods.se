@@ -304,86 +304,92 @@ const chooseAntalbox = antalBoxes.forEach((box, index) => {
 
 //handle click on quantity buttons
 document.addEventListener("DOMContentLoaded", function () {
-  const quantitySpan = document.querySelector(".quantity-btn span");
-  const increaseButton = document.querySelector(
-    ".quantity-btn button:nth-of-type(2)"
-  );
-  const decreaseButton = document.querySelector(
-    ".quantity-btn button:nth-of-type(1)"
-  );
-  const infoBox = document.querySelector(".info-box");
-  let currentQuantity = parseInt(quantitySpan.textContent, 10);
-
-  function updateQuantity(newQuantity) {
-    if (newQuantity >= 10 && newQuantity <= 20) {
-      currentQuantity = newQuantity;
-      quantitySpan.textContent = currentQuantity;
-      updateBox4Selection();
-
-      updateTotalPrice();
+    const quantitySpan = document.querySelector(".quantity-btn span");
+    const increaseButton = document.querySelector(
+        ".quantity-btn button:nth-of-type(2)"
+    );
+    const decreaseButton = document.querySelector(
+        ".quantity-btn button:nth-of-type(1)"
+    );
+    if (quantitySpan !== null) {
+        let currentQuantity = parseInt(quantitySpan.textContent, 10)
     }
-  }
 
-  // update quantity boxes
-  function updateBox4Selection() {
-    document.querySelectorAll(".box4").forEach((box) => {
-      const boxValue = parseInt(box.getAttribute("data-value"), 10);
-      if (boxValue === currentQuantity) {
-        box.classList.add("selected", "selected-border");
-      } else {
-        box.classList.remove("selected", "selected-border");
-      }
-    });
-    infoBox.style.display = "block";
-  }
+    function updateQuantity(newQuantity) {
+        if (newQuantity >= 10 && newQuantity <= 20) {
+            currentQuantity = newQuantity;
+            quantitySpan.textContent = currentQuantity;
+            updateBox4Selection();
 
-  // update categorie boxes
-  const boxes2 = document.querySelectorAll(".box2");
-  function updateBoxSelection(currentCategory) {
-    boxes2.forEach((box) => {
-      const boxValue = box.getAttribute("data-category");
-      console.log(boxValue);
+            updateTotalPrice();
+        }
+    }
 
-      if (boxValue === currentCategory) {
-        box.classList.add("selected");
-        box.classList.add("selected-border");
-      } else {
-        box.classList.remove("selected");
-        box.classList.remove("selected-border");
-      }
-    });
-  }
-  const boxes4 = document.querySelectorAll(".box4");
-  boxes2.forEach((box) => {
-    box.addEventListener("click", () => {
-      const currentCategory = box.getAttribute("data-category");
-      updateBoxSelection(currentCategory);
-      boxes4.forEach((box4) => {
-        box4.addEventListener("click", () => {
-          const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
-          updateBox4Selection(currentQuantity);
+    // update quantity boxes
+    function updateBox4Selection() {
+        document.querySelectorAll(".box4").forEach((box) => {
+            const boxValue = parseInt(box.getAttribute("data-value"), 10);
+            if (boxValue === currentQuantity) {
+                box.classList.add("selected", "selected-border");
+            } else {
+                box.classList.remove("selected", "selected-border");
+            }
         });
-      });
+        infoBox.style.display = "block";
+    }
+
+    // update categorie boxes
+    const boxes2 = document.querySelectorAll(".box2");
+    function updateBoxSelection(currentCategory) {
+        boxes2.forEach((box) => {
+            const boxValue = box.getAttribute("data-category");
+            console.log(boxValue);
+
+            if (boxValue === currentCategory) {
+                box.classList.add("selected");
+                box.classList.add("selected-border");
+            } else {
+                box.classList.remove("selected");
+                box.classList.remove("selected-border");
+            }
+        });
+    }
+    const boxes4 = document.querySelectorAll(".box4");
+    boxes2.forEach((box) => {
+        box.addEventListener("click", () => {
+            const currentCategory = box.getAttribute("data-category");
+            updateBoxSelection(currentCategory);
+            boxes4.forEach((box4) => {
+                box4.addEventListener("click", () => {
+                    const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
+                    updateBox4Selection(currentQuantity);
+                });
+            });
+        });
     });
-  });
 
-  // currentQuantity, increase , decrease
-  document.querySelectorAll(".row .box").forEach((box) => {
-    box.addEventListener("click", function () {
-      const boxValue = parseInt(this.textContent, 10);
-      updateQuantity(boxValue);
-    });
-  });
+    // currentQuantity, increase , decrease
+    let rowBox = document.querySelectorAll(".row .box");
+    if (rowBox !== null) {
+        rowBox.forEach((box) => {
+            box.addEventListener("click", function () {
+                const boxValue = parseInt(this.textContent, 10);
+                updateQuantity(boxValue);
+            });
+        });
+    }
+    if (increaseButton !== null) {
+        increaseButton.addEventListener("click", function () {
+            updateQuantity(currentQuantity + 5);
+        });
+    }
 
-  increaseButton.addEventListener("click", function () {
-    updateQuantity(currentQuantity + 5);
-  });
-
-  decreaseButton.addEventListener("click", function () {
-    updateQuantity(currentQuantity - 5);
-  });
-});
-
+    if (decreaseButton !== null) {
+        decreaseButton.addEventListener("click", function () {
+            updateQuantity(currentQuantity - 5);
+        });
+    }
+})
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {
   const dishList = document.getElementById("dish-list");
@@ -601,6 +607,8 @@ const loadProducts = async () => {
         premiumProducts(premiumProductsList);
         subscriptionsProducts(subscriptionsProductsList);
         baguetterProducts(baguetterProductsList);
+        CarouselFoodBoxes(yumProductsList);
+        CarouselFoodBoxes2(yumProductsList);
         // Assuming categoriesProducts and offeredServices are handled separately
     } catch (err) {
         console.error(err);
@@ -612,40 +620,7 @@ const loadProducts = async () => {
 const yumProducts = (yumProductsList) => {
   if (yum !== null) {
     const htmlString = yumProductsList
-      .map((yum) => {
-        let diet = "";
-        let value = "";
-        if (Array.isArray(yum.dietRef)) {
-          var obj = yum.dietRef;
-          value = JSON.stringify(obj);
-            const imageTags = yum.dietRef.map((img) => {
-            return (
-              `<img id="diet"
-                  src=
-                  ` +
-              img +
-              `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `
-            );
-          });
-          diet = imageTags;
-        } else {
-          const singleImage =
-            `<img id="diet"
-                  src=
-                  ` +
-              yum.dietRef +
-            `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `;
-          diet = singleImage;
-            value = yum.dietRef;
-        }
+        .map((yum) => {
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
@@ -655,11 +630,11 @@ const yumProducts = (yumProductsList) => {
                   data-yum-id=${yum.id}
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
-                  data-yum-img=${yum.img}
+                  data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${yum.diet}
+                  data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
               <div class="menu_item_img">
@@ -676,7 +651,7 @@ const yumProducts = (yumProductsList) => {
               <div class="d-flex justify-content-between align-items-center">
               <div class="d-flex"><img
                   src=` +
-          yum.diet +
+          yum.dietRef +
           `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
@@ -694,15 +669,15 @@ const yumProducts = (yumProductsList) => {
                   data-yum-id=${yum.id}
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
-                  data-yum-img=${yum.img}
+                  data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${yum.diet}
+                  data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          yum.title.replace(/'/g, "") +
+          yum.title +
           `</a
                 >
                 <h5 class="price">` +
@@ -727,10 +702,10 @@ const yumProducts = (yumProductsList) => {
           data-yum-id=${yum.id}
           data-yum-title=${yum.title}
           data-yum-price=${yum.price}
-          data-yum-img=${yum.img}
+          data-yum-img=${yum.imgRef}
           data-yum-quantity-price=${yum.price}
           data-yum-description=${yum.description}
-          data-yum-diet=${yum.diet}
+          data-yum-diet=${yum.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
           `
@@ -758,18 +733,18 @@ const CarouselFoodBoxes = (yumProductsList) => {
                 data-yum-id=${yum.id} 
                 data-yum-title=${yum.title}
                 data-yum-price=${yum.price}
-                data-yum-img=${yum.img}
+                data-yum-img=${yum.imgRef}
                 data-yum-quantity-price=${yum.price}
                 data-yum-description=${yum.description}
                 data-yum-ingredients=${yum.ingredients}
-                data-yum-diet=${yum.diet}
+                data-yum-diet=${yum.dietRef}
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
               
               <div class="menu_item_slider_img">
                 <img
                   src=` +
-          yum.img +
+          yum.imgRef +
           `
                   alt="yum-meny-bild"
                   class="img-fluid w-100"
@@ -783,11 +758,11 @@ const CarouselFoodBoxes = (yumProductsList) => {
                   data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
-                  data-yum-img=${yum.img}
+                  data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${yum.diet}
+                  data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -805,10 +780,10 @@ const CarouselFoodBoxes = (yumProductsList) => {
               data-yum-id=${yum.id} 
               data-yum-title=${yum.title}
               data-yum-price=${yum.price}
-              data-yum-img=${yum.img}
+              data-yum-img=${yum.imgRef}
               data-yum-quantity-price=${yum.price}
               data-yum-description=${yum.description}
-              data-yum-diet=${yum.diet}
+              data-yum-diet=${yum.dietRef}
               onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
             </button>
           </div>
@@ -833,18 +808,18 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                 data-yum-id=${yum.id} 
                 data-yum-title=${yum.title}
                 data-yum-price=${yum.price}
-                data-yum-img=${yum.img}
+                data-yum-img=${yum.imgRef}
                 data-yum-quantity-price=${yum.price}
                 data-yum-description=${yum.description}
                 data-yum-ingredients=${yum.ingredients}
-                data-yum-diet=${yum.diet}
+                data-yum-diet=${yum.dietRef}
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
               
               <div class="menu_item_slider_img">
                 <img
                   src=` +
-          yum.img +
+          yum.imgRef +
           `
                   alt="yum-meny-bild"
                   class="img-fluid w-100"
@@ -858,11 +833,11 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                   data-yum-id=${yum.id} 
                   data-yum-title=${yum.title}
                   data-yum-price=${yum.price}
-                  data-yum-img=${yum.img}
+                  data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${yum.description}
                   data-yum-ingredients=${yum.ingredients}
-                  data-yum-diet=${yum.diet}
+                  data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -880,10 +855,10 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
               data-yum-id=${yum.id} 
               data-yum-title=${yum.title}
               data-yum-price=${yum.price}
-              data-yum-img=${yum.img}
+              data-yum-img=${yum.imgRef}
               data-yum-quantity-price=${yum.price}
               data-yum-description=${yum.description}
-              data-yum-diet=${yum.diet}
+              data-yum-diet=${yum.dietRef}
               onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
             </button>
           </div>
@@ -901,7 +876,7 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
 const dailyProducts = (dailyProductsList) => {
   if (daily !== null) {
     const htmlString = dailyProductsList
-      .map((daily) => {
+        .map((daily) => {
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
@@ -910,17 +885,17 @@ const dailyProducts = (dailyProductsList) => {
           <div class="menu_item" data-yum-id=${daily.id}
                   data-yum-title=${daily.title}
                   data-yum-price=${daily.price}
-                  data-yum-img=${daily.img}
+                  data-yum-img=${daily.imgRef}
                   data-yum-quantity-price=${daily.price}
                   data-yum-description=${daily.description}
                   data-yum-ingredients=${daily.ingredients}
-                  data-yum-diet=${daily.diet}
+                  data-yum-diet=${daily.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
               <div class="menu_item_img">
                 <img
                   src=` +
-          daily.img +
+          daily.imgRef +
           `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100"
@@ -933,7 +908,7 @@ const dailyProducts = (dailyProductsList) => {
                <div class="d-flex">
                <img
                   src=` +
-          daily.diet +
+          daily.dietRef +
           `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
@@ -955,7 +930,7 @@ const dailyProducts = (dailyProductsList) => {
                   data-yum-quantity-price=${daily.price}
                   data-yum-description=${daily.description}
                   data-yum-ingredients=${daily.ingredients}
-                  data-yum-diet=${daily.diet}
+                  data-yum-diet=${daily.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -971,10 +946,10 @@ const dailyProducts = (dailyProductsList) => {
           data-yum-id=${daily.id}
           data-yum-title=${daily.title}
           data-yum-price=${daily.price}
-          data-yum-img=${daily.img}
+          data-yum-img=${daily.imgRef}
           data-yum-quantity-price=${daily.price}
           data-yum-description=${daily.description}
-          data-yum-diet=${daily.diet}
+          data-yum-diet=${daily.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
           `<!--
@@ -1012,17 +987,17 @@ const premiumProducts = (premiumProductsList) => {
           <div class="menu_item" data-yum-id=${premium.id}
                   data-yum-title=${premium.title}
                   data-yum-price=${premium.price}
-                  data-yum-img=${premium.img}
+                  data-yum-img=${premium.imgRef}
                   data-yum-quantity-price=${premium.price}
                   data-yum-description=${premium.description}
                   data-yum-ingredients=${premium.ingredients}
-                  data-yum-diet=${premium.diet}
+                  data-yum-diet=${premium.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
               <div class="menu_item_img">
                 <img
                   src=` +
-          premium.img +
+          premium.imgRef +
           `
                   alt="premium-meny-bild"
                   class="img-fluid w-100"
@@ -1035,9 +1010,9 @@ const premiumProducts = (premiumProductsList) => {
                <div class="d-flex">
                <img
                   src=` +
-          premium.diet +
+          premium.dietRef +
           `
-                  alt="dagens-meny-bild"
+                  alt="premium-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
 
@@ -1053,11 +1028,11 @@ const premiumProducts = (premiumProductsList) => {
                   data-yum-id=${premium.id}
                   data-yum-title=${premium.title}
                   data-yum-price=${premium.price}
-                  data-yum-img=${premium.img}
+                  data-yum-img=${premium.imgRef}
                   data-yum-quantity-price=${premium.price}
                   data-yum-description=${premium.description}
                   data-yum-ingredients=${premium.ingredients}
-                  data-yum-diet=${premium.diet}
+                  data-yum-diet=${premium.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -1073,10 +1048,10 @@ const premiumProducts = (premiumProductsList) => {
           data-yum-id=${premium.id}
           data-yum-title=${premium.title}
           data-yum-price=${premium.price}
-          data-yum-img=${premium.img}
+          data-yum-img=${premium.imgRef}
           data-yum-quantity-price=${premium.price}
           data-yum-description=${premium.description}
-          data-yum-diet=${premium.diet}
+          data-yum-diet=${premium.dietRef}
           ` +
           ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
           `<!--
@@ -1115,7 +1090,7 @@ const baguetterProducts = (baguetterProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          baguetter.img +
+          baguetter.imgRef +
           `
                   alt="baguette-bild"
                   class="img-fluid w-100"
@@ -1124,11 +1099,11 @@ const baguetterProducts = (baguetterProductsList) => {
                   data-yum-id=${baguetter.id}
                   data-yum-title=${baguetter.title}
                   data-yum-price=${baguetter.price}
-                  data-yum-img=${baguetter.img}
+                  data-yum-img=${baguetter.imgRef}
                   data-yum-quantity-price=${baguetter.price}
                   data-yum-description=${baguetter.description}
                   data-yum-ingredients=${baguetter.ingredients}
-                  data-yum-diet=${baguetter.diet}
+                  data-yum-diet=${baguetter.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                 />
@@ -1136,7 +1111,7 @@ const baguetterProducts = (baguetterProductsList) => {
                <div class="d-flex justify-content-between align-items-center">
                <div class="d-flex"><img
                   src=` +
-          baguetter.diet +
+          baguetter.dietRef +
           `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
@@ -1154,11 +1129,11 @@ const baguetterProducts = (baguetterProductsList) => {
                   data-yum-id=${baguetter.id}
                   data-yum-title=${baguetter.title}
                   data-yum-price=${baguetter.price}
-                  data-yum-img=${baguetter.img}
+                  data-yum-img=${baguetter.imgRef}
                   data-yum-quantity-price=${baguetter.price}
                   data-yum-description=${baguetter.description}
                   data-yum-ingredients=${baguetter.ingredients}
-                  data-yum-diet=${baguetter.diet}
+                  data-yum-diet=${baguetter.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -1174,10 +1149,10 @@ const baguetterProducts = (baguetterProductsList) => {
           data-yum-id=${baguetter.id}
           data-yum-title=${baguetter.title}
           data-yum-price=${baguetter.price}
-          data-yum-img=${baguetter.img}
+          data-yum-img=${baguetter.imgRef}
           data-yum-quantity-price=${baguetter.price}
           data-yum-description=${baguetter.description}
-          data-yum-diet=${baguetter.diet}
+          data-yum-diet=${baguetter.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
           `
@@ -1285,96 +1260,6 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
       })
       .join("");
     subscriptions.innerHTML = htmlString;
-  } else {
-    return null;
-  }
-};
-
-// Show categories
-const categoriesProducts = (categoriesProductsList) => {
-  if (categories !== null) {
-    const htmlString = categoriesProductsList
-      .map((category) => {
-        return (
-          `<div class="swiper-slide">
-                <div class="single_team">
-                  <div class="single_team_img_services">
-                    <a href="` +
-          category.link +
-          `"  tabindex="0">
-                      <img
-                        loading="lazy"
-                        width="307"
-                        height="205"
-                        src="` +
-          category.img +
-          `
-                    "
-                        alt=` +
-          category.alt +
-          `
-                    /></a>
-                  </div>
-                  <div class="single_team_text">
-                    <a class="add_to_cart" href="` +
-          category.link +
-          `" tabindex="0"><h4>` +
-          category.title +
-          `</h4></a
-                >
-        </div>
-                </div>
-              </div>
-        `
-        );
-      })
-      .join("");
-    categories.insertAdjacentHTML("afterbegin", htmlString);
-  } else {
-    return null;
-  }
-};
-
-// Show services
-const offeredServices = (offeredServicesList) => {
-  if (categories !== null) {
-    const htmlString = offeredServicesList
-      .map((service) => {
-        return (
-          `
-          <div class="swiper-slide">
-                <div class="single_team">
-                  <div class="single_team_img_services">
-                    <img
-                      loading="lazy"
-                      width="307"
-                      height="205"
-                      src="` +
-          service.img +
-          `
-                    "
-                      alt=` +
-          service.alt +
-          `
-                      "
-                    />
-                  </div>
-                  <div class="single_team_text">
-                    <h4>` +
-          service.title +
-          `</h4>
-                    <p>` +
-          service.text +
-          `</p>
-                  </div>
-                </div>
-              </div>
-
-        `
-        );
-      })
-      .join("");
-    services.insertAdjacentHTML("afterbegin", htmlString);
   } else {
     return null;
   }
@@ -1851,23 +1736,7 @@ if (cardModal !== null) {
     var description = button.getAttribute("data-yum-description");
     var ingredients = button.getAttribute("data-yum-ingredients");
     var dietRef = button.getAttribute("data-yum-diet");
-
-    dietRef = JSON.parse(dietRef);
-
-    const imageTags = dietRef.map((img) => {
-      return (
-        `<img id="diet"
-                  src=
-                  ` +
-        img +
-        `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `
-      );
-    });
-    dietRef = imageTags;
+    console.log(title)
 
     var modalTitle = cardModal.querySelector(".title");
     var modalPrice = cardModal.querySelector(".price");
@@ -1896,7 +1765,7 @@ if (cardModal !== null) {
       "description",
       (modalDescription.textContent = description)
     );
-    localStorage.setItem("diet", (modalDiet.src = diet));
+      localStorage.setItem("diet", (modalDiet.src = dietRef));
     localStorage.setItem("quantity", (input.value = 1));
     hideDiv();
   });
@@ -2900,14 +2769,9 @@ if (contactForm !== null) {
 }
 
 //popup in start page
-document.addEventListener("DOMContentLoaded", function () {
-  var myModal = new bootstrap.Modal(document.getElementById("deliveryModal"), {
-    backdrop: "static",
-    keyboard: false,
-  });
-  myModal.show();
-});
-document.getElementById("confirmButton").addEventListener("click", function () {
+let confirmButton = document.getElementById("confirmButton");
+if (confirmButton !== null) {
+    confirmButton.addEventListener("click", function () {
   var postcode = document.getElementById("postcodeInput").value;
   if (postcode === "") {
     document.getElementById("confirmationMessage").style.display = "none";
@@ -2928,9 +2792,12 @@ document.getElementById("confirmButton").addEventListener("click", function () {
     document.getElementById("no-place").style.display = "none";
   }
 });
-document
-  .getElementById("findLocationButton")
-  .addEventListener("click", function () {
+}
+let findLocation = document
+    .getElementById("findLocationButton")
+
+if (findLocation !== null) {
+    findLocation.addEventListener("click", function () {
     var postcode = document.getElementById("postcodeInput").value;
     if (postcode === "") {
       document.getElementById("confirmationMessage").style.display = "none";
@@ -2965,6 +2832,7 @@ document
       document.getElementById("no-place").style.display = "none";
     }
   });
+}
 //Count quantity and display in the popup cart icon
 function totalQuantity() {
   let count = document.getElementById("count");
@@ -3117,57 +2985,6 @@ function scrollCarouselRight2() {
 }
 */
 //Funtion for show/hide faq accordions with button
-document.addEventListener("DOMContentLoaded", function () {
-  const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
-  const betalningBtn = document.getElementById("betalning");
-  const menyerAllergierBtn = document.getElementById("menyer-allergier");
-
-  const omWebbplatsenAccordion = document.getElementById(
-    "om-webbplatsen-accordion"
-  );
-  const betalningAccordion = document.getElementById("betalning-accordion");
-  const allergierAccordion = document.getElementById("allergier-accordion");
-
-  function hideAllAccordions() {
-    omWebbplatsenAccordion.style.display = "none";
-    betalningAccordion.style.display = "none";
-    allergierAccordion.style.display = "none";
-  }
-
-  function resetButtonStyles() {
-    omWebbplatsenBtn.classList.remove("active");
-    betalningBtn.classList.remove("active");
-    menyerAllergierBtn.classList.remove("active");
-  }
-
-  hideAllAccordions();
-  omWebbplatsenAccordion.style.display = "block";
-  omWebbplatsenBtn.classList.add("active");
-
-  omWebbplatsenBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    hideAllAccordions();
-    resetButtonStyles();
-    omWebbplatsenAccordion.style.display = "block";
-    omWebbplatsenBtn.classList.add("active");
-  });
-
-  betalningBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    hideAllAccordions();
-    resetButtonStyles();
-    betalningAccordion.style.display = "block";
-    betalningBtn.classList.add("active");
-  });
-
-  menyerAllergierBtn.addEventListener("click", function (event) {
-    event.preventDefault();
-    hideAllAccordions();
-    resetButtonStyles();
-    allergierAccordion.style.display = "block";
-    menyerAllergierBtn.classList.add("active");
-  });
-});
 
 // Function to cart content and total form to email
 const sendCartInfo = document.getElementById("cart-order-form");
@@ -3281,6 +3098,45 @@ var swiper1 = new Swiper(".slide-content", {
   },
 });
 
+var swiper2 = new Swiper(".slide-content2", {
+    slidesPerView: 3,
+    spaceBetween: 25,
+    loop: true,
+    centerSlide: "true",
+    fade: "true",
+    grabCursor: "true",
+    pagination: {
+        el: ".swiper-pagination2",
+        clickable: true,
+        dynamicBullets: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next2",
+        prevEl: ".swiper-button-prev2",
+    },
+
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        576: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        992: {
+            slidesPerView: 2,
+        },
+        1120: {
+            slidesPerView: 3,
+        },
+        1400: {
+            slidesPerView: 3,
+        },
+    },
+});
+
 const submitCartForm = async (event) => {
     event.preventDefault();
 
@@ -3370,7 +3226,6 @@ const submitCartForm = async (event) => {
         alert("Ett fel uppstod vid betalningen. Försök igen.");
     }
 };
-
 
 
 function Footer() {
