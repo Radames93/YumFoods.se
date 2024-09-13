@@ -3139,32 +3139,50 @@ var swiper2 = new Swiper(".slide-content2", {
 const submitCartForm = async (event) => {
     event.preventDefault();
 
-    // Retrieve values from the cart
-    const dishName = document.getElementById('dishName').value;
-
+    const dishName = document.querySelector('input[name="dishName"]').value;
     let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
 
     dishQuantity = dishQuantity.replace(/['"]/g, '');
 
-    const sum = parseFloat(document.getElementById('dishQuantityPrice').value);
+    const totalQuantity = dishQuantity
+        .split(',')
+        .map(qty => parseInt(qty.trim(), 10))
+        .reduce((sum, num) => sum + num, 0); 
 
-    // Create PaymentRequest object
+    if (isNaN(totalQuantity) || totalQuantity <= 0) {
+        console.log('Invalid Total Quantity:', totalQuantity);
+        alert("vänligen ange en giltig numerisk mängd.");
+        return;
+    }
+
+    const unitPrice = parseFloat(document.querySelector('input[name="unitPrice"]').value);
+    console.log('Unit Price:', unitPrice);
+
+    if (isNaN(unitPrice) || unitPrice <= 0) {
+        alert("Vänligen ange ett giltigt enhetspris.");
+        return;
+    }
+
+    // Determine selected payment method
+    const selectedPaymentMethod = document.querySelector('input[name="paymentRadio"]:checked')?.id || '';
+    console.log('Selected Payment Method:', selectedPaymentMethod);
+
     const paymentRequest = {
         products: [
             {
                 Name: dishName,
                 Quantity: totalQuantity,
-                Price: sum,
+                Price: unitPrice,
             },
         ],
-        paymentMethodTypes: ["card", "klarna", "paypal"],
+
+        paymentMethodTypes: [selectedPaymentMethod],
         cancelPaymentUrl: "http://localhost:7216/404.html",
         successPaymentUrl: "http://din-webbplats.com/payment-success",
     };
 
     try {
-        // Make a POST request to the backend API
-        const response = await fetch("https://localhost:7216/payments/", {
+        const response = await fetch("https://localhost:7216/payments", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -3172,7 +3190,6 @@ const submitCartForm = async (event) => {
             body: JSON.stringify(paymentRequest),
         });
 
-        // Check if the response has JSON content
         const contentType = response.headers.get("Content-Type");
         let result;
 
@@ -3185,7 +3202,6 @@ const submitCartForm = async (event) => {
         }
 
         if (response.ok) {
-            // Redirect the user to Stripe Checkout
             if (result.checkoutUrl) {
                 window.location.href = result.checkoutUrl;
             } else {
@@ -3200,6 +3216,7 @@ const submitCartForm = async (event) => {
         alert("Ett fel uppstod vid betalningen. Försök igen.");
     }
 };
+
 function Footer() {
   let footer = document.getElementById("footer");
   footer.innerHTML = `

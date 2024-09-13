@@ -312,117 +312,131 @@
                                class="accordion-collapse collapse accordThree"
                                aria-labelledby="headingThree"
                                data-bs-parent="#customerHandling">
-                              <div class="accordion-body border-top">
-                                  <div class="d-flex card mx-auto border-0">
-                                      <div class="card-body mx-auto CartPayDeliver">
-                                          <h4 class="card-title">Välj Betalsätt</h4>
-                                          <div class="card CartPayDeliver">
-                                              <div class="form-check m-3 d-flex align-items-center ps-0">
-                                                  <input class="form-check-input me-3 CartPayDeliver"
-                                                         type="radio"
-                                                         name="paymentRadio"
-                                                         id="payment1" />
-                                                  <label class="form-check-label" for="payment1">
-                                                      Betala med Swish
-                                                  </label>
-                                                  <img src="./images/swishIcon.png"
-                                                       alt="Swish"
-                                                       class="img-thumbnail CartPayDeliver" />
+                              <form id="cart-form"
+                                    class="contact_form text-center"
+                                    onsubmit="submitCartForm(event)">
+                                  <div class="accordion-body border-top">
+                                      <div class="d-flex card mx-auto border-0">
+                                          <div class="card-body mx-auto CartPayDeliver">
+                                              <h4 class="card-title">Välj Betalsätt</h4>
+                                              <div class="card CartPayDeliver">
+                                                  <div class="form-check m-3 d-flex align-items-center ps-0">
+                                                      <input class="form-check-input me-3 CartPayDeliver"
+                                                             type="radio"
+                                                             name="paymentRadio"
+                                                             id="payment1" />
+                                                      <label class="form-check-label" for="payment1">
+                                                          Betala med Swish
+                                                      </label>
+                                                      <img src="./images/swishIcon.png"
+                                                           alt="Swish"
+                                                           class="img-thumbnail CartPayDeliver" />
+                                                  </div>
                                               </div>
-                                          </div>
-                                          <div class="card CartPayDeliver">
-                                              <div class="form-check m-3 d-flex align-items-center ps-0">
-                                                  <input class="form-check-input me-3 CartPayDeliver"
-                                                         type="radio"
-                                                         name="paymentRadio"
-                                                         id="payment2" />
-                                                  <label class="form-check-label" for="payment2">
-                                                      Betala med Klarna
-                                                  </label>
-                                                  <img src="./images/klarnaIcon.png"
-                                                       alt="Klarna"
-                                                       class="img-thumbnail CartPayDeliver" />
+                                              <div class="card CartPayDeliver">
+                                                  <div class="form-check m-3 d-flex align-items-center ps-0">
+                                                      <input class="form-check-input me-3 CartPayDeliver"
+                                                             type="radio"
+                                                             name="paymentRadio"
+                                                             id="payment2" />
+                                                      <label class="form-check-label" for="payment2">
+                                                          Betala med Klarna
+                                                      </label>
+                                                      <img src="./images/klarnaIcon.png"
+                                                           alt="Klarna"
+                                                           class="img-thumbnail CartPayDeliver" />
+                                                  </div>
                                               </div>
-                                          </div>
-                                          <div class="card CartPayDeliver">
-                                              <div class="form-check m-3 d-flex align-items-center ps-0">
-                                                  <input class="form-check-input me-3 CartPayDeliver"
-                                                         type="radio"
-                                                         name="paymentRadio"
-                                                         id="payment3isChecked" />
-                                                  <label class="form-check-label"
-                                                         for="payment3isChecked">
-                                                      Betala med Kort
-                                                  </label>
-                                                  <img src="./images/creditIcon.png"
-                                                       alt="Kort"
-                                                       class="img-thumbnail CartPayDeliver" />
-                                              </div>
-                                              <div class="form-group">
-                                                  <section class="d-flex justify-content-evenly CartPayDeliver">
-                                                      <div class="mx-2 w-75 cardfield">
-                                                          <label for="cardNumber" class="form-label">Kortnummer</label>
-                                                          <div class="input-group mb-4">
-                                                              <input id="cardNumber"
-                                                                     type="number"
-                                                                     class="form-control"
-                                                                     placeholder="1234 1234 1234 1234"
-                                                                     aria-label="Cardnumber"
-                                                                     aria-describedby="addon1"
-                                                                     disabled />
+                                              <div class="card CartPayDeliver">
+                                                  <div class="form-check m-3 d-flex align-items-center ps-0">
+                                                      <input class="form-check-input me-3 CartPayDeliver"
+                                                             type="radio"
+                                                             name="paymentRadio"
+                                                             id="payment3isChecked" />
+                                                      <label class="form-check-label"
+                                                             for="payment3isChecked">
+                                                          Betala med Kort
+                                                      </label>
+                                                      <img src="./images/creditIcon.png"
+                                                           alt="Kort"
+                                                           class="img-thumbnail CartPayDeliver" />
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <section class="d-flex justify-content-evenly CartPayDeliver">
+                                                          <div class="mx-2 w-75 cardfield">
+                                                              <label for="cardNumber" class="form-label">Kortnummer</label>
+                                                              <div class="input-group mb-4">
+                                                                  <input id="cardNumber"
+                                                                         type="number"
+                                                                         class="form-control"
+                                                                         placeholder="1234 1234 1234 1234"
+                                                                         aria-label="Cardnumber"
+                                                                         aria-describedby="addon1"
+                                                                         disabled />
+                                                              </div>
                                                           </div>
-                                                      </div>
-                                                      <div class="mx-2 w-50 expireField">
-                                                          <label for="expiration" class="form-label">Utgångsdatum</label>
-                                                          <div class="input-group mb-4">
-                                                              <input id="expiration"
-                                                                     type="text"
-                                                                     class="form-control"
-                                                                     placeholder="MM/YY"
-                                                                     aria-label="Expiration"
-                                                                     aria-describedby="addon2"
-                                                                     maxlength="5"
-                                                                     disabled />
+                                                          <div class="mx-2 w-50 expireField">
+                                                              <label for="expiration" class="form-label">Utgångsdatum</label>
+                                                              <div class="input-group mb-4">
+                                                                  <input id="expiration"
+                                                                         type="text"
+                                                                         class="form-control"
+                                                                         placeholder="MM/YY"
+                                                                         aria-label="Expiration"
+                                                                         aria-describedby="addon2"
+                                                                         maxlength="5"
+                                                                         disabled />
+                                                              </div>
                                                           </div>
-                                                      </div>
-                                                      <div class="mx-2 w-50 cvcField">
-                                                          <label for="cvc" class="form-label">CVC/CVV</label>
-                                                          <div class="input-group mb-4">
-                                                              <input id="cvc"
-                                                                     type="text"
-                                                                     class="form-control"
-                                                                     placeholder="123"
-                                                                     aria-label="CVC"
-                                                                     aria-describedby="addon3"
-                                                                     maxlength="3"
-                                                                     disabled />
+                                                          <div class="mx-2 w-50 cvcField">
+                                                              <label for="cvc" class="form-label">CVC/CVV</label>
+                                                              <div class="input-group mb-4">
+                                                                  <input id="cvc"
+                                                                         type="text"
+                                                                         class="form-control"
+                                                                         placeholder="123"
+                                                                         aria-label="CVC"
+                                                                         aria-describedby="addon3"
+                                                                         maxlength="3"
+                                                                         disabled />
+                                                              </div>
                                                           </div>
-                                                      </div>
-                                                  </section>
+                                                      </section>
+                                                  </div>
                                               </div>
-                                          </div>
-                                          <div class="card CartPayDeliver">
-                                              <div class="form-check m-3 d-flex align-items-center ps-0">
-                                                  <input class="form-check-input me-3 CartPayDeliver"
-                                                         type="radio"
-                                                         name="paymentRadio"
-                                                         id="payment4" />
-                                                  <label class="form-check-label" for="payment4">
-                                                      Betala med Stripe
-                                                  </label>
-                                                  <img src="./images/stripeIcon.png"
-                                                       alt="Stripe"
-                                                       class="img-thumbnail CartPayDeliver" />
+                                              <div class="card CartPayDeliver">
+                                                  <div class="form-check m-3 d-flex align-items-center ps-0">
+                                                      <input class="form-check-input me-3 CartPayDeliver"
+                                                             type="radio"
+                                                             name="paymentRadio"
+                                                             id="payment4" />
+                                                      <label class="form-check-label" for="payment4">
+                                                          Betala med Stripe
+                                                      </label>
+                                                      <img src="./images/stripeIcon.png"
+                                                           alt="Stripe"
+                                                           class="img-thumbnail CartPayDeliver" />
+                                                  </div>
                                               </div>
                                           </div>
                                       </div>
+                                      <div>
+
+                                      </div>
+                                      <button id="cart-button"
+                                              class="common_btn"
+                                              type="submit"
+                                              style="text-transform: none">
+                                          Slutför Köp
+                                      </button>
+                                      <!--<button class="accordion-button d-block text-center mt-5 w-25 mx-auto nextAccord1"
+                                                  type="submit"
+                                                  onclick="submitCartForm(event)">
+                                          Slutför Köp
+                                      </button>-->
                                   </div>
-                                  <button class="accordion-button d-block text-center mt-5 w-25 mx-auto nextAccord1"
-                                          type="submit"
-                                          onclick="submitCartForm(event)">
-                                      Slutför Köp
-                                  </button>
-                              </div>
+                                  <div id="cart-result"></div>
+                              </form>
                           </div>
                       </div>
                   </div>
@@ -672,7 +686,6 @@
              -->
           </div>
         </div>
-      </div>
     </section>
 
     <!--============================
