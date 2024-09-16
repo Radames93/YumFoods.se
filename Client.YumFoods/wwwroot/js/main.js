@@ -2307,7 +2307,8 @@ const submitCartForm = async (event) => {
     const address = document.querySelector('input[name="adress"]').value;
     const message = document.querySelector('textarea[name="message"]').value;
     const dishName = document.querySelector('input[name="dishName"]').value;
-    const dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+    let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+    const dishQuantityPrice = document.querySelector('input[name="dishQuantityPrice"]').value;
   
     dishQuantity = dishQuantity.replace(/['"]/g, '');
 
@@ -2321,10 +2322,10 @@ const submitCartForm = async (event) => {
         return;
     }
     
-    const sum = parseFloat(document.querySelector('input[name="total"]').value);
-    const unitPrice = parseFloat(document.querySelector('input[name="unitPrice"]').value);
+    const total = parseFloat(document.querySelector('input[name="total"]').value);
+   
 
-    if (isNaN(unitPrice) || unitPrice <= 0) {
+    if (isNaN(total) || total <= 0) {
         alert("Vänligen ange en giltig totalsumma.");
         return;
     }
@@ -2334,8 +2335,8 @@ const submitCartForm = async (event) => {
         products: [
             {
                 Name: dishName,
-                Quantity: totalQuantity,
-                Price: unitPrice,
+                Quantity: dishQuantity,
+                Price: total
             },
         ],
         customerName: name,
@@ -2343,7 +2344,7 @@ const submitCartForm = async (event) => {
         customerPhone: phone,
         customerAddress: address,
         message: message,
-        totalAmount: sum,
+        totalAmount: total,
         paymentMethodTypes: ["paypal"],
         cancelPaymentUrl: "http://localhost:7216/404.html",
         successPaymentUrl: "http://din-webbplats.com/payment-success",
