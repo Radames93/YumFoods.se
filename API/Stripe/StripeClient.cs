@@ -43,7 +43,7 @@ public class StripeClient
             {
                 "card",
                 "klarna",
-                "paypal"
+                "paypal",
             },
             SuccessUrl = request.SuccessPaymentUrl,
             CancelUrl = request.CancelPaymentUrl,
