@@ -3139,49 +3139,43 @@ var swiper2 = new Swiper(".slide-content2", {
 const submitCartForm = async (event) => {
     event.preventDefault();
 
-    const dishName = document.querySelector('input[name="dishName"]').value;
-    let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+    // Retrieve cart items from localStorage
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
 
-    dishQuantity = dishQuantity.replace(/['"]/g, '');
-
-    const totalQuantity = dishQuantity
-        .split(',')
-        .map(qty => parseInt(qty.trim(), 10))
-        .reduce((sum, num) => sum + num, 0); 
-
-    if (isNaN(totalQuantity) || totalQuantity <= 0) {
-        console.log('Invalid Total Quantity:', totalQuantity);
-        alert("vänligen ange en giltig numerisk mängd.");
-        return;
-    }
-
-    const unitPrice = parseFloat(document.querySelector('input[name="unitPrice"]').value);
-    console.log('Unit Price:', unitPrice);
-
-    if (isNaN(unitPrice) || unitPrice <= 0) {
-        alert("Vänligen ange ett giltigt enhetspris.");
+    if (cartItems.length === 0) {
+        alert("Din kundvagn är tom.");
         return;
     }
 
     // Determine selected payment method
     const selectedPaymentMethod = document.querySelector('input[name="paymentRadio"]:checked')?.id || '';
-    console.log('Selected Payment Method:', selectedPaymentMethod);
+    if (selectedPaymentMethod !== 'payment4') {  // Assuming 'payment4' is the ID for Stripe
+        alert("Vänligen välj Stripe som betalningsmetod.");
+        return;
+    }
 
+    // Prepare product information for the payment request
+    const products = cartItems.map(item => {
+        let quantity = parseInt(item.dishQuantity, 10); // Parse as integer
+        let price = parseFloat(item.dishQuantityPrice); // Parse as float
+
+        return {
+            Name: item.dishName,
+            Quantity: quantity,
+            Price: price
+        };
+    });
+
+    // Build the payment request object
     const paymentRequest = {
-        products: [
-            {
-                Name: dishName,
-                Quantity: totalQuantity,
-                Price: unitPrice,
-            },
-        ],
-
-        paymentMethodTypes: [selectedPaymentMethod],
+        products,
+        paymentMethodTypes: ['card'],  // Stripe payment method
         cancelPaymentUrl: "http://localhost:7216/404.html",
         successPaymentUrl: "http://din-webbplats.com/payment-success",
     };
 
     try {
+        // Send a POST request to the backend API
         const response = await fetch("https://localhost:7216/payments", {
             method: "POST",
             headers: {
@@ -3190,29 +3184,20 @@ const submitCartForm = async (event) => {
             body: JSON.stringify(paymentRequest),
         });
 
-        const contentType = response.headers.get("Content-Type");
-        let result;
-
-        if (contentType && contentType.includes("application/json")) {
-            result = await response.json();
-        } else {
-            result = await response.text();
-            console.error("Unexpected response format: ", result);
-            throw new Error("Response is not in JSON format.");
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
 
-        if (response.ok) {
-            if (result.checkoutUrl) {
-                window.location.href = result.checkoutUrl;
-            } else {
-                throw new Error("Checkout URL missing in the response.");
-            }
+        const result = await response.json();
+
+        // Handle successful payment initiation and redirect to checkout
+        if (result.checkoutUrl) {
+            window.location.href = result.checkoutUrl;
         } else {
-            console.error("Payment error: ", result);
-            alert("Tyvärr kunde vi inte bearbeta din betalning.");
+            throw new Error("Checkout URL missing in the response.");
         }
     } catch (error) {
-        console.error("Network or other error: ", error);
+        console.error("Error during payment process: ", error);
         alert("Ett fel uppstod vid betalningen. Försök igen.");
     }
 };
