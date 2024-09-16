@@ -343,7 +343,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateBoxSelection(currentCategory) {
         boxes2.forEach((box) => {
             const boxValue = box.getAttribute("data-category");
-            console.log(boxValue);
 
             if (boxValue === currentCategory) {
                 box.classList.add("selected");
@@ -396,14 +395,12 @@ const vegetarianAlternatives = () => {
   dishList.innerHTML = "";
   let htmlString = "";
 
-  yumProductsList.map((veg) => {
-    veg.diet.map((veggie) => {
+    yumProductsList.map((veg) => {
+      let veggie = veg.dietRef
       if (veggie === "images/icons/vegetarian.png") {
         const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
-        console.log(veg.title);
         htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
       }
-    });
   });
   dishList.innerHTML += htmlString;
 };
@@ -728,18 +725,21 @@ const carouselContainer2 = document.getElementById("container2");
 const CarouselFoodBoxes = (yumProductsList) => {
   if (carouselContainer !== null) {
     const htmlString = yumProductsList
-      .map((yum) => {
+        .map((yum) => {
+            let title = JSON.stringify(yum.title)
+            let description = JSON.stringify(yum.description)
+            let ingredients = JSON.stringify(yum.ingredients)
         return (
           `
           <div class="swiper-slide">
             <div class="menu_item_slider"
                 data-yum-id=${yum.id} 
-                data-yum-title=${yum.title}
+                data-yum-title=${title}
                 data-yum-price=${yum.price}
                 data-yum-img=${yum.imgRef}
                 data-yum-quantity-price=${yum.price}
-                data-yum-description=${yum.description}
-                data-yum-ingredients=${yum.ingredients}
+                data-yum-description=${description}
+                data-yum-ingredients=${ingredients}
                 data-yum-diet=${yum.dietRef}
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
@@ -759,12 +759,12 @@ const CarouselFoodBoxes = (yumProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${yum.id} 
-                  data-yum-title=${yum.title}
+                  data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -781,11 +781,11 @@ const CarouselFoodBoxes = (yumProductsList) => {
           yum.id +
           `
               data-yum-id=${yum.id} 
-              data-yum-title=${yum.title}
+              data-yum-title=${title}
               data-yum-price=${yum.price}
               data-yum-img=${yum.imgRef}
               data-yum-quantity-price=${yum.price}
-              data-yum-description=${yum.description}
+              data-yum-description=${description}
               data-yum-diet=${yum.dietRef}
               onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
             </button>
@@ -803,18 +803,21 @@ const CarouselFoodBoxes = (yumProductsList) => {
 const CarouselFoodBoxes2 = (yumProductsList) => {
   if (carouselContainer2 !== null) {
     const htmlString = yumProductsList
-      .map((yum) => {
+        .map((yum) => {
+            let title = JSON.stringify(yum.title)
+            let description = JSON.stringify(yum.description)
+            let ingredients = JSON.stringify(yum.ingredients)
         return (
           `
           <div class="swiper-slide">
             <div class="menu_item_slider"
                 data-yum-id=${yum.id} 
-                data-yum-title=${yum.title}
+                data-yum-title=${title}
                 data-yum-price=${yum.price}
                 data-yum-img=${yum.imgRef}
                 data-yum-quantity-price=${yum.price}
-                data-yum-description=${yum.description}
-                data-yum-ingredients=${yum.ingredients}
+                data-yum-description=${description}
+                data-yum-ingredients=${ingredients}
                 data-yum-diet=${yum.dietRef}
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
@@ -834,12 +837,12 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${yum.id} 
-                  data-yum-title=${yum.title}
+                  data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -856,11 +859,11 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
           yum.id +
           `
               data-yum-id=${yum.id} 
-              data-yum-title=${yum.title}
+              data-yum-title=${title}
               data-yum-price=${yum.price}
               data-yum-img=${yum.imgRef}
               data-yum-quantity-price=${yum.price}
-              data-yum-description=${yum.description}
+              data-yum-description=${description}
               data-yum-diet=${yum.dietRef}
               onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
             </button>
@@ -1753,7 +1756,6 @@ if (cardModal !== null) {
     var description = button.getAttribute("data-yum-description");
     var ingredients = button.getAttribute("data-yum-ingredients");
     var dietRef = button.getAttribute("data-yum-diet");
-    console.log(title)
 
     var modalTitle = cardModal.querySelector(".title");
     var modalPrice = cardModal.querySelector(".price");
@@ -2786,6 +2788,16 @@ if (contactForm !== null) {
 }
 
 //popup in start page
+document.addEventListener("DOMContentLoaded", function () {
+    let deliveryModal = document.getElementById("deliveryModal")
+    if (deliveryModal !== null) {
+    var myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("deliveryModal"), {
+
+        keyboard: false,
+    });
+        myModal.show();
+    }
+});
 let confirmButton = document.getElementById("confirmButton");
 if (confirmButton !== null) {
     confirmButton.addEventListener("click", function () {
@@ -3002,6 +3014,59 @@ function scrollCarouselRight2() {
 }
 */
 //Funtion for show/hide faq accordions with button
+document.addEventListener("DOMContentLoaded", function () {
+    const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
+    const betalningBtn = document.getElementById("betalning");
+    const menyerAllergierBtn = document.getElementById("menyer-allergier");
+
+    const omWebbplatsenAccordion = document.getElementById(
+        "om-webbplatsen-accordion"
+    );
+    const betalningAccordion = document.getElementById("betalning-accordion");
+    const allergierAccordion = document.getElementById("allergier-accordion");
+    if (omWebbplatsenBtn !== null && betalningBtn !== null && menyerAllergierBtn !== null && omWebbplatsenAccordion !== null && betalningAccordion !== null && allergierAccordion !== null) {
+    function hideAllAccordions() {
+        omWebbplatsenAccordion.style.display = "none";
+        betalningAccordion.style.display = "none";
+        allergierAccordion.style.display = "none";
+    }
+
+    function resetButtonStyles() {
+        omWebbplatsenBtn.classList.remove("active");
+        betalningBtn.classList.remove("active");
+        menyerAllergierBtn.classList.remove("active");
+    }
+
+    hideAllAccordions();
+    omWebbplatsenAccordion.style.display = "block";
+    omWebbplatsenBtn.classList.add("active");
+
+    omWebbplatsenBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        hideAllAccordions();
+        resetButtonStyles();
+        omWebbplatsenAccordion.style.display = "block";
+        omWebbplatsenBtn.classList.add("active");
+    });
+
+    betalningBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        hideAllAccordions();
+        resetButtonStyles();
+        betalningAccordion.style.display = "block";
+        betalningBtn.classList.add("active");
+    });
+
+    menyerAllergierBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        hideAllAccordions();
+        resetButtonStyles();
+        allergierAccordion.style.display = "block";
+        menyerAllergierBtn.classList.add("active");
+    });
+    }
+    });
+
 
 // Function to cart content and total form to email
 const sendCartInfo = document.getElementById("cart-order-form");
