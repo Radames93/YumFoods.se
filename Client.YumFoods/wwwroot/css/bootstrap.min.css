@@ -7135,13 +7135,13 @@ fieldset:disabled .btn {
   --bs-border-opacity: 1;
 }
 .w-25 {
-  width: 25% !important;
+  width: 25%;
 }
 .w-50 {
   width: 50% !important;
 }
 .w-75 {
-  width: 75% !important;
+  width: 75%;
 }
 .w-100 {
   width: 100% !important;
@@ -7341,8 +7341,8 @@ fieldset:disabled .btn {
   margin-left: 0.25rem !important;
 }
 .mx-2 {
-  margin-right: 0.5rem !important;
-  margin-left: 0.5rem !important;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 .mx-3 {
   margin-right: 1rem !important;
