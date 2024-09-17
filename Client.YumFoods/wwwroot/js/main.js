@@ -343,7 +343,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateBoxSelection(currentCategory) {
         boxes2.forEach((box) => {
             const boxValue = box.getAttribute("data-category");
-            console.log(boxValue);
 
             if (boxValue === currentCategory) {
                 box.classList.add("selected");
@@ -396,14 +395,12 @@ const vegetarianAlternatives = () => {
   dishList.innerHTML = "";
   let htmlString = "";
 
-  yumProductsList.map((veg) => {
-    veg.diet.map((veggie) => {
+    yumProductsList.map((veg) => {
+      let veggie = veg.dietRef
       if (veggie === "images/icons/vegetarian.png") {
         const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
-        console.log(veg.title);
         htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
       }
-    });
   });
   dishList.innerHTML += htmlString;
 };
@@ -621,6 +618,9 @@ const yumProducts = (yumProductsList) => {
   if (yum !== null) {
     const htmlString = yumProductsList
         .map((yum) => {
+            let title = JSON.stringify(yum.title)
+            let description = JSON.stringify(yum.description)
+            let ingredients = JSON.stringify(yum.ingredients)
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
@@ -628,12 +628,12 @@ const yumProducts = (yumProductsList) => {
                         >
           <div class="menu_item"
                   data-yum-id=${yum.id}
-                  data-yum-title=${yum.title}
+                  data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
@@ -667,12 +667,12 @@ const yumProducts = (yumProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${yum.id}
-                  data-yum-title=${yum.title}
+                  data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -700,11 +700,11 @@ const yumProducts = (yumProductsList) => {
           yum.id +
           `
           data-yum-id=${yum.id}
-          data-yum-title=${yum.title}
+          data-yum-title=${title}
           data-yum-price=${yum.price}
           data-yum-img=${yum.imgRef}
           data-yum-quantity-price=${yum.price}
-          data-yum-description=${yum.description}
+          data-yum-description=${description}
           data-yum-diet=${yum.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
@@ -725,18 +725,21 @@ const carouselContainer2 = document.getElementById("container2");
 const CarouselFoodBoxes = (yumProductsList) => {
   if (carouselContainer !== null) {
     const htmlString = yumProductsList
-      .map((yum) => {
+        .map((yum) => {
+            let title = JSON.stringify(yum.title)
+            let description = JSON.stringify(yum.description)
+            let ingredients = JSON.stringify(yum.ingredients)
         return (
           `
           <div class="swiper-slide">
             <div class="menu_item_slider"
                 data-yum-id=${yum.id} 
-                data-yum-title=${yum.title}
+                data-yum-title=${title}
                 data-yum-price=${yum.price}
                 data-yum-img=${yum.imgRef}
                 data-yum-quantity-price=${yum.price}
-                data-yum-description=${yum.description}
-                data-yum-ingredients=${yum.ingredients}
+                data-yum-description=${description}
+                data-yum-ingredients=${ingredients}
                 data-yum-diet=${yum.dietRef}
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
@@ -756,12 +759,12 @@ const CarouselFoodBoxes = (yumProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${yum.id} 
-                  data-yum-title=${yum.title}
+                  data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -778,11 +781,11 @@ const CarouselFoodBoxes = (yumProductsList) => {
           yum.id +
           `
               data-yum-id=${yum.id} 
-              data-yum-title=${yum.title}
+              data-yum-title=${title}
               data-yum-price=${yum.price}
               data-yum-img=${yum.imgRef}
               data-yum-quantity-price=${yum.price}
-              data-yum-description=${yum.description}
+              data-yum-description=${description}
               data-yum-diet=${yum.dietRef}
               onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
             </button>
@@ -800,18 +803,21 @@ const CarouselFoodBoxes = (yumProductsList) => {
 const CarouselFoodBoxes2 = (yumProductsList) => {
   if (carouselContainer2 !== null) {
     const htmlString = yumProductsList
-      .map((yum) => {
+        .map((yum) => {
+            let title = JSON.stringify(yum.title)
+            let description = JSON.stringify(yum.description)
+            let ingredients = JSON.stringify(yum.ingredients)
         return (
           `
           <div class="swiper-slide">
             <div class="menu_item_slider"
                 data-yum-id=${yum.id} 
-                data-yum-title=${yum.title}
+                data-yum-title=${title}
                 data-yum-price=${yum.price}
                 data-yum-img=${yum.imgRef}
                 data-yum-quantity-price=${yum.price}
-                data-yum-description=${yum.description}
-                data-yum-ingredients=${yum.ingredients}
+                data-yum-description=${description}
+                data-yum-ingredients=${ingredients}
                 data-yum-diet=${yum.dietRef}
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
@@ -831,12 +837,12 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${yum.id} 
-                  data-yum-title=${yum.title}
+                  data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
-                  data-yum-description=${yum.description}
-                  data-yum-ingredients=${yum.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${yum.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -853,11 +859,11 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
           yum.id +
           `
               data-yum-id=${yum.id} 
-              data-yum-title=${yum.title}
+              data-yum-title=${title}
               data-yum-price=${yum.price}
               data-yum-img=${yum.imgRef}
               data-yum-quantity-price=${yum.price}
-              data-yum-description=${yum.description}
+              data-yum-description=${description}
               data-yum-diet=${yum.dietRef}
               onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
             </button>
@@ -877,18 +883,21 @@ const dailyProducts = (dailyProductsList) => {
   if (daily !== null) {
     const htmlString = dailyProductsList
         .map((daily) => {
+            let title = JSON.stringify(daily.title)
+            let description = JSON.stringify(daily.description)
+            let ingredients = JSON.stringify(daily.ingredients)
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
           <div class="menu_item" data-yum-id=${daily.id}
-                  data-yum-title=${daily.title}
+                  data-yum-title=${title}
                   data-yum-price=${daily.price}
                   data-yum-img=${daily.imgRef}
                   data-yum-quantity-price=${daily.price}
-                  data-yum-description=${daily.description}
-                  data-yum-ingredients=${daily.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${daily.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
@@ -924,12 +933,12 @@ const dailyProducts = (dailyProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${daily.id}
-                  data-yum-title=${daily.title}
+                  data-yum-title=${title}
                   data-yum-price=${daily.price}
                   data-yum-img=${daily.img}
                   data-yum-quantity-price=${daily.price}
-                  data-yum-description=${daily.description}
-                  data-yum-ingredients=${daily.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${daily.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -944,11 +953,11 @@ const dailyProducts = (dailyProductsList) => {
           daily.id +
           `
           data-yum-id=${daily.id}
-          data-yum-title=${daily.title}
+          data-yum-title=${title}
           data-yum-price=${daily.price}
           data-yum-img=${daily.imgRef}
           data-yum-quantity-price=${daily.price}
-          data-yum-description=${daily.description}
+          data-yum-description=${description}
           data-yum-diet=${daily.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
@@ -978,19 +987,22 @@ const dailyProducts = (dailyProductsList) => {
 const premiumProducts = (premiumProductsList) => {
   if (premium !== null) {
     const htmlString = premiumProductsList
-      .map((premium) => {
+        .map((premium) => {
+            let title = JSON.stringify(premium.title)
+            let description = JSON.stringify(premium.description)
+            let ingredients = JSON.stringify(premium.ingredients)
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
           <div class="menu_item" data-yum-id=${premium.id}
-                  data-yum-title=${premium.title}
+                  data-yum-title=${title}
                   data-yum-price=${premium.price}
                   data-yum-img=${premium.imgRef}
                   data-yum-quantity-price=${premium.price}
-                  data-yum-description=${premium.description}
-                  data-yum-ingredients=${premium.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${premium.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal">
@@ -1026,12 +1038,12 @@ const premiumProducts = (premiumProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${premium.id}
-                  data-yum-title=${premium.title}
+                  data-yum-title=${title}
                   data-yum-price=${premium.price}
                   data-yum-img=${premium.imgRef}
                   data-yum-quantity-price=${premium.price}
-                  data-yum-description=${premium.description}
-                  data-yum-ingredients=${premium.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${premium.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -1046,11 +1058,11 @@ const premiumProducts = (premiumProductsList) => {
           premium.id +
           `
           data-yum-id=${premium.id}
-          data-yum-title=${premium.title}
+          data-yum-title=${title}
           data-yum-price=${premium.price}
           data-yum-img=${premium.imgRef}
           data-yum-quantity-price=${premium.price}
-          data-yum-description=${premium.description}
+          data-yum-description=${description}
           data-yum-diet=${premium.dietRef}
           ` +
           ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
@@ -1080,7 +1092,10 @@ const premiumProducts = (premiumProductsList) => {
 const baguetterProducts = (baguetterProductsList) => {
   if (baguetter !== null) {
     const htmlString = baguetterProductsList
-      .map((baguetter) => {
+        .map((baguetter) => {
+            let title = JSON.stringify(baguetter.title)
+            let description = JSON.stringify(baguetter.description)
+            let ingredients = JSON.stringify(baguetter.ingredients)
         return (
           `<div
             class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
@@ -1097,12 +1112,12 @@ const baguetterProducts = (baguetterProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${baguetter.id}
-                  data-yum-title=${baguetter.title}
+                  data-yum-title=${title}
                   data-yum-price=${baguetter.price}
                   data-yum-img=${baguetter.imgRef}
                   data-yum-quantity-price=${baguetter.price}
-                  data-yum-description=${baguetter.description}
-                  data-yum-ingredients=${baguetter.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${baguetter.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -1127,12 +1142,12 @@ const baguetterProducts = (baguetterProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${baguetter.id}
-                  data-yum-title=${baguetter.title}
+                  data-yum-title=${title}
                   data-yum-price=${baguetter.price}
                   data-yum-img=${baguetter.imgRef}
                   data-yum-quantity-price=${baguetter.price}
-                  data-yum-description=${baguetter.description}
-                  data-yum-ingredients=${baguetter.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${baguetter.dietRef}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
@@ -1147,11 +1162,11 @@ const baguetterProducts = (baguetterProductsList) => {
           baguetter.id +
           `
           data-yum-id=${baguetter.id}
-          data-yum-title=${baguetter.title}
+          data-yum-title=${title}
           data-yum-price=${baguetter.price}
           data-yum-img=${baguetter.imgRef}
           data-yum-quantity-price=${baguetter.price}
-          data-yum-description=${baguetter.description}
+          data-yum-description=${description}
           data-yum-diet=${baguetter.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
@@ -1183,7 +1198,10 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
   if (subscriptions !== null) {
     let i = 0;
     const htmlString = subscriptionsProductsList
-      .map((subscription) => {
+        .map((subscription) => {
+            let title = JSON.stringify(subscription.title)
+            let description = JSON.stringify(subscription.description)
+            let ingredients = JSON.stringify(subscription.ingredients)
         return (
           `
           <div
@@ -1200,12 +1218,12 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${subscription.id}
-                  data-yum-title=${subscription.title}
+                  data-yum-title=${title}
                   data-yum-price=${subscription.price}
                   data-yum-img=${subscription.img}
                   data-yum-quantity-price=${subscription.price}
-                  data-yum-description=${subscription.description}
-                  data-yum-ingredients=${subscription.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                 />
@@ -1218,12 +1236,12 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                   class="title"
                   href="#"
                   data-yum-id=${subscription.id}
-                  data-yum-title=${subscription.title}
+                  data-yum-title=${title}
                   data-yum-price=${subscription.price}
                   data-yum-img=${subscription.img}
                   data-yum-quantity-price=${subscription.price}
-                  data-yum-description=${subscription.description}
-                  data-yum-ingredients=${subscription.ingredients}
+                  data-yum-description=${description}
+                  data-yum-ingredients=${ingredients}
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
@@ -1237,10 +1255,12 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
           subscription.id +
           `
           data-yum-id=${subscription.id}
-          data-yum-title=${subscription.title}
+          data-yum-title=${title}
           data-yum-price=${subscription.price}
           data-yum-img=${subscription.img}
           data-yum-quantity-price=${subscription.price}
+          data-yum-description=${description}
+          data-yum-diet=${subscription.dietRef}
           ` +
           ") onclick='realAddToCart(event)''>Lägg till       <i class='fas fa-cart-plus'></i></button>" +
           `
@@ -1736,7 +1756,6 @@ if (cardModal !== null) {
     var description = button.getAttribute("data-yum-description");
     var ingredients = button.getAttribute("data-yum-ingredients");
     var dietRef = button.getAttribute("data-yum-diet");
-    console.log(title)
 
     var modalTitle = cardModal.querySelector(".title");
     var modalPrice = cardModal.querySelector(".price");
@@ -2322,12 +2341,13 @@ const dateStrings = threeDaysAhead
     const [weekday, days, month] = day.split(" ");
     return `
 
- <div class="d-flex calendar justify-content-center dateWrapper">
-  <div class="date-box box1 text-center mx-2 date">
-    <div class="day">${weekday}</div>
-    <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
-  </div>
-</div>
+        <div class="swiper-slide date">
+            <div class="date-box box1 text-center date">
+              <div class="day">${weekday}</div>
+              <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
+            </div>
+        </div>
+
 `;
   })
   .join("");
@@ -2342,77 +2362,103 @@ const theBox = document.querySelectorAll(".box1");
 theBox.forEach((btn) => {
   btn.addEventListener("click", function () {
     theBox.forEach((b) => b.classList.remove("box-selected"));
-    btn.classList.add("box-selected");
+      btn.classList.add("box-selected");
+      const dayText = btn.querySelector(".day");
+      const dateText = btn.querySelector(".date");
+      console.log(dayText.textContent + " " + dateText.textContent);
   });
+});
+
+const timeBox = document.querySelectorAll(".tid-box");
+
+timeBox.forEach((btn) => {
+    btn.addEventListener("click", function () {
+        timeBox.forEach((b) => b.classList.remove("tid-box-selected"));
+        btn.classList.add("tid-box-selected");
+        const deliverClock = btn.childNodes[1].textContent;
+        const deliverShipping = btn.childNodes[3].textContent;
+        console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
+    });
 });
 
 // theBox.addEventListener('click', function() {
 // theBox.classList.toggle("box-selected");
 // })
 
-// Arrow buttons, add a click function to move it left and right whilst checking the clip-path to dynamically move it left and right depending where the element is being moved in order to ensure only the middle is visible
-const clipPaths = [
-  "inset(-15.33% -7.61% -24.62% -2.53%)",
-  "inset(-15.33% -113.01% -24.62% 105.95%)",
-  "inset(-15.33% -220.47% -24.62% 212.38%)",
-  "inset(-15.33% -326.13% -24.62% 319.84%)",
-];
 
-let xAxis = 0;
-let rightClicks = 0;
-let maxClicks = 3;
-let itemWidth = 415;
+// Arrow buttons, add a click function to move it left and right whilst checking the clip-path to dynamically
+// move it left and right depending where the element is being moved in order to ensure only the middle is visible
 
-const leftArrow = document.querySelector("#leftArrow");
-const rightArrow = document.querySelector("#rightArrow");
-if (leftArrow !== null) {
-  leftArrow.setAttribute("disabled", true);
-}
+////////////////////////////////////////////////////////////////////////////////
+///////////////gamla lösning start /////////////////////////////////////////////
 
-function updateClipPath() {
-  const clipValue = clipPaths[rightClicks];
-  if (deliveryDates !== null) {
-    document.querySelector("#deliverDates").style.clipPath = clipValue;
-  }
-}
-updateClipPath();
+//const clipPaths = [
+//  "inset(-15.33% -7.61% -24.62% -2.53%)",
+//  "inset(-15.33% -113.01% -24.62% 105.95%)",
+//  "inset(-15.33% -220.47% -24.62% 212.38%)",
+//  "inset(-15.33% -326.13% -24.62% 319.84%)",
+//];
 
-function moveLeft() {
-  if (rightClicks > 0) {
-    rightClicks--;
-    xAxis += itemWidth;
-    document.querySelector(
-      "#deliverDates"
-    ).style.transform = `translateX(${xAxis}px)`;
-    updateClipPath();
-    document.querySelector("#rightArrow").removeAttribute("disabled");
-    if (rightClicks === 0) {
-      document.querySelector("#leftArrow").setAttribute("disabled", true);
-    }
-  }
-}
+//let xAxis = 0;
+//let rightClicks = 0;
+//let maxClicks = 3;
+//let itemWidth = 415;
 
-function moveRight() {
-  if (rightClicks < maxClicks) {
-    xAxis -= itemWidth;
-    rightClicks++;
-    document.querySelector(
-      "#deliverDates"
-    ).style.transform = `translateX(${xAxis}px)`;
-    updateClipPath();
+//const leftArrow = document.querySelector("#leftArrow");
+//const rightArrow = document.querySelector("#rightArrow");
+//if (leftArrow !== null) {
+//  leftArrow.setAttribute("disabled", true);
+//}
 
-    document.querySelector("#leftArrow").removeAttribute("disabled");
-    console.log(rightClicks);
-  }
+//function updateClipPath() {
+//  const clipValue = clipPaths[rightClicks];
+//  if (deliveryDates !== null) {
+//    document.querySelector("#deliverDates").style.clipPath = clipValue;
+//  }
+//}
+//updateClipPath();
 
-  if (rightClicks === maxClicks) {
-    document.querySelector("#rightArrow").setAttribute("disabled", true);
-  }
-}
-if (rightArrow !== null || leftArrow !== null) {
-  document.querySelector("#rightArrow").addEventListener("click", moveRight);
-  document.querySelector("#leftArrow").addEventListener("click", moveLeft);
-}
+//function moveLeft() {
+//  if (rightClicks > 0) {
+//    rightClicks--;
+//    xAxis += itemWidth;
+//    document.querySelector(
+//      "#deliverDates"
+//    ).style.transform = `translateX(${xAxis}px)`;
+//    updateClipPath();
+//    document.querySelector("#rightArrow").removeAttribute("disabled");
+//    if (rightClicks === 0) {
+//      document.querySelector("#leftArrow").setAttribute("disabled", true);
+//    }
+//  }
+//}
+
+//function moveRight() {
+//  if (rightClicks < maxClicks) {
+//    xAxis -= itemWidth;
+//    rightClicks++;
+//    document.querySelector(
+//      "#deliverDates"
+//    ).style.transform = `translateX(${xAxis}px)`;
+//    updateClipPath();
+
+//    document.querySelector("#leftArrow").removeAttribute("disabled");
+//    console.log(rightClicks);
+//  }
+
+//  if (rightClicks === maxClicks) {
+//    document.querySelector("#rightArrow").setAttribute("disabled", true);
+//  }
+//}
+//if (rightArrow !== null || leftArrow !== null) {
+//  document.querySelector("#rightArrow").addEventListener("click", moveRight);
+//  document.querySelector("#leftArrow").addEventListener("click", moveLeft);
+//}
+
+/////////////////////////// Gamla lösning End//////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+
 // <div>
 //     <button style="padding:5px; width:100px;">
 //     <div>${weekday}</div>
@@ -2768,6 +2814,16 @@ if (contactForm !== null) {
 }
 
 //popup in start page
+document.addEventListener("DOMContentLoaded", function () {
+    let deliveryModal = document.getElementById("deliveryModal")
+    if (deliveryModal !== null) {
+    var myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("deliveryModal"), {
+
+        keyboard: false,
+    });
+        myModal.show();
+    }
+});
 let confirmButton = document.getElementById("confirmButton");
 if (confirmButton !== null) {
     confirmButton.addEventListener("click", function () {
@@ -2984,6 +3040,59 @@ function scrollCarouselRight2() {
 }
 */
 //Funtion for show/hide faq accordions with button
+document.addEventListener("DOMContentLoaded", function () {
+    const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
+    const betalningBtn = document.getElementById("betalning");
+    const menyerAllergierBtn = document.getElementById("menyer-allergier");
+
+    const omWebbplatsenAccordion = document.getElementById(
+        "om-webbplatsen-accordion"
+    );
+    const betalningAccordion = document.getElementById("betalning-accordion");
+    const allergierAccordion = document.getElementById("allergier-accordion");
+    if (omWebbplatsenBtn !== null && betalningBtn !== null && menyerAllergierBtn !== null && omWebbplatsenAccordion !== null && betalningAccordion !== null && allergierAccordion !== null) {
+    function hideAllAccordions() {
+        omWebbplatsenAccordion.style.display = "none";
+        betalningAccordion.style.display = "none";
+        allergierAccordion.style.display = "none";
+    }
+
+    function resetButtonStyles() {
+        omWebbplatsenBtn.classList.remove("active");
+        betalningBtn.classList.remove("active");
+        menyerAllergierBtn.classList.remove("active");
+    }
+
+    hideAllAccordions();
+    omWebbplatsenAccordion.style.display = "block";
+    omWebbplatsenBtn.classList.add("active");
+
+    omWebbplatsenBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        hideAllAccordions();
+        resetButtonStyles();
+        omWebbplatsenAccordion.style.display = "block";
+        omWebbplatsenBtn.classList.add("active");
+    });
+
+    betalningBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        hideAllAccordions();
+        resetButtonStyles();
+        betalningAccordion.style.display = "block";
+        betalningBtn.classList.add("active");
+    });
+
+    menyerAllergierBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        hideAllAccordions();
+        resetButtonStyles();
+        allergierAccordion.style.display = "block";
+        menyerAllergierBtn.classList.add("active");
+    });
+    }
+    });
+
 
 // Function to cart content and total form to email
 const sendCartInfo = document.getElementById("cart-order-form");
@@ -3136,46 +3245,96 @@ var swiper2 = new Swiper(".slide-content2", {
     },
 });
 
+var datesSwipes = new Swiper(".dates_swipe", {
+    slidesPerView: 3,
+    spaceBetween: 10,
+    loop: false,
+    slidesPerGroup: 3,
+    slidesOffsetBefore: -6,
+    slidesOffsetAfter: 8,
+    roundLengths: true,
+    fade: true,
+    grabCursor: false,
+    navigation: {
+        nextEl: ".swiper-button-next-dates",
+        prevEl: ".swiper-button-prev-dates",
+    },
+
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        576: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        992: {
+            slidesPerView: 2,
+        },
+        1120: {
+            slidesPerView: 3,
+        },
+        1400: {
+            slidesPerView: 3,
+        },
+    },
+});
+
 const submitCartForm = async (event) => {
     event.preventDefault();
 
-    // Retrieve cart items from localStorage
-    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    // Retrieve values from the form
+    const name = document.querySelector('input[name="name"]').value;
+    const email = document.querySelector('input[name="email"]').value;
+    const phone = document.querySelector('input[name="phone"]').value;
+    const address = document.querySelector('input[name="adress"]').value;
+    const message = document.querySelector('textarea[name="message"]').value;
+    const dishName = document.querySelector('input[name="dishName"]').value;
+    let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+    dishQuantity = dishQuantity.replace(/['"]/g, '');
 
-    if (cartItems.length === 0) {
-        alert("Din kundvagn är tom.");
+    // Calculate total quantity
+    //const totalQuantity = parseInt(dishQuantity, 10);
+
+    const totalQuantity = dishQuantity
+        .split(',')
+        .map(qty => parseInt(qty.trim(), 10)) // Konvertera varje del till ett heltal
+        .reduce((sum, num) => sum + num, 0);
+
+    if (isNaN(totalQuantity) || totalQuantity <= 0) {
+        alert("vänligen ange en giltig numerisk mängd.");
         return;
-    } 
-
-    // Determine selected payment method
-    const selectedPaymentMethod = document.querySelector('input[name="paymentRadio"]:checked')?.id || '';
-    if (selectedPaymentMethod !== 'payment4') {  // Assuming 'payment4' is the ID for Stripe
-        alert("Vänligen välj Stripe som betalningsmetod.");
+    }
+    const sum = parseFloat(document.querySelector('input[name="total"]').value);
+    if (sum <= 0 || isNaN(sum)) {
+        alert("Vänligen ange en giltig totalsumma.");
         return;
     }
 
-    // Prepare product information for the payment request
-    const products = cartItems.map(item => {
-        let quantity = parseInt(item.dishQuantity, 10); // Parse as integer
-        let price = parseFloat(item.dishQuantityPrice); // Parse as float
-
-        return {
-            Name: item.dishName,
-            Quantity: quantity,
-            Price: price
-        };
-    });
-
-    // Build the payment request object
+    // Create PaymentRequest object
     const paymentRequest = {
-        products,
-        paymentMethodTypes: ['card', 'klarna', 'paypal'],  // Stripe payment method
+        products: [
+            {
+                Name: dishName,
+                Quantity: totalQuantity,
+                Price: sum,
+            },
+        ],
+        customerName: name,
+        customerEmail: email,
+        customerPhone: phone,
+        customerAddress: address,
+        message: message,
+        totalAmount: sum,
+        paymentMethodTypes: ["card", "klarna", "paypal"],
         cancelPaymentUrl: "http://localhost:7216/404.html",
         successPaymentUrl: "http://din-webbplats.com/payment-success",
     };
 
     try {
-        // Send a POST request to the backend API
+        // Make a POST request to the backend API
         const response = await fetch("https://localhost:7216/payments", {
             method: "POST",
             headers: {
@@ -3184,23 +3343,35 @@ const submitCartForm = async (event) => {
             body: JSON.stringify(paymentRequest),
         });
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        // Check if the response has JSON content
+        const contentType = response.headers.get("Content-Type");
+        let result;
+
+        if (contentType && contentType.includes("application/json")) {
+            result = await response.json();
+        } else {
+            result = await response.text();
+            console.error("Unexpected response format: ", result);
+            throw new Error("Response is not in JSON format.");
         }
 
-        const result = await response.json();
-
-        // Handle successful payment initiation and redirect to checkout
-        if (result.checkoutUrl) {
-            window.location.href = result.checkoutUrl;
+        if (response.ok) {
+            // Redirect the user to Stripe Checkout
+            if (result.checkoutUrl) {
+                window.location.href = result.checkoutUrl;
+            } else {
+                throw new Error("Checkout URL missing in the response.");
+            }
         } else {
-            throw new Error("Checkout URL missing in the response.");
+            console.error("Payment error: ", result);
+            alert("Tyvärr kunde vi inte bearbeta din betalning.");
         }
     } catch (error) {
-        console.error("Error during payment process: ", error);
+        console.error("Network or other error: ", error);
         alert("Ett fel uppstod vid betalningen. Försök igen.");
     }
 };
+
 
 function Footer() {
   let footer = document.getElementById("footer");
