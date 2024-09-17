@@ -2341,12 +2341,12 @@ const dateStrings = threeDaysAhead
     const [weekday, days, month] = day.split(" ");
     return `
 
- <div class="d-flex calendar justify-content-center dateWrapper">
-  <div class="date-box box1 text-center mx-2 date">
-    <div class="day">${weekday}</div>
-    <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
-  </div>
-</div>
+        <div class="swiper-slide date">
+            <div class="date-box box1 text-center date">
+              <div class="day">${weekday}</div>
+              <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
+            </div>
+        </div>
 
 `;
   })
@@ -2362,77 +2362,103 @@ const theBox = document.querySelectorAll(".box1");
 theBox.forEach((btn) => {
   btn.addEventListener("click", function () {
     theBox.forEach((b) => b.classList.remove("box-selected"));
-    btn.classList.add("box-selected");
+      btn.classList.add("box-selected");
+      const dayText = btn.querySelector(".day");
+      const dateText = btn.querySelector(".date");
+      console.log(dayText.textContent + " " + dateText.textContent);
   });
+});
+
+const timeBox = document.querySelectorAll(".tid-box");
+
+timeBox.forEach((btn) => {
+    btn.addEventListener("click", function () {
+        timeBox.forEach((b) => b.classList.remove("tid-box-selected"));
+        btn.classList.add("tid-box-selected");
+        const deliverClock = btn.childNodes[1].textContent;
+        const deliverShipping = btn.childNodes[3].textContent;
+        console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
+    });
 });
 
 // theBox.addEventListener('click', function() {
 // theBox.classList.toggle("box-selected");
 // })
 
-// Arrow buttons, add a click function to move it left and right whilst checking the clip-path to dynamically move it left and right depending where the element is being moved in order to ensure only the middle is visible
-const clipPaths = [
-  "inset(-15.33% -7.61% -24.62% -2.53%)",
-  "inset(-15.33% -113.01% -24.62% 105.95%)",
-  "inset(-15.33% -220.47% -24.62% 212.38%)",
-  "inset(-15.33% -326.13% -24.62% 319.84%)",
-];
 
-let xAxis = 0;
-let rightClicks = 0;
-let maxClicks = 3;
-let itemWidth = 415;
+// Arrow buttons, add a click function to move it left and right whilst checking the clip-path to dynamically
+// move it left and right depending where the element is being moved in order to ensure only the middle is visible
 
-const leftArrow = document.querySelector("#leftArrow");
-const rightArrow = document.querySelector("#rightArrow");
-if (leftArrow !== null) {
-  leftArrow.setAttribute("disabled", true);
-}
+////////////////////////////////////////////////////////////////////////////////
+///////////////gamla lösning start /////////////////////////////////////////////
 
-function updateClipPath() {
-  const clipValue = clipPaths[rightClicks];
-  if (deliveryDates !== null) {
-    document.querySelector("#deliverDates").style.clipPath = clipValue;
-  }
-}
-updateClipPath();
+//const clipPaths = [
+//  "inset(-15.33% -7.61% -24.62% -2.53%)",
+//  "inset(-15.33% -113.01% -24.62% 105.95%)",
+//  "inset(-15.33% -220.47% -24.62% 212.38%)",
+//  "inset(-15.33% -326.13% -24.62% 319.84%)",
+//];
 
-function moveLeft() {
-  if (rightClicks > 0) {
-    rightClicks--;
-    xAxis += itemWidth;
-    document.querySelector(
-      "#deliverDates"
-    ).style.transform = `translateX(${xAxis}px)`;
-    updateClipPath();
-    document.querySelector("#rightArrow").removeAttribute("disabled");
-    if (rightClicks === 0) {
-      document.querySelector("#leftArrow").setAttribute("disabled", true);
-    }
-  }
-}
+//let xAxis = 0;
+//let rightClicks = 0;
+//let maxClicks = 3;
+//let itemWidth = 415;
 
-function moveRight() {
-  if (rightClicks < maxClicks) {
-    xAxis -= itemWidth;
-    rightClicks++;
-    document.querySelector(
-      "#deliverDates"
-    ).style.transform = `translateX(${xAxis}px)`;
-    updateClipPath();
+//const leftArrow = document.querySelector("#leftArrow");
+//const rightArrow = document.querySelector("#rightArrow");
+//if (leftArrow !== null) {
+//  leftArrow.setAttribute("disabled", true);
+//}
 
-    document.querySelector("#leftArrow").removeAttribute("disabled");
-    console.log(rightClicks);
-  }
+//function updateClipPath() {
+//  const clipValue = clipPaths[rightClicks];
+//  if (deliveryDates !== null) {
+//    document.querySelector("#deliverDates").style.clipPath = clipValue;
+//  }
+//}
+//updateClipPath();
 
-  if (rightClicks === maxClicks) {
-    document.querySelector("#rightArrow").setAttribute("disabled", true);
-  }
-}
-if (rightArrow !== null || leftArrow !== null) {
-  document.querySelector("#rightArrow").addEventListener("click", moveRight);
-  document.querySelector("#leftArrow").addEventListener("click", moveLeft);
-}
+//function moveLeft() {
+//  if (rightClicks > 0) {
+//    rightClicks--;
+//    xAxis += itemWidth;
+//    document.querySelector(
+//      "#deliverDates"
+//    ).style.transform = `translateX(${xAxis}px)`;
+//    updateClipPath();
+//    document.querySelector("#rightArrow").removeAttribute("disabled");
+//    if (rightClicks === 0) {
+//      document.querySelector("#leftArrow").setAttribute("disabled", true);
+//    }
+//  }
+//}
+
+//function moveRight() {
+//  if (rightClicks < maxClicks) {
+//    xAxis -= itemWidth;
+//    rightClicks++;
+//    document.querySelector(
+//      "#deliverDates"
+//    ).style.transform = `translateX(${xAxis}px)`;
+//    updateClipPath();
+
+//    document.querySelector("#leftArrow").removeAttribute("disabled");
+//    console.log(rightClicks);
+//  }
+
+//  if (rightClicks === maxClicks) {
+//    document.querySelector("#rightArrow").setAttribute("disabled", true);
+//  }
+//}
+//if (rightArrow !== null || leftArrow !== null) {
+//  document.querySelector("#rightArrow").addEventListener("click", moveRight);
+//  document.querySelector("#leftArrow").addEventListener("click", moveLeft);
+//}
+
+/////////////////////////// Gamla lösning End//////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+
 // <div>
 //     <button style="padding:5px; width:100px;">
 //     <div>${weekday}</div>
@@ -3195,6 +3221,43 @@ var swiper2 = new Swiper(".slide-content2", {
     navigation: {
         nextEl: ".swiper-button-next2",
         prevEl: ".swiper-button-prev2",
+    },
+
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        576: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        992: {
+            slidesPerView: 2,
+        },
+        1120: {
+            slidesPerView: 3,
+        },
+        1400: {
+            slidesPerView: 3,
+        },
+    },
+});
+
+var datesSwipes = new Swiper(".dates_swipe", {
+    slidesPerView: 3,
+    spaceBetween: 10,
+    loop: false,
+    slidesPerGroup: 3,
+    slidesOffsetBefore: -6,
+    slidesOffsetAfter: 8,
+    roundLengths: true,
+    fade: true,
+    grabCursor: false,
+    navigation: {
+        nextEl: ".swiper-button-next-dates",
+        prevEl: ".swiper-button-prev-dates",
     },
 
     breakpoints: {
