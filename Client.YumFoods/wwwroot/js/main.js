@@ -477,7 +477,7 @@ function validatePrivateForm() {
   
   return privateFirstName && privateLastName && privatePhone && privateEmail;
 }
-
+//Validate company form
 function validateCompanyForm() {
   const companyFirstName = companyForm.querySelector('input[name="fornamn"]').value;
   const companyLastName = companyForm.querySelector('input[name="efternamn"]').value;
