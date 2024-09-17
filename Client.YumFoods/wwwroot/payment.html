@@ -20,395 +20,356 @@
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
   </head>
-
   <body>
     <!--=============================
-        MENU START
-    ==============================-->
+    MENU START
+  ==============================-->
     <header-component id="header"></header-component>
     <!--=============================
-        MENU END
-    ==============================-->
-
-    <!--=============================
-        BREADCRUMB START
-    ==============================-->
-    <section class="page_breadcrumb" style="background: url(images/cover.png)">
-      <div class="breadcrumb_overlay">
-        <div class="container">
-          <div class="breadcrumb_text">
-            <h1>Betalning</h1>
-            <ul>
-              <li><a href="index.html">Hem</a></li>
-              <li><a href="#">Betalning</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--=============================
-        BREADCRUMB END
-    ==============================-->
+    MENU END
+  ==============================-->
 
     <!--============================
-        PAYMENT PAGE START
-    ==============================-->
-    <section class="payment_page mt_100 xs_mt_70 mb_100 xs_mb_70">
+    PAYMENT PAGE START
+  ==============================-->
+    <section class="cart_view mt_100 xs_mt_70 mb_100 xs_mb_70">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 d-flex align-items-center">
-            <div class="payment_area">
-              <div class="row">
+          <div class="container2 mx-auto">
+            <div class="tbl_content">
+              <div class="accordion" id="customerHandling">
                 <div
-                  class="col-lg-3 col-sm-6 col-md-4 wow fadeInUp"
-                  data-wow-duration="1s"
+                  class="accordion-item CartPayDeliver rounded-4 border border-greys border-1"
                 >
-                  <a
-                    class="single_payment"
-                    data-bs-toggle="modal"
-                    data-bs-target="#paypalModal"
-                    href="#"
+                  <h2 class="accordion-header" id="headingThree">
+                    <button
+                      class="accordion-button rounded-2 bg-transparent CartPayDeliver"
+                      type="button"
+                      style="box-shadow: none; cursor: default"
+                      aria-expanded="true"
+                      id="payment-accordion"
+                    >
+                      <i
+                        style="color: #fc5633; margin-right: 10px"
+                        class="fas fa-credit-card"
+                      ></i>
+                      Betalning
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse show accordThree"
+                    aria-labelledby="headingThree"
                   >
-                    <img
-                      src="images/pay_1.jpg"
-                      alt="payment method"
-                      class="img-fluid w-100"
-                    />
-                  </a>
+                    <div
+                      style="
+                        border-top: 1px solid #fc5633;
+                        margin-left: auto;
+                        margin-right: auto;
+                      "
+                    ></div>
+                    <div class="accordion-body">
+                      <div
+                        style="margin-top: 40px"
+                        class="d-flex card mx-auto border-0"
+                      >
+                        <div
+                          style="width: 480px"
+                          class="card-body mx-auto CartPayDeliver"
+                        >
+                          <h4
+                            style="font-weight: 600; font-size: 20px"
+                            class="card-title"
+                          >
+                            Välj Betalsätt
+                          </h4>
+                          <!-- Betala med Kort -->
+                          <div class="card CartPayDeliver">
+                            <div
+                              class="form-check m-3 d-flex align-items-center ps-0"
+                            >
+                              <input
+                                class="form-check-input me-3 CartPayDeliver"
+                                type="radio"
+                                name="paymentRadio"
+                                id="paymentCard"
+                                checked
+                                onclick="togglePaymentMethod()"
+                              />
+                              <label class="form-check-label" for="paymentCard">
+                                Betala med Kort
+                              </label>
+                              <i
+                                style="color: #fc5633; margin-left: auto"
+                                class="fas fa-credit-card"
+                              ></i>
+                            </div>
+                            <div id="cardPaymentSection">
+                              <p id="card-payment-description">
+                                Fyll i dina kortuppgifter
+                              </p>
+                              <div class="form-group">
+                                <section
+                                  id="d-flex1"
+                                  class="d-flex justify-content-evenly CartPayDeliver"
+                                >
+                                  <div class="mx-2 w-75 cardfield">
+                                    <label for="cardNumber" class="form-label"
+                                      >Kortnummer</label
+                                    >
+                                    <div class="input-group mb-4">
+                                      <input
+                                        id="cardNumber"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="1234 1234 1234 1234"
+                                        aria-label="Cardnumber"
+                                        aria-describedby="addon1"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="mx-2 w-50 expireField">
+                                    <label for="expiration" class="form-label"
+                                      >Utgångsdatum</label
+                                    >
+                                    <div class="input-group mb-4">
+                                      <input
+                                        id="expiration"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="MM/YY"
+                                        aria-label="Expiration"
+                                        aria-describedby="addon2"
+                                        maxlength="5"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="mx-2 w-50 cvcField">
+                                    <label for="cvc" class="form-label"
+                                      >CVC/CVV</label
+                                    >
+                                    <div class="input-group mb-4">
+                                      <input
+                                        id="cvc"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="123"
+                                        aria-label="CVC"
+                                        aria-describedby="addon3"
+                                        maxlength="3"
+                                      />
+                                    </div>
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Betala med faktura -->
+                          <div class="card CartPayDeliver">
+                            <div
+                              class="form-check m-3 d-flex align-items-center ps-0"
+                            >
+                              <input
+                                class="form-check-input me-3 CartPayDeliver"
+                                type="radio"
+                                name="paymentRadio"
+                                id="paymentInvoice"
+                                onclick="togglePaymentMethod()"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="paymentInvoice"
+                              >
+                                Betala med faktura
+                              </label>
+                              <i
+                                style="color: #fc5633; margin-left: auto"
+                                class="fas fa-file-invoice"
+                              ></i>
+                            </div>
+                            <div
+                              id="invoicePaymentSection"
+                              style="display: none"
+                            >
+                              <div class="form-group">
+                                <section
+                                  id="d-flex2"
+                                  class="d-flex justify-content-evenly CartPayDeliver"
+                                >
+                                  <div class="mx-2 w-50">
+                                    <label for="firstName" class="form-label"
+                                      >Förnamn*</label
+                                    >
+                                    <input
+                                      id="firstName"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange förnamn"
+                                    />
+                                  </div>
+                                  <div class="mx-2 w-50">
+                                    <label for="lastName" class="form-label"
+                                      >Efternamn*</label
+                                    >
+                                    <input
+                                      id="lastName"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange efternamn"
+                                    />
+                                  </div>
+                                </section>
+                                <section
+                                  id="d-flex2"
+                                  class="d-flex justify-content-evenly CartPayDeliver mt-3"
+                                >
+                                  <div class="mx-2 w-100">
+                                    <label for="country" class="form-label"
+                                      >Land*</label
+                                    >
+                                    <input
+                                      id="country"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange land"
+                                    />
+                                  </div>
+                                </section>
+                                <section
+                                  id="d-flex2"
+                                  class="d-flex justify-content-evenly CartPayDeliver mt-3"
+                                >
+                                  <div class="mx-2 w-100">
+                                    <label for="street" class="form-label"
+                                      >Gatuadress*</label
+                                    >
+                                    <input
+                                      id="street"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange gatuadress"
+                                    />
+                                  </div>
+                                </section>
+                                <section
+                                  id="d-flex2"
+                                  class="d-flex justify-content-evenly CartPayDeliver mt-3"
+                                >
+                                  <div class="mx-2 w-100">
+                                    <label for="street" class="form-label"
+                                      >C/O (valfritt)</label
+                                    >
+                                    <input
+                                      id="street"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange C/O"
+                                    />
+                                  </div>
+                                </section>
+                                <section
+                                  id="d-flex2"
+                                  style="margin-bottom: 30px"
+                                  class="d-flex justify-content-evenly CartPayDeliver mt-3"
+                                >
+                                  <div class="mx-2 w-50">
+                                    <label for="zipcode" class="form-label"
+                                      >Postnummer*</label
+                                    >
+                                    <input
+                                      id="zipcode"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange postnummer"
+                                    />
+                                  </div>
+                                  <div class="mx-2 w-50">
+                                    <label for="city" class="form-label"
+                                      >Ort*</label
+                                    >
+                                    <input
+                                      id="city"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange ort/stad"
+                                    />
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <a style="display: flex" href="order_correct.html">
+                        <button class="payment-button">
+                          Betala & slutför beställning
+                        </button></a
+                      >
+                      <div style="border-top: 1.5px solid #ced3d2"></div>
+                      <div
+                        class="summary"
+                        style="margin-top: 50px; margin-bottom: 50px"
+                      >
+                        <h6
+                          style="
+                            background: rgba(38, 50, 56, 0.1);
+                            margin-bottom: 5px;
+                          "
+                        >
+                          <p
+                            style="
+                              padding-top: 5px;
+                              padding-bottom: 5px;
+                              padding-left: 20px;
+                              display: flex;
+                              justify-content: space-between;
+                            "
+                          >
+                            Frakt
+                            <span style="padding-right: 20px">39kr</span>
+                          </p>
+                        </h6>
+                        <h6 style="background-color: rgba(38, 50, 56, 0.1)">
+                          <p
+                            style="
+                              padding-top: 5px;
+                              padding-bottom: 5px;
+                              padding-left: 20px;
+                              display: flex;
+                              justify-content: space-between;
+                            "
+                          >
+                            Totalt belopp inkl.moms
+                            <span style="padding-right: 20px" id="total"></span>
+                          </p>
+                        </h6>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div
-                  class="col-lg-3 col-sm-6 col-md-4 wow fadeInUp"
-                  data-wow-duration="1s"
-                >
-                  <a
-                    class="single_payment"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    href="#"
-                  >
-                    <img
-                      src="images/pay_2.jpg"
-                      alt="payment method"
-                      class="img-fluid w-100"
-                    />
-                  </a>
-                </div>
-                <div
-                  class="col-lg-3 col-sm-6 col-md-4 wow fadeInUp"
-                  data-wow-duration="1s"
-                >
-                  <a
-                    class="single_payment"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    href="#"
-                  >
-                    <img
-                      src="images/pay_3.jpg"
-                      alt="payment method"
-                      class="img-fluid w-100"
-                    />
-                  </a>
-                </div>
-
-                <div
-                  class="col-lg-3 col-sm-6 col-md-4 wow fadeInUp"
-                  data-wow-duration="1s"
-                >
-                  <a
-                    class="single_payment"
-                    data-bs-toggle="modal"
-                    data-bs-target="#exampleModal"
-                    href="#"
-                  >
-                    <img
-                      src="images/pay_7.jpg"
-                      alt="payment method"
-                      class="img-fluid w-100"
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-xl-4 col-lg-5 wow fadeInUp" data-wow-duration="1s">
-            <div id="sticky_sidebar" class="cart_list_footer_button">
-              <div class="cart_list_footer_button_text">
-                <h6>total</h6>
-                <p>delsumma: <span>285kr</span></p>
-                <p>leverans: <span>0kr</span></p>
-                <p>rabatt: <span>10kr</span></p>
-                <p class="total"><span>total:</span> <span>295.00kr</span></p>
-                <form>
-                  <input type="text" placeholder=" Rabattkod" />
-                  <button type="submit">använda</button>
-                </form>
-                <a class="common_btn" href="payment.html">Betala</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <!--============================
-        CREDIT MODAL PAGE START
-    ==============================-->
-
-    <div class="payment_modal">
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-              <section
-                style="
-                  background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Others/background3.webp);
-                "
-              >
-                <div class="row d-flex justify-content-center">
-                  <div class="card rounded-3 border-0">
-                    <div class="card card-body p-4">
-                      <div class="text-center mb-4">
-                        <h3>Inställningar</h3>
-                        <h6>Betalning</h6>
-                      </div>
-                      <form class="card card-body">
-                        <div class="row">
-                          <div class="d-flex align-items-center">
-                            <img
-                              class="img-fluid"
-                              src="https://img.icons8.com/color/48/000000/mastercard-logo.png"
-                            />
-                            <div class="col px-1 mb-2">
-                              <label
-                                for="input2"
-                                class="ms-2 position-absolute"
-                                style="margin-top: -0.25rem !important"
-                              >
-                                <span class="h6 small bg-white text-muted px-1"
-                                  >Kortnummer</span
-                                >
-                              </label>
-                              <input
-                                type="text"
-                                class="form-control mt-2"
-                                id="input2"
-                                placeholder="**** **** **** 4296"
-                              />
-                            </div>
-                            <a href="#!">Ta bort kort</a>
-                          </div>
-                          <div
-                            class="d-flex flex-row align-items-center mb-4 pb-1"
-                          >
-                            <img
-                              class="img-fluid"
-                              src="https://img.icons8.com/color/48/000000/visa.png"
-                            />
-                            <div class="col px-1 mb-2">
-                              <label
-                                for="input2"
-                                class="ms-2 position-absolute"
-                                style="margin-top: -0.25rem !important"
-                              >
-                                <span class="h6 small bg-white text-muted px-1"
-                                  >Kortnummer</span
-                                >
-                              </label>
-                              <input
-                                type="text"
-                                class="form-control mt-2"
-                                id="input2"
-                                placeholder="**** **** **** 4296"
-                              />
-                            </div>
-                            <a href="#!">Ta bort kort</a>
-                          </div>
-
-                          <p class="fw-bold mb-4">Lägg till nytt kort:</p>
-
-                          <div class="col-12 px-1 mb-2">
-                            <label
-                              for="input2"
-                              class="ms-2 position-absolute"
-                              style="margin-top: -0.25rem !important"
-                            >
-                              <span class="h6 small bg-white text-muted px-1"
-                                >Kortinnehavarensnamn</span
-                              >
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control mt-2"
-                              id="input2"
-                              placeholder="Anne Doe"
-                            />
-                          </div>
-                          <div class="row mb-4">
-                            <div class="col-7 px-1 mb-2">
-                              <label
-                                for="input2"
-                                class="ms-2 position-absolute"
-                                style="margin-top: -0.25rem !important"
-                              >
-                                <span class="h6 small bg-white text-muted px-1"
-                                  >Kortnummer</span
-                                >
-                              </label>
-                              <input
-                                type="text"
-                                class="form-control mt-2"
-                                id="input2"
-                                placeholder="**** **** **** 4296"
-                              />
-                            </div>
-                            <div class="col-3 px-1 mb-2">
-                              <label
-                                for="input2"
-                                class="ms-2 position-absolute"
-                                style="margin-top: -0.25rem !important"
-                              >
-                                <span class="h6 small bg-white text-muted px-1"
-                                  >Expire</span
-                                >
-                              </label>
-                              <input
-                                type="password"
-                                class="form-control mt-2"
-                                id="input2"
-                                placeholder="MM/YYYY"
-                              />
-                            </div>
-                            <div class="col-2 px-1 mb-2">
-                              <label
-                                for="input2"
-                                class="ms-2 position-absolute"
-                                style="margin-top: -0.25rem !important"
-                              >
-                                <span class="h6 small bg-white text-muted px-1"
-                                  >Cvv</span
-                                >
-                              </label>
-                              <input
-                                type="password"
-                                class="form-control mt-2"
-                                id="input2"
-                                placeholder="Cvv"
-                              />
-                            </div>
-                          </div>
-
-                          <button
-                            data-mdb-button-init
-                            data-mdb-ripple-init
-                            class="btn common_btn btn-lg btn-block"
-                          >
-                            Lägg till kort
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!--============================
-        CREDIT MODAL PAGE START
-    ==============================-->
-
-    <!--============================
-        PAYPAL MODAL PAGE START
-    ==============================-->
-
-    <div class="payment_modal">
-      <div class="modal fade" id="paypalModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body">
-              <section
-                style="
-                  background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Others/background3.webp);
-                "
-              >
-                <div class="row d-flex justify-content-center">
-                  <div class="card rounded-3 border-0">
-                    <div class="card card-body p-4">
-                      <div class="text-center mb-4">
-                        <h3>Inställningar</h3>
-                        <h6>Betalning</h6>
-                      </div>
-                      <form class="card card-body">
-                        <div class="row">
-                          <div class="col-12 px-1 mb-2">
-                            <label
-                              for="input2"
-                              class="ms-2 position-absolute"
-                              style="margin-top: -0.25rem !important"
-                            >
-                              <span class="h6 small bg-white text-muted px-1"
-                                >Paypal mejladress</span
-                              >
-                            </label>
-                            <input
-                              type="text"
-                              class="form-control mt-2"
-                              id="input2"
-                              placeholder="example@gmail.com"
-                            />
-                          </div>
-                          <button
-                            data-mdb-button-init
-                            data-mdb-ripple-init
-                            class="btn common_btn btn-lg btn-block"
-                          >
-                            Lägg till paypal
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!--============================
-        PAYPAL MODAL PAGE START
-    ==============================-->
-
-    <!--============================
-        PAYMENT PAGE END
-    ==============================-->
-
+    PAYMENT PAGE END
+  ==============================-->
     <!--=============================
-        FOOTER START
-    ==============================-->
+    FOOTER START
+  ==============================-->
     <footer-component id="footer"></footer-component>
     <!--=============================
-        FOOTER END
-    ==============================-->
-
+    FOOTER END
+  ==============================-->
     <!--=============================
-        SCROLL BUTTON START
-    ==============================-->
+    SCROLL BUTTON START
+  ==============================-->
     <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
     <!--=============================
-        SCROLL BUTTON END 
-    ==============================-->
+    SCROLL BUTTON END
+  ==============================-->
     <!-- hotjar code -->
     <script src="js/hotjar.js"></script>
     <!-- swiper slider -->
