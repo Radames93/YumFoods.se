@@ -3145,7 +3145,7 @@ const submitCartForm = async (event) => {
     if (cartItems.length === 0) {
         alert("Din kundvagn är tom.");
         return;
-    }
+    } 
 
     // Determine selected payment method
     const selectedPaymentMethod = document.querySelector('input[name="paymentRadio"]:checked')?.id || '';
@@ -3169,7 +3169,7 @@ const submitCartForm = async (event) => {
     // Build the payment request object
     const paymentRequest = {
         products,
-        paymentMethodTypes: ['card'],  // Stripe payment method
+        paymentMethodTypes: ['card', 'klarna', 'paypal'],  // Stripe payment method
         cancelPaymentUrl: "http://localhost:7216/404.html",
         successPaymentUrl: "http://din-webbplats.com/payment-success",
     };
