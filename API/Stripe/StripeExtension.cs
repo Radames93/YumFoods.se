@@ -16,6 +16,7 @@ public static class StripeExtension
         var group = app.MapGroup("/payments");
 
         group.MapPost("/", CreatePaymentAsync);
+        //group.MapPost("/webhooks");
 
         return app;
     }

@@ -63,16 +63,26 @@ namespace API.Extensions
         /// <param name="repo">An instance of class OrderRepository that provides methods for interacting with object in the database. </param>
         /// <param name="newOrder">Object to be added to the database. </param>
         /// <returns>Bad request if object added already exist or a success code if the object was added to the database successfully.</returns>
-        private static async Task<IResult> PostOrderAsync(IOrderRepository<Order> repo, Order newOrder)
+        private static async Task<IResult> PostOrderAsync(IOrderRepository<Order> repo, IOrderDetailRepository<OrderDetail> detailRepo, Order newOrder, OrderDetail newOD)
         {
-            var exisitngOrder = await repo.GetOrderByIdAsync(newOrder.Id);
-            if (exisitngOrder is not null)
+            var existingOrder = await repo.GetOrderByIdAsync(newOrder.Id);
+            if (existingOrder is not null)
             {
                 return null;
             }
 
+
+            var existingOD = await detailRepo.GetOrderDetailByIdAsync(newOD.Id);
+            if (existingOD is not null)
+            {
+                return null;
+            }
+
+            newOD.OrderId = newOrder.Id;
             await repo.AddOrderAsync(newOrder);
-            return Results.Ok(newOrder);
+            await detailRepo.AddOrderDetailAsync(newOD);
+
+            return Results.Ok(new {newOrder.Id}); //eller bara newOrder
         }
 
         /// <summary>

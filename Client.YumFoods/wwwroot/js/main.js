@@ -3157,31 +3157,60 @@ var swiper2 = new Swiper(".slide-content2", {
 const submitCartForm = async (event) => {
     event.preventDefault();
 
-    // Retrieve values from the form
-    const name = document.querySelector('input[name="name"]').value;
-    const email = document.querySelector('input[name="email"]').value;
-    const phone = document.querySelector('input[name="phone"]').value;
-    const address = document.querySelector('input[name="adress"]').value;
-    const message = document.querySelector('textarea[name="message"]').value;
-    const dishName = document.querySelector('input[name="dishName"]').value;
-    let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
-    dishQuantity = dishQuantity.replace(/['"]/g, '');
+    //// Retrieve values from the form
+    const firstName = document.querySelector('input[placeholder="Ange förnamn"]').value;
+    const lastName = document.querySelector('input[placeholder="Ange efternamn"]').value;
+    const email = document.querySelector('input[placeholder="Ange mejladress"]').value;
+    const phone = document.querySelector('input[placeholder="Ange Telefonnummer"]').value;
+    const address = document.querySelector('input[placeholder="Ange gatuadress"]').value;
+     const postalCode = document.querySelector('input[placeholder="Ange postnummer"]').value;
+    const city = document.querySelector('input[placeholder="Ange ort"]').value;
+    //const message = document.querySelector('textarea[name="message"]').value;
+    //const dishName = document.querySelector('input[name="dishName"]').value;
+    //let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+    //dishQuantity = dishQuantity.replace(/['"]/g, '');
 
-    // Calculate total quantity
-    //const totalQuantity = parseInt(dishQuantity, 10);
+    const cartItems = document.querySelectorAll('.cart_items .cart-item');
+    let products = [];
+    let totalSum = 0;
 
-    const totalQuantity = dishQuantity
-        .split(',')
-        .map(qty => parseInt(qty.trim(), 10)) // Konvertera varje del till ett heltal
-        .reduce((sum, num) => sum + num, 0);
+    cartItems.forEach(item => {
+        const productName = item.querySelector('.product-name').innerText;
+        const productPrice = parseFloat(item.querySelector('.product-price').innerText);
+        const productQuantity = parrseInt(item.querySelector('.product-quantity').innerText, 10);
 
-    if (isNaN(totalQuantity) || totalQuantity <= 0) {
-        alert("vänligen ange en giltig numerisk mängd.");
+        products.push({
+            name: productName,
+            quantity: productQuantity,
+            price: productPrice
+        });
+        totalSum += productPrice * productQuantity;
+    });
+
+    if (products.length === 0) {
+        alert("Din varukorg är tom.");
         return;
     }
-    const sum = parseFloat(document.querySelector('input[name="total"]').value);
-    if (sum <= 0 || isNaN(sum)) {
-        alert("Vänligen ange en giltig totalsumma.");
+
+    //const totalQuantity = dishQuantity
+    //    .split(',')
+    //    .map(qty => parseInt(qty.trim(), 10)) // Konvertera varje del till ett heltal
+    //    .reduce((sum, num) => sum + num, 0);
+
+    //if (isNaN(totalQuantity) || totalQuantity <= 0) {
+    //    alert("vänligen ange en giltig numerisk mängd.");
+    //    return;
+    //}
+    //const sum = parseFloat(document.querySelector('input[name="total"]').value);
+    //if (sum <= 0 || isNaN(sum)) {
+    //    alert("Vänligen ange en giltig totalsumma.");
+    //    return;
+    //}
+
+
+     // Validering av användarinmatning
+    if (!firstName || !lastName || !address || !postalCode || !city || !phone || !email) {
+        alert("Vänligen fyll i alla fält.");
         return;
     }
 
@@ -3194,12 +3223,14 @@ const submitCartForm = async (event) => {
                 Price: total
             },
         ],
-        customerName: name,
+        customerName: `${firstName}${lastName}`,
         customerEmail: email,
         customerPhone: phone,
         customerAddress: address,
-        message: message,
-        totalAmount: sum,
+         customerCity: city,
+        customerPostalCode: postalCode,
+        //message: message,
+        totalAmount: totalSum,
         paymentMethodTypes: ["card", "klarna", "paypal"],
         cancelPaymentUrl: "http://localhost:7216/404.html",
         successPaymentUrl: "http://din-webbplats.com/payment-success",
