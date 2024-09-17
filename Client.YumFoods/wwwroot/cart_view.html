@@ -411,52 +411,163 @@
                           </button>
                         </div>
 
-                        <div class="d-flex flex-row mb-4">
-                          <div class="w-50 me-5">
-                            <p>Förnamn</p>
-                            <input
-                              type="text"
-                              class="setBoxSize rounded-3"
-                              placeholder="Ange förnamn"
-                              aria-label="Username"
-                              aria-describedby="basic-addon1"
-                            />
-                          </div>
+                        <div id="privateForm" class="privateForm d-flex flex-row mb-4">
+                          <form id="private-form" action="" method="post">
+                            <div class="d-flex flex-row mb-4 company-input-info">
+                              <div class="w-50 me-5">
+                                <p>Förnamn</p>
+                                <input
+                                  type="text"
+                                  class="setBoxSize rounded-3"
+                                  placeholder="Ange förnamn"
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1"
+                                />
+                              </div>
 
-                          <div class="ms-auto w-50">
-                            <p>Efternamn</p>
-                            <input
-                              type="text"
-                              class="setBoxSize rounded-3"
-                              placeholder="Ange efternamn"
-                              aria-label="Username"
-                              aria-describedby="basic-addon1"
-                            />
-                          </div>
+                              <div class="ms-auto w-50">
+                                <p>Efternamn</p>
+                                <input
+                                  type="text"
+                                  class="setBoxSize rounded-3 company-input-info-en"
+                                  placeholder="Ange efternamn"
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="mb-4">
+                              <p class="mb-2">Telefonnummer</p>
+                              <div class="d-flex justify-content-between">
+                                <input
+                                  class="rounded-3"
+                                  type="text"
+                                  placeholder="Ange Telefonnummer"
+                                />
+                              </div>
+                            </div>
+
+                            <div class="mb-4">
+                              <p class="mb-2">Mejladress</p>
+                              <div class="d-flex justify-content-between">
+                                <input
+                                  class="rounded-3"
+                                  type="text"
+                                  placeholder="Ange mejladress"
+                                />
+                              </div>
+                            </div>
+                          </form>
                         </div>
-
-                        <div class="mb-4">
-                          <p class="mb-2">Telefonnummer</p>
-                          <div class="d-flex justify-content-between">
-                            <input
-                              class="rounded-3"
-                              type="text"
-                              placeholder="Ange Telefonnummer"
-                            />
-                          </div>
+                      
+                      <!-- company content -->
+                        <div id="companyForm" class="companyForm d-flex flex-row mb-4">
+                          <form id="hidden-form" class="hidden" action="" method="post">
+                            <div class="d-flex flex-row mb-4 company-input-info">
+                              <div class="w-50 me-5">
+                                <p>Förnamn kontaktperson*</p>
+                                <input
+                                  type="text"
+                                  class="setBoxSize rounded-3"
+                                  placeholder="Ange förnamn"
+                                  name="fornamn"
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1"
+                                />
+                              </div>
+                    
+                              <div class="ms-auto w-50 company-input-info-en">
+                                <p>Efternamn kontaktperson*</p>
+                                <input
+                                  type="text"
+                                  class="setBoxSize rounded-3"
+                                  placeholder="Ange efternamn"
+                                  name="efternamn"
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1"
+                                />
+                              </div>
+                            </div>
+                    
+                            <div class="mb-4">
+                              <p class="mb-2">Telefonnummer till kontaktperson*</p>
+                              <div class="d-flex justify-content-between">
+                                <input
+                                  class="rounded-3"
+                                  type="text"
+                                  placeholder="Ange Telefonnummer"
+                                  name="telefonnummer"
+                                />
+                              </div>
+                            </div>
+                    
+                            <div class="mb-4">
+                              <p class="mb-2">Mejladress till kontaktperson*</p>
+                              <div class="d-flex justify-content-between">
+                                <input
+                                  class="rounded-3"
+                                  type="text"
+                                  placeholder="Ange mejladress"
+                                  name="mejladress"
+                                />
+                              </div>
+                            </div>
+                    
+                            <h1 class="mb-4">Företagsuppgifter</h1>
+                            <div class="mb-4">
+                              <p class="mb-2">Företagsnamn *</p>
+                              <div class="d-flex justify-content-between">
+                                <input
+                                  class="rounded-3 "
+                                  type="text"
+                                  placeholder="Ange företagsnamn"
+                                  name="företagsnamn"
+                                />
+                              </div>
+                            </div>
+                  
+                            <div class="mb-4">
+                              <p class="mb-2">Organisationnummer * (10 siffror)</p>
+                              <div class=" justify-content-between">
+                                <input
+                                  class="rounded-3 orgination-company"
+                                  type="text"
+                                  placeholder="Ange organisationsnummer"
+                                  name="Organisationsnummer"
+                                />
+                              </div>
+                            </div>
+                            <!-- <div class=" company-organisation d-flex flex-row mb-4">
+                              <div class="w-50 me-5">
+                                <p class="mb-2">Företagsnamn*</p>
+                                <input
+                                  type="text"
+                                  class="setBoxSize rounded-3"
+                                  placeholder="Ange företagsnamn"
+                                  name="foretagsnamn"
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1"
+                                  id="foretagsnamn"
+                                />
+                              </div>
+                    
+                              <div class="ms-auto w-50">
+                                <p class="mb-2">Organisationsnummer*(10 siffror)</p>
+                                <input
+                                  type="text"
+                                  class="setBoxSize rounded-3"
+                                  placeholder="Ange organisationsnummer"
+                                  name="organisationsnummer"
+                                  aria-label="Username"
+                                  aria-describedby="basic-addon1"
+                                  id="organisationsnummer"
+                                />
+                              </div>
+                            </div> -->
+                          </form>
                         </div>
-
-                        <div class="mb-4">
-                          <p class="mb-2">Mejladress</p>
-                          <div class="d-flex justify-content-between">
-                            <input
-                              class="rounded-3"
-                              type="text"
-                              placeholder="Ange mejladress"
-                            />
-                          </div>
-                        </div>
-
+                  
                         <button
                           onclick="nextAccord1()"
                           class="accordion-btn btn2 d-block text-center mt-5 mx-auto nextAccord1"

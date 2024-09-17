@@ -684,6 +684,15 @@ button {
   background-color: #ff7c082e;
 }
 
+/* leverans-company */
+.hidden{
+  display: none;
+}
+
+.orgination-company{
+  width: 92%;
+}
+
 /* language button*/
 
 .langBtn .nav-item a {

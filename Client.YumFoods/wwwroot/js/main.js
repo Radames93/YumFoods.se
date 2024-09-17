@@ -449,6 +449,65 @@ function updateTotalPrice() {
 //       }
 //   }
 // }
+// leverans page-company content
+  const privateBtn = document.getElementById("privateBtn");
+  const companyBtn = document.getElementById("companyBtn");
+  const privateForm = document.getElementById("privateForm");
+  const companyForm = document.getElementById("companyForm");
+  const continueButton = document.querySelector(".nextAccord1");
+if(companyBtn !== null){
+companyBtn.addEventListener("click",function(){
+  document.getElementById("hidden-form").classList.remove("hidden");
+  document.getElementById("private-form").classList.add("hidden");
+})
+}
+
+if(companyBtn !== null){
+privateBtn.addEventListener("click",function(){
+  document.getElementById("hidden-form").classList.add("hidden");
+  document.getElementById("private-form").classList.remove("hidden");
+})
+}
+
+function validatePrivateForm() {
+  const privateFirstName = privateForm.querySelector('input[placeholder="Ange förnamn"]').value;
+  const privateLastName = privateForm.querySelector('input[placeholder="Ange efternamn"]').value;
+  const privatePhone = privateForm.querySelector('input[placeholder="Ange Telefonnummer"]').value;
+  const privateEmail = privateForm.querySelector('input[placeholder="Ange mejladress"]').value;
+  
+  return privateFirstName && privateLastName && privatePhone && privateEmail;
+}
+
+function validateCompanyForm() {
+  const companyFirstName = companyForm.querySelector('input[name="fornamn"]').value;
+  const companyLastName = companyForm.querySelector('input[name="efternamn"]').value;
+  const companyPhone = companyForm.querySelector('input[name="telefonnummer"]').value;
+  const companyEmail = companyForm.querySelector('input[name="mejladress"]').value;
+  const companyName = companyForm.querySelector('input[name="företagsnamn"]').value;
+  const companyOrgNumber = companyForm.querySelector('input[name="Organisationsnummer"]').value;
+
+  return companyFirstName && companyLastName && companyPhone && companyEmail && companyName && companyOrgNumber; 
+}
+
+if(continueButton !== null){
+continueButton.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  if (!document.getElementById("private-form").classList.contains("hidden")) {
+    if (validatePrivateForm()) {
+      document.querySelector('.CartPayDeliver').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      alert("Vänligen fyll i alla obligatoriska fält för företagsformuläret.")
+    }
+  } else if (!document.getElementById("hidden-form").classList.contains("hidden")) {
+    if (validateCompanyForm()) {
+      document.querySelector('.betalning').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      alert("Vänligen fyll i alla obligatoriska fält för företagsformuläret.")
+    }
+  }
+})
+}
 
 //Get elements from the DOM
 let summary = document.getElementById("cost_summary");
