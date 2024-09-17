@@ -22,8 +22,38 @@ namespace API.Extensions
 
             group.MapPost("/", PostOrderAsync);
 
+            group.MapPost("/create", CreateOrderAndDetailAsync);
+
             group.MapDelete("/{id}", DeleteOrderAsync);
             return app;
+        }
+
+        private static async Task<IResult> CreateOrderAndDetailAsync(IOrderRepository<Order> orderRepository, 
+            IOrderDetailRepository<OrderDetail> detailRepository, Order orderRequest, OrderDetail orderDetailRequest)
+        {
+            var order = new Order
+            {
+                UserId = orderRequest.UserId,
+                OrderDate = DateTime.UtcNow,
+                //DeliveryDate = DateTime.UtcNow.AddDays(7),
+                Total = orderRequest.Total,
+                PaymentMethod = orderRequest.PaymentMethod,
+                Products = orderRequest.Products
+            };
+
+            var orderDetail = new OrderDetail
+            {
+                DeliveryAdress = orderDetailRequest.DeliveryAdress,
+                DeliveryCity = orderDetailRequest.DeliveryCity,
+                DeliveryPostalCode = orderDetailRequest.DeliveryPostalCode,
+                DeliveryCountry = orderDetailRequest.DeliveryCountry
+            };
+
+            await orderRepository.AddOrderAsync(order);
+            orderDetail.OrderId = order.Id;
+            await detailRepository.AddOrderDetailAsync(orderDetail);
+            return Results.Ok(order.Id);
+
         }
 
         /// <summary>
@@ -63,7 +93,7 @@ namespace API.Extensions
         /// <param name="repo">An instance of class OrderRepository that provides methods for interacting with object in the database. </param>
         /// <param name="newOrder">Object to be added to the database. </param>
         /// <returns>Bad request if object added already exist or a success code if the object was added to the database successfully.</returns>
-        private static async Task<IResult> PostOrderAsync(IOrderRepository<Order> repo, IOrderDetailRepository<OrderDetail> detailRepo, Order newOrder, OrderDetail newOD)
+        private static async Task<IResult> PostOrderAsync(IOrderRepository<Order> repo,  Order newOrder)
         {
             var existingOrder = await repo.GetOrderByIdAsync(newOrder.Id);
             if (existingOrder is not null)
@@ -71,18 +101,9 @@ namespace API.Extensions
                 return null;
             }
 
-
-            var existingOD = await detailRepo.GetOrderDetailByIdAsync(newOD.Id);
-            if (existingOD is not null)
-            {
-                return null;
-            }
-
-            newOD.OrderId = newOrder.Id;
             await repo.AddOrderAsync(newOrder);
-            await detailRepo.AddOrderDetailAsync(newOD);
 
-            return Results.Ok(new {newOrder.Id}); //eller bara newOrder
+            return Results.Ok(newOrder); 
         }
 
         /// <summary>
