@@ -805,7 +805,10 @@ button {
   text-align: center;
   background-color: white;
   margin-bottom: 15px;
+  margin-top:10px;
+  margin-left: 14px;
   border-radius: 10px;
+  width: 125px;
 }
 
 .box2 {
@@ -4022,9 +4025,9 @@ footer {
   width: 100%;
 }
 
-.certificates_img{
-    width: 100px;
-    height: 100px;
+.certificates_img {
+  width: 100px;
+  height: 100px;
 }
 
 /*============================
@@ -5222,6 +5225,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     CART VIEW PAGE START
 ========================*/
 
+.font-fix {
+    font-family: Poppins;
+    font-size: 16px;
+}
+
+.font-title {
+    font-family: Poppins;
+}
+
 .cart_view_page_breadcrumb {
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -5255,9 +5267,34 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .card.CartPayDeliver {
   margin-top: 10px;
 }
+
 .card-body.CartPayDeliver {
   padding: 0;
   width: 60%;
+}
+
+.perItem {
+    border-bottom: solid 1px #ced3d2;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.radio_house {
+    margin-right: 40px;
+}
+
+.house_input {
+    padding: 0px;
+    border-color: #fc5633;
+}
+
+.house_input:checked {
+     padding: 0px;
+     background-color: #fc5633;
+}
+
+ house_input + label {
+     margin-right: 40px;
 }
 
 .accordion-button.CartPayDeliver::after {
@@ -5265,6 +5302,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #000000;
   background-image: none;
 }
+
+.accordion-button:focus .CartPayDeliver {
+    box-shadow: none !important;
+    border-color: rgba(0,0,0,.125);
+}
+
 .accordion-button.CartPayDeliver:not(.collapsed)::after {
   background: none;
   color: #000000;
@@ -6222,6 +6265,50 @@ table tbody tr td span {
 /*============================
     PAYMENT PAGE START
 ============================*/
+
+#payment-accordion:not(.collapsed) {
+  color: black;
+  font-weight: 600;
+}
+
+.payment-button {
+  display: flex;
+  height: 48px;
+  padding: 16px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 6px;
+  border: 1px solid #ced3d2;
+  background: #dd3902;
+  color: #fff;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22.4px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.payment-button:hover {
+  background-color: #000937;
+  transition: 0.2s;
+}
+#card-payment-description {
+  color: #252627;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  width: 430px;
+  margin-bottom: 25px;
+  margin-top: -15px;
+}
+
 .single_payment {
   border: 1px solid #ff7c0847;
   overflow: hidden;
@@ -7689,6 +7776,10 @@ table tbody tr td span {
   user-select: none;
 }
 
+.tid-box {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
 .calendar .date-box {
   display: flex;
   width: 120px;
@@ -7704,8 +7795,23 @@ table tbody tr td span {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+.date-box:hover {
+  cursor: pointer;
+  background: var(--Secondary-color, #FFDFCE);
+}
+
+.swiper-wrapper .swiper-slide {
+    padding-bottom: 0px;
+}
+
 .box-selected {
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    background: var(--Secondary-color, #FFDFCE);
+}
+
+.tid-box-selected {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    background: var(--Secondary-color, #FFDFCE);
 }
 
 #leftArrow {
@@ -7788,7 +7894,6 @@ table tbody tr td span {
 .deliverTime1 .tid-box {
   border-radius: 12px;
   border: 1px solid var(--Stroke, #dbdfd0);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   width: 178px;
   height: 53px;
   cursor: pointer;
@@ -7841,6 +7946,11 @@ table tbody tr td span {
   border: 1px solid black;
 }
 
+    .customerBtn:focus {
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)inset;
+        background: var(--Secondary-color, #ffdfce);
+    }
+
 .nextAccord2 {
   display: flex;
   height: 48px;
@@ -7870,6 +7980,11 @@ table tbody tr td span {
 .form-check-label .form-check-input:checked {
   background-color: #fc5633;
   border-color: #f3f0ed;
+}
+
+.form-check-input:checked.CartPayDeliver {
+  background-color: rgb(235, 86, 0);
+  border-color: #fc5633;
 }
 
 .form-check-label .form-check-input {

@@ -433,7 +433,7 @@
     margin-left: 25px;
   }
 
-  .about-us.part3{
+  .about-us.part3 {
     margin-left: 60px;
   }
 
@@ -1948,6 +1948,31 @@
   /* =====================
         LEVERANS END
     =======================*/
+
+  /* =====================
+    PAYMENT PAGE START
+  =======================*/
+
+  .form-check-input {
+    width: 0px;
+    height: 0px;
+  }
+  #firstName,
+  #lastName,
+  #zipcode,
+  #city {
+    width: 86%;
+  }
+  #country,
+  #street {
+    width: 93%;
+  }
+  .payment-button {
+    height: 16px;
+  }
+  /* =====================
+    PAYMENT PAGE END
+  =======================*/
 }
 
 @media (min-width: 576px) and (max-width: 767.99px) {
@@ -3222,6 +3247,30 @@
   /* =====================
         LEVERANS END
     =======================*/
+
+  /* =====================
+    PAYMENT PAGE START
+  =======================*/
+  .form-check-input {
+    width: 0px;
+    height: 0px;
+  }
+  #firstName,
+  #lastName,
+  #zipcode,
+  #city {
+    width: 86%;
+  }
+  #country,
+  #street {
+    width: 93%;
+  }
+  .payment-button {
+    height: 16px;
+  }
+  /* =====================
+    PAYMENT PAGE END
+  =======================*/
 }
 @media (max-width: 575.99px) {
   /* =====================
@@ -4578,6 +4627,64 @@
   /* =====================
           LEVERANS END
       =======================*/
+
+  /* =====================
+    PAYMENT PAGE START
+  =======================*/
+  .form-check-input {
+    width: 0px;
+    height: 0px;
+  }
+  .card {
+    width: 250px;
+  }
+  #card-payment-description {
+    margin-left: 16px;
+  }
+  #d-flex1 {
+    flex-direction: column;
+  }
+  .w-100 {
+    margin-left: 50px;
+  }
+  .w-75 {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .w-50 {
+    margin-left: 50px;
+  }
+  .expireField {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cvcField {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #firstName,
+  #lastName,
+  #zipcode,
+  #city {
+    width: 100%;
+  }
+  #country,
+  #street {
+    width: 50%;
+  }
+  .payment-button {
+    height: 16px;
+  }
+  #customerHandling {
+    width: 92%;
+  }
+  #d-flex2 {
+    flex-direction: column;
+  }
+  /* =====================
+    PAYMENT PAGE END
+  =======================*/
 }
 
 @media (min-width: 375px) and (max-width: 991.99px) {
