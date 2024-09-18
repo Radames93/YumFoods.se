@@ -9,7 +9,7 @@ using Shared.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 
-//builder.Services.AddControllers();
+builder.Services.AddControllers();
 
 //var connectionString = Environment.GetEnvironmentVariable("YumFoodsDbConnectionString");
 //var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnectionString");
@@ -18,6 +18,7 @@ builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
 builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
+
 
 var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
 var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";

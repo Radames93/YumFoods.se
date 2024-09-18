@@ -1,4 +1,5 @@
-﻿using MySqlX.XDevAPI.Common;
+﻿using Microsoft.AspNetCore.Mvc;
+using MySqlX.XDevAPI.Common;
 using Shared.Entities;
 using Shared.Interfaces;
 
@@ -16,17 +17,17 @@ public static class OrderAndOrderDetailExtension
     }
 
     private static async Task<IResult> CreateOrderAndDetailAsync(IOrderRepository<Order> orderRepository,
-        IOrderDetailRepository<OrderDetail> detailRepository, Order orderRequest, OrderDetail orderDetailRequest)
+        IOrderDetailRepository<OrderDetail> detailRepository, [FromBody] OrderAndDetail request)
     {
         var order = new Order
         {
-            Id = orderRequest.Id,
-            UserId = orderRequest.UserId,
+            Id = request.Order.Id,
+            UserId = request.Order.UserId,
             OrderDate = DateTime.UtcNow,
-            DeliveryDate = orderRequest.DeliveryDate,
-            Total = orderRequest.Total,
-            PaymentMethod = orderRequest.PaymentMethod,
-            Products = orderRequest.Products
+            DeliveryDate = request.Order.DeliveryDate,
+            Total = request.Order.Total,
+            PaymentMethod = request.Order.PaymentMethod,
+            Products = request.Order.Products
         };
         try
         {
@@ -41,10 +42,10 @@ public static class OrderAndOrderDetailExtension
         var orderDetail = new OrderDetail
         {
             OrderId = order.Id,
-            DeliveryAdress = orderDetailRequest.DeliveryAdress,
-            DeliveryCity = orderDetailRequest.DeliveryCity,
-            DeliveryPostalCode = orderDetailRequest.DeliveryPostalCode,
-            DeliveryCountry = orderDetailRequest.DeliveryCountry
+            DeliveryAdress = request.OrderDetail.DeliveryAdress,
+            DeliveryCity = request.OrderDetail.DeliveryCity,
+            DeliveryPostalCode = request.OrderDetail.DeliveryPostalCode,
+            DeliveryCountry = request.OrderDetail.DeliveryCountry
         };
         try
         {
