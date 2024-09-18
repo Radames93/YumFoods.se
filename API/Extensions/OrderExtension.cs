@@ -22,8 +22,6 @@ namespace API.Extensions
 
             group.MapPost("/", PostOrderAsync);
 
-            //group.MapPost("/details", CreateOrderAndDetailAsync);
-
             group.MapDelete("/{id}", DeleteOrderAsync);
             return app;
         }

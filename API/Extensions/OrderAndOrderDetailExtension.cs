@@ -32,7 +32,7 @@ public static class OrderAndOrderDetailExtension
         {
             await orderRepository.AddOrderAsync(order);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return Results.BadRequest($"Failed to create order");
             throw;
@@ -50,13 +50,13 @@ public static class OrderAndOrderDetailExtension
         {
             await detailRepository.AddOrderDetailAsync(orderDetail);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             try
             {
                 await orderRepository.DeleteOrderAsync(order.Id);
             }
-            catch (Exception deleteEx)
+            catch (Exception)
             {
                 return Results.BadRequest($"Failed to create order detail and failed to rollback order.");
             }

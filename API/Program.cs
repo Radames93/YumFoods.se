@@ -9,7 +9,7 @@ using Shared.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
 
 //var connectionString = Environment.GetEnvironmentVariable("YumFoodsDbConnectionString");
 //var connectionString2 = Environment.GetEnvironmentVariable("YumFoodsUserDbConnectionString");
@@ -63,6 +63,6 @@ app.UseHttpsRedirection();
 app.UseCors("AllowAllOrigins");
 app.UseAuthorization();
 
-app.MapControllers();
+//app.MapControllers();
 
 app.Run();
