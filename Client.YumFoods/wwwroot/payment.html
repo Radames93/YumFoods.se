@@ -84,7 +84,7 @@
                             Välj Betalsätt
                           </h4>
                           <!-- Betala med Kort -->
-                          <div class="card CartPayDeliver">
+                          <!--<div class="card CartPayDeliver">
                             <div
                               class="form-check m-3 d-flex align-items-center ps-0"
                             >
@@ -163,7 +163,7 @@
                                 </section>
                               </div>
                             </div>
-                          </div>
+                          </div>-->
                           <!-- Betala med faktura -->
                           <div class="card CartPayDeliver">
                             <div
@@ -180,7 +180,7 @@
                                 class="form-check-label"
                                 for="paymentInvoice"
                               >
-                                Betala med faktura
+                                Betala med stripe
                               </label>
                               <i
                                 style="color: #fc5633; margin-left: auto"
@@ -300,11 +300,10 @@
                           </div>
                         </div>
                       </div>
-                      <a style="display: flex" href="order_correct.html">
-                        <button class="payment-button">
+                        <button class="payment-button"
+                                onclick="redirectToStripeCheckout()">
                           Betala & slutför beställning
-                        </button></a
-                      >
+                        </button>
                       <div style="border-top: 1.5px solid #ced3d2"></div>
                       <div
                         class="summary"

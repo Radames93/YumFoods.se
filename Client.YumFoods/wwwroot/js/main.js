@@ -3318,95 +3318,53 @@ var datesSwipes = new Swiper(".dates_swipe", {
     },
 });
 
-const submitCartForm = async (event) => {
-  event.preventDefault();
+//const submitCartForm = async (event) => {
+//    event.preventDefault();
 
-  // Retrieve values from the form
-  const name = document.querySelector('input[name="name"]').value;
-  const email = document.querySelector('input[name="email"]').value;
-  const phone = document.querySelector('input[name="phone"]').value;
-  const address = document.querySelector('input[name="adress"]').value;
-  const message = document.querySelector('textarea[name="message"]').value;
-  const dishName = document.querySelector('input[name="dishName"]').value;
-  let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
-  dishQuantity = dishQuantity.replace(/['"]/g, "");
+//};
 
-  // Calculate total quantity
-  //const totalQuantity = parseInt(dishQuantity, 10);
+async function redirectToStripeCheckout() {
 
-  const totalQuantity = dishQuantity
-    .split(",")
-    .map((qty) => parseInt(qty.trim(), 10)) // Konvertera varje del till ett heltal
-    .reduce((sum, num) => sum + num, 0);
+    if (localStorage.getItem("cart-items") !== null)
+    {
+        let dishQuantity = localStorage("quantity");
+        let dishName = localStorage("title");
+        let sum = localStorage("sum");
 
-  if (isNaN(totalQuantity) || totalQuantity <= 0) {
-    alert("vänligen ange en giltig numerisk mängd.");
-    return;
-  }
-  const sum = parseFloat(document.querySelector('input[name="total"]').value);
-  if (sum <= 0 || isNaN(sum)) {
-    alert("Vänligen ange en giltig totalsumma.");
-    return;
-  }
+        try {
+            // Create a POST request to your backend endpoint to create the Stripe checkout session
+            const response = await fetch("https://localhost:7216/payments", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    successPaymentUrl: "http://din-webbplats.com/payment-success",
+                    cancelPaymentUrl: "http://localhost:7216/404.html",
+                    products: [
+                        {
+                            quantity: dishQuantity,
+                            name: dishName,
+                            price: sum,
+                        }
+                        // Add more products here if needed
+                    ]
+                })
+            });
 
-  // Create PaymentRequest object
-  const paymentRequest = {
-    products: [
-      {
-        Name: dishName,
-        Quantity: totalQuantity,
-        Price: sum,
-      },
-    ],
-    customerName: name,
-    customerEmail: email,
-    customerPhone: phone,
-    customerAddress: address,
-    message: message,
-    totalAmount: sum,
-    paymentMethodTypes: ["card", "klarna", "paypal"],
-    cancelPaymentUrl: "http://localhost:7216/404.html",
-    successPaymentUrl: "http://din-webbplats.com/payment-success",
-  };
-
-  try {
-    // Make a POST request to the backend API
-    const response = await fetch("https://localhost:7216/payments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(paymentRequest),
-    });
-
-    // Check if the response has JSON content
-    const contentType = response.headers.get("Content-Type");
-    let result;
-
-    if (contentType && contentType.includes("application/json")) {
-      result = await response.json();
-    } else {
-      result = await response.text();
-      console.error("Unexpected response format: ", result);
-      throw new Error("Response is not in JSON format.");
+            const result = await response.json();
+            if (response.ok) {
+                // Redirect to the Stripe checkout session URL
+                window.location.href = result.checkoutUrl;
+            } else {
+                console.error('Error creating Stripe session', result);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
-
-    if (response.ok) {
-      // Redirect the user to Stripe Checkout
-      if (result.checkoutUrl) {
-        window.location.href = result.checkoutUrl;
-      } else {
-        throw new Error("Checkout URL missing in the response.");
-      }
-    } else {
-      console.error("Payment error: ", result);
-      alert("Tyvärr kunde vi inte bearbeta din betalning.");
-    }
-  } catch (error) {
-    console.error("Network or other error: ", error);
-    alert("Ett fel uppstod vid betalningen. Försök igen.");
-  }
-};
+        
+}
 
 function Footer() {
   let footer = document.getElementById("footer");
