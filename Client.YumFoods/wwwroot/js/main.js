@@ -82,9 +82,9 @@ $(function () {
 
 //make header and footer reusable in different html pages
 function Header() {
-  let header = document.getElementById("header");
+    let header = document.getElementById("header");
 
-  header.innerHTML = `
+    header.innerHTML = `
   <nav class="navbar navbar-expland-lg main_menu">
       <div class="container">
         <div class="navbar-left">
@@ -208,16 +208,16 @@ Header();
 
 // js for language button in navbar
 function setLanguage(lang) {
-  document.getElementById("current-lang").textContent = lang.toUpperCase();
-  var elements = document.querySelectorAll("[data-lang-en]");
-  elements.forEach(function (element) {
-    if (lang === "en") {
-      element.textContent = element.getAttribute("data-lang-en");
-    } else if (lang === "sv") {
-      element.textContent = element.getAttribute("data-lang-sv");
-    }
-  });
-  closeDropdown();
+    document.getElementById("current-lang").textContent = lang.toUpperCase();
+    var elements = document.querySelectorAll("[data-lang-en]");
+    elements.forEach(function (element) {
+        if (lang === "en") {
+            element.textContent = element.getAttribute("data-lang-en");
+        } else if (lang === "sv") {
+            element.textContent = element.getAttribute("data-lang-sv");
+        }
+    });
+    closeDropdown();
 }
 function closeDropdown() {
     document.getElementById("dropdown-content").classList.remove("show");
@@ -225,39 +225,39 @@ function closeDropdown() {
 function toggleDropdown() {
     document.getElementById("dropdown-content").classList.toggle("show");
 
-  document.getElementById("current-lang").textContent = lang.toUpperCase();
-  var elements = document.querySelectorAll("[data-lang-en]");
-  elements.forEach(function (element) {
-    if (lang === "en") {
-      element.textContent = element.getAttribute("data-lang-en");
-    } else if (lang === "sv") {
-      element.textContent = element.getAttribute("data-lang-sv");
-    }
-  });
-  closeDropdown();
+    document.getElementById("current-lang").textContent = lang.toUpperCase();
+    var elements = document.querySelectorAll("[data-lang-en]");
+    elements.forEach(function (element) {
+        if (lang === "en") {
+            element.textContent = element.getAttribute("data-lang-en");
+        } else if (lang === "sv") {
+            element.textContent = element.getAttribute("data-lang-sv");
+        }
+    });
+    closeDropdown();
 }
 function closeDropdown() {
-  document.getElementById("dropdown-content").classList.remove("show");
+    document.getElementById("dropdown-content").classList.remove("show");
 }
 function toggleDropdown() {
-  document.getElementById("dropdown-content").classList.toggle("show");
+    document.getElementById("dropdown-content").classList.toggle("show");
 }
 
 function navigateToMenuPage() {
-  window.location.href = "/yum_menu.html";
+    window.location.href = "/yum_menu.html";
 }
 
 // secound part of start page
 const infoBox = document.querySelector(".info-box");
 if (infoBox !== null) {
-  infoBox.style.display = "none";
+    infoBox.style.display = "none";
 }
 
 const close = document.querySelector(".close");
 if (close !== null) {
-  close.addEventListener("click", function () {
-    infoBox.style.display = "none";
-  });
+    close.addEventListener("click", function () {
+        infoBox.style.display = "none";
+    });
 }
 
 let selectedCategory = null;
@@ -266,40 +266,40 @@ let selectedQuantity = 10;
 // categori boxes
 const dietBoxes = document.querySelectorAll(".box2");
 const chooseDietBox = dietBoxes.forEach((box, index) => {
-  box.addEventListener("click", function () {
-    this.classList.add("selected");
-    this.classList.add("selected-border");
+    box.addEventListener("click", function () {
+        this.classList.add("selected");
+        this.classList.add("selected-border");
 
-    dietBoxes.forEach((b) => {
-      if ((b.hasClass = "selected")) {
-        b.classList.remove("selected");
-        b.classList.remove("selected-border");
-      } else {
-        b.classList.add("selected");
-        b.classList.add("selected-border");
-      }
+        dietBoxes.forEach((b) => {
+            if ((b.hasClass = "selected")) {
+                b.classList.remove("selected");
+                b.classList.remove("selected-border");
+            } else {
+                b.classList.add("selected");
+                b.classList.add("selected-border");
+            }
+        });
     });
-  });
 });
 
 // quantity boxes
 const antalBoxes = document.querySelectorAll(".box4");
 const chooseAntalbox = antalBoxes.forEach((box, index) => {
-  box.addEventListener("click", function () {
-    this.classList.add("selected");
-    this.classList.toggle("selected-border");
-    infoBox.style.display = "block";
+    box.addEventListener("click", function () {
+        this.classList.add("selected");
+        this.classList.toggle("selected-border");
+        infoBox.style.display = "block";
 
-    antalBoxes.forEach((b) => {
-      if ((b.hasClass = "selected")) {
-        b.classList.remove("selected");
-        b.classList.remove("selected-border");
-      } else {
-        b.classList.add("selected");
-        b.classList.add("selected-border");
-      }
+        antalBoxes.forEach((b) => {
+            if ((b.hasClass = "selected")) {
+                b.classList.remove("selected");
+                b.classList.remove("selected-border");
+            } else {
+                b.classList.add("selected");
+                b.classList.add("selected-border");
+            }
+        });
     });
-  });
 });
 
 //handle click on quantity buttons
@@ -392,46 +392,46 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {
-  const dishList = document.getElementById("dish-list");
-  dishList.innerHTML = "";
-  let htmlString = "";
+    const dishList = document.getElementById("dish-list");
+    dishList.innerHTML = "";
+    let htmlString = "";
 
-  yumProductsList.map((veg) => {
-    veg.diet.map((veggie) => {
-      if (veggie === "images/icons/vegetarian.png") {
-        const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
-        console.log(veg.title);
-        htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
-      }
+    yumProductsList.map((veg) => {
+        veg.diet.map((veggie) => {
+            if (veggie === "images/icons/vegetarian.png") {
+                const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
+                console.log(veg.title);
+                htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
+            }
+        });
     });
-  });
-  dishList.innerHTML += htmlString;
+    dishList.innerHTML += htmlString;
 };
 
 const updateDishList = () => {
-  vegetarianAlternatives();
+    vegetarianAlternatives();
 };
 
 // total price
 function calculateTotalPrice(quantity) {
-  const vegetarianProducts = yumProductsList.filter((product) =>
-    product.diet.includes("images/icons/vegetarian.png")
-  );
-  const totalPrice = vegetarianProducts.reduce(
-    (sum, product) => sum + product.price * quantity,
-    0
-  );
-  return totalPrice;
+    const vegetarianProducts = yumProductsList.filter((product) =>
+        product.diet.includes("images/icons/vegetarian.png")
+    );
+    const totalPrice = vegetarianProducts.reduce(
+        (sum, product) => sum + product.price * quantity,
+        0
+    );
+    return totalPrice;
 }
 
 function updateTotalPrice() {
-  const quantity = parseInt(
-    document.querySelector(".quantity-btn span").textContent,
-    10
-  );
-  const totalPrice = calculateTotalPrice(quantity);
-  const totalPriceElement = document.querySelector(".col-5.price");
-  totalPriceElement.innerHTML = `<p>${totalPrice} kr</p>`;
+    const quantity = parseInt(
+        document.querySelector(".quantity-btn span").textContent,
+        10
+    );
+    const totalPrice = calculateTotalPrice(quantity);
+    const totalPriceElement = document.querySelector(".col-5.price");
+    totalPriceElement.innerHTML = `<p>${totalPrice} kr</p>`;
 }
 
 //end of secound part
@@ -493,28 +493,28 @@ let all = [];
 
 //Create a function to enable text field if appropriate radio button is checked
 function ifChecked() {
-  // option3Checked.getElementById("payment3isChecked");
-  // checks to see if the radio button is checked or not, if checked true, if not false
-  // also make sure it exists to prevent missing values (null) in other pages
-  if (option3Checked) {
-    const isChecked = option3Checked.checked;
-    // set the disabled attribute to false should the button be checked
-    document.getElementById("cardNumber").disabled = !isChecked;
-    document.getElementById("expiration").disabled = !isChecked;
-    document.getElementById("cvc").disabled = !isChecked;
-  }
-  isChanged();
+    // option3Checked.getElementById("payment3isChecked");
+    // checks to see if the radio button is checked or not, if checked true, if not false
+    // also make sure it exists to prevent missing values (null) in other pages
+    if (option3Checked) {
+        const isChecked = option3Checked.checked;
+        // set the disabled attribute to false should the button be checked
+        document.getElementById("cardNumber").disabled = !isChecked;
+        document.getElementById("expiration").disabled = !isChecked;
+        document.getElementById("cvc").disabled = !isChecked;
+    }
+    isChanged();
 }
 // Run the function on "change" on each radio button, checking to see if the payment option 3 is picked or not
 function isChanged() {
-  if (option3Checked) {
-    document.getElementById("payment1").addEventListener("change", ifChecked);
-    document.getElementById("payment2").addEventListener("change", ifChecked);
-    document
-      .getElementById("payment3isChecked")
-      .addEventListener("change", ifChecked);
-    document.getElementById("payment4").addEventListener("change", ifChecked);
-  }
+    if (option3Checked) {
+        document.getElementById("payment1").addEventListener("change", ifChecked);
+        document.getElementById("payment2").addEventListener("change", ifChecked);
+        document
+            .getElementById("payment3isChecked")
+            .addEventListener("change", ifChecked);
+        document.getElementById("payment4").addEventListener("change", ifChecked);
+    }
 }
 ifChecked();
 
@@ -618,14 +618,14 @@ const loadProducts = async () => {
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
-  if (yum !== null) {
-    const htmlString = yumProductsList
-        .map((yum) => {
-            let title = JSON.stringify(yum.title)
-            let description = JSON.stringify(yum.description)
-            let ingredients = JSON.stringify(yum.ingredients)
-        return (
-          `<div
+    if (yum !== null) {
+        const htmlString = yumProductsList
+            .map((yum) => {
+                let title = JSON.stringify(yum.title)
+                let description = JSON.stringify(yum.description)
+                let ingredients = JSON.stringify(yum.ingredients)
+                return (
+                    `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -654,8 +654,8 @@ const yumProducts = (yumProductsList) => {
               <div class="d-flex justify-content-between align-items-center">
               <div class="d-flex"><img
                   src=` +
-          yum.dietRef +
-          `
+                    yum.dietRef +
+                    `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
@@ -680,8 +680,8 @@ const yumProducts = (yumProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          yum.title +
-          `</a
+                    yum.title +
+                    `</a
                 >
                 <h5 class="price">` +
                     yum.price +
@@ -699,9 +699,9 @@ const yumProducts = (yumProductsList) => {
               </div>
             </div>
             ` +
-          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
-          yum.id +
-          `
+                    "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+                    yum.id +
+                    `
           data-yum-id=${yum.id}
           data-yum-title=${title}
           data-yum-price=${yum.price}
@@ -726,11 +726,11 @@ const carouselContainer = document.getElementById("container");
 const carouselContainer2 = document.getElementById("container2");
 
 const CarouselFoodBoxes = (yumProductsList) => {
-  if (carouselContainer !== null) {
-    const htmlString = yumProductsList
-      .map((yum) => {
-        return (
-          `
+    if (carouselContainer !== null) {
+        const htmlString = yumProductsList
+            .map((yum) => {
+                return (
+                    `
           <div class="swiper-slide">
             <div class="menu_item_slider"
                 data-yum-id=${yum.id} 
@@ -747,8 +747,8 @@ const CarouselFoodBoxes = (yumProductsList) => {
               <div class="menu_item_slider_img">
                 <img
                   src=` +
-          yum.imgRef +
-          `
+                    yum.imgRef +
+                    `
                   alt="yum-meny-bild"
                   class="img-fluid w-100"
                 />
@@ -769,17 +769,17 @@ const CarouselFoodBoxes = (yumProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          yum.title.replace(/'/g, "") +
-          `</a>
+                    yum.title.replace(/'/g, "") +
+                    `</a>
                 <p class="description">In the new era of technology we look in the future with certainty and pride for our life.</p>
                 <h5 class="price">` +
-          yum.price +
-          ` kr</h5>
+                    yum.price +
+                    ` kr</h5>
               </div>
             </div>
             <button id='cart-button' class='menu_add_to_cart' data-id=` +
-          yum.id +
-          `
+                    yum.id +
+                    `
               data-yum-id=${yum.id} 
               data-yum-title=${yum.title}
               data-yum-price=${yum.price}
@@ -791,21 +791,21 @@ const CarouselFoodBoxes = (yumProductsList) => {
             </button>
           </div>
         `
-        );
-      })
-      .join("");
-    carouselContainer.insertAdjacentHTML("afterbegin", htmlString);
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        carouselContainer.insertAdjacentHTML("afterbegin", htmlString);
+    } else {
+        return null;
+    }
 };
 
 const CarouselFoodBoxes2 = (yumProductsList) => {
-  if (carouselContainer2 !== null) {
-    const htmlString = yumProductsList
-      .map((yum) => {
-        return (
-          `
+    if (carouselContainer2 !== null) {
+        const htmlString = yumProductsList
+            .map((yum) => {
+                return (
+                    `
           <div class="swiper-slide">
             <div class="menu_item_slider"
                 data-yum-id=${yum.id} 
@@ -822,8 +822,8 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
               <div class="menu_item_slider_img">
                 <img
                   src=` +
-          yum.imgRef +
-          `
+                    yum.imgRef +
+                    `
                   alt="yum-meny-bild"
                   class="img-fluid w-100"
                 />
@@ -844,17 +844,17 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          yum.title.replace(/'/g, "") +
-          `</a>
+                    yum.title.replace(/'/g, "") +
+                    `</a>
                 <p class="description">In the new era of technology we look in the future with certainty and pride for our life.</p>
                 <h5 class="price">` +
-          yum.price +
-          ` kr</h5>
+                    yum.price +
+                    ` kr</h5>
               </div>
             </div>
             <button id='cart-button' class='menu_add_to_cart' data-id=` +
-          yum.id +
-          `
+                    yum.id +
+                    `
               data-yum-id=${yum.id} 
               data-yum-title=${yum.title}
               data-yum-price=${yum.price}
@@ -866,25 +866,25 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
             </button>
           </div>
         `
-        );
-      })
-      .join("");
-    carouselContainer2.insertAdjacentHTML("afterbegin", htmlString);
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        carouselContainer2.insertAdjacentHTML("afterbegin", htmlString);
+    } else {
+        return null;
+    }
 };
 
 //Display daily items
 const dailyProducts = (dailyProductsList) => {
-  if (daily !== null) {
-    const htmlString = dailyProductsList
-        .map((daily) => {
-            let title = JSON.stringify(daily.title)
-            let description = JSON.stringify(daily.description)
-            let ingredients = JSON.stringify(daily.ingredients)
-        return (
-          `<div
+    if (daily !== null) {
+        const htmlString = dailyProductsList
+            .map((daily) => {
+                let title = JSON.stringify(daily.title)
+                let description = JSON.stringify(daily.description)
+                let ingredients = JSON.stringify(daily.ingredients)
+                return (
+                    `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -901,8 +901,8 @@ const dailyProducts = (dailyProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          daily.imgRef +
-          `
+                    daily.imgRef +
+                    `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -914,8 +914,8 @@ const dailyProducts = (dailyProductsList) => {
                <div class="d-flex">
                <img
                   src=` +
-          daily.dietRef +
-          `
+                    daily.dietRef +
+                    `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
@@ -982,14 +982,14 @@ const dailyProducts = (dailyProductsList) => {
 
 //Display premium items
 const premiumProducts = (premiumProductsList) => {
-  if (premium !== null) {
-    const htmlString = premiumProductsList
-        .map((premium) => {
-            let title = JSON.stringify(premium.title)
-            let description = JSON.stringify(premium.description)
-            let ingredients = JSON.stringify(premium.ingredients)
-        return (
-          `<div
+    if (premium !== null) {
+        const htmlString = premiumProductsList
+            .map((premium) => {
+                let title = JSON.stringify(premium.title)
+                let description = JSON.stringify(premium.description)
+                let ingredients = JSON.stringify(premium.ingredients)
+                return (
+                    `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -1006,8 +1006,8 @@ const premiumProducts = (premiumProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          premium.imgRef +
-          `
+                    premium.imgRef +
+                    `
                   alt="premium-meny-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -1019,8 +1019,8 @@ const premiumProducts = (premiumProductsList) => {
                <div class="d-flex">
                <img
                   src=` +
-          premium.dietRef +
-          `
+                    premium.dietRef +
+                    `
                   alt="premium-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
@@ -1087,14 +1087,14 @@ const premiumProducts = (premiumProductsList) => {
 
 //Show baguetter
 const baguetterProducts = (baguetterProductsList) => {
-  if (baguetter !== null) {
-    const htmlString = baguetterProductsList
-        .map((baguetter) => {
-            let title = JSON.stringify(baguetter.title)
-            let description = JSON.stringify(baguetter.description)
-            let ingredients = JSON.stringify(baguetter.ingredients)
-        return (
-          `<div
+    if (baguetter !== null) {
+        const htmlString = baguetterProductsList
+            .map((baguetter) => {
+                let title = JSON.stringify(baguetter.title)
+                let description = JSON.stringify(baguetter.description)
+                let ingredients = JSON.stringify(baguetter.ingredients)
+                return (
+                    `<div
             class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -1102,8 +1102,8 @@ const baguetterProducts = (baguetterProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          baguetter.imgRef +
-          `
+                    baguetter.imgRef +
+                    `
                   alt="baguette-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -1123,8 +1123,8 @@ const baguetterProducts = (baguetterProductsList) => {
                <div class="d-flex justify-content-between align-items-center">
                <div class="d-flex"><img
                   src=` +
-          baguetter.dietRef +
-          `
+                    baguetter.dietRef +
+                    `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
@@ -1192,15 +1192,15 @@ const baguetterProducts = (baguetterProductsList) => {
 
 //Show subscription prducts
 const subscriptionsProducts = (subscriptionsProductsList) => {
-  if (subscriptions !== null) {
-    let i = 0;
-    const htmlString = subscriptionsProductsList
-        .map((subscription) => {
-            let title = JSON.stringify(subscription.title)
-            let description = JSON.stringify(subscription.description)
-            let ingredients = JSON.stringify(subscription.ingredients)
-        return (
-          `
+    if (subscriptions !== null) {
+        let i = 0;
+        const htmlString = subscriptionsProductsList
+            .map((subscription) => {
+                let title = JSON.stringify(subscription.title)
+                let description = JSON.stringify(subscription.description)
+                let ingredients = JSON.stringify(subscription.ingredients)
+                return (
+                    `
           <div
             class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp"
             data-wow-duration="1s"
@@ -1743,49 +1743,49 @@ loadProducts();
 // Make modal fetch data from json file
 var cardModal = document.getElementById("modal");
 if (cardModal !== null) {
-  cardModal.addEventListener("show.bs.modal", function (event) {
-    var button = event.relatedTarget;
-    var id = button.getAttribute("data-yum-id");
-    var title = button.getAttribute("data-yum-title");
-    var price = button.getAttribute("data-yum-price");
-    var img = button.getAttribute("data-yum-img");
-    var quantityPrice = button.getAttribute("data-yum-quantity-price");
-    var description = button.getAttribute("data-yum-description");
-    var ingredients = button.getAttribute("data-yum-ingredients");
-    var dietRef = button.getAttribute("data-yum-diet");
-    console.log(title)
+    cardModal.addEventListener("show.bs.modal", function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute("data-yum-id");
+        var title = button.getAttribute("data-yum-title");
+        var price = button.getAttribute("data-yum-price");
+        var img = button.getAttribute("data-yum-img");
+        var quantityPrice = button.getAttribute("data-yum-quantity-price");
+        var description = button.getAttribute("data-yum-description");
+        var ingredients = button.getAttribute("data-yum-ingredients");
+        var dietRef = button.getAttribute("data-yum-diet");
+        console.log(title)
 
-    var modalTitle = cardModal.querySelector(".title");
-    var modalPrice = cardModal.querySelector(".price");
-    var modalImg = cardModal.querySelector(".dish_img");
-    var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-    var modalDescription = cardModal.querySelector(".description");
-    var modalIngredients = cardModal.querySelector(".ingredients");
-    var modalDiet = cardModal.querySelector(".diet_img");
-    var input = cardModal.querySelector(".quantity").value;
-    input = parseInt(input);
+        var modalTitle = cardModal.querySelector(".title");
+        var modalPrice = cardModal.querySelector(".price");
+        var modalImg = cardModal.querySelector(".dish_img");
+        var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+        var modalDescription = cardModal.querySelector(".description");
+        var modalIngredients = cardModal.querySelector(".ingredients");
+        var modalDiet = cardModal.querySelector(".diet_img");
+        var input = cardModal.querySelector(".quantity").value;
+        input = parseInt(input);
 
-    localStorage.setItem("quantity", input);
-    localStorage.setItem("id", id);
-    localStorage.setItem("title", (modalTitle.textContent = title));
-    localStorage.setItem("price", (modalPrice.innerHTML = price));
-    localStorage.setItem("img", (modalImg.src = img));
-    localStorage.setItem(
-      "quantity-price",
-      (modalQuantityPrice.textContent = quantityPrice)
-    );
-    localStorage.setItem(
-      "ingredients",
-      (modalIngredients.innerHTML = ingredients)
-    );
-    localStorage.setItem(
-      "description",
-      (modalDescription.textContent = description)
-    );
-      localStorage.setItem("diet", (modalDiet.src = dietRef));
-    localStorage.setItem("quantity", (input.value = 1));
-    hideDiv();
-  });
+        localStorage.setItem("quantity", input);
+        localStorage.setItem("id", id);
+        localStorage.setItem("title", (modalTitle.textContent = title));
+        localStorage.setItem("price", (modalPrice.innerHTML = price));
+        localStorage.setItem("img", (modalImg.src = img));
+        localStorage.setItem(
+            "quantity-price",
+            (modalQuantityPrice.textContent = quantityPrice)
+        );
+        localStorage.setItem(
+            "ingredients",
+            (modalIngredients.innerHTML = ingredients)
+        );
+        localStorage.setItem(
+            "description",
+            (modalDescription.textContent = description)
+        );
+        localStorage.setItem("diet", (modalDiet.src = dietRef));
+        localStorage.setItem("quantity", (input.value = 1));
+        hideDiv();
+    });
 } else {
     null;
 }
@@ -1828,23 +1828,23 @@ let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
 //Add to cart function from button
 function realAddToCart(event) {
-  var id = event.target.closest("button").dataset.id;
-  var title = event.target.closest("button").dataset.yumTitle;
-  var price = event.target.closest("button").dataset.yumPrice;
-  var img = event.target.closest("button").dataset.yumImg;
-  var quantityPrice = event.target.closest("button").dataset.yumQuantityPrice;
-  var description = event.target.closest("button").dataset.yumDescription;
-  var dietImage = event.target.closest("button").dataset.yumDiet;
+    var id = event.target.closest("button").dataset.id;
+    var title = event.target.closest("button").dataset.yumTitle;
+    var price = event.target.closest("button").dataset.yumPrice;
+    var img = event.target.closest("button").dataset.yumImg;
+    var quantityPrice = event.target.closest("button").dataset.yumQuantityPrice;
+    var description = event.target.closest("button").dataset.yumDescription;
+    var dietImage = event.target.closest("button").dataset.yumDiet;
 
-  let formData = {};
-  formData.id = id;
-  formData.title = title;
-  formData.price = price;
-  formData.img = img;
-  formData.quantityPrice = quantityPrice;
-  formData.quantity = 1;
-  formData.description = description;
-  formData.diet = dietImage;
+    let formData = {};
+    formData.id = id;
+    formData.title = title;
+    formData.price = price;
+    formData.img = img;
+    formData.quantityPrice = quantityPrice;
+    formData.quantity = 1;
+    formData.description = description;
+    formData.diet = dietImage;
 
     const itemIndexInBasket = formDataArry.findIndex(
         (basketEntry) => basketEntry.id === id
@@ -1868,24 +1868,24 @@ function realAddToCart(event) {
 
 //Add to cart function from modal
 function modalAddToCart() {
-  var modalId = localStorage.getItem("id");
-  var modalTitle = localStorage.getItem("title");
-  var modalPrice = localStorage.getItem("price");
-  var modalQuantityPrice = localStorage.getItem("quantity-price");
-  var modalImage = localStorage.getItem("img");
-  var modalQuantity = localStorage.getItem("quantity");
-  var modalDescription = localStorage.getItem("description");
-  var modalDiet = localStorage.getItem("diet");
+    var modalId = localStorage.getItem("id");
+    var modalTitle = localStorage.getItem("title");
+    var modalPrice = localStorage.getItem("price");
+    var modalQuantityPrice = localStorage.getItem("quantity-price");
+    var modalImage = localStorage.getItem("img");
+    var modalQuantity = localStorage.getItem("quantity");
+    var modalDescription = localStorage.getItem("description");
+    var modalDiet = localStorage.getItem("diet");
 
-  let formData = {};
-  formData.id = modalId;
-  formData.title = modalTitle;
-  formData.price = modalPrice;
-  formData.img = modalImage;
-  formData.quantityPrice = modalQuantityPrice;
-  formData.quantity = modalQuantity;
-  formData.description = modalDescription;
-  formData.diet = modalDiet;
+    let formData = {};
+    formData.id = modalId;
+    formData.title = modalTitle;
+    formData.price = modalPrice;
+    formData.img = modalImage;
+    formData.quantityPrice = modalQuantityPrice;
+    formData.quantity = modalQuantity;
+    formData.description = modalDescription;
+    formData.diet = modalDiet;
 
     const itemIndexInBasket = formDataArry.findIndex(
         (basketEntry) => basketEntry.id === modalId
@@ -1913,86 +1913,86 @@ let id = "";
 
 //Display items in the cart
 const displayNewCart = () => {
-  const tableHead = document.getElementById("table_head");
-  const summaryHead = document.getElementById("summary_head");
-  if (cartItem !== null) {
-    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (formDataArry === null) {
-      tableHead.classList.remove("block");
-      tableHead.classList.add("hide");
-      summaryHead.classList.remove("block");
-      summaryHead.classList.add("hide");
-      cartItem.insertAdjacentHTML(
-        "afterend",
-        `
+    const tableHead = document.getElementById("table_head");
+    const summaryHead = document.getElementById("summary_head");
+    if (cartItem !== null) {
+        formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+        if (formDataArry === null) {
+            tableHead.classList.remove("block");
+            tableHead.classList.add("hide");
+            summaryHead.classList.remove("block");
+            summaryHead.classList.add("hide");
+            cartItem.insertAdjacentHTML(
+                "afterend",
+                `
         <div class="single_team_text">
         <h3 style="padding: 20px; text-align: center">
           Din varukorg är tom
         </h3>
           </div>`
-      );
-    } else {
-      tableHead.classList.remove("hide");
-      tableHead.classList.add("block");
-      summaryHead.classList.remove("hide");
-      summaryHead.classList.add("block");
-      const htmlString = formDataArry
-        .map((item) => {
-          let diet = "";
-          let value = "";
-          console.log(item);
-          id = item.id;
-          let quantity;
-          description = item.title;
-          if (item.quantity == null) {
-            quantity = localStorage.getItem("quantity");
-          } else {
-            quantity = item.quantity;
-          }
-          if (Array.isArray(item.diet)) {
-            var obj = item.diet;
-            value = JSON.stringify(obj);
-            const imageTags = item.diet.map((img) => {
-              console.log(img);
-              return (
-                `<img id="diet"
+            );
+        } else {
+            tableHead.classList.remove("hide");
+            tableHead.classList.add("block");
+            summaryHead.classList.remove("hide");
+            summaryHead.classList.add("block");
+            const htmlString = formDataArry
+                .map((item) => {
+                    let diet = "";
+                    let value = "";
+                    console.log(item);
+                    id = item.id;
+                    let quantity;
+                    description = item.title;
+                    if (item.quantity == null) {
+                        quantity = localStorage.getItem("quantity");
+                    } else {
+                        quantity = item.quantity;
+                    }
+                    if (Array.isArray(item.diet)) {
+                        var obj = item.diet;
+                        value = JSON.stringify(obj);
+                        const imageTags = item.diet.map((img) => {
+                            console.log(img);
+                            return (
+                                `<img id="diet"
                   src=
                   ` +
-                img +
-                `
+                                img +
+                                `
                   alt="specialkost-bild"
                   class="diet_img"
                 />
                 `
-              );
-            });
-            diet = imageTags;
-          } else {
-            const singleImage =
-              `<img id="diet"
+                            );
+                        });
+                        diet = imageTags;
+                    } else {
+                        const singleImage =
+                            `<img id="diet"
                   src=
                   ` +
-              item.diet +
-              `
+                            item.diet +
+                            `
                   alt="specialkost-bild"
                   class="diet_img"
                 />
                 `;
-            diet = singleImage;
-            value = item.diet;
-          }
-          //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
-          return (
-            `
+                        diet = singleImage;
+                        value = item.diet;
+                    }
+                    //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
+                    return (
+                        `
 <section class="col mb-4 d-flex flex-row" id=` +
-            item.id +
-            `>
+                        item.id +
+                        `>
     <div class="imgContainer">
       <img id="` +
-            item.id +
-            `" src="` +
-            item.img +
-            `" alt="bild på maträtt"
+                        item.id +
+                        `" src="` +
+                        item.img +
+                        `" alt="bild på maträtt"
       class="pro_img cartPayDeliver cropImage"/>
     </div>
 
@@ -2000,16 +2000,16 @@ const displayNewCart = () => {
 
       <div class="d-flex flex-row">
           <h5 id="" style="flex-direction: row; display: flex;" class="">` +
-            item.title +
-            `
+                        item.title +
+                        `
             <div style="padding: 10px; margin-top: -17px;" class="d-flex">` +
-            diet +
-            `</div>
+                        diet +
+                        `</div>
 
           </h5>
           <h5 style="cursor: pointer;" onclick="removeItem(` +
-            item.id +
-            `)" class="ms-auto me-4">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
+                        item.id +
+                        `)" class="ms-auto me-4">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
       </div>
 
         <p class="food-description" style="width: 400px; max-height:50px; overflow-y:scroll;">
@@ -2023,8 +2023,8 @@ const displayNewCart = () => {
               <i style="font-size: 12px; line-height: 3;" class="fas fa-minus"></i>
               </button>
               <input class="quantity" type="text" value=` +
-            quantity +
-            `>
+                        quantity +
+                        `>
               <button class="increase">
               <i id="plus-cart" style="font-size: 12px; line-height: 3;" class="fas fa-plus"></i>
               </button>
@@ -2032,15 +2032,15 @@ const displayNewCart = () => {
 
             <div class="pro_icon d-flex">
                   <button class="mx-3" onclick="removeItem(` +
-            item.id +
-            `)" href="#"><i class="fas fa-trash-alt" style="font-size: 17px; color:#FF6633; margin-right: 10px; margin-top: 50px;"></i>
+                        item.id +
+                        `)" href="#"><i class="fas fa-trash-alt" style="font-size: 17px; color:#FF6633; margin-right: 10px; margin-top: 50px;"></i>
                 </button>
             </div>
 
             <div id="final-price" class="d-flex flex-row align-items-center ms-auto me-4">
                 <h6 class="quantity_price currency mb_0">` +
-            item.quantityPrice +
-            `
+                        item.quantityPrice +
+                        `
                 </h6>
                 <h6 class="currency mb_0">kr</h6>
             </div>
@@ -2053,174 +2053,174 @@ const displayNewCart = () => {
 
             `
 
-            //   `
-            // <tr id= "` +
-            //   item.id +
-            //   `">
-            // <td data-label="Bild" class="pro_img">
-            //               <img
-            //                 src="` +
-            //   item.img +
-            //   `"
-            //                 alt="rätt-bild"
-            //                 class="img-fluid w-100"
-            //               />
-            //             </td>
+                        //   `
+                        // <tr id= "` +
+                        //   item.id +
+                        //   `">
+                        // <td data-label="Bild" class="pro_img">
+                        //               <img
+                        //                 src="` +
+                        //   item.img +
+                        //   `"
+                        //                 alt="rätt-bild"
+                        //                 class="img-fluid w-100"
+                        //               />
+                        //             </td>
 
-            //             <td data-label="Detaljer" class="pro_name">
-            //               <a href="#">` +
-            //   item.title?.replace(/'/g, "") +
-            //   `</a>
-            //             </td>
-            //             <td data-label="Pris" class="pro_status">
-            //               <h6>` +
-            //   item.price +
-            //   `kr</h6>
-            //             </td>
+                        //             <td data-label="Detaljer" class="pro_name">
+                        //               <a href="#">` +
+                        //   item.title?.replace(/'/g, "") +
+                        //   `</a>
+                        //             </td>
+                        //             <td data-label="Pris" class="pro_status">
+                        //               <h6>` +
+                        //   item.price +
+                        //   `kr</h6>
+                        //             </td>
 
-            //             <td data-label="Kvantitet" class="pro_select">
-            //             <div class="quentity_btn">
-            //             <button class="decrease">
-            //             <i class="fa fa-minus"></i2>
-            //           </button>
-            //           <input class="quantity" type="text" value=` +
-            //   quantity +
-            //   `>
-            //           <button class="increase">
-            //             <i class="fa fa-plus"></i>
-            //           </button>
-            //         </div>
-            //             </td>
+                        //             <td data-label="Kvantitet" class="pro_select">
+                        //             <div class="quentity_btn">
+                        //             <button class="decrease">
+                        //             <i class="fa fa-minus"></i2>
+                        //           </button>
+                        //           <input class="quantity" type="text" value=` +
+                        //   quantity +
+                        //   `>
+                        //           <button class="increase">
+                        //             <i class="fa fa-plus"></i>
+                        //           </button>
+                        //         </div>
+                        //             </td>
 
-            //             <td data-label="Total" class="pro_tk">
-            //             <div class="quentity_btn">
-            //               <h6 class="quantity_price">` +
-            //   item.quantityPrice +
-            //   `</h6>
-            //             <h6 class="currency mb_0">kr</h6>
-            //             </div>
-            //             </td>
+                        //             <td data-label="Total" class="pro_tk">
+                        //             <div class="quentity_btn">
+                        //               <h6 class="quantity_price">` +
+                        //   item.quantityPrice +
+                        //   `</h6>
+                        //             <h6 class="currency mb_0">kr</h6>
+                        //             </div>
+                        //             </td>
 
-            //             <td data-label="Ta bort" class="pro_icon">
-            //               <button onclick="removeItem(` +
-            //   item.id +
-            //   `)" href="#"><i class="fas fa-trash-alt"></i></button>
-            //             </td>
-            //             </tr>
-            //             `
-          );
-        })
-        .join("");
-      cartItem.innerHTML = htmlString;
-      return id;
+                        //             <td data-label="Ta bort" class="pro_icon">
+                        //               <button onclick="removeItem(` +
+                        //   item.id +
+                        //   `)" href="#"><i class="fas fa-trash-alt"></i></button>
+                        //             </td>
+                        //             </tr>
+                        //             `
+                    );
+                })
+                .join("");
+            cartItem.innerHTML = htmlString;
+            return id;
+        }
     }
-  }
 };
 
 //Display cost summary
 const displaySummary = () => {
-  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-  console.log(formDataArry);
-  summary.insertAdjacentHTML(
-    "afterend",
-    `
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    console.log(formDataArry);
+    summary.insertAdjacentHTML(
+        "afterend",
+        `
       <div>
       <p class="mb-1" style="padding:10px; background:lightgrey;">Frakt <span></span></p>
       <p style="padding:10px; background:lightgrey; class="quantity_price">Totalt kostnad inkl.moms <span></span></p>
       </div>
       `
-  );
-  displaySummary();
+    );
+    displaySummary();
 
-  // copy
-  // const displayNewCart = () => {
-  //   const tableHead = document.getElementById("table_head");
-  //   if (cartItem !== null) {
-  //     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-  //     if (formDataArry === null) {
-  //       tableHead.classList.remove("block");
-  //       tableHead.classList.add("hide");
-  //       cartItem.insertAdjacentHTML(
-  //         "afterend",
-  //         `<h4 class="single_team_text" style="padding: 20px; text-align: center">
-  //           Din varukorg är tom
-  //         </h4>`
-  //       );
-  //     } else {
-  //       tableHead.classList.remove("hide");
-  //       tableHead.classList.add("block");
-  //       const htmlString = formDataArry
-  //         .map((item) => {
-  //           id = item.id;
-  //           let quantity;
-  //           if (item.quantity == null) {
-  //             quantity = localStorage.getItem("quantity");
-  //           } else {
-  //             quantity = item.quantity;
-  //           }
-  //           return (
-  //             `
-  //           <tr id= "` +
-  //             item.id +
-  //             `">
-  //           <td data-label="Bild" class="pro_img">
-  //                         <img
-  //                           src="` +
-  //             item.img +
-  //             `"
-  //                           alt="rätt-bild"
-  //                           class="img-fluid w-100"
-  //                         />
-  //                       </td>
+    // copy
+    // const displayNewCart = () => {
+    //   const tableHead = document.getElementById("table_head");
+    //   if (cartItem !== null) {
+    //     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    //     if (formDataArry === null) {
+    //       tableHead.classList.remove("block");
+    //       tableHead.classList.add("hide");
+    //       cartItem.insertAdjacentHTML(
+    //         "afterend",
+    //         `<h4 class="single_team_text" style="padding: 20px; text-align: center">
+    //           Din varukorg är tom
+    //         </h4>`
+    //       );
+    //     } else {
+    //       tableHead.classList.remove("hide");
+    //       tableHead.classList.add("block");
+    //       const htmlString = formDataArry
+    //         .map((item) => {
+    //           id = item.id;
+    //           let quantity;
+    //           if (item.quantity == null) {
+    //             quantity = localStorage.getItem("quantity");
+    //           } else {
+    //             quantity = item.quantity;
+    //           }
+    //           return (
+    //             `
+    //           <tr id= "` +
+    //             item.id +
+    //             `">
+    //           <td data-label="Bild" class="pro_img">
+    //                         <img
+    //                           src="` +
+    //             item.img +
+    //             `"
+    //                           alt="rätt-bild"
+    //                           class="img-fluid w-100"
+    //                         />
+    //                       </td>
 
-  //                       <td data-label="Detaljer" class="pro_name">
-  //                         <a href="#">` +
-  //             item.title?.replace(/'/g, "") +
-  //             `</a>
-  //                       </td>
-  //                       <td data-label="Pris" class="pro_status">
-  //                         <h6>` +
-  //             item.price +
-  //             `kr</h6>
-  //                       </td>
+    //                       <td data-label="Detaljer" class="pro_name">
+    //                         <a href="#">` +
+    //             item.title?.replace(/'/g, "") +
+    //             `</a>
+    //                       </td>
+    //                       <td data-label="Pris" class="pro_status">
+    //                         <h6>` +
+    //             item.price +
+    //             `kr</h6>
+    //                       </td>
 
-  //                       <td data-label="Kvantitet" class="pro_select">
-  //                       <div class="quentity_btn">
-  //                       <button class="decrease">
-  //                       <i class="fa fa-minus"></i>
-  //                     </button>
-  //                     <input class="quantity" type="text" value=` +
-  //             quantity +
-  //             `>
-  //                     <button class="increase">
-  //                       <i class="fa fa-plus"></i>
-  //                     </button>
-  //                   </div>
-  //                       </td>
+    //                       <td data-label="Kvantitet" class="pro_select">
+    //                       <div class="quentity_btn">
+    //                       <button class="decrease">
+    //                       <i class="fa fa-minus"></i>
+    //                     </button>
+    //                     <input class="quantity" type="text" value=` +
+    //             quantity +
+    //             `>
+    //                     <button class="increase">
+    //                       <i class="fa fa-plus"></i>
+    //                     </button>
+    //                   </div>
+    //                       </td>
 
-  //                       <td data-label="Total" class="pro_tk">
-  //                       <div class="quentity_btn">
-  //                         <h6 class="quantity_price">` +
-  //             item.quantityPrice +
-  //             `</h6>
-  //                       <h6 class="currency mb_0">kr</h6>
-  //                       </div>
-  //                       </td>
+    //                       <td data-label="Total" class="pro_tk">
+    //                       <div class="quentity_btn">
+    //                         <h6 class="quantity_price">` +
+    //             item.quantityPrice +
+    //             `</h6>
+    //                       <h6 class="currency mb_0">kr</h6>
+    //                       </div>
+    //                       </td>
 
-  //                       <td data-label="Ta bort" class="pro_icon">
-  //                         <button onclick="removeItem(` +
-  //             item.id +
-  //             `)" href="#"><i class="fas fa-trash-alt"></i></button>
-  //                       </td>
-  //                       </tr>`
-  //           );
-  //         })
-  //         .join("");
-  //       cartItem.innerHTML = htmlString;
-  //       return id;
-  //     }
-  //   }
-  // };
+    //                       <td data-label="Ta bort" class="pro_icon">
+    //                         <button onclick="removeItem(` +
+    //             item.id +
+    //             `)" href="#"><i class="fas fa-trash-alt"></i></button>
+    //                       </td>
+    //                       </tr>`
+    //           );
+    //         })
+    //         .join("");
+    //       cartItem.innerHTML = htmlString;
+    //       return id;
+    //     }
+    //   }
+    // };
 };
 
 displayNewCart();
@@ -2229,31 +2229,31 @@ totalQuantity();
 
 //Bind the buttons handling the increment and decrement buttons to a function and run it once the DOM loads. When the DOM dynamically changes (e.g. insertAdjacentHTML, removeItem()), the intitally attached addEventListeners are not there anymore and need to be reattached both on the DOM and for the "removeItem" function.
 function cartBtns() {
-  const increase = document.querySelectorAll(".increase");
-  const decrease = document.querySelectorAll(".decrease");
+    const increase = document.querySelectorAll(".increase");
+    const decrease = document.querySelectorAll(".decrease");
 
-  increase.forEach((btn) => {
-    btn.addEventListener("click", increment);
-  });
+    increase.forEach((btn) => {
+        btn.addEventListener("click", increment);
+    });
 
-  decrease.forEach((btn) => {
-    btn.addEventListener("click", decrement);
-  });
+    decrease.forEach((btn) => {
+        btn.addEventListener("click", decrement);
+    });
 }
 cartBtns();
 
 //On page load, display the first open accordion using DOMContentLoaded event
 let customerHandling = document.getElementById("customerHandling");
 if (customerHandling !== null) {
-  document.addEventListener("DOMContentLoaded", () => {
-    const navHeader = document.querySelector(".main_menu").offsetHeight;
-    const header = document.getElementById("headingOne");
-    const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
-    window.scrollTo({
-      top: fixedHeader - navHeader - 50,
-      behavior: "smooth",
+    document.addEventListener("DOMContentLoaded", () => {
+        const navHeader = document.querySelector(".main_menu").offsetHeight;
+        const header = document.getElementById("headingOne");
+        const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+            top: fixedHeader - navHeader - 50,
+            behavior: "smooth",
+        });
     });
-  });
 }
 
 //Grab the "jump to next accordion" buttons
@@ -2262,52 +2262,52 @@ const accordTwo = document.querySelector(".nextAccord2");
 
 // Two functions with scrollTo() method for both the second and third accordions. Since the navbar is in the way and obstructing the view, we need to know its height with offsetHeight, the size and relative position of the accordion header with getBoundingClientRect() and with the Window object scroll to the appropriate accordion header with the "next" buttons. The setTimeout is a temporary fix and might be due to the animations of opening and closing the accordion having to be played out to its end before it starts scrolling, mutationObserver could be an alternate solution.
 function nextAccord1() {
-  const navHeader = document.querySelector(".main_menu").offsetHeight;
-  const header = document.querySelector("#headingTwo");
-  const acc = document.querySelector(".accordOne");
-  const nextAccord = document.querySelector(".accordTwo");
-  acc.classList.remove("show");
-  nextAccord.classList.add("show");
+    const navHeader = document.querySelector(".main_menu").offsetHeight;
+    const header = document.querySelector("#headingTwo");
+    const acc = document.querySelector(".accordOne");
+    const nextAccord = document.querySelector(".accordTwo");
+    acc.classList.remove("show");
+    nextAccord.classList.add("show");
 
-  setTimeout(() => {
-    const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
-    console.log(fixedHeader);
-    window.scrollTo({
-      top: fixedHeader - navHeader - 100,
-      behavior: "smooth",
-    });
-  }, 230);
+    setTimeout(() => {
+        const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+        console.log(fixedHeader);
+        window.scrollTo({
+            top: fixedHeader - navHeader - 100,
+            behavior: "smooth",
+        });
+    }, 230);
 
-  // header.scrollIntoView({ behavior: "smooth", block: "start" });
+    // header.scrollIntoView({ behavior: "smooth", block: "start" });
 
-  // if (nextAccord.classList.contains("show")) {
-  //   header.scrollIntoView({ behavior: "smooth", block: "start" });
-  // } else {
-  //   console.log("no can do");
-  // }
+    // if (nextAccord.classList.contains("show")) {
+    //   header.scrollIntoView({ behavior: "smooth", block: "start" });
+    // } else {
+    //   console.log("no can do");
+    // }
 
-  // nextAccord.addEventListener("transitionend", function transitionEnd() {
-  //   nextAccord.removeEventListener("transitionend", transitionEnd);
-  //   header.scrollIntoView({ behavior: "smooth", block: "start" });
-  // });
+    // nextAccord.addEventListener("transitionend", function transitionEnd() {
+    //   nextAccord.removeEventListener("transitionend", transitionEnd);
+    //   header.scrollIntoView({ behavior: "smooth", block: "start" });
+    // });
 }
 
 function nextAccord2() {
-  // Subject to change
-  // const navHeader = document.querySelector(".main_menu").offsetHeight;
-  // const header = document.querySelector("#headingThree");
-  // const acc = document.querySelector(".accordTwo");
-  // const nextAccord = document.querySelector(".accordThree");
-  // acc.classList.remove("show");
-  // nextAccord.classList.add("show");
-  // setTimeout(() => {
-  //   const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
-  //   console.log(fixedHeader);
-  //   window.scrollTo({
-  //     top: fixedHeader - navHeader - 120,
-  //     behavior: "smooth",
-  //   });
-  // }, 250);
+    // Subject to change
+    // const navHeader = document.querySelector(".main_menu").offsetHeight;
+    // const header = document.querySelector("#headingThree");
+    // const acc = document.querySelector(".accordTwo");
+    // const nextAccord = document.querySelector(".accordThree");
+    // acc.classList.remove("show");
+    // nextAccord.classList.add("show");
+    // setTimeout(() => {
+    //   const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+    //   console.log(fixedHeader);
+    //   window.scrollTo({
+    //     top: fixedHeader - navHeader - 120,
+    //     behavior: "smooth",
+    //   });
+    // }, 250);
 }
 // Display the upcoming 2 weeks while excluding the weekends (saturdays & sundays) while initially jumping ahead 3 days, in total 10 days.
 // 14 days in a week, but adding 3 results in 17
@@ -2324,20 +2324,20 @@ let threeDaysAhead = [];
 dates.setDate(dates.getDate() + 3);
 
 for (let i = 3; i < twoWeeks; i++) {
-  const checkDay = dates.getDay();
-  if (checkDay !== 0 && checkDay !== 6) {
-    const sweDate = dates.toLocaleString("sv-SE", options);
-    threeDaysAhead.push(sweDate.toUpperCase());
-  }
-  dates.setDate(dates.getDate() + 1);
+    const checkDay = dates.getDay();
+    if (checkDay !== 0 && checkDay !== 6) {
+        const sweDate = dates.toLocaleString("sv-SE", options);
+        threeDaysAhead.push(sweDate.toUpperCase());
+    }
+    dates.setDate(dates.getDate() + 1);
 }
 
 console.log(threeDaysAhead);
 
 const dateStrings = threeDaysAhead
-  .map((day) => {
-    const [weekday, days, month] = day.split(" ");
-    return `
+    .map((day) => {
+        const [weekday, days, month] = day.split(" ");
+        return `
 
  <div class="d-flex calendar justify-content-center dateWrapper">
   <div class="date-box box1 text-center mx-2 date">
@@ -2347,21 +2347,21 @@ const dateStrings = threeDaysAhead
 </div>
 
 `;
-  })
-  .join("");
+    })
+    .join("");
 
 const deliveryDates = document.getElementById("deliverDates");
 if (deliveryDates !== null) {
-  deliveryDates.innerHTML = dateStrings;
+    deliveryDates.innerHTML = dateStrings;
 }
 
 const theBox = document.querySelectorAll(".box1");
 
 theBox.forEach((btn) => {
-  btn.addEventListener("click", function () {
-    theBox.forEach((b) => b.classList.remove("box-selected"));
-    btn.classList.add("box-selected");
-  });
+    btn.addEventListener("click", function () {
+        theBox.forEach((b) => b.classList.remove("box-selected"));
+        btn.classList.add("box-selected");
+    });
 });
 
 // theBox.addEventListener('click', function() {
@@ -2370,10 +2370,10 @@ theBox.forEach((btn) => {
 
 // Arrow buttons, add a click function to move it left and right whilst checking the clip-path to dynamically move it left and right depending where the element is being moved in order to ensure only the middle is visible
 const clipPaths = [
-  "inset(-15.33% -7.61% -24.62% -2.53%)",
-  "inset(-15.33% -113.01% -24.62% 105.95%)",
-  "inset(-15.33% -220.47% -24.62% 212.38%)",
-  "inset(-15.33% -326.13% -24.62% 319.84%)",
+    "inset(-15.33% -7.61% -24.62% -2.53%)",
+    "inset(-15.33% -113.01% -24.62% 105.95%)",
+    "inset(-15.33% -220.47% -24.62% 212.38%)",
+    "inset(-15.33% -326.13% -24.62% 319.84%)",
 ];
 
 let xAxis = 0;
@@ -2384,52 +2384,52 @@ let itemWidth = 415;
 const leftArrow = document.querySelector("#leftArrow");
 const rightArrow = document.querySelector("#rightArrow");
 if (leftArrow !== null) {
-  leftArrow.setAttribute("disabled", true);
+    leftArrow.setAttribute("disabled", true);
 }
 
 function updateClipPath() {
-  const clipValue = clipPaths[rightClicks];
-  if (deliveryDates !== null) {
-    document.querySelector("#deliverDates").style.clipPath = clipValue;
-  }
+    const clipValue = clipPaths[rightClicks];
+    if (deliveryDates !== null) {
+        document.querySelector("#deliverDates").style.clipPath = clipValue;
+    }
 }
 updateClipPath();
 
 function moveLeft() {
-  if (rightClicks > 0) {
-    rightClicks--;
-    xAxis += itemWidth;
-    document.querySelector(
-      "#deliverDates"
-    ).style.transform = `translateX(${xAxis}px)`;
-    updateClipPath();
-    document.querySelector("#rightArrow").removeAttribute("disabled");
-    if (rightClicks === 0) {
-      document.querySelector("#leftArrow").setAttribute("disabled", true);
+    if (rightClicks > 0) {
+        rightClicks--;
+        xAxis += itemWidth;
+        document.querySelector(
+            "#deliverDates"
+        ).style.transform = `translateX(${xAxis}px)`;
+        updateClipPath();
+        document.querySelector("#rightArrow").removeAttribute("disabled");
+        if (rightClicks === 0) {
+            document.querySelector("#leftArrow").setAttribute("disabled", true);
+        }
     }
-  }
 }
 
 function moveRight() {
-  if (rightClicks < maxClicks) {
-    xAxis -= itemWidth;
-    rightClicks++;
-    document.querySelector(
-      "#deliverDates"
-    ).style.transform = `translateX(${xAxis}px)`;
-    updateClipPath();
+    if (rightClicks < maxClicks) {
+        xAxis -= itemWidth;
+        rightClicks++;
+        document.querySelector(
+            "#deliverDates"
+        ).style.transform = `translateX(${xAxis}px)`;
+        updateClipPath();
 
-    document.querySelector("#leftArrow").removeAttribute("disabled");
-    console.log(rightClicks);
-  }
+        document.querySelector("#leftArrow").removeAttribute("disabled");
+        console.log(rightClicks);
+    }
 
-  if (rightClicks === maxClicks) {
-    document.querySelector("#rightArrow").setAttribute("disabled", true);
-  }
+    if (rightClicks === maxClicks) {
+        document.querySelector("#rightArrow").setAttribute("disabled", true);
+    }
 }
 if (rightArrow !== null || leftArrow !== null) {
-  document.querySelector("#rightArrow").addEventListener("click", moveRight);
-  document.querySelector("#leftArrow").addEventListener("click", moveLeft);
+    document.querySelector("#rightArrow").addEventListener("click", moveRight);
+    document.querySelector("#leftArrow").addEventListener("click", moveLeft);
 }
 // <div>
 //     <button style="padding:5px; width:100px;">
@@ -2439,52 +2439,52 @@ if (rightArrow !== null || leftArrow !== null) {
 // </div>
 
 {
-  /* <div class="d-flex calendar justify-content-center">
-<div class="date-box box1 text-center mx-2">
-  <div class="day">Måndag</div>
-  <div class="date">2 Sep</div>
-</div>
-<div class="date-box text-center mx-2">
-  <div class="day">Tisdag</div>
-  <div class="date">3 Sep</div>
-</div>
-<div class="date-box box3 text-center mx-2">
-  <div class="day">Onsdag</div>
-  <div class="date">4 Sep</div>
-</div>
-</div>  */
+    /* <div class="d-flex calendar justify-content-center">
+  <div class="date-box box1 text-center mx-2">
+    <div class="day">Måndag</div>
+    <div class="date">2 Sep</div>
+  </div>
+  <div class="date-box text-center mx-2">
+    <div class="day">Tisdag</div>
+    <div class="date">3 Sep</div>
+  </div>
+  <div class="date-box box3 text-center mx-2">
+    <div class="day">Onsdag</div>
+    <div class="date">4 Sep</div>
+  </div>
+  </div>  */
 }
 
 // ----------------------------------
 
 //Increment function on the + button for quantity
 function increment() {
-  if (localStorage.getItem("quantity") !== null) {
-    const inp = this.previousElementSibling;
-    if (inp.value < 20) inp.value = Number(inp.value) + 1;
-    if (inp.value > 0) {
-      inp.previousElementSibling.removeAttribute("disabled");
-    }
-    let id = localStorage.getItem("id");
-    let price = localStorage.getItem("price");
-    price = parseInt(price);
-    if (cardModal !== null) {
-      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-      var input = cardModal.querySelector(".quantity");
-    } else {
-      price = parseInt(price);
-      var modalQuantityPrice =
-        this.parentElement.nextElementSibling.nextElementSibling.querySelector(
-          ".quantity_price"
-        );
-      var input = this.previousElementSibling;
-      console.log(input);
-    }
-    let inputQuantity = inp.value;
-    let increaseQuantityPrice = inp.value * price;
+    if (localStorage.getItem("quantity") !== null) {
+        const inp = this.previousElementSibling;
+        if (inp.value < 20) inp.value = Number(inp.value) + 1;
+        if (inp.value > 0) {
+            inp.previousElementSibling.removeAttribute("disabled");
+        }
+        let id = localStorage.getItem("id");
+        let price = localStorage.getItem("price");
+        price = parseInt(price);
+        if (cardModal !== null) {
+            var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+            var input = cardModal.querySelector(".quantity");
+        } else {
+            price = parseInt(price);
+            var modalQuantityPrice =
+                this.parentElement.nextElementSibling.nextElementSibling.querySelector(
+                    ".quantity_price"
+                );
+            var input = this.previousElementSibling;
+            console.log(input);
+        }
+        let inputQuantity = inp.value;
+        let increaseQuantityPrice = inp.value * price;
 
-    if (cartItem !== null) {
-      let tableId = this.closest("section").id;
+        if (cartItem !== null) {
+            let tableId = this.closest("section").id;
 
             let itemIndex = formDataArry.filter((el) => el.id == tableId);
             if (itemIndex) {
@@ -2501,37 +2501,37 @@ function increment() {
 
         localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
 
-    localStorage.setItem(
-      "quantity-price",
-      (modalQuantityPrice.textContent = increaseQuantityPrice)
-    );
-    localStorage.setItem("quantity", (input.textContent = inputQuantity));
-  } else {
-    const inp = this.previousElementSibling;
-    if (inp.value < 20) inp.value = Number(inp.value) + 1;
-    if (inp.value > 0) {
-      inp.previousElementSibling.removeAttribute("disabled");
-    }
-    for (i = 0; i < formDataArry.length; i++) {
-      price = parseInt(formDataArry[i].price);
-      quantityPrice = parseInt(formDataArry[i].quantityPrice);
-      quantity = parseInt(formDataArry[i].quantity);
-    }
-    if (cardModal !== null) {
-      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-      var input = cardModal.querySelector(".quantity");
-    } else {
-      price = parseInt(price);
-      var modalQuantityPrice =
-        this.parentElement.nextElementSibling.nextElementSibling.querySelector(
-          ".quantity_price"
+        localStorage.setItem(
+            "quantity-price",
+            (modalQuantityPrice.textContent = increaseQuantityPrice)
         );
-      var input = this.previousElementSibling;
-    }
-    let inputQuantity = inp.value;
+        localStorage.setItem("quantity", (input.textContent = inputQuantity));
+    } else {
+        const inp = this.previousElementSibling;
+        if (inp.value < 20) inp.value = Number(inp.value) + 1;
+        if (inp.value > 0) {
+            inp.previousElementSibling.removeAttribute("disabled");
+        }
+        for (i = 0; i < formDataArry.length; i++) {
+            price = parseInt(formDataArry[i].price);
+            quantityPrice = parseInt(formDataArry[i].quantityPrice);
+            quantity = parseInt(formDataArry[i].quantity);
+        }
+        if (cardModal !== null) {
+            var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+            var input = cardModal.querySelector(".quantity");
+        } else {
+            price = parseInt(price);
+            var modalQuantityPrice =
+                this.parentElement.nextElementSibling.nextElementSibling.querySelector(
+                    ".quantity_price"
+                );
+            var input = this.previousElementSibling;
+        }
+        let inputQuantity = inp.value;
 
-    let tableId = this.closest("section").id;
-    console.log(tableId);
+        let tableId = this.closest("section").id;
+        console.log(tableId);
 
         let itemIndex = formDataArry.filter((el) => el.id == tableId);
         if (itemIndex) {
@@ -2552,121 +2552,121 @@ function increment() {
 // The "this" keyword might cause problems, we can't alway be certain its pointing to the correct button in the correct page and may cause unintended issues with decrementingh items from the cart
 //In order to ensure the button pressed is the one the user really clicked on, instead of just having it look for the closest matching class or id, assign a variable to the event.target along with replacing the "this" keywords since event.target is handling that for us now.
 function decrement(event) {
-  const decBtn = event.target.closest(".decrease");
-  console.log(decBtn);
-  if (localStorage.getItem("quantity") !== null) {
-    const inp = decBtn.nextElementSibling;
-    if (inp.value > 0) {
-      inp.value = Number(inp.value) - 1;
-      console.log(inp.value);
-    }
-    if (inp.value <= 0) {
-      decBtn.setAttribute("disabled", "disabled");
-    }
-    let id = localStorage.getItem("id");
-    let quantityPrice = localStorage.getItem("quantity-price");
-    let price = localStorage.getItem("price");
-    quantityPrice = parseInt(quantityPrice);
-    price = parseInt(price);
-    if (cardModal !== null) {
-      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-      var input = cardModal.querySelector(".quantity");
-    } else {
-      price = parseInt(price);
-      var modalQuantityPrice =
-        decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
-          ".quantity_price"
-        );
-      var input = this.nextElementSibling;
-    }
-    let inputQuantity = inp.value;
-    let decreaseQuantityPrice = quantityPrice - price;
+    const decBtn = event.target.closest(".decrease");
+    console.log(decBtn);
+    if (localStorage.getItem("quantity") !== null) {
+        const inp = decBtn.nextElementSibling;
+        if (inp.value > 0) {
+            inp.value = Number(inp.value) - 1;
+            console.log(inp.value);
+        }
+        if (inp.value <= 0) {
+            decBtn.setAttribute("disabled", "disabled");
+        }
+        let id = localStorage.getItem("id");
+        let quantityPrice = localStorage.getItem("quantity-price");
+        let price = localStorage.getItem("price");
+        quantityPrice = parseInt(quantityPrice);
+        price = parseInt(price);
+        if (cardModal !== null) {
+            var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+            var input = cardModal.querySelector(".quantity");
+        } else {
+            price = parseInt(price);
+            var modalQuantityPrice =
+                decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
+                    ".quantity_price"
+                );
+            var input = this.nextElementSibling;
+        }
+        let inputQuantity = inp.value;
+        let decreaseQuantityPrice = quantityPrice - price;
 
-    if (cartItem !== null) {
-      let tableId = decBtn.closest("section").id;
+        if (cartItem !== null) {
+            let tableId = decBtn.closest("section").id;
 
-      let itemIndex = formDataArry.filter((el) => el.id == tableId);
-      if (itemIndex) {
-        decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
-        itemIndex[0].quantityPrice = decreaseQuantityPrice;
-        modalQuantityPrice.innerHTML = decreaseQuantityPrice;
-        itemIndex[0].quantity = inputQuantity;
-        input.value = inputQuantity;
-      } else {
-        null;
-      }
-    }
+            let itemIndex = formDataArry.filter((el) => el.id == tableId);
+            if (itemIndex) {
+                decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
+                itemIndex[0].quantityPrice = decreaseQuantityPrice;
+                modalQuantityPrice.innerHTML = decreaseQuantityPrice;
+                itemIndex[0].quantity = inputQuantity;
+                input.value = inputQuantity;
+            } else {
+                null;
+            }
+        }
 
         localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
 
-    localStorage.setItem(
-      "quantity-price",
-      (modalQuantityPrice.textContent = decreaseQuantityPrice)
-    );
-    localStorage.setItem("quantity", (input.textContent = inputQuantity));
-  } else {
-    const inp = decBtn.nextElementSibling;
-    console.log(inp);
-    if (inp.value > 0) {
-      inp.value = Number(inp.value) - 1;
-    }
-    if (inp.value <= 0) {
-      decBtn.setAttribute("disabled", "disabled");
-    }
-    for (i = 0; i < formDataArry.length; i++) {
-      price = parseInt(formDataArry[i].price);
-      quantityPrice = parseInt(formDataArry[i].quantityPrice);
-      quantity = parseInt(formDataArry[i].quantity);
-    }
-    if (cardModal !== null) {
-      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-      var input = cardModal.querySelector(".quantity");
-    } else {
-      price = parseInt(price);
-      var modalQuantityPrice =
-        decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
-          ".quantity_price"
+        localStorage.setItem(
+            "quantity-price",
+            (modalQuantityPrice.textContent = decreaseQuantityPrice)
         );
-      var input = this.nextElementSibling;
-    }
-    let inputQuantity = inp.value;
+        localStorage.setItem("quantity", (input.textContent = inputQuantity));
+    } else {
+        const inp = decBtn.nextElementSibling;
+        console.log(inp);
+        if (inp.value > 0) {
+            inp.value = Number(inp.value) - 1;
+        }
+        if (inp.value <= 0) {
+            decBtn.setAttribute("disabled", "disabled");
+        }
+        for (i = 0; i < formDataArry.length; i++) {
+            price = parseInt(formDataArry[i].price);
+            quantityPrice = parseInt(formDataArry[i].quantityPrice);
+            quantity = parseInt(formDataArry[i].quantity);
+        }
+        if (cardModal !== null) {
+            var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+            var input = cardModal.querySelector(".quantity");
+        } else {
+            price = parseInt(price);
+            var modalQuantityPrice =
+                decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
+                    ".quantity_price"
+                );
+            var input = this.nextElementSibling;
+        }
+        let inputQuantity = inp.value;
 
-    let tableId = decBtn.closest("section").id;
-    console.log(tableId);
+        let tableId = decBtn.closest("section").id;
+        console.log(tableId);
 
-    let itemIndex = formDataArry.filter((el) => el.id == tableId);
-    if (itemIndex) {
-      let decreaseQuantityPrice =
-        itemIndex[0].quantityPrice - itemIndex[0].price;
-      itemIndex[0].quantityPrice = decreaseQuantityPrice;
-      console.log(modalQuantityPrice);
-      modalQuantityPrice.innerHTML = decreaseQuantityPrice;
-      itemIndex[0].quantity = inputQuantity;
-      input.value = inputQuantity;
+        let itemIndex = formDataArry.filter((el) => el.id == tableId);
+        if (itemIndex) {
+            let decreaseQuantityPrice =
+                itemIndex[0].quantityPrice - itemIndex[0].price;
+            itemIndex[0].quantityPrice = decreaseQuantityPrice;
+            console.log(modalQuantityPrice);
+            modalQuantityPrice.innerHTML = decreaseQuantityPrice;
+            itemIndex[0].quantity = inputQuantity;
+            input.value = inputQuantity;
+        }
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
     }
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-  }
-  totalSum();
-  updateFields();
-  totalQuantity();
+    totalSum();
+    updateFields();
+    totalQuantity();
 }
 
 //Remove item from cart
 function removeItem(id) {
-  let temp = formDataArry.filter((item) => item.id != id);
-  console.log(temp);
-  localStorage.setItem("formDataArry", JSON.stringify(temp));
-  //set item back into storage
-  displayNewCart();
-  totalQuantity();
-  totalSum();
-  updateFields();
-  //Reattach addEventListeners
-  cartBtns();
-  if (temp.length == 0) {
-    localStorage.clear();
+    let temp = formDataArry.filter((item) => item.id != id);
+    console.log(temp);
+    localStorage.setItem("formDataArry", JSON.stringify(temp));
+    //set item back into storage
     displayNewCart();
-  }
+    totalQuantity();
+    totalSum();
+    updateFields();
+    //Reattach addEventListeners
+    cartBtns();
+    if (temp.length == 0) {
+        localStorage.clear();
+        displayNewCart();
+    }
 }
 
 let company_button = document.getElementById("company_button");
@@ -2789,84 +2789,84 @@ if (contactForm !== null) {
 let confirmButton = document.getElementById("confirmButton");
 if (confirmButton !== null) {
     confirmButton.addEventListener("click", function () {
-  var postcode = document.getElementById("postcodeInput").value;
-  if (postcode === "") {
-    document.getElementById("confirmationMessage").style.display = "none";
-    document.getElementById("wrong-message").style.display = "none";
-    document.getElementById("wrong-message2").style.display = "block";
-    document.getElementById("no-place").style.display = "none";
-  } else if (postcode) {
-    document.getElementById("confirmationMessage").style.display = "block";
-    document.getElementById("wrong-message").style.display = "none";
-    document.getElementById("wrong-message2").style.display = "none";
-    document.getElementById("no-place").style.display = "none";
-    localStorage.setItem("Postcode", postcode);
-    console.log(localStorage.getItem("Postcode"));
-  } else {
-    document.getElementById("wrong-message").style.display = "block";
-    document.getElementById("confirmationMessage").style.display = "none";
-    document.getElementById("wrong-message2").style.display = "none";
-    document.getElementById("no-place").style.display = "none";
-  }
-});
+        var postcode = document.getElementById("postcodeInput").value;
+        if (postcode === "") {
+            document.getElementById("confirmationMessage").style.display = "none";
+            document.getElementById("wrong-message").style.display = "none";
+            document.getElementById("wrong-message2").style.display = "block";
+            document.getElementById("no-place").style.display = "none";
+        } else if (postcode) {
+            document.getElementById("confirmationMessage").style.display = "block";
+            document.getElementById("wrong-message").style.display = "none";
+            document.getElementById("wrong-message2").style.display = "none";
+            document.getElementById("no-place").style.display = "none";
+            localStorage.setItem("Postcode", postcode);
+            console.log(localStorage.getItem("Postcode"));
+        } else {
+            document.getElementById("wrong-message").style.display = "block";
+            document.getElementById("confirmationMessage").style.display = "none";
+            document.getElementById("wrong-message2").style.display = "none";
+            document.getElementById("no-place").style.display = "none";
+        }
+    });
 }
 let findLocation = document
     .getElementById("findLocationButton")
 
 if (findLocation !== null) {
     findLocation.addEventListener("click", function () {
-    var postcode = document.getElementById("postcodeInput").value;
-    if (postcode === "") {
-      document.getElementById("confirmationMessage").style.display = "none";
-      document.getElementById("wrong-message").style.display = "none";
-      document.getElementById("wrong-message2").style.display = "block";
-      document.getElementById("no-place").style.display = "none";
-    } else if (postcode && postcode.length === 5 && /^[0-9]+$/) {
-      fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=API_KEY`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.status === "OK") {
-            var address = data.results[0].formatted_address;
-            alert("Platsen hittades: " + address);
-          } else {
-            document.getElementById("no-place").style.display = "block";
+        var postcode = document.getElementById("postcodeInput").value;
+        if (postcode === "") {
+            document.getElementById("confirmationMessage").style.display = "none";
             document.getElementById("wrong-message").style.display = "none";
-            document.getElementById("confirmationMessage").style.display =
-              "none";
+            document.getElementById("wrong-message2").style.display = "block";
+            document.getElementById("no-place").style.display = "none";
+        } else if (postcode && postcode.length === 5 && /^[0-9]+$/) {
+            fetch(
+                `https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=API_KEY`
+            )
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.status === "OK") {
+                        var address = data.results[0].formatted_address;
+                        alert("Platsen hittades: " + address);
+                    } else {
+                        document.getElementById("no-place").style.display = "block";
+                        document.getElementById("wrong-message").style.display = "none";
+                        document.getElementById("confirmationMessage").style.display =
+                            "none";
+                        document.getElementById("wrong-message2").style.display = "none";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("Ett fel uppstod vid sökningen.");
+                });
+        } else {
             document.getElementById("wrong-message2").style.display = "none";
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("Ett fel uppstod vid sökningen.");
-        });
-    } else {
-      document.getElementById("wrong-message2").style.display = "none";
-      document.getElementById("wrong-message").style.display = "block";
-      document.getElementById("confirmationMessage").style.display = "none";
-      document.getElementById("no-place").style.display = "none";
-    }
-  });
+            document.getElementById("wrong-message").style.display = "block";
+            document.getElementById("confirmationMessage").style.display = "none";
+            document.getElementById("no-place").style.display = "none";
+        }
+    });
 }
 //Count quantity and display in the popup cart icon
 function totalQuantity() {
-  let count = document.getElementById("count");
-  let totalQuantity = 0;
-  if (count !== null) {
-    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (formDataArry !== null) {
-      for (let i = 0; i < formDataArry.length; i++) {
-        totalQuantity += parseInt(formDataArry[i].quantity);
-      }
-      count.innerHTML = totalQuantity;
-      localStorage.setItem("totalQuantity", totalQuantity);
-    } else {
-      count.innerHTML = totalQuantity;
-      formDataArry = [];
+    let count = document.getElementById("count");
+    let totalQuantity = 0;
+    if (count !== null) {
+        formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+        if (formDataArry !== null) {
+            for (let i = 0; i < formDataArry.length; i++) {
+                totalQuantity += parseInt(formDataArry[i].quantity);
+            }
+            count.innerHTML = totalQuantity;
+            localStorage.setItem("totalQuantity", totalQuantity);
+        } else {
+            count.innerHTML = totalQuantity;
+            formDataArry = [];
+        }
     }
-  }
 }
 
 // Calculate and display total sum in the cart total
@@ -2908,33 +2908,33 @@ function totalQuantity() {
 
 // Update fiels title,quantity,quantiyPrice to send to email
 function updateFields() {
-  let dishName = document.getElementById("dishName");
-  let dishQuantity = document.getElementById("dishQuantity");
-  let dishQuantityPrice = document.getElementById("dishQuantityPrice");
-  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-  let mergedTitleArray = [];
-  let mergedQuantityArray = [];
-  let mergedQuantityPriceArray = [];
-  if (formDataArry) {
-    for (i = 0; i < formDataArry.length; i++) {
-      let titleArray = formDataArry[i].title;
-      let quantityArray = formDataArry[i].quantity;
-      let quantityPriceArray = formDataArry[i].quantityPrice;
-      mergedTitleArray.push(JSON.stringify(titleArray));
-      mergedQuantityArray.push(JSON.stringify(quantityArray));
-      mergedQuantityPriceArray.push(JSON.stringify(quantityPriceArray + "kr"));
+    let dishName = document.getElementById("dishName");
+    let dishQuantity = document.getElementById("dishQuantity");
+    let dishQuantityPrice = document.getElementById("dishQuantityPrice");
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    let mergedTitleArray = [];
+    let mergedQuantityArray = [];
+    let mergedQuantityPriceArray = [];
+    if (formDataArry) {
+        for (i = 0; i < formDataArry.length; i++) {
+            let titleArray = formDataArry[i].title;
+            let quantityArray = formDataArry[i].quantity;
+            let quantityPriceArray = formDataArry[i].quantityPrice;
+            mergedTitleArray.push(JSON.stringify(titleArray));
+            mergedQuantityArray.push(JSON.stringify(quantityArray));
+            mergedQuantityPriceArray.push(JSON.stringify(quantityPriceArray + "kr"));
+        }
+        let titleValue = mergedTitleArray.join(", ");
+        let quantityValue = mergedQuantityArray.join(", ");
+        let quantityPriceValue = mergedQuantityPriceArray.join(", ");
+        if (dishName && dishQuantity && dishQuantityPrice) {
+            dishName.value = titleValue;
+            dishQuantity.value = quantityValue;
+            dishQuantityPrice.value = quantityPriceValue;
+        } else {
+            null;
+        }
     }
-    let titleValue = mergedTitleArray.join(", ");
-    let quantityValue = mergedQuantityArray.join(", ");
-    let quantityPriceValue = mergedQuantityPriceArray.join(", ");
-    if (dishName && dishQuantity && dishQuantityPrice) {
-      dishName.value = titleValue;
-      dishQuantity.value = quantityValue;
-      dishQuantityPrice.value = quantityPriceValue;
-    } else {
-      null;
-    }
-  }
 }
 
 //Function for carousel slider on front page
@@ -3077,42 +3077,42 @@ if (sendCartInfo !== null) {
 }
 
 var swiper1 = new Swiper(".slide-content", {
-  slidesPerView: 3,
-  spaceBetween: 25,
-  loop: true,
-  centerSlide: "true",
-  fade: "true",
-  grabCursor: "true",
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-    dynamicBullets: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
+    slidesPerView: 3,
+    spaceBetween: 25,
+    loop: true,
+    centerSlide: "true",
+    fade: "true",
+    grabCursor: "true",
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        dynamicBullets: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
 
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        576: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        992: {
+            slidesPerView: 2,
+        },
+        1120: {
+            slidesPerView: 3,
+        },
+        1400: {
+            slidesPerView: 3,
+        },
     },
-    576: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    992: {
-      slidesPerView: 2,
-    },
-    1120: {
-      slidesPerView: 3,
-    },
-    1400: {
-      slidesPerView: 3,
-    },
-  },
 });
 
 var swiper2 = new Swiper(".slide-content2", {
@@ -3163,7 +3163,7 @@ const submitCartForm = async (event) => {
     const email = document.querySelector('input[placeholder="Ange mejladress"]').value;
     const phone = document.querySelector('input[placeholder="Ange Telefonnummer"]').value;
     const address = document.querySelector('input[placeholder="Ange gatuadress"]').value;
-     const postalCode = document.querySelector('input[placeholder="Ange postnummer"]').value;
+    const postalCode = document.querySelector('input[placeholder="Ange postnummer"]').value;
     const city = document.querySelector('input[placeholder="Ange ort"]').value;
     //const message = document.querySelector('textarea[name="message"]').value;
     //const dishName = document.querySelector('input[name="dishName"]').value;
@@ -3208,7 +3208,7 @@ const submitCartForm = async (event) => {
     //}
 
 
-     // Validering av användarinmatning
+    // Validering av användarinmatning
     if (!firstName || !lastName || !address || !postalCode || !city || !phone || !email) {
         alert("Vänligen fyll i alla fält.");
         return;
@@ -3227,7 +3227,7 @@ const submitCartForm = async (event) => {
         customerEmail: email,
         customerPhone: phone,
         customerAddress: address,
-         customerCity: city,
+        customerCity: city,
         customerPostalCode: postalCode,
         //message: message,
         totalAmount: totalSum,
@@ -3269,10 +3269,64 @@ const submitCartForm = async (event) => {
             console.error("Payment error: ", result);
             alert("Tyvärr kunde vi inte bearbeta din betalning.");
         }
+
+        async function handlePaymentSuccess() {
+            const urlParams = new URLSearchParams(windows.locatio.search);
+            const paymentToken = urlParams.get('paymentToken');
+
+            if (!paymentToken) {
+                console.error("PAyment token missing from url")
+                return;
+            }
+            const paymentConfirmation = {
+                paymentToken: paymentToken, // Använd den token eller ID du har fått från betalningstjänsten
+                userId: userId, // Hämta användar-ID från din applikation
+                totalAmount: sum, // Hämta totalbeloppet från din applikation
+                paymentMethod: paymentMethod, // Hämta betalningsmetod från din applikation
+                customerAddress: adress,
+                customerCity: city,
+                customerPostalCode: postalCode,
+                customerCountry: country,
+                products: [
+                    {
+                        Name: dishName,
+                        Quantity: dishQuantity,
+                        Price: total
+                    },
+                ]
+            };
+
+            try {
+                // Skicka betalningsbekräftelsen till din backend
+                const response = await fetch("https://localhost:7216/orders/details", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(paymentConfirmation),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log("Order successfully created:", result);
+                    alert("Din order har skapats!");
+                } else {
+                    console.error("Error creating order:", await response.text());
+                    alert("Det gick inte att skapa din order.");
+                }
+            } catch (error) {
+                console.error("Network or other error:", error);
+                alert("Ett fel uppstod vid skapande av order. Försök igen.");
+            }
+        }
+
+
     } catch (error) {
         console.error("Network or other error: ", error);
         alert("Ett fel uppstod vid betalningen. Försök igen.");
     }
+    // Kör funktionen när sidan laddas eller användaren omdirigeras
+    handlePaymentSuccess();
 };
 
 
