@@ -3320,11 +3320,6 @@ var datesSwipes = new Swiper(".dates_swipe", {
     },
 });
 
-//const submitCartForm = async (event) => {
-//    event.preventDefault();
-
-//};
-
 async function redirectToStripeCheckout() {
     try {
         // Retrieve cart information from local storage
@@ -3368,9 +3363,11 @@ async function redirectToStripeCheckout() {
         if (response.ok) {
             // Redirect to the Stripe checkout session URL
             window.location.href = result.checkoutUrl;
+            localStorage.clear();
         } else {
             console.error('Error creating Stripe session', result);
         }
+
     } catch (error) {
         console.error('Error:', error);
     }
