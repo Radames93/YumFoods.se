@@ -3354,11 +3354,15 @@ async function redirectToStripeCheckout() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                successPaymentUrl: "http://din-webbplats.com/payment-success",
-                cancelPaymentUrl: "http://localhost:7216/404.html",
+                successPaymentUrl: "https://localhost:7023/PaymentSuccess.html",
+                cancelPaymentUrl: "https://localhost:7023/PaymentCancel.html",
                 products: products  // Send the products array
             })
         });
+
+        //if (successfulPaymentUrl == true) {
+        //    const response = await fetch("http/localhost:7216/OrderAndDetail")
+        //}
 
         const result = await response.json();
         if (response.ok) {
