@@ -1797,7 +1797,8 @@ if (cardModal !== null) {
     localStorage.setItem("quantity", input);
     localStorage.setItem("id", id);
     localStorage.setItem("title", (modalTitle.textContent = title));
-    localStorage.setItem("price", (modalPrice.innerHTML = price));
+      localStorage.setItem("price", (modalPrice.innerHTML = price));
+
     localStorage.setItem("img", (modalImg.src = img));
     localStorage.setItem(
       "quantity-price",
@@ -3135,6 +3136,7 @@ const sendCartInfo = document.getElementById("cart-order-form");
 const cartButton = document.getElementById("cart-button");
 const cartForm = document.getElementById("cart-form");
 const newResult = document.getElementById("cart-result");
+
 const sum = localStorage.getItem("sum");
 let sumInput = document.getElementById("sum");
 if (sumInput !== null) {
@@ -3318,95 +3320,58 @@ var datesSwipes = new Swiper(".dates_swipe", {
     },
 });
 
-const submitCartForm = async (event) => {
-  event.preventDefault();
+async function redirectToStripeCheckout() {
+    try {
+        // Retrieve cart information from local storage
+        let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+        if (!formDataArry || formDataArry.length === 0) {
+            console.error("No products in the cart.");
+            return;
+        }
 
-  // Retrieve values from the form
-  const name = document.querySelector('input[name="name"]').value;
-  const email = document.querySelector('input[name="email"]').value;
-  const phone = document.querySelector('input[name="phone"]').value;
-  const address = document.querySelector('input[name="adress"]').value;
-  const message = document.querySelector('textarea[name="message"]').value;
-  const dishName = document.querySelector('input[name="dishName"]').value;
-  let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
-  dishQuantity = dishQuantity.replace(/['"]/g, "");
+        let products = formDataArry.map(item => {
+            // Retrieve the unit price and total price for the selected quantity
+            let unitPrice = item.price;  // Price per item
+            let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
 
-  // Calculate total quantity
-  //const totalQuantity = parseInt(dishQuantity, 10);
+            return {
+                name: item.title,               // Product name (title)
+                quantity: item.quantity,        // Quantity of the product
+                price: unitPrice,               // Unit price for the product
+                total: totalQuantityPrice       // Total price for the quantity
+            };
+        });
 
-  const totalQuantity = dishQuantity
-    .split(",")
-    .map((qty) => parseInt(qty.trim(), 10)) // Konvertera varje del till ett heltal
-    .reduce((sum, num) => sum + num, 0);
+        // Create a POST request to your backend endpoint to create the Stripe checkout session
+        const response = await fetch("https://localhost:7216/payments", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                successPaymentUrl: "https://localhost:7023/PaymentSuccess.html",
+                cancelPaymentUrl: "https://localhost:7023/PaymentCancel.html",
+                products: products  // Send the products array
+            })
+        });
 
-  if (isNaN(totalQuantity) || totalQuantity <= 0) {
-    alert("vänligen ange en giltig numerisk mängd.");
-    return;
-  }
-  const sum = parseFloat(document.querySelector('input[name="total"]').value);
-  if (sum <= 0 || isNaN(sum)) {
-    alert("Vänligen ange en giltig totalsumma.");
-    return;
-  }
+        //if (successfulPaymentUrl == true) {
+        //    const response = await fetch("http/localhost:7216/OrderAndDetail")
+        //}
 
-  // Create PaymentRequest object
-  const paymentRequest = {
-    products: [
-      {
-        Name: dishName,
-        Quantity: totalQuantity,
-        Price: sum,
-      },
-    ],
-    customerName: name,
-    customerEmail: email,
-    customerPhone: phone,
-    customerAddress: address,
-    message: message,
-    totalAmount: sum,
-    paymentMethodTypes: ["card", "klarna", "paypal"],
-    cancelPaymentUrl: "http://localhost:7216/404.html",
-    successPaymentUrl: "http://din-webbplats.com/payment-success",
-  };
+        const result = await response.json();
+        if (response.ok) {
+            // Redirect to the Stripe checkout session URL
+            window.location.href = result.checkoutUrl;
+            localStorage.clear();
+        } else {
+            console.error('Error creating Stripe session', result);
+        }
 
-  try {
-    // Make a POST request to the backend API
-    const response = await fetch("https://localhost:7216/payments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(paymentRequest),
-    });
-
-    // Check if the response has JSON content
-    const contentType = response.headers.get("Content-Type");
-    let result;
-
-    if (contentType && contentType.includes("application/json")) {
-      result = await response.json();
-    } else {
-      result = await response.text();
-      console.error("Unexpected response format: ", result);
-      throw new Error("Response is not in JSON format.");
+    } catch (error) {
+        console.error('Error:', error);
     }
-
-    if (response.ok) {
-      // Redirect the user to Stripe Checkout
-      if (result.checkoutUrl) {
-        window.location.href = result.checkoutUrl;
-      } else {
-        throw new Error("Checkout URL missing in the response.");
-      }
-    } else {
-      console.error("Payment error: ", result);
-      alert("Tyvärr kunde vi inte bearbeta din betalning.");
-    }
-  } catch (error) {
-    console.error("Network or other error: ", error);
-    alert("Ett fel uppstod vid betalningen. Försök igen.");
-  }
-};
+}
 
 function Footer() {
   let footer = document.getElementById("footer");
