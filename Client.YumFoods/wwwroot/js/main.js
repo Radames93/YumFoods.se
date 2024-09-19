@@ -1797,7 +1797,8 @@ if (cardModal !== null) {
     localStorage.setItem("quantity", input);
     localStorage.setItem("id", id);
     localStorage.setItem("title", (modalTitle.textContent = title));
-    localStorage.setItem("price", (modalPrice.innerHTML = price));
+      localStorage.setItem("price", (modalPrice.innerHTML = price));
+
     localStorage.setItem("img", (modalImg.src = img));
     localStorage.setItem(
       "quantity-price",
@@ -3135,6 +3136,7 @@ const sendCartInfo = document.getElementById("cart-order-form");
 const cartButton = document.getElementById("cart-button");
 const cartForm = document.getElementById("cart-form");
 const newResult = document.getElementById("cart-result");
+
 const sum = localStorage.getItem("sum");
 let sumInput = document.getElementById("sum");
 if (sumInput !== null) {
@@ -3324,46 +3326,50 @@ var datesSwipes = new Swiper(".dates_swipe", {
 //};
 
 async function redirectToStripeCheckout() {
-
-    if (localStorage.getItem("cart-items") !== null)
-    {
-        let dishQuantity = localStorage("quantity");
-        let dishName = localStorage("title");
-        let sum = localStorage("sum");
-
-        try {
-            // Create a POST request to your backend endpoint to create the Stripe checkout session
-            const response = await fetch("https://localhost:7216/payments", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    successPaymentUrl: "http://din-webbplats.com/payment-success",
-                    cancelPaymentUrl: "http://localhost:7216/404.html",
-                    products: [
-                        {
-                            quantity: dishQuantity,
-                            name: dishName,
-                            price: sum,
-                        }
-                        // Add more products here if needed
-                    ]
-                })
-            });
-
-            const result = await response.json();
-            if (response.ok) {
-                // Redirect to the Stripe checkout session URL
-                window.location.href = result.checkoutUrl;
-            } else {
-                console.error('Error creating Stripe session', result);
-            }
-        } catch (error) {
-            console.error('Error:', error);
+    try {
+        // Retrieve cart information from local storage
+        let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+        if (!formDataArry || formDataArry.length === 0) {
+            console.error("No products in the cart.");
+            return;
         }
+
+        let products = formDataArry.map(item => {
+            // Retrieve the unit price and total price for the selected quantity
+            let unitPrice = item.price;  // Price per item
+            let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
+
+            return {
+                name: item.title,               // Product name (title)
+                quantity: item.quantity,        // Quantity of the product
+                price: unitPrice,               // Unit price for the product
+                total: totalQuantityPrice       // Total price for the quantity
+            };
+        });
+
+        // Create a POST request to your backend endpoint to create the Stripe checkout session
+        const response = await fetch("https://localhost:7216/payments", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                successPaymentUrl: "http://din-webbplats.com/payment-success",
+                cancelPaymentUrl: "http://localhost:7216/404.html",
+                products: products  // Send the products array
+            })
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            // Redirect to the Stripe checkout session URL
+            window.location.href = result.checkoutUrl;
+        } else {
+            console.error('Error creating Stripe session', result);
+        }
+    } catch (error) {
+        console.error('Error:', error);
     }
-        
 }
 
 function Footer() {
