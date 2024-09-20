@@ -57,6 +57,7 @@
     <_ContentIncludedByDefault Remove="wwwroot\js\jquery.nice-select.min.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\jquery.waypoints.min.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\main.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Payment_success.html" />
   </ItemGroup>
 
   <ItemGroup>

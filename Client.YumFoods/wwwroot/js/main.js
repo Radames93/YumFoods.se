@@ -3349,8 +3349,8 @@ async function redirectToStripeCheckout() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                successPaymentUrl: "https://localhost:7023/PaymentSuccess.html",
-                cancelPaymentUrl: "https://localhost:7023/PaymentCancel.html",
+                successPaymentUrl: "https://localhost:7023/Payment_success.html",
+                cancelPaymentUrl: "https://localhost:7023/Payment_cancel.html",
                 products: products  // Send the products array
             })
         });
