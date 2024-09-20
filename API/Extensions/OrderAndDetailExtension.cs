@@ -20,8 +20,7 @@ namespace API.Extensions
         {
             var order = new Order
             {
-                Id = request.Order.Id,
-                UserId = request.Order.UserId,
+                //UserId = request.Order.UserId,
                 OrderDate = DateTime.UtcNow,
                 DeliveryDate = request.Order.DeliveryDate,
                 Total = request.Order.Total,
@@ -40,6 +39,7 @@ namespace API.Extensions
 
             var orderDetail = new OrderDetail
             {
+                Id = order.Id,
                 OrderId = order.Id,
                 DeliveryAdress = request.OrderDetail.DeliveryAdress,
                 DeliveryCity = request.OrderDetail.DeliveryCity,

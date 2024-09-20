@@ -51,6 +51,7 @@ namespace DataAccess.Repositories
                 DeliveryDate = newOrder.DeliveryDate,
                 Products = newOrder.Products,
                 Quantity = newOrder.Quantity,
+                PaymentMethod = newOrder.PaymentMethod,
                 Total = newOrder.Total
             };
 
