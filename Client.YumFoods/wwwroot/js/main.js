@@ -520,9 +520,7 @@ if (continueButton !== null) {
 
     if (!document.getElementById("private-form").classList.contains("hidden")) {
       if (validatePrivateForm()) {
-        document
-          .querySelector(".CartPayDeliver")
-          .scrollIntoView({ behavior: "smooth" });
+          window.location.href = "payment.html"
       } else {
         alert(
           "Vänligen fyll i alla obligatoriska fält för företagsformuläret."
@@ -536,10 +534,7 @@ if (continueButton2 !== null) {
     event.preventDefault();
     if (!document.getElementById("hidden-form").classList.contains("hidden")) {
       if (validateCompanyForm()) {
-        console.log("runs!");
-        document
-          .querySelector(".CartPayDeliver")
-          .scrollIntoView({ behavior: "smooth" });
+          window.location.href = "payment.html"
       } else {
         alert(
           "Vänligen fyll i alla obligatoriska fält för företagsformuläret."
