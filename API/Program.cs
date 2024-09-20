@@ -19,7 +19,8 @@ builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
 builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
 
-//C: \Users\gewer\OneDrive\Skrivbord
+//C: \Users\gewer\OneDrive\Skrivbor
+//d
 
 
 
