@@ -685,11 +685,11 @@ button {
 }
 
 /* leverans-company */
-.hidden{
+.hidden {
   display: none;
 }
 
-.orgination-company{
+.orgination-company {
   width: 92%;
 }
 
@@ -814,7 +814,7 @@ button {
   text-align: center;
   background-color: white;
   margin-bottom: 15px;
-  margin-top:10px;
+  margin-top: 10px;
   margin-left: 14px;
   border-radius: 10px;
   width: 125px;
@@ -4034,9 +4034,9 @@ footer {
   width: 100%;
 }
 
-.certificates_img{
-    width: 100px;
-    height: 100px;
+.certificates_img {
+  width: 100px;
+  height: 100px;
 }
 
 /*============================
@@ -5235,12 +5235,12 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 ========================*/
 
 .font-fix {
-    font-family: Poppins;
-    font-size: 16px;
+  font-family: Poppins;
+  font-size: 16px;
 }
 
 .font-title {
-    font-family: Poppins;
+  font-family: Poppins;
 }
 
 .cart_view_page_breadcrumb {
@@ -5283,27 +5283,27 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .perItem {
-    border-bottom: solid 1px #ced3d2;
-    padding-left: 0px;
-    padding-right: 0px;
+  border-bottom: solid 1px #ced3d2;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .radio_house {
-    margin-right: 40px;
+  margin-right: 40px;
 }
 
 .house_input {
-    padding: 0px;
-    border-color: #fc5633;
+  padding: 0px;
+  border-color: #fc5633;
 }
 
 .house_input:checked {
-     padding: 0px;
-     background-color: #fc5633;
+  padding: 0px;
+  background-color: #fc5633;
 }
 
- house_input + label {
-     margin-right: 40px;
+house_input + label {
+  margin-right: 40px;
 }
 
 .accordion-button.CartPayDeliver::after {
@@ -5313,8 +5313,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .accordion-button:focus .CartPayDeliver {
-    box-shadow: none !important;
-    border-color: rgba(0,0,0,.125);
+  box-shadow: none !important;
+  border-color: rgba(0, 0, 0, 0.125);
 }
 
 .accordion-button.CartPayDeliver:not(.collapsed)::after {
@@ -6629,11 +6629,32 @@ table tbody tr td span {
   margin-right: auto;
 }
 
+#cart-next-btn2 {
+  display: flex;
+  height: 48px;
+  padding: 16px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  border-radius: 6px;
+  border: 1px solid var(--Stroke, #dbdfd0);
+  color: white;
+  background: var(--Complementary-color, #dd3902);
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .imgContainer {
   width: 200px;
 }
 
 #cart-next-btn:hover {
+  border-radius: 6px;
+  background: #ed8b68;
+}
+
+#cart-next-btn2:hover {
   border-radius: 6px;
   background: #ed8b68;
 }
@@ -7742,7 +7763,7 @@ table tbody tr td span {
 }
 
 .tid-box {
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .calendar .date-box {
@@ -7762,21 +7783,21 @@ table tbody tr td span {
 
 .date-box:hover {
   cursor: pointer;
-  background: var(--Secondary-color, #FFDFCE);
+  background: var(--Secondary-color, #ffdfce);
 }
 
 .swiper-wrapper .swiper-slide {
-    padding-bottom: 0px;
+  padding-bottom: 0px;
 }
 
 .box-selected {
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-    background: var(--Secondary-color, #FFDFCE);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  background: var(--Secondary-color, #ffdfce);
 }
 
 .tid-box-selected {
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-    background: var(--Secondary-color, #FFDFCE);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  background: var(--Secondary-color, #ffdfce);
 }
 
 #leftArrow {
@@ -7911,10 +7932,10 @@ table tbody tr td span {
   border: 1px solid black;
 }
 
-    .customerBtn:focus {
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25)inset;
-        background: var(--Secondary-color, #ffdfce);
-    }
+.customerBtn:focus {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+  background: var(--Secondary-color, #ffdfce);
+}
 
 .nextAccord2 {
   display: flex;

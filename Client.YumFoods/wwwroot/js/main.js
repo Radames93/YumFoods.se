@@ -304,103 +304,103 @@ const chooseAntalbox = antalBoxes.forEach((box, index) => {
 
 //handle click on quantity buttons
 document.addEventListener("DOMContentLoaded", function () {
-    const quantitySpan = document.querySelector(".quantity-btn span");
-    const increaseButton = document.querySelector(
-        ".quantity-btn button:nth-of-type(2)"
-    );
-    const decreaseButton = document.querySelector(
-        ".quantity-btn button:nth-of-type(1)"
-    );
-    if (quantitySpan !== null) {
-        let currentQuantity = parseInt(quantitySpan.textContent, 10)
+  const quantitySpan = document.querySelector(".quantity-btn span");
+  const increaseButton = document.querySelector(
+    ".quantity-btn button:nth-of-type(2)"
+  );
+  const decreaseButton = document.querySelector(
+    ".quantity-btn button:nth-of-type(1)"
+  );
+  if (quantitySpan !== null) {
+    let currentQuantity = parseInt(quantitySpan.textContent, 10);
+  }
+
+  function updateQuantity(newQuantity) {
+    if (newQuantity >= 10 && newQuantity <= 20) {
+      currentQuantity = newQuantity;
+      quantitySpan.textContent = currentQuantity;
+      updateBox4Selection();
+
+      updateTotalPrice();
     }
+  }
 
-    function updateQuantity(newQuantity) {
-        if (newQuantity >= 10 && newQuantity <= 20) {
-            currentQuantity = newQuantity;
-            quantitySpan.textContent = currentQuantity;
-            updateBox4Selection();
-
-            updateTotalPrice();
-        }
-    }
-
-    // update quantity boxes
-    function updateBox4Selection() {
-        document.querySelectorAll(".box4").forEach((box) => {
-            const boxValue = parseInt(box.getAttribute("data-value"), 10);
-            if (boxValue === currentQuantity) {
-                box.classList.add("selected", "selected-border");
-            } else {
-                box.classList.remove("selected", "selected-border");
-            }
-        });
-        infoBox.style.display = "block";
-    }
-
-    // update categorie boxes
-    const boxes2 = document.querySelectorAll(".box2");
-    function updateBoxSelection(currentCategory) {
-        boxes2.forEach((box) => {
-            const boxValue = box.getAttribute("data-category");
-
-            if (boxValue === currentCategory) {
-                box.classList.add("selected");
-                box.classList.add("selected-border");
-            } else {
-                box.classList.remove("selected");
-                box.classList.remove("selected-border");
-            }
-        });
-    }
-    const boxes4 = document.querySelectorAll(".box4");
-    boxes2.forEach((box) => {
-        box.addEventListener("click", () => {
-            const currentCategory = box.getAttribute("data-category");
-            updateBoxSelection(currentCategory);
-            boxes4.forEach((box4) => {
-                box4.addEventListener("click", () => {
-                    const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
-                    updateBox4Selection(currentQuantity);
-                });
-            });
-        });
+  // update quantity boxes
+  function updateBox4Selection() {
+    document.querySelectorAll(".box4").forEach((box) => {
+      const boxValue = parseInt(box.getAttribute("data-value"), 10);
+      if (boxValue === currentQuantity) {
+        box.classList.add("selected", "selected-border");
+      } else {
+        box.classList.remove("selected", "selected-border");
+      }
     });
+    infoBox.style.display = "block";
+  }
 
-    // currentQuantity, increase , decrease
-    let rowBox = document.querySelectorAll(".row .box");
-    if (rowBox !== null) {
-        rowBox.forEach((box) => {
-            box.addEventListener("click", function () {
-                const boxValue = parseInt(this.textContent, 10);
-                updateQuantity(boxValue);
-            });
-        });
-    }
-    if (increaseButton !== null) {
-        increaseButton.addEventListener("click", function () {
-            updateQuantity(currentQuantity + 5);
-        });
-    }
+  // update categorie boxes
+  const boxes2 = document.querySelectorAll(".box2");
+  function updateBoxSelection(currentCategory) {
+    boxes2.forEach((box) => {
+      const boxValue = box.getAttribute("data-category");
 
-    if (decreaseButton !== null) {
-        decreaseButton.addEventListener("click", function () {
-            updateQuantity(currentQuantity - 5);
+      if (boxValue === currentCategory) {
+        box.classList.add("selected");
+        box.classList.add("selected-border");
+      } else {
+        box.classList.remove("selected");
+        box.classList.remove("selected-border");
+      }
+    });
+  }
+  const boxes4 = document.querySelectorAll(".box4");
+  boxes2.forEach((box) => {
+    box.addEventListener("click", () => {
+      const currentCategory = box.getAttribute("data-category");
+      updateBoxSelection(currentCategory);
+      boxes4.forEach((box4) => {
+        box4.addEventListener("click", () => {
+          const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
+          updateBox4Selection(currentQuantity);
         });
-    }
-})
+      });
+    });
+  });
+
+  // currentQuantity, increase , decrease
+  let rowBox = document.querySelectorAll(".row .box");
+  if (rowBox !== null) {
+    rowBox.forEach((box) => {
+      box.addEventListener("click", function () {
+        const boxValue = parseInt(this.textContent, 10);
+        updateQuantity(boxValue);
+      });
+    });
+  }
+  if (increaseButton !== null) {
+    increaseButton.addEventListener("click", function () {
+      updateQuantity(currentQuantity + 5);
+    });
+  }
+
+  if (decreaseButton !== null) {
+    decreaseButton.addEventListener("click", function () {
+      updateQuantity(currentQuantity - 5);
+    });
+  }
+});
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {
   const dishList = document.getElementById("dish-list");
   dishList.innerHTML = "";
   let htmlString = "";
 
-    yumProductsList.map((veg) => {
-      let veggie = veg.dietRef
-      if (veggie === "images/icons/vegetarian.png") {
-        const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
-        htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
-      }
+  yumProductsList.map((veg) => {
+    let veggie = veg.dietRef;
+    if (veggie === "images/icons/vegetarian.png") {
+      const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
+      htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
+    }
   });
   dishList.innerHTML += htmlString;
 };
@@ -447,63 +447,106 @@ function updateTotalPrice() {
 //   }
 // }
 // leverans page-company content
-  const privateBtn = document.getElementById("privateBtn");
-  const companyBtn = document.getElementById("companyBtn");
-  const privateForm = document.getElementById("privateForm");
-  const companyForm = document.getElementById("companyForm");
-  const continueButton = document.querySelector(".nextAccord1");
-if(companyBtn !== null){
-companyBtn.addEventListener("click",function(){
-  document.getElementById("hidden-form").classList.remove("hidden");
-  document.getElementById("private-form").classList.add("hidden");
-})
+const privateBtn = document.getElementById("privateBtn");
+const companyBtn = document.getElementById("companyBtn");
+const privateForm = document.getElementById("privateForm");
+const companyForm = document.getElementById("companyForm");
+const continueButton = document.getElementById("cart-next-btn");
+const continueButton2 = document.getElementById("cart-next-btn2");
+if (companyBtn !== null) {
+  companyBtn.addEventListener("click", function () {
+    document.getElementById("hidden-form").classList.remove("hidden");
+    document.getElementById("private-form").classList.add("hidden");
+  });
 }
 
-if(companyBtn !== null){
-privateBtn.addEventListener("click",function(){
-  document.getElementById("hidden-form").classList.add("hidden");
-  document.getElementById("private-form").classList.remove("hidden");
-})
+if (companyBtn !== null) {
+  privateBtn.addEventListener("click", function () {
+    document.getElementById("hidden-form").classList.add("hidden");
+    document.getElementById("private-form").classList.remove("hidden");
+  });
 }
 
 function validatePrivateForm() {
-  const privateFirstName = privateForm.querySelector('input[placeholder="Ange förnamn"]').value;
-  const privateLastName = privateForm.querySelector('input[placeholder="Ange efternamn"]').value;
-  const privatePhone = privateForm.querySelector('input[placeholder="Ange Telefonnummer"]').value;
-  const privateEmail = privateForm.querySelector('input[placeholder="Ange mejladress"]').value;
-  
+  const privateFirstName = privateForm.querySelector(
+    'input[placeholder="Ange förnamn"]'
+  ).value;
+  const privateLastName = privateForm.querySelector(
+    'input[placeholder="Ange efternamn"]'
+  ).value;
+  const privatePhone = privateForm.querySelector(
+    'input[placeholder="Ange Telefonnummer"]'
+  ).value;
+  const privateEmail = privateForm.querySelector(
+    'input[placeholder="Ange mejladress"]'
+  ).value;
+
   return privateFirstName && privateLastName && privatePhone && privateEmail;
 }
 //Validate company form
 function validateCompanyForm() {
-  const companyFirstName = companyForm.querySelector('input[name="fornamn"]').value;
-  const companyLastName = companyForm.querySelector('input[name="efternamn"]').value;
-  const companyPhone = companyForm.querySelector('input[name="telefonnummer"]').value;
-  const companyEmail = companyForm.querySelector('input[name="mejladress"]').value;
-  const companyName = companyForm.querySelector('input[name="företagsnamn"]').value;
-  const companyOrgNumber = companyForm.querySelector('input[name="Organisationsnummer"]').value;
+  const companyFirstName = companyForm.querySelector(
+    'input[name="fornamn"]'
+  ).value;
+  const companyLastName = companyForm.querySelector(
+    'input[name="efternamn"]'
+  ).value;
+  const companyPhone = companyForm.querySelector(
+    'input[name="telefonnummer"]'
+  ).value;
+  const companyEmail = companyForm.querySelector(
+    'input[name="mejladress"]'
+  ).value;
+  const companyName = companyForm.querySelector(
+    'input[name="företagsnamn"]'
+  ).value;
+  const companyOrgNumber = companyForm.querySelector(
+    'input[name="Organisationsnummer"]'
+  ).value;
 
-  return companyFirstName && companyLastName && companyPhone && companyEmail && companyName && companyOrgNumber; 
+  return (
+    companyFirstName &&
+    companyLastName &&
+    companyPhone &&
+    companyEmail &&
+    companyName &&
+    companyOrgNumber
+  );
 }
 
-if(continueButton !== null){
-continueButton.addEventListener("click", (event) => {
-  event.preventDefault();
+if (continueButton !== null) {
+  continueButton.addEventListener("click", (event) => {
+    event.preventDefault();
 
-  if (!document.getElementById("private-form").classList.contains("hidden")) {
-    if (validatePrivateForm()) {
-      document.querySelector('.CartPayDeliver').scrollIntoView({ behavior: 'smooth' });
-    } else {
-      alert("Vänligen fyll i alla obligatoriska fält för företagsformuläret.")
+    if (!document.getElementById("private-form").classList.contains("hidden")) {
+      if (validatePrivateForm()) {
+        document
+          .querySelector(".CartPayDeliver")
+          .scrollIntoView({ behavior: "smooth" });
+      } else {
+        alert(
+          "Vänligen fyll i alla obligatoriska fält för företagsformuläret."
+        );
+      }
     }
-  } else if (!document.getElementById("hidden-form").classList.contains("hidden")) {
-    if (validateCompanyForm()) {
-      document.querySelector('.betalning').scrollIntoView({ behavior: 'smooth' });
-    } else {
-      alert("Vänligen fyll i alla obligatoriska fält för företagsformuläret.")
+  });
+}
+if (continueButton2 !== null) {
+  continueButton2.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (!document.getElementById("hidden-form").classList.contains("hidden")) {
+      if (validateCompanyForm()) {
+        console.log("runs!");
+        document
+          .querySelector(".CartPayDeliver")
+          .scrollIntoView({ behavior: "smooth" });
+      } else {
+        alert(
+          "Vänligen fyll i alla obligatoriska fält för företagsformuläret."
+        );
+      }
     }
-  }
-})
+  });
 }
 
 //Get elements from the DOM
@@ -630,56 +673,65 @@ if (searchBar !== null) {
 
 //Fetch items from database
 const loadProducts = async () => {
-    try {
-        const response = await fetch("https://localhost:7216/products");
-        const data = await response.json();
+  try {
+    const response = await fetch("https://localhost:7216/products");
+    const data = await response.json();
 
-        const allProducts = data;
+    const allProducts = data;
 
-        yumProductsList = allProducts.filter(product => product.category === "Yum");
-        dailyProductsList = allProducts.filter(product => product.category === "Dagens");
-        premiumProductsList = allProducts.filter(product => product.category === "Premium");
-        subscriptionsProductsList = allProducts.filter(product => product.category === "Subscriptions");
-        baguetterProductsList = allProducts.filter(product => product.category === "Baguetter");
+    yumProductsList = allProducts.filter(
+      (product) => product.category === "Yum"
+    );
+    dailyProductsList = allProducts.filter(
+      (product) => product.category === "Dagens"
+    );
+    premiumProductsList = allProducts.filter(
+      (product) => product.category === "Premium"
+    );
+    subscriptionsProductsList = allProducts.filter(
+      (product) => product.category === "Subscriptions"
+    );
+    baguetterProductsList = allProducts.filter(
+      (product) => product.category === "Baguetter"
+    );
 
-        // Further filtering or categorization 
-        yumFiltered = yumProductsList;
-        dailyFiltered = dailyProductsList;
-        premiumFiltered = premiumProductsList;
-        subscriptionsFiltered = subscriptionsProductsList;
-        baguetterFiltered = baguetterProductsList;
+    // Further filtering or categorization
+    yumFiltered = yumProductsList;
+    dailyFiltered = dailyProductsList;
+    premiumFiltered = premiumProductsList;
+    subscriptionsFiltered = subscriptionsProductsList;
+    baguetterFiltered = baguetterProductsList;
 
-        all = [
-            ...yumProductsList,
-            ...dailyProductsList,
-            ...premiumProductsList,
-            ...subscriptionsProductsList,
-            ...baguetterProductsList,
-        ];
+    all = [
+      ...yumProductsList,
+      ...dailyProductsList,
+      ...premiumProductsList,
+      ...subscriptionsProductsList,
+      ...baguetterProductsList,
+    ];
 
-        // Passing the lists to UI functions
-        yumProducts(yumProductsList);
-        dailyProducts(dailyProductsList);
-        premiumProducts(premiumProductsList);
-        subscriptionsProducts(subscriptionsProductsList);
-        baguetterProducts(baguetterProductsList);
-        CarouselFoodBoxes(yumProductsList);
-        CarouselFoodBoxes2(yumProductsList);
-        // Assuming categoriesProducts and offeredServices are handled separately
-    } catch (err) {
-        console.error(err);
-    }
+    // Passing the lists to UI functions
+    yumProducts(yumProductsList);
+    dailyProducts(dailyProductsList);
+    premiumProducts(premiumProductsList);
+    subscriptionsProducts(subscriptionsProductsList);
+    baguetterProducts(baguetterProductsList);
+    CarouselFoodBoxes(yumProductsList);
+    CarouselFoodBoxes2(yumProductsList);
+    // Assuming categoriesProducts and offeredServices are handled separately
+  } catch (err) {
+    console.error(err);
+  }
 };
-
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
   if (yum !== null) {
     const htmlString = yumProductsList
-        .map((yum) => {
-            let title = JSON.stringify(yum.title)
-            let description = JSON.stringify(yum.description)
-            let ingredients = JSON.stringify(yum.ingredients)
+      .map((yum) => {
+        let title = JSON.stringify(yum.title);
+        let description = JSON.stringify(yum.description);
+        let ingredients = JSON.stringify(yum.ingredients);
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
@@ -784,10 +836,10 @@ const carouselContainer2 = document.getElementById("container2");
 const CarouselFoodBoxes = (yumProductsList) => {
   if (carouselContainer !== null) {
     const htmlString = yumProductsList
-        .map((yum) => {
-            let title = JSON.stringify(yum.title)
-            let description = JSON.stringify(yum.description)
-            let ingredients = JSON.stringify(yum.ingredients)
+      .map((yum) => {
+        let title = JSON.stringify(yum.title);
+        let description = JSON.stringify(yum.description);
+        let ingredients = JSON.stringify(yum.ingredients);
         return (
           `
           <div class="swiper-slide">
@@ -862,10 +914,10 @@ const CarouselFoodBoxes = (yumProductsList) => {
 const CarouselFoodBoxes2 = (yumProductsList) => {
   if (carouselContainer2 !== null) {
     const htmlString = yumProductsList
-        .map((yum) => {
-            let title = JSON.stringify(yum.title)
-            let description = JSON.stringify(yum.description)
-            let ingredients = JSON.stringify(yum.ingredients)
+      .map((yum) => {
+        let title = JSON.stringify(yum.title);
+        let description = JSON.stringify(yum.description);
+        let ingredients = JSON.stringify(yum.ingredients);
         return (
           `
           <div class="swiper-slide">
@@ -941,10 +993,10 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
 const dailyProducts = (dailyProductsList) => {
   if (daily !== null) {
     const htmlString = dailyProductsList
-        .map((daily) => {
-            let title = JSON.stringify(daily.title)
-            let description = JSON.stringify(daily.description)
-            let ingredients = JSON.stringify(daily.ingredients)
+      .map((daily) => {
+        let title = JSON.stringify(daily.title);
+        let description = JSON.stringify(daily.description);
+        let ingredients = JSON.stringify(daily.ingredients);
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
@@ -1046,10 +1098,10 @@ const dailyProducts = (dailyProductsList) => {
 const premiumProducts = (premiumProductsList) => {
   if (premium !== null) {
     const htmlString = premiumProductsList
-        .map((premium) => {
-            let title = JSON.stringify(premium.title)
-            let description = JSON.stringify(premium.description)
-            let ingredients = JSON.stringify(premium.ingredients)
+      .map((premium) => {
+        let title = JSON.stringify(premium.title);
+        let description = JSON.stringify(premium.description);
+        let ingredients = JSON.stringify(premium.ingredients);
         return (
           `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
@@ -1151,10 +1203,10 @@ const premiumProducts = (premiumProductsList) => {
 const baguetterProducts = (baguetterProductsList) => {
   if (baguetter !== null) {
     const htmlString = baguetterProductsList
-        .map((baguetter) => {
-            let title = JSON.stringify(baguetter.title)
-            let description = JSON.stringify(baguetter.description)
-            let ingredients = JSON.stringify(baguetter.ingredients)
+      .map((baguetter) => {
+        let title = JSON.stringify(baguetter.title);
+        let description = JSON.stringify(baguetter.description);
+        let ingredients = JSON.stringify(baguetter.ingredients);
         return (
           `<div
             class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
@@ -1257,10 +1309,10 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
   if (subscriptions !== null) {
     let i = 0;
     const htmlString = subscriptionsProductsList
-        .map((subscription) => {
-            let title = JSON.stringify(subscription.title)
-            let description = JSON.stringify(subscription.description)
-            let ingredients = JSON.stringify(subscription.ingredients)
+      .map((subscription) => {
+        let title = JSON.stringify(subscription.title);
+        let description = JSON.stringify(subscription.description);
+        let ingredients = JSON.stringify(subscription.ingredients);
         return (
           `
           <div
@@ -1843,7 +1895,7 @@ if (cardModal !== null) {
       "description",
       (modalDescription.textContent = description)
     );
-      localStorage.setItem("diet", (modalDiet.src = dietRef));
+    localStorage.setItem("diet", (modalDiet.src = dietRef));
     localStorage.setItem("quantity", (input.value = 1));
     hideDiv();
   });
@@ -2421,29 +2473,28 @@ const theBox = document.querySelectorAll(".box1");
 theBox.forEach((btn) => {
   btn.addEventListener("click", function () {
     theBox.forEach((b) => b.classList.remove("box-selected"));
-      btn.classList.add("box-selected");
-      const dayText = btn.querySelector(".day");
-      const dateText = btn.querySelector(".date");
-      console.log(dayText.textContent + " " + dateText.textContent);
+    btn.classList.add("box-selected");
+    const dayText = btn.querySelector(".day");
+    const dateText = btn.querySelector(".date");
+    console.log(dayText.textContent + " " + dateText.textContent);
   });
 });
 
 const timeBox = document.querySelectorAll(".tid-box");
 
 timeBox.forEach((btn) => {
-    btn.addEventListener("click", function () {
-        timeBox.forEach((b) => b.classList.remove("tid-box-selected"));
-        btn.classList.add("tid-box-selected");
-        const deliverClock = btn.childNodes[1].textContent;
-        const deliverShipping = btn.childNodes[3].textContent;
-        console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
-    });
+  btn.addEventListener("click", function () {
+    timeBox.forEach((b) => b.classList.remove("tid-box-selected"));
+    btn.classList.add("tid-box-selected");
+    const deliverClock = btn.childNodes[1].textContent;
+    const deliverShipping = btn.childNodes[3].textContent;
+    console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
+  });
 });
 
 // theBox.addEventListener('click', function() {
 // theBox.classList.toggle("box-selected");
 // })
-
 
 // Arrow buttons, add a click function to move it left and right whilst checking the clip-path to dynamically
 // move it left and right depending where the element is being moved in order to ensure only the middle is visible
@@ -2516,7 +2567,6 @@ timeBox.forEach((btn) => {
 
 /////////////////////////// Gamla lösning End//////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-
 
 // <div>
 //     <button style="padding:5px; width:100px;">
@@ -2874,44 +2924,45 @@ if (contactForm !== null) {
 
 //popup in start page
 document.addEventListener("DOMContentLoaded", function () {
-    let deliveryModal = document.getElementById("deliveryModal")
-    if (deliveryModal !== null) {
-    var myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById("deliveryModal"), {
-
+  let deliveryModal = document.getElementById("deliveryModal");
+  if (deliveryModal !== null) {
+    var myModal = bootstrap.Modal.getOrCreateInstance(
+      document.getElementById("deliveryModal"),
+      {
         keyboard: false,
-    });
-        myModal.show();
-    }
+      }
+    );
+    myModal.show();
+  }
 });
 let confirmButton = document.getElementById("confirmButton");
 if (confirmButton !== null) {
-    confirmButton.addEventListener("click", function () {
-  var postcode = document.getElementById("postcodeInput").value;
-  if (postcode === "") {
-    document.getElementById("confirmationMessage").style.display = "none";
-    document.getElementById("wrong-message").style.display = "none";
-    document.getElementById("wrong-message2").style.display = "block";
-    document.getElementById("no-place").style.display = "none";
-  } else if (postcode) {
-    document.getElementById("confirmationMessage").style.display = "block";
-    document.getElementById("wrong-message").style.display = "none";
-    document.getElementById("wrong-message2").style.display = "none";
-    document.getElementById("no-place").style.display = "none";
-    localStorage.setItem("Postcode", postcode);
-    console.log(localStorage.getItem("Postcode"));
-  } else {
-    document.getElementById("wrong-message").style.display = "block";
-    document.getElementById("confirmationMessage").style.display = "none";
-    document.getElementById("wrong-message2").style.display = "none";
-    document.getElementById("no-place").style.display = "none";
-  }
-});
+  confirmButton.addEventListener("click", function () {
+    var postcode = document.getElementById("postcodeInput").value;
+    if (postcode === "") {
+      document.getElementById("confirmationMessage").style.display = "none";
+      document.getElementById("wrong-message").style.display = "none";
+      document.getElementById("wrong-message2").style.display = "block";
+      document.getElementById("no-place").style.display = "none";
+    } else if (postcode) {
+      document.getElementById("confirmationMessage").style.display = "block";
+      document.getElementById("wrong-message").style.display = "none";
+      document.getElementById("wrong-message2").style.display = "none";
+      document.getElementById("no-place").style.display = "none";
+      localStorage.setItem("Postcode", postcode);
+      console.log(localStorage.getItem("Postcode"));
+    } else {
+      document.getElementById("wrong-message").style.display = "block";
+      document.getElementById("confirmationMessage").style.display = "none";
+      document.getElementById("wrong-message2").style.display = "none";
+      document.getElementById("no-place").style.display = "none";
+    }
+  });
 }
-let findLocation = document
-    .getElementById("findLocationButton")
+let findLocation = document.getElementById("findLocationButton");
 
 if (findLocation !== null) {
-    findLocation.addEventListener("click", function () {
+  findLocation.addEventListener("click", function () {
     var postcode = document.getElementById("postcodeInput").value;
     if (postcode === "") {
       document.getElementById("confirmationMessage").style.display = "none";
@@ -3100,26 +3151,33 @@ function scrollCarouselRight2() {
 */
 //Funtion for show/hide faq accordions with button
 document.addEventListener("DOMContentLoaded", function () {
-    const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
-    const betalningBtn = document.getElementById("betalning");
-    const menyerAllergierBtn = document.getElementById("menyer-allergier");
+  const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
+  const betalningBtn = document.getElementById("betalning");
+  const menyerAllergierBtn = document.getElementById("menyer-allergier");
 
-    const omWebbplatsenAccordion = document.getElementById(
-        "om-webbplatsen-accordion"
-    );
-    const betalningAccordion = document.getElementById("betalning-accordion");
-    const allergierAccordion = document.getElementById("allergier-accordion");
-    if (omWebbplatsenBtn !== null && betalningBtn !== null && menyerAllergierBtn !== null && omWebbplatsenAccordion !== null && betalningAccordion !== null && allergierAccordion !== null) {
+  const omWebbplatsenAccordion = document.getElementById(
+    "om-webbplatsen-accordion"
+  );
+  const betalningAccordion = document.getElementById("betalning-accordion");
+  const allergierAccordion = document.getElementById("allergier-accordion");
+  if (
+    omWebbplatsenBtn !== null &&
+    betalningBtn !== null &&
+    menyerAllergierBtn !== null &&
+    omWebbplatsenAccordion !== null &&
+    betalningAccordion !== null &&
+    allergierAccordion !== null
+  ) {
     function hideAllAccordions() {
-        omWebbplatsenAccordion.style.display = "none";
-        betalningAccordion.style.display = "none";
-        allergierAccordion.style.display = "none";
+      omWebbplatsenAccordion.style.display = "none";
+      betalningAccordion.style.display = "none";
+      allergierAccordion.style.display = "none";
     }
 
     function resetButtonStyles() {
-        omWebbplatsenBtn.classList.remove("active");
-        betalningBtn.classList.remove("active");
-        menyerAllergierBtn.classList.remove("active");
+      omWebbplatsenBtn.classList.remove("active");
+      betalningBtn.classList.remove("active");
+      menyerAllergierBtn.classList.remove("active");
     }
 
     hideAllAccordions();
@@ -3127,31 +3185,30 @@ document.addEventListener("DOMContentLoaded", function () {
     omWebbplatsenBtn.classList.add("active");
 
     omWebbplatsenBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        hideAllAccordions();
-        resetButtonStyles();
-        omWebbplatsenAccordion.style.display = "block";
-        omWebbplatsenBtn.classList.add("active");
+      event.preventDefault();
+      hideAllAccordions();
+      resetButtonStyles();
+      omWebbplatsenAccordion.style.display = "block";
+      omWebbplatsenBtn.classList.add("active");
     });
 
     betalningBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        hideAllAccordions();
-        resetButtonStyles();
-        betalningAccordion.style.display = "block";
-        betalningBtn.classList.add("active");
+      event.preventDefault();
+      hideAllAccordions();
+      resetButtonStyles();
+      betalningAccordion.style.display = "block";
+      betalningBtn.classList.add("active");
     });
 
     menyerAllergierBtn.addEventListener("click", function (event) {
-        event.preventDefault();
-        hideAllAccordions();
-        resetButtonStyles();
-        allergierAccordion.style.display = "block";
-        menyerAllergierBtn.classList.add("active");
+      event.preventDefault();
+      hideAllAccordions();
+      resetButtonStyles();
+      allergierAccordion.style.display = "block";
+      menyerAllergierBtn.classList.add("active");
     });
-    }
-    });
-
+  }
+});
 
 // Function to cart content and total form to email
 const sendCartInfo = document.getElementById("cart-order-form");
@@ -3266,171 +3323,170 @@ var swiper1 = new Swiper(".slide-content", {
 });
 
 var swiper2 = new Swiper(".slide-content2", {
-    slidesPerView: 3,
-    spaceBetween: 25,
-    loop: true,
-    centerSlide: "true",
-    fade: "true",
-    grabCursor: "true",
-    pagination: {
-        el: ".swiper-pagination2",
-        clickable: true,
-        dynamicBullets: true,
-    },
-    navigation: {
-        nextEl: ".swiper-button-next2",
-        prevEl: ".swiper-button-prev2",
-    },
+  slidesPerView: 3,
+  spaceBetween: 25,
+  loop: true,
+  centerSlide: "true",
+  fade: "true",
+  grabCursor: "true",
+  pagination: {
+    el: ".swiper-pagination2",
+    clickable: true,
+    dynamicBullets: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next2",
+    prevEl: ".swiper-button-prev2",
+  },
 
-    breakpoints: {
-        0: {
-            slidesPerView: 1,
-        },
-        576: {
-            slidesPerView: 1,
-        },
-        768: {
-            slidesPerView: 2,
-        },
-        992: {
-            slidesPerView: 2,
-        },
-        1120: {
-            slidesPerView: 3,
-        },
-        1400: {
-            slidesPerView: 3,
-        },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
     },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
 });
 
 var datesSwipes = new Swiper(".dates_swipe", {
-    slidesPerView: 3,
-    spaceBetween: 10,
-    loop: false,
-    slidesPerGroup: 3,
-    slidesOffsetBefore: -6,
-    slidesOffsetAfter: 8,
-    roundLengths: true,
-    fade: true,
-    grabCursor: false,
-    navigation: {
-        nextEl: ".swiper-button-next-dates",
-        prevEl: ".swiper-button-prev-dates",
-    },
+  slidesPerView: 3,
+  spaceBetween: 10,
+  loop: false,
+  slidesPerGroup: 3,
+  slidesOffsetBefore: -6,
+  slidesOffsetAfter: 8,
+  roundLengths: true,
+  fade: true,
+  grabCursor: false,
+  navigation: {
+    nextEl: ".swiper-button-next-dates",
+    prevEl: ".swiper-button-prev-dates",
+  },
 
-    breakpoints: {
-        0: {
-            slidesPerView: 1,
-        },
-        576: {
-            slidesPerView: 1,
-        },
-        768: {
-            slidesPerView: 2,
-        },
-        992: {
-            slidesPerView: 2,
-        },
-        1120: {
-            slidesPerView: 3,
-        },
-        1400: {
-            slidesPerView: 3,
-        },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
     },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
 });
 
 const submitCartForm = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    // Retrieve values from the form
-    const name = document.querySelector('input[name="name"]').value;
-    const email = document.querySelector('input[name="email"]').value;
-    const phone = document.querySelector('input[name="phone"]').value;
-    const address = document.querySelector('input[name="adress"]').value;
-    const message = document.querySelector('textarea[name="message"]').value;
-    const dishName = document.querySelector('input[name="dishName"]').value;
-    let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
-    dishQuantity = dishQuantity.replace(/['"]/g, '');
+  // Retrieve values from the form
+  const name = document.querySelector('input[name="name"]').value;
+  const email = document.querySelector('input[name="email"]').value;
+  const phone = document.querySelector('input[name="phone"]').value;
+  const address = document.querySelector('input[name="adress"]').value;
+  const message = document.querySelector('textarea[name="message"]').value;
+  const dishName = document.querySelector('input[name="dishName"]').value;
+  let dishQuantity = document.querySelector('input[name="dishQuantity"]').value;
+  dishQuantity = dishQuantity.replace(/['"]/g, "");
 
-    // Calculate total quantity
-    //const totalQuantity = parseInt(dishQuantity, 10);
+  // Calculate total quantity
+  //const totalQuantity = parseInt(dishQuantity, 10);
 
-    const totalQuantity = dishQuantity
-        .split(',')
-        .map(qty => parseInt(qty.trim(), 10)) // Konvertera varje del till ett heltal
-        .reduce((sum, num) => sum + num, 0);
+  const totalQuantity = dishQuantity
+    .split(",")
+    .map((qty) => parseInt(qty.trim(), 10)) // Konvertera varje del till ett heltal
+    .reduce((sum, num) => sum + num, 0);
 
-    if (isNaN(totalQuantity) || totalQuantity <= 0) {
-        alert("vänligen ange en giltig numerisk mängd.");
-        return;
+  if (isNaN(totalQuantity) || totalQuantity <= 0) {
+    alert("vänligen ange en giltig numerisk mängd.");
+    return;
+  }
+  const sum = parseFloat(document.querySelector('input[name="total"]').value);
+  if (sum <= 0 || isNaN(sum)) {
+    alert("Vänligen ange en giltig totalsumma.");
+    return;
+  }
+
+  // Create PaymentRequest object
+  const paymentRequest = {
+    products: [
+      {
+        Name: dishName,
+        Quantity: totalQuantity,
+        Price: sum,
+      },
+    ],
+    customerName: name,
+    customerEmail: email,
+    customerPhone: phone,
+    customerAddress: address,
+    message: message,
+    totalAmount: sum,
+    paymentMethodTypes: ["card", "klarna", "paypal"],
+    cancelPaymentUrl: "http://localhost:7216/404.html",
+    successPaymentUrl: "http://din-webbplats.com/payment-success",
+  };
+
+  try {
+    // Make a POST request to the backend API
+    const response = await fetch("https://localhost:7216/payments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(paymentRequest),
+    });
+
+    // Check if the response has JSON content
+    const contentType = response.headers.get("Content-Type");
+    let result;
+
+    if (contentType && contentType.includes("application/json")) {
+      result = await response.json();
+    } else {
+      result = await response.text();
+      console.error("Unexpected response format: ", result);
+      throw new Error("Response is not in JSON format.");
     }
-    const sum = parseFloat(document.querySelector('input[name="total"]').value);
-    if (sum <= 0 || isNaN(sum)) {
-        alert("Vänligen ange en giltig totalsumma.");
-        return;
+
+    if (response.ok) {
+      // Redirect the user to Stripe Checkout
+      if (result.checkoutUrl) {
+        window.location.href = result.checkoutUrl;
+      } else {
+        throw new Error("Checkout URL missing in the response.");
+      }
+    } else {
+      console.error("Payment error: ", result);
+      alert("Tyvärr kunde vi inte bearbeta din betalning.");
     }
-
-    // Create PaymentRequest object
-    const paymentRequest = {
-        products: [
-            {
-                Name: dishName,
-                Quantity: totalQuantity,
-                Price: sum,
-            },
-        ],
-        customerName: name,
-        customerEmail: email,
-        customerPhone: phone,
-        customerAddress: address,
-        message: message,
-        totalAmount: sum,
-        paymentMethodTypes: ["card", "klarna", "paypal"],
-        cancelPaymentUrl: "http://localhost:7216/404.html",
-        successPaymentUrl: "http://din-webbplats.com/payment-success",
-    };
-
-    try {
-        // Make a POST request to the backend API
-        const response = await fetch("https://localhost:7216/payments", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(paymentRequest),
-        });
-
-        // Check if the response has JSON content
-        const contentType = response.headers.get("Content-Type");
-        let result;
-
-        if (contentType && contentType.includes("application/json")) {
-            result = await response.json();
-        } else {
-            result = await response.text();
-            console.error("Unexpected response format: ", result);
-            throw new Error("Response is not in JSON format.");
-        }
-
-        if (response.ok) {
-            // Redirect the user to Stripe Checkout
-            if (result.checkoutUrl) {
-                window.location.href = result.checkoutUrl;
-            } else {
-                throw new Error("Checkout URL missing in the response.");
-            }
-        } else {
-            console.error("Payment error: ", result);
-            alert("Tyvärr kunde vi inte bearbeta din betalning.");
-        }
-    } catch (error) {
-        console.error("Network or other error: ", error);
-        alert("Ett fel uppstod vid betalningen. Försök igen.");
-    }
+  } catch (error) {
+    console.error("Network or other error: ", error);
+    alert("Ett fel uppstod vid betalningen. Försök igen.");
+  }
 };
-
 
 function Footer() {
   let footer = document.getElementById("footer");
