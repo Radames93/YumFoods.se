@@ -25,6 +25,7 @@ namespace API.Extensions
                 DeliveryDate = request.Order.DeliveryDate,
                 Total = request.Order.Total,
                 PaymentMethod = request.Order.PaymentMethod,
+                Quantity = request.Order.Quantity,
                 Products = request.Order.Products
             };
             try
