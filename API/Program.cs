@@ -58,6 +58,7 @@ app.MapOrderEndpoints();
 app.MapOrderDetailEndpoints();
 app.MapSubscriptionEndpoints();
 app.MapPaymentsEndPoints();
+app.MapOrderAndDetailEndpoints();
 //app.MapUserEndpoints();
 
 app.UseHttpsRedirection();

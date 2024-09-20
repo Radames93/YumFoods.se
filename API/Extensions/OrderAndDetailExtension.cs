@@ -6,9 +6,9 @@ namespace API.Extensions
 {
     public static class OrderAndDetailExtension
     {
-        public static IEndpointRouteBuilder MapOrderAndDetailsEndpoints(this IEndpointRouteBuilder app)
+        public static IEndpointRouteBuilder MapOrderAndDetailEndpoints(this IEndpointRouteBuilder app)
         {
-            var group = app.MapGroup("/orderAndDetails");
+            var group = app.MapGroup("/orderAndDetail");
 
             group.MapPost("/", CreateOrderAndDetailAsync);
 
