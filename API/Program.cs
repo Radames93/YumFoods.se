@@ -20,7 +20,8 @@ builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepos
 builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
 
 //C: \Users\gewer\OneDrive\Skrivbor
-//d
+
+//d ddddddd
 
 
 
