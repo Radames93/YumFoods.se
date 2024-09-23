@@ -471,6 +471,15 @@
   .single_payment {
     height: 85px;
   }
+  /* product page start */
+  .FärdigaMatkassar{
+     width: 280px;
+  }
+
+  .product-title{
+    margin-top: 70px;
+  }
+  /* product page end */
 }
 
 @media (min-width: 992px) and (max-width: 1199.99px) {
@@ -1087,6 +1096,28 @@
     max-width: 35%;
   }
 
+  /* product page start */
+  .FärdigaMatkassar{
+    width: 280px;
+ }
+
+ .FärdigaMatkassar.firstbox{
+   margin-left: -120px;
+ }
+
+ .FärdigaMatkassar.secoundbox{
+  margin-left: -30px;
+}
+
+ .product-title{
+   margin-top: 70px;
+ }
+
+ .swiper-products{
+  max-width: 580px;
+  margin-left: -10px;
+ }
+ /* product page end */
   /* =====================
         MENU DETAILS END
     =======================*/
@@ -1902,6 +1933,52 @@
     order: -1;
   }
 
+  .box.FärdigaMatkassar.firstbox{
+    margin-left: -220px;
+    width: 250px;
+  }
+
+  .box.FärdigaMatkassar.secoundbox{
+    margin-left: -100px;
+    width: 250px;
+  }
+
+  .meny-option.B3{
+    display: none;
+  }
+
+  /* product page start */
+  .FärdigaMatkassar{
+    width: 280px;
+ }
+
+ .FärdigaMatkassar.firstbox{
+   margin-left: 10px;
+ }
+
+ .FärdigaMatkassar.secoundbox{
+  margin-left: -30px;
+}
+
+ .product-title{
+   margin-top: 70px;
+ }
+
+ .product-sök{
+  width: 180px;
+ }
+
+ .swiper-products{
+  max-width: 400px;
+  margin-left: -24px;
+ }
+
+ .btn-productmeny.btn1{
+  display: flex; 
+  margin-left:30px;
+}
+ 
+ /* product page end */
   /* =====================
         MENU DETAILS END
     =======================*/
@@ -3116,6 +3193,60 @@
   .details_extra_item .form-check label {
     max-width: 60%;
   }
+
+   /* product page start */
+   .product-first-banner{
+    width: 650px;
+   }
+
+   .FärdigaMatkassar{
+    width: 200px;
+   }
+
+ .FärdigaMatkassar.firstbox{
+   margin-left: -260px;
+ }
+
+ .FärdigaMatkassar.secoundbox{
+  margin-left: -130px;
+}
+
+ .product-title{
+   margin-top: 70px;
+ }
+/* 
+ .products-alternative{
+  flex-direction: column;
+ } */
+
+ .btn-productmeny.btn1{
+  display: flex; 
+  margin-left: 20px;
+}
+
+.btn-productmeny.btn2{
+  display: flex;
+   margin-right: -38px;
+}
+
+ .product-sök{
+  width: 150px;
+  margin-left: -30px;
+ }
+
+ .swiper-products{
+  max-width: 300px;
+  margin-left: -24px;
+ }
+
+ .btn-productmeny.btn1{
+  display: flex; 
+  margin-left: 0px;
+}
+
+.meny-option{
+  width: 100px !important;
+}
 
   /* =====================
         MENU DETAILS END
@@ -4448,6 +4579,55 @@
   .details_extra_item .form-check label {
     max-width: 60%;
   }
+
+   /* product page start */
+   .product-first-banner{
+    width: 650px;
+   }
+
+   .FärdigaMatkassar{
+    width: 200px;
+   }
+
+ .FärdigaMatkassar.firstbox{
+   margin-left: -330px;
+ }
+
+ .FärdigaMatkassar.secoundbox{
+  margin-left: -180px;
+}
+
+ .product-title{
+   margin-top: 70px;
+ }
+
+ /* .products-alternative{
+  flex-direction: column;
+ } */
+
+ .btn-productmeny.btn1{
+  display: flex; 
+  margin-left: 20px;
+}
+
+.btn-productmeny.btn2{
+  display: flex;
+  margin-right: 30px;
+}
+
+ .product-sök{
+  margin-right: 0px;
+  width: 150px;
+ }
+
+ .swiper-products{
+  max-width: 180px;
+  margin-left: -10px;
+ }
+
+ .meny-option{
+  width: 70px !important;
+}
 
   /* =====================
         MENU DETAILS END

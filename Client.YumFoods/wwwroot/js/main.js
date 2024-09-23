@@ -616,6 +616,7 @@ const loadProducts = async () => {
     baguetterProducts(baguetterProductsList);
     CarouselFoodBoxes(yumProductsList);
     CarouselFoodBoxes2(yumProductsList);
+    CarouselDietButtons(yumProductsList);
     // Assuming categoriesProducts and offeredServices are handled separately
   } catch (err) {
     console.error(err);
@@ -730,6 +731,7 @@ const yumProducts = (yumProductsList) => {
 
 const carouselContainer = document.getElementById("container");
 const carouselContainer2 = document.getElementById("container2");
+const carouselDietButtons = document.getElementById("dietButtons")
 
 const CarouselFoodBoxes = (yumProductsList) => {
   if (carouselContainer !== null) {
@@ -886,6 +888,119 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
     return null;
   }
 };
+
+// product page( Färdigamatkassar & matlådor)
+let selectedBox = null;
+function FärdigaMatkassar(element) {
+  handleBoxClick(element, "FärdigaMatkassar");
+}
+
+function Matlådor(element) {
+  handleBoxClick(element, "Matlådor");
+}
+
+function handleBoxClick(element, boxType) {
+  if (selectedBox && selectedBox !== element) {
+    const previousCheckmark = selectedBox.querySelector('.check-products img');
+    if (previousCheckmark) {
+      previousCheckmark.style.display = 'none';
+    }
+    selectedBox.style.backgroundColor = '';
+    selectedBox.style.border = '';
+  }
+
+  const checkmark = element.querySelector('.check-products img');
+  const isDisplayed = checkmark && checkmark.style.display === 'block';
+
+  if (checkmark) {
+    checkmark.style.display = isDisplayed ? 'none' : 'block';
+  }
+
+  if (isDisplayed) {
+    element.style.backgroundColor = '';
+    element.style.border = '';
+    selectedBox = null; 
+  } else {
+    element.style.backgroundColor = '#FFDFCE'; 
+    element.style.border = '2px solid black';
+    selectedBox = element; 
+  }
+}
+
+// Carousel in product page
+let currentIndex =0;
+const itemsPerPage= 4;
+const CarouselDietButtons = (yumProductsList) => {
+  if (carouselDietButtons !== null) {
+    const dietFiltered = yumProductsList.map((yum) => yum.diet);
+    const uniqueDiets = [...new Set(dietFiltered)]; 
+    
+    const htmlString = uniqueDiets
+      .map((diet) => {
+        return (
+          `
+          <div class="swiper-slide">
+            <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64)" onclick="fetchProductsByDiet('${diet}')">
+              ${diet}
+            </button>
+          </div>
+          `
+        );
+      })
+      .join(""); 
+  carouselDietButtons.innerHTML = htmlString;  
+  } else {
+    return null;
+ }
+};
+
+var swiper3 = new Swiper(".slide-content2", {
+  centeredSlide: "true",
+  fade: "true",
+  grabCursor: "true",
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    dynamicBullets: true,
+  },
+  loop: true,
+  slidesPerView: "auto",
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 5,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
+  on: {
+    slideChangeTransitionEnd: function() {
+      if (this.isEnd) {
+        this.slideToLoop(0);
+      }
+    },}
+});
+
+document.getElementById('show-prev-btn').addEventListener('click', () => {
+    swiper3.slidePrev();
+});
+
+document.getElementById('show-more-btn').addEventListener('click', () => {
+    swiper3.slideNext();
+}); 
+
 
 //Function for payment accordions
 function togglePaymentMethod() {
@@ -3317,6 +3432,11 @@ var datesSwipes = new Swiper(".dates_swipe", {
         },
     },
 });
+
+
+
+
+
 
 const submitCartForm = async (event) => {
   event.preventDefault();

@@ -33,7 +33,7 @@
     <!--=============================
         BREADCRUMB START
     ==============================-->
-    <section class="page_breadcrumb" style="background: url(images/cover.png)">
+    <!-- <section class="page_breadcrumb" style="background: url(images/cover.png)">
       <div class="breadcrumb_overlay">
         <div class="container">
           <div class="breadcrumb_text">
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!--=============================
         BREADCRUMB END
     ==============================-->
@@ -53,7 +53,89 @@
     <!--=============================
         MENU PAGE START
     ==============================-->
-    <!-- anahita test -->
+    <!-- first part of product page start-->
+    <section>
+      <header class="d-flex justify-content-center align-items-center py-2">
+        <h1 class="text-center pt-5 product-title" 
+        >Meny</h1>
+      </header>
+
+      <div class="product-first-banner position-relative  my-5">
+          <div class="image-container-product justify-content-center align-items-center">
+              <h1>Färdiglagad mat direkt till dörren</h1>
+              <p>Lorem ipsum lorem ipsum lorem ipsum</p>
+              <p> Lorem ipsum lorem ipsum lorem ipsum</p>
+          </div>
+      </div>
+      <div><h1 class="text-center pb-4" style="font-size: 40px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 60.5px;">Välj vad du vill utforska</h1></div>
+      <div class="row product-box mb-5">
+        <div class="col-4">
+            <div class="box FärdigaMatkassar firstbox" 
+                onclick="FärdigaMatkassar(this);">
+                <div class="check-products">
+                  <img src="images/Check-green.png" alt="check ikon">
+                </div>
+                <img src="images/product1.png"
+                     alt="product"
+                     class="img-fluid w-25 mb-2" />
+                <p>Våra färdiga matkassar</p>
+            </div>
+        </div>
+        <div class="col-4">
+            
+            <div class="box FärdigaMatkassar secoundbox"
+                 onclick="Matlådor(this);">
+                 <div class="check-products">
+                  <img src="images/Check-green.png" alt="check ikon">
+                </div>
+                <img src="images/product2.png"
+                     alt="product"
+                     class="img-fluid w-25 mb-2" />
+                <p>Våra matlådor</p>
+            </div>
+        </div>
+      </div>
+
+      <div class="container mt-4 mb-3">
+        <div class="row products-alternative align-items-center">
+            <div class="col-auto">
+                <input  class="form-control product-sök" placeholder="Sök"  onchange="search(this)"
+                id="searchbar"
+                type="text">
+            </div>
+            <!-- Swiper -->
+            <div class="col-auto btn-productmeny btn1 swiper-button-next-dates" id="show-prev-btn">
+              <!-- <button id="show-prev-btn" class="btn-productmeny" style="display: flex; margin-left:110px;">
+                <span class="carousel-control-prev-icon" style="width: 20px;" aria-hidden="true"></span> 
+              </button>-->
+              <i class="fa fa-arrow-circle-left" style="color: black; font-size: 35px;"></i>
+            </div>
+            <div class="col slider-items swiper-products">
+                <div class="slide-container2 swiper">
+                    <div class="slide-content2">
+                        <div id="dietButtons" class="card-wrapper swiper-wrapper">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto btn-productmeny btn2 swiper-button-prev-dates" id="show-more-btn">
+               <!--  <button >
+                    <span class="carousel-control-next-icon" style="width: 20px;" aria-hidden="true">
+                    </span> 
+                    
+                </button>-->
+                <i class="fa fa-arrow-circle-right" style="color: black; font-size: 35px; border-radius: 50%;"></i>
+            </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- first part of product page end -->
+
+    
     <section class="menu_page mt_50 xs_mt_20 mb_100 xs_mb_70">
       <div class="container">
         <h4 class="single_team_text" style="padding: 20px; text-align: center">
