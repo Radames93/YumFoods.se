@@ -1686,7 +1686,7 @@ const sortingDishDietFunction = (el) => {
     }
   } else if (option === "cow") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-      return product.diet === "Cow";
+      return product.diet.includes("Cow");
     });
     // const filteredDailyProducts = dailyProductsList.filter((product) => {
     //   let cow = "";
@@ -2358,6 +2358,23 @@ const displayNewCart = () => {
     }
   }
 };
+
+let itemDescrip = document.querySelector(".food-description");
+
+function truncateDescrip(str, maxLength) {
+  if (str.length > maxLength) {
+    return str.slice(0, maxLength - 3) + "...";
+  }
+  return str;
+}
+function runit() {
+  if (itemDescrip && itemDescrip.textContent) {
+    itemDescrip.textContent = truncateDescrip(itemDescrip.textContent, 20);
+  }
+}
+setTimeout(() => {
+  runit();
+}, 2000);
 
 //Display cost summary
 const displaySummary = () => {
@@ -3494,11 +3511,11 @@ var swiper2 = new Swiper(".slide-content2", {
 
 var datesSwipes = new Swiper(".dates_swipe", {
   slidesPerView: 3,
-  spaceBetween: 10,
+  spaceBetween: 1,
   loop: false,
   slidesPerGroup: 3,
-  slidesOffsetBefore: -6,
-  slidesOffsetAfter: 8,
+  slidesOffsetBefore: 11,
+  slidesOffsetAfter: -7,
   roundLengths: true,
   fade: true,
   grabCursor: false,
