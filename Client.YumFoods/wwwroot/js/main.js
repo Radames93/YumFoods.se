@@ -3355,10 +3355,6 @@ async function redirectToStripeCheckout() {
             })
         });
 
-        //if (successfulPaymentUrl == true) {
-        //    const response = await fetch("http/localhost:7216/OrderAndDetail")
-        //}
-
         const result = await response.json();
         if (response.ok) {
             // Redirect to the Stripe checkout session URL
