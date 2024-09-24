@@ -19,12 +19,9 @@ builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
 builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
 
-//C: \Users\gewer\OneDrive\Skrivbor
-
-//d ddddddd
+//C: \Users\gewer\OneDrive\Skrivbord
 
 
-//var conn1 = "Server=yumfoodsdatabase.mysql.database.azure.com;Port=3306;Database=yumfoodsdb;Uid=yumfoodsadmin;Pwd=Jonas55!;SslMode=VerifyCA;SslCa=C:\\Users\\Pedram Hejazi Kenari\\Desktop\\ca-cert.pem;";
 var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Pedram Hejazi Kenari\\Desktop\\ca-cert.pem;";
 
 

@@ -2254,7 +2254,7 @@ const displayNewCart = () => {
             `)" class="ms-auto me-4">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
       </div>
 
-        <p class="food-description" style="width: 400px; max-height:50px; overflow-y:scroll;">
+        <p data-bs-toggle="tooltip" data-bs-placement="top" title="${item.description}" class="food-description" style="width: 400px; max-height:50px;">
             ${item.description}
         </p>
 
@@ -2359,7 +2359,7 @@ const displayNewCart = () => {
   }
 };
 
-let itemDescrip = document.querySelector(".food-description");
+let itemDescrip = document.querySelectorAll(".food-description");
 
 function truncateDescrip(str, maxLength) {
   if (str.length > maxLength) {
@@ -2367,14 +2367,30 @@ function truncateDescrip(str, maxLength) {
   }
   return str;
 }
-function runit() {
-  if (itemDescrip && itemDescrip.textContent) {
-    itemDescrip.textContent = truncateDescrip(itemDescrip.textContent, 20);
-  }
-}
+
 setTimeout(() => {
-  runit();
-}, 2000);
+  let itemDescrip = document.querySelectorAll(".food-description");
+  if (itemDescrip) {
+    itemDescrip.forEach((item) => {
+      let fullDescrip = item.textContent;
+      let text = item.textContent;
+      item.textContent = truncateDescrip(text, 60);
+      console.log(item.textContent);
+    });
+  } else {
+    console.error("not available yet");
+  }
+}, 100);
+
+///////////// enable tooltips (bootstrap) ///////////
+document.addEventListener("DOMContentLoaded", function () {
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+});
 
 //Display cost summary
 const displaySummary = () => {
