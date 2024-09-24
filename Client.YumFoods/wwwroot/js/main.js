@@ -1,90 +1,90 @@
 $(function () {
-  "use strict";
+    "use strict";
 
-  //======menu fix js======
-  var navoff = $(".main_menu").offset().top;
-  $(window).scroll(function () {
-    var scrolling = $(this).scrollTop();
+    //======menu fix js======
+    var navoff = $(".main_menu").offset().top;
+    $(window).scroll(function () {
+        var scrolling = $(this).scrollTop();
 
-    if (scrolling > navoff) {
-      $(".main_menu").addClass("menu_fix");
-    } else {
-      $(".main_menu").removeClass("menu_fix");
-    }
-  });
-  //=========NICE SELECT=========
-  $(".select_js").niceSelect();
-
-  //=======OFFER ITEM SLIDER======
-
-  //*==========ISOTOPE==============
-  var $grid = $(".grid").isotope({});
-
-  $(".menu_filter").on("click", "button", function () {
-    var filterValue = $(this).attr("data-filter");
-    $grid.isotope({
-      filter: filterValue,
+        if (scrolling > navoff) {
+            $(".main_menu").addClass("menu_fix");
+        } else {
+            $(".main_menu").removeClass("menu_fix");
+        }
     });
-  });
+    //=========NICE SELECT=========
+    $(".select_js").niceSelect();
 
-  //active class
-  $(".menu_filter button").on("click", function (event) {
-    $(this).siblings(".active").removeClass("active");
-    $(this).addClass("active");
-    event.preventDefault();
-  });
+    //=======OFFER ITEM SLIDER======
 
-  //=======COUNTER JS=======
-  $(".counter").countUp();
-  //*=======SCROLL BUTTON=======
-  $(".scroll_btn").on("click", function () {
-    $("html, body").animate(
-      {
-        scrollTop: 0,
-      },
-      300
-    );
-  });
+    //*==========ISOTOPE==============
+    var $grid = $(".grid").isotope({});
 
-  $(window).on("scroll", function () {
-    var scrolling = $(this).scrollTop();
-
-    if (scrolling > 500) {
-      $(".scroll_btn").fadeIn();
-    } else {
-      $(".scroll_btn").fadeOut();
-    }
-  });
-
-  //======= VENOBOX.JS.=========
-  $(".venobox").venobox();
-
-  //*========STICKY SIDEBAR=======
-  $("#sticky_sidebar").stickit({
-    top: 10,
-  });
-
-  //======wow js=======
-  new WOW().init();
-
-  //=======PRODUCT DETAILS SLIDER======
-  if ($("#exzoom").length > 0) {
-    $("#exzoom").exzoom({
-      autoPlay: true,
+    $(".menu_filter").on("click", "button", function () {
+        var filterValue = $(this).attr("data-filter");
+        $grid.isotope({
+            filter: filterValue,
+        });
     });
-  }
 
-  //=======SMALL DEVICE MENU ICON======
-  $(".navbar-toggler").on("click", function () {
-    $(".navbar-toggler").toggleClass("show");
-  });
+    //active class
+    $(".menu_filter button").on("click", function (event) {
+        $(this).siblings(".active").removeClass("active");
+        $(this).addClass("active");
+        event.preventDefault();
+    });
+
+    //=======COUNTER JS=======
+    $(".counter").countUp();
+    //*=======SCROLL BUTTON=======
+    $(".scroll_btn").on("click", function () {
+        $("html, body").animate(
+            {
+                scrollTop: 0,
+            },
+            300
+        );
+    });
+
+    $(window).on("scroll", function () {
+        var scrolling = $(this).scrollTop();
+
+        if (scrolling > 500) {
+            $(".scroll_btn").fadeIn();
+        } else {
+            $(".scroll_btn").fadeOut();
+        }
+    });
+
+    //======= VENOBOX.JS.=========
+    $(".venobox").venobox();
+
+    //*========STICKY SIDEBAR=======
+    $("#sticky_sidebar").stickit({
+        top: 10,
+    });
+
+    //======wow js=======
+    new WOW().init();
+
+    //=======PRODUCT DETAILS SLIDER======
+    if ($("#exzoom").length > 0) {
+        $("#exzoom").exzoom({
+            autoPlay: true,
+        });
+    }
+
+    //=======SMALL DEVICE MENU ICON======
+    $(".navbar-toggler").on("click", function () {
+        $(".navbar-toggler").toggleClass("show");
+    });
 });
 
 //make header and footer reusable in different html pages
 function Header() {
-  let header = document.getElementById("header");
+    let header = document.getElementById("header");
 
-  header.innerHTML = `
+    header.innerHTML = `
   <nav class="navbar navbar-expland-lg main_menu">
       <div class="container">
         <div class="navbar-left">
@@ -208,56 +208,56 @@ Header();
 
 // js for language button in navbar
 function setLanguage(lang) {
-  document.getElementById("current-lang").textContent = lang.toUpperCase();
-  var elements = document.querySelectorAll("[data-lang-en]");
-  elements.forEach(function (element) {
-    if (lang === "en") {
-      element.textContent = element.getAttribute("data-lang-en");
-    } else if (lang === "sv") {
-      element.textContent = element.getAttribute("data-lang-sv");
-    }
-  });
-  closeDropdown();
+    document.getElementById("current-lang").textContent = lang.toUpperCase();
+    var elements = document.querySelectorAll("[data-lang-en]");
+    elements.forEach(function (element) {
+        if (lang === "en") {
+            element.textContent = element.getAttribute("data-lang-en");
+        } else if (lang === "sv") {
+            element.textContent = element.getAttribute("data-lang-sv");
+        }
+    });
+    closeDropdown();
 }
 function closeDropdown() {
-  document.getElementById("dropdown-content").classList.remove("show");
+    document.getElementById("dropdown-content").classList.remove("show");
 }
 function toggleDropdown() {
-  document.getElementById("dropdown-content").classList.toggle("show");
+    document.getElementById("dropdown-content").classList.toggle("show");
 
-  document.getElementById("current-lang").textContent = lang.toUpperCase();
-  var elements = document.querySelectorAll("[data-lang-en]");
-  elements.forEach(function (element) {
-    if (lang === "en") {
-      element.textContent = element.getAttribute("data-lang-en");
-    } else if (lang === "sv") {
-      element.textContent = element.getAttribute("data-lang-sv");
-    }
-  });
-  closeDropdown();
+    document.getElementById("current-lang").textContent = lang.toUpperCase();
+    var elements = document.querySelectorAll("[data-lang-en]");
+    elements.forEach(function (element) {
+        if (lang === "en") {
+            element.textContent = element.getAttribute("data-lang-en");
+        } else if (lang === "sv") {
+            element.textContent = element.getAttribute("data-lang-sv");
+        }
+    });
+    closeDropdown();
 }
 function closeDropdown() {
-  document.getElementById("dropdown-content").classList.remove("show");
+    document.getElementById("dropdown-content").classList.remove("show");
 }
 function toggleDropdown() {
-  document.getElementById("dropdown-content").classList.toggle("show");
+    document.getElementById("dropdown-content").classList.toggle("show");
 }
 
 function navigateToMenuPage() {
-  window.location.href = "/yum_menu.html";
+    window.location.href = "/yum_menu.html";
 }
 
 // secound part of start page
 const infoBox = document.querySelector(".info-box");
 if (infoBox !== null) {
-  infoBox.style.display = "none";
+    infoBox.style.display = "none";
 }
 
 const close = document.querySelector(".close");
 if (close !== null) {
-  close.addEventListener("click", function () {
-    infoBox.style.display = "none";
-  });
+    close.addEventListener("click", function () {
+        infoBox.style.display = "none";
+    });
 }
 
 let selectedCategory = null;
@@ -266,169 +266,169 @@ let selectedQuantity = 10;
 // categori boxes
 const dietBoxes = document.querySelectorAll(".box2");
 const chooseDietBox = dietBoxes.forEach((box, index) => {
-  box.addEventListener("click", function () {
-    this.classList.add("selected");
-    this.classList.add("selected-border");
+    box.addEventListener("click", function () {
+        this.classList.add("selected");
+        this.classList.add("selected-border");
 
-    dietBoxes.forEach((b) => {
-      if ((b.hasClass = "selected")) {
-        b.classList.remove("selected");
-        b.classList.remove("selected-border");
-      } else {
-        b.classList.add("selected");
-        b.classList.add("selected-border");
-      }
+        dietBoxes.forEach((b) => {
+            if ((b.hasClass = "selected")) {
+                b.classList.remove("selected");
+                b.classList.remove("selected-border");
+            } else {
+                b.classList.add("selected");
+                b.classList.add("selected-border");
+            }
+        });
     });
-  });
 });
 
 // quantity boxes
 const antalBoxes = document.querySelectorAll(".box4");
 const chooseAntalbox = antalBoxes.forEach((box, index) => {
-  box.addEventListener("click", function () {
-    this.classList.add("selected");
-    this.classList.toggle("selected-border");
-    infoBox.style.display = "block";
+    box.addEventListener("click", function () {
+        this.classList.add("selected");
+        this.classList.toggle("selected-border");
+        infoBox.style.display = "block";
 
-    antalBoxes.forEach((b) => {
-      if ((b.hasClass = "selected")) {
-        b.classList.remove("selected");
-        b.classList.remove("selected-border");
-      } else {
-        b.classList.add("selected");
-        b.classList.add("selected-border");
-      }
+        antalBoxes.forEach((b) => {
+            if ((b.hasClass = "selected")) {
+                b.classList.remove("selected");
+                b.classList.remove("selected-border");
+            } else {
+                b.classList.add("selected");
+                b.classList.add("selected-border");
+            }
+        });
     });
-  });
 });
 
 //handle click on quantity buttons
 document.addEventListener("DOMContentLoaded", function () {
-  const quantitySpan = document.querySelector(".quantity-btn span");
-  const increaseButton = document.querySelector(
-    ".quantity-btn button:nth-of-type(2)"
-  );
-  const decreaseButton = document.querySelector(
-    ".quantity-btn button:nth-of-type(1)"
-  );
-  if (quantitySpan !== null) {
-    let currentQuantity = parseInt(quantitySpan.textContent, 10);
-  }
-
-  function updateQuantity(newQuantity) {
-    if (newQuantity >= 10 && newQuantity <= 20) {
-      currentQuantity = newQuantity;
-      quantitySpan.textContent = currentQuantity;
-      updateBox4Selection();
-
-      updateTotalPrice();
+    const quantitySpan = document.querySelector(".quantity-btn span");
+    const increaseButton = document.querySelector(
+        ".quantity-btn button:nth-of-type(2)"
+    );
+    const decreaseButton = document.querySelector(
+        ".quantity-btn button:nth-of-type(1)"
+    );
+    if (quantitySpan !== null) {
+        let currentQuantity = parseInt(quantitySpan.textContent, 10);
     }
-  }
 
-  // update quantity boxes
-  function updateBox4Selection() {
-    document.querySelectorAll(".box4").forEach((box) => {
-      const boxValue = parseInt(box.getAttribute("data-value"), 10);
-      if (boxValue === currentQuantity) {
-        box.classList.add("selected", "selected-border");
-      } else {
-        box.classList.remove("selected", "selected-border");
-      }
-    });
-    infoBox.style.display = "block";
-  }
+    function updateQuantity(newQuantity) {
+        if (newQuantity >= 10 && newQuantity <= 20) {
+            currentQuantity = newQuantity;
+            quantitySpan.textContent = currentQuantity;
+            updateBox4Selection();
 
-  // update categorie boxes
-  const boxes2 = document.querySelectorAll(".box2");
-  function updateBoxSelection(currentCategory) {
-    boxes2.forEach((box) => {
-      const boxValue = box.getAttribute("data-category");
+            updateTotalPrice();
+        }
+    }
 
-      if (boxValue === currentCategory) {
-        box.classList.add("selected");
-        box.classList.add("selected-border");
-      } else {
-        box.classList.remove("selected");
-        box.classList.remove("selected-border");
-      }
-    });
-  }
-  const boxes4 = document.querySelectorAll(".box4");
-  boxes2.forEach((box) => {
-    box.addEventListener("click", () => {
-      const currentCategory = box.getAttribute("data-category");
-      updateBoxSelection(currentCategory);
-      boxes4.forEach((box4) => {
-        box4.addEventListener("click", () => {
-          const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
-          updateBox4Selection(currentQuantity);
+    // update quantity boxes
+    function updateBox4Selection() {
+        document.querySelectorAll(".box4").forEach((box) => {
+            const boxValue = parseInt(box.getAttribute("data-value"), 10);
+            if (boxValue === currentQuantity) {
+                box.classList.add("selected", "selected-border");
+            } else {
+                box.classList.remove("selected", "selected-border");
+            }
         });
-      });
-    });
-  });
+        infoBox.style.display = "block";
+    }
 
-  // currentQuantity, increase , decrease
-  let rowBox = document.querySelectorAll(".row .box");
-  if (rowBox !== null) {
-    rowBox.forEach((box) => {
-      box.addEventListener("click", function () {
-        const boxValue = parseInt(this.textContent, 10);
-        updateQuantity(boxValue);
-      });
-    });
-  }
-  if (increaseButton !== null) {
-    increaseButton.addEventListener("click", function () {
-      updateQuantity(currentQuantity + 5);
-    });
-  }
+    // update categorie boxes
+    const boxes2 = document.querySelectorAll(".box2");
+    function updateBoxSelection(currentCategory) {
+        boxes2.forEach((box) => {
+            const boxValue = box.getAttribute("data-category");
 
-  if (decreaseButton !== null) {
-    decreaseButton.addEventListener("click", function () {
-      updateQuantity(currentQuantity - 5);
+            if (boxValue === currentCategory) {
+                box.classList.add("selected");
+                box.classList.add("selected-border");
+            } else {
+                box.classList.remove("selected");
+                box.classList.remove("selected-border");
+            }
+        });
+    }
+    const boxes4 = document.querySelectorAll(".box4");
+    boxes2.forEach((box) => {
+        box.addEventListener("click", () => {
+            const currentCategory = box.getAttribute("data-category");
+            updateBoxSelection(currentCategory);
+            boxes4.forEach((box4) => {
+                box4.addEventListener("click", () => {
+                    const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
+                    updateBox4Selection(currentQuantity);
+                });
+            });
+        });
     });
-  }
+
+    // currentQuantity, increase , decrease
+    let rowBox = document.querySelectorAll(".row .box");
+    if (rowBox !== null) {
+        rowBox.forEach((box) => {
+            box.addEventListener("click", function () {
+                const boxValue = parseInt(this.textContent, 10);
+                updateQuantity(boxValue);
+            });
+        });
+    }
+    if (increaseButton !== null) {
+        increaseButton.addEventListener("click", function () {
+            updateQuantity(currentQuantity + 5);
+        });
+    }
+
+    if (decreaseButton !== null) {
+        decreaseButton.addEventListener("click", function () {
+            updateQuantity(currentQuantity - 5);
+        });
+    }
 });
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {
-  const dishList = document.getElementById("dish-list");
-  dishList.innerHTML = "";
-  let htmlString = "";
+    const dishList = document.getElementById("dish-list");
+    dishList.innerHTML = "";
+    let htmlString = "";
 
-  yumProductsList.map((veg) => {
-    let veggie = veg.dietRef;
-    if (veggie === "images/icons/vegetarian.png") {
-      const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
-      htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
-    }
-  });
-  dishList.innerHTML += htmlString;
+    yumProductsList.map((veg) => {
+        let veggie = veg.dietRef;
+        if (veggie === "images/icons/vegetarian.png") {
+            const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
+            htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
+        }
+    });
+    dishList.innerHTML += htmlString;
 };
 
 const updateDishList = () => {
-  vegetarianAlternatives();
+    vegetarianAlternatives();
 };
 
 // total price
 function calculateTotalPrice(quantity) {
-  const vegetarianProducts = yumProductsList.filter((product) =>
-    product.diet.includes("images/icons/vegetarian.png")
-  );
-  const totalPrice = vegetarianProducts.reduce(
-    (sum, product) => sum + product.price * quantity,
-    0
-  );
-  return totalPrice;
+    const vegetarianProducts = yumProductsList.filter((product) =>
+        product.diet.includes("images/icons/vegetarian.png")
+    );
+    const totalPrice = vegetarianProducts.reduce(
+        (sum, product) => sum + product.price * quantity,
+        0
+    );
+    return totalPrice;
 }
 
 function updateTotalPrice() {
-  const quantity = parseInt(
-    document.querySelector(".quantity-btn span").textContent,
-    10
-  );
-  const totalPrice = calculateTotalPrice(quantity);
-  const totalPriceElement = document.querySelector(".col-5.price");
-  totalPriceElement.innerHTML = `<p>${totalPrice} kr</p>`;
+    const quantity = parseInt(
+        document.querySelector(".quantity-btn span").textContent,
+        10
+    );
+    const totalPrice = calculateTotalPrice(quantity);
+    const totalPriceElement = document.querySelector(".col-5.price");
+    totalPriceElement.innerHTML = `<p>${totalPrice} kr</p>`;
 }
 
 //end of secound part
@@ -464,13 +464,13 @@ let yumSearchMessage = document.getElementById("search-yum-message");
 let dailySearchMessage = document.getElementById("search-daily-message");
 let premiumSearchMessage = document.getElementById("search-premium-message");
 let baguetterSearchMessage = document.getElementById(
-  "search-baguetter-message"
+    "search-baguetter-message"
 );
 let yumFilterMessage = document.getElementById("filter-yum-message");
 let dailyFilterMessage = document.getElementById("filter-daily-message");
 let premiumFilterMessage = document.getElementById("filter-premium-message");
 let baguetterFilterMessage = document.getElementById(
-  "filter-baguetter-message"
+    "filter-baguetter-message"
 );
 
 //Create empty array to populate with products
@@ -490,148 +490,148 @@ let all = [];
 
 //Create a function to enable text field if appropriate radio button is checked
 function ifChecked() {
-  // option3Checked.getElementById("payment3isChecked");
-  // checks to see if the radio button is checked or not, if checked true, if not false
-  // also make sure it exists to prevent missing values (null) in other pages
-  if (option3Checked) {
-    const isChecked = option3Checked.checked;
-    // set the disabled attribute to false should the button be checked
-    document.getElementById("cardNumber").disabled = !isChecked;
-    document.getElementById("expiration").disabled = !isChecked;
-    document.getElementById("cvc").disabled = !isChecked;
-  }
-  isChanged();
+    // option3Checked.getElementById("payment3isChecked");
+    // checks to see if the radio button is checked or not, if checked true, if not false
+    // also make sure it exists to prevent missing values (null) in other pages
+    if (option3Checked) {
+        const isChecked = option3Checked.checked;
+        // set the disabled attribute to false should the button be checked
+        document.getElementById("cardNumber").disabled = !isChecked;
+        document.getElementById("expiration").disabled = !isChecked;
+        document.getElementById("cvc").disabled = !isChecked;
+    }
+    isChanged();
 }
 // Run the function on "change" on each radio button, checking to see if the payment option 3 is picked or not
 function isChanged() {
-  if (option3Checked) {
-    document.getElementById("payment1").addEventListener("change", ifChecked);
-    document.getElementById("payment2").addEventListener("change", ifChecked);
-    document
-      .getElementById("payment3isChecked")
-      .addEventListener("change", ifChecked);
-    document.getElementById("payment4").addEventListener("change", ifChecked);
-  }
+    if (option3Checked) {
+        document.getElementById("payment1").addEventListener("change", ifChecked);
+        document.getElementById("payment2").addEventListener("change", ifChecked);
+        document
+            .getElementById("payment3isChecked")
+            .addEventListener("change", ifChecked);
+        document.getElementById("payment4").addEventListener("change", ifChecked);
+    }
 }
 ifChecked();
 
 // Implement search bar function
 const search = () => {
-  searchBar.addEventListener("keyup", (e) => {
-    let searchMessage = document.getElementById("search-message");
-    const searchString = e.target.value.toLowerCase();
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      return product.title.toLowerCase().includes(searchString);
-    });
-    yumProducts(filteredYumProducts);
+    searchBar.addEventListener("keyup", (e) => {
+        let searchMessage = document.getElementById("search-message");
+        const searchString = e.target.value.toLowerCase();
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.title.toLowerCase().includes(searchString);
+        });
+        yumProducts(filteredYumProducts);
 
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      return product.title.toLowerCase().includes(searchString);
-    });
-    dailyProducts(filteredDailyProducts);
+        const filteredDailyProducts = dailyProductsList.filter((product) => {
+            return product.title.toLowerCase().includes(searchString);
+        });
+        dailyProducts(filteredDailyProducts);
 
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      return product.title.toLowerCase().includes(searchString);
-    });
-    premiumProducts(filteredPremiumProducts);
+        const filteredPremiumProducts = premiumProductsList.filter((product) => {
+            return product.title.toLowerCase().includes(searchString);
+        });
+        premiumProducts(filteredPremiumProducts);
 
-    const filteredSubscriptions = subscriptionsProductsList.filter(
-      (product) => {
-        return product.title.toLowerCase().includes(searchString);
-      }
-    );
-    subscriptionsProducts(filteredSubscriptions);
-    const filteredBaguetter = baguetterProductsList.filter((product) => {
-      return product.title.toLowerCase().includes(searchString);
+        const filteredSubscriptions = subscriptionsProductsList.filter(
+            (product) => {
+                return product.title.toLowerCase().includes(searchString);
+            }
+        );
+        subscriptionsProducts(filteredSubscriptions);
+        const filteredBaguetter = baguetterProductsList.filter((product) => {
+            return product.title.toLowerCase().includes(searchString);
+        });
+        baguetterProducts(filteredBaguetter);
+        if (yum && yum.innerHTML === "") {
+            yumSearchMessage.classList.remove("hide");
+            yumSearchMessage.classList.add("show");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailySearchMessage.classList.remove("hide");
+            dailySearchMessage.classList.add("show");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumSearchMessage.classList.remove("hide");
+            premiumSearchMessage.classList.add("show");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterSearchMessage.classList.remove("hide");
+            baguetterSearchMessage.classList.add("show");
+        }
     });
-    baguetterProducts(filteredBaguetter);
-    if (yum && yum.innerHTML === "") {
-      yumSearchMessage.classList.remove("hide");
-      yumSearchMessage.classList.add("show");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailySearchMessage.classList.remove("hide");
-      dailySearchMessage.classList.add("show");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumSearchMessage.classList.remove("hide");
-      premiumSearchMessage.classList.add("show");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterSearchMessage.classList.remove("hide");
-      baguetterSearchMessage.classList.add("show");
-    }
-  });
 };
 if (searchBar !== null) {
-  searchBar.addEventListener("input", search);
+    searchBar.addEventListener("input", search);
 } else {
-  removeEventListener("keyup", search);
+    removeEventListener("keyup", search);
 }
 
 //Fetch items from database
 const loadProducts = async () => {
-  try {
-    const response = await fetch("https://localhost:7216/products");
-    const data = await response.json();
+    try {
+        const response = await fetch("https://localhost:7216/products");
+        const data = await response.json();
 
-    const allProducts = data;
+        const allProducts = data;
 
-    yumProductsList = allProducts.filter(
-      (product) => product.category === "Yum"
-    );
-    dailyProductsList = allProducts.filter(
-      (product) => product.category === "Dagens"
-    );
-    premiumProductsList = allProducts.filter(
-      (product) => product.category === "Premium"
-    );
-    subscriptionsProductsList = allProducts.filter(
-      (product) => product.category === "Subscriptions"
-    );
-    baguetterProductsList = allProducts.filter(
-      (product) => product.category === "Baguetter"
-    );
+        yumProductsList = allProducts.filter(
+            (product) => product.category === "Yum"
+        );
+        dailyProductsList = allProducts.filter(
+            (product) => product.category === "Dagens"
+        );
+        premiumProductsList = allProducts.filter(
+            (product) => product.category === "Premium"
+        );
+        subscriptionsProductsList = allProducts.filter(
+            (product) => product.category === "Subscriptions"
+        );
+        baguetterProductsList = allProducts.filter(
+            (product) => product.category === "Baguetter"
+        );
 
-    // Further filtering or categorization
-    yumFiltered = yumProductsList;
-    dailyFiltered = dailyProductsList;
-    premiumFiltered = premiumProductsList;
-    subscriptionsFiltered = subscriptionsProductsList;
-    baguetterFiltered = baguetterProductsList;
+        // Further filtering or categorization
+        yumFiltered = yumProductsList;
+        dailyFiltered = dailyProductsList;
+        premiumFiltered = premiumProductsList;
+        subscriptionsFiltered = subscriptionsProductsList;
+        baguetterFiltered = baguetterProductsList;
 
-    all = [
-      ...yumProductsList,
-      ...dailyProductsList,
-      ...premiumProductsList,
-      ...subscriptionsProductsList,
-      ...baguetterProductsList,
-    ];
+        all = [
+            ...yumProductsList,
+            ...dailyProductsList,
+            ...premiumProductsList,
+            ...subscriptionsProductsList,
+            ...baguetterProductsList,
+        ];
 
-    // Passing the lists to UI functions
-    yumProducts(yumProductsList);
-    dailyProducts(dailyProductsList);
-    premiumProducts(premiumProductsList);
-    subscriptionsProducts(subscriptionsProductsList);
-    baguetterProducts(baguetterProductsList);
-    CarouselFoodBoxes(yumProductsList);
-    CarouselFoodBoxes2(yumProductsList);
-    // Assuming categoriesProducts and offeredServices are handled separately
-  } catch (err) {
-    console.error(err);
-  }
+        // Passing the lists to UI functions
+        yumProducts(yumProductsList);
+        dailyProducts(dailyProductsList);
+        premiumProducts(premiumProductsList);
+        subscriptionsProducts(subscriptionsProductsList);
+        baguetterProducts(baguetterProductsList);
+        CarouselFoodBoxes(yumProductsList);
+        CarouselFoodBoxes2(yumProductsList);
+        // Assuming categoriesProducts and offeredServices are handled separately
+    } catch (err) {
+        console.error(err);
+    }
 };
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
-  if (yum !== null) {
-    const htmlString = yumProductsList
-      .map((yum) => {
-        let title = JSON.stringify(yum.title);
-        let description = JSON.stringify(yum.description);
-        let ingredients = JSON.stringify(yum.ingredients);
-        return (
-          `<div
+    if (yum !== null) {
+        const htmlString = yumProductsList
+            .map((yum) => {
+                let title = JSON.stringify(yum.title);
+                let description = JSON.stringify(yum.description);
+                let ingredients = JSON.stringify(yum.ingredients);
+                return (
+                    `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -649,8 +649,8 @@ const yumProducts = (yumProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          yum.imgRef +
-          `
+                    yum.imgRef +
+                    `
                   alt="yum-meny-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -660,16 +660,16 @@ const yumProducts = (yumProductsList) => {
               <div class="d-flex justify-content-between align-items-center">
               <div class="d-flex"><img
                   src=` +
-          yum.dietRef +
-          `
+                    yum.dietRef +
+                    `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
 
                 /></div>
                 <a class="category" href="#">` +
-          yum.category +
-          `</a>
+                    yum.category +
+                    `</a>
           </div>
               <div class="menu_item_text">
                 <a
@@ -686,12 +686,12 @@ const yumProducts = (yumProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          yum.title +
-          `</a
+                    yum.title +
+                    `</a
                 >
                 <h5 class="price">` +
-          yum.price +
-          `kr</h5>
+                    yum.price +
+                    `kr</h5>
           <!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -705,9 +705,9 @@ const yumProducts = (yumProductsList) => {
               </div>
             </div>
             ` +
-          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
-          yum.id +
-          `
+                    "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+                    yum.id +
+                    `
           data-yum-id=${yum.id}
           data-yum-title=${title}
           data-yum-price=${yum.price}
@@ -716,30 +716,30 @@ const yumProducts = (yumProductsList) => {
           data-yum-description=${description}
           data-yum-diet=${yum.dietRef}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
-          `
+                    ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+                    `
           </div>`
-        );
-      })
-      .join("");
-    yum.innerHTML = htmlString;
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        yum.innerHTML = htmlString;
+    } else {
+        return null;
+    }
 };
 
 const carouselContainer = document.getElementById("container");
 const carouselContainer2 = document.getElementById("container2");
 
 const CarouselFoodBoxes = (yumProductsList) => {
-  if (carouselContainer !== null) {
-    const htmlString = yumProductsList
-      .map((yum) => {
-        let title = JSON.stringify(yum.title);
-        let description = JSON.stringify(yum.description);
-        let ingredients = JSON.stringify(yum.ingredients);
-        return (
-          `
+    if (carouselContainer !== null) {
+        const htmlString = yumProductsList
+            .map((yum) => {
+                let title = JSON.stringify(yum.title);
+                let description = JSON.stringify(yum.description);
+                let ingredients = JSON.stringify(yum.ingredients);
+                return (
+                    `
           <div class="swiper-slide">
             <div class="menu_item_slider"
                 data-yum-id=${yum.id} 
@@ -756,8 +756,8 @@ const CarouselFoodBoxes = (yumProductsList) => {
               <div class="menu_item_slider_img">
                 <img
                   src=` +
-          yum.imgRef +
-          `
+                    yum.imgRef +
+                    `
                   alt="yum-meny-bild"
                   class="img-fluid w-100"
                 />
@@ -778,17 +778,17 @@ const CarouselFoodBoxes = (yumProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          yum.title.replace(/'/g, "") +
-          `</a>
+                    yum.title.replace(/'/g, "") +
+                    `</a>
                 <p class="description">In the new era of technology we look in the future with certainty and pride for our life.</p>
                 <h5 class="price">` +
-          yum.price +
-          ` kr</h5>
+                    yum.price +
+                    ` kr</h5>
               </div>
             </div>
             <button id='cart-button' class='menu_add_to_cart' data-id=` +
-          yum.id +
-          `
+                    yum.id +
+                    `
               data-yum-id=${yum.id} 
               data-yum-title=${title}
               data-yum-price=${yum.price}
@@ -800,24 +800,24 @@ const CarouselFoodBoxes = (yumProductsList) => {
             </button>
           </div>
         `
-        );
-      })
-      .join("");
-    carouselContainer.insertAdjacentHTML("afterbegin", htmlString);
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        carouselContainer.insertAdjacentHTML("afterbegin", htmlString);
+    } else {
+        return null;
+    }
 };
 
 const CarouselFoodBoxes2 = (yumProductsList) => {
-  if (carouselContainer2 !== null) {
-    const htmlString = yumProductsList
-      .map((yum) => {
-        let title = JSON.stringify(yum.title);
-        let description = JSON.stringify(yum.description);
-        let ingredients = JSON.stringify(yum.ingredients);
-        return (
-          `
+    if (carouselContainer2 !== null) {
+        const htmlString = yumProductsList
+            .map((yum) => {
+                let title = JSON.stringify(yum.title);
+                let description = JSON.stringify(yum.description);
+                let ingredients = JSON.stringify(yum.ingredients);
+                return (
+                    `
           <div class="swiper-slide">
             <div class="menu_item_slider"
                 data-yum-id=${yum.id} 
@@ -834,8 +834,8 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
               <div class="menu_item_slider_img">
                 <img
                   src=` +
-          yum.imgRef +
-          `
+                    yum.imgRef +
+                    `
                   alt="yum-meny-bild"
                   class="img-fluid w-100"
                 />
@@ -856,17 +856,17 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          yum.title.replace(/'/g, "") +
-          `</a>
+                    yum.title.replace(/'/g, "") +
+                    `</a>
                 <p class="description">In the new era of technology we look in the future with certainty and pride for our life.</p>
                 <h5 class="price">` +
-          yum.price +
-          ` kr</h5>
+                    yum.price +
+                    ` kr</h5>
               </div>
             </div>
             <button id='cart-button' class='menu_add_to_cart' data-id=` +
-          yum.id +
-          `
+                    yum.id +
+                    `
               data-yum-id=${yum.id} 
               data-yum-title=${title}
               data-yum-price=${yum.price}
@@ -878,43 +878,43 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
             </button>
           </div>
         `
-        );
-      })
-      .join("");
-    carouselContainer2.insertAdjacentHTML("afterbegin", htmlString);
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        carouselContainer2.insertAdjacentHTML("afterbegin", htmlString);
+    } else {
+        return null;
+    }
 };
 
 //Function for payment accordions
 function togglePaymentMethod() {
-  const cardSection = document.getElementById("cardPaymentSection");
-  const invoiceSection = document.getElementById("invoicePaymentSection");
-  if (document.getElementById("paymentCard") !== null) {
-    if (document.getElementById("paymentCard").checked) {
-      cardSection.style.display = "block";
-      invoiceSection.style.display = "none";
-    } else if (document.getElementById("paymentInvoice").checked) {
-      cardSection.style.display = "none";
-      invoiceSection.style.display = "block";
+    const cardSection = document.getElementById("cardPaymentSection");
+    const invoiceSection = document.getElementById("invoicePaymentSection");
+    if (document.getElementById("paymentCard") !== null) {
+        if (document.getElementById("paymentCard").checked) {
+            cardSection.style.display = "block";
+            invoiceSection.style.display = "none";
+        } else if (document.getElementById("paymentInvoice").checked) {
+            cardSection.style.display = "none";
+            invoiceSection.style.display = "block";
+        }
     }
-  }
 }
 window.onload = function () {
-  togglePaymentMethod();
+    togglePaymentMethod();
 };
 
 //Display daily items
 const dailyProducts = (dailyProductsList) => {
-  if (daily !== null) {
-    const htmlString = dailyProductsList
-      .map((daily) => {
-        let title = JSON.stringify(daily.title);
-        let description = JSON.stringify(daily.description);
-        let ingredients = JSON.stringify(daily.ingredients);
-        return (
-          `<div
+    if (daily !== null) {
+        const htmlString = dailyProductsList
+            .map((daily) => {
+                let title = JSON.stringify(daily.title);
+                let description = JSON.stringify(daily.description);
+                let ingredients = JSON.stringify(daily.ingredients);
+                return (
+                    `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -931,8 +931,8 @@ const dailyProducts = (dailyProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          daily.imgRef +
-          `
+                    daily.imgRef +
+                    `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -944,16 +944,16 @@ const dailyProducts = (dailyProductsList) => {
                <div class="d-flex">
                <img
                   src=` +
-          daily.dietRef +
-          `
+                    daily.dietRef +
+                    `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
 
                 /></div>
                 <a class="category" href="#">` +
-          daily.category +
-          `</a>
+                    daily.category +
+                    `</a>
           </div>
               <div class="menu_item_text">
                 <a
@@ -970,15 +970,15 @@ const dailyProducts = (dailyProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          daily.title.replace(/'/g, "") +
-          `</a
+                    daily.title.replace(/'/g, "") +
+                    `</a
                 >
                 <h5 class="price">` +
-          daily.price +
-          `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='amenu_add_to_cart' data - id=" +
-          daily.id +
-          `
+                    daily.price +
+                    `kr</h5>` +
+                    "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='amenu_add_to_cart' data - id=" +
+                    daily.id +
+                    `
           data-yum-id=${daily.id}
           data-yum-title=${title}
           data-yum-price=${daily.price}
@@ -987,8 +987,8 @@ const dailyProducts = (dailyProductsList) => {
           data-yum-description=${description}
           data-yum-diet=${daily.dietRef}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
-          `<!--
+                    ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
+                    `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -1001,25 +1001,25 @@ const dailyProducts = (dailyProductsList) => {
               </div>
             </div>
           </div>`
-        );
-      })
-      .join("");
-    daily.innerHTML = htmlString;
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        daily.innerHTML = htmlString;
+    } else {
+        return null;
+    }
 };
 
 //Display premium items
 const premiumProducts = (premiumProductsList) => {
-  if (premium !== null) {
-    const htmlString = premiumProductsList
-      .map((premium) => {
-        let title = JSON.stringify(premium.title);
-        let description = JSON.stringify(premium.description);
-        let ingredients = JSON.stringify(premium.ingredients);
-        return (
-          `<div
+    if (premium !== null) {
+        const htmlString = premiumProductsList
+            .map((premium) => {
+                let title = JSON.stringify(premium.title);
+                let description = JSON.stringify(premium.description);
+                let ingredients = JSON.stringify(premium.ingredients);
+                return (
+                    `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -1036,8 +1036,8 @@ const premiumProducts = (premiumProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          premium.imgRef +
-          `
+                    premium.imgRef +
+                    `
                   alt="premium-meny-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -1049,16 +1049,16 @@ const premiumProducts = (premiumProductsList) => {
                <div class="d-flex">
                <img
                   src=` +
-          premium.dietRef +
-          `
+                    premium.dietRef +
+                    `
                   alt="premium-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
 
                 /></div>
                 <a class="category" href="#">` +
-          premium.category +
-          `</a>
+                    premium.category +
+                    `</a>
           </div>
               <div class="menu_item_text">
                 <a
@@ -1075,15 +1075,15 @@ const premiumProducts = (premiumProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          premium.title.replace(/'/g, "") +
-          `</a
+                    premium.title.replace(/'/g, "") +
+                    `</a
                 >
                 <h5 class="price">` +
-          premium.price +
-          `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='menu_add_to_cart' data-id=" +
-          premium.id +
-          `
+                    premium.price +
+                    `kr</h5>` +
+                    "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='menu_add_to_cart' data-id=" +
+                    premium.id +
+                    `
           data-yum-id=${premium.id}
           data-yum-title=${title}
           data-yum-price=${premium.price}
@@ -1092,8 +1092,8 @@ const premiumProducts = (premiumProductsList) => {
           data-yum-description=${description}
           data-yum-diet=${premium.dietRef}
           ` +
-          ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
-          `<!--
+                    ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
+                    `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -1106,25 +1106,25 @@ const premiumProducts = (premiumProductsList) => {
               </div>
             </div>
           </div>`
-        );
-      })
-      .join("");
-    premium.innerHTML = htmlString;
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        premium.innerHTML = htmlString;
+    } else {
+        return null;
+    }
 };
 
 //Show baguetter
 const baguetterProducts = (baguetterProductsList) => {
-  if (baguetter !== null) {
-    const htmlString = baguetterProductsList
-      .map((baguetter) => {
-        let title = JSON.stringify(baguetter.title);
-        let description = JSON.stringify(baguetter.description);
-        let ingredients = JSON.stringify(baguetter.ingredients);
-        return (
-          `<div
+    if (baguetter !== null) {
+        const htmlString = baguetterProductsList
+            .map((baguetter) => {
+                let title = JSON.stringify(baguetter.title);
+                let description = JSON.stringify(baguetter.description);
+                let ingredients = JSON.stringify(baguetter.ingredients);
+                return (
+                    `<div
             class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -1132,8 +1132,8 @@ const baguetterProducts = (baguetterProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          baguetter.imgRef +
-          `
+                    baguetter.imgRef +
+                    `
                   alt="baguette-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -1153,16 +1153,16 @@ const baguetterProducts = (baguetterProductsList) => {
                <div class="d-flex justify-content-between align-items-center">
                <div class="d-flex"><img
                   src=` +
-          baguetter.dietRef +
-          `
+                    baguetter.dietRef +
+                    `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
 
                 /></div>
                 <a class="category" href="#">` +
-          baguetter.category +
-          `</a>
+                    baguetter.category +
+                    `</a>
           </div>
           <div class="menu_item_text">
                 <a
@@ -1179,15 +1179,15 @@ const baguetterProducts = (baguetterProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          baguetter.title.replace(/'/g, "") +
-          `</a
+                    baguetter.title.replace(/'/g, "") +
+                    `</a
                 >
                 <h5 class="price">` +
-          baguetter.price +
-          `kr</h5>` +
-          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
-          baguetter.id +
-          `
+                    baguetter.price +
+                    `kr</h5>` +
+                    "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+                    baguetter.id +
+                    `
           data-yum-id=${baguetter.id}
           data-yum-title=${title}
           data-yum-price=${baguetter.price}
@@ -1196,8 +1196,8 @@ const baguetterProducts = (baguetterProductsList) => {
           data-yum-description=${description}
           data-yum-diet=${baguetter.dietRef}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
-          `
+                    ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus'></i></button>" +
+                    `
           <!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -1211,26 +1211,26 @@ const baguetterProducts = (baguetterProductsList) => {
               </div>
             </div>
           </div>`
-        );
-      })
-      .join("");
-    baguetter.innerHTML = htmlString;
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        baguetter.innerHTML = htmlString;
+    } else {
+        return null;
+    }
 };
 
 //Show subscription prducts
 const subscriptionsProducts = (subscriptionsProductsList) => {
-  if (subscriptions !== null) {
-    let i = 0;
-    const htmlString = subscriptionsProductsList
-      .map((subscription) => {
-        let title = JSON.stringify(subscription.title);
-        let description = JSON.stringify(subscription.description);
-        let ingredients = JSON.stringify(subscription.ingredients);
-        return (
-          `
+    if (subscriptions !== null) {
+        let i = 0;
+        const htmlString = subscriptionsProductsList
+            .map((subscription) => {
+                let title = JSON.stringify(subscription.title);
+                let description = JSON.stringify(subscription.description);
+                let ingredients = JSON.stringify(subscription.ingredients);
+                return (
+                    `
           <div
             class="col-xl-3 col-sm-6 col-lg-4 wow fadeInUp"
             data-wow-duration="1s"
@@ -1238,8 +1238,8 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
             <div class="menu_item">
               <div class="menu_item_img">
                 <img src=` +
-          subscription.img +
-          `
+                    subscription.img +
+                    `
                   alt="prenumeration-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -1257,8 +1257,8 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
               </div>
               <div class="menu_item_text">
                 <a class="category" href="#">` +
-          subscription.category +
-          `</a>
+                    subscription.category +
+                    `</a>
                 <a
                   class="title"
                   href="#"
@@ -1272,15 +1272,15 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          subscription.title.replace(/'/g, "") +
-          `</a
+                    subscription.title.replace(/'/g, "") +
+                    `</a
                 >
                 <h5 class="price">` +
-          subscription.price +
-          `kr</h5>` +
-          "<button id='cart-button' class='menu_add_to_cart' data-id=" +
-          subscription.id +
-          `
+                    subscription.price +
+                    `kr</h5>` +
+                    "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+                    subscription.id +
+                    `
           data-yum-id=${subscription.id}
           data-yum-title=${title}
           data-yum-price=${subscription.price}
@@ -1289,8 +1289,8 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
           data-yum-description=${description}
           data-yum-diet=${subscription.dietRef}
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till       <i class='fas fa-cart-plus'></i></button>" +
-          `
+                    ") onclick='realAddToCart(event)''>Lägg till       <i class='fas fa-cart-plus'></i></button>" +
+                    `
           <!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
@@ -1303,538 +1303,538 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
                 -->
             </div>
           </div>`
-        );
-      })
-      .join("");
-    subscriptions.innerHTML = htmlString;
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        subscriptions.innerHTML = htmlString;
+    } else {
+        return null;
+    }
 };
 
 //Sort function by name and price
 const sortingNamePriceFunction = (el) => {
-  const option = el.value;
-  if (option === "name") {
-    const sortedYumArray = yumFiltered.sort((a, b) =>
-      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-    );
-    const sortedDailyArray = dailyFiltered.sort((a, b) =>
-      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-    );
-    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-    );
-    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-    );
-    return (
-      yumProducts(sortedYumArray),
-      dailyProducts(sortedDailyArray),
-      premiumProducts(sortedPremiumArray),
-      baguetterProducts(sortedBaguetterArray)
-    );
-  } else if (option === "AL") {
-    const sortedYumArray = yumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedDailyArray = dailyFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    return (
-      yumProducts(sortedYumArray),
-      dailyProducts(sortedDailyArray),
-      premiumProducts(sortedPremiumArray),
-      baguetterProducts(sortedBaguetterArray)
-    );
-  } else if (option === "l2h") {
-    const parsePrice = (x) => parseFloat(x.replace(/^\$/, "")) || 0;
-    const sortedYumArray = yumFiltered
-      .slice()
-      .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
-    const sortedDailyArray = dailyFiltered
-      .slice()
-      .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
-    const sortedPremiumArray = premiumFiltered
-      .slice()
-      .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
-    const sortedBaguetterArray = baguetterFiltered
-      .slice()
-      .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
-    return (
-      yumProducts(sortedYumArray),
-      dailyProducts(sortedDailyArray),
-      premiumProducts(sortedPremiumArray),
-      baguetterProducts(sortedBaguetterArray)
-    );
-  } else if (option === "h2l") {
-    const parsePrice = (x) => parseFloat(x.replace(/^\$/, "")) || 0;
-    const sortedYumArray = yumFiltered
-      .slice()
-      .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
-    const sortedDailyArray = dailyFiltered
-      .slice()
-      .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
-    const sortedPremiumArray = premiumFiltered
-      .slice()
-      .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
-    const sortedBaguetterArray = baguetterFiltered
-      .slice()
-      .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
-    return (
-      yumProducts(sortedYumArray),
-      dailyProducts(sortedDailyArray),
-      premiumProducts(sortedPremiumArray),
-      baguetterProducts(sortedBaguetterArray)
-    );
-  } else {
-    const sortedYumArray = yumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedDailyArray = dailyFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    return (
-      yumProducts(sortedYumArray),
-      dailyProducts(sortedDailyArray),
-      premiumProducts(sortedPremiumArray),
-      baguetterProducts(sortedBaguetterArray)
-    );
-  }
+    const option = el.value;
+    if (option === "name") {
+        const sortedYumArray = yumFiltered.sort((a, b) =>
+            a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+        );
+        const sortedDailyArray = dailyFiltered.sort((a, b) =>
+            a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+        );
+        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+            a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+        );
+        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+            a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+        );
+        return (
+            yumProducts(sortedYumArray),
+            dailyProducts(sortedDailyArray),
+            premiumProducts(sortedPremiumArray),
+            baguetterProducts(sortedBaguetterArray)
+        );
+    } else if (option === "AL") {
+        const sortedYumArray = yumFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedDailyArray = dailyFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        return (
+            yumProducts(sortedYumArray),
+            dailyProducts(sortedDailyArray),
+            premiumProducts(sortedPremiumArray),
+            baguetterProducts(sortedBaguetterArray)
+        );
+    } else if (option === "l2h") {
+        const parsePrice = (x) => parseFloat(x.replace(/^\$/, "")) || 0;
+        const sortedYumArray = yumFiltered
+            .slice()
+            .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+        const sortedDailyArray = dailyFiltered
+            .slice()
+            .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+        const sortedPremiumArray = premiumFiltered
+            .slice()
+            .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+        const sortedBaguetterArray = baguetterFiltered
+            .slice()
+            .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+        return (
+            yumProducts(sortedYumArray),
+            dailyProducts(sortedDailyArray),
+            premiumProducts(sortedPremiumArray),
+            baguetterProducts(sortedBaguetterArray)
+        );
+    } else if (option === "h2l") {
+        const parsePrice = (x) => parseFloat(x.replace(/^\$/, "")) || 0;
+        const sortedYumArray = yumFiltered
+            .slice()
+            .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+        const sortedDailyArray = dailyFiltered
+            .slice()
+            .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+        const sortedPremiumArray = premiumFiltered
+            .slice()
+            .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+        const sortedBaguetterArray = baguetterFiltered
+            .slice()
+            .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+        return (
+            yumProducts(sortedYumArray),
+            dailyProducts(sortedDailyArray),
+            premiumProducts(sortedPremiumArray),
+            baguetterProducts(sortedBaguetterArray)
+        );
+    } else {
+        const sortedYumArray = yumFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedDailyArray = dailyFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        return (
+            yumProducts(sortedYumArray),
+            dailyProducts(sortedDailyArray),
+            premiumProducts(sortedPremiumArray),
+            baguetterProducts(sortedBaguetterArray)
+        );
+    }
 };
 
 //Sort function for diet
 const sortingDishDietFunction = (el) => {
-  const option = el.value;
-  if (option === "vegan") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let vegan = "";
-      product.diet.map((img) => {
-        vegan = img.toLowerCase().includes(option);
-      });
-      return vegan;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let vegan = "";
-      product.diet.map((img) => {
-        vegan = img.toLowerCase().includes(option);
-      });
-      return vegan;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let vegan = "";
-      product.diet.map((img) => {
-        vegan = img.toLowerCase().includes(option);
-      });
-      return vegan;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let vegan = "";
-        product.diet.map((img) => {
-          vegan = img.toLowerCase().includes(option);
+    const option = el.value;
+    if (option === "vegan") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            let vegan = "";
+            product.diet.map((img) => {
+                vegan = img.toLowerCase().includes(option);
+            });
+            return vegan;
         });
-        return vegan;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "AL") {
-    const sortedYumArray = yumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedDailyArray = dailyFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    yumProducts(sortedYumArray);
-    dailyProducts(sortedDailyArray);
-    premiumProducts(sortedPremiumArray);
-    baguetterProducts(sortedBaguetterArray);
-    if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "vegetarian") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let vegetarian = "";
-      product.diet.map((img) => {
-        vegetarian = img.toLowerCase().includes(option);
-      });
-      return vegetarian;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let vegetarian = "";
-      product.diet.map((img) => {
-        vegetarian = img.toLowerCase().includes(option);
-      });
-      return vegetarian;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let vegetarian = "";
-      product.diet.map((img) => {
-        vegetarian = img.toLowerCase().includes(option);
-      });
-      return vegetarian;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let vegetarian = "";
-        product.diet.map((img) => {
-          vegetarian = img.toLowerCase().includes(option);
+        const filteredDailyProducts = dailyProductsList.filter((product) => {
+            let vegan = "";
+            product.diet.map((img) => {
+                vegan = img.toLowerCase().includes(option);
+            });
+            return vegan;
         });
-        return vegetarian;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "cow") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let cow = "";
-      product.diet.map((img) => {
-        cow = img.toLowerCase().includes(option);
-      });
-      return cow;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let cow = "";
-      product.diet.map((img) => {
-        cow = img.toLowerCase().includes(option);
-      });
-      return cow;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let cow = "";
-      product.diet.map((img) => {
-        cow = img.toLowerCase().includes(option);
-      });
-      return cow;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let cow = "";
-        product.diet.map((img) => {
-          cow = img.toLowerCase().includes(option);
+        const filteredPremiumProducts = premiumProductsList.filter((product) => {
+            let vegan = "";
+            product.diet.map((img) => {
+                vegan = img.toLowerCase().includes(option);
+            });
+            return vegan;
         });
-        return cow;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "fish") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let fish = "";
-      product.diet.map((img) => {
-        fish = img.toLowerCase().includes(option);
-      });
-      return fish;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let fish = "";
-      product.diet.map((img) => {
-        fish = img.toLowerCase().includes(option);
-      });
-      return fish;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let fish = "";
-      product.diet.map((img) => {
-        fish = img.toLowerCase().includes(option);
-      });
-      return fish;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let fish = "";
-        product.diet.map((img) => {
-          fish = img.toLowerCase().includes(option);
+        const filteredBaguetterProducts = baguetterProductsList.filter(
+            (product) => {
+                let vegan = "";
+                product.diet.map((img) => {
+                    vegan = img.toLowerCase().includes(option);
+                });
+                return vegan;
+            }
+        );
+        yumProducts(filteredYumProducts);
+        dailyProducts(filteredDailyProducts);
+        premiumProducts(filteredPremiumProducts);
+        baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "AL") {
+        const sortedYumArray = yumFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedDailyArray = dailyFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        yumProducts(sortedYumArray);
+        dailyProducts(sortedDailyArray);
+        premiumProducts(sortedPremiumArray);
+        baguetterProducts(sortedBaguetterArray);
+        if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "vegetarian") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            let vegetarian = "";
+            product.diet.map((img) => {
+                vegetarian = img.toLowerCase().includes(option);
+            });
+            return vegetarian;
         });
-        return fish;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "chicken") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let chicken = "";
-      product.diet.map((img) => {
-        chicken = img.toLowerCase().includes(option);
-      });
-      return chicken;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let chicken = "";
-      product.diet.map((img) => {
-        chicken = img.toLowerCase().includes(option);
-      });
-      return chicken;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let chicken = "";
-      product.diet.map((img) => {
-        chicken = img.toLowerCase().includes(option);
-      });
-      return chicken;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let chicken = "";
-        product.diet.map((img) => {
-          chicken = img.toLowerCase().includes(option);
+        const filteredDailyProducts = dailyProductsList.filter((product) => {
+            let vegetarian = "";
+            product.diet.map((img) => {
+                vegetarian = img.toLowerCase().includes(option);
+            });
+            return vegetarian;
         });
-        return chicken;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
+        const filteredPremiumProducts = premiumProductsList.filter((product) => {
+            let vegetarian = "";
+            product.diet.map((img) => {
+                vegetarian = img.toLowerCase().includes(option);
+            });
+            return vegetarian;
+        });
+        const filteredBaguetterProducts = baguetterProductsList.filter(
+            (product) => {
+                let vegetarian = "";
+                product.diet.map((img) => {
+                    vegetarian = img.toLowerCase().includes(option);
+                });
+                return vegetarian;
+            }
+        );
+        yumProducts(filteredYumProducts);
+        dailyProducts(filteredDailyProducts);
+        premiumProducts(filteredPremiumProducts);
+        baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "cow") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            let cow = "";
+            product.diet.map((img) => {
+                cow = img.toLowerCase().includes(option);
+            });
+            return cow;
+        });
+        const filteredDailyProducts = dailyProductsList.filter((product) => {
+            let cow = "";
+            product.diet.map((img) => {
+                cow = img.toLowerCase().includes(option);
+            });
+            return cow;
+        });
+        const filteredPremiumProducts = premiumProductsList.filter((product) => {
+            let cow = "";
+            product.diet.map((img) => {
+                cow = img.toLowerCase().includes(option);
+            });
+            return cow;
+        });
+        const filteredBaguetterProducts = baguetterProductsList.filter(
+            (product) => {
+                let cow = "";
+                product.diet.map((img) => {
+                    cow = img.toLowerCase().includes(option);
+                });
+                return cow;
+            }
+        );
+        yumProducts(filteredYumProducts);
+        dailyProducts(filteredDailyProducts);
+        premiumProducts(filteredPremiumProducts);
+        baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "fish") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            let fish = "";
+            product.diet.map((img) => {
+                fish = img.toLowerCase().includes(option);
+            });
+            return fish;
+        });
+        const filteredDailyProducts = dailyProductsList.filter((product) => {
+            let fish = "";
+            product.diet.map((img) => {
+                fish = img.toLowerCase().includes(option);
+            });
+            return fish;
+        });
+        const filteredPremiumProducts = premiumProductsList.filter((product) => {
+            let fish = "";
+            product.diet.map((img) => {
+                fish = img.toLowerCase().includes(option);
+            });
+            return fish;
+        });
+        const filteredBaguetterProducts = baguetterProductsList.filter(
+            (product) => {
+                let fish = "";
+                product.diet.map((img) => {
+                    fish = img.toLowerCase().includes(option);
+                });
+                return fish;
+            }
+        );
+        yumProducts(filteredYumProducts);
+        dailyProducts(filteredDailyProducts);
+        premiumProducts(filteredPremiumProducts);
+        baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "chicken") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            let chicken = "";
+            product.diet.map((img) => {
+                chicken = img.toLowerCase().includes(option);
+            });
+            return chicken;
+        });
+        const filteredDailyProducts = dailyProductsList.filter((product) => {
+            let chicken = "";
+            product.diet.map((img) => {
+                chicken = img.toLowerCase().includes(option);
+            });
+            return chicken;
+        });
+        const filteredPremiumProducts = premiumProductsList.filter((product) => {
+            let chicken = "";
+            product.diet.map((img) => {
+                chicken = img.toLowerCase().includes(option);
+            });
+            return chicken;
+        });
+        const filteredBaguetterProducts = baguetterProductsList.filter(
+            (product) => {
+                let chicken = "";
+                product.diet.map((img) => {
+                    chicken = img.toLowerCase().includes(option);
+                });
+                return chicken;
+            }
+        );
+        yumProducts(filteredYumProducts);
+        dailyProducts(filteredDailyProducts);
+        premiumProducts(filteredPremiumProducts);
+        baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
     }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  }
 };
 loadProducts();
 
 // Make modal fetch data from json file
 var cardModal = document.getElementById("modal");
 if (cardModal !== null) {
-  cardModal.addEventListener("show.bs.modal", function (event) {
-    var button = event.relatedTarget;
-    var id = button.getAttribute("data-yum-id");
-    var title = button.getAttribute("data-yum-title");
-    var price = button.getAttribute("data-yum-price");
-    var img = button.getAttribute("data-yum-img");
-    var quantityPrice = button.getAttribute("data-yum-quantity-price");
-    var description = button.getAttribute("data-yum-description");
-    var ingredients = button.getAttribute("data-yum-ingredients");
-    var dietRef = button.getAttribute("data-yum-diet");
+    cardModal.addEventListener("show.bs.modal", function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute("data-yum-id");
+        var title = button.getAttribute("data-yum-title");
+        var price = button.getAttribute("data-yum-price");
+        var img = button.getAttribute("data-yum-img");
+        var quantityPrice = button.getAttribute("data-yum-quantity-price");
+        var description = button.getAttribute("data-yum-description");
+        var ingredients = button.getAttribute("data-yum-ingredients");
+        var dietRef = button.getAttribute("data-yum-diet");
 
-    var modalTitle = cardModal.querySelector(".title");
-    var modalPrice = cardModal.querySelector(".price");
-    var modalImg = cardModal.querySelector(".dish_img");
-    var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-    var modalDescription = cardModal.querySelector(".description");
-    var modalIngredients = cardModal.querySelector(".ingredients");
-    var modalDiet = cardModal.querySelector(".diet_img");
-    var input = cardModal.querySelector(".quantity").value;
-    input = parseInt(input);
+        var modalTitle = cardModal.querySelector(".title");
+        var modalPrice = cardModal.querySelector(".price");
+        var modalImg = cardModal.querySelector(".dish_img");
+        var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+        var modalDescription = cardModal.querySelector(".description");
+        var modalIngredients = cardModal.querySelector(".ingredients");
+        var modalDiet = cardModal.querySelector(".diet_img");
+        var input = cardModal.querySelector(".quantity").value;
+        input = parseInt(input);
 
-    localStorage.setItem("quantity", input);
-    localStorage.setItem("id", id);
-    localStorage.setItem("title", (modalTitle.textContent = title));
-      localStorage.setItem("price", (modalPrice.innerHTML = price));
+        localStorage.setItem("quantity", input);
+        localStorage.setItem("id", id);
+        localStorage.setItem("title", (modalTitle.textContent = title));
+        localStorage.setItem("price", (modalPrice.innerHTML = price));
 
-    localStorage.setItem("img", (modalImg.src = img));
-    localStorage.setItem(
-      "quantity-price",
-      (modalQuantityPrice.textContent = quantityPrice)
-    );
-    localStorage.setItem(
-      "ingredients",
-      (modalIngredients.innerHTML = ingredients)
-    );
-    localStorage.setItem(
-      "description",
-      (modalDescription.textContent = description)
-    );
-    localStorage.setItem("diet", (modalDiet.src = dietRef));
-    localStorage.setItem("quantity", (input.value = 1));
-    hideDiv();
-  });
+        localStorage.setItem("img", (modalImg.src = img));
+        localStorage.setItem(
+            "quantity-price",
+            (modalQuantityPrice.textContent = quantityPrice)
+        );
+        localStorage.setItem(
+            "ingredients",
+            (modalIngredients.innerHTML = ingredients)
+        );
+        localStorage.setItem(
+            "description",
+            (modalDescription.textContent = description)
+        );
+        localStorage.setItem("diet", (modalDiet.src = dietRef));
+        localStorage.setItem("quantity", (input.value = 1));
+        hideDiv();
+    });
 } else {
-  null;
+    null;
 }
 
 //Show ingredients div
 function showDiv() {
-  var x = document.getElementById("welcomeDiv");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+    var x = document.getElementById("welcomeDiv");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
 }
 
 function hideDiv() {
-  var x = document.getElementById("welcomeDiv");
-  if (x.style.display === "block") {
-    x.style.display = "none";
-  }
+    var x = document.getElementById("welcomeDiv");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    }
 }
 
 //Show data into menu_details page based on the modal clicked
@@ -1844,185 +1844,185 @@ const detailsQuantityPrice = localStorage.getItem("quantity-price");
 const detailsImg = localStorage.getItem("img");
 const existingTitle = document.getElementById("title");
 if (existingTitle !== null) {
-  document.getElementById("title").textContent = detailsTitle;
-  document.getElementById("price").textContent = detailsPrice;
-  document.getElementById("quantity-price").textContent = detailsQuantityPrice;
-  const imgArray = document.querySelectorAll(".zoom");
-  for (let i = 0; i < Object.entries(imgArray).length; i++)
-    imgArray[i].src = detailsImg;
+    document.getElementById("title").textContent = detailsTitle;
+    document.getElementById("price").textContent = detailsPrice;
+    document.getElementById("quantity-price").textContent = detailsQuantityPrice;
+    const imgArray = document.querySelectorAll(".zoom");
+    for (let i = 0; i < Object.entries(imgArray).length; i++)
+        imgArray[i].src = detailsImg;
 } else {
-  null;
+    null;
 }
 
 let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
 //Add to cart function from button
 function realAddToCart(event) {
-  var id = event.target.closest("button").dataset.id;
-  var title = event.target.closest("button").dataset.yumTitle;
-  var price = event.target.closest("button").dataset.yumPrice;
-  var img = event.target.closest("button").dataset.yumImg;
-  var quantityPrice = event.target.closest("button").dataset.yumQuantityPrice;
-  var description = event.target.closest("button").dataset.yumDescription;
-  var dietImage = event.target.closest("button").dataset.yumDiet;
+    var id = event.target.closest("button").dataset.id;
+    var title = event.target.closest("button").dataset.yumTitle;
+    var price = event.target.closest("button").dataset.yumPrice;
+    var img = event.target.closest("button").dataset.yumImg;
+    var quantityPrice = event.target.closest("button").dataset.yumQuantityPrice;
+    var description = event.target.closest("button").dataset.yumDescription;
+    var dietImage = event.target.closest("button").dataset.yumDiet;
 
-  let formData = {};
-  formData.id = id;
-  formData.title = title;
-  formData.price = price;
-  formData.img = img;
-  formData.quantityPrice = quantityPrice;
-  formData.quantity = 1;
-  formData.description = description;
-  formData.diet = dietImage;
+    let formData = {};
+    formData.id = id;
+    formData.title = title;
+    formData.price = price;
+    formData.img = img;
+    formData.quantityPrice = quantityPrice;
+    formData.quantity = 1;
+    formData.description = description;
+    formData.diet = dietImage;
 
-  const itemIndexInBasket = formDataArry.findIndex(
-    (basketEntry) => basketEntry.id === id
-  );
-  if (itemIndexInBasket !== -1) {
-    formDataArry[itemIndexInBasket].quantity++;
-    formDataArry[itemIndexInBasket].quantityPrice =
-      parseInt(formDataArry[itemIndexInBasket].quantityPrice) +
-      parseInt(formDataArry[itemIndexInBasket].price);
-  } else {
-    if (id !== undefined) {
-      formDataArry.push(formData);
+    const itemIndexInBasket = formDataArry.findIndex(
+        (basketEntry) => basketEntry.id === id
+    );
+    if (itemIndexInBasket !== -1) {
+        formDataArry[itemIndexInBasket].quantity++;
+        formDataArry[itemIndexInBasket].quantityPrice =
+            parseInt(formDataArry[itemIndexInBasket].quantityPrice) +
+            parseInt(formDataArry[itemIndexInBasket].price);
     } else {
-      return null;
+        if (id !== undefined) {
+            formDataArry.push(formData);
+        } else {
+            return null;
+        }
     }
-  }
 
-  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-  totalQuantity();
+    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+    totalQuantity();
 }
 
 //Add to cart function from modal
 function modalAddToCart() {
-  var modalId = localStorage.getItem("id");
-  var modalTitle = localStorage.getItem("title");
-  var modalPrice = localStorage.getItem("price");
-  var modalQuantityPrice = localStorage.getItem("quantity-price");
-  var modalImage = localStorage.getItem("img");
-  var modalQuantity = localStorage.getItem("quantity");
-  var modalDescription = localStorage.getItem("description");
-  var modalDiet = localStorage.getItem("diet");
+    var modalId = localStorage.getItem("id");
+    var modalTitle = localStorage.getItem("title");
+    var modalPrice = localStorage.getItem("price");
+    var modalQuantityPrice = localStorage.getItem("quantity-price");
+    var modalImage = localStorage.getItem("img");
+    var modalQuantity = localStorage.getItem("quantity");
+    var modalDescription = localStorage.getItem("description");
+    var modalDiet = localStorage.getItem("diet");
 
-  let formData = {};
-  formData.id = modalId;
-  formData.title = modalTitle;
-  formData.price = modalPrice;
-  formData.img = modalImage;
-  formData.quantityPrice = modalQuantityPrice;
-  formData.quantity = modalQuantity;
-  formData.description = modalDescription;
-  formData.diet = modalDiet;
+    let formData = {};
+    formData.id = modalId;
+    formData.title = modalTitle;
+    formData.price = modalPrice;
+    formData.img = modalImage;
+    formData.quantityPrice = modalQuantityPrice;
+    formData.quantity = modalQuantity;
+    formData.description = modalDescription;
+    formData.diet = modalDiet;
 
-  const itemIndexInBasket = formDataArry.findIndex(
-    (basketEntry) => basketEntry.id === modalId
-  );
-  if (itemIndexInBasket !== -1) {
-    formDataArry[itemIndexInBasket].quantity++;
-    formDataArry[itemIndexInBasket].quantityPrice =
-      parseInt(formDataArry[itemIndexInBasket].quantityPrice) +
-      parseInt(formDataArry[itemIndexInBasket].price);
-  } else {
-    if (formData !== undefined) {
-      formDataArry.push(formData);
+    const itemIndexInBasket = formDataArry.findIndex(
+        (basketEntry) => basketEntry.id === modalId
+    );
+    if (itemIndexInBasket !== -1) {
+        formDataArry[itemIndexInBasket].quantity++;
+        formDataArry[itemIndexInBasket].quantityPrice =
+            parseInt(formDataArry[itemIndexInBasket].quantityPrice) +
+            parseInt(formDataArry[itemIndexInBasket].price);
     } else {
-      null;
+        if (formData !== undefined) {
+            formDataArry.push(formData);
+        } else {
+            null;
+        }
     }
-  }
 
-  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-  totalQuantity();
-  var input = document.querySelector(".quantity");
-  input.value = 1;
+    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+    totalQuantity();
+    var input = document.querySelector(".quantity");
+    input.value = 1;
 }
 
 let id = "";
 
 //Display items in the cart
 const displayNewCart = () => {
-  const tableHead = document.getElementById("table_head");
-  const summaryHead = document.getElementById("summary_head");
-  if (cartItem !== null) {
-    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (formDataArry === null) {
-      tableHead.classList.remove("block");
-      tableHead.classList.add("hide");
-      summaryHead.classList.remove("block");
-      summaryHead.classList.add("hide");
-      cartItem.insertAdjacentHTML(
-        "afterend",
-        `
+    const tableHead = document.getElementById("table_head");
+    const summaryHead = document.getElementById("summary_head");
+    if (cartItem !== null) {
+        formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+        if (formDataArry === null) {
+            tableHead.classList.remove("block");
+            tableHead.classList.add("hide");
+            summaryHead.classList.remove("block");
+            summaryHead.classList.add("hide");
+            cartItem.insertAdjacentHTML(
+                "afterend",
+                `
         <div class="single_team_text">
         <h3 style="padding: 20px; text-align: center">
           Din varukorg är tom
         </h3>
           </div>`
-      );
-    } else {
-      tableHead.classList.remove("hide");
-      tableHead.classList.add("block");
-      summaryHead.classList.remove("hide");
-      summaryHead.classList.add("block");
-      const htmlString = formDataArry
-        .map((item) => {
-          let diet = "";
-          let value = "";
-          console.log(item);
-          id = item.id;
-          let quantity;
-          description = item.title;
-          if (item.quantity == null) {
-            quantity = localStorage.getItem("quantity");
-          } else {
-            quantity = item.quantity;
-          }
-          if (Array.isArray(item.diet)) {
-            var obj = item.diet;
-            value = JSON.stringify(obj);
-            const imageTags = item.diet.map((img) => {
-              console.log(img);
-              return (
-                `<img id="diet"
+            );
+        } else {
+            tableHead.classList.remove("hide");
+            tableHead.classList.add("block");
+            summaryHead.classList.remove("hide");
+            summaryHead.classList.add("block");
+            const htmlString = formDataArry
+                .map((item) => {
+                    let diet = "";
+                    let value = "";
+                    console.log(item);
+                    id = item.id;
+                    let quantity;
+                    description = item.title;
+                    if (item.quantity == null) {
+                        quantity = localStorage.getItem("quantity");
+                    } else {
+                        quantity = item.quantity;
+                    }
+                    if (Array.isArray(item.diet)) {
+                        var obj = item.diet;
+                        value = JSON.stringify(obj);
+                        const imageTags = item.diet.map((img) => {
+                            console.log(img);
+                            return (
+                                `<img id="diet"
                   src=
                   ` +
-                img +
-                `
+                                img +
+                                `
                   alt="specialkost-bild"
                   class="diet_img"
                 />
                 `
-              );
-            });
-            diet = imageTags;
-          } else {
-            const singleImage =
-              `<img id="diet"
+                            );
+                        });
+                        diet = imageTags;
+                    } else {
+                        const singleImage =
+                            `<img id="diet"
                   src=
                   ` +
-              item.diet +
-              `
+                            item.diet +
+                            `
                   alt="specialkost-bild"
                   class="diet_img"
                 />
                 `;
-            diet = singleImage;
-            value = item.diet;
-          }
-          //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
-          return (
-            `
+                        diet = singleImage;
+                        value = item.diet;
+                    }
+                    //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
+                    return (
+                        `
 <section class="col mb-4 d-flex flex-row" id=` +
-            item.id +
-            `>
+                        item.id +
+                        `>
     <div class="imgContainer">
       <img id="` +
-            item.id +
-            `" src="` +
-            item.img +
-            `" alt="bild på maträtt"
+                        item.id +
+                        `" src="` +
+                        item.img +
+                        `" alt="bild på maträtt"
       class="pro_img cartPayDeliver cropImage"/>
     </div>
 
@@ -2030,16 +2030,16 @@ const displayNewCart = () => {
 
       <div class="d-flex flex-row">
           <h5 id="" style="flex-direction: row; display: flex;" class="">` +
-            item.title +
-            `
+                        item.title +
+                        `
             <div style="padding: 10px; margin-top: -17px;" class="d-flex">` +
-            diet +
-            `</div>
+                        diet +
+                        `</div>
 
           </h5>
           <h5 style="cursor: pointer;" onclick="removeItem(` +
-            item.id +
-            `)" class="ms-auto me-4">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
+                        item.id +
+                        `)" class="ms-auto me-4">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
       </div>
 
         <p class="food-description" style="width: 400px; max-height:50px; overflow-y:scroll;">
@@ -2053,8 +2053,8 @@ const displayNewCart = () => {
               <i style="font-size: 12px; line-height: 3;" class="fas fa-minus"></i>
               </button>
               <input class="quantity" type="text" value=` +
-            quantity +
-            `>
+                        quantity +
+                        `>
               <button class="increase">
               <i id="plus-cart" style="font-size: 12px; line-height: 3;" class="fas fa-plus"></i>
               </button>
@@ -2062,15 +2062,15 @@ const displayNewCart = () => {
 
             <div class="pro_icon d-flex">
                   <button class="mx-3" onclick="removeItem(` +
-            item.id +
-            `)" href="#"><i class="fas fa-trash-alt" style="font-size: 17px; color:#FF6633; margin-right: 10px; margin-top: 50px;"></i>
+                        item.id +
+                        `)" href="#"><i class="fas fa-trash-alt" style="font-size: 17px; color:#FF6633; margin-right: 10px; margin-top: 50px;"></i>
                 </button>
             </div>
 
             <div id="final-price" class="d-flex flex-row align-items-center ms-auto me-4">
                 <h6 class="quantity_price currency mb_0">` +
-            item.quantityPrice +
-            `
+                        item.quantityPrice +
+                        `
                 </h6>
                 <h6 class="currency mb_0">kr</h6>
             </div>
@@ -2083,174 +2083,174 @@ const displayNewCart = () => {
 
             `
 
-            //   `
-            // <tr id= "` +
-            //   item.id +
-            //   `">
-            // <td data-label="Bild" class="pro_img">
-            //               <img
-            //                 src="` +
-            //   item.img +
-            //   `"
-            //                 alt="rätt-bild"
-            //                 class="img-fluid w-100"
-            //               />
-            //             </td>
+                        //   `
+                        // <tr id= "` +
+                        //   item.id +
+                        //   `">
+                        // <td data-label="Bild" class="pro_img">
+                        //               <img
+                        //                 src="` +
+                        //   item.img +
+                        //   `"
+                        //                 alt="rätt-bild"
+                        //                 class="img-fluid w-100"
+                        //               />
+                        //             </td>
 
-            //             <td data-label="Detaljer" class="pro_name">
-            //               <a href="#">` +
-            //   item.title?.replace(/'/g, "") +
-            //   `</a>
-            //             </td>
-            //             <td data-label="Pris" class="pro_status">
-            //               <h6>` +
-            //   item.price +
-            //   `kr</h6>
-            //             </td>
+                        //             <td data-label="Detaljer" class="pro_name">
+                        //               <a href="#">` +
+                        //   item.title?.replace(/'/g, "") +
+                        //   `</a>
+                        //             </td>
+                        //             <td data-label="Pris" class="pro_status">
+                        //               <h6>` +
+                        //   item.price +
+                        //   `kr</h6>
+                        //             </td>
 
-            //             <td data-label="Kvantitet" class="pro_select">
-            //             <div class="quentity_btn">
-            //             <button class="decrease">
-            //             <i class="fa fa-minus"></i2>
-            //           </button>
-            //           <input class="quantity" type="text" value=` +
-            //   quantity +
-            //   `>
-            //           <button class="increase">
-            //             <i class="fa fa-plus"></i>
-            //           </button>
-            //         </div>
-            //             </td>
+                        //             <td data-label="Kvantitet" class="pro_select">
+                        //             <div class="quentity_btn">
+                        //             <button class="decrease">
+                        //             <i class="fa fa-minus"></i2>
+                        //           </button>
+                        //           <input class="quantity" type="text" value=` +
+                        //   quantity +
+                        //   `>
+                        //           <button class="increase">
+                        //             <i class="fa fa-plus"></i>
+                        //           </button>
+                        //         </div>
+                        //             </td>
 
-            //             <td data-label="Total" class="pro_tk">
-            //             <div class="quentity_btn">
-            //               <h6 class="quantity_price">` +
-            //   item.quantityPrice +
-            //   `</h6>
-            //             <h6 class="currency mb_0">kr</h6>
-            //             </div>
-            //             </td>
+                        //             <td data-label="Total" class="pro_tk">
+                        //             <div class="quentity_btn">
+                        //               <h6 class="quantity_price">` +
+                        //   item.quantityPrice +
+                        //   `</h6>
+                        //             <h6 class="currency mb_0">kr</h6>
+                        //             </div>
+                        //             </td>
 
-            //             <td data-label="Ta bort" class="pro_icon">
-            //               <button onclick="removeItem(` +
-            //   item.id +
-            //   `)" href="#"><i class="fas fa-trash-alt"></i></button>
-            //             </td>
-            //             </tr>
-            //             `
-          );
-        })
-        .join("");
-      cartItem.innerHTML = htmlString;
-      return id;
+                        //             <td data-label="Ta bort" class="pro_icon">
+                        //               <button onclick="removeItem(` +
+                        //   item.id +
+                        //   `)" href="#"><i class="fas fa-trash-alt"></i></button>
+                        //             </td>
+                        //             </tr>
+                        //             `
+                    );
+                })
+                .join("");
+            cartItem.innerHTML = htmlString;
+            return id;
+        }
     }
-  }
 };
 
 //Display cost summary
 const displaySummary = () => {
-  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-  console.log(formDataArry);
-  summary.insertAdjacentHTML(
-    "afterend",
-    `
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    console.log(formDataArry);
+    summary.insertAdjacentHTML(
+        "afterend",
+        `
       <div>
       <p class="mb-1" style="padding:10px; background:lightgrey;">Frakt <span></span></p>
       <p style="padding:10px; background:lightgrey; class="quantity_price">Totalt kostnad inkl.moms <span></span></p>
       </div>
       `
-  );
-  displaySummary();
+    );
+    displaySummary();
 
-  // copy
-  // const displayNewCart = () => {
-  //   const tableHead = document.getElementById("table_head");
-  //   if (cartItem !== null) {
-  //     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-  //     if (formDataArry === null) {
-  //       tableHead.classList.remove("block");
-  //       tableHead.classList.add("hide");
-  //       cartItem.insertAdjacentHTML(
-  //         "afterend",
-  //         `<h4 class="single_team_text" style="padding: 20px; text-align: center">
-  //           Din varukorg är tom
-  //         </h4>`
-  //       );
-  //     } else {
-  //       tableHead.classList.remove("hide");
-  //       tableHead.classList.add("block");
-  //       const htmlString = formDataArry
-  //         .map((item) => {
-  //           id = item.id;
-  //           let quantity;
-  //           if (item.quantity == null) {
-  //             quantity = localStorage.getItem("quantity");
-  //           } else {
-  //             quantity = item.quantity;
-  //           }
-  //           return (
-  //             `
-  //           <tr id= "` +
-  //             item.id +
-  //             `">
-  //           <td data-label="Bild" class="pro_img">
-  //                         <img
-  //                           src="` +
-  //             item.img +
-  //             `"
-  //                           alt="rätt-bild"
-  //                           class="img-fluid w-100"
-  //                         />
-  //                       </td>
+    // copy
+    // const displayNewCart = () => {
+    //   const tableHead = document.getElementById("table_head");
+    //   if (cartItem !== null) {
+    //     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    //     if (formDataArry === null) {
+    //       tableHead.classList.remove("block");
+    //       tableHead.classList.add("hide");
+    //       cartItem.insertAdjacentHTML(
+    //         "afterend",
+    //         `<h4 class="single_team_text" style="padding: 20px; text-align: center">
+    //           Din varukorg är tom
+    //         </h4>`
+    //       );
+    //     } else {
+    //       tableHead.classList.remove("hide");
+    //       tableHead.classList.add("block");
+    //       const htmlString = formDataArry
+    //         .map((item) => {
+    //           id = item.id;
+    //           let quantity;
+    //           if (item.quantity == null) {
+    //             quantity = localStorage.getItem("quantity");
+    //           } else {
+    //             quantity = item.quantity;
+    //           }
+    //           return (
+    //             `
+    //           <tr id= "` +
+    //             item.id +
+    //             `">
+    //           <td data-label="Bild" class="pro_img">
+    //                         <img
+    //                           src="` +
+    //             item.img +
+    //             `"
+    //                           alt="rätt-bild"
+    //                           class="img-fluid w-100"
+    //                         />
+    //                       </td>
 
-  //                       <td data-label="Detaljer" class="pro_name">
-  //                         <a href="#">` +
-  //             item.title?.replace(/'/g, "") +
-  //             `</a>
-  //                       </td>
-  //                       <td data-label="Pris" class="pro_status">
-  //                         <h6>` +
-  //             item.price +
-  //             `kr</h6>
-  //                       </td>
+    //                       <td data-label="Detaljer" class="pro_name">
+    //                         <a href="#">` +
+    //             item.title?.replace(/'/g, "") +
+    //             `</a>
+    //                       </td>
+    //                       <td data-label="Pris" class="pro_status">
+    //                         <h6>` +
+    //             item.price +
+    //             `kr</h6>
+    //                       </td>
 
-  //                       <td data-label="Kvantitet" class="pro_select">
-  //                       <div class="quentity_btn">
-  //                       <button class="decrease">
-  //                       <i class="fa fa-minus"></i>
-  //                     </button>
-  //                     <input class="quantity" type="text" value=` +
-  //             quantity +
-  //             `>
-  //                     <button class="increase">
-  //                       <i class="fa fa-plus"></i>
-  //                     </button>
-  //                   </div>
-  //                       </td>
+    //                       <td data-label="Kvantitet" class="pro_select">
+    //                       <div class="quentity_btn">
+    //                       <button class="decrease">
+    //                       <i class="fa fa-minus"></i>
+    //                     </button>
+    //                     <input class="quantity" type="text" value=` +
+    //             quantity +
+    //             `>
+    //                     <button class="increase">
+    //                       <i class="fa fa-plus"></i>
+    //                     </button>
+    //                   </div>
+    //                       </td>
 
-  //                       <td data-label="Total" class="pro_tk">
-  //                       <div class="quentity_btn">
-  //                         <h6 class="quantity_price">` +
-  //             item.quantityPrice +
-  //             `</h6>
-  //                       <h6 class="currency mb_0">kr</h6>
-  //                       </div>
-  //                       </td>
+    //                       <td data-label="Total" class="pro_tk">
+    //                       <div class="quentity_btn">
+    //                         <h6 class="quantity_price">` +
+    //             item.quantityPrice +
+    //             `</h6>
+    //                       <h6 class="currency mb_0">kr</h6>
+    //                       </div>
+    //                       </td>
 
-  //                       <td data-label="Ta bort" class="pro_icon">
-  //                         <button onclick="removeItem(` +
-  //             item.id +
-  //             `)" href="#"><i class="fas fa-trash-alt"></i></button>
-  //                       </td>
-  //                       </tr>`
-  //           );
-  //         })
-  //         .join("");
-  //       cartItem.innerHTML = htmlString;
-  //       return id;
-  //     }
-  //   }
-  // };
+    //                       <td data-label="Ta bort" class="pro_icon">
+    //                         <button onclick="removeItem(` +
+    //             item.id +
+    //             `)" href="#"><i class="fas fa-trash-alt"></i></button>
+    //                       </td>
+    //                       </tr>`
+    //           );
+    //         })
+    //         .join("");
+    //       cartItem.innerHTML = htmlString;
+    //       return id;
+    //     }
+    //   }
+    // };
 };
 
 displayNewCart();
@@ -2259,16 +2259,16 @@ totalQuantity();
 
 //Bind the buttons handling the increment and decrement buttons to a function and run it once the DOM loads. When the DOM dynamically changes (e.g. insertAdjacentHTML, removeItem()), the intitally attached addEventListeners are not there anymore and need to be reattached both on the DOM and for the "removeItem" function.
 function cartBtns() {
-  const increase = document.querySelectorAll(".increase");
-  const decrease = document.querySelectorAll(".decrease");
+    const increase = document.querySelectorAll(".increase");
+    const decrease = document.querySelectorAll(".decrease");
 
-  increase.forEach((btn) => {
-    btn.addEventListener("click", increment);
-  });
+    increase.forEach((btn) => {
+        btn.addEventListener("click", increment);
+    });
 
-  decrease.forEach((btn) => {
-    btn.addEventListener("click", decrement);
-  });
+    decrease.forEach((btn) => {
+        btn.addEventListener("click", decrement);
+    });
 }
 cartBtns();
 
@@ -2294,52 +2294,52 @@ const accordTwo = document.querySelector(".nextAccord2");
 
 // Two functions with scrollTo() method for both the second and third accordions. Since the navbar is in the way and obstructing the view, we need to know its height with offsetHeight, the size and relative position of the accordion header with getBoundingClientRect() and with the Window object scroll to the appropriate accordion header with the "next" buttons. The setTimeout is a temporary fix and might be due to the animations of opening and closing the accordion having to be played out to its end before it starts scrolling, mutationObserver could be an alternate solution.
 function nextAccord1() {
-  const navHeader = document.querySelector(".main_menu").offsetHeight;
-  const header = document.querySelector("#headingTwo");
-  const acc = document.querySelector(".accordOne");
-  const nextAccord = document.querySelector(".accordTwo");
-  acc.classList.remove("show");
-  nextAccord.classList.add("show");
+    const navHeader = document.querySelector(".main_menu").offsetHeight;
+    const header = document.querySelector("#headingTwo");
+    const acc = document.querySelector(".accordOne");
+    const nextAccord = document.querySelector(".accordTwo");
+    acc.classList.remove("show");
+    nextAccord.classList.add("show");
 
-  setTimeout(() => {
-    const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
-    console.log(fixedHeader);
-    window.scrollTo({
-      top: fixedHeader - navHeader - 100,
-      behavior: "smooth",
-    });
-  }, 230);
+    setTimeout(() => {
+        const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+        console.log(fixedHeader);
+        window.scrollTo({
+            top: fixedHeader - navHeader - 100,
+            behavior: "smooth",
+        });
+    }, 230);
 
-  // header.scrollIntoView({ behavior: "smooth", block: "start" });
+    // header.scrollIntoView({ behavior: "smooth", block: "start" });
 
-  // if (nextAccord.classList.contains("show")) {
-  //   header.scrollIntoView({ behavior: "smooth", block: "start" });
-  // } else {
-  //   console.log("no can do");
-  // }
+    // if (nextAccord.classList.contains("show")) {
+    //   header.scrollIntoView({ behavior: "smooth", block: "start" });
+    // } else {
+    //   console.log("no can do");
+    // }
 
-  // nextAccord.addEventListener("transitionend", function transitionEnd() {
-  //   nextAccord.removeEventListener("transitionend", transitionEnd);
-  //   header.scrollIntoView({ behavior: "smooth", block: "start" });
-  // });
+    // nextAccord.addEventListener("transitionend", function transitionEnd() {
+    //   nextAccord.removeEventListener("transitionend", transitionEnd);
+    //   header.scrollIntoView({ behavior: "smooth", block: "start" });
+    // });
 }
 
 function nextAccord2() {
-  // Subject to change
-  // const navHeader = document.querySelector(".main_menu").offsetHeight;
-  // const header = document.querySelector("#headingThree");
-  // const acc = document.querySelector(".accordTwo");
-  // const nextAccord = document.querySelector(".accordThree");
-  // acc.classList.remove("show");
-  // nextAccord.classList.add("show");
-  // setTimeout(() => {
-  //   const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
-  //   console.log(fixedHeader);
-  //   window.scrollTo({
-  //     top: fixedHeader - navHeader - 120,
-  //     behavior: "smooth",
-  //   });
-  // }, 250);
+    // Subject to change
+    // const navHeader = document.querySelector(".main_menu").offsetHeight;
+    // const header = document.querySelector("#headingThree");
+    // const acc = document.querySelector(".accordTwo");
+    // const nextAccord = document.querySelector(".accordThree");
+    // acc.classList.remove("show");
+    // nextAccord.classList.add("show");
+    // setTimeout(() => {
+    //   const fixedHeader = header.getBoundingClientRect().top + window.scrollY;
+    //   console.log(fixedHeader);
+    //   window.scrollTo({
+    //     top: fixedHeader - navHeader - 120,
+    //     behavior: "smooth",
+    //   });
+    // }, 250);
 }
 // Display the upcoming 2 weeks while excluding the weekends (saturdays & sundays) while initially jumping ahead 3 days, in total 10 days.
 // 14 days in a week, but adding 3 results in 17
@@ -2356,20 +2356,20 @@ let threeDaysAhead = [];
 dates.setDate(dates.getDate() + 3);
 
 for (let i = 3; i < twoWeeks; i++) {
-  const checkDay = dates.getDay();
-  if (checkDay !== 0 && checkDay !== 6) {
-    const sweDate = dates.toLocaleString("sv-SE", options);
-    threeDaysAhead.push(sweDate.toUpperCase());
-  }
-  dates.setDate(dates.getDate() + 1);
+    const checkDay = dates.getDay();
+    if (checkDay !== 0 && checkDay !== 6) {
+        const sweDate = dates.toLocaleString("sv-SE", options);
+        threeDaysAhead.push(sweDate.toUpperCase());
+    }
+    dates.setDate(dates.getDate() + 1);
 }
 
 console.log(threeDaysAhead);
 
 const dateStrings = threeDaysAhead
-  .map((day) => {
-    const [weekday, days, month] = day.split(" ");
-    return `
+    .map((day) => {
+        const [weekday, days, month] = day.split(" ");
+        return `
 
         <div class="swiper-slide date">
             <div class="date-box box1 text-center date">
@@ -2379,24 +2379,24 @@ const dateStrings = threeDaysAhead
         </div>
 
 `;
-  })
-  .join("");
+    })
+    .join("");
 
 const deliveryDates = document.getElementById("deliverDates");
 if (deliveryDates !== null) {
-  deliveryDates.innerHTML = dateStrings;
+    deliveryDates.innerHTML = dateStrings;
 }
 
 const theBox = document.querySelectorAll(".box1");
 
 theBox.forEach((btn) => {
-  btn.addEventListener("click", function () {
-    theBox.forEach((b) => b.classList.remove("box-selected"));
-      btn.classList.add("box-selected");
-      const dayText = btn.querySelector(".day");
-      const dateText = btn.querySelector(".date");
-      console.log(dayText.textContent + " " + dateText.textContent);
-  });
+    btn.addEventListener("click", function () {
+        theBox.forEach((b) => b.classList.remove("box-selected"));
+        btn.classList.add("box-selected");
+        const dayText = btn.querySelector(".day");
+        const dateText = btn.querySelector(".date");
+        console.log(dayText.textContent + " " + dateText.textContent);
+    });
 });
 
 const timeBox = document.querySelectorAll(".tid-box");
@@ -2497,250 +2497,250 @@ timeBox.forEach((btn) => {
 // </div>
 
 {
-  /* <div class="d-flex calendar justify-content-center">
-<div class="date-box box1 text-center mx-2">
-  <div class="day">Måndag</div>
-  <div class="date">2 Sep</div>
-</div>
-<div class="date-box text-center mx-2">
-  <div class="day">Tisdag</div>
-  <div class="date">3 Sep</div>
-</div>
-<div class="date-box box3 text-center mx-2">
-  <div class="day">Onsdag</div>
-  <div class="date">4 Sep</div>
-</div>
-</div>  */
+    /* <div class="d-flex calendar justify-content-center">
+  <div class="date-box box1 text-center mx-2">
+    <div class="day">Måndag</div>
+    <div class="date">2 Sep</div>
+  </div>
+  <div class="date-box text-center mx-2">
+    <div class="day">Tisdag</div>
+    <div class="date">3 Sep</div>
+  </div>
+  <div class="date-box box3 text-center mx-2">
+    <div class="day">Onsdag</div>
+    <div class="date">4 Sep</div>
+  </div>
+  </div>  */
 }
 
 // ----------------------------------
 
 //Increment function on the + button for quantity
 function increment() {
-  if (localStorage.getItem("quantity") !== null) {
-    const inp = this.previousElementSibling;
-    if (inp.value < 20) inp.value = Number(inp.value) + 1;
-    if (inp.value > 0) {
-      inp.previousElementSibling.removeAttribute("disabled");
-    }
-    let id = localStorage.getItem("id");
-    let price = localStorage.getItem("price");
-    price = parseInt(price);
-    if (cardModal !== null) {
-      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-      var input = cardModal.querySelector(".quantity");
-    } else {
-      price = parseInt(price);
-      var modalQuantityPrice =
-        this.parentElement.nextElementSibling.nextElementSibling.querySelector(
-          ".quantity_price"
+    if (localStorage.getItem("quantity") !== null) {
+        const inp = this.previousElementSibling;
+        if (inp.value < 20) inp.value = Number(inp.value) + 1;
+        if (inp.value > 0) {
+            inp.previousElementSibling.removeAttribute("disabled");
+        }
+        let id = localStorage.getItem("id");
+        let price = localStorage.getItem("price");
+        price = parseInt(price);
+        if (cardModal !== null) {
+            var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+            var input = cardModal.querySelector(".quantity");
+        } else {
+            price = parseInt(price);
+            var modalQuantityPrice =
+                this.parentElement.nextElementSibling.nextElementSibling.querySelector(
+                    ".quantity_price"
+                );
+            var input = this.previousElementSibling;
+            console.log(input);
+        }
+        let inputQuantity = inp.value;
+        let increaseQuantityPrice = inp.value * price;
+
+        if (cartItem !== null) {
+            let tableId = this.closest("section").id;
+
+            let itemIndex = formDataArry.filter((el) => el.id == tableId);
+            if (itemIndex) {
+                price = itemIndex[0].price;
+                increaseQuantityPrice = inp.value * price;
+                itemIndex[0].quantityPrice = increaseQuantityPrice;
+                modalQuantityPrice.innerHTML = increaseQuantityPrice;
+                itemIndex[0].quantity = inputQuantity;
+                input.value = inputQuantity;
+            }
+        } else {
+            null;
+        }
+
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+
+        localStorage.setItem(
+            "quantity-price",
+            (modalQuantityPrice.textContent = increaseQuantityPrice)
         );
-      var input = this.previousElementSibling;
-      console.log(input);
-    }
-    let inputQuantity = inp.value;
-    let increaseQuantityPrice = inp.value * price;
-
-    if (cartItem !== null) {
-      let tableId = this.closest("section").id;
-
-      let itemIndex = formDataArry.filter((el) => el.id == tableId);
-      if (itemIndex) {
-        price = itemIndex[0].price;
-        increaseQuantityPrice = inp.value * price;
-        itemIndex[0].quantityPrice = increaseQuantityPrice;
-        modalQuantityPrice.innerHTML = increaseQuantityPrice;
-        itemIndex[0].quantity = inputQuantity;
-        input.value = inputQuantity;
-      }
+        localStorage.setItem("quantity", (input.textContent = inputQuantity));
     } else {
-      null;
-    }
+        const inp = this.previousElementSibling;
+        if (inp.value < 20) inp.value = Number(inp.value) + 1;
+        if (inp.value > 0) {
+            inp.previousElementSibling.removeAttribute("disabled");
+        }
+        for (i = 0; i < formDataArry.length; i++) {
+            price = parseInt(formDataArry[i].price);
+            quantityPrice = parseInt(formDataArry[i].quantityPrice);
+            quantity = parseInt(formDataArry[i].quantity);
+        }
+        if (cardModal !== null) {
+            var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+            var input = cardModal.querySelector(".quantity");
+        } else {
+            price = parseInt(price);
+            var modalQuantityPrice =
+                this.parentElement.nextElementSibling.nextElementSibling.querySelector(
+                    ".quantity_price"
+                );
+            var input = this.previousElementSibling;
+        }
+        let inputQuantity = inp.value;
 
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+        let tableId = this.closest("section").id;
+        console.log(tableId);
 
-    localStorage.setItem(
-      "quantity-price",
-      (modalQuantityPrice.textContent = increaseQuantityPrice)
-    );
-    localStorage.setItem("quantity", (input.textContent = inputQuantity));
-  } else {
-    const inp = this.previousElementSibling;
-    if (inp.value < 20) inp.value = Number(inp.value) + 1;
-    if (inp.value > 0) {
-      inp.previousElementSibling.removeAttribute("disabled");
+        let itemIndex = formDataArry.filter((el) => el.id == tableId);
+        if (itemIndex) {
+            let increaseQuantityPrice = inputQuantity * itemIndex[0].price;
+            itemIndex[0].quantityPrice = increaseQuantityPrice;
+            modalQuantityPrice.innerHTML = increaseQuantityPrice;
+            itemIndex[0].quantity = inputQuantity;
+            input.value = inputQuantity;
+        }
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
     }
-    for (i = 0; i < formDataArry.length; i++) {
-      price = parseInt(formDataArry[i].price);
-      quantityPrice = parseInt(formDataArry[i].quantityPrice);
-      quantity = parseInt(formDataArry[i].quantity);
-    }
-    if (cardModal !== null) {
-      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-      var input = cardModal.querySelector(".quantity");
-    } else {
-      price = parseInt(price);
-      var modalQuantityPrice =
-        this.parentElement.nextElementSibling.nextElementSibling.querySelector(
-          ".quantity_price"
-        );
-      var input = this.previousElementSibling;
-    }
-    let inputQuantity = inp.value;
-
-    let tableId = this.closest("section").id;
-    console.log(tableId);
-
-    let itemIndex = formDataArry.filter((el) => el.id == tableId);
-    if (itemIndex) {
-      let increaseQuantityPrice = inputQuantity * itemIndex[0].price;
-      itemIndex[0].quantityPrice = increaseQuantityPrice;
-      modalQuantityPrice.innerHTML = increaseQuantityPrice;
-      itemIndex[0].quantity = inputQuantity;
-      input.value = inputQuantity;
-    }
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-  }
-  totalSum();
-  updateFields();
-  totalQuantity();
+    totalSum();
+    updateFields();
+    totalQuantity();
 }
 
 //Decrement function on the button for quantity
 // The "this" keyword might cause problems, we can't alway be certain its pointing to the correct button in the correct page and may cause unintended issues with decrementingh items from the cart
 //In order to ensure the button pressed is the one the user really clicked on, instead of just having it look for the closest matching class or id, assign a variable to the event.target along with replacing the "this" keywords since event.target is handling that for us now.
 function decrement(event) {
-  const decBtn = event.target.closest(".decrease");
-  console.log(decBtn);
-  if (localStorage.getItem("quantity") !== null) {
-    const inp = decBtn.nextElementSibling;
-    if (inp.value > 0) {
-      inp.value = Number(inp.value) - 1;
-      console.log(inp.value);
-    }
-    if (inp.value <= 0) {
-      decBtn.setAttribute("disabled", "disabled");
-    }
-    let id = localStorage.getItem("id");
-    let quantityPrice = localStorage.getItem("quantity-price");
-    let price = localStorage.getItem("price");
-    quantityPrice = parseInt(quantityPrice);
-    price = parseInt(price);
-    if (cardModal !== null) {
-      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-      var input = cardModal.querySelector(".quantity");
-    } else {
-      price = parseInt(price);
-      var modalQuantityPrice =
-        decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
-          ".quantity_price"
+    const decBtn = event.target.closest(".decrease");
+    console.log(decBtn);
+    if (localStorage.getItem("quantity") !== null) {
+        const inp = decBtn.nextElementSibling;
+        if (inp.value > 0) {
+            inp.value = Number(inp.value) - 1;
+            console.log(inp.value);
+        }
+        if (inp.value <= 0) {
+            decBtn.setAttribute("disabled", "disabled");
+        }
+        let id = localStorage.getItem("id");
+        let quantityPrice = localStorage.getItem("quantity-price");
+        let price = localStorage.getItem("price");
+        quantityPrice = parseInt(quantityPrice);
+        price = parseInt(price);
+        if (cardModal !== null) {
+            var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+            var input = cardModal.querySelector(".quantity");
+        } else {
+            price = parseInt(price);
+            var modalQuantityPrice =
+                decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
+                    ".quantity_price"
+                );
+            var input = this.nextElementSibling;
+        }
+        let inputQuantity = inp.value;
+        let decreaseQuantityPrice = quantityPrice - price;
+
+        if (cartItem !== null) {
+            let tableId = decBtn.closest("section").id;
+
+            let itemIndex = formDataArry.filter((el) => el.id == tableId);
+            if (itemIndex) {
+                decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
+                itemIndex[0].quantityPrice = decreaseQuantityPrice;
+                modalQuantityPrice.innerHTML = decreaseQuantityPrice;
+                itemIndex[0].quantity = inputQuantity;
+                input.value = inputQuantity;
+            } else {
+                null;
+            }
+        }
+
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+
+        localStorage.setItem(
+            "quantity-price",
+            (modalQuantityPrice.textContent = decreaseQuantityPrice)
         );
-      var input = this.nextElementSibling;
-    }
-    let inputQuantity = inp.value;
-    let decreaseQuantityPrice = quantityPrice - price;
-
-    if (cartItem !== null) {
-      let tableId = decBtn.closest("section").id;
-
-      let itemIndex = formDataArry.filter((el) => el.id == tableId);
-      if (itemIndex) {
-        decreaseQuantityPrice = itemIndex[0].quantityPrice - itemIndex[0].price;
-        itemIndex[0].quantityPrice = decreaseQuantityPrice;
-        modalQuantityPrice.innerHTML = decreaseQuantityPrice;
-        itemIndex[0].quantity = inputQuantity;
-        input.value = inputQuantity;
-      } else {
-        null;
-      }
-    }
-
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-
-    localStorage.setItem(
-      "quantity-price",
-      (modalQuantityPrice.textContent = decreaseQuantityPrice)
-    );
-    localStorage.setItem("quantity", (input.textContent = inputQuantity));
-  } else {
-    const inp = decBtn.nextElementSibling;
-    console.log(inp);
-    if (inp.value > 0) {
-      inp.value = Number(inp.value) - 1;
-    }
-    if (inp.value <= 0) {
-      decBtn.setAttribute("disabled", "disabled");
-    }
-    for (i = 0; i < formDataArry.length; i++) {
-      price = parseInt(formDataArry[i].price);
-      quantityPrice = parseInt(formDataArry[i].quantityPrice);
-      quantity = parseInt(formDataArry[i].quantity);
-    }
-    if (cardModal !== null) {
-      var modalQuantityPrice = cardModal.querySelector(".quantity_price");
-      var input = cardModal.querySelector(".quantity");
+        localStorage.setItem("quantity", (input.textContent = inputQuantity));
     } else {
-      price = parseInt(price);
-      var modalQuantityPrice =
-        decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
-          ".quantity_price"
-        );
-      var input = this.nextElementSibling;
-    }
-    let inputQuantity = inp.value;
+        const inp = decBtn.nextElementSibling;
+        console.log(inp);
+        if (inp.value > 0) {
+            inp.value = Number(inp.value) - 1;
+        }
+        if (inp.value <= 0) {
+            decBtn.setAttribute("disabled", "disabled");
+        }
+        for (i = 0; i < formDataArry.length; i++) {
+            price = parseInt(formDataArry[i].price);
+            quantityPrice = parseInt(formDataArry[i].quantityPrice);
+            quantity = parseInt(formDataArry[i].quantity);
+        }
+        if (cardModal !== null) {
+            var modalQuantityPrice = cardModal.querySelector(".quantity_price");
+            var input = cardModal.querySelector(".quantity");
+        } else {
+            price = parseInt(price);
+            var modalQuantityPrice =
+                decBtn.parentElement.nextElementSibling.nextElementSibling.querySelector(
+                    ".quantity_price"
+                );
+            var input = this.nextElementSibling;
+        }
+        let inputQuantity = inp.value;
 
-    let tableId = decBtn.closest("section").id;
-    console.log(tableId);
+        let tableId = decBtn.closest("section").id;
+        console.log(tableId);
 
-    let itemIndex = formDataArry.filter((el) => el.id == tableId);
-    if (itemIndex) {
-      let decreaseQuantityPrice =
-        itemIndex[0].quantityPrice - itemIndex[0].price;
-      itemIndex[0].quantityPrice = decreaseQuantityPrice;
-      console.log(modalQuantityPrice);
-      modalQuantityPrice.innerHTML = decreaseQuantityPrice;
-      itemIndex[0].quantity = inputQuantity;
-      input.value = inputQuantity;
+        let itemIndex = formDataArry.filter((el) => el.id == tableId);
+        if (itemIndex) {
+            let decreaseQuantityPrice =
+                itemIndex[0].quantityPrice - itemIndex[0].price;
+            itemIndex[0].quantityPrice = decreaseQuantityPrice;
+            console.log(modalQuantityPrice);
+            modalQuantityPrice.innerHTML = decreaseQuantityPrice;
+            itemIndex[0].quantity = inputQuantity;
+            input.value = inputQuantity;
+        }
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
     }
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-  }
-  totalSum();
-  updateFields();
-  totalQuantity();
+    totalSum();
+    updateFields();
+    totalQuantity();
 }
 
 //Remove item from cart
 function removeItem(id) {
-  let temp = formDataArry.filter((item) => item.id != id);
-  console.log(temp);
-  localStorage.setItem("formDataArry", JSON.stringify(temp));
-  //set item back into storage
-  displayNewCart();
-  totalQuantity();
-  totalSum();
-  updateFields();
-  //Reattach addEventListeners
-  cartBtns();
-  if (temp.length == 0) {
-    localStorage.clear();
+    let temp = formDataArry.filter((item) => item.id != id);
+    console.log(temp);
+    localStorage.setItem("formDataArry", JSON.stringify(temp));
+    //set item back into storage
     displayNewCart();
-  }
+    totalQuantity();
+    totalSum();
+    updateFields();
+    //Reattach addEventListeners
+    cartBtns();
+    if (temp.length == 0) {
+        localStorage.clear();
+        displayNewCart();
+    }
 }
 
 let company_button = document.getElementById("company_button");
 let private_button = document.getElementById("private_button");
 if (company_button !== null || private_button !== null) {
-  company_button.addEventListener("click", showCompanyForm);
-  private_button.addEventListener("click", showPrivateForm);
+    company_button.addEventListener("click", showCompanyForm);
+    private_button.addEventListener("click", showPrivateForm);
 } else {
-  null;
+    null;
 }
 
 // Show additional inputs on company form
 function showCompanyForm() {
-  let contactForm = document.getElementById("company");
-  if (contactForm !== null) {
-    contactForm.innerHTML = `
+    let contactForm = document.getElementById("company");
+    if (contactForm !== null) {
+        contactForm.innerHTML = `
                 <div class="col-xl-12">
                   <div for="company name" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
@@ -2770,23 +2770,23 @@ function showCompanyForm() {
                 </div>
                 </div>
                   `;
-    company_button.className = "focus_common_btn";
-    private_button.className = "common_btn";
-  } else {
-    null;
-  }
+        company_button.className = "focus_common_btn";
+        private_button.className = "common_btn";
+    } else {
+        null;
+    }
 }
 
 //Remove additional inputs on private form
 function showPrivateForm() {
-  let contactForm = document.getElementById("company");
-  if (contactForm !== null) {
-    contactForm.innerHTML = "";
-    private_button.className = "focus_common_btn";
-    company_button.className = "common_btn";
-  } else {
-    null;
-  }
+    let contactForm = document.getElementById("company");
+    if (contactForm !== null) {
+        contactForm.innerHTML = "";
+        private_button.className = "focus_common_btn";
+        company_button.className = "common_btn";
+    } else {
+        null;
+    }
 }
 
 // Function to send form to email
@@ -2795,215 +2795,215 @@ const form = document.getElementById("form");
 const result = document.getElementById("result");
 
 if (contactForm !== null) {
-  contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const formData = new FormData(contactForm);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-    form.innerHTML = `<div class="single_team_text">
+    contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const formData = new FormData(contactForm);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+        form.innerHTML = `<div class="single_team_text">
           <h4 style="text-transform: none">Var god vänta</h4>
           </div>`;
 
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
-          form.innerHTML = `<div class="single_team_text">
+        fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: json,
+        })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    form.innerHTML = `<div class="single_team_text">
           <h4 style="text-transform: none">Tack för ditt meddelande. En av våra medarbetare ska
           återkomma till dig snart</h4>
           </div>
           `;
-          setTimeout(() => {
-            window.location.reload();
-          }, 5000);
-        } else {
-          console.log(response);
-          result.innerHTML = json.message;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        form.innerHTML = "Something went wrong!";
-      })
-      .then(function () {
-        contactForm.reset();
-        setTimeout(() => {
-          result.style.display = "none";
-        }, 3000);
-      });
-  });
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 5000);
+                } else {
+                    console.log(response);
+                    result.innerHTML = json.message;
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                form.innerHTML = "Something went wrong!";
+            })
+            .then(function () {
+                contactForm.reset();
+                setTimeout(() => {
+                    result.style.display = "none";
+                }, 3000);
+            });
+    });
 } else {
-  null;
+    null;
 }
 
 //popup in start page
 document.addEventListener("DOMContentLoaded", function () {
-  let deliveryModal = document.getElementById("deliveryModal");
-  if (deliveryModal !== null) {
-    var myModal = bootstrap.Modal.getOrCreateInstance(
-      document.getElementById("deliveryModal"),
-      {
-        keyboard: false,
-      }
-    );
-    myModal.show();
-  }
+    let deliveryModal = document.getElementById("deliveryModal");
+    if (deliveryModal !== null) {
+        var myModal = bootstrap.Modal.getOrCreateInstance(
+            document.getElementById("deliveryModal"),
+            {
+                keyboard: false,
+            }
+        );
+        myModal.show();
+    }
 });
 let confirmButton = document.getElementById("confirmButton");
 if (confirmButton !== null) {
-  confirmButton.addEventListener("click", function () {
-    var postcode = document.getElementById("postcodeInput").value;
-    if (postcode === "") {
-      document.getElementById("confirmationMessage").style.display = "none";
-      document.getElementById("wrong-message").style.display = "none";
-      document.getElementById("wrong-message2").style.display = "block";
-      document.getElementById("no-place").style.display = "none";
-    } else if (postcode) {
-      document.getElementById("confirmationMessage").style.display = "block";
-      document.getElementById("wrong-message").style.display = "none";
-      document.getElementById("wrong-message2").style.display = "none";
-      document.getElementById("no-place").style.display = "none";
-      localStorage.setItem("Postcode", postcode);
-      console.log(localStorage.getItem("Postcode"));
-    } else {
-      document.getElementById("wrong-message").style.display = "block";
-      document.getElementById("confirmationMessage").style.display = "none";
-      document.getElementById("wrong-message2").style.display = "none";
-      document.getElementById("no-place").style.display = "none";
-    }
-  });
+    confirmButton.addEventListener("click", function () {
+        var postcode = document.getElementById("postcodeInput").value;
+        if (postcode === "") {
+            document.getElementById("confirmationMessage").style.display = "none";
+            document.getElementById("wrong-message").style.display = "none";
+            document.getElementById("wrong-message2").style.display = "block";
+            document.getElementById("no-place").style.display = "none";
+        } else if (postcode) {
+            document.getElementById("confirmationMessage").style.display = "block";
+            document.getElementById("wrong-message").style.display = "none";
+            document.getElementById("wrong-message2").style.display = "none";
+            document.getElementById("no-place").style.display = "none";
+            localStorage.setItem("Postcode", postcode);
+            console.log(localStorage.getItem("Postcode"));
+        } else {
+            document.getElementById("wrong-message").style.display = "block";
+            document.getElementById("confirmationMessage").style.display = "none";
+            document.getElementById("wrong-message2").style.display = "none";
+            document.getElementById("no-place").style.display = "none";
+        }
+    });
 }
 let findLocation = document.getElementById("findLocationButton");
 
 if (findLocation !== null) {
-  findLocation.addEventListener("click", function () {
-    var postcode = document.getElementById("postcodeInput").value;
-    if (postcode === "") {
-      document.getElementById("confirmationMessage").style.display = "none";
-      document.getElementById("wrong-message").style.display = "none";
-      document.getElementById("wrong-message2").style.display = "block";
-      document.getElementById("no-place").style.display = "none";
-    } else if (postcode && postcode.length === 5 && /^[0-9]+$/) {
-      fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=API_KEY`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.status === "OK") {
-            var address = data.results[0].formatted_address;
-            alert("Platsen hittades: " + address);
-          } else {
-            document.getElementById("no-place").style.display = "block";
+    findLocation.addEventListener("click", function () {
+        var postcode = document.getElementById("postcodeInput").value;
+        if (postcode === "") {
+            document.getElementById("confirmationMessage").style.display = "none";
             document.getElementById("wrong-message").style.display = "none";
-            document.getElementById("confirmationMessage").style.display =
-              "none";
+            document.getElementById("wrong-message2").style.display = "block";
+            document.getElementById("no-place").style.display = "none";
+        } else if (postcode && postcode.length === 5 && /^[0-9]+$/) {
+            fetch(
+                `https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=API_KEY`
+            )
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.status === "OK") {
+                        var address = data.results[0].formatted_address;
+                        alert("Platsen hittades: " + address);
+                    } else {
+                        document.getElementById("no-place").style.display = "block";
+                        document.getElementById("wrong-message").style.display = "none";
+                        document.getElementById("confirmationMessage").style.display =
+                            "none";
+                        document.getElementById("wrong-message2").style.display = "none";
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("Ett fel uppstod vid sökningen.");
+                });
+        } else {
             document.getElementById("wrong-message2").style.display = "none";
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("Ett fel uppstod vid sökningen.");
-        });
-    } else {
-      document.getElementById("wrong-message2").style.display = "none";
-      document.getElementById("wrong-message").style.display = "block";
-      document.getElementById("confirmationMessage").style.display = "none";
-      document.getElementById("no-place").style.display = "none";
-    }
-  });
+            document.getElementById("wrong-message").style.display = "block";
+            document.getElementById("confirmationMessage").style.display = "none";
+            document.getElementById("no-place").style.display = "none";
+        }
+    });
 }
 //Count quantity and display in the popup cart icon
 function totalQuantity() {
-  let count = document.getElementById("count");
-  let totalQuantity = 0;
-  if (count !== null) {
-    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (formDataArry !== null) {
-      for (let i = 0; i < formDataArry.length; i++) {
-        totalQuantity += parseInt(formDataArry[i].quantity);
-      }
-      count.innerHTML = totalQuantity;
-      localStorage.setItem("totalQuantity", totalQuantity);
-    } else {
-      count.innerHTML = totalQuantity;
-      formDataArry = [];
+    let count = document.getElementById("count");
+    let totalQuantity = 0;
+    if (count !== null) {
+        formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+        if (formDataArry !== null) {
+            for (let i = 0; i < formDataArry.length; i++) {
+                totalQuantity += parseInt(formDataArry[i].quantity);
+            }
+            count.innerHTML = totalQuantity;
+            localStorage.setItem("totalQuantity", totalQuantity);
+        } else {
+            count.innerHTML = totalQuantity;
+            formDataArry = [];
+        }
     }
-  }
 }
 
 // Calculate and display total sum in the cart total
 function totalSum() {
-  let totalPrice = document.getElementById("total");
-  let sum = 0;
-  if (totalPrice !== null) {
-    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (formDataArry !== null) {
-      for (let i = 0; i < formDataArry.length; i++) {
-        sum += parseInt(formDataArry[i].quantityPrice);
-      }
-      totalPrice.innerHTML = sum + "kr";
-      localStorage.setItem("sum", sum);
-    } else {
-      null;
+    let totalPrice = document.getElementById("total");
+    let sum = 0;
+    if (totalPrice !== null) {
+        formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+        if (formDataArry !== null) {
+            for (let i = 0; i < formDataArry.length; i++) {
+                sum += parseInt(formDataArry[i].quantityPrice);
+            }
+            totalPrice.innerHTML = sum + "kr";
+            localStorage.setItem("sum", sum);
+        } else {
+            null;
+        }
     }
-  }
 }
 
 //Count quantity and display in the popup cart icon
 function totalQuantity() {
-  let count = document.getElementById("count");
-  let totalQuantity = 0;
-  if (count !== null) {
-    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (formDataArry !== null) {
-      for (let i = 0; i < formDataArry.length; i++) {
-        totalQuantity += parseInt(formDataArry[i].quantity);
-      }
-      count.innerHTML = totalQuantity;
-      localStorage.setItem("totalQuantity", totalQuantity);
-    } else {
-      count.innerHTML = totalQuantity;
-      formDataArry = [];
+    let count = document.getElementById("count");
+    let totalQuantity = 0;
+    if (count !== null) {
+        formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+        if (formDataArry !== null) {
+            for (let i = 0; i < formDataArry.length; i++) {
+                totalQuantity += parseInt(formDataArry[i].quantity);
+            }
+            count.innerHTML = totalQuantity;
+            localStorage.setItem("totalQuantity", totalQuantity);
+        } else {
+            count.innerHTML = totalQuantity;
+            formDataArry = [];
+        }
     }
-  }
 }
 
 // Update fiels title,quantity,quantiyPrice to send to email
 function updateFields() {
-  let dishName = document.getElementById("dishName");
-  let dishQuantity = document.getElementById("dishQuantity");
-  let dishQuantityPrice = document.getElementById("dishQuantityPrice");
-  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-  let mergedTitleArray = [];
-  let mergedQuantityArray = [];
-  let mergedQuantityPriceArray = [];
-  if (formDataArry) {
-    for (i = 0; i < formDataArry.length; i++) {
-      let titleArray = formDataArry[i].title;
-      let quantityArray = formDataArry[i].quantity;
-      let quantityPriceArray = formDataArry[i].quantityPrice;
-      mergedTitleArray.push(JSON.stringify(titleArray));
-      mergedQuantityArray.push(JSON.stringify(quantityArray));
-      mergedQuantityPriceArray.push(JSON.stringify(quantityPriceArray + "kr"));
+    let dishName = document.getElementById("dishName");
+    let dishQuantity = document.getElementById("dishQuantity");
+    let dishQuantityPrice = document.getElementById("dishQuantityPrice");
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    let mergedTitleArray = [];
+    let mergedQuantityArray = [];
+    let mergedQuantityPriceArray = [];
+    if (formDataArry) {
+        for (i = 0; i < formDataArry.length; i++) {
+            let titleArray = formDataArry[i].title;
+            let quantityArray = formDataArry[i].quantity;
+            let quantityPriceArray = formDataArry[i].quantityPrice;
+            mergedTitleArray.push(JSON.stringify(titleArray));
+            mergedQuantityArray.push(JSON.stringify(quantityArray));
+            mergedQuantityPriceArray.push(JSON.stringify(quantityPriceArray + "kr"));
+        }
+        let titleValue = mergedTitleArray.join(", ");
+        let quantityValue = mergedQuantityArray.join(", ");
+        let quantityPriceValue = mergedQuantityPriceArray.join(", ");
+        if (dishName && dishQuantity && dishQuantityPrice) {
+            dishName.value = titleValue;
+            dishQuantity.value = quantityValue;
+            dishQuantityPrice.value = quantityPriceValue;
+        } else {
+            null;
+        }
     }
-    let titleValue = mergedTitleArray.join(", ");
-    let quantityValue = mergedQuantityArray.join(", ");
-    let quantityPriceValue = mergedQuantityPriceArray.join(", ");
-    if (dishName && dishQuantity && dishQuantityPrice) {
-      dishName.value = titleValue;
-      dishQuantity.value = quantityValue;
-      dishQuantityPrice.value = quantityPriceValue;
-    } else {
-      null;
-    }
-  }
 }
 
 //Function for carousel slider on front page
@@ -3072,63 +3072,63 @@ function scrollCarouselRight2() {
 */
 //Funtion for show/hide faq accordions with button
 document.addEventListener("DOMContentLoaded", function () {
-  const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
-  const betalningBtn = document.getElementById("betalning");
-  const menyerAllergierBtn = document.getElementById("menyer-allergier");
+    const omWebbplatsenBtn = document.getElementById("om-webbplatsen");
+    const betalningBtn = document.getElementById("betalning");
+    const menyerAllergierBtn = document.getElementById("menyer-allergier");
 
-  const omWebbplatsenAccordion = document.getElementById(
-    "om-webbplatsen-accordion"
-  );
-  const betalningAccordion = document.getElementById("betalning-accordion");
-  const allergierAccordion = document.getElementById("allergier-accordion");
-  if (
-    omWebbplatsenBtn !== null &&
-    betalningBtn !== null &&
-    menyerAllergierBtn !== null &&
-    omWebbplatsenAccordion !== null &&
-    betalningAccordion !== null &&
-    allergierAccordion !== null
-  ) {
-    function hideAllAccordions() {
-      omWebbplatsenAccordion.style.display = "none";
-      betalningAccordion.style.display = "none";
-      allergierAccordion.style.display = "none";
+    const omWebbplatsenAccordion = document.getElementById(
+        "om-webbplatsen-accordion"
+    );
+    const betalningAccordion = document.getElementById("betalning-accordion");
+    const allergierAccordion = document.getElementById("allergier-accordion");
+    if (
+        omWebbplatsenBtn !== null &&
+        betalningBtn !== null &&
+        menyerAllergierBtn !== null &&
+        omWebbplatsenAccordion !== null &&
+        betalningAccordion !== null &&
+        allergierAccordion !== null
+    ) {
+        function hideAllAccordions() {
+            omWebbplatsenAccordion.style.display = "none";
+            betalningAccordion.style.display = "none";
+            allergierAccordion.style.display = "none";
+        }
+
+        function resetButtonStyles() {
+            omWebbplatsenBtn.classList.remove("active");
+            betalningBtn.classList.remove("active");
+            menyerAllergierBtn.classList.remove("active");
+        }
+
+        hideAllAccordions();
+        omWebbplatsenAccordion.style.display = "block";
+        omWebbplatsenBtn.classList.add("active");
+
+        omWebbplatsenBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            hideAllAccordions();
+            resetButtonStyles();
+            omWebbplatsenAccordion.style.display = "block";
+            omWebbplatsenBtn.classList.add("active");
+        });
+
+        betalningBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            hideAllAccordions();
+            resetButtonStyles();
+            betalningAccordion.style.display = "block";
+            betalningBtn.classList.add("active");
+        });
+
+        menyerAllergierBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            hideAllAccordions();
+            resetButtonStyles();
+            allergierAccordion.style.display = "block";
+            menyerAllergierBtn.classList.add("active");
+        });
     }
-
-    function resetButtonStyles() {
-      omWebbplatsenBtn.classList.remove("active");
-      betalningBtn.classList.remove("active");
-      menyerAllergierBtn.classList.remove("active");
-    }
-
-    hideAllAccordions();
-    omWebbplatsenAccordion.style.display = "block";
-    omWebbplatsenBtn.classList.add("active");
-
-    omWebbplatsenBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-      hideAllAccordions();
-      resetButtonStyles();
-      omWebbplatsenAccordion.style.display = "block";
-      omWebbplatsenBtn.classList.add("active");
-    });
-
-    betalningBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-      hideAllAccordions();
-      resetButtonStyles();
-      betalningAccordion.style.display = "block";
-      betalningBtn.classList.add("active");
-    });
-
-    menyerAllergierBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-      hideAllAccordions();
-      resetButtonStyles();
-      allergierAccordion.style.display = "block";
-      menyerAllergierBtn.classList.add("active");
-    });
-  }
 });
 
 // Function to cart content and total form to email
@@ -3140,147 +3140,147 @@ const newResult = document.getElementById("cart-result");
 const sum = localStorage.getItem("sum");
 let sumInput = document.getElementById("sum");
 if (sumInput !== null) {
-  sumInput.value = sum + "kr";
-  updateFields();
+    sumInput.value = sum + "kr";
+    updateFields();
 } else {
-  null;
+    null;
 }
 
 if (sum !== null && cartButton !== null) {
-  cartButton.removeAttribute("disabled");
+    cartButton.removeAttribute("disabled");
 } else if (sum && cartButton) {
-  cartButton.setAttribute("disabled", "disabled");
+    cartButton.setAttribute("disabled", "disabled");
 } else {
-  null;
+    null;
 }
 
 if (sendCartInfo !== null) {
-  sendCartInfo.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const formData = new FormData(sendCartInfo);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    sendCartInfo.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const formData = new FormData(sendCartInfo);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
 
-    cartForm.innerHTML = `<div class="single_team_text">
+        cartForm.innerHTML = `<div class="single_team_text">
           <h4 style="text-transform: none">Var god vänta</h4>
           </div>`;
 
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: json,
-    })
-      .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
-          cartForm.innerHTML = `<div class="single_team_text">
+        fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+            },
+            body: json,
+        })
+            .then(async (response) => {
+                let json = await response.json();
+                if (response.status == 200) {
+                    cartForm.innerHTML = `<div class="single_team_text">
           <h4 style="text-transform: none">Tack för din förfrågan.En av våra medarbetare ska
           återkomma till dig snart</h4>
           </div>
           `;
-          localStorage.clear();
-          setTimeout(() => {
-            window.location.reload();
-          }, 5000);
-        } else {
-          console.log(response);
-          newResult.innerHTML = json.message;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        cartForm.innerHTML = "Something went wrong!";
-      })
-      .then(function () {
-        sendCartInfo.reset();
-        setTimeout(() => {
-          newResult.style.display = "none";
-        }, 3000);
-      });
-  });
+                    localStorage.clear();
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 5000);
+                } else {
+                    console.log(response);
+                    newResult.innerHTML = json.message;
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                cartForm.innerHTML = "Something went wrong!";
+            })
+            .then(function () {
+                sendCartInfo.reset();
+                setTimeout(() => {
+                    newResult.style.display = "none";
+                }, 3000);
+            });
+    });
 } else {
-  null;
+    null;
 }
 
 var swiper1 = new Swiper(".slide-content", {
-  slidesPerView: 3,
-  spaceBetween: 25,
-  loop: true,
-  centerSlide: "true",
-  fade: "true",
-  grabCursor: "true",
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-    dynamicBullets: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
+    slidesPerView: 3,
+    spaceBetween: 25,
+    loop: true,
+    centerSlide: "true",
+    fade: "true",
+    grabCursor: "true",
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        dynamicBullets: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
 
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        576: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        992: {
+            slidesPerView: 2,
+        },
+        1120: {
+            slidesPerView: 3,
+        },
+        1400: {
+            slidesPerView: 3,
+        },
     },
-    576: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    992: {
-      slidesPerView: 2,
-    },
-    1120: {
-      slidesPerView: 3,
-    },
-    1400: {
-      slidesPerView: 3,
-    },
-  },
 });
 
 var swiper2 = new Swiper(".slide-content2", {
-  slidesPerView: 3,
-  spaceBetween: 25,
-  loop: true,
-  centerSlide: "true",
-  fade: "true",
-  grabCursor: "true",
-  pagination: {
-    el: ".swiper-pagination2",
-    clickable: true,
-    dynamicBullets: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next2",
-    prevEl: ".swiper-button-prev2",
-  },
+    slidesPerView: 3,
+    spaceBetween: 25,
+    loop: true,
+    centerSlide: "true",
+    fade: "true",
+    grabCursor: "true",
+    pagination: {
+        el: ".swiper-pagination2",
+        clickable: true,
+        dynamicBullets: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next2",
+        prevEl: ".swiper-button-prev2",
+    },
 
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        576: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        992: {
+            slidesPerView: 2,
+        },
+        1120: {
+            slidesPerView: 3,
+        },
+        1400: {
+            slidesPerView: 3,
+        },
     },
-    576: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    992: {
-      slidesPerView: 2,
-    },
-    1120: {
-      slidesPerView: 3,
-    },
-    1400: {
-      slidesPerView: 3,
-    },
-  },
 });
 
 var datesSwipes = new Swiper(".dates_swipe", {
@@ -3363,7 +3363,8 @@ async function redirectToStripeCheckout() {
         if (response.ok) {
             // Redirect to the Stripe checkout session URL
             window.location.href = result.checkoutUrl;
-            localStorage.clear();
+            localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+            //localStorage.clear();
         } else {
             console.error('Error creating Stripe session', result);
         }
@@ -3373,9 +3374,56 @@ async function redirectToStripeCheckout() {
     }
 }
 
+async function createOrderAndDetail(formDataArry) {
+    console.log("method called");
+    try {
+        let order = {
+            orderDate: new Date().toISOString(),   // Set the current date for orderDate
+            deliveryDate: "2024-09-30T00:00:00",   // Example static delivery date
+            paymentMethod: "card",                // Example payment method
+            total: formDataArry.reduce((acc, item) => acc + item.price * item.quantity, 0), // Calculate total
+            quantity: formDataArry.length,        // Quantity of different products
+            products: formDataArry.map(item => ({
+                Id: item.id,
+                Title: item.title,
+                Price: item.price,
+                Quantity: item.quantity
+            }))
+        };
+
+        let orderDetail = {
+            deliveryAdress: "123 Main St",        // Example address
+            deliveryCity: "Stockholm",            // Example city
+            deliveryPostalCode: "11122",          // Example postal code
+            deliveryCountry: "Sweden"             // Example country
+        };
+
+        const response = await fetch("https://localhost:7216/orderAndDetail", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                order: order,
+                orderDetail: orderDetail
+            })
+        });
+
+        if (!response.ok) {
+            console.error("Failed to create order and order details", await response.text());
+        } else {
+            console.log("Order created successfully");
+        }
+
+    } catch (error) {
+        console.error("Error creating order:", error);
+    }
+}
+
+
 function Footer() {
-  let footer = document.getElementById("footer");
-  footer.innerHTML = `
+    let footer = document.getElementById("footer");
+    footer.innerHTML = `
       <div class="pt_20 xs_pt_20">
         <div class="container">
           <div id="footer-new" class="row justify-content-around pt_50">

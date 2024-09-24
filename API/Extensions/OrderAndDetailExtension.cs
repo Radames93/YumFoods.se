@@ -18,54 +18,41 @@ namespace API.Extensions
         private static async Task<IResult> CreateOrderAndDetailAsync(IOrderRepository<Order> orderRepository,
             IOrderDetailRepository<OrderDetail> detailRepository, [FromBody] OrderAndDetail request)
         {
-            var order = new Order
-            {
-                //UserId = request.Order.UserId,
-                OrderDate = DateTime.UtcNow,
-                DeliveryDate = request.Order.DeliveryDate,
-                Total = request.Order.Total,
-                PaymentMethod = request.Order.PaymentMethod,
-                Quantity = request.Order.Quantity,
-                Products = request.Order.Products
-            };
-            try
-            {
-                await orderRepository.AddOrderAsync(order);
-            }
-            catch (Exception)
-            {
-                return Results.BadRequest($"Failed to create order");
-                throw;
-            }
 
-            var orderDetail = new OrderDetail
+
+            if (request != null)
             {
-                Id = order.Id,
-                OrderId = order.Id,
-                DeliveryAdress = request.OrderDetail.DeliveryAdress,
-                DeliveryCity = request.OrderDetail.DeliveryCity,
-                DeliveryPostalCode = request.OrderDetail.DeliveryPostalCode,
-                DeliveryCountry = request.OrderDetail.DeliveryCountry
-            };
-            try
-            {
+                var order = new Order
+                {
+                    //UserId = request.Order.UserId,
+                    OrderDate = DateTime.UtcNow,
+                    DeliveryDate = request.Order.DeliveryDate,
+                    Total = request.Order.Total,
+                    PaymentMethod = request.Order.PaymentMethod,
+                    Quantity = request.Order.Quantity,
+                    Products = request.Order.Products
+
+                };
+
+                var orderDetail = new OrderDetail
+                {
+                    Id = order.Id,
+                    OrderId = order.Id,
+                    DeliveryAdress = request.OrderDetail.DeliveryAdress,
+                    DeliveryCity = request.OrderDetail.DeliveryCity,
+                    DeliveryPostalCode = request.OrderDetail.DeliveryPostalCode,
+                    DeliveryCountry = request.OrderDetail.DeliveryCountry
+                };
+
+                await orderRepository.AddOrderAsync(order);
                 await detailRepository.AddOrderDetailAsync(orderDetail);
             }
-            catch (Exception)
+            else
             {
-                try
-                {
-                    await orderRepository.DeleteOrderAsync(order.Id);
-                }
-                catch (Exception)
-                {
-                    return Results.BadRequest($"Failed to create order detail and failed to rollback order.");
-                }
-
-                return Results.BadRequest($"Could not create order detail. Order rolled back.");
+                return Results.BadRequest($"Failed to create order");
             }
+            return Results.Ok();
 
-            return Results.Ok(order.Id);
         }
     }
 }
