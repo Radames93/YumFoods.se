@@ -44,73 +44,17 @@
             <img src="images/footagecrate-green-checkmark-icon@3X.webp" alt="" />
             <h1>Tack för din order!</h1>
 
+
             <script>
-                window.onload = async function () {
-                    // Hämta data från localStorage
-                    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-
-                    if (!formDataArry || formDataArry.length === 0) {
-                        console.error("No products in the cart.");
-                        return;
-                    }
-
-                    // Funktion för att skapa order
-                    async function createOrderAndDetail(formDataArry) {
-                        try {
-                            let order = {
-                                orderDate: new Date().toISOString(),
-                                deliveryDate: "2024-09-30T00:00:00",
-                                paymentMethod: "card",
-                                total: formDataArry.reduce((acc, item) => acc + item.price * item.quantity, 0),
-                                quantity: formDataArry.length,
-                                products: formDataArry.map(item => ({
-                                    Id: item.id,
-                                    Title: item.title,
-                                    Price: item.price,
-                                    Quantity: item.quantity
-                                }))
-                            };
-                            console.log(order);
-
-                            let orderDetail = {
-                                deliveryAdress: "123 Main St",
-                                deliveryCity: "Stockholm",
-                                deliveryPostalCode: "11122",
-                                deliveryCountry: "Sweden"
-                            };
-
-                            const response = await fetch("https://localhost:7216/orderAndDetail", {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({
-                                    order: order,
-                                    orderDetail: orderDetail
-                                })
-                            });
-
-                            if (!response.ok) {
-                                console.error("Failed to create order and order details", await response.text());
-                            } else {
-                                console.log("Order created successfully");
-                                localStorage.clear();  // Rensa lagrade data efter att ordern skapats
-                            }
-
-                        } catch (error) {
-                            console.error("Error creating order:", error);
-                        }
-                    }
-
-                    // Anropa funktionen för att skapa order
-                    await createOrderAndDetail(formDataArry);
-                }
+                document.addEventListener('DOMContentLoaded', () => {
+                    handleOrderProcess();  // Call the order processing function on page load
+                });
             </script>
             <!--<script>
-        setTimeout(() => {
-            window.location.href = 'index.html'; // Or another URL
-        }, 8000);
-    </script>-->
+                setTimeout(() => {
+                    window.location.href = 'index.html'; // Or another URL
+                }, 8000);
+            </script>-->
         </div>
         <div style="margin-left: auto; margin-right: auto; width: 300px"
              class="step-button">
@@ -142,6 +86,7 @@
     <!--=============================
         SCROLL BUTTON END
     ==============================-->
+    <script src="path/to/main.js"></script>
     <!-- hotjar code -->
     <script src="js/hotjar.js"></script>
     <!-- swiper slider -->
