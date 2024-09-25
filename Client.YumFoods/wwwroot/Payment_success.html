@@ -11,12 +11,12 @@
           href="images/favicon-32x32.png" />
     <link rel="preload"
           as="image"
-          href="./images/index.jpg"
-          imagesrcset="./images/hero.jpg 1600w, ./images/hero-mobile.jpg 335w"
+          href="images/index.jpg"
+          imagesrcset="images/hero.jpg 1600w, ./images/hero-mobile.jpg 335w"
           imagesizes="(max-width: 1100px) 100vw, 1100px" />
     <link rel="preload"
           as="image"
-          href="./images/category/yumrattercategory.jpg" />
+          href="images/category/yumrattercategory.jpg" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/custom_spacing.css" />
     <link rel="stylesheet" href="css/all.min.css" />
@@ -47,6 +47,7 @@
 
             <script>
                 document.addEventListener('DOMContentLoaded', () => {
+                    console.log("Page loaded, starting order process...");
                     handleOrderProcess();  // Call the order processing function on page load
                 });
             </script>
@@ -86,7 +87,7 @@
     <!--=============================
         SCROLL BUTTON END
     ==============================-->
-    <script src="path/to/main.js"></script>
+    <script src="js/main.js?v=1.0.1"></script>
     <!-- hotjar code -->
     <script src="js/hotjar.js"></script>
     <!-- swiper slider -->

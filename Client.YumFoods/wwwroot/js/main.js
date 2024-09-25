@@ -3383,12 +3383,14 @@ async function handleOrderProcess() {
 
     // Create order object from formDataArry (this could include user info, etc.)
     let orderData = {
+        userId: 2,
         orderDate: new Date().toISOString(),
-        deliveryDate: "2024-09-30",  // Replace with actual data
-        total: calculateTotal(formDataArry),
+        deliveryDate: "2024-10-30",  // Replace with actual data
+        total: totalSum,
+        quantity: formDataArry.reduce((acc, item) => acc + item.quantity, 0),
         paymentMethod: "Stripe",  // Example
         products: formDataArry.map(item => ({
-            name: item.title,
+            id: item.id,
             quantity: item.quantity,
             price: item.price
         }))
@@ -3396,7 +3398,7 @@ async function handleOrderProcess() {
 
     // Post the order first
     try {
-        const orderResponse = await fetch("/orders", {
+        const orderResponse = await fetch("https://localhost:7216/orders", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -49,30 +49,40 @@ namespace DataAccess.Repositories
                 UserId = newOrder.UserId,
                 OrderDate = newOrder.OrderDate,
                 DeliveryDate = newOrder.DeliveryDate,
-                Products = newOrder.Products,
+
                 Quantity = newOrder.Quantity,
                 PaymentMethod = newOrder.PaymentMethod,
                 Total = newOrder.Total
             };
 
-            await context.Order.AddAsync(order);
-            await context.SaveChangesAsync();
-        }
-
-        /// <summary>
-        /// Deletes a specific order from the database.
-        /// </summary>
-        /// <param name="id">The id of the specific order.</param>
-        public async Task DeleteOrderAsync(int id)
-        {
-            var order = await context.Order.FirstOrDefaultAsync(p => p.Id == id);
-            if (order is null)
+            foreach (var prod in newOrder.Products)
             {
-                return;
+                var existingProd = await context.Product.FindAsync(prod.Id);
+                if (existingProd != null)
+                {
+                    order.Products.Add(existingProd);
+                }
+
+                await context.Order.AddAsync(order);
+                await context.SaveChangesAsync();
+            } 
             }
 
-            context.Order.Remove(order);
-            await context.SaveChangesAsync();
-        }
+            /// <summary>
+            /// Deletes a specific order from the database.
+            /// </summary>
+            /// <param name="id">The id of the specific order.</param>
+            public async Task DeleteOrderAsync(int id)
+            {
+                var order = await context.Order.FirstOrDefaultAsync(p => p.Id == id);
+                if (order is null)
+                {
+                    return;
+                }
+
+                context.Order.Remove(order);
+                await context.SaveChangesAsync();
+            }
+        
     }
 }
