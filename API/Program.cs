@@ -18,6 +18,7 @@ builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
 builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
 builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
+builder.Services.AddScoped<OrderWithDetailsRepository>();
 
 //C:\\Users\\gewer\\OneDrive\\Skrivbord\\ca-cert.pem;
 
@@ -58,6 +59,7 @@ app.MapOrderEndpoints();
 app.MapOrderDetailEndpoints();
 app.MapSubscriptionEndpoints();
 app.MapPaymentsEndPoints();
+app.MapPurchaseEndpoints();
 //app.MapUserEndpoints();
 
 app.UseHttpsRedirection();

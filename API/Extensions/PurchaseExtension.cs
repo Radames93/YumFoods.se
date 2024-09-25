@@ -1,5 +1,7 @@
 ﻿using Shared.Entities;
-using Shared.Interfaces;
+using DataAccess.Repositories;
+using DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Extensions
 {
@@ -13,39 +15,48 @@ namespace API.Extensions
 
             return app;
         }
+
         private static async Task<IResult> CreatePurchaseAsync(
-            IOrderRepository<Order> orderRepo,
-            IOrderDetailRepository<OrderDetail> orderDetailRepo,
-            PurchaseRequest purchaseRequest)
+    OrderWithDetailsRepository repo,
+    YumFoodsDb productDb,  // Assuming this is the DbContext for products
+    PurchaseRequest purchaseRequest)
         {
-            // Create a new Order object from the purchaseRequest
+            // Fetch existing products from the database using Product IDs in the request
+            var productIds = purchaseRequest.Products.Select(p => p.Id).ToList();
+            var existingProducts = await productDb.Product
+                                                  .Where(p => productIds.Contains(p.Id))
+                                                  .ToListAsync();
+
+            // Check if all requested products exist
+            if (existingProducts.Count != productIds.Count)
+            {
+                return Results.BadRequest("One or more products in the order do not exist.");
+            }
+
+            // Create a new Order using existing products from the database
             var newOrder = new Order
             {
-                //UserId = purchaseRequest.UserId,
                 OrderDate = DateTime.Now,
                 DeliveryDate = DateTime.Now.AddDays(3),
-                Products = purchaseRequest.Products,
+                Products = existingProducts, // Use the fetched existing products
                 Quantity = purchaseRequest.Quantity,
                 Total = purchaseRequest.Total
             };
 
-            // Add the new order to the open database
-            await orderRepo.AddOrderAsync(newOrder);
-
-            // Create a new OrderDetail object from the purchaseRequest
+            // Create a new OrderDetail from the purchaseRequest
             var newOrderDetail = new OrderDetail
             {
-                OrderId = newOrder.Id, // Link to the newly created Order
                 DeliveryAdress = purchaseRequest.DeliveryAddress,
                 DeliveryCity = purchaseRequest.DeliveryCity,
                 DeliveryPostalCode = purchaseRequest.DeliveryPostalCode,
                 DeliveryCountry = purchaseRequest.DeliveryCountry
             };
 
-            // Add the new order detail to the secure database
-            await orderDetailRepo.AddOrderDetailAsync(newOrderDetail);
+            // Call the method to add both order and order detail
+            await repo.AddOrderAndDetailsAsync(newOrder, newOrderDetail);
 
             return Results.Ok(new { Message = "Purchase completed successfully", OrderId = newOrder.Id });
         }
+
     }
 }
