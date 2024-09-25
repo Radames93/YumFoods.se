@@ -20,10 +20,6 @@ namespace DataAccess.Repositories
         {
             try
             {
-                // Get the current maximum ID and set the new order's ID to max + 1
-                var maxOrderId = await _orderContext.Order.MaxAsync(o => (int?)o.Id);
-                newOrder.Id = (maxOrderId ?? 0) + 1;
-
                 // Add the order to the orderContext (YumFoodsDb)
                 await _orderContext.Order.AddAsync(newOrder);
                 await _orderContext.SaveChangesAsync();
