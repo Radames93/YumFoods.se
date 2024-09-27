@@ -654,61 +654,65 @@ const yumProducts = (yumProductsList) => {
                   border: 1px solid black;">Läs mer om produkten</button>
                 </div>
 
-            <div class="menu_item_img" style="border-bottom:solid 1px grey;">
-              <img
-                src=` +
-          yum.imgRef +
-          `
-                alt="yum-meny-bild"
-                class="img-fluid w-100"
-                class="title"
-                href="#"
-              />
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-
-        </div>
-
-            <div class="menu_item_text m-4">
-              <a
-                class="title"
-                href="#"
-                data-yum-id=${yum.id}
-                data-yum-title=${title}
-                data-yum-price=${yum.price}
-                data-yum-img=${yum.imgRef}
-                data-yum-quantity-price=${yum.price}
-                data-yum-description=${description}
-                data-yum-ingredients=${ingredients}
-                data-yum-diet=${yum.dietRef}
-                data-bs-toggle="modal"
-                data-bs-target="#modal"
-                >` +
-          yum.title +
-          `</a>
-              <div class="d-flex justify-content-between">
-                        <h5 class="price">` +
-          yum.price +
-          `kr</h5>
-                        <img src=` +
-          yum.dietRef +
-          `
-                        alt="dagens-meny-bild"
-                        class="img-fluid diet_img"
-                        href="#"/>
+                <div class="backOpacity">
+                <div class="menu_item_img" style="border-bottom:solid 1px grey;">
+                  <img
+                    src=` +
+              yum.imgRef +
+              `
+                    alt="yum-meny-bild"
+                    class="img-fluid w-100"
+                    class="title"
+                    href="#"
+                  />
                 </div>
-        <!--
-        <ul class="d-flex flex-wrap justify-content-end">
-                <li>
-                  <a href="#"><i class="fa fa-heart"></i></a>
-                </li>
-                <li>
-                  <a href="menu_details.html"><i class="fa fa-eye"></i></a>
-                </li>
-              </ul>
-              -->
+                <div class="d-flex justify-content-between align-items-center">
 
             </div>
+
+                <div class="menu_item_text m-4">
+                  <a
+                    class="title"
+                    href="#"
+                    data-yum-id=${yum.id}
+                    data-yum-title=${title}
+                    data-yum-price=${yum.price}
+                    data-yum-img=${yum.imgRef}
+                    data-yum-quantity-price=${yum.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${yum.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                    >` +
+              yum.title +
+              `</a>
+                  <div class="d-flex justify-content-between">
+                            <h5 class="price">` +
+              yum.price +
+              `kr</h5>
+                            <img src=` +
+              yum.dietRef +
+              `
+                            alt="dagens-meny-bild"
+                            class="img-fluid diet_img"
+                            href="#"/>
+                    </div>
+            <!--
+            <ul class="d-flex flex-wrap justify-content-end">
+                    <li>
+                      <a href="#"><i class="fa fa-heart"></i></a>
+                    </li>
+                    <li>
+                      <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+                    </li>
+                  </ul>
+                  -->
+
+                </div>
+
+                </div>
+
           </div>
         </div>
 
