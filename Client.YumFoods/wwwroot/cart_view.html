@@ -168,9 +168,10 @@
                                                                   </button>
                                                               </div>
 
-                                                              <div class="dates_swipe swiper">
+                                                              <div class="dates_swipe swiper" style="margin-top: 10px; display: flex; justify-content: left;">
                                                                   <div class="swiper-wrapper"
-                                                                       id="deliverDates"></div>
+                                                                       id="deliverDates">
+                                                                      </div>
                                                               </div>
 
                                                               <div class="swiper-button-next-dates calender-arrow">
@@ -296,7 +297,7 @@
                                                                   Lägenhet
                                                               </label>
                                                           </div>
-                                                          <div class="form-check radio_house"> 
+                                                          <div class="form-check radio_house">
                                                               <input class="form-check-input house_input" type="radio" name="housing" id="villa_hus">
                                                               <label class="form-check-label" for="villa_hus">
                                                                   Villa/hus
@@ -346,14 +347,14 @@
                                                       <h5 class="mb-3 fw-bold mt-5 font-fix">
                                                           Kontaktuppgifter
                                                       </h5>
-                                                      <div class="d-flex flex-row mb-4">
+                                                      <!-- <div class="d-flex flex-row mb-4">
                                                           <button class="btn me-3 btn-lg customerBtn font-fix">
                                                               Privat
                                                           </button>
                                                           <button class="btn btn-lg customerBtn mx-1 font-fix">
                                                               Företag
                                                           </button>
-                                                      </div>
+                                                      </div> -->
                                                       <div class="d-flex flex-row mb-4">
                                                           <div class="w-50 me-5">
                                                               <p class="font-fix">Förnamn *</p>
@@ -387,11 +388,13 @@
                                                                      type="text"
                                                                      placeholder="Ange mejladress" />
                                                           </div>
+                                                          <!-- Hello test-->
+                                                          <!-- test nr 2-->
                                                       </div>
 </div>
                                               <button class="font-fix"
                                                       id="cart-next-btn"
-                                                      onclick="nextAccord1()"
+                                                      onclick="window.location.href='payment.html'"
                                                       type="button"
                                                       data-bs-toggle="collapse"
                                                       data-bs-target="#collapseOne"
@@ -422,7 +425,7 @@
       </div>
       </div>
 
-      
+
       <!--
       <div
         class="accordion-item CartPayDeliver rounded-4 border border-greys border-1"
