@@ -2022,10 +2022,14 @@ button {
   transition: opacity 0.5s;
   position: absolute;
   visibility: hidden;
-  top: 50%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+}
+
+.aboutYumItem {
+  width: 226px;
 }
 
 .yum_product_display_item {
@@ -2034,9 +2038,9 @@ button {
   position: relative;
 }
 
-.yum_product_display_item:hover {
+/* .yum_product_display_item:hover {
   background: rgba(239, 240, 237, 0.45);
-}
+} */
 
 .yum_product_display_item:hover .yum_item_buttons {
   opacity: 1;
@@ -2047,6 +2051,9 @@ button {
   height: 220px;
   border-radius: 5px 5px 0px 0px;
   overflow: hidden;
+}
+.backOpacity:hover {
+  opacity: 0.4;
 }
 
 .menu_item_img img {

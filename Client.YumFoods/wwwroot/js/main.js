@@ -649,67 +649,71 @@ const yumProducts = (yumProductsList) => {
                     data-yum-diet=${yum.dietRef}
                     data-bs-toggle="modal"
                     data-bs-target="#modal"
-                  class="yum_btn"
+                  class="yum_btn aboutYumItem"
                   style="border-radius: 12px;
-                  padding: 18px 16px;
+                  padding: 13px 7px;
                   border: 1px solid black;">Läs mer om produkten</button>
                 </div>
 
-            <div class="menu_item_img" style="border-bottom:solid 1px grey;">
-              <img
-                src=` +
+                <div class="backOpacity">
+                <div class="menu_item_img" style="border-bottom:solid 1px grey;">
+                  <img
+                    src=` +
           yum.imgRef +
           `
-                alt="yum-meny-bild"
-                class="img-fluid w-100"
-                class="title"
-                href="#"
-              />
+                    alt="yum-meny-bild"
+                    class="img-fluid w-100"
+                    class="title"
+                    href="#"
+                  />
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+
             </div>
-            <div class="d-flex justify-content-between align-items-center">
 
-        </div>
-
-            <div class="menu_item_text m-4">
-              <a
-                class="title"
-                href="#"
-                data-yum-id=${yum.id}
-                data-yum-title=${title}
-                data-yum-price=${yum.price}
-                data-yum-img=${yum.imgRef}
-                data-yum-quantity-price=${yum.price}
-                data-yum-description=${description}
-                data-yum-ingredients=${ingredients}
-                data-yum-diet=${yum.dietRef}
-                data-bs-toggle="modal"
-                data-bs-target="#modal"
-                >` +
+                <div class="menu_item_text m-4">
+                  <a
+                    class="title"
+                    href="#"
+                    data-yum-id=${yum.id}
+                    data-yum-title=${title}
+                    data-yum-price=${yum.price}
+                    data-yum-img=${yum.imgRef}
+                    data-yum-quantity-price=${yum.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${yum.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                    >` +
           yum.title +
           `</a>
-              <div class="d-flex justify-content-between">
-                        <h5 class="price">` +
+                  <div class="d-flex justify-content-between">
+                            <h5 class="price">` +
           yum.price +
           `kr</h5>
-                        <img src=` +
+                            <img src=` +
           yum.dietRef +
           `
-                        alt="dagens-meny-bild"
-                        class="img-fluid diet_img"
-                        href="#"/>
-                </div>
-        <!--
-        <ul class="d-flex flex-wrap justify-content-end">
-                <li>
-                  <a href="#"><i class="fa fa-heart"></i></a>
-                </li>
-                <li>
-                  <a href="menu_details.html"><i class="fa fa-eye"></i></a>
-                </li>
-              </ul>
-              -->
+                            alt="dagens-meny-bild"
+                            class="img-fluid diet_img"
+                            href="#"/>
+                    </div>
+            <!--
+            <ul class="d-flex flex-wrap justify-content-end">
+                    <li>
+                      <a href="#"><i class="fa fa-heart"></i></a>
+                    </li>
+                    <li>
+                      <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+                    </li>
+                  </ul>
+                  -->
 
-            </div>
+                </div>
+
+                </div>
+
           </div>
         </div>
 
@@ -2181,7 +2185,7 @@ if (cardModal !== null) {
     localStorage.setItem("quantity", input);
     localStorage.setItem("id", id);
     localStorage.setItem("title", (modalTitle.textContent = title));
-      localStorage.setItem("price", (modalPrice.innerHTML = price));
+    localStorage.setItem("price", (modalPrice.innerHTML = price));
 
     localStorage.setItem("img", (modalImg.src = img));
     localStorage.setItem(
@@ -3744,52 +3748,51 @@ var datesSwipes = new Swiper(".dates_swipe", {
 const submitCartForm = async (event) => {
   event.preventDefault();
 async function redirectToStripeCheckout() {
-    try {
-        // Retrieve cart information from local storage
-        let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-        if (!formDataArry || formDataArry.length === 0) {
-            console.error("No products in the cart.");
-            return;
-        }
-
-        let products = formDataArry.map(item => {
-            // Retrieve the unit price and total price for the selected quantity
-            let unitPrice = item.price;  // Price per item
-            let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
-
-            return {
-                name: item.title,               // Product name (title)
-                quantity: item.quantity,        // Quantity of the product
-                price: unitPrice,               // Unit price for the product
-                total: totalQuantityPrice       // Total price for the quantity
-            };
-        });
-
-        // Create a POST request to your backend endpoint to create the Stripe checkout session
-        const response = await fetch("https://localhost:7216/payments", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                successPaymentUrl: "https://localhost:7023/payment_success.html",
-                cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-                products: products  // Send the products array
-            })
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-            // Redirect to the Stripe checkout session URL
-            window.location.href = result.checkoutUrl;
-            localStorage.clear();
-        } else {
-            console.error('Error creating Stripe session', result);
-        }
-
-    } catch (error) {
-        console.error('Error:', error);
+  try {
+    // Retrieve cart information from local storage
+    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    if (!formDataArry || formDataArry.length === 0) {
+      console.error("No products in the cart.");
+      return;
     }
+
+    let products = formDataArry.map((item) => {
+      // Retrieve the unit price and total price for the selected quantity
+      let unitPrice = item.price; // Price per item
+      let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
+
+      return {
+        name: item.title, // Product name (title)
+        quantity: item.quantity, // Quantity of the product
+        price: unitPrice, // Unit price for the product
+        total: totalQuantityPrice, // Total price for the quantity
+      };
+    });
+
+    // Create a POST request to your backend endpoint to create the Stripe checkout session
+    const response = await fetch("https://localhost:7216/payments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        successPaymentUrl: "https://localhost:7023/payment_success.html",
+        cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+        products: products, // Send the products array
+      }),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      // Redirect to the Stripe checkout session URL
+      window.location.href = result.checkoutUrl;
+      localStorage.clear();
+    } else {
+      console.error("Error creating Stripe session", result);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 }
 
