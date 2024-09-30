@@ -954,10 +954,11 @@ const CarouselDietButtons = (yumProductsList) => {
  }
 };
 
-var swiper3 = new Swiper(".slide-content2", {
+var swiper3 = new Swiper(".slide-content3", {
   centeredSlide: "true",
   fade: "true",
   grabCursor: "true",
+  spaceBetween: 10, 
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
@@ -979,27 +980,82 @@ var swiper3 = new Swiper(".slide-content2", {
       slidesPerView: 2,
     },
     1120: {
-      slidesPerView: 5,
+      slidesPerView: 3,
     },
     1400: {
       slidesPerView: 3,
     },
   },
+  loopFillGroupWithBlank: false,
+  loopedSlides: 4,
+  loopAdditionalSlides: 1,
   on: {
     slideChangeTransitionEnd: function() {
       if (this.isEnd) {
-        this.slideToLoop(0);
+        this.slideToLoop(0, 0);
       }
     },}
 });
 
-document.getElementById('show-prev-btn').addEventListener('click', () => {
+let showPrevBtn = document.getElementById('show-prev-btn')
+let showNextBtn = document.getElementById('show-next-btn')
+if (showPrevBtn !== null){
+  showPrevBtn.addEventListener('click', () => {
     swiper3.slidePrev();
 });
-
-document.getElementById('show-more-btn').addEventListener('click', () => {
+} 
+if (showNextBtn !== null){
+showNextBtn.addEventListener('click', () => {
     swiper3.slideNext();
 }); 
+}
+
+
+// banner2 i product page
+document.addEventListener('DOMContentLoaded', function () {
+  var SwiperCustom = new Swiper('.mySwiper-custom', {
+    slidesPerView: 4,
+    spaceBetween: 5,
+    loop: true,
+    centeredSlides: true,
+    pagination: {
+      el: '.swiper-pagination', 
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.mySwiper-custom-next',  
+      prevEl: '.mySwiper-custom-prev',
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 15,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 15,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 15,
+      },
+      1500: {
+        slidesPerView: 3,
+        spaceBetween: 15,
+      },
+    },
+  });
+});
+// hämta bilder från instagram
+// document.addEventListener('DOMContentLoaded', function() {
+//   const feed = new Instafeed({
+//     accessToken: 'ACCESS_TOKEN',
+//     limit: 4,
+//     template: '<div class="image-box"><img src="{{image}}" alt="{{caption}}" class="img-fluid banner2" /></div>',
+//     target: 'instagram-feed'
+//   });
+//   feed.run();
+// });
 
 
 //Function for payment accordions
