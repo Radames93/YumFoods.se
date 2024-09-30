@@ -45,8 +45,8 @@ namespace DataAccess.Repositories
 
             var order = new Order()
             {
-                //Id = newOrder.Id,
-                UserId = newOrder.UserId,
+                Id = newId,
+                //UserId = newOrder.UserId,
                 OrderDate = newOrder.OrderDate,
                 DeliveryDate = newOrder.DeliveryDate,
 

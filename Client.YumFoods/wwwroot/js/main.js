@@ -252,163 +252,141 @@ const infoBox = document.querySelector(".info-box");
 if (infoBox !== null) {
     infoBox.style.display = "none";
 }
-
 const close = document.querySelector(".close");
 if (close !== null) {
     close.addEventListener("click", function () {
         infoBox.style.display = "none";
     });
 }
-
 let selectedCategory = null;
 let selectedQuantity = 10;
-
 // categori boxes
 const dietBoxes = document.querySelectorAll(".box2");
 const chooseDietBox = dietBoxes.forEach((box, index) => {
-    box.addEventListener("click", function () {
-        this.classList.add("selected");
-        this.classList.add("selected-border");
-
-        dietBoxes.forEach((b) => {
-            if ((b.hasClass = "selected")) {
-                b.classList.remove("selected");
-                b.classList.remove("selected-border");
-            } else {
-                b.classList.add("selected");
-                b.classList.add("selected-border");
-            }
-        });
+  box.addEventListener("click", function () {
+    this.classList.add("selected");
+    this.classList.add("selected-border");
+    dietBoxes.forEach((b) => {
+      if ((b.hasClass = "selected")) {
+        b.classList.remove("selected");
+        b.classList.remove("selected-border");
+      } else {
+        b.classList.add("selected");
+        b.classList.add("selected-border");
+      }
     });
+  });
 });
-
 // quantity boxes
 const antalBoxes = document.querySelectorAll(".box4");
 const chooseAntalbox = antalBoxes.forEach((box, index) => {
-    box.addEventListener("click", function () {
-        this.classList.add("selected");
-        this.classList.toggle("selected-border");
-        infoBox.style.display = "block";
-
-        antalBoxes.forEach((b) => {
-            if ((b.hasClass = "selected")) {
-                b.classList.remove("selected");
-                b.classList.remove("selected-border");
-            } else {
-                b.classList.add("selected");
-                b.classList.add("selected-border");
-            }
-        });
+  box.addEventListener("click", function () {
+    this.classList.add("selected");
+    this.classList.toggle("selected-border");
+    infoBox.style.display = "block";
+    antalBoxes.forEach((b) => {
+      if ((b.hasClass = "selected")) {
+        b.classList.remove("selected");
+        b.classList.remove("selected-border");
+      } else {
+        b.classList.add("selected");
+        b.classList.add("selected-border");
+      }
     });
+  });
 });
-
 //handle click on quantity buttons
 document.addEventListener("DOMContentLoaded", function () {
-    const quantitySpan = document.querySelector(".quantity-btn span");
-    const increaseButton = document.querySelector(
-        ".quantity-btn button:nth-of-type(2)"
-    );
-    const decreaseButton = document.querySelector(
-        ".quantity-btn button:nth-of-type(1)"
-    );
-    if (quantitySpan !== null) {
-        let currentQuantity = parseInt(quantitySpan.textContent, 10);
+  const quantitySpan = document.querySelector(".quantity-btn span");
+  const increaseButton = document.querySelector(
+    ".quantity-btn button:nth-of-type(2)"
+  );
+  const decreaseButton = document.querySelector(
+    ".quantity-btn button:nth-of-type(1)"
+  );
+  const infoBox = document.querySelector(".info-box");
+  let currentQuantity = parseInt(quantitySpan.textContent, 10);
+  function updateQuantity(newQuantity) {
+    if (newQuantity >= 10 && newQuantity <= 20) {
+      currentQuantity = newQuantity;
+      quantitySpan.textContent = currentQuantity;
+      updateBox4Selection();
+      updateTotalPrice();
     }
-
-    function updateQuantity(newQuantity) {
-        if (newQuantity >= 10 && newQuantity <= 20) {
-            currentQuantity = newQuantity;
-            quantitySpan.textContent = currentQuantity;
-            updateBox4Selection();
-
-            updateTotalPrice();
-        }
-    }
-
-    // update quantity boxes
-    function updateBox4Selection() {
-        document.querySelectorAll(".box4").forEach((box) => {
-            const boxValue = parseInt(box.getAttribute("data-value"), 10);
-            if (boxValue === currentQuantity) {
-                box.classList.add("selected", "selected-border");
-            } else {
-                box.classList.remove("selected", "selected-border");
-            }
-        });
-        infoBox.style.display = "block";
-    }
-
-    // update categorie boxes
-    const boxes2 = document.querySelectorAll(".box2");
-    function updateBoxSelection(currentCategory) {
-        boxes2.forEach((box) => {
-            const boxValue = box.getAttribute("data-category");
-
-            if (boxValue === currentCategory) {
-                box.classList.add("selected");
-                box.classList.add("selected-border");
-            } else {
-                box.classList.remove("selected");
-                box.classList.remove("selected-border");
-            }
-        });
-    }
-    const boxes4 = document.querySelectorAll(".box4");
-    boxes2.forEach((box) => {
-        box.addEventListener("click", () => {
-            const currentCategory = box.getAttribute("data-category");
-            updateBoxSelection(currentCategory);
-            boxes4.forEach((box4) => {
-                box4.addEventListener("click", () => {
-                    const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
-                    updateBox4Selection(currentQuantity);
-                });
-            });
-        });
+  }
+  // update quantity boxes
+  function updateBox4Selection() {
+    document.querySelectorAll(".box4").forEach((box) => {
+      const boxValue = parseInt(box.getAttribute("data-value"), 10);
+      if (boxValue === currentQuantity) {
+        box.classList.add("selected", "selected-border");
+      } else {
+        box.classList.remove("selected", "selected-border");
+      }
     });
-
-    // currentQuantity, increase , decrease
-    let rowBox = document.querySelectorAll(".row .box");
-    if (rowBox !== null) {
-        rowBox.forEach((box) => {
-            box.addEventListener("click", function () {
-                const boxValue = parseInt(this.textContent, 10);
-                updateQuantity(boxValue);
-            });
+    infoBox.style.display = "block";
+  }
+  // update categorie boxes
+  const boxes2 = document.querySelectorAll(".box2");
+  function updateBoxSelection(currentCategory) {
+    boxes2.forEach((box) => {
+      const boxValue = box.getAttribute("data-category");
+      console.log(boxValue);
+      if (boxValue === currentCategory) {
+        box.classList.add("selected");
+        box.classList.add("selected-border");
+      } else {
+        box.classList.remove("selected");
+        box.classList.remove("selected-border");
+      }
+    });
+  }
+  const boxes4 = document.querySelectorAll(".box4");
+  boxes2.forEach((box) => {
+    box.addEventListener("click", () => {
+      const currentCategory = box.getAttribute("data-category");
+      updateBoxSelection(currentCategory);
+      boxes4.forEach((box4) => {
+        box4.addEventListener("click", () => {
+          const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
+          updateBox4Selection(currentQuantity);
         });
-    }
-    if (increaseButton !== null) {
-        increaseButton.addEventListener("click", function () {
-            updateQuantity(currentQuantity + 5);
-        });
-    }
-
-    if (decreaseButton !== null) {
-        decreaseButton.addEventListener("click", function () {
-            updateQuantity(currentQuantity - 5);
-        });
-    }
+      });
+    });
+  });
+  // currentQuantity, increase , decrease
+  document.querySelectorAll(".row .box").forEach((box) => {
+    box.addEventListener("click", function () {
+      const boxValue = parseInt(this.textContent, 10);
+      updateQuantity(boxValue);
+    });
+  });
+  increaseButton.addEventListener("click", function () {
+    updateQuantity(currentQuantity + 5);
+  });
+  decreaseButton.addEventListener("click", function () {
+    updateQuantity(currentQuantity - 5);
+  });
 });
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {
-    const dishList = document.getElementById("dish-list");
-    dishList.innerHTML = "";
-    let htmlString = "";
-
-    yumProductsList.map((veg) => {
-        let veggie = veg.dietRef;
-        if (veggie === "images/icons/vegetarian.png") {
-            const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
-            htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
-        }
+  const dishList = document.getElementById("dish-list");
+  dishList.innerHTML = "";
+  let htmlString = "";
+  yumProductsList.map((veg) => {
+    veg.diet.map((veggie) => {
+      if (veggie === "images/icons/vegetarian.png") {
+        const cleanTitle = veg.title.replace(/^'(.*)'$/, "$1").trim();
+        console.log(veg.title);
+        htmlString += `<li> ${cleanTitle}- <span class="pricedetail">${veg.price} kr</span></li>`;
+      }
     });
-    dishList.innerHTML += htmlString;
+  });
+  dishList.innerHTML += htmlString;
 };
-
 const updateDishList = () => {
     vegetarianAlternatives();
 };
-
 // total price
 function calculateTotalPrice(quantity) {
     const vegetarianProducts = yumProductsList.filter((product) =>
@@ -420,7 +398,6 @@ function calculateTotalPrice(quantity) {
     );
     return totalPrice;
 }
-
 function updateTotalPrice() {
     const quantity = parseInt(
         document.querySelector(".quantity-btn span").textContent,
@@ -430,7 +407,6 @@ function updateTotalPrice() {
     const totalPriceElement = document.querySelector(".col-5.price");
     totalPriceElement.innerHTML = `<p>${totalPrice} kr</p>`;
 }
-
 //end of secound part
 
 // fixed media query
@@ -624,108 +600,219 @@ const loadProducts = async () => {
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
-    if (yum !== null) {
-        const htmlString = yumProductsList
-            .map((yum) => {
-                let title = JSON.stringify(yum.title);
-                let description = JSON.stringify(yum.description);
-                let ingredients = JSON.stringify(yum.ingredients);
-                return (
-                    `<div
-            class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
-            data-wow-duration="1s"
-                        >
-          <div class="menu_item"
-                  data-yum-id=${yum.id}
-                  data-yum-title=${title}
-                  data-yum-price=${yum.price}
-                  data-yum-img=${yum.imgRef}
-                  data-yum-quantity-price=${yum.price}
-                  data-yum-description=${description}
-                  data-yum-ingredients=${ingredients}
-                  data-yum-diet=${yum.dietRef}
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal">
-              <div class="menu_item_img">
-                <img
-                  src=` +
-                    yum.imgRef +
-                    `
-                  alt="yum-meny-bild"
-                  class="img-fluid w-100"
-                  class="title"
-                  href="#"
-                />
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-              <div class="d-flex"><img
-                  src=` +
-                    yum.dietRef +
-                    `
-                  alt="dagens-meny-bild"
-                  class="img-fluid w-100 diet_img"
-                  href="#"
+  if (yum !== null) {
+    const htmlString = yumProductsList
+      .map((yum) => {
+        let title = JSON.stringify(yum.title);
+        let description = JSON.stringify(yum.description);
+        let ingredients = JSON.stringify(yum.ingredients);
+        return (
+          `
 
-                /></div>
-                <a class="category" href="#">` +
-                    yum.category +
-                    `</a>
-          </div>
-              <div class="menu_item_text">
-                <a
-                  class="title"
-                  href="#"
+          <div
+          class="wow fadeInUp "
+          data-wow-duration="1s"
+                      >
+        <div class="menu_item yum_product_display_item"
+                style="border: 1px solid var(--Stroke, #CED3D2); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:364px; height:330px; border-radius:12px;"
+                 >
+
+                <div class="yum_item_buttons d-flex flex-column align-items-center">
+                  <button
+                  data-id=` +
+          yum.id +
+          `
                   data-yum-id=${yum.id}
                   data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
-                  data-yum-ingredients=${ingredients}
                   data-yum-diet=${yum.dietRef}
-                  data-bs-toggle="modal"
-                  data-bs-target="#modal"
-                  >` +
-                    yum.title +
-                    `</a
-                >
-                <h5 class="price">` +
-                    yum.price +
-                    `kr</h5>
-          <!--
-          <ul class="d-flex flex-wrap justify-content-end">
-                  <li>
-                    <a href="#"><i class="fa fa-heart"></i></a>
-                  </li>
-                  <li>
-                    <a href="menu_details.html"><i class="fa fa-eye"></i></a>
-                  </li>
-                </ul>
-                -->
-              </div>
+                  onclick='realAddToCart(event)'
+                  class="yum_btn"
+                  style="border-radius: 12px;
+                  padding: 18px 16px;
+                  border: 1px solid white;
+                  color: white;
+                  background: var(--Complementary-color, #DD3902);"><i class="fas fa-shopping-basket"></i></i>Lägg i varukorg</button>
+
+                  <button
+                    data-yum-id=${yum.id}
+                    data-yum-title=${title}
+                    data-yum-price=${yum.price}
+                    data-yum-img=${yum.imgRef}
+                    data-yum-quantity-price=${yum.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${yum.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                  class="yum_btn"
+                  style="border-radius: 12px;
+                  padding: 18px 16px;
+                  border: 1px solid black;">Läs mer om produkten</button>
+                </div>
+
+            <div class="menu_item_img" style="border-bottom:solid 1px grey;">
+              <img
+                src=` +
+          yum.imgRef +
+          `
+                alt="yum-meny-bild"
+                class="img-fluid w-100"
+                class="title"
+                href="#"
+              />
             </div>
-            ` +
-                    "<button id='cart-button' class='menu_add_to_cart' data-id=" +
-                    yum.id +
-                    `
-          data-yum-id=${yum.id}
-          data-yum-title=${title}
-          data-yum-price=${yum.price}
-          data-yum-img=${yum.imgRef}
-          data-yum-quantity-price=${yum.price}
-          data-yum-description=${description}
-          data-yum-diet=${yum.dietRef}
-          ` +
-                    ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
-                    `
-          </div>`
-                );
-            })
-            .join("");
-        yum.innerHTML = htmlString;
-    } else {
-        return null;
-    }
+            <div class="d-flex justify-content-between align-items-center">
+
+        </div>
+
+            <div class="menu_item_text m-4">
+              <a
+                class="title"
+                href="#"
+                data-yum-id=${yum.id}
+                data-yum-title=${title}
+                data-yum-price=${yum.price}
+                data-yum-img=${yum.imgRef}
+                data-yum-quantity-price=${yum.price}
+                data-yum-description=${description}
+                data-yum-ingredients=${ingredients}
+                data-yum-diet=${yum.dietRef}
+                data-bs-toggle="modal"
+                data-bs-target="#modal"
+                >` +
+          yum.title +
+          `</a>
+              <div class="d-flex justify-content-between">
+                        <h5 class="price">` +
+          yum.price +
+          `kr</h5>
+                        <img src=` +
+          yum.dietRef +
+          `
+                        alt="dagens-meny-bild"
+                        class="img-fluid diet_img"
+                        href="#"/>
+                </div>
+        <!--
+        <ul class="d-flex flex-wrap justify-content-end">
+                <li>
+                  <a href="#"><i class="fa fa-heart"></i></a>
+                </li>
+                <li>
+                  <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+                </li>
+              </ul>
+              -->
+
+            </div>
+          </div>
+        </div>
+
+        `
+
+          /////////////////////////////// Backup start /////////////////////////////
+
+          // `<div
+          //   class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
+          //   data-wow-duration="1s"
+          //               >
+          // <div class="menu_item"
+          //         data-yum-id=${yum.id}
+          //         data-yum-title=${title}
+          //         data-yum-price=${yum.price}
+          //         data-yum-img=${yum.imgRef}
+          //         data-yum-quantity-price=${yum.price}
+          //         data-yum-description=${description}
+          //         data-yum-ingredients=${ingredients}
+          //         data-yum-diet=${yum.dietRef}
+          //         data-bs-toggle="modal"
+          //         data-bs-target="#modal">
+          //     <div class="menu_item_img">
+          //       <img
+          //         src=` +
+          // yum.imgRef +
+          // `
+          //         alt="yum-meny-bild"
+          //         class="img-fluid w-100"
+          //         class="title"
+          //         href="#"
+          //       />
+          //     </div>
+          //     <div class="d-flex justify-content-between align-items-center">
+          //     <div class="d-flex"><img
+          //         src=` +
+          // yum.dietRef +
+          // `
+          //         alt="dagens-meny-bild"
+          //         class="img-fluid w-100 diet_img"
+          //         href="#"
+
+          //       /></div>
+          //       <a class="category" href="#">` +
+          // yum.category +
+          // `</a>
+          // </div>
+          //     <div class="menu_item_text">
+          //       <a
+          //         class="title"
+          //         href="#"
+          //         data-yum-id=${yum.id}
+          //         data-yum-title=${title}
+          //         data-yum-price=${yum.price}
+          //         data-yum-img=${yum.imgRef}
+          //         data-yum-quantity-price=${yum.price}
+          //         data-yum-description=${description}
+          //         data-yum-ingredients=${ingredients}
+          //         data-yum-diet=${yum.dietRef}
+          //         data-bs-toggle="modal"
+          //         data-bs-target="#modal"
+          //         >` +
+          // yum.title +
+          // `</a
+          //       >
+          //       <h5 class="price">` +
+          // yum.price +
+          // `kr</h5>
+          // <!--
+          // <ul class="d-flex flex-wrap justify-content-end">
+          //         <li>
+          //           <a href="#"><i class="fa fa-heart"></i></a>
+          //         </li>
+          //         <li>
+          //           <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+          //         </li>
+          //       </ul>
+          //       -->
+          //     </div>
+          //   </div>
+          //   ` +
+          // "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+          // yum.id +
+          // `
+          // data-yum-id=${yum.id}
+          // data-yum-title=${title}
+          // data-yum-price=${yum.price}
+          // data-yum-img=${yum.imgRef}
+          // data-yum-quantity-price=${yum.price}
+          // data-yum-description=${description}
+          // data-yum-diet=${yum.dietRef}
+          // ` +
+          // ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+          // `
+          // </div>`
+
+          /////////////////////////////// Backup end /////////////////////////////
+        );
+      })
+      .join("");
+    yum.innerHTML = htmlString;
+  } else {
+    return null;
+  }
 };
 
 const carouselContainer = document.getElementById("container");
@@ -742,7 +829,7 @@ const CarouselFoodBoxes = (yumProductsList) => {
                     `
           <div class="swiper-slide">
             <div class="menu_item_slider"
-                data-yum-id=${yum.id} 
+                data-yum-id=${yum.id}
                 data-yum-title=${title}
                 data-yum-price=${yum.price}
                 data-yum-img=${yum.imgRef}
@@ -752,7 +839,7 @@ const CarouselFoodBoxes = (yumProductsList) => {
                 data-yum-diet=${yum.dietRef}
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
-              
+
               <div class="menu_item_slider_img">
                 <img
                   src=` +
@@ -767,7 +854,7 @@ const CarouselFoodBoxes = (yumProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${yum.id} 
+                  data-yum-id=${yum.id}
                   data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
@@ -787,16 +874,16 @@ const CarouselFoodBoxes = (yumProductsList) => {
               </div>
             </div>
             <button id='cart-button' class='menu_add_to_cart' data-id=` +
-                    yum.id +
-                    `
-              data-yum-id=${yum.id} 
+          yum.id +
+          `
+              data-yum-id=${yum.id}
               data-yum-title=${title}
               data-yum-price=${yum.price}
               data-yum-img=${yum.imgRef}
               data-yum-quantity-price=${yum.price}
               data-yum-description=${description}
               data-yum-diet=${yum.dietRef}
-              onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
+              onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg
             </button>
           </div>
         `
@@ -820,7 +907,7 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                     `
           <div class="swiper-slide">
             <div class="menu_item_slider"
-                data-yum-id=${yum.id} 
+                data-yum-id=${yum.id}
                 data-yum-title=${title}
                 data-yum-price=${yum.price}
                 data-yum-img=${yum.imgRef}
@@ -830,7 +917,7 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                 data-yum-diet=${yum.dietRef}
                 data-bs-toggle="modal"
                 data-bs-target="#modal">
-              
+
               <div class="menu_item_slider_img">
                 <img
                   src=` +
@@ -845,7 +932,7 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
                 <a
                   class="title"
                   href="#"
-                  data-yum-id=${yum.id} 
+                  data-yum-id=${yum.id}
                   data-yum-title=${title}
                   data-yum-price=${yum.price}
                   data-yum-img=${yum.imgRef}
@@ -865,16 +952,16 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
               </div>
             </div>
             <button id='cart-button' class='menu_add_to_cart' data-id=` +
-                    yum.id +
-                    `
-              data-yum-id=${yum.id} 
+          yum.id +
+          `
+              data-yum-id=${yum.id}
               data-yum-title=${title}
               data-yum-price=${yum.price}
               data-yum-img=${yum.imgRef}
               data-yum-quantity-price=${yum.price}
               data-yum-description=${description}
               data-yum-diet=${yum.dietRef}
-              onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
+              onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg
             </button>
           </div>
         `
@@ -1314,459 +1401,585 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
 
 //Sort function by name and price
 const sortingNamePriceFunction = (el) => {
-    const option = el.value;
-    if (option === "name") {
-        const sortedYumArray = yumFiltered.sort((a, b) =>
-            a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-        );
-        const sortedDailyArray = dailyFiltered.sort((a, b) =>
-            a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-        );
-        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-            a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-        );
-        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-            a.title > b.title ? 1 : b.title > a.title ? -1 : 0
-        );
-        return (
-            yumProducts(sortedYumArray),
-            dailyProducts(sortedDailyArray),
-            premiumProducts(sortedPremiumArray),
-            baguetterProducts(sortedBaguetterArray)
-        );
-    } else if (option === "AL") {
-        const sortedYumArray = yumFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedDailyArray = dailyFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        return (
-            yumProducts(sortedYumArray),
-            dailyProducts(sortedDailyArray),
-            premiumProducts(sortedPremiumArray),
-            baguetterProducts(sortedBaguetterArray)
-        );
-    } else if (option === "l2h") {
-        const parsePrice = (x) => parseFloat(x.replace(/^\$/, "")) || 0;
-        const sortedYumArray = yumFiltered
-            .slice()
-            .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
-        const sortedDailyArray = dailyFiltered
-            .slice()
-            .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
-        const sortedPremiumArray = premiumFiltered
-            .slice()
-            .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
-        const sortedBaguetterArray = baguetterFiltered
-            .slice()
-            .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
-        return (
-            yumProducts(sortedYumArray),
-            dailyProducts(sortedDailyArray),
-            premiumProducts(sortedPremiumArray),
-            baguetterProducts(sortedBaguetterArray)
-        );
-    } else if (option === "h2l") {
-        const parsePrice = (x) => parseFloat(x.replace(/^\$/, "")) || 0;
-        const sortedYumArray = yumFiltered
-            .slice()
-            .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
-        const sortedDailyArray = dailyFiltered
-            .slice()
-            .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
-        const sortedPremiumArray = premiumFiltered
-            .slice()
-            .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
-        const sortedBaguetterArray = baguetterFiltered
-            .slice()
-            .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
-        return (
-            yumProducts(sortedYumArray),
-            dailyProducts(sortedDailyArray),
-            premiumProducts(sortedPremiumArray),
-            baguetterProducts(sortedBaguetterArray)
-        );
-    } else {
-        const sortedYumArray = yumFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedDailyArray = dailyFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        return (
-            yumProducts(sortedYumArray),
-            dailyProducts(sortedDailyArray),
-            premiumProducts(sortedPremiumArray),
-            baguetterProducts(sortedBaguetterArray)
-        );
-    }
+  const option = el.value;
+  if (option === "name") {
+    const sortedYumArray = yumFiltered.sort((a, b) =>
+      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+    );
+    const sortedDailyArray = dailyFiltered.sort((a, b) =>
+      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+    );
+    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+    );
+    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+      a.title > b.title ? 1 : b.title > a.title ? -1 : 0
+    );
+    return (
+      yumProducts(sortedYumArray),
+      dailyProducts(sortedDailyArray),
+      premiumProducts(sortedPremiumArray),
+      baguetterProducts(sortedBaguetterArray)
+    );
+  }
+  /////////////////current block start //////////////////////
+  ///////////////////////////////////////////////////////
+  else if (option === "AL") {
+    const sortedYumArray = yumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedDailyArray = dailyFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    return (
+      yumProducts(sortedYumArray),
+      dailyProducts(sortedDailyArray),
+      premiumProducts(sortedPremiumArray),
+      baguetterProducts(sortedBaguetterArray)
+    );
+    /////////////////////////////////////////////////
+    ////////////current block end //////////////////////
+  }
+
+  /////////////////test block start //////////////////////
+  ///////////////////////////////////////////////////////
+  else if (option === "Chicken") {
+    const sortedYumArray = yumFiltered.filter((chick) => {
+      return chick.diet.includes("Chicken");
+    });
+    // const sortedDailyArray = dailyFiltered.sort((chick) =>
+    //   a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    // );
+    // const sortedPremiumArray = premiumFiltered.sort((chick) =>
+    //   a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    // );
+    // const sortedBaguetterArray = baguetterFiltered.sort((chick) =>
+    //   a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    // );
+    return yumProducts(sortedYumArray);
+    // dailyProducts(sortedDailyArray),
+    // premiumProducts(sortedPremiumArray),
+    // baguetterProducts(sortedBaguetterArray)
+    /////////////////////////////////////////////////
+    ////////////test block end //////////////////////
+  } else if (option === "l2h") {
+    const parsePrice = (x) => parseFloat(x.replace(/^\$/, "")) || 0;
+    const sortedYumArray = yumFiltered
+      .slice()
+      .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+    const sortedDailyArray = dailyFiltered
+      .slice()
+      .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+    const sortedPremiumArray = premiumFiltered
+      .slice()
+      .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+    const sortedBaguetterArray = baguetterFiltered
+      .slice()
+      .sort((a, b) => parsePrice(a.price) - parsePrice(b.price));
+    return (
+      yumProducts(sortedYumArray),
+      dailyProducts(sortedDailyArray),
+      premiumProducts(sortedPremiumArray),
+      baguetterProducts(sortedBaguetterArray)
+    );
+  } else if (option === "h2l") {
+    const parsePrice = (x) => parseFloat(x.replace(/^\$/, "")) || 0;
+    const sortedYumArray = yumFiltered
+      .slice()
+      .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+    const sortedDailyArray = dailyFiltered
+      .slice()
+      .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+    const sortedPremiumArray = premiumFiltered
+      .slice()
+      .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+    const sortedBaguetterArray = baguetterFiltered
+      .slice()
+      .sort((a, b) => parsePrice(b.price) - parsePrice(a.price));
+    return (
+      yumProducts(sortedYumArray),
+      dailyProducts(sortedDailyArray),
+      premiumProducts(sortedPremiumArray),
+      baguetterProducts(sortedBaguetterArray)
+    );
+  } else {
+    const sortedYumArray = yumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedDailyArray = dailyFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    return (
+      yumProducts(sortedYumArray),
+      dailyProducts(sortedDailyArray),
+      premiumProducts(sortedPremiumArray),
+      baguetterProducts(sortedBaguetterArray)
+    );
+  }
 };
 
 //Sort function for diet
 const sortingDishDietFunction = (el) => {
-    const option = el.value;
-    if (option === "vegan") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            let vegan = "";
-            product.diet.map((img) => {
-                vegan = img.toLowerCase().includes(option);
-            });
-            return vegan;
-        });
-        const filteredDailyProducts = dailyProductsList.filter((product) => {
-            let vegan = "";
-            product.diet.map((img) => {
-                vegan = img.toLowerCase().includes(option);
-            });
-            return vegan;
-        });
-        const filteredPremiumProducts = premiumProductsList.filter((product) => {
-            let vegan = "";
-            product.diet.map((img) => {
-                vegan = img.toLowerCase().includes(option);
-            });
-            return vegan;
-        });
-        const filteredBaguetterProducts = baguetterProductsList.filter(
-            (product) => {
-                let vegan = "";
-                product.diet.map((img) => {
-                    vegan = img.toLowerCase().includes(option);
-                });
-                return vegan;
-            }
-        );
-        yumProducts(filteredYumProducts);
-        dailyProducts(filteredDailyProducts);
-        premiumProducts(filteredPremiumProducts);
-        baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "AL") {
-        const sortedYumArray = yumFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedDailyArray = dailyFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        yumProducts(sortedYumArray);
-        dailyProducts(sortedDailyArray);
-        premiumProducts(sortedPremiumArray);
-        baguetterProducts(sortedBaguetterArray);
-        if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "vegetarian") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            let vegetarian = "";
-            product.diet.map((img) => {
-                vegetarian = img.toLowerCase().includes(option);
-            });
-            return vegetarian;
-        });
-        const filteredDailyProducts = dailyProductsList.filter((product) => {
-            let vegetarian = "";
-            product.diet.map((img) => {
-                vegetarian = img.toLowerCase().includes(option);
-            });
-            return vegetarian;
-        });
-        const filteredPremiumProducts = premiumProductsList.filter((product) => {
-            let vegetarian = "";
-            product.diet.map((img) => {
-                vegetarian = img.toLowerCase().includes(option);
-            });
-            return vegetarian;
-        });
-        const filteredBaguetterProducts = baguetterProductsList.filter(
-            (product) => {
-                let vegetarian = "";
-                product.diet.map((img) => {
-                    vegetarian = img.toLowerCase().includes(option);
-                });
-                return vegetarian;
-            }
-        );
-        yumProducts(filteredYumProducts);
-        dailyProducts(filteredDailyProducts);
-        premiumProducts(filteredPremiumProducts);
-        baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "cow") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            let cow = "";
-            product.diet.map((img) => {
-                cow = img.toLowerCase().includes(option);
-            });
-            return cow;
-        });
-        const filteredDailyProducts = dailyProductsList.filter((product) => {
-            let cow = "";
-            product.diet.map((img) => {
-                cow = img.toLowerCase().includes(option);
-            });
-            return cow;
-        });
-        const filteredPremiumProducts = premiumProductsList.filter((product) => {
-            let cow = "";
-            product.diet.map((img) => {
-                cow = img.toLowerCase().includes(option);
-            });
-            return cow;
-        });
-        const filteredBaguetterProducts = baguetterProductsList.filter(
-            (product) => {
-                let cow = "";
-                product.diet.map((img) => {
-                    cow = img.toLowerCase().includes(option);
-                });
-                return cow;
-            }
-        );
-        yumProducts(filteredYumProducts);
-        dailyProducts(filteredDailyProducts);
-        premiumProducts(filteredPremiumProducts);
-        baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "fish") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            let fish = "";
-            product.diet.map((img) => {
-                fish = img.toLowerCase().includes(option);
-            });
-            return fish;
-        });
-        const filteredDailyProducts = dailyProductsList.filter((product) => {
-            let fish = "";
-            product.diet.map((img) => {
-                fish = img.toLowerCase().includes(option);
-            });
-            return fish;
-        });
-        const filteredPremiumProducts = premiumProductsList.filter((product) => {
-            let fish = "";
-            product.diet.map((img) => {
-                fish = img.toLowerCase().includes(option);
-            });
-            return fish;
-        });
-        const filteredBaguetterProducts = baguetterProductsList.filter(
-            (product) => {
-                let fish = "";
-                product.diet.map((img) => {
-                    fish = img.toLowerCase().includes(option);
-                });
-                return fish;
-            }
-        );
-        yumProducts(filteredYumProducts);
-        dailyProducts(filteredDailyProducts);
-        premiumProducts(filteredPremiumProducts);
-        baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "chicken") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            let chicken = "";
-            product.diet.map((img) => {
-                chicken = img.toLowerCase().includes(option);
-            });
-            return chicken;
-        });
-        const filteredDailyProducts = dailyProductsList.filter((product) => {
-            let chicken = "";
-            product.diet.map((img) => {
-                chicken = img.toLowerCase().includes(option);
-            });
-            return chicken;
-        });
-        const filteredPremiumProducts = premiumProductsList.filter((product) => {
-            let chicken = "";
-            product.diet.map((img) => {
-                chicken = img.toLowerCase().includes(option);
-            });
-            return chicken;
-        });
-        const filteredBaguetterProducts = baguetterProductsList.filter(
-            (product) => {
-                let chicken = "";
-                product.diet.map((img) => {
-                    chicken = img.toLowerCase().includes(option);
-                });
-                return chicken;
-            }
-        );
-        yumProducts(filteredYumProducts);
-        dailyProducts(filteredDailyProducts);
-        premiumProducts(filteredPremiumProducts);
-        baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
+  const option = el.value;
+  if (option === "vegan") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.includes("Vegan");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let vegan = "";
+    //   product.diet.map((img) => {
+    //     vegan = img.toLowerCase().includes(option);
+    //   });
+    //   return vegan;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let vegan = "";
+    //   product.diet.map((img) => {
+    //     vegan = img.toLowerCase().includes(option);
+    //   });
+    //   return vegan;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let vegan = "";
+    //     product.diet.map((img) => {
+    //       vegan = img.toLowerCase().includes(option);
+    //     });
+    //     return vegan;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
     }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "AL") {
+    const sortedYumArray = yumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedDailyArray = dailyFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    yumProducts(sortedYumArray);
+    dailyProducts(sortedDailyArray);
+    premiumProducts(sortedPremiumArray);
+    baguetterProducts(sortedBaguetterArray);
+    if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "vegetarian") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.includes("Vegetarian");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let vegetarian = "";
+    //   product.diet.map((img) => {
+    //     vegetarian = img.toLowerCase().includes(option);
+    //   });
+    //   return vegetarian;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let vegetarian = "";
+    //   product.diet.map((img) => {
+    //     vegetarian = img.toLowerCase().includes(option);
+    //   });
+    //   return vegetarian;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let vegetarian = "";
+    //     product.diet.map((img) => {
+    //       vegetarian = img.toLowerCase().includes(option);
+    //     });
+    //     return vegetarian;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "cow") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.includes("Cow");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let cow = "";
+    //   product.diet.map((img) => {
+    //     cow = img.toLowerCase().includes(option);
+    //   });
+    //   return cow;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let cow = "";
+    //   product.diet.map((img) => {
+    //     cow = img.toLowerCase().includes(option);
+    //   });
+    //   return cow;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let cow = "";
+    //     product.diet.map((img) => {
+    //       cow = img.toLowerCase().includes(option);
+    //     });
+    //     return cow;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "fish") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.includes("Fish");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let fish = "";
+    //   product.diet.map((img) => {
+    //     fish = img.toLowerCase().includes(option);
+    //   });
+    //   return fish;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let fish = "";
+    //   product.diet.map((img) => {
+    //     fish = img.toLowerCase().includes(option);
+    //   });
+    //   return fish;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let fish = "";
+    //     product.diet.map((img) => {
+    //       fish = img.toLowerCase().includes(option);
+    //     });
+    //     return fish;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "pork") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet === "Pork";
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let fish = "";
+    //   product.diet.map((img) => {
+    //     fish = img.toLowerCase().includes(option);
+    //   });
+    //   return fish;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let fish = "";
+    //   product.diet.map((img) => {
+    //     fish = img.toLowerCase().includes(option);
+    //   });
+    //   return fish;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let fish = "";
+    //     product.diet.map((img) => {
+    //       fish = img.toLowerCase().includes(option);
+    //     });
+    //     return fish;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "chicken") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.includes("Chicken");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let chicken = "";
+    //   product.diet.map((img) => {
+    //     chicken = img.toLowerCase().includes(option);
+    //   });
+    //   return chicken;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let chicken = "";
+    //   product.diet.map((img) => {
+    //     chicken = img.toLowerCase().includes(option);
+    //   });
+    //   return chicken;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let chicken = "";
+    //     product.diet.map((img) => {
+    //       chicken = img.toLowerCase().includes(option);
+    //     });
+    //     return chicken;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "mix") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.includes("Pork, Cow");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let chicken = "";
+    //   product.diet.map((img) => {
+    //     chicken = img.toLowerCase().includes(option);
+    //   });
+    //   return chicken;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let chicken = "";
+    //   product.diet.map((img) => {
+    //     chicken = img.toLowerCase().includes(option);
+    //   });
+    //   return chicken;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let chicken = "";
+    //     product.diet.map((img) => {
+    //       chicken = img.toLowerCase().includes(option);
+    //     });
+    //     return chicken;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  }
 };
 loadProducts();
 
@@ -2042,7 +2255,7 @@ const displayNewCart = () => {
                         `)" class="ms-auto me-4">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
       </div>
 
-        <p class="food-description" style="width: 400px; max-height:50px; overflow-y:scroll;">
+        <p data-bs-toggle="tooltip" data-bs-placement="top" title="${item.description}" class="food-description" style="width: 400px; max-height:50px;">
             ${item.description}
         </p>
 
@@ -2146,6 +2359,39 @@ const displayNewCart = () => {
         }
     }
 };
+
+let itemDescrip = document.querySelectorAll(".food-description");
+
+function truncateDescrip(str, maxLength) {
+  if (str.length > maxLength) {
+    return str.slice(0, maxLength - 3) + "...";
+  }
+  return str;
+}
+
+setTimeout(() => {
+  let itemDescrip = document.querySelectorAll(".food-description");
+  if (itemDescrip) {
+    itemDescrip.forEach((item) => {
+      let fullDescrip = item.textContent;
+      let text = item.textContent;
+      item.textContent = truncateDescrip(text, 60);
+      console.log(item.textContent);
+    });
+  } else {
+    console.error("not available yet");
+  }
+}, 100);
+
+///////////// enable tooltips (bootstrap) ///////////
+document.addEventListener("DOMContentLoaded", function () {
+  var tooltipTriggerList = [].slice.call(
+    document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  );
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl);
+  });
+});
 
 //Display cost summary
 const displaySummary = () => {
@@ -2390,31 +2636,30 @@ if (deliveryDates !== null) {
 const theBox = document.querySelectorAll(".box1");
 
 theBox.forEach((btn) => {
-    btn.addEventListener("click", function () {
-        theBox.forEach((b) => b.classList.remove("box-selected"));
-        btn.classList.add("box-selected");
-        const dayText = btn.querySelector(".day");
-        const dateText = btn.querySelector(".date");
-        console.log(dayText.textContent + " " + dateText.textContent);
-    });
+  btn.addEventListener("click", function () {
+    theBox.forEach((b) => b.classList.remove("box-selected"));
+    btn.classList.add("box-selected");
+    const dayText = btn.querySelector(".day");
+    const dateText = btn.querySelector(".date");
+    console.log(dayText.textContent + " " + dateText.textContent);
+  });
 });
 
 const timeBox = document.querySelectorAll(".tid-box");
 
 timeBox.forEach((btn) => {
-    btn.addEventListener("click", function () {
-        timeBox.forEach((b) => b.classList.remove("tid-box-selected"));
-        btn.classList.add("tid-box-selected");
-        const deliverClock = btn.childNodes[1].textContent;
-        const deliverShipping = btn.childNodes[3].textContent;
-        console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
-    });
+  btn.addEventListener("click", function () {
+    timeBox.forEach((b) => b.classList.remove("tid-box-selected"));
+    btn.classList.add("tid-box-selected");
+    const deliverClock = btn.childNodes[1].textContent;
+    const deliverShipping = btn.childNodes[3].textContent;
+    console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
+  });
 });
 
 // theBox.addEventListener('click', function() {
 // theBox.classList.toggle("box-selected");
 // })
-
 
 // Arrow buttons, add a click function to move it left and right whilst checking the clip-path to dynamically
 // move it left and right depending where the element is being moved in order to ensure only the middle is visible
@@ -2487,7 +2732,6 @@ timeBox.forEach((btn) => {
 
 /////////////////////////// Gamla lösning End//////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-
 
 // <div>
 //     <button style="padding:5px; width:100px;">
@@ -3284,40 +3528,40 @@ var swiper2 = new Swiper(".slide-content2", {
 });
 
 var datesSwipes = new Swiper(".dates_swipe", {
-    slidesPerView: 3,
-    spaceBetween: 10,
-    loop: false,
-    slidesPerGroup: 3,
-    slidesOffsetBefore: -6,
-    slidesOffsetAfter: 8,
-    roundLengths: true,
-    fade: true,
-    grabCursor: false,
-    navigation: {
-        nextEl: ".swiper-button-next-dates",
-        prevEl: ".swiper-button-prev-dates",
-    },
+  slidesPerView: 3,
+  spaceBetween: 1,
+  loop: false,
+  slidesPerGroup: 3,
+  slidesOffsetBefore: 11,
+  slidesOffsetAfter: -7,
+  roundLengths: true,
+  fade: true,
+  grabCursor: false,
+  navigation: {
+    nextEl: ".swiper-button-next-dates",
+    prevEl: ".swiper-button-prev-dates",
+  },
 
-    breakpoints: {
-        0: {
-            slidesPerView: 1,
-        },
-        576: {
-            slidesPerView: 1,
-        },
-        768: {
-            slidesPerView: 2,
-        },
-        992: {
-            slidesPerView: 2,
-        },
-        1120: {
-            slidesPerView: 3,
-        },
-        1400: {
-            slidesPerView: 3,
-        },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
     },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
 });
 
 async function redirectToStripeCheckout() {
@@ -3349,15 +3593,11 @@ async function redirectToStripeCheckout() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                successPaymentUrl: "https://localhost:7023/Payment_success.html",
-                cancelPaymentUrl: "https://localhost:7023/Payment_cancel.html",
+                successPaymentUrl: "https://localhost:7023/payment_success.html",
+                cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
                 products: products  // Send the products array
             })
         });
-
-        //if (successfulPaymentUrl == true) {
-        //    const response = await fetch("http/localhost:7216/OrderAndDetail")
-        //}
 
         const result = await response.json();
         if (response.ok) {
