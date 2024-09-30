@@ -5109,7 +5109,9 @@
   } */
   .slide-content4 {
     margin-left: auto;
-    max-width: 500px;
+    margin-right: auto;
+    max-width: 200px;
+    flex-direction: column !important;
   }
 
   .banner2{
