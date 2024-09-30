@@ -118,6 +118,7 @@
     margin-left: 40px;
   }
 
+
   .swiper-content{
     max-width: 800px;
   }
@@ -151,6 +152,16 @@
     margin-left: 30px;
   }
 
+  .yum_product_display {
+    justify-content: center;
+    display: grid;
+    grid-template-columns: max-content max-content max-content;
+  }
+
+  .yum_product_display_item {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
 }
 
 @media (min-width: 1200px) and (max-width: 1399.99px) {
@@ -396,6 +407,16 @@
   /* =====================
         HOME PAGE END
     =======================*/
+
+  .yum_product_display {
+    display: grid;
+    grid-template-columns: max-content max-content max-content;
+  }
+
+  .yum_product_display_item {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+  }
 
   /* popup in start page */
   .modal-section .modal-content .modal-body {
@@ -959,6 +980,20 @@
   /* =====================
         HOME PAGE END
     =======================*/
+
+  /* =====================
+        MENU PAGE START
+      ====================== */
+
+  .yum_product_display {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    justify-content: center;
+  }
+
+  /* =====================
+        MENU PAGE END
+      ====================== */
 
   /* popup in start page */
 
@@ -1799,6 +1834,23 @@
         HOME PAGE END
     =======================*/
 
+  /* =====================
+        PRODUCTS PAGE START
+    =======================*/
+
+  .yum_product_display {
+    display: grid;
+    grid-template-columns: max-content max-content;
+  }
+
+  .yum_product_display_item {
+    transform: scale(0.95);
+  }
+
+  /* =====================
+        PRODUCTS PAGE END
+    =======================*/
+
   .steps-page {
     height: 600px;
     margin-top: 100px;
@@ -2355,6 +2407,20 @@
   }
 
   /* menu end */
+
+  /* =====================
+        MENU PAGE START
+      ====================== */
+
+  .yum_product_display {
+    display: grid;
+    grid-template-columns: max-content;
+    justify-content: center;
+  }
+
+  /* =====================
+            MENU PAGE END
+          ====================== */
 
   /* popup in start page */
 
