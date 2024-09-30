@@ -1,4 +1,4 @@
- using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Shared.DTOs;
 using Shared.Interfaces;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;

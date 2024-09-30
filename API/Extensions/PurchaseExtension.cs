@@ -17,9 +17,9 @@ namespace API.Extensions
         }
 
         private static async Task<IResult> CreatePurchaseAsync(
-    OrderWithDetailsRepository repo,
-    YumFoodsDb productDb,  // Assuming this is the DbContext for products
-    PurchaseRequest purchaseRequest)
+            OrderWithDetailsRepository repo,
+            YumFoodsDb productDb,  // Assuming this is the DbContext for products
+            PurchaseRequest purchaseRequest)
         {
             // Fetch existing products from the database using Product IDs in the request
             var productIds = purchaseRequest.Products.Select(p => p.Id).ToList();
