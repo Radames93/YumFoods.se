@@ -2231,7 +2231,7 @@ const displayNewCart = () => {
           //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
           return (
             `
-<section class="col mb-4 d-flex flex-row" id=` +
+<section class="col mb-4 d-flex flex-row" style="border-bottom: 1px solid #CED3D2; padding-bottom:40px;" id=` +
             item.id +
             `>
     <div class="imgContainer">
@@ -2506,6 +2506,32 @@ const displaySummary = () => {
 displayNewCart();
 totalSum();
 totalQuantity();
+
+/////////////////////////////////
+///////// Dashboard functionality start ///////////
+///////////////////////////////
+
+function unlockForms(btn) {
+  const dashForm = btn.parentElement.nextElementSibling.closest(".dash_forms");
+  const listInputs = dashForm.querySelectorAll("input");
+  listInputs.forEach((input) => {
+    input.removeAttribute("disabled");
+  });
+  dashForm.querySelector(".dashboard_contact_btns").style.display = "block";
+}
+
+function formCancelEdit(btn) {
+  const dashForm = btn.parentElement.closest(".dash_forms");
+  const listInputs = dashForm.querySelectorAll("input");
+  listInputs.forEach((input) => {
+    input.setAttribute("disabled", "");
+  });
+  dashForm.querySelector(".dashboard_contact_btns").style.display = "none";
+}
+
+/////////////////////////////////
+///////// Dashboard functionality end ///////////
+///////////////////////////////
 
 //Bind the buttons handling the increment and decrement buttons to a function and run it once the DOM loads. When the DOM dynamically changes (e.g. insertAdjacentHTML, removeItem()), the intitally attached addEventListeners are not there anymore and need to be reattached both on the DOM and for the "removeItem" function.
 function cartBtns() {
