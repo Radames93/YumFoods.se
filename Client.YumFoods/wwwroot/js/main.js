@@ -121,10 +121,12 @@ function Header() {
         <div class="loginBtn">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="#" onclick="myFunction()" class="dropbtn" > <i class="far fa-user"></i> Logga in </a>
+              <a href="#" class="dropbtn">
+                <i class="far fa-user"></i> Logga in
+              </a>
               <ul class="droap_menu">
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="sign_in.html">Login</a></li>
+                <li><a href="sign_up.html">Register</a></li>
               </ul>
             </li>
           </ul>
@@ -247,6 +249,91 @@ function navigateToMenuPage() {
   window.location.href = "/yum_menu.html";
 }
 
+// Sign up validation
+function saveUserData() {
+  const förnamn = document.getElementById("field1").value;
+  const email = document.getElementById("field2").value;
+  const lösenord = document.getElementById("field3").value;
+  const upprepaLösenord = document.getElementById("field4").value;
+  const gatuadress = document.getElementById("field5").value;
+  const postnummer = document.getElementById("postnummer").value;
+  const ort = document.getElementById("ort").value;
+  const termsAccepted = document.getElementById("terms1").checked;
+
+  if (!förnamn || !email || !lösenord || !upprepaLösenord || !gatuadress || !postnummer || !ort) {
+      alert("Alla fält måste fyllas i!");
+      return false;
+    }
+
+  if (lösenord !== upprepaLösenord) {
+      alert("Lösenorden matchar inte!");
+      return false;
+  }
+
+  if (!termsAccepted) {
+      alert("Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta.");
+      return false;
+  }
+  // Spara i localStorage
+    const userData = {
+      förnamn: förnamn,
+      email: email,
+      lösenord: lösenord,
+      gatuadress: gatuadress,
+      postnummer: postnummer,
+      ort: ort
+  }
+
+  localStorage.setItem("userData", JSON.stringify(userData));
+  alert("Dina uppgifter har sparats!");
+  return true;
+}
+
+
+// login modal
+// function showLoginModal() {
+//   var modalElement = document.getElementById('loginModal');
+//   if(modalElement !== null){
+//   var modalInstance =  bootstrap.Modal.getOrCreateInstance(modalElement);
+//   modalInstance.show();
+//   }
+//   console.log("open")
+// }
+
+// LOGIN PAGE
+function validateLogin(event) {
+  event.preventDefault(); 
+
+  const email = document.getElementById('email-login').value;
+  const password = document.getElementById('password-login').value;
+  const savedUserData = JSON.parse(localStorage.getItem('userData'));
+
+  if (!savedUserData) {
+      alert('Det finns ingen registrerad användare. Vänligen skapa ett konto.');
+      return;
+  }
+
+  if (!email || !password) {
+      alert('Vänligen fyll i alla fält.');
+      return;
+  }
+
+  if (email === savedUserData.email && password === savedUserData.lösenord) {
+     if(document.getElementById('rememberMe').checked) {
+          localStorage.setItem('rememberedUser', JSON.stringify({ email: email, lösenord: password }));
+      } else {
+          localStorage.removeItem('rememberedUser');
+      }
+      window.location.href = 'dashboard.html';
+  } else {
+      alert('Fel e-postadress eller lösenord.');
+      window.location.href = 'sign_in.html';
+
+  }
+}
+document.querySelector('form').addEventListener('submit', validateLogin);
+
+
 // secound part of start page
 const infoBox = document.querySelector(".info-box");
 if (infoBox !== null) {
@@ -305,6 +392,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ".quantity-btn button:nth-of-type(1)"
   );
   const infoBox = document.querySelector(".info-box");
+  if (quantitySpan !== null){
   let currentQuantity = parseInt(quantitySpan.textContent, 10);
   function updateQuantity(newQuantity) {
     if (newQuantity >= 10 && newQuantity <= 20) {
@@ -314,6 +402,7 @@ document.addEventListener("DOMContentLoaded", function () {
       updateTotalPrice();
     }
   }
+}
   // update quantity boxes
   function updateBox4Selection() {
     document.querySelectorAll(".box4").forEach((box) => {
@@ -361,12 +450,16 @@ document.addEventListener("DOMContentLoaded", function () {
       updateQuantity(boxValue);
     });
   });
+  if (increaseButton !== null){
   increaseButton.addEventListener("click", function () {
     updateQuantity(currentQuantity + 5);
   });
+}
+if (decreaseButton !== null){
   decreaseButton.addEventListener("click", function () {
     updateQuantity(currentQuantity - 5);
   });
+}
 });
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {

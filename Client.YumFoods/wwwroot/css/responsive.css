@@ -2030,6 +2030,23 @@
   /* =====================
         DASHBOARD END
     =======================*/
+    
+    /* =====================
+      SIGNUP START
+    =======================*/
+
+    .signup-input{
+      padding: 0 15px;
+    }
+
+    .login_area form input {
+      width: 100%;
+      max-width: 500px;
+  }
+  
+    /* =====================
+       sIGNUP END
+    =======================*/
 
   .faq_area_img {
     height: auto;
@@ -3358,6 +3375,30 @@
 
   /* =====================
         DASHBOARD END
+    =======================*/
+
+       /* =====================
+      SIGNUP START
+    =======================*/
+
+    .signup-input{
+      padding: 0 15px;
+    }
+
+    .login_area form input {
+      width: 100%;
+      max-width: 400px;
+  }
+
+  .login_area {
+    width: 100%;
+    max-width: 490px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+    /* =====================
+       sIGNUP END
     =======================*/
 
   .faq_area_img {
@@ -4809,6 +4850,35 @@
 
   /* =====================
         DASHBOARD END
+    =======================*/
+
+  /* =====================
+      SIGNUP START
+    =======================*/
+
+    .signup-input{
+      padding: 0 15px;
+    }
+
+    .login_area form input {
+      width: 100%;
+      max-width: 300px;
+  }
+
+    .login_area {
+      width: 100%;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      left: -12px !important;
+    }
+
+    .login_area form button {
+      height: 40px;
+      padding-top: 5px !important;
+    }
+    /* =====================
+       sIGNUP END
     =======================*/
 
   .faq_area_img {

@@ -33,7 +33,7 @@
     <!--=============================
         BREADCRUMB START
     ==============================-->
-    <section class="page_breadcrumb" style="background: url(images/cover.png)">
+    <!-- <section class="page_breadcrumb" style="background: url(images/cover.png)">
       <div class="breadcrumb_overlay">
         <div class="container">
           <div class="breadcrumb_text">
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!--=============================
         BREADCRUMB END
     ==============================-->
@@ -53,7 +53,63 @@
     <!--=========================
         SIGNIN START
     ==========================-->
-    <section class="signin pt_100 xs_pt_70 pb_100 xs_pb_70">
+    <!-- Login Section -->
+    <section class="signup pt_100 xs_pt_70 pb_100 xs_pb_70">
+        <div class="container pt-5">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8 col-md-10">
+                    <div class="login_area p-4 shadow rounded">
+                        <button class="close-btn btn" style="float: right;" onclick="window.location.href='index.html'">
+                            Stäng &times;
+                        </button>
+                       
+                        <h2 class="text-center mt-5">Logga in till ditt konto</h2>
+                        <p class="text-center mt-2">Ange dina uppgifter</p>
+                      
+                        <form>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control login-form" id="email-login" placeholder="Ange din email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Lösenord</label>
+                                <input type="password" class="form-control login-form" id="password-login" placeholder="Ange lösenord">
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input mt-2" id="rememberMe">
+                                    <label class="form-check-label mt-2" for="rememberMe">Kom ihåg mig</label>
+                                </div>
+                                <a href="#" class="forgot-password mt-2" style="color: red; border-bottom: 1px solid red; margin-right: 50px;">Glömt lösenord?</a>
+                            </div>
+
+                            <div class="d-flex justify-content-end mt-3">
+                                <button type="button" class="btn mr-2" onclick="window.location.href='index.html'" style="border: 1px solid black;">Avbryt</button>
+                                <button type="submit" class="btn btn-danger" onclick="window.location.href='dashboard.html'">Logga in</button>
+                            </div>
+                        </form>
+
+                        <div class="text-center mt-4">
+                          <div class="social-icons">
+                            <div class="social-icons sign-up">
+                              <a href="https://www.facebook.com/yumfoods.se" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f mr-2" style="width: 52px; height: 52px; margin-top: 14px; color: rgb(37, 30, 36); z-index: 2;"></i></a>
+                              <a href="https://www.google.com/yumfoods.se" target="_blank" aria-label="Google"><i class="fab fa-google mr-2" style="margin-top: 14px; color: rgb(37, 30, 36);"></i></a>
+                              <a href="https://www.apple.com" target="_blank" aria-label="Apple"><i class="fab fa-apple" style="margin-top: 14px; color: rgb(37, 30, 36)"></i></a>
+                          </div>
+                          </div>
+                        </div>
+                        <p class="text-center mt-3">Har du inget konto? <a href="sign_up.html" class="create-account-link" style="color: red;  border-bottom: 1px solid red;">Skapa konto</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal Section -->
+   
+    <!-- <section class="signin pt_100 xs_pt_70 pb_100 xs_pb_70">
       <div class="container">
         <div
           class="row justify-content-center wow fadeInUp"
@@ -128,7 +184,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!--=========================
         SIGNIN END
     ==========================-->
@@ -173,6 +229,8 @@
     <script src="js/wow.min.js"></script>
     <!-- ex zoom js -->
     <script src="js/jquery.exzoom.js"></script>
+    <!-- js kod för sign in -->
+
     <link rel="stylesheet" href="css/venobox.min.css" />
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/jquery.exzoom.css" />
