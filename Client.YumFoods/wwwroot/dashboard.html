@@ -39,7 +39,7 @@
     <!--=============================
         BREADCRUMB START
     ==============================-->
-    <section class="page_breadcrumb" style="background: url(images/cover.png)">
+    <!-- <section class="page_breadcrumb" style="background: url(images/cover.png)">
       <div class="breadcrumb_overlay">
         <div class="container">
           <div class="breadcrumb_text">
@@ -51,7 +51,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!--=============================
         BREADCRUMB END
     ==============================-->
@@ -60,8 +60,12 @@
         DASHBOARD START
     ==========================-->
 
-    <main class="d-flex justify-content-center w-75 align-item-center mx-auto">
+    <main
+      class="d-flex justify-content-center w-75 align-item-center mx-auto"
+      style="margin-top: 100px"
+    >
       <aside
+        id="dashboard_aside"
         style="
           border: 1px solid green;
           width: fit-content;
@@ -73,10 +77,16 @@
       >
         <nav>
           <ul>
-            <li><i class="fas fa-home"></i><a href="index.html">Startsida</a></li>
-            <li><i class="fas fa-user-circle"></i>Min Profil</li>
-            <li><i class="fas fa-list-alt"></i>Mina Beställningar</li>
-            <li><i class="fas fa-redo-alt"></i>Prenumeration</li>
+            <li>
+              <i class="fas fa-home"></i><a href="index.html">Startsida</a>
+            </li>
+            <li onclick="dash_myProfile()">
+              <i class="fas fa-user-circle"></i>Min Profil
+            </li>
+            <li onclick="dash_myOrders()">
+              <i class="fas fa-list-alt"></i>Mina Beställningar
+            </li>
+            <li onclick="dash_subscriptions()"><i class="fas fa-redo-alt"></i>Prenumeration</li>
             <li><i class="fas fa-percentage"></i>Erbjudanden & Presentkort</li>
             <li><i class="fas fa-bell"></i>Aviseringar</li>
           </ul>
@@ -86,171 +96,195 @@
         </nav>
       </aside>
       <section
-        id="contain_user_content"
-        class="flex-grow-1"
-        style="border: 1px solid red; width: 200px; height: fit-content"
-      >
+      id="contain_user_content"
+      class="flex-grow-1"
+      style="border: 1px solid red; width: 200px; height: fit-content"
+    >
       <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
-        <section class="p-4">
-            <h2>Min Profil</h2>
+      <section class="p-4">
+        <h2>Mina beställningar</h2>
 
-          <section class="dashboard_contact">
-            <div class="d-flex">
-              <h3>Kontaktinformation</h3>
-            <i onclick="unlockForms(this)" class="far fa-edit ms-auto align-self-center unlock_form" style="font-size: 32px;"></i>
-            </div>
-            <form action="" class="dash_forms">
-              <div class="d-flex flex-direction-row" style="gap: 15px;">
-                <div class="dash_inputs flex-grow-1">
-                  <label for="fname">Förnamn</label>
-                  <input
-                  disabled
-                    id="fname"
-                    type="text"
-                    placeholder="Ange ditt förnamn"
-
-                  />
-                </div>
-                <div class="dash_inputs flex-grow-1">
-                  <label for="lname">Efternamn</label>
-                  <input
-                  disabled
-                    id="lname"
-                    type="text"
-                    placeholder="Ange ditt efternamn"
-                  />
-                </div>
-              </div>
-              <div class="dash_inputs">
-                <label for="email">Email</label>
-                <input disabled type="text" id="email" placeholder="Ange din email" />
-              </div>
-              <div class="dash_inputs">
-                <label for="pass">Lösenord</label>
-                <input disabled type="password" id="pass" placeholder="Ange lösenord" />
-              </div>
-              <div class="d-flex flex-direction-row" style="gap: 15px;">
-                <div class="dash_inputs flex-grow-1">
-                  <label for="country">Land</label>
-                  <input disabled id="country" type="text" placeholder="Sverige +46" />
-                </div>
-                <div class="dash_inputs flex-grow-1">
-                  <label for="phone">Telefonnumer</label>
-                  <input disabled id="phone" type="number" placeholder="0712345678" />
-                </div>
-              </div>
-              <div
-                class="dashboard_contact_btns"
-                style="gap: 16px; margin-top: 10px; display: none;"
-              >
-                <button class="btn btn-secondary" type="button">
-                  Spara Ändringar
-                </button>
-                <button onclick="formCancelEdit(this)" class="btn btn-secondary formCancel" type="button">Avbryt</button>
-              </div>
-            </form>
-          </section>
-
-          <section class="dashboard_contact" id="företag">
-            <div class="d-flex">
-              <h3>Företagsinformation</h3>
-              <i onclick="unlockForms(this)" class="far fa-edit ms-auto align-self-center" style="font-size: 32px;"></i>
-            </div>
-            <form action="" class="dash_forms">
-              <div class="d-flex flex-direction-row" style="gap: 15px;">
-                <div class="dash_inputs flex-grow-1">
-                  <label for="compName">Företagsnamn</label>
-                  <input disabled type="text" name="" id="compName">
-                </div>
-                <div class="dash_inputs flex-grow-1">
-                  <label for="orgNumb">Organisationsnummer</label>
-                  <input disabled type="text" name="" id="orgNumb">
-                </div>
-              </div>
-              <div class="dash_inputs">
-                <label for="invoice">Fakturering adress</label>
-                <input disabled type="text" name="" id="invoice">
-              </div>
-              <div class="d-flex flex-direction-row" style="gap: 15px;">
-                <div class="dash_inputs flex-grow-1">
-                  <label for="postal">Postnumer</label>
-                  <input disabled type="text" name="" id="postal">
-                </div>
-                <div class="dash_inputs flex-grow-1">
-                  <label for="region">Ort</label>
-                  <input disabled type="text" name="" id="region">
-                </div>
-              </div>
-            </div>
-            <div
-            class="dashboard_contact_btns"
-            style="gap: 16px; margin-top: 10px; display: none;"
-          >
-            <button class="btn btn-secondary" type="button" >
-              Spara Ändringar
-            </button>
-            <button onclick="formCancelEdit(this)" class="btn btn-secondary" type="button">Avbryt</button>
+        <section class="dashboard_orders">
+          <div class="d-flex">
+            <h3>Dag - Månad - Klocka</h3>
+            <h3
+              class="ms-auto align-self-center"
+              style="color: #0eb116"
+            >Aktiv</h3>
           </div>
-            </form>
-          </section>
+          <div>
+            <h5>Matlådor - antal(st)</h5>
+            <ul class="dash_list">
+              <li>3st matlådor av denna sort</li>
+              <li>3st av ett annat slag</li>
+              <li>4st av den här sorten</li>
+            </ul>
+          </div>
+          <div class="d-flex flex-row" style=" gap: 10px;">
+            <p style="color: #dd3902;">Avsluta Prenumeration</p>
+            <p style="color: #dd3902;">Pausa Prenumeration</p>
+          </div>
+        </section>
 
-          <section class="dashboard_contact" id="leverans">
-            <div class="d-flex">
-              <h3>Leveransinformation</h3>
-              <i onclick="unlockForms(this)" class="far fa-edit ms-auto align-self-center" style="font-size: 32px;"></i>
+        <section style="margin-top: 20px;" class="dashboard_orders">
+          <div class="d-flex">
+            <h5>Leveransfönster</h5>
+            <i
+              onclick="dashEditOrder(this)"
+              class="far fa-edit ms-auto align-self-center unlock_form"
+              style="font-size: 32px; color: #dd3902"
+            ></i>
+          </div>
+          <p>Dag - kl: xx:xx</p>
+        </section>
+
+        <section style="margin-top: 20px;" class="dashboard_orders">
+          <div class="d-flex">
+            <h5>Antal Portioner Per Leverans</h5>
+          </div>
+
+          <div class="d-flex flex-row justify-content-center" style="gap: 10px;">
+
+            <div class="col-3">
+              <div class="box box4" data-value="10">
+                <img class="green-check-kost2" src="images/Eo_circle_green_checkmark.svg.webp" alt="">
+                <p style="font-weight: 600">10</p>
+              </div>
             </div>
-            <form action="" class="dash_forms">
-              <div class="d-flex flex-direction-row" style="gap: 15px;">
-                <div class="dash_inputs flex-grow-1">
-                  <label for="">Förnamn</label>
-                  <input disabled type="text">
-                </div>
-                <div class="dash_inputs flex-grow-1">
-                  <label for="">Efternamn</label>
-                  <input disabled type="text">
-                </div>
-              </div>
 
-              <div class="dash_inputs">
-                <label for="">Gatuadress</label>
-                <input disabled type="text">
+            <div class="col-3">
+              <div class="box box4" data-value="15">
+                <img class="green-check-kost2" src="images/Eo_circle_green_checkmark.svg.webp" alt="">
+                <p style="font-weight: 600">15</p>
               </div>
+            </div>
 
-              <div class="d-flex flex-direction-row" style="gap: 15px;">
-                <div class="dash_inputs flex-grow-1">
-                  <label for="">Postnummer</label>
-                  <input disabled type="text">
-                </div>
-                <div class="dash_inputs flex-grow-1">
-                  <label for="">Ort</label>
-                  <input disabled type="text">
-                </div>
+            <div class="col-3">
+              <div class="box box4" data-value="20">
+                <img class="green-check-kost2" src="images/Eo_circle_green_checkmark.svg.webp" alt="">
+                <p style="font-weight: 600">20</p>
               </div>
+            </div>
+          </div>
 
-              <div class="d-flex flex-direction-row" style="gap: 15px;">
-                <div class="dash_inputs flex-grow-1">
-                  <label for="">Portkod/Porttelefon</label>
-                  <input disabled type="text">
-                </div>
-                <div class="dash_inputs flex-grow-1">
-                  <label for="">Våningsplan</label>
-                  <input disabled type="text">
-                </div>
+          <div style="max-width: 388px; display: flex; margin: auto;" class="box1 large-box">
+            <div class="row">
+              <div class="col-7 text">
+                <h5 style="text-align: left; margin-left: 10px">
+                  Välja ett eget antal
+                </h5>
+                <h6
+                  style="
+                    width: 250px;
+                    text-align: left;
+                    margin-left: 10px;
+                    font-size: 15px;
+                  "
+                >
+                  Minst 10 matlådor per beställning
+                </h6>
               </div>
               <div
-              class="dashboard_contact_btns"
-              style="gap: 16px; margin-top: 10px; display: none;"
-            >
+                style="
+                  margin-left: 40px;
+                  border-radius: 4px;
+                  border: 1px solid #f63;
+                  background: #fff;
+                  width: 110px;
+                  justify-content: center;
+                "
+                class="col-3 quantity-btn d-flex align-items-center justify-content-end"
+              >
+                <button
+                  class="btn btn-light"
+                  style="
+                    background-color: white;
+                    border-color: white;
+                    border-right: 1 px solid #f63 !important;
+                  "
+                >
+                  -
+                </button>
+                <span class="mx-2">10</span>
+                <button
+                  class="btn btn-light"
+                  style="
+                    background-color: white;
+                    border-color: white;
+                    border-left: 1 px solid #f63 !important;
+                  "
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="dashboard_contact" id="leverans">
+          <div class="d-flex">
+            <h3>Leveransinformation</h3>
+            <i
+              onclick="unlockForms(this)"
+              class="far fa-edit ms-auto align-self-center"
+              style="font-size: 32px"
+            ></i>
+          </div>
+          <form action="" class="dash_forms">
+            <div class="d-flex flex-direction-row" style="gap: 15px">
+              <div class="dash_inputs flex-grow-1">
+                <label for="">Förnamn</label>
+                <input disabled type="text" />
+              </div>
+              <div class="dash_inputs flex-grow-1">
+                <label for="">Efternamn</label>
+                <input disabled type="text" />
+              </div>
+            </div>
+
+            <div class="dash_inputs">
+              <label for="">Gatuadress</label>
+              <input disabled type="text" />
+            </div>
+
+            <div class="d-flex flex-direction-row" style="gap: 15px">
+              <div class="dash_inputs flex-grow-1">
+                <label for="">Postnummer</label>
+                <input disabled type="text" />
+              </div>
+              <div class="dash_inputs flex-grow-1">
+                <label for="">Ort</label>
+                <input disabled type="text" />
+              </div>
+            </div>
+
+            <div class="d-flex flex-direction-row" style="gap: 15px">
+              <div class="dash_inputs flex-grow-1">
+                <label for="">Portkod/Porttelefon</label>
+                <input disabled type="text" />
+              </div>
+              <div class="dash_inputs flex-grow-1">
+                <label for="">Våningsplan</label>
+                <input disabled type="text" />
+              </div>
+            </div>
+            <div class="dashboard_contact_btns">
+              <button
+                onclick="formCancelEdit(this)"
+                class="btn btn-secondary"
+                type="button"
+              >
+                Avbryt
+              </button>
               <button class="btn btn-secondary" type="button">
                 Spara Ändringar
               </button>
-              <button onclick="formCancelEdit(this)" class="btn btn-secondary" type="button">Avbryt</button>
             </div>
-            </form>
-          </section>
-
+          </form>
         </section>
-      </section>
+
+      <!-- 'Dynamic' dashboard content will appear here -->
     </main>
 
     <!-- <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
