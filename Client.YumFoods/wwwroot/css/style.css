@@ -7189,6 +7189,28 @@ table tbody tr td span {
 /* ===========================
     DASHBOARD PAGE START
 ============================== */
+.dashboard_contact {
+  max-width: 600px;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--Secondary-color, #ffdfce);
+  border-radius: 12px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 34px;
+}
+
+.dash_inputs > input {
+  border-radius: 7px;
+  border: 1px solid var(--Stroke, #ced3d2);
+  background: #fff;
+}
+
+.dash_forms > div {
+  margin-top: 16px;
+}
+
 .dashboard_area {
   border-radius: 5px;
   overflow: hidden;

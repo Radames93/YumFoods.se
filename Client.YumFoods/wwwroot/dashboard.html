@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+      input,
+      label {
+        display: block;
+      }
+    </style>
   </head>
 
   <body>
@@ -53,7 +59,201 @@
     <!--=========================
         DASHBOARD START
     ==========================-->
-    <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
+
+    <main class="d-flex justify-content-center w-75 align-item-center mx-auto">
+      <aside
+        style="
+          border: 1px solid green;
+          width: fit-content;
+          margin-right: 5px;
+          height: 500px;
+          border-right: 1px solid #ffb9a7;
+          padding: 15px;
+        "
+      >
+        <nav>
+          <ul>
+            <li><i class="fas fa-home"></i><a href="index.html">Startsida</a></li>
+            <li><i class="fas fa-user-circle"></i>Min Profil</li>
+            <li><i class="fas fa-list-alt"></i>Mina Beställningar</li>
+            <li><i class="fas fa-redo-alt"></i>Prenumeration</li>
+            <li><i class="fas fa-percentage"></i>Erbjudanden & Presentkort</li>
+            <li><i class="fas fa-bell"></i>Aviseringar</li>
+          </ul>
+          <div class="d-flex justify-content-center mt-4">
+            <button class="btn btn-primary" type="button">Logga ut</button>
+          </div>
+        </nav>
+      </aside>
+      <section
+        id="contain_user_content"
+        class="flex-grow-1"
+        style="border: 1px solid red; width: 200px; height: fit-content"
+      >
+      <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
+        <section class="p-4">
+            <h2>Min Profil</h2>
+
+          <section class="dashboard_contact">
+            <div class="d-flex">
+              <h3>Kontaktinformation</h3>
+            <i onclick="unlockForms(this)" class="far fa-edit ms-auto align-self-center unlock_form" style="font-size: 32px;"></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px;">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="fname">Förnamn</label>
+                  <input
+                  disabled
+                    id="fname"
+                    type="text"
+                    placeholder="Ange ditt förnamn"
+
+                  />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="lname">Efternamn</label>
+                  <input
+                  disabled
+                    id="lname"
+                    type="text"
+                    placeholder="Ange ditt efternamn"
+                  />
+                </div>
+              </div>
+              <div class="dash_inputs">
+                <label for="email">Email</label>
+                <input disabled type="text" id="email" placeholder="Ange din email" />
+              </div>
+              <div class="dash_inputs">
+                <label for="pass">Lösenord</label>
+                <input disabled type="password" id="pass" placeholder="Ange lösenord" />
+              </div>
+              <div class="d-flex flex-direction-row" style="gap: 15px;">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="country">Land</label>
+                  <input disabled id="country" type="text" placeholder="Sverige +46" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="phone">Telefonnumer</label>
+                  <input disabled id="phone" type="number" placeholder="0712345678" />
+                </div>
+              </div>
+              <div
+                class="dashboard_contact_btns"
+                style="gap: 16px; margin-top: 10px; display: none;"
+              >
+                <button class="btn btn-secondary" type="button">
+                  Spara Ändringar
+                </button>
+                <button onclick="formCancelEdit(this)" class="btn btn-secondary formCancel" type="button">Avbryt</button>
+              </div>
+            </form>
+          </section>
+
+          <section class="dashboard_contact" id="företag">
+            <div class="d-flex">
+              <h3>Företagsinformation</h3>
+              <i onclick="unlockForms(this)" class="far fa-edit ms-auto align-self-center" style="font-size: 32px;"></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px;">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="compName">Företagsnamn</label>
+                  <input disabled type="text" name="" id="compName">
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="orgNumb">Organisationsnummer</label>
+                  <input disabled type="text" name="" id="orgNumb">
+                </div>
+              </div>
+              <div class="dash_inputs">
+                <label for="invoice">Fakturering adress</label>
+                <input disabled type="text" name="" id="invoice">
+              </div>
+              <div class="d-flex flex-direction-row" style="gap: 15px;">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="postal">Postnumer</label>
+                  <input disabled type="text" name="" id="postal">
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="region">Ort</label>
+                  <input disabled type="text" name="" id="region">
+                </div>
+              </div>
+            </div>
+            <div
+            class="dashboard_contact_btns"
+            style="gap: 16px; margin-top: 10px; display: none;"
+          >
+            <button class="btn btn-secondary" type="button" >
+              Spara Ändringar
+            </button>
+            <button onclick="formCancelEdit(this)" class="btn btn-secondary" type="button">Avbryt</button>
+          </div>
+            </form>
+          </section>
+
+          <section class="dashboard_contact" id="leverans">
+            <div class="d-flex">
+              <h3>Leveransinformation</h3>
+              <i onclick="unlockForms(this)" class="far fa-edit ms-auto align-self-center" style="font-size: 32px;"></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px;">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Förnamn</label>
+                  <input disabled type="text">
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Efternamn</label>
+                  <input disabled type="text">
+                </div>
+              </div>
+
+              <div class="dash_inputs">
+                <label for="">Gatuadress</label>
+                <input disabled type="text">
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px;">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Postnummer</label>
+                  <input disabled type="text">
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Ort</label>
+                  <input disabled type="text">
+                </div>
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px;">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Portkod/Porttelefon</label>
+                  <input disabled type="text">
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Våningsplan</label>
+                  <input disabled type="text">
+                </div>
+              </div>
+              <div
+              class="dashboard_contact_btns"
+              style="gap: 16px; margin-top: 10px; display: none;"
+            >
+              <button class="btn btn-secondary" type="button">
+                Spara Ändringar
+              </button>
+              <button onclick="formCancelEdit(this)" class="btn btn-secondary" type="button">Avbryt</button>
+            </div>
+            </form>
+          </section>
+
+        </section>
+      </section>
+    </main>
+
+    <!-- <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
       <div class="container">
         <div class="dashboard_area">
           <div class="row">
@@ -138,9 +338,103 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
+
     <!--=========================
-        DASHBOARD END 
+        DASHBOARD END
+    ==========================-->
+
+    <!--=========================
+        DASHBOARD COPY START
+    ==========================-->
+    <!-- <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
+      <div class="container">
+        <div class="dashboard_area">
+          <div class="row">
+            <div class="col-xl-3 col-lg-4 wow fadeInUp" data-wow-duration="1s">
+              <div class="dashboard_menu">
+                <div class="dasboard_header">
+                  <div class="dasboard_header_img">
+                    <img
+                      src="images/Avatar.png"
+                      alt="user"
+                      class="img-fluid w-100"
+                    />
+                    <label for="upload"><i class="far fa-camera"></i></label>
+                    <input type="file" id="upload" hidden />
+                  </div>
+                  <h2>Ella Olofsson</h2>
+                </div>
+                <ul>
+                  <li>
+                    <a class="active" href="dashboard.html"
+                      ><span><i class="fas fa-user"></i></span> Personligt
+                      information</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_address.html"
+                      ><span><i class="fas fa-user"></i></span>adress</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_order.html"
+                      ><span><i class="fas fa-bags-shopping"></i></span>
+                      order</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_wishlist.html"
+                      ><span><i class="far fa-heart"></i></span> önskelista</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_change_password.html"
+                      ><span><i class="fas fa-user-lock"></i></span> Byt
+                      lösenord</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><span> <i class="fas fa-sign-out-alt"></i></span> Logga
+                      ut</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-9 col-lg-8 wow fadeInUp" data-wow-duration="1s">
+              <div class="dashboard_content">
+                <div class="dashboard_body">
+                  <h3>
+                    Personligt Information
+                    <a
+                      class="dash_add_new_address"
+                      href="dashboard_info_edit.html"
+                      >redigera</a
+                    >
+                  </h3>
+
+                  <div class="dash_personal_info">
+                    <div class="personal_info_text">
+                      <p><span>Namn:</span> Olla Olofsson</p>
+                      <p><span>Melj:</span> ollaolofsson@gmail.com</p>
+                      <p><span>Telefonnumer:</span> 023 434 54354</p>
+                      <p>
+                        <span>Address:</span> Stora Badhusgatan 18, 411 21
+                        Göteborg
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!--=========================
+        DASHBOARD COPY END
     ==========================-->
 
     <!--=============================
@@ -156,7 +450,7 @@
     ==============================-->
     <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
     <!--=============================
-        SCROLL BUTTON END 
+        SCROLL BUTTON END
     ==============================-->
     <!-- hotjar code -->
     <script src="js/hotjar.js"></script>
