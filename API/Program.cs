@@ -115,7 +115,7 @@ internal class Program
         app.MapPaymentsEndPoints();
 
         app.UseHttpsRedirection();
-        app.UseCors("AllowAllOrigins");
+        app.UseCors("AllowSpecificOrigins");
         app.UseAuthorization();
 
         app.MapControllers();
