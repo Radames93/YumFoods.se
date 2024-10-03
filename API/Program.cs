@@ -122,7 +122,7 @@ internal class Program
 
         app.Run();
 
-        // Cleanup the temporary file after use
+        // Cleanup the temporary file after usej
         try
         {
             if (File.Exists(tempFilePath))

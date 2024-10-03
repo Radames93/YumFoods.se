@@ -2700,6 +2700,450 @@ function formCancelEdit(btn) {
   dashForm.querySelector(".dashboard_contact_btns").style.display = "none";
 }
 
+function dash_myProfile() {
+  const myProfile = document.getElementById("contain_user_content");
+  const dashAside = document.getElementById("dashboard_aside");
+
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
+
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
+
+  const htmlString = `
+  <section
+        id="contain_user_content"
+        class="flex-grow-1"
+        style="border: 1px solid red; width: 200px; height: fit-content"
+      >
+        <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
+        <section class="p-4">
+          <h2>Min Profil</h2>
+
+          <section class="dashboard_contact">
+            <div class="d-flex">
+              <h3>Kontaktinformation</h3>
+              <i
+                onclick="unlockForms(this)"
+                class="far fa-edit ms-auto align-self-center unlock_form"
+                style="font-size: 32px"
+              ></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="fname">Förnamn</label>
+                  <input
+                    disabled
+                    id="fname"
+                    type="text"
+                    placeholder="Ange ditt förnamn"
+                  />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="lname">Efternamn</label>
+                  <input
+                    disabled
+                    id="lname"
+                    type="text"
+                    placeholder="Ange ditt efternamn"
+                  />
+                </div>
+              </div>
+              <div class="dash_inputs">
+                <label for="email">Email</label>
+                <input
+                  disabled
+                  type="text"
+                  id="email"
+                  placeholder="Ange din email"
+                />
+              </div>
+              <div class="dash_inputs">
+                <label for="pass">Lösenord</label>
+                <input
+                  disabled
+                  type="password"
+                  id="pass"
+                  placeholder="Ange lösenord"
+                />
+              </div>
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="country">Land</label>
+                  <input
+                    disabled
+                    id="country"
+                    type="text"
+                    placeholder="Sverige +46"
+                  />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="phone">Telefonnumer</label>
+                  <input
+                    disabled
+                    id="phone"
+                    type="number"
+                    placeholder="0712345678"
+                  />
+                </div>
+              </div>
+              <div class="dashboard_contact_btns">
+                <button
+                  onclick="formCancelEdit(this)"
+                  class="btn btn-secondary formCancel"
+                  type="button"
+                >
+                  Avbryt
+                </button>
+                <button class="btn btn-secondary" type="button">
+                  Spara Ändringar
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <section class="dashboard_contact" id="företag">
+            <div class="d-flex">
+              <h3>Företagsinformation</h3>
+              <i
+                onclick="unlockForms(this)"
+                class="far fa-edit ms-auto align-self-center"
+                style="font-size: 32px"
+              ></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="compName">Företagsnamn</label>
+                  <input disabled type="text" name="" id="compName" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="orgNumb">Organisationsnummer</label>
+                  <input disabled type="text" name="" id="orgNumb" />
+                </div>
+              </div>
+
+              <div class="dash_inputs">
+                <label for="invoice">Fakturering adress</label>
+                <input disabled type="text" name="" id="invoice" />
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="postal">Postnumer</label>
+                  <input disabled type="text" name="" id="postal" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="region">Ort</label>
+                  <input disabled type="text" name="" id="region" />
+                </div>
+              </div>
+
+              <div class="dashboard_contact_btns">
+                <button
+                  onclick="formCancelEdit(this)"
+                  class="btn btn-secondary"
+                  type="button"
+                >
+                  Avbryt
+                </button>
+                <button class="btn btn-secondary" type="button">
+                  Spara Ändringar
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <section class="dashboard_contact" id="leverans">
+            <div class="d-flex">
+              <h3>Leveransinformation</h3>
+              <i
+                onclick="unlockForms(this)"
+                class="far fa-edit ms-auto align-self-center"
+                style="font-size: 32px"
+              ></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Förnamn</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Efternamn</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+
+              <div class="dash_inputs">
+                <label for="">Gatuadress</label>
+                <input disabled type="text" />
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Postnummer</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Ort</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Portkod/Porttelefon</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Våningsplan</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+              <div class="dashboard_contact_btns">
+                <button
+                  onclick="formCancelEdit(this)"
+                  class="btn btn-secondary"
+                  type="button"
+                >
+                  Avbryt
+                </button>
+                <button class="btn btn-secondary" type="button">
+                  Spara Ändringar
+                </button>
+              </div>
+            </form>
+          </section>
+        </section>
+      </section>
+  `;
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+}
+
+// if (document.getElementById('dashboard_aside')
+// ) {
+// dash_myProfile();
+// }
+
+function dash_myOrders() {
+  const dashAside = document.getElementById("dashboard_aside");
+  const myProfile = document.getElementById("contain_user_content");
+
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
+
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
+
+  const htmlString = `
+  <section
+        id="contain_user_content"
+        class="flex-grow-1"
+        style="border: 1px solid red; width: 200px; height: fit-content"
+      >
+        <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
+        <section class="p-4">
+          <h2>Mina beställningar</h2>
+
+          <p style="margin-top: 30px; font-weight: 600">
+            Kommande Beställningar
+          </p>
+          <section class="dashboard_orders">
+            <div class="d-flex">
+              <h3>Dag - Månad - Klocka</h3>
+              <i
+                onclick="dashEditOrder(this)"
+                class="far fa-edit ms-auto align-self-center unlock_form"
+                style="font-size: 32px; color: #dd3902"
+              ></i>
+            </div>
+            <div>
+              <h5>Matlådor - antal(st)</h5>
+              <ul class="dash_list">
+                <li>3st matlådor av denna sort</li>
+                <li>3st av ett annat slag</li>
+                <li>4st av den här sorten</li>
+              </ul>
+              <p style="color: var(--Dark-grey, #595959)">
+                du kan aboka din leverans senast den X/9 kl: xx:xx. Avboka här
+              </p>
+            </div>
+          </section>
+
+          <p style="margin-top: 30px; font-weight: 600">
+            Tidigare Beställningar
+          </p>
+          <section class="dashboard_orders_previous">
+            <div class="d-flex">
+              <h3>Dag - Månad - Klocka</h3>
+              <i
+                onclick="unlockForms(this)"
+                class="far fa-edit ms-auto align-self-center"
+                style="font-size: 32px; color: #dd3902"
+              ></i>
+            </div>
+            <div>
+              <h5>Matlådor - antal(st)</h5>
+              <ul class="dash_list">
+                <li>3st matlådor av denna sort</li>
+                <li>3st av ett annat slag</li>
+                <li>4st av den här sorten</li>
+              </ul>
+              <button
+                style="color: white; background-color: #dd3902"
+                type="button"
+                class="btn mt-3"
+              >
+                Beställ igen
+              </button>
+            </div>
+          </section>
+        </section>
+      </section>
+  `;
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+}
+
+function dashEditOrder(btn) {
+  const currentOrder = document.querySelector(".dashboard_orders");
+  const htlmString = `
+  <h3>Redigera Beställning</h3>
+
+    <div class="d-flex flex-row justify-content-center" style="gap: 10px; margin-top:20px;">
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Veckodag
+        </button>
+
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Datum #1</a></li>
+        <li><a class="dropdown-item" href="#">Datum #2</a></li>
+        <li><a class="dropdown-item" href="#">Datum #3</a></li>
+        </ul>
+        </div>
+
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Tidspann
+        </button>
+
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Klocka #1</a></li>
+        <li><a class="dropdown-item" href="#">Klocka #2</a></li>
+        <li><a class="dropdown-item" href="#">Klocka #3</a></li>
+        </ul>
+        </div>
+
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Kosttyp
+        </button>
+
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">kost #1</a></li>
+        <li><a class="dropdown-item" href="#">kost #2</a></li>
+        <li><a class="dropdown-item" href="#">kost #3</a></li>
+        </ul>
+        </div>
+
+        </div>
+
+        <div style="
+        max-width: 180px;
+        background: white;
+        padding: 8px;
+        margin: auto;
+        border-radius: 10px;
+        margin-top: 15px;
+        ">
+          <div class="d-flex flex-column">
+            <div class="text">
+              <h5 style="text-align: center;">
+                Antal portioner
+              </h5>
+            </div>
+            <div
+              style="
+                border-radius: 4px;
+                border: 1px solid #f63;
+                background: #fff;
+                width: 110px;
+                justify-content: center;
+                margin:auto;
+              "
+              class="col-3 quantity-btn d-flex align-items-center justify-content-end"
+            >
+              <button
+                class="btn btn-light"
+                style="
+                  background-color: white;
+                  border-color: white;
+                  border-right: 1 px solid #f63 !important;
+                "
+              >
+                -
+              </button>
+              <span class="mx-2">10</span>
+              <button
+                class="btn btn-light"
+                style="
+                  background-color: white;
+                  border-color: white;
+                  border-left: 1 px solid #f63 !important;
+                "
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-center" style="gap:10px; margin-top:15px;">
+        <button onclick="dashCancelEdit()" type="button" class="btn btn-primary">Avbryt</button>
+        <button onclick="dashConfirmEdit()" type="button" class="btn btn-primary">Spara Ändringar</button>
+        </div>
+  `;
+  return (currentOrder.innerHTML = htlmString);
+}
+
+function dashCancelEdit() {
+  const currentOrder = document.querySelector(".dashboard_orders");
+  const htlmString = `
+            <div class="d-flex">
+              <h3>Dag - Månad - Klocka</h3>
+              <i
+                onclick="dashEditOrder(this)"
+                class="far fa-edit ms-auto align-self-center unlock_form"
+                style="font-size: 32px; color: #dd3902"
+              ></i>
+            </div>
+            <div>
+              <h5>Matlådor - antal(st)</h5>
+              <ul class="dash_list">
+                <li>3st matlådor av denna sort</li>
+                <li>3st av ett annat slag</li>
+                <li>4st av den här sorten</li>
+              </ul>
+              <p style="color: var(--Dark-grey, #595959)">
+                du kan aboka din leverans senast den X/9 kl: xx:xx. Avboka här
+              </p>
+            </div>
+  `;
+  return (currentOrder.innerHTML = htlmString);
+}
+
+function dashConfirmEdit() {}
+
 /////////////////////////////////
 ///////// Dashboard functionality end ///////////
 ///////////////////////////////
@@ -2811,7 +3255,7 @@ for (let i = 3; i < twoWeeks; i++) {
   dates.setDate(dates.getDate() + 1);
 }
 
-console.log(threeDaysAhead);
+console.log("Available dates: " + threeDaysAhead);
 
 const dateStrings = threeDaysAhead
   .map((day) => {
