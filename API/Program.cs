@@ -95,7 +95,7 @@ internal class Program
             options.AddPolicy("AllowSpecificOrigins",
                 policy =>
                 {
-                    policy.WithOrigins( "https://yumfoodstest2-f9cmhpfdhkcucwfc.westeurope-01.azurewebsites.net")
+                    policy.WithOrigins()
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 });
