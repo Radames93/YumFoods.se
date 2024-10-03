@@ -592,6 +592,7 @@ const loadProducts = async () => {
     baguetterProducts(baguetterProductsList);
     CarouselFoodBoxes(yumProductsList);
     CarouselFoodBoxes2(yumProductsList);
+    CarouselDietButtons(yumProductsList);
     // Assuming categoriesProducts and offeredServices are handled separately
   } catch (err) {
     console.error(err);
@@ -648,67 +649,71 @@ const yumProducts = (yumProductsList) => {
                     data-yum-diet=${yum.dietRef}
                     data-bs-toggle="modal"
                     data-bs-target="#modal"
-                  class="yum_btn"
+                  class="yum_btn aboutYumItem"
                   style="border-radius: 12px;
-                  padding: 18px 16px;
+                  padding: 13px 7px;
                   border: 1px solid black;">Läs mer om produkten</button>
                 </div>
 
-            <div class="menu_item_img" style="border-bottom:solid 1px grey;">
-              <img
-                src=` +
+                <div class="backOpacity">
+                <div class="menu_item_img" style="border-bottom:solid 1px grey;">
+                  <img
+                    src=` +
           yum.imgRef +
           `
-                alt="yum-meny-bild"
-                class="img-fluid w-100"
-                class="title"
-                href="#"
-              />
+                    alt="yum-meny-bild"
+                    class="img-fluid w-100"
+                    class="title"
+                    href="#"
+                  />
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+
             </div>
-            <div class="d-flex justify-content-between align-items-center">
 
-        </div>
-
-            <div class="menu_item_text m-4">
-              <a
-                class="title"
-                href="#"
-                data-yum-id=${yum.id}
-                data-yum-title=${title}
-                data-yum-price=${yum.price}
-                data-yum-img=${yum.imgRef}
-                data-yum-quantity-price=${yum.price}
-                data-yum-description=${description}
-                data-yum-ingredients=${ingredients}
-                data-yum-diet=${yum.dietRef}
-                data-bs-toggle="modal"
-                data-bs-target="#modal"
-                >` +
+                <div class="menu_item_text m-4">
+                  <a
+                    class="title"
+                    href="#"
+                    data-yum-id=${yum.id}
+                    data-yum-title=${title}
+                    data-yum-price=${yum.price}
+                    data-yum-img=${yum.imgRef}
+                    data-yum-quantity-price=${yum.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${yum.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                    >` +
           yum.title +
           `</a>
-              <div class="d-flex justify-content-between">
-                        <h5 class="price">` +
+                  <div class="d-flex justify-content-between">
+                            <h5 class="price">` +
           yum.price +
           `kr</h5>
-                        <img src=` +
+                            <img src=` +
           yum.dietRef +
           `
-                        alt="dagens-meny-bild"
-                        class="img-fluid diet_img"
-                        href="#"/>
-                </div>
-        <!--
-        <ul class="d-flex flex-wrap justify-content-end">
-                <li>
-                  <a href="#"><i class="fa fa-heart"></i></a>
-                </li>
-                <li>
-                  <a href="menu_details.html"><i class="fa fa-eye"></i></a>
-                </li>
-              </ul>
-              -->
+                            alt="dagens-meny-bild"
+                            class="img-fluid diet_img"
+                            href="#"/>
+                    </div>
+            <!--
+            <ul class="d-flex flex-wrap justify-content-end">
+                    <li>
+                      <a href="#"><i class="fa fa-heart"></i></a>
+                    </li>
+                    <li>
+                      <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+                    </li>
+                  </ul>
+                  -->
 
-            </div>
+                </div>
+
+                </div>
+
           </div>
         </div>
 
@@ -817,6 +822,7 @@ const yumProducts = (yumProductsList) => {
 
 const carouselContainer = document.getElementById("container");
 const carouselContainer2 = document.getElementById("container2");
+const carouselDietButtons = document.getElementById("dietButtons")
 
 const CarouselFoodBoxes = (yumProductsList) => {
   if (carouselContainer !== null) {
@@ -973,6 +979,175 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
     return null;
   }
 };
+
+// product page( Färdigamatkassar & matlådor)
+let selectedBox = null;
+function FärdigaMatkassar(element) {
+  handleBoxClick(element, "FärdigaMatkassar");
+}
+
+function Matlådor(element) {
+  handleBoxClick(element, "Matlådor");
+}
+
+function handleBoxClick(element, boxType) {
+  if (selectedBox && selectedBox !== element) {
+    const previousCheckmark = selectedBox.querySelector('.check-products img');
+    if (previousCheckmark) {
+      previousCheckmark.style.display = 'none';
+    }
+    selectedBox.style.backgroundColor = '';
+    selectedBox.style.border = '';
+  }
+
+  const checkmark = element.querySelector('.check-products img');
+  const isDisplayed = checkmark && checkmark.style.display === 'block';
+
+  if (checkmark) {
+    checkmark.style.display = isDisplayed ? 'none' : 'block';
+  }
+
+  if (isDisplayed) {
+    element.style.backgroundColor = '';
+    element.style.border = '';
+    selectedBox = null; 
+  } else {
+    element.style.backgroundColor = '#FFDFCE'; 
+    element.style.border = '2px solid black';
+    selectedBox = element; 
+  }
+}
+
+// Carousel in product page
+let currentIndex =0;
+const itemsPerPage= 4;
+const CarouselDietButtons = (yumProductsList) => {
+  if (carouselDietButtons !== null) {
+    const dietFiltered = yumProductsList.map((yum) => yum.diet);
+    const uniqueDiets = [...new Set(dietFiltered)]; 
+    
+    const htmlString = uniqueDiets
+      .map((diet) => {
+        return (
+          `
+          <div class="swiper-slide">
+            <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64)" onclick="fetchProductsByDiet('${diet}')">
+              ${diet}
+            </button>
+          </div>
+          `
+        );
+      })
+      .join(""); 
+  carouselDietButtons.innerHTML = htmlString;  
+  } else {
+    return null;
+ }
+};
+
+var swiper3 = new Swiper(".slide-content3", {
+  centeredSlide: "true",
+  fade: "true",
+  grabCursor: "true",
+  spaceBetween: 10, 
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    dynamicBullets: true,
+  },
+  loop: true,
+  slidesPerView: "auto",
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
+  loopFillGroupWithBlank: false,
+  loopedSlides: 4,
+  loopAdditionalSlides: 1,
+  on: {
+    slideChangeTransitionEnd: function() {
+      if (this.isEnd) {
+        this.slideToLoop(0, 0);
+      }
+    },}
+});
+
+let showPrevBtn = document.getElementById('show-prev-btn')
+let showNextBtn = document.getElementById('show-next-btn')
+if (showPrevBtn !== null){
+  showPrevBtn.addEventListener('click', () => {
+    swiper3.slidePrev();
+});
+} 
+if (showNextBtn !== null){
+showNextBtn.addEventListener('click', () => {
+    swiper3.slideNext();
+}); 
+}
+
+
+// banner2 i product page
+document.addEventListener('DOMContentLoaded', function () {
+  var SwiperCustom = new Swiper('.mySwiper-custom', {
+    slidesPerView: 4,
+    spaceBetween: 5,
+    loop: true,
+    centeredSlides: true,
+    pagination: {
+      el: '.swiper-pagination', 
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.mySwiper-custom-next',  
+      prevEl: '.mySwiper-custom-prev',
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 15,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 15,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 15,
+      },
+      1500: {
+        slidesPerView: 3,
+        spaceBetween: 15,
+      },
+    },
+  });
+});
+// hämta bilder från instagram
+// document.addEventListener('DOMContentLoaded', function() {
+//   const feed = new Instafeed({
+//     accessToken: 'ACCESS_TOKEN',
+//     limit: 4,
+//     template: '<div class="image-box"><img src="{{image}}" alt="{{caption}}" class="img-fluid banner2" /></div>',
+//     target: 'instagram-feed'
+//   });
+//   feed.run();
+// });
+
 
 //Function for payment accordions
 function togglePaymentMethod() {
@@ -2010,7 +2185,7 @@ if (cardModal !== null) {
     localStorage.setItem("quantity", input);
     localStorage.setItem("id", id);
     localStorage.setItem("title", (modalTitle.textContent = title));
-      localStorage.setItem("price", (modalPrice.innerHTML = price));
+    localStorage.setItem("price", (modalPrice.innerHTML = price));
 
     localStorage.setItem("img", (modalImg.src = img));
     localStorage.setItem(
@@ -2227,7 +2402,7 @@ const displayNewCart = () => {
           //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
           return (
             `
-<section class="col mb-4 d-flex flex-row" id=` +
+<section class="col mb-4 d-flex flex-row" style="border-bottom: 1px solid #CED3D2; padding-bottom:40px;" id=` +
             item.id +
             `>
     <div class="imgContainer">
@@ -2503,6 +2678,476 @@ displayNewCart();
 totalSum();
 totalQuantity();
 
+/////////////////////////////////
+///////// Dashboard functionality start ///////////
+///////////////////////////////
+
+function unlockForms(btn) {
+  const dashForm = btn.parentElement.nextElementSibling.closest(".dash_forms");
+  const listInputs = dashForm.querySelectorAll("input");
+  listInputs.forEach((input) => {
+    input.removeAttribute("disabled");
+  });
+  dashForm.querySelector(".dashboard_contact_btns").style.display = "block";
+}
+
+function formCancelEdit(btn) {
+  const dashForm = btn.parentElement.closest(".dash_forms");
+  const listInputs = dashForm.querySelectorAll("input");
+  listInputs.forEach((input) => {
+    input.setAttribute("disabled", "");
+  });
+  dashForm.querySelector(".dashboard_contact_btns").style.display = "none";
+}
+
+function dash_myProfile() {
+  const myProfile = document.getElementById("contain_user_content");
+  const dashAside = document.getElementById("dashboard_aside");
+
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
+
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
+
+  const htmlString = `
+  <section
+        id="contain_user_content"
+        class="flex-grow-1"
+        style="border: 1px solid red; width: 200px; height: fit-content"
+      >
+        <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
+        <section class="p-4">
+          <h2>Min Profil</h2>
+
+          <section class="dashboard_contact">
+            <div class="d-flex">
+              <h3>Kontaktinformation</h3>
+              <i
+                onclick="unlockForms(this)"
+                class="far fa-edit ms-auto align-self-center unlock_form"
+                style="font-size: 32px"
+              ></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="fname">Förnamn</label>
+                  <input
+                    disabled
+                    id="fname"
+                    type="text"
+                    placeholder="Ange ditt förnamn"
+                  />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="lname">Efternamn</label>
+                  <input
+                    disabled
+                    id="lname"
+                    type="text"
+                    placeholder="Ange ditt efternamn"
+                  />
+                </div>
+              </div>
+              <div class="dash_inputs">
+                <label for="email">Email</label>
+                <input
+                  disabled
+                  type="text"
+                  id="email"
+                  placeholder="Ange din email"
+                />
+              </div>
+              <div class="dash_inputs">
+                <label for="pass">Lösenord</label>
+                <input
+                  disabled
+                  type="password"
+                  id="pass"
+                  placeholder="Ange lösenord"
+                />
+              </div>
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="country">Land</label>
+                  <input
+                    disabled
+                    id="country"
+                    type="text"
+                    placeholder="Sverige +46"
+                  />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="phone">Telefonnumer</label>
+                  <input
+                    disabled
+                    id="phone"
+                    type="number"
+                    placeholder="0712345678"
+                  />
+                </div>
+              </div>
+              <div class="dashboard_contact_btns">
+                <button
+                  onclick="formCancelEdit(this)"
+                  class="btn btn-secondary formCancel"
+                  type="button"
+                >
+                  Avbryt
+                </button>
+                <button class="btn btn-secondary" type="button">
+                  Spara Ändringar
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <section class="dashboard_contact" id="företag">
+            <div class="d-flex">
+              <h3>Företagsinformation</h3>
+              <i
+                onclick="unlockForms(this)"
+                class="far fa-edit ms-auto align-self-center"
+                style="font-size: 32px"
+              ></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="compName">Företagsnamn</label>
+                  <input disabled type="text" name="" id="compName" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="orgNumb">Organisationsnummer</label>
+                  <input disabled type="text" name="" id="orgNumb" />
+                </div>
+              </div>
+
+              <div class="dash_inputs">
+                <label for="invoice">Fakturering adress</label>
+                <input disabled type="text" name="" id="invoice" />
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="postal">Postnumer</label>
+                  <input disabled type="text" name="" id="postal" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="region">Ort</label>
+                  <input disabled type="text" name="" id="region" />
+                </div>
+              </div>
+
+              <div class="dashboard_contact_btns">
+                <button
+                  onclick="formCancelEdit(this)"
+                  class="btn btn-secondary"
+                  type="button"
+                >
+                  Avbryt
+                </button>
+                <button class="btn btn-secondary" type="button">
+                  Spara Ändringar
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <section class="dashboard_contact" id="leverans">
+            <div class="d-flex">
+              <h3>Leveransinformation</h3>
+              <i
+                onclick="unlockForms(this)"
+                class="far fa-edit ms-auto align-self-center"
+                style="font-size: 32px"
+              ></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Förnamn</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Efternamn</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+
+              <div class="dash_inputs">
+                <label for="">Gatuadress</label>
+                <input disabled type="text" />
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Postnummer</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Ort</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Portkod/Porttelefon</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Våningsplan</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+              <div class="dashboard_contact_btns">
+                <button
+                  onclick="formCancelEdit(this)"
+                  class="btn btn-secondary"
+                  type="button"
+                >
+                  Avbryt
+                </button>
+                <button class="btn btn-secondary" type="button">
+                  Spara Ändringar
+                </button>
+              </div>
+            </form>
+          </section>
+        </section>
+      </section>
+  `;
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+}
+
+// if (document.getElementById('dashboard_aside')
+// ) {
+// dash_myProfile();
+// }
+
+function dash_myOrders() {
+  const dashAside = document.getElementById("dashboard_aside");
+  const myProfile = document.getElementById("contain_user_content");
+
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
+
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
+
+  const htmlString = `
+  <section
+        id="contain_user_content"
+        class="flex-grow-1"
+        style="border: 1px solid red; width: 200px; height: fit-content"
+      >
+        <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
+        <section class="p-4">
+          <h2>Mina beställningar</h2>
+
+          <p style="margin-top: 30px; font-weight: 600">
+            Kommande Beställningar
+          </p>
+          <section class="dashboard_orders">
+            <div class="d-flex">
+              <h3>Dag - Månad - Klocka</h3>
+              <i
+                onclick="dashEditOrder(this)"
+                class="far fa-edit ms-auto align-self-center unlock_form"
+                style="font-size: 32px; color: #dd3902"
+              ></i>
+            </div>
+            <div>
+              <h5>Matlådor - antal(st)</h5>
+              <ul class="dash_list">
+                <li>3st matlådor av denna sort</li>
+                <li>3st av ett annat slag</li>
+                <li>4st av den här sorten</li>
+              </ul>
+              <p style="color: var(--Dark-grey, #595959)">
+                du kan aboka din leverans senast den X/9 kl: xx:xx. Avboka här
+              </p>
+            </div>
+          </section>
+
+          <p style="margin-top: 30px; font-weight: 600">
+            Tidigare Beställningar
+          </p>
+          <section class="dashboard_orders_previous">
+            <div class="d-flex">
+              <h3>Dag - Månad - Klocka</h3>
+              <i
+                onclick="unlockForms(this)"
+                class="far fa-edit ms-auto align-self-center"
+                style="font-size: 32px; color: #dd3902"
+              ></i>
+            </div>
+            <div>
+              <h5>Matlådor - antal(st)</h5>
+              <ul class="dash_list">
+                <li>3st matlådor av denna sort</li>
+                <li>3st av ett annat slag</li>
+                <li>4st av den här sorten</li>
+              </ul>
+              <button
+                style="color: white; background-color: #dd3902"
+                type="button"
+                class="btn mt-3"
+              >
+                Beställ igen
+              </button>
+            </div>
+          </section>
+        </section>
+      </section>
+  `;
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+}
+
+function dashEditOrder(btn) {
+  const currentOrder = document.querySelector(".dashboard_orders");
+  const htlmString = `
+  <h3>Redigera Beställning</h3>
+
+    <div class="d-flex flex-row justify-content-center" style="gap: 10px; margin-top:20px;">
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Veckodag
+        </button>
+
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Datum #1</a></li>
+        <li><a class="dropdown-item" href="#">Datum #2</a></li>
+        <li><a class="dropdown-item" href="#">Datum #3</a></li>
+        </ul>
+        </div>
+
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Tidspann
+        </button>
+
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Klocka #1</a></li>
+        <li><a class="dropdown-item" href="#">Klocka #2</a></li>
+        <li><a class="dropdown-item" href="#">Klocka #3</a></li>
+        </ul>
+        </div>
+
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Kosttyp
+        </button>
+
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">kost #1</a></li>
+        <li><a class="dropdown-item" href="#">kost #2</a></li>
+        <li><a class="dropdown-item" href="#">kost #3</a></li>
+        </ul>
+        </div>
+
+        </div>
+
+        <div style="
+        max-width: 180px;
+        background: white;
+        padding: 8px;
+        margin: auto;
+        border-radius: 10px;
+        margin-top: 15px;
+        ">
+          <div class="d-flex flex-column">
+            <div class="text">
+              <h5 style="text-align: center;">
+                Antal portioner
+              </h5>
+            </div>
+            <div
+              style="
+                border-radius: 4px;
+                border: 1px solid #f63;
+                background: #fff;
+                width: 110px;
+                justify-content: center;
+                margin:auto;
+              "
+              class="col-3 quantity-btn d-flex align-items-center justify-content-end"
+            >
+              <button
+                class="btn btn-light"
+                style="
+                  background-color: white;
+                  border-color: white;
+                  border-right: 1 px solid #f63 !important;
+                "
+              >
+                -
+              </button>
+              <span class="mx-2">10</span>
+              <button
+                class="btn btn-light"
+                style="
+                  background-color: white;
+                  border-color: white;
+                  border-left: 1 px solid #f63 !important;
+                "
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-center" style="gap:10px; margin-top:15px;">
+        <button onclick="dashCancelEdit()" type="button" class="btn btn-primary">Avbryt</button>
+        <button onclick="dashConfirmEdit()" type="button" class="btn btn-primary">Spara Ändringar</button>
+        </div>
+  `;
+  return (currentOrder.innerHTML = htlmString);
+}
+
+function dashCancelEdit() {
+  const currentOrder = document.querySelector(".dashboard_orders");
+  const htlmString = `
+            <div class="d-flex">
+              <h3>Dag - Månad - Klocka</h3>
+              <i
+                onclick="dashEditOrder(this)"
+                class="far fa-edit ms-auto align-self-center unlock_form"
+                style="font-size: 32px; color: #dd3902"
+              ></i>
+            </div>
+            <div>
+              <h5>Matlådor - antal(st)</h5>
+              <ul class="dash_list">
+                <li>3st matlådor av denna sort</li>
+                <li>3st av ett annat slag</li>
+                <li>4st av den här sorten</li>
+              </ul>
+              <p style="color: var(--Dark-grey, #595959)">
+                du kan aboka din leverans senast den X/9 kl: xx:xx. Avboka här
+              </p>
+            </div>
+  `;
+  return (currentOrder.innerHTML = htlmString);
+}
+
+function dashConfirmEdit() {}
+
+/////////////////////////////////
+///////// Dashboard functionality end ///////////
+///////////////////////////////
+
 //Bind the buttons handling the increment and decrement buttons to a function and run it once the DOM loads. When the DOM dynamically changes (e.g. insertAdjacentHTML, removeItem()), the intitally attached addEventListeners are not there anymore and need to be reattached both on the DOM and for the "removeItem" function.
 function cartBtns() {
   const increase = document.querySelectorAll(".increase");
@@ -2610,7 +3255,7 @@ for (let i = 3; i < twoWeeks; i++) {
   dates.setDate(dates.getDate() + 1);
 }
 
-console.log(threeDaysAhead);
+console.log("Available dates: " + threeDaysAhead);
 
 const dateStrings = threeDaysAhead
   .map((day) => {
@@ -3564,53 +4209,61 @@ var datesSwipes = new Swiper(".dates_swipe", {
   },
 });
 
+
+
+
+
+
+
+const submitCartForm = async (event) => {
+  event.preventDefault();
 async function redirectToStripeCheckout() {
-    try {
-        // Retrieve cart information from local storage
-        let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-        if (!formDataArry || formDataArry.length === 0) {
-            console.error("No products in the cart.");
-            return;
-        }
-
-        let products = formDataArry.map(item => {
-            // Retrieve the unit price and total price for the selected quantity
-            let unitPrice = item.price;  // Price per item
-            let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
-
-            return {
-                name: item.title,               // Product name (title)
-                quantity: item.quantity,        // Quantity of the product
-                price: unitPrice,               // Unit price for the product
-                total: totalQuantityPrice       // Total price for the quantity
-            };
-        });
-
-        // Create a POST request to your backend endpoint to create the Stripe checkout session
-        const response = await fetch("https://localhost:7216/payments", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                successPaymentUrl: "https://localhost:7023/payment_success.html",
-                cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-                products: products  // Send the products array
-            })
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-            // Redirect to the Stripe checkout session URL
-            window.location.href = result.checkoutUrl;
-            localStorage.clear();
-        } else {
-            console.error('Error creating Stripe session', result);
-        }
-
-    } catch (error) {
-        console.error('Error:', error);
+  try {
+    // Retrieve cart information from local storage
+    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    if (!formDataArry || formDataArry.length === 0) {
+      console.error("No products in the cart.");
+      return;
     }
+
+    let products = formDataArry.map((item) => {
+      // Retrieve the unit price and total price for the selected quantity
+      let unitPrice = item.price; // Price per item
+      let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
+
+      return {
+        name: item.title, // Product name (title)
+        quantity: item.quantity, // Quantity of the product
+        price: unitPrice, // Unit price for the product
+        total: totalQuantityPrice, // Total price for the quantity
+      };
+    });
+
+    // Create a POST request to your backend endpoint to create the Stripe checkout session
+    const response = await fetch("https://localhost:7216/payments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        successPaymentUrl: "https://localhost:7023/payment_success.html",
+        cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+        products: products, // Send the products array
+      }),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      // Redirect to the Stripe checkout session URL
+      window.location.href = result.checkoutUrl;
+      localStorage.clear();
+    } else {
+      console.error("Error creating Stripe session", result);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 }
 
 function Footer() {
