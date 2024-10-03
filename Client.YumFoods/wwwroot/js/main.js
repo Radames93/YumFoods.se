@@ -548,8 +548,7 @@ if (searchBar !== null) {
 //Fetch items from database
 const loadProducts = async () => {
     try {
-        const apiUrl = window.env.REACT_APP_API_URL;  // Fetching from environment variable
-        const response = await fetch(`${apiUrl}/products`);  // Use it in the API call
+        const response = await fetch("yumfoodswebapi.azurewebsites.net/products");
         const data = await response.json();
 
         const allProducts = data;
