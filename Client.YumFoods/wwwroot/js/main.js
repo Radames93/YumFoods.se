@@ -569,10 +569,6 @@ const loadProducts = async () => {
         baguetterProductsList = allProducts.filter(
             (product) => product.category === "Baguetter"
         );
-    } catch (error) {
-        console.error("Error fetching products:", error);
-    }
-};
 
     // Further filtering or categorization
     yumFiltered = yumProductsList;
