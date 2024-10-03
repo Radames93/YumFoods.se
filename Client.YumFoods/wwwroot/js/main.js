@@ -548,8 +548,8 @@ if (searchBar !== null) {
 //Fetch items from database
 const loadProducts = async () => {
   try {
-    const response = await fetch("https://localhost:7216/products");
-    const data = await response.json();
+      const response = await fetch("https://yumfoodstest1-cbadg7hncbbnf4em.westeurope-01.azurewebsites.net/products");
+      const data = await response.json();
 
     const allProducts = data;
 

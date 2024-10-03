@@ -92,10 +92,10 @@ internal class Program
         // CORS policy configuration
         builder.Services.AddCors(options =>
         {
-            options.AddPolicy("AllowAllOrigins",
+            options.AddPolicy("AllowSpecificOrigins",
                 policy =>
                 {
-                    policy.AllowAnyOrigin()
+                    policy.WithOrigins( "https://yumfoodstest2-f9cmhpfdhkcucwfc.westeurope-01.azurewebsites.net")
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 });
@@ -115,7 +115,7 @@ internal class Program
         app.MapPaymentsEndPoints();
 
         app.UseHttpsRedirection();
-        app.UseCors("AllowAllOrigins");
+        app.UseCors("AllowSpecificOrigins");
         app.UseAuthorization();
 
         app.MapControllers();
