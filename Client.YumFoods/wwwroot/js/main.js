@@ -550,7 +550,7 @@ const loadProducts = async () => {
     try {
         //const apiUrl = window.env.REACT_APP_API_URL;  // Fetching from environment variable
         //const response = await fetch(`${apiUrl}/products`);  // Use it in the API call
-        const response = await fetch("https://localhost:7216/products");
+        const response = await fetch("https://yumfoodswebapi.azurewebsites.net/products");
         const data = await response.json();
 
         const allProducts = data;
