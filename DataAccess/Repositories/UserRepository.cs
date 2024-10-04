@@ -64,7 +64,6 @@ public class UserRepository(YumFoodsUserDb context)
             City = newUser.City,
             PostalCode = newUser.PostalCode,
             Country = newUser.Country,
-            Cart = newUser.Cart,
             Subscription = newUser.Subscription,
             PasswordHash = hashedPassword,
         };

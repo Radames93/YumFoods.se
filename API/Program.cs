@@ -99,10 +99,10 @@ internal class Program
         // CORS policy configuration
         builder.Services.AddCors(options =>
         {
-            options.AddPolicy("AllowSpecificOrigins",
+            options.AddPolicy("AllowAllOrigins",
                 policy =>
                 {
-                    policy.WithOrigins()
+                    policy.AllowAnyOrigin()
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                 });
@@ -123,7 +123,7 @@ internal class Program
         app.MapUserEndpoints();
 
         app.UseHttpsRedirection();
-        app.UseCors("AllowSpecificOrigins");
+        app.UseCors("AllowAllOrigins");
         app.UseAuthorization();
 
         app.MapControllers();

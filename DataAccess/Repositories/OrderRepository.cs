@@ -84,13 +84,13 @@ namespace DataAccess.Repositories
             await context.SaveChangesAsync();
         }
 
-        public async Task<List<Order>> GetOrdersByUserIdAsync(int userId)
-        {
-            return await context.Order
-                .Where(o => o.User.Id == userId)
-                .Include(o => o.OrderDetails) // Hämta även orderdetaljer
-                .ToListAsync();
-        }
+        //public async Task<List<Order>> GetOrdersByUserIdAsync(int userId)
+        //{
+        //    return await context.Order
+        //        .Where(o => o.User.Id == userId)
+        //        .Include(o => o.OrderDetails) // Hämta även orderdetaljer
+        //        .ToListAsync();
+        //}
 
     }
 }
