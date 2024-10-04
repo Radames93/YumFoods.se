@@ -548,36 +548,36 @@ if (searchBar !== null) {
 //Fetch items from database
 const loadProducts = async () => {
     try {
-        const apiUrl = window.env.REACT_APP_API_URL;  // Fetching from environment variable
-        const response = await fetch(`${apiUrl}/products`);  // Use it in the API call
-        const data = await response.json();
+        const API_KEY = variables();
+        // Fetch the products from the API
+        const response = await fetch(`https://${API_KEY}/products`);
 
-        const allProducts = data;
+      const data = await response.json();
+    
+    // Check if the response is OK (status code in the 200-299 range)
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-        yumProductsList = allProducts.filter(
-            (product) => product.category === "Yum"
-        );
-        dailyProductsList = allProducts.filter(
-            (product) => product.category === "Dagens"
-        );
-        premiumProductsList = allProducts.filter(
-            (product) => product.category === "Premium"
-        );
-        subscriptionsProductsList = allProducts.filter(
-            (product) => product.category === "Subscriptions"
-        );
-        baguetterProductsList = allProducts.filter(
-            (product) => product.category === "Baguetter"
-        );
+    // Parse the response data as JSON
+      const allProducts = data;
+
+    // Filter the products into different categories
+    const yumProductsList = allProducts.filter((product) => product.category === "Yum");
+    const dailyProductsList = allProducts.filter((product) => product.category === "Dagens");
+    const premiumProductsList = allProducts.filter((product) => product.category === "Premium");
+    const subscriptionsProductsList = allProducts.filter((product) => product.category === "Subscriptions");
+    const baguetterProductsList = allProducts.filter((product) => product.category === "Baguetter");
 
     // Further filtering or categorization
-    yumFiltered = yumProductsList;
-    dailyFiltered = dailyProductsList;
-    premiumFiltered = premiumProductsList;
-    subscriptionsFiltered = subscriptionsProductsList;
-    baguetterFiltered = baguetterProductsList;
+    const yumFiltered = yumProductsList;
+    const dailyFiltered = dailyProductsList;
+    const premiumFiltered = premiumProductsList;
+    const subscriptionsFiltered = subscriptionsProductsList;
+    const baguetterFiltered = baguetterProductsList;
 
-    all = [
+    // Combine all categories into one list
+    const all = [
       ...yumProductsList,
       ...dailyProductsList,
       ...premiumProductsList,
@@ -585,7 +585,7 @@ const loadProducts = async () => {
       ...baguetterProductsList,
     ];
 
-    // Passing the lists to UI functions
+    // Pass the lists to UI functions
     yumProducts(yumProductsList);
     dailyProducts(dailyProductsList);
     premiumProducts(premiumProductsList);
@@ -594,11 +594,16 @@ const loadProducts = async () => {
     CarouselFoodBoxes(yumProductsList);
     CarouselFoodBoxes2(yumProductsList);
     CarouselDietButtons(yumProductsList);
-    // Assuming categoriesProducts and offeredServices are handled separately
+
   } catch (err) {
-    console.error(err);
+    // Handle errors gracefully
+    console.error("Error fetching products:", err);
   }
 };
+
+// Call the function to load the products
+loadProducts();
+
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
