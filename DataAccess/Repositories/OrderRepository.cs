@@ -65,24 +65,32 @@ namespace DataAccess.Repositories
 
                 await context.Order.AddAsync(order);
                 await context.SaveChangesAsync();
-            } 
             }
+        }
 
-            /// <summary>
-            /// Deletes a specific order from the database.
-            /// </summary>
-            /// <param name="id">The id of the specific order.</param>
-            public async Task DeleteOrderAsync(int id)
+        /// <summary>
+        /// Deletes a specific order from the database.
+        /// </summary>
+        /// <param name="id">The id of the specific order.</param>
+        public async Task DeleteOrderAsync(int id)
+        {
+            var order = await context.Order.FirstOrDefaultAsync(p => p.Id == id);
+            if (order is null)
             {
-                var order = await context.Order.FirstOrDefaultAsync(p => p.Id == id);
-                if (order is null)
-                {
-                    return;
-                }
-
-                context.Order.Remove(order);
-                await context.SaveChangesAsync();
+                return;
             }
-        
+
+            context.Order.Remove(order);
+            await context.SaveChangesAsync();
+        }
+
+        public async Task<List<Order>> GetOrdersByUserIdAsync(int userId)
+        {
+            return await context.Order
+                .Where(o => o.User.Id == userId)
+                .Include(o => o.OrderDetails) // Hämta även orderdetaljer
+                .ToListAsync();
+        }
+
     }
 }

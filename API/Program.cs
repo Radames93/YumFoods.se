@@ -26,6 +26,7 @@ internal class Program
         builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
         builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
         builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
+        builder.Services.AddScoped<UserRepository>();
 
         // Retrieve KeyVault settings from appsettings.json
         var keyVaultURL = builder.Configuration["KeyVault:KeyVaultURL"];
@@ -78,15 +79,21 @@ internal class Program
         var completeConnectionString = $"{connectionString};SslMode=VerifyCA;SslCa={tempFilePath}";
         var completeConnectionString2 = $"{connectionString2};SslMode=VerifyCA;SslCa={tempFilePath}";
 
+        //vivians strings
+        var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
+        var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
+        var localConn1 = "Server=localhost;Database=yumfoodsdb;Uid=root;Pwd=admin;";
+        var localConn2 = "Server=localhost;Database=yumfoods.userdb;Uid=root;Pwd=admin;";
+
         // Configure your DbContext to use MySQL with the retrieved connection string
         builder.Services.AddDbContext<YumFoodsDb>(options =>
         {
-            options.UseMySql(completeConnectionString, ServerVersion.AutoDetect(completeConnectionString));
+            options.UseMySql(localConn1, ServerVersion.AutoDetect(localConn1));
         });
 
         builder.Services.AddDbContext<YumFoodsUserDb>(options =>
         {
-            options.UseMySql(completeConnectionString2, ServerVersion.AutoDetect(completeConnectionString2));
+            options.UseMySql(localConn2, ServerVersion.AutoDetect(localConn2));
         });
 
         // CORS policy configuration
@@ -113,9 +120,10 @@ internal class Program
         app.MapOrderDetailEndpoints();
         app.MapSubscriptionEndpoints();
         app.MapPaymentsEndPoints();
+        app.MapUserEndpoints();
 
         app.UseHttpsRedirection();
-        app.UseCors("AllowSpecificOrigins");
+        app.UseCors("AllowAllOrigins");
         app.UseAuthorization();
 
         app.MapControllers();

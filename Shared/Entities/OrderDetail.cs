@@ -8,4 +8,6 @@ public class OrderDetail
     public string? DeliveryCity { get; set; }
     public int DeliveryPostalCode { get; set; }
     public string? DeliveryCountry { get; set; }
+
+    public virtual Order Order { get; set; } //kaanske för att navigera till order
 }
