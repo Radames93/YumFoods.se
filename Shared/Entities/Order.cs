@@ -11,6 +11,4 @@ public class Order
     public string? PaymentMethod { get; set; }
     public double Total { get; set; }
 
-     public virtual User User { get; set; } //kanske för att navigera till user
-    public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 }

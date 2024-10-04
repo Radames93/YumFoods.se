@@ -13,11 +13,11 @@ public class User
     public string? City { get; set; }
     public string? PostalCode { get; set; }
     public string? Country { get; set; }
-    public string? Cart { get; set; }
+    public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
     public string? Subscription { get; set; }
     public string? PasswordHash { get; set; }
 
-    public virtual ICollection<Order> Orders { get; set; }
+
 
 }
 
