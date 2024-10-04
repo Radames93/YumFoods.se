@@ -34,6 +34,11 @@ CSS TABLE OF CONTENTS
   padding: 0;
 }
 
+@font-face {
+  font-family: "Poppins";
+  src: url(../webfonts/Poppins-Regular.ttf);
+}
+
 ul,
 ol,
 li {
@@ -7202,8 +7207,29 @@ table tbody tr td span {
   margin-top: 34px;
 }
 
-.dashboard_orders {
+.dashboard_orders,
+.dashboard_sub_delivery,
+.dashboard_deals,
+.dashboard_deal_invite {
   max-width: 600px;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  background: var(--Secondary-color, #ffdfce);
+  border-radius: 12px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.dashboard_notifications {
+  max-width: 600px;
+  flex-direction: column;
+  gap: 16px;
+  /* background: var(--Secondary-color, #ffdfce); */
+}
+
+.dashboard_deals {
+  max-width: 287px;
   padding: 16px;
   flex-direction: column;
   align-items: flex-start;
@@ -7239,6 +7265,22 @@ table tbody tr td span {
   gap: 16px;
   margin-top: 10px;
   display: none;
+}
+
+.dashCancel {
+  color: black;
+  background: white;
+  border-color: black;
+}
+
+.dashConfirm {
+  background: #dd3902;
+  border-color: #dd3902;
+}
+
+.dashCancel,
+.dashConfirm {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .dash_forms > div {
@@ -7367,6 +7409,31 @@ table tbody tr td span {
   line-height: 50px;
   margin-right: 10px;
   border-right: 1px solid #ffffff85;
+}
+
+.dashActive {
+  padding: 4px;
+  font-family: Poppins;
+  font-size: 16px;
+}
+
+.dashActive:hover {
+  cursor: pointer;
+}
+
+.dashActive > i {
+  margin: 0px 10px;
+}
+
+.activeLink {
+  transition: color 0.5s, border-left 0.15s;
+  border-left: solid 2px transparent;
+  color: #000;
+}
+
+.activeLink {
+  color: var(--Primary-color, #fc5633);
+  border-left: solid 3px #fc5633;
 }
 
 .dashboard_menu ul li a.active,
