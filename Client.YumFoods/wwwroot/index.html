@@ -131,33 +131,33 @@
                               </div>
 
                               <!-- <p class="hero-slogan2" style="text-align: left; font-size: 20px; color: #110404; word-wrap: normal; overflow-wrap: break-word;" >Vi levererar endast inom Göteborgsområdet. Ange din adress för att se om vi leverera hem till dig</p>
-                            <div class="address-container" style="text-align: left; margin-top: 2px;">
-                              <p style="font-size: large;"><strong>Adress</strong></p>
-                            </div>
-                            <div class="input-container" style="display: flex; justify-content: center; align-items: center; width: 700px;">
-                              <input type="text" id="location-input" placeholder="T.ex. Stampgatan 4, 411 03, Göteborg 📍 Hitta min plats" style="padding: 10px; color: #110404;; height:35px; border-radius: 5px; border: 1px solid #1d1a1a; flex: 1; width: 100%;">
-                              <button class="hero-button" onclick="navigateToMenuPage()" style="text-transform: none">
-                                <span class="hero-description"> Vidare till menyer <i class="fa fa-angle-right"></i> </span>
-                              </button>
-                            </div>  -->
+                                        <div class="address-container" style="text-align: left; margin-top: 2px;">
+                                          <p style="font-size: large;"><strong>Adress</strong></p>
+                                        </div>
+                                        <div class="input-container" style="display: flex; justify-content: center; align-items: center; width: 700px;">
+                                          <input type="text" id="location-input" placeholder="T.ex. Stampgatan 4, 411 03, Göteborg 📍 Hitta min plats" style="padding: 10px; color: #110404;; height:35px; border-radius: 5px; border: 1px solid #1d1a1a; flex: 1; width: 100%;">
+                                          <button class="hero-button" onclick="navigateToMenuPage()" style="text-transform: none">
+                                            <span class="hero-description"> Vidare till menyer <i class="fa fa-angle-right"></i> </span>
+                                          </button>
+                                        </div>  -->
                           </div>
                       </div>
                       <!--
-                        <div class="vector_item_box">
-                          <input
-                            onclick="location.href = 'sign_in.html';"
-                            class="login"
-                            type="button"
-                            value="logga in"
-                          />
-                          <input
-                            onclick="location.href = 'sign_up.html';"
-                            class="vectorButton"
-                            type="button"
-                            value="skapa konto"
-                          />
-                        </div>
-                        -->
+                                <div class="vector_item_box">
+                                  <input
+                                    onclick="location.href = 'sign_in.html';"
+                                    class="login"
+                                    type="button"
+                                    value="logga in"
+                                  />
+                                  <input
+                                    onclick="location.href = 'sign_up.html';"
+                                    class="vectorButton"
+                                    type="button"
+                                    value="skapa konto"
+                                  />
+                                </div>
+                                -->
                   </div>
               </div>
           </div>
@@ -180,6 +180,9 @@
                   <div class="row">
                       <div class="col-5">
                           <div class="box box2 kost" data-category="Proteinrik">
+                              <img class="green-check-kost"
+                                   src="images/Eo_circle_green_checkmark.svg.webp"
+                                   alt="" />
                               <svg xmlns="http://www.w3.org/2000/svg"
                                    class="pic1"
                                    style="display: none"
@@ -202,6 +205,9 @@
                           <div class="box box2 kost"
                                data-category="vegetariskt"
                                onclick="vegetarianAlternatives();">
+                              <img class="green-check-kost"
+                                   src="images/Eo_circle_green_checkmark.svg.webp"
+                                   alt="" />
                               <svg xmlns="http://www.w3.org/2000/svg"
                                    class="pic2"
                                    style="display: none"
@@ -224,6 +230,9 @@
                   <div class="row">
                       <div class="col-5">
                           <div class="box box2 kost" data-category="veg">
+                              <img class="green-check-kost"
+                                   src="images/Eo_circle_green_checkmark.svg.webp"
+                                   alt="" />
                               <svg xmlns="http://www.w3.org/2000/svg"
                                    class="pic3"
                                    style="display: none"
@@ -244,6 +253,9 @@
                       </div>
                       <div class="col-5">
                           <div class="box box2 kost" data-category="fisk">
+                              <img class="green-check-kost"
+                                   src="images/Eo_circle_green_checkmark.svg.webp"
+                                   alt="" />
                               <svg xmlns="http://www.w3.org/2000/svg"
                                    class="pic4"
                                    style="display: none"
@@ -267,12 +279,13 @@
                       Kort beskrivning om den valda kosttypen.
                   </p>
 
+                  React Reply New 10:23
                   <div class="row mt-2 self-kasse">
                       <div class="col-2">
                           <img src="images/Oliver.jpg"
                                alt="Bild"
                                class="img-fluid"
-                               style="height: 190px" />
+                               style="height: 190px; width: 70px" />
                       </div>
                       <div class="col-6 d-flex flex-column justify-content-center">
                           <p class="mb-3">Vill du plocka ihop din egna kasse?</p>
@@ -289,7 +302,6 @@
                       </div>
                   </div>
               </div>
-
               <!-- Höger del -->
               <div class="col-md-5 right-part">
                   <h4 style="margin-left: -150px" class="text-center mb-4">
@@ -297,31 +309,71 @@
                   </h4>
                   <div class="row">
                       <div class="col-3">
-                          <div class="box box4" data-value="10">10</div>
+                          <div class="box box4" data-value="10">
+                              <img class="green-check-kost2"
+                                   src="images/Eo_circle_green_checkmark.svg.webp"
+                                   alt="" />
+                              <p style="font-weight: 600">10</p>
+                          </div>
                       </div>
                       <div class="col-3">
-                          <div class="box box4" data-value="15">15</div>
+                          <div class="box box4" data-value="15">
+                              <img class="green-check-kost2"
+                                   src="images/Eo_circle_green_checkmark.svg.webp"
+                                   alt="" />
+                              <p style="font-weight: 600">15</p>
+                          </div>
                       </div>
                       <div class="col-3">
-                          <div class="box box4" data-value="20">20</div>
+                          <div class="box box4" data-value="20">
+                              <img class="green-check-kost2"
+                                   src="images/Eo_circle_green_checkmark.svg.webp"
+                                   alt="" />
+                              <p style="font-weight: 600">20</p>
+                          </div>
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-10">
-                          <div class="box1 large-box">
+                          <div style="width: 388px; display: none" class="box1 large-box">
                               <div class="row">
                                   <div class="col-7 text">
-                                      <h5>Välja ett eget antal</h5>
-                                      <h6>Minst 10 matlådor per beställning</h6>
+                                      <h5 style="text-align: left; margin-left: 10px">
+                                          Välja ett eget antal
+                                      </h5>
+                                      <h6 style="
+                        width: 250px;
+                        text-align: left;
+                        margin-left: 10px;
+                        font-size: 15px;
+                      ">
+                                          Minst 10 matlådor per beställning
+                                      </h6>
                                   </div>
-                                  <div class="col-3 quantity-btn d-flex align-items-center justify-content-end">
+                                  <div style="
+                      margin-left: 40px;
+                      border-radius: 4px;
+                      border: 1px solid #f63;
+                      background: #fff;
+                      width: 110px;
+                      justify-content: center;
+                    "
+                                       class="col-3 quantity-btn d-flex align-items-center justify-content-end">
                                       <button class="btn btn-light"
-                                              style="border: 1px solid rgb(98, 96, 96)">
+                                              style="
+                        background-color: white;
+                        border-color: white;
+                        border-right: 1 px solid #f63 !important;
+                      ">
                                           -
                                       </button>
                                       <span class="mx-2">10</span>
                                       <button class="btn btn-light"
-                                              style="border: 1px solid rgb(98, 96, 96)">
+                                              style="
+                        background-color: white;
+                        border-color: white;
+                        border-left: 1 px solid #f63 !important;
+                      ">
                                           +
                                       </button>
                                   </div>
@@ -330,57 +382,79 @@
                       </div>
                   </div>
                   <div class="row">
-                      <div class="col-10">
+                      <div style="width: 412px" class="col-10">
                           <div class="box3 info-box">
                               <div class="row mb-4">
-                                  <div class="col-4">
+                                  <div style="
+                      margin-left: 0px;
+                      display: flex;
+                      flex-direction: row;
+                      width: 400px;
+                    "
+                                       class="col-4">
+                                      <img src="images/Ikon-veg.jpg"
+                                           alt="Bild"
+                                           class="img-fluid w-25"
+                                           style="
+                        width: 60px;
+                        margin-right: 60px;
+                        margin-top: 10px;
+                        margin-left: 10px;
+                      " />
                                       <p class="fw-bolder">Proteinrikt</p>
-                                  </div>
-                                  <div class="col-6">
-                                      <button type="button" class="close btn2">
-                                          <i class="fa fa-times"></i>
-                                      </button>
+                                      <h5 style="
+                        font-size: 16px;
+                        width: 100px;
+                        margin-left: 35px;
+                        line-height: 1.5;
+                      ">
+                                          Ta bort
+                                          <button style="background-color: white"
+                                                  type="button"
+                                                  class="close btn2">
+                                              <i class="fa fa-times"></i>
+                                          </button>
+                                      </h5>
                                   </div>
                               </div>
                               <div class="row">
-                                  <div class="col-5">
-                                      <img src="images/Ikon.jpg"
-                                           alt="Bild"
-                                           class="img-fluid w-25" />
-                                  </div>
+                                  <div class="col-5"></div>
                                   <div class="col-5 mb-5">
                                       <div id="dish-list">
                                           <!-- <li>
-                                                      <p>3kyckling med ris</p>
-                                                    </li>
-                                                    <li>
-                                                      <p>3 lorem ipsum</p>
-                                                    </li> -->
+                                         <p>3kyckling med ris</p>
+                                        </li>
+                                        <li>
+                                         <p>3 lorem ipsum</p>
+                                        </li> -->
                                       </div>
                                   </div>
                               </div>
-                              <div class="justify-content-between">
+                              <div style="width: 300px; margin-left: auto; margin-right: auto"
+                                   class="justify-content-between">
                                   <div class="row bg-light mb-1 mt-1">
                                       <div class="col-5 frakt">
-                                          <p>Frakt</p>
+                                          <p style="text-align: left">Frakt</p>
                                       </div>
-                                      <div class="col-5 price2">
-                                          <p>0 kr</p>
-                                      </div>
-                                  </div>
-                                  <div class="row bg-light">
-                                      <div class="col-5 frakt">
-                                          <p>Att betala</p>
-                                      </div>
-                                      <div class="col-5 price">
-                                          <p>0 kr</p>
+                                      <div style="text-align: right" class="col-5 price2">
+                                          <p>39 kr</p>
                                       </div>
                                   </div>
                                   <div class="row bg-light">
                                       <div class="col-5 frakt">
-                                          <p>Moms</p>
+                                          <p style="text-align: left; font-weight: 600">
+                                              Att betala
+                                          </p>
                                       </div>
-                                      <div class="col-5 price2">
+                                      <div style="text-align: right" class="col-5 price">
+                                          <p font-weight: 600>0 kr</p>
+                                      </div>
+                                  </div>
+                                  <div class="row bg-light">
+                                      <div class="col-5 frakt">
+                                          <p style="text-align: left">Moms</p>
+                                      </div>
+                                      <div style="text-align: right" class="col-5 price2">
                                           <p>173 kr</p>
                                       </div>
                                   </div>
@@ -469,7 +543,6 @@
       <!--=============================
         BLOG START
     ==============================-->
-
       <section id="blog-podcast" class="blog pt_95 xs_pt_65 pb_65 xs_pb_35">
           <div class="container">
               <div class="wow fadeInUp" data-wow-duration="1s">
@@ -505,9 +578,7 @@
                           </div>
                       </div>
                   </div>
-
                   <div class="slider-background"></div>
-
                   <div id="first-grid" data-wow-duration="1s">
                       <div class="single_blog">
                           <div class="single_blog_img">
@@ -564,10 +635,9 @@
               </div>
           </div>
       </section>
-
       <!--=============================
-        BLOG END
-    ==============================-->
+          BLOG END
+      ==============================-->
       <!--=============================
         STEPS START
     ==============================-->
@@ -884,24 +954,24 @@
                           </div>
                           <div class="cart_popup_text">
                               <!--
-                            <p class="rating">
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star"></i>
-                              <i class="fas fa-star-half-alt"></i>
-                              <i class="far fa-star"></i>
-                              <span>(201)</span>
-                            </p>
-                            -->
+                                        <p class="rating">
+                                          <i class="fas fa-star"></i>
+                                          <i class="fas fa-star"></i>
+                                          <i class="fas fa-star"></i>
+                                          <i class="fas fa-star-half-alt"></i>
+                                          <i class="far fa-star"></i>
+                                          <span>(201)</span>
+                                        </p>
+                                        -->
                               <div class="d-flex">
                                   <h4 class="price"></h4>
                                   <h4 class="currency">kr</h4>
                               </div>
                               <!--
-                            <div
-                              class="details_quentity d-flex justify-content-between align-items-start"
-                            >
-                            -->
+                                        <div
+                                          class="details_quentity d-flex justify-content-between align-items-start"
+                                        >
+                                        -->
                               <div class="mb_25">
                                   <h5>Beskrivning:</h5>
                                   <p class="description"></p>
@@ -933,8 +1003,8 @@
                                   </div>
                               </div>
                               <!--
-                            </div>
-                            -->
+                                        </div>
+                                        -->
                               <ul>
                                   <li>
                                       <button class="common_btn" onclick="modalAddToCart()">
@@ -942,12 +1012,12 @@
                                       </button>
                                   </li>
                                   <!--
-                                <li>
-                                  <a class="common_btn" href="menu_details.html"
-                                    >visa alla detaljer</a
-                                  >
-                                </li>
-                                -->
+                                              <li>
+                                                <a class="common_btn" href="menu_details.html"
+                                                  >visa alla detaljer</a
+                                                >
+                                              </li>
+                                              -->
                               </ul>
                           </div>
                       </div>
@@ -956,7 +1026,6 @@
           </div>
       </div>
       <!-- CART POPUT END -->
-
       <!--============================
         FOOTER START
     ==============================-->
@@ -977,6 +1046,8 @@
       <script src="js/swiper-bundle.min.js" rel="preload"></script>
       <!--jquery library js-->
       <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+      <!--main/env js-->
+      <script src="js/env.js"></script>
       <!--main/custom js-->
       <script rel="preload" src="js/main.js"></script>
       <!--bootstrap js-->

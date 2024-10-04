@@ -324,7 +324,7 @@
   color: #000;
   cursor: pointer;
   z-index: 100;
-  margin-left: 1960px;
+  margin-left: 2030px;
   margin-top: 500px;
 }
 
@@ -344,7 +344,7 @@
   cursor: pointer;
   z-index: 100;
   margin-right: 80px;
-  margin-bottom: 485px;
+  margin-bottom: 395px;
 }
 
 .swiper-button-prev:after,
@@ -382,8 +382,8 @@
   color: #000;
   cursor: pointer;
   z-index: 100;
-  margin-left: 975px;
-  margin-top: 150px;
+  margin-left: 1015px;
+  margin-top: 160px;
 }
 
 .swiper-button-prev2:after {
@@ -402,7 +402,7 @@
   cursor: pointer;
   z-index: 100;
   margin-left: -45px;
-  margin-top: -320px;
+  margin-top: -265px;
 }
 
 .swiper-button-prev2:after,
