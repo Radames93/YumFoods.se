@@ -61,38 +61,72 @@
         >
           <div class="col-xl-5 col-sm-10 col-md-8 col-lg-6">
             <div class="login_area">
-              <h2>Välkommen tillbaka</h2>
+              <h2>Välkommen!</h2>
               <p>Bli medlem för att fortsätta</p>
-              <form>
-                <div class="row">
-                  <div class="col-xl-12">
-                    <div class="login_imput">
-                      <input type="text" placeholder="Namn" />
-                    </div>
+              <form id="registerForm">
+                  <div class="row">
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="text" id="firstName" placeholder="Förnamn" required />
+                          </div>
+                      </div>
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="text" id="lastName" placeholder="Efternamn" required />
+                          </div>
+                      </div>
+                      <!--<div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="number" id="organizationNumber" placeholder="Organisationsnummer" />
+                          </div>
+                      </div>-->
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="email" id="email" placeholder="Mejl" required />
+                          </div>
+                      </div>
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="text" id="phoneNumber" placeholder="Telefonnummer" />
+                          </div>
+                      </div>
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="text" id="address" placeholder="Adress" />
+                          </div>
+                      </div>
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="text" id="city" placeholder="Stad" />
+                          </div>
+                      </div>
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="text" id="postalCode" placeholder="Postnummer" />
+                          </div>
+                      </div>
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="text" id="country" placeholder="Land" />
+                          </div>
+                      </div>
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="password" id="password" placeholder="Lösenord" required />
+                          </div>
+                      </div>
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <input type="password" id="confirmPassword" placeholder="Bekräfta Lösenord" required />
+                          </div>
+                      </div>
+                      <div class="col-xl-12">
+                          <div class="login_imput">
+                              <button type="submit" 
+                                      class="common_btn">Skapa Konto</button>
+                          </div>
+                      </div>
                   </div>
-                  <div class="col-xl-12">
-                    <div class="login_imput">
-                      <input type="email" placeholder="Melj" />
-                    </div>
-                  </div>
-                  <div class="col-xl-12">
-                    <div class="login_imput">
-                      <input type="password" placeholder="Lösenord" />
-                    </div>
-                  </div>
-                  <div class="col-xl-12">
-                    <div class="login_imput">
-                      <input type="password" placeholder="Bekräfta Lösenord" />
-                    </div>
-                  </div>
-                  <div class="col-xl-12">
-                    <div class="login_imput">
-                      <button type="submit" class="common_btn">
-                        skapa konto
-                      </button>
-                    </div>
-                  </div>
-                </div>
               </form>
               <p class="or"><span>or</span></p>
               <ul class="d-flex">
