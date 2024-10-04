@@ -547,36 +547,37 @@ if (searchBar !== null) {
 
 //Fetch items from database
 const loadProducts = async () => {
-  try {
-    const response = await fetch("https://localhost:7216/products");
-    const data = await response.json();
+    try {
+        const API_KEY = variables();
+        // Fetch the products from the API
+        const response = await fetch(`https://${API_KEY}/products`);
 
-    const allProducts = data;
+      const data = await response.json();
+    
+    // Check if the response is OK (status code in the 200-299 range)
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-    yumProductsList = allProducts.filter(
-      (product) => product.category === "Yum"
-    );
-    dailyProductsList = allProducts.filter(
-      (product) => product.category === "Dagens"
-    );
-    premiumProductsList = allProducts.filter(
-      (product) => product.category === "Premium"
-    );
-    subscriptionsProductsList = allProducts.filter(
-      (product) => product.category === "Subscriptions"
-    );
-    baguetterProductsList = allProducts.filter(
-      (product) => product.category === "Baguetter"
-    );
+    // Parse the response data as JSON
+      const allProducts = data;
+
+    // Filter the products into different categories
+    const yumProductsList = allProducts.filter((product) => product.category === "Yum");
+    const dailyProductsList = allProducts.filter((product) => product.category === "Dagens");
+    const premiumProductsList = allProducts.filter((product) => product.category === "Premium");
+    const subscriptionsProductsList = allProducts.filter((product) => product.category === "Subscriptions");
+    const baguetterProductsList = allProducts.filter((product) => product.category === "Baguetter");
 
     // Further filtering or categorization
-    yumFiltered = yumProductsList;
-    dailyFiltered = dailyProductsList;
-    premiumFiltered = premiumProductsList;
-    subscriptionsFiltered = subscriptionsProductsList;
-    baguetterFiltered = baguetterProductsList;
+    const yumFiltered = yumProductsList;
+    const dailyFiltered = dailyProductsList;
+    const premiumFiltered = premiumProductsList;
+    const subscriptionsFiltered = subscriptionsProductsList;
+    const baguetterFiltered = baguetterProductsList;
 
-    all = [
+    // Combine all categories into one list
+    const all = [
       ...yumProductsList,
       ...dailyProductsList,
       ...premiumProductsList,
@@ -584,7 +585,7 @@ const loadProducts = async () => {
       ...baguetterProductsList,
     ];
 
-    // Passing the lists to UI functions
+    // Pass the lists to UI functions
     yumProducts(yumProductsList);
     dailyProducts(dailyProductsList);
     premiumProducts(premiumProductsList);
@@ -592,11 +593,17 @@ const loadProducts = async () => {
     baguetterProducts(baguetterProductsList);
     CarouselFoodBoxes(yumProductsList);
     CarouselFoodBoxes2(yumProductsList);
-    // Assuming categoriesProducts and offeredServices are handled separately
+    CarouselDietButtons(yumProductsList);
+
   } catch (err) {
-    console.error(err);
+    // Handle errors gracefully
+    console.error("Error fetching products:", err);
   }
 };
+
+// Call the function to load the products
+loadProducts();
+
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
@@ -821,6 +828,7 @@ const yumProducts = (yumProductsList) => {
 
 const carouselContainer = document.getElementById("container");
 const carouselContainer2 = document.getElementById("container2");
+const carouselDietButtons = document.getElementById("dietButtons")
 
 const CarouselFoodBoxes = (yumProductsList) => {
   if (carouselContainer !== null) {
@@ -977,6 +985,175 @@ const CarouselFoodBoxes2 = (yumProductsList) => {
     return null;
   }
 };
+
+// product page( Färdigamatkassar & matlådor)
+let selectedBox = null;
+function FärdigaMatkassar(element) {
+  handleBoxClick(element, "FärdigaMatkassar");
+}
+
+function Matlådor(element) {
+  handleBoxClick(element, "Matlådor");
+}
+
+function handleBoxClick(element, boxType) {
+  if (selectedBox && selectedBox !== element) {
+    const previousCheckmark = selectedBox.querySelector('.check-products img');
+    if (previousCheckmark) {
+      previousCheckmark.style.display = 'none';
+    }
+    selectedBox.style.backgroundColor = '';
+    selectedBox.style.border = '';
+  }
+
+  const checkmark = element.querySelector('.check-products img');
+  const isDisplayed = checkmark && checkmark.style.display === 'block';
+
+  if (checkmark) {
+    checkmark.style.display = isDisplayed ? 'none' : 'block';
+  }
+
+  if (isDisplayed) {
+    element.style.backgroundColor = '';
+    element.style.border = '';
+    selectedBox = null; 
+  } else {
+    element.style.backgroundColor = '#FFDFCE'; 
+    element.style.border = '2px solid black';
+    selectedBox = element; 
+  }
+}
+
+// Carousel in product page
+let currentIndex =0;
+const itemsPerPage= 4;
+const CarouselDietButtons = (yumProductsList) => {
+  if (carouselDietButtons !== null) {
+    const dietFiltered = yumProductsList.map((yum) => yum.diet);
+    const uniqueDiets = [...new Set(dietFiltered)]; 
+    
+    const htmlString = uniqueDiets
+      .map((diet) => {
+        return (
+          `
+          <div class="swiper-slide">
+            <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64)" onclick="fetchProductsByDiet('${diet}')">
+              ${diet}
+            </button>
+          </div>
+          `
+        );
+      })
+      .join(""); 
+  carouselDietButtons.innerHTML = htmlString;  
+  } else {
+    return null;
+ }
+};
+
+var swiper3 = new Swiper(".slide-content3", {
+  centeredSlide: "true",
+  fade: "true",
+  grabCursor: "true",
+  spaceBetween: 10, 
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    dynamicBullets: true,
+  },
+  loop: true,
+  slidesPerView: "auto",
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
+  loopFillGroupWithBlank: false,
+  loopedSlides: 4,
+  loopAdditionalSlides: 1,
+  on: {
+    slideChangeTransitionEnd: function() {
+      if (this.isEnd) {
+        this.slideToLoop(0, 0);
+      }
+    },}
+});
+
+let showPrevBtn = document.getElementById('show-prev-btn')
+let showNextBtn = document.getElementById('show-next-btn')
+if (showPrevBtn !== null){
+  showPrevBtn.addEventListener('click', () => {
+    swiper3.slidePrev();
+});
+} 
+if (showNextBtn !== null){
+showNextBtn.addEventListener('click', () => {
+    swiper3.slideNext();
+}); 
+}
+
+
+// banner2 i product page
+document.addEventListener('DOMContentLoaded', function () {
+  var SwiperCustom = new Swiper('.mySwiper-custom', {
+    slidesPerView: 4,
+    spaceBetween: 5,
+    loop: true,
+    centeredSlides: true,
+    pagination: {
+      el: '.swiper-pagination', 
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.mySwiper-custom-next',  
+      prevEl: '.mySwiper-custom-prev',
+    },
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 15,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 15,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 15,
+      },
+      1500: {
+        slidesPerView: 3,
+        spaceBetween: 15,
+      },
+    },
+  });
+});
+// hämta bilder från instagram
+// document.addEventListener('DOMContentLoaded', function() {
+//   const feed = new Instafeed({
+//     accessToken: 'ACCESS_TOKEN',
+//     limit: 4,
+//     template: '<div class="image-box"><img src="{{image}}" alt="{{caption}}" class="img-fluid banner2" /></div>',
+//     target: 'instagram-feed'
+//   });
+//   feed.run();
+// });
+
 
 //Function for payment accordions
 function togglePaymentMethod() {
@@ -4725,6 +4902,14 @@ var datesSwipes = new Swiper(".dates_swipe", {
   },
 });
 
+
+
+
+
+
+
+const submitCartForm = async (event) => {
+  event.preventDefault();
 async function redirectToStripeCheckout() {
   try {
     // Retrieve cart information from local storage
@@ -4771,6 +4956,7 @@ async function redirectToStripeCheckout() {
   } catch (error) {
     console.error("Error:", error);
   }
+}
 }
 
 function Footer() {

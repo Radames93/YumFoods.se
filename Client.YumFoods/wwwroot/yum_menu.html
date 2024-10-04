@@ -22,18 +22,17 @@
   </head>
 
   <body>
-    <!--=============================
+      <!--=============================
         MENU START
     ==============================-->
-    <header-component id="header"></header-component>
-    <!--=============================
+      <header-component id="header"></header-component>
+      <!--=============================
         MENU END
     ==============================-->
-
-    <!--=============================
+      <!--=============================
         BREADCRUMB START
     ==============================-->
-    <section class="page_breadcrumb" style="background: url(images/cover.png)">
+      <!-- <section class="page_breadcrumb" style="background: url(images/cover.png)">
       <div class="breadcrumb_overlay">
         <div class="container">
           <div class="breadcrumb_text">
@@ -45,267 +44,445 @@
           </div>
         </div>
       </div>
-    </section>
-    <!--=============================
+    </section> -->
+      <!--=============================
         BREADCRUMB END
     ==============================-->
-
-    <!--=============================
+      <!--=============================
         MENU PAGE START
     ==============================-->
-    <!-- anahita test -->
-    <section class="menu_page mt_50 xs_mt_20 mb_100 xs_mb_70">
-      <div class="container">
-        <h4 class="single_team_text" style="padding: 20px; text-align: center">
-          Just nu levererar vi minst 10 rätter i Göteborg med omnejd.
-        </h4>
-        <form class="menu_search_area">
-          <div class="row">
-            <div class="col-lg-5 col-md-4">
-              <div class="menu_search">
-                <input
-                  onchange="search(this)"
-                  id="searchbar"
-                  type="text"
-                  placeholder="Sök..."
-                />
-              </div>
-            </div>
-            <div class="col-lg-4 col-md-4">
-              <div class="menu_search">
-                <div class="select_area">
-                  <select
-                    class="select_js"
-                    id="sort"
-                    onchange="sortingNamePriceFunction(this)"
-                  >
-                    <option value="AL">standardsortering</option>
-                    <option value="name">sortera efter namn</option>
-                    <option value="l2h">
-                      sortera efter priset(låg till hög)
-                    </option>
-                    <option value="h2l">
-                      sortera efter priset(hög till låg)
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-4">
-              <div class="menu_search">
-                <div class="select_area">
-                  <select
-                    class="select_js"
-                    id="sort"
-                    onchange="sortingDishDietFunction(this)"
-                  >
-                    <option value="AL">Specialkost</option>
-                    <option value="vegan">Vegan</option>
-                    <option value="vegetarian">vegetarian</option>
-                    <option value="chicken">Kyckling</option>
-                    <option value="cow">Nöt</option>
-                    <option value="fish">Fisk</option>
-                    <option value="pork">Gris</option>
-                    <option value="mix">Blandat</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
+      <!-- first part of product page start-->
+      <section>
+          <header class="d-flex justify-content-center align-items-center py-2">
+              <h1 class="text-center pt-5 product-title">
+                  Meny
+              </h1>
+          </header>
 
-        <div id="yum" class="yum_product_display"></div>
-        <div id="search-yum-message" class="single_team_text hide">
-          <h4 style="text-transform: none">Ingen sökträff</h4>
-        </div>
-        <div id="filter-yum-message" class="single_team_text hide">
-          <h4 style="text-transform: none">Inga produkter att visas</h4>
-        </div>
-        <!--
-        <div class="pagination mt_50">
-          <div class="row">
-            <div class="col-12">
-              <nav aria-label="...">
-                <ul class="pagination">
-                  <li class="page-item">
-                    <a class="page-link" href="#"
-                      ><i class="fas fa-long-arrow-alt-left"></i
-                    ></a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active">
-                    <a class="page-link" href="#">2</a>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#"
-                      ><i class="fas fa-long-arrow-alt-right"></i
-                    ></a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
+          <div class="product-first-banner position-relative  my-5">
+              <div class="image-container-product justify-content-center align-items-center">
+                  <h1>Färdiglagad mat direkt till dörren</h1>
+                  <p>Lorem ipsum lorem ipsum lorem ipsum</p>
+                  <p> Lorem ipsum lorem ipsum lorem ipsum</p>
+              </div>
           </div>
-        </div>
-        -->
-      </div>
-    </section>
-
-    <!-- CART POPUT START -->
-    <div class="cart_popup">
-      <div
-        class="modal fade"
-        id="modal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog .modal-xl">
-          <div class="modal-content">
-            <div class="modal-body">
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              >
-                <i class="fa fa-times"></i>
-              </button>
-              <div class="cart_popup_img">
-                <img src="" class="img-fluid w-100 dish_img" />
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <a href="#" class="cart_popup_title title"></a>
-                <div class="diet">
-                  <img src="" class="img-fluid w-100 diet_img" />
-                </div>
-              </div>
-              <div class="cart_popup_text">
-                <!--
-                <p class="rating">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
-                  <i class="far fa-star"></i>
-                  <span>(201)</span>
-                </p>
-                -->
-                <div class="d-flex">
-                  <h4 class="price"></h4>
-                  <h4 class="currency">kr</h4>
-                </div>
-                <!--
-                <div
-                  class="details_quentity d-flex justify-content-between align-items-start"
-                >
-                -->
-                <div class="mb_25">
-                  <h5>Beskrivning:</h5>
-                  <p class="description"></p>
-                </div>
-                <div>
-                  <button
-                    style="text-transform: none"
-                    class="common_btn mb_25"
-                    onclick="showDiv()"
-                  >
-                    Visa ingredienser
-                  </button>
-                  <div id="welcomeDiv" class="hide ingredients"></div>
-                </div>
-              </div>
-              <div class="details_quentity">
-                <h5>Välj kvantitet</h5>
-                <div
-                  class="quentity_btn_area d-flex flex-wrapa align-items-center"
-                >
-                  <div class="quentity_btn">
-                    <button class="decrease">
-                      <i class="fa fa-minus"></i>
-                    </button>
-                    <input class="quantity" type="text" value="1" />
-                    <button class="increase">
-                      <i class="fa fa-plus"></i>
-                    </button>
+          <div>
+              <h1 class="text-center pb-4 products-title-utforska" style="font-size: 40px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 60.5px;">
+                  Välj vad du vill utforska
+              </h1>
+          </div>
+          <div class="row product-box mb-5">
+              <div class="col-4">
+                  <div class="box FärdigaMatkassar firstbox"
+                       onclick="FärdigaMatkassar(this);">
+                      <div class="check-products">
+                          <img src="images/Check-green.png" alt="check ikon">
+                      </div>
+                      <img src="images/product1.png"
+                           alt="product"
+                           class="img-fluid w-25 mb-2" />
+                      <p>Våra färdiga matkassar</p>
                   </div>
-                  <div class="d-flex justify-content-around align-items-center">
-                    <h3 class="quantity_price"></h3>
-                    <h3 class="ml_0">kr</h3>
+              </div>
+              <div class="col-4">
+                  <div class="box FärdigaMatkassar secoundbox"
+                       onclick="Matlådor(this);">
+                      <div class="check-products">
+                          <img src="images/Check-green.png" alt="check ikon">
+                      </div>
+                      <img src="images/product2.png"
+                           alt="product"
+                           class="img-fluid w-25 mb-2" />
+                      <p>Våra matlådor</p>
                   </div>
+              </div>
+          </div>
+
+          <div class="container container4 mt-4 mb-3">
+              <div class="row products-alternative align-items-center">
+                  <div class="col-auto">
+                      <input class="form-control product-sök" placeholder="Sök" onchange="search(this)"
+                             id="searchbar"
+                             type="text">
+                  </div>
+                  <!-- Swiper -->
+                  <div class="swiper-content">
+                      <div class="col-auto btn-productmeny btn1 swiper-button-next-dates" id="show-prev-btn">
+                          <i class="fa fa-arrow-circle-left" style="color: black; font-size: 35px;"></i>
+                      </div>
+                      <div class="col slider-items2 swiper-products">
+                          <div class="slide-container2 swiper">
+                              <div class="slide-content3">
+                                  <div id="dietButtons" class="card-wrapper swiper-wrapper">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-auto btn-productmeny btn2 swiper-button-prev-dates" id="show-next-btn">
+                          <i class="fa fa-arrow-circle-right" style="color: black; font-size: 35px; border-radius: 50%;"></i>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </section>
+      <!-- first part of product page end -->
+      <!--first banner i product page START-->
+      <section class="custom-section mt-5">
+          <div class="container products-banner-1">
+              <div class="row">
+
+                  <div class="col-12 col-lg-7 mb-4 mb-lg-0">
+                      <h1 class="mb-4 banner1-h1" style="font-size: 40px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 60.5px;">
+                          Mat på nolltid!
+                      </h1>
+                      <p class="mb-5 banner1-p" style="
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 30px;
+            letter-spacing: -0.72px;">
+                          Våra färdiga matlådor är klara att ätas – bara värm <br>
+                          dem i mikron och njut av en härlig måltid på tre minuter.
+                      </p>
+
+                      <div class="row align-items-center">
+                          <div class="col-lg-6 mb-4 col-sm-3">
+                              <div class="row align-items-center mikro-info">
+                                  <div class="col-md-6 mb-3 mb-md-0 micro-info-1">
+                                      <img src="images/Microwave.png" alt="Microwave" class="img-fluid custom-img-1">
+                                  </div>
+                                  <div class="col-md-6 col-sm-8 micro-info-2">
+                                      <h1 style="font-size: 16px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 22.4px;">
+                                          Mikrovågsugn
+                                      </h1>
+                                      <p>Max styrka</p>
+                                      <div class="d-flex align-items-center">
+                                          <img src="images/timer.png" alt="timer" class="me-2">
+                                          <p>3 minuter</p>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-12 col-lg-5 d-flex justify-content-center">
+                      <img src="images/food-product.png" alt="Food Product" class="img-fluid custom-img-3">
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!--first banner i product page END-->
+
+
+      <section class="menu_page mt_50 xs_mt_20 mb_100 xs_mb_70">
+          <div class="container">
+              <h4 class="single_team_text" style="padding: 20px; text-align: center">
+                  Just nu levererar vi minst 10 rätter i Göteborg med omnejd.
+              </h4>
+              <form class="menu_search_area">
+                  <div class="row">
+                      <div class="col-lg-5 col-md-4">
+                          <div class="menu_search">
+                          </div>
+                      </div>
+                      <div class="col-lg-4 col-md-4">
+                          <div class="menu_search">
+                              <div class="select_area">
+                                  <select class="select_js"
+                                          id="sort"
+                                          onchange="sortingNamePriceFunction(this)">
+                                      <option value="AL">standardsortering</option>
+                                      <option value="name">sortera efter namn</option>
+                                      <option value="l2h">
+                                          sortera efter priset(låg till hög)
+                                      </option>
+                                      <option value="h2l">
+                                          sortera efter priset(hög till låg)
+                                      </option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-4">
+                          <div class="menu_search">
+                              <div class="select_area">
+                                  <select class="select_js"
+                                          id="sort"
+                                          onchange="sortingDishDietFunction(this)">
+                                      <option value="AL">Specialkost</option>
+                                      <option value="vegan">Vegan</option>
+                                      <option value="vegetarian">vegetarian</option>
+                                      <option value="chicken">Kyckling</option>
+                                      <option value="cow">Nöt</option>
+                                      <option value="fish">Fisk</option>
+                                      <option value="pork">Gris</option>
+                                      <option value="mix">Blandat</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+
+              <div id="yum" class="yum_product_display"></div>
+              <div id="search-yum-message" class="single_team_text hide">
+                  <h4 style="text-transform: none">Ingen sökträff</h4>
+              </div>
+              <div id="filter-yum-message" class="single_team_text hide">
+                  <h4 style="text-transform: none">Inga produkter att visas</h4>
+              </div>
+              <!--
+            <div class="pagination mt_50">
+              <div class="row">
+                <div class="col-12">
+                  <nav aria-label="...">
+                    <ul class="pagination">
+                      <li class="page-item">
+                        <a class="page-link" href="#"
+                          ><i class="fas fa-long-arrow-alt-left"></i
+                        ></a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item active">
+                        <a class="page-link" href="#">2</a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#"
+                          ><i class="fas fa-long-arrow-alt-right"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </nav>
                 </div>
-                <!--
-                </div>
-                -->
-                <ul>
-                  <li>
-                    <button class="common_btn" onclick="modalAddToCart()">
-                      lägg till <i class="fas fa-cart-plus"></i>
-                    </button>
-                  </li>
-                  <!--
-                  <li>
-                    <a class="common_btn" href="menu_details.html"
-                      >visa alla detaljer</a
-                    >
-                  </li>
-                  -->
-                </ul>
               </div>
             </div>
+            -->
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- CART POPUT END -->
+      </section>
 
-    <!--=============================
+      <!-- CART POPUT START -->
+      <div class="cart_popup">
+          <div class="modal fade"
+               id="modal"
+               tabindex="-1"
+               aria-labelledby="exampleModalLabel"
+               aria-hidden="true">
+              <div class="modal-dialog .modal-xl">
+                  <div class="modal-content">
+                      <div class="modal-body">
+                          <button type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close">
+                              <i class="fa fa-times"></i>
+                          </button>
+                          <div class="cart_popup_img">
+                              <img src="" class="img-fluid w-100 dish_img" />
+                          </div>
+                          <div class="d-flex justify-content-between align-items-center">
+                              <a href="#" class="cart_popup_title title"></a>
+                              <div class="diet">
+                                  <img src="" class="img-fluid w-100 diet_img" />
+                              </div>
+                          </div>
+                          <div class="cart_popup_text">
+                              <!--
+                            <p class="rating">
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star"></i>
+                              <i class="fas fa-star-half-alt"></i>
+                              <i class="far fa-star"></i>
+                              <span>(201)</span>
+                            </p>
+                            -->
+                              <div class="d-flex">
+                                  <h4 class="price"></h4>
+                                  <h4 class="currency">kr</h4>
+                              </div>
+                              <!--
+                            <div
+                              class="details_quentity d-flex justify-content-between align-items-start"
+                            >
+                            -->
+                              <div class="mb_25">
+                                  <h5>Beskrivning:</h5>
+                                  <p class="description"></p>
+                              </div>
+                              <div>
+                                  <button style="text-transform: none"
+                                          class="common_btn mb_25"
+                                          onclick="showDiv()">
+                                      Visa ingredienser
+                                  </button>
+                                  <div id="welcomeDiv" class="hide ingredients"></div>
+                              </div>
+                          </div>
+                          <div class="details_quentity">
+                              <h5>Välj kvantitet</h5>
+                              <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
+                                  <div class="quentity_btn">
+                                      <button class="decrease">
+                                          <i class="fa fa-minus"></i>
+                                      </button>
+                                      <input class="quantity" type="text" value="1" />
+                                      <button class="increase">
+                                          <i class="fa fa-plus"></i>
+                                      </button>
+                                  </div>
+                                  <div class="d-flex justify-content-around align-items-center">
+                                      <h3 class="quantity_price"></h3>
+                                      <h3 class="ml_0">kr</h3>
+                                  </div>
+                              </div>
+                              <!--
+                            </div>
+                            -->
+                              <ul>
+                                  <li>
+                                      <button class="common_btn" onclick="modalAddToCart()">
+                                          lägg till <i class="fas fa-cart-plus"></i>
+                                      </button>
+                                  </li>
+                                  <!--
+                                <li>
+                                  <a class="common_btn" href="menu_details.html"
+                                    >visa alla detaljer</a
+                                  >
+                                </li>
+                                -->
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- CART POPUT END -->
+      <!-- Instagram Section secound banner(banner2) -->
+      <section class="banner-instagram-section text-center">
+          <div class="container">
+              <h1 class="mb-4">Följ oss på Instagram</h1>
+              <div class="instagram-handle mb-5">
+                  <a href="https://www.instagram.com/yumfoods.se/"
+                     target="_blank"
+                     aria-label="Länk till instagram sida"
+                     style="background-color: orangered; border-radius: 50%; width: 25px;">
+                      <i class="fab fa-instagram" style="color: white;"></i>
+                  </a>
+                  Yumfoods.se
+              </div>
+
+              <!-- Swiper Container -->
+              <!-- <div class="swiper-container mySwiper-custom">
+                <div class="swiper-wrapper wrapper-banner2">
+                  <div class="swiper-slide banner2-swiperslide">
+                    <img src="images/banner-photo.png" alt="Bild 1" class="img-fluid banner2 bild1" />
+                  </div>
+                  <div class="swiper-slide banner2-swiperslide">
+                    <img src="images/orange.png" alt="Bild 2" class="img-fluid banner2 bild2" />
+                  </div>
+                  <div class="swiper-slide banner2-swiperslide">
+                    <img src="images/Instagrambild.png" alt="Bild 3" class="img-fluid banner2 bild3" />
+                  </div>
+                  <div class="swiper-slide banner2-swiperslide">
+                    <img src="images/mobile.png" alt="Bild 4" class="img-fluid banner2 bild4" />
+                  </div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+            </div> -->
+              <!-- swiper 2 -->
+              <!-- <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" slides-per-view="auto"
+            space-between="30" free-mode="true">
+              <swiper-slide><img src="images/banner-photo.png" alt="Bild 1" class="img-fluid banner2 bild1" /></swiper-slide>
+              <swiper-slide><img src="images/orange.png" alt="Bild 2" class="img-fluid banner2 bild2" /></swiper-slide>
+              <swiper-slide><img src="images/Instagrambild.png" alt="Bild 3" class="img-fluid banner2 bild3" /></swiper-slide>
+              <swiper-slide> <img src="images/mobile.png" alt="Bild 4" class="img-fluid banner2 bild4" /></swiper-slide>
+            </swiper-container>
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script> -->
+              <!-- just picture swiper -->
+              <div class="slider-items">
+                  <div class="slide-container2">
+                      <div class="slide-content4">
+                          <div class="image-box" onclick="window.open('https://www.instagram.com/yumfoods.se/', '_blank');">
+                              <img src="images/banner-photo.png" alt="Bild 1" class="img-fluid banner2 bild1" />
+                          </div>
+                          <div class="image-box" onclick="window.open('https://www.instagram.com/yumfoods.se/', '_blank');">
+                              <img src="images/orange.png" alt="Bild 2" class="img-fluid banner2 bild2" />
+                          </div>
+                          <div class="image-box" onclick="window.open('https://www.instagram.com/yumfoods.se/', '_blank');">
+                              <img src="images/Instagrambild.png" alt="Bild 3" class="img-fluid banner2 bild3" />
+                          </div>
+                          <div class="image-box" onclick="window.open('https://www.instagram.com/yumfoods.se/', '_blank');">
+                              <img src="images/mobile.png" alt="Bild 4" class="img-fluid banner2 bild4" />
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      </section>
+
+      <!--=============================
         MENU PAGE END
     ==============================-->
-
-    <!--=============================
+      <!--=============================
         FOOTER START
     ==============================-->
-    <footer-component id="footer"></footer-component>
-    <!--=============================
+      <footer-component id="footer"></footer-component>
+      <!--=============================
         FOOTER END
     ==============================-->
-
-    <!--=============================
+      <!--=============================
         SCROLL BUTTON START
     ==============================-->
-    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
-    <!--=============================
+      <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+      <!--=============================
         SCROLL BUTTON END
     ==============================-->
-    <!-- hotjar code -->
-    <script src="js/hotjar.js"></script>
-    <!-- swiper slider -->
-    <script src="js/swiper-bundle.min.js" rel="preload"></script>
-    <!--jquery library js-->
-    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
-    <!--main/custom js-->
-    <script rel="preload" src="js/main.js"></script>
-    <!--bootstrap js-->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- isotop js -->
-    <script src="js/isotope.pkgd.min.js"></script>
-    <!-- counter up js -->
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.countup.min.js"></script>
-    <!-- nice select js -->
-    <script src="js/jquery.nice-select.min.js"></script>
-    <!-- venobox js -->
-    <script src="js/venobox.min.js"></script>
-    <!-- sticky sidebar js -->
-    <script src="js/sticky_sidebar.js"></script>
-    <!-- wow js -->
-    <script src="js/wow.min.js"></script>
-    <!-- ex zoom js -->
-    <script src="js/jquery.exzoom.js"></script>
-    <link rel="stylesheet" href="css/venobox.min.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/jquery.exzoom.css" />
-    <link rel="stylesheet" href="css/nice-select.css" />
+      <!-- hotjar code -->
+      <script src="js/hotjar.js"></script>
+      <!-- swiper slider -->
+      <script src="js/swiper-bundle.min.js" rel="preload"></script>
+      <!--jquery library js-->
+      <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+      <!--main/env js-->
+      <script src="js/env.js"></script>
+      <!--main/custom js-->
+      <script rel="preload" src="js/main.js"></script>
+      <!--bootstrap js-->
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <!-- isotop js -->
+      <script src="js/isotope.pkgd.min.js"></script>
+      <!-- counter up js -->
+      <script src="js/jquery.waypoints.min.js"></script>
+      <script src="js/jquery.countup.min.js"></script>
+      <!-- nice select js -->
+      <script src="js/jquery.nice-select.min.js"></script>
+      <!-- venobox js -->
+      <script src="js/venobox.min.js"></script>
+      <!-- sticky sidebar js -->
+      <script src="js/sticky_sidebar.js"></script>
+      <!-- wow js -->
+      <script src="js/wow.min.js"></script>
+      <!-- ex zoom js -->
+      <script src="js/jquery.exzoom.js"></script>
+      <link rel="stylesheet" href="css/venobox.min.css" />
+      <link rel="stylesheet" href="css/animate.css" />
+      <link rel="stylesheet" href="css/jquery.exzoom.css" />
+      <link rel="stylesheet" href="css/nice-select.css" />
+      <!-- <script src="https://cdn.jsdelivr.net/npm/instafeed.js@2.0.0/dist/instafeed.min.js"></script> -->
   </body>
 </html>

@@ -92,13 +92,12 @@ internal class Program
         // CORS policy configuration
         builder.Services.AddCors(options =>
         {
-            options.AddPolicy("AllowAllOrigins",
-                policy =>
-                {
-                    policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                });
+            options.AddPolicy("AllowSpecificOrigins", policy =>
+            {
+                policy.WithOrigins("https://localhost:7023", "https://yumfoodsdev.azurewebsites.net")
+                      .AllowAnyMethod()
+                      .AllowAnyHeader();
+            });
         });
 
         builder.Services.AddOptions<StripeConfig>().BindConfiguration(nameof(StripeConfig));
@@ -115,8 +114,9 @@ internal class Program
         app.MapPaymentsEndPoints();
 
         app.UseHttpsRedirection();
-        app.UseCors("AllowAllOrigins");
+        app.UseCors("AllowSpecificOrigins");  // Apply CORS
         app.UseAuthorization();
+
 
         app.MapControllers();
 
