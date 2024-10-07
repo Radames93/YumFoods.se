@@ -1,6 +1,14 @@
-﻿using DataAccess.Repositories;
+﻿using DataAccess;
+using DataAccess.Repositories;
 using DataAccess.Security;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Shared;
+using Shared.DTOs;
 using Shared.Entities;
+using System.Net.Http;
+using System.Security.Claims;
 
 namespace API.Extensions;
 
@@ -12,9 +20,11 @@ public static class UserExtension
 
         group.MapGet("/", GetAllUsersAsync);
         group.MapGet("/id/{id}", GetUserByIdAsync);
-        group.MapGet("/username/{name}", GetUserByNameAsync);
+        group.MapGet("/user/{name}", GetUserByNameAsync);
         group.MapGet("/email/{email}", GetUserByEmailAsync);
         group.MapGet("/org/{organization}", GetUserByOrganizationAsync);
+
+        group.MapGet("/type/{usertype}", GetUserTypeAsync);
 
 
         group.MapPost("/", AddUserAsync);
@@ -23,7 +33,6 @@ public static class UserExtension
         group.MapDelete("/{id}", DeleteUserAsync);
         return app;
     }
-
     private static async Task<IResult> GetAllUsersAsync(UserRepository repo)
     {
         var user = await repo.GetAllUsersAsync();
@@ -50,6 +59,34 @@ public static class UserExtension
         return Results.Ok(user);
     }
 
+
+    private static async Task<IResult> GetUserTypeAsync(UserRepository repo, string userType)
+    {
+        var user = await repo.GetUserTypeAsync(userType);
+        return Results.Ok(user);
+    }
+
+
+    private static async Task<IResult> GetCompanyData(ClaimsPrincipal user)
+    {
+        // Check if the user has the "Company" role
+        if (user.IsInRole("Company"))
+        {
+            return Results.Ok("This is company data"); // Return data for company users
+        }
+        return Results.Unauthorized(); // Return unauthorized if the user does not have the role
+    }
+
+    private static async Task<IResult> GetUserData(ClaimsPrincipal user)
+    {
+        // Check if the user has the "User" role
+        if (user.IsInRole("User"))
+        {
+            return Results.Ok("This is regular user data"); // Return data for regular users
+        }
+        return Results.Unauthorized(); // Return unauthorized if the user does not have the role
+    }
+
     private static async Task<IResult> AddUserAsync(UserRepository repo, User newUser)
     {
         var exisitngUser = await repo.GetUserByIdAsync(newUser.Id);
@@ -62,18 +99,23 @@ public static class UserExtension
         return Results.Ok(newUser);
     }
 
-    private static async Task<IResult> LoginUserAsync(UserRepository repo, AuthenticationService auth, string email, string password)
+    private static async Task<IResult> LoginUserAsync(UserRepository repo, AuthenticationService auth, [FromBody] LoginModel login)
     {
-        var isValid = await repo.ValidateUserAsync(email, password);
+        if (string.IsNullOrEmpty(login.Email) || string.IsNullOrEmpty(login.Password))
+        {
+            return Results.BadRequest("Email and password must be provided.");
+        }
+
+        var isValid = await repo.ValidateUserAsync(login);
 
         if (!isValid)
         {
             return Results.Unauthorized(); // Return Unauthorized if email or password is incorrect
         }
 
-        var user = await repo.GetUserByEmailAsync(email);
+        var user = await repo.GetUserByEmailAsync(login.Email);
 
-        // Generate a JWT token or return user data (depends on your authentication approach)
+        // Generate a JWT token or return user data
         var token = auth.GenerateToken(user);
 
         return Results.Ok(new { Token = token });

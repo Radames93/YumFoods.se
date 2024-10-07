@@ -2,9 +2,12 @@ using API.Extensions;
 using API.Stripe;
 using DataAccess;
 using DataAccess.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Shared.Entities;
 using Shared.Interfaces;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +57,8 @@ builder.Services.AddScoped<StripeClient>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
+var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -69,7 +74,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-// Add the AuthenticationService
+//Add the AuthenticationService
+
 builder.Services.AddSingleton(new AuthenticationService(
     builder.Configuration["Jwt:Key"],
     builder.Configuration["Jwt:Issuer"],

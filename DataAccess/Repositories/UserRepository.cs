@@ -1,5 +1,6 @@
 ﻿using DataAccess.Security;
 using Microsoft.EntityFrameworkCore;
+using Shared.DTOs;
 using Shared.Entities;
 
 namespace DataAccess.Repositories;
@@ -31,19 +32,24 @@ public class UserRepository(YumFoodsUserDb context)
         return await context.User.FirstOrDefaultAsync(p => p.Email == email);
     }
 
+    public async Task<User?> GetUserTypeAsync(string userType)
+    {
+        return await context.User.FirstOrDefaultAsync(p => p.UserType == userType);
+    }
 
-    public async Task<bool> ValidateUserAsync(string email, string password)
+    public async Task<bool> ValidateUserAsync(LoginModel login)
     {
         var passwordVerification = new PasswordVerification();
-        var user = await GetUserByEmailAsync(email);
+        var user = await GetUserByEmailAsync(login.Email);
 
         if (user == null)
         {
             return false;
         }
 
-        return passwordVerification.VerifyPassword(password, user.PasswordHash);
+        return passwordVerification.VerifyPassword(login.Password, user.PasswordHash);
     }
+
 
     public async Task AddUserAsync(User newUser)
     {
