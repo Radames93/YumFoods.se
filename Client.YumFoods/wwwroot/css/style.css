@@ -4283,6 +4283,22 @@ footer {
   justify-content: space-around;
 }
 
+.miljö-img{
+  width: 520px; 
+  height: 333px;
+}
+
+.prenum-img{
+  width: 547px; 
+  height: 471px; 
+  margin-left: -10px;
+}
+
+.prenum-info{
+  width: 547px; 
+  height: 471px;
+}
+
 .about-us.title {
   display: flex;
   flex-direction: column;
@@ -5615,6 +5631,134 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 ============================*/
 
 /*======================
+    SIDE BAR CART IN PRODUCT PAGE START
+========================*/
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  display: none; 
+  z-index: 999; 
+}
+
+.cart-sidebar.open .overlay {
+  display: block; 
+}
+
+/* .cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: 45% !important; 
+  height: 100vh; 
+  background-color: white;
+  color: black;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease-in-out; 
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+} */
+
+.cart-sidebar.open {
+  right: 0; 
+}
+
+.cart-header, .cart-footer {
+  position: sticky;
+  background-color: #f8f9fa;
+  z-index: 1000;
+}
+
+.cart-header {
+  top: 0;
+}
+
+.cart-footer {
+  bottom: 0 ;
+  margin-right: 10px;
+}
+
+.cart-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+#sidebarCartItems {
+  overflow-y: auto; 
+}
+
+.cart-sidebar {
+  width: 570px;
+  position: fixed;
+  right: -600px;
+  top: 0;
+  height: 100vh;
+  background: #fff;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto !important; 
+}
+
+.cart-sidebar.open {
+  right: 0;
+}
+
+/* Mobile Cart Notification */
+.mobile-cart-notification {
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
+  max-width: 576px;
+  background-color: #DD3902;
+  color: white;
+  padding: 10px;
+  font-size: 18px;
+  display: none;
+  z-index: 1000;
+}
+
+.mobile-cart-notification .see-cart-btn {
+  color: white;
+  border-radius: 5px;
+  padding: 8px;
+  font-weight: bold;
+  flex-grow: 1;
+  text-align: center;
+  margin: 0;
+  min-width: 130px;
+}
+
+.mobile-cart-notification .see-cart-btn:hover {
+  border: none !important;
+  color: #0f0c0c;
+}
+
+#mobileTotalPrice{
+  color: white;
+  margin-left: 40px;
+  width: 100%;
+}
+
+#mobileProductCount{
+  color: white;
+}
+/*======================
+    SIDE BAR CART IN PRODUCT PAGE END
+========================*/
+
+/*======================
     CART VIEW PAGE START
 ========================*/
 
@@ -6449,6 +6593,91 @@ table tbody tr td span {
 ========================*/
 
 /*========================
+    SIGN UP PAGE START
+=========================*/
+.signup-input{
+  display: flex;
+  height: 48px;
+  padding: 16px;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 6px !important;
+  border: 1px solid var(--Stroke, #CED3D2);
+  background: #FFF;
+}
+
+.signup-company:hover{
+  background: #FFDFCE;
+  color: #000;
+  border: 2px solid black;
+}
+
+.signup-company{
+  border-radius: 6px;
+  border: 1px solid var(--Black-for-design, #000);
+  color: #000;
+}
+
+.signup-form label{
+  color: var(--Black-for-text, #252627);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22.4px; 
+}
+
+.login_area .form-check input {
+  padding: 0px;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  border: 1px solid var(--Components-Checkbox-Border, rgba(0, 0, 0, 0.15));
+  background: var(--Gray-White, #FFF);
+  border-radius: 4px;
+}
+
+.login_area form button {
+  width: auto;
+  text-align: center;
+  padding: 10px 15px !important;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.social-icons.sign-up a{
+  width: 45px;
+  height: 45px;
+  border: 0.4px solid #F89AEE;
+  background-color: #ECE9EC;
+  border-radius: 50%;
+}
+
+.social-icons.sign-up a:hover{
+  border: 2px solid #F89AEE;
+}
+
+.login_area .form-check input:checked {
+  background-color: black;
+  border-color: black;
+}
+
+/*========================
+    SIGN UP PAGE End
+=========================*/
+
+/*========================
+    SIGN IN PAGE start
+=========================*/
+
+.login-form{
+  border-radius: 4px !important;
+}
+
+/*========================
+    SIGN IN PAGE END
+=========================*/
+
+/*========================
     SIGN IN PAGE START
 =========================*/
 .signin {
@@ -6496,12 +6725,6 @@ table tbody tr td span {
   -o-border-radius: 30px;
 }
 
-.login_area form button {
-  width: 100%;
-  text-align: center;
-  padding: 10px 25px !important;
-}
-
 .login_area form button::after,
 .login_area form button::before {
   display: none;
@@ -6516,20 +6739,6 @@ table tbody tr td span {
 
 .login_check_area .form-check {
   margin: 0;
-}
-
-.login_area .form-check input {
-  padding: 0px;
-  border: 1px solid var(--colorPrimary);
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  margin-right: 10px;
-}
-
-.login_area .form-check input:checked {
-  background-color: var(--colorPrimary);
-  border-color: var(--colorPrimary);
 }
 
 .form-check-input:focus {
