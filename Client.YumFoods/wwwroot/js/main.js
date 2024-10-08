@@ -249,23 +249,31 @@ function navigateToMenuPage() {
   window.location.href = "/yum_menu.html";
 }
 
-// Sign up validation
+// SIGN UP - Funktion för att visa rätt formulär beroende på kontotyp
+function toggleAccountType(isPersonal) {
+  document.getElementById("personalForm").style.display = isPersonal ? "block" : "none";
+  document.getElementById("businessForm").style.display = isPersonal ? "none" : "block";
+}
+
 function saveUserData() {
-  const förnamn = document.getElementById("field1").value;
-  const email = document.getElementById("field2").value;
-  const lösenord = document.getElementById("field3").value;
-  const upprepaLösenord = document.getElementById("field4").value;
-  const gatuadress = document.getElementById("field5").value;
-  const postnummer = document.getElementById("postnummer").value;
-  const ort = document.getElementById("ort").value;
+  const accountType = document.getElementById("personalForm").style.display === "block" ? "personal" : "business";
+  const userData = {};
+
+  userData.email = document.getElementById("field2").value.trim();
+  userData.lösenord = document.getElementById("field3").value.trim();
+  const upprepaLösenord = document.getElementById("field4").value.trim();
+  userData.gatuadress = document.getElementById("field5").value.trim();
+  userData.postnummer = document.getElementById("postnummer").value.trim();
+  userData.ort = document.getElementById("ort").value.trim();
   const termsAccepted = document.getElementById("terms1").checked;
 
-  if (!förnamn || !email || !lösenord || !upprepaLösenord || !gatuadress || !postnummer || !ort) {
+  // Validering 
+  if (!userData.email || !userData.lösenord || !upprepaLösenord || !userData.gatuadress || !userData.postnummer || !userData.ort) {
       alert("Alla fält måste fyllas i!");
       return false;
-    }
+  }
 
-  if (lösenord !== upprepaLösenord) {
+  if (userData.lösenord !== upprepaLösenord) {
       alert("Lösenorden matchar inte!");
       return false;
   }
@@ -274,38 +282,49 @@ function saveUserData() {
       alert("Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta.");
       return false;
   }
-  // Spara i localStorage
-    const userData = {
-      förnamn: förnamn,
-      email: email,
-      lösenord: lösenord,
-      gatuadress: gatuadress,
-      postnummer: postnummer,
-      ort: ort
+
+  if (accountType === "personal") {
+      userData.kontoTyp = "personal";
+      userData.förnamn = document.getElementById("field1").value.trim();
+  } else if (accountType === "business") {
+      userData.kontoTyp = "business";
+      userData.företagsnamn = document.getElementById("businessName").value.trim();
+      userData.orgNummer = document.getElementById("orgNumber").value.trim();
+      userData.kontaktperson = document.getElementById("contactName").value.trim();
   }
 
+  // Spara användardata i localStorage
   localStorage.setItem("userData", JSON.stringify(userData));
-  alert("Dina uppgifter har sparats!");
+  alert(accountType === "personal" ? "Dina personliga uppgifter har sparats!" : "Dina företagsuppgifter har sparats!");
   return true;
 }
 
+// Event listeners för att växla mellan kontotyper
+document.addEventListener("DOMContentLoaded", function() {
+  const btnPersonal = document.getElementById("btnPersonal");
+  const btnBusiness = document.getElementById("btnBusiness");
+  
+  if (btnPersonal) {
+    btnPersonal.addEventListener("click", function() {
+      toggleAccountType(true);
+      document.getElementById("accountTitle").textContent = "Skapa konto";
+    });
+  }
 
-// login modal
-// function showLoginModal() {
-//   var modalElement = document.getElementById('loginModal');
-//   if(modalElement !== null){
-//   var modalInstance =  bootstrap.Modal.getOrCreateInstance(modalElement);
-//   modalInstance.show();
-//   }
-//   console.log("open")
-// }
+  if (btnBusiness) {
+    btnBusiness.addEventListener("click", function() {
+      toggleAccountType(false);
+      document.getElementById("accountTitle").textContent = "Skapa företagskonto";
+    });
+  }
+});
 
-// LOGIN PAGE
+//LOGIN SIDA
 function validateLogin(event) {
   event.preventDefault(); 
 
-  const email = document.getElementById('email-login').value;
-  const password = document.getElementById('password-login').value;
+  const email = document.getElementById('email-login').value.trim();
+  const password = document.getElementById('password-login').value.trim();
   const savedUserData = JSON.parse(localStorage.getItem('userData'));
 
   if (!savedUserData) {
@@ -319,19 +338,23 @@ function validateLogin(event) {
   }
 
   if (email === savedUserData.email && password === savedUserData.lösenord) {
-     if(document.getElementById('rememberMe').checked) {
+      if (document.getElementById('rememberMe').checked) {
           localStorage.setItem('rememberedUser', JSON.stringify({ email: email, lösenord: password }));
       } else {
           localStorage.removeItem('rememberedUser');
       }
+
       window.location.href = 'dashboard.html';
   } else {
       alert('Fel e-postadress eller lösenord.');
-      window.location.href = 'sign_in.html';
-
   }
 }
-document.querySelector('form').addEventListener('submit', validateLogin);
+
+// Event listener för inloggningsformuläret
+let loginForm = document.getElementById('loginForm');
+if (loginForm) {
+  loginForm.addEventListener('submit', validateLogin);
+}
 
 
 // secound part of start page
@@ -723,7 +746,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
                   data-yum-diet=${yum.dietRef}
-                  onclick='realAddToCart(event)'
+                  onclick='realAddToCart(event); openSidebar();'
                   class="yum_btn"
                   style="border-radius: 12px;
                   padding: 18px 16px;
@@ -2414,14 +2437,30 @@ function modalAddToCart() {
   totalQuantity();
   var input = document.querySelector(".quantity");
   input.value = 1;
+  closeModal();
+  openSidebar();
+  updateSidebarCart();
+}
+
+//stäng modalen
+function closeModal() {
+  var modal = document.getElementById("modal"); 
+  modal.style.display = "none"; 
 }
 
 let id = "";
 
 //Display items in the cart
 const displayNewCart = () => {
+  const cartSidebar = document.getElementById('cartSidebar');
   const tableHead = document.getElementById("table_head");
   const summaryHead = document.getElementById("summary_head");
+  if (cartSidebar) {
+    cartSidebar.classList.add('open');
+  } else {
+    console.error('Cart sidebar element not found');
+  }
+  
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     if (formDataArry === null) {
@@ -3829,10 +3868,156 @@ var datesSwipes = new Swiper(".dates_swipe", {
 });
 
 
+//SIDE BAR CART
 
+// Show sidebar
+function openSidebar() {
+  const cartSidebar = document.getElementById('cartSidebar');
+  console.log('openSidebar called');
+  cartSidebar.classList.add('open');
+  const overlay = document.getElementById('overlay');
+  overlay.style.display = 'block';
+}
+// Redirect to checkout page
+function goToCheckout() {
+  window.location.href = 'cart_view.html';
+}
 
+// Funktion för att lägga till produkt i varukorgen
+function addToCart(product) {
+  localStorage.setItem('sidebarOpen', 'true');
+  openSidebar(); 
+}
 
+document.addEventListener('DOMContentLoaded', function() {
+  const closeSidebarBtn = document.getElementById('closeSidebar');
+  const cartSidebar = document.getElementById('cartSidebar');
+  const overlay = document.getElementById('overlay');
+  
+  if (closeSidebarBtn) {
+    closeSidebarBtn.addEventListener('click', function() {
+      cartSidebar.classList.remove('open');
+      overlay.style.display = 'none';
+      console.log("Sidebar closed!");
+    });
+  }
 
+  if (localStorage.getItem('sidebarOpen') === 'true') {
+    openSidebar();
+  }
+
+  // Update the sidebar cart with items and show mobile notification
+  function updateSidebarCart() {
+    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+    const sidebarCartItems = document.getElementById('sidebarCartItems');
+    const mobileProductCount = document.getElementById('mobileProductCount');
+    const mobileTotalPrice = document.getElementById('mobileTotalPrice');
+
+    sidebarCartItems.innerHTML = ''; 
+    let totalQuantity = 0;
+    let total = 0;
+    const shipping = 49; 
+
+    formDataArry.forEach(item => {
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+      totalQuantity += item.quantity; 
+
+      const dietImage = item.diet.includes(",") ? 
+        item.diet.split(",").map(diet => `<img src="${diet}" alt="diet image" class="diet_img"/>`).join('') :
+        `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
+
+      sidebarCartItems.innerHTML += `
+        <section class="col mb-5" id="${item.id}" >
+          <div class="row">
+            <div class="col-4">
+              <div class="imgContainer">
+                <img id="${item.id}" src="${item.img}" alt="bild på maträtt" class="pro_img cartPayDeliver cropImage"/>
+              </div>
+            </div>
+            <div class="col-4">
+              <h5 style="flex-direction: row; display: flex;">
+                ${item.title}
+                <div style="padding: 10px; margin-top: -17px;" class="d-flex">${dietImage}</div>
+              </h5>
+              <p data-bs-toggle="tooltip" data-bs-placement="top" title="${item.description}" class="food-description sidebar" style="width: 380px; max-height:50px;">
+                ${item.description}
+              </p>
+            </div>
+            <div class="col-4">
+              <h5 style="cursor: pointer;" onclick="removeFromCart('${item.id}')" class="ms-auto me-4">
+                Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i>
+              </h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="quentity_btn mt-0 btn-sidebar d-flex">
+                <button class="decrease" onclick="changeQuantity('${item.id}', -1)">
+                  <i style="font-size: 12px;" class="fas fa-minus"></i>
+                </button>
+                <input class="quantity" type="text" value="${item.quantity}" readonly>
+                <button class="increase" onclick="changeQuantity('${item.id}', 1)">
+                  <i style="font-size: 12px;" class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-end">
+              <h6 class="quantity_price currency mb_0">${item.price * item.quantity}</h6>
+              <h6 class="currency mb_0">kr</h6>
+            </div>
+          </div>
+        </section>`;
+    });
+
+    // Update totals in sidebar and mobile
+    document.getElementById('sidebarShipping').textContent = `${shipping} kr`;
+    document.getElementById('sidebarTotal').textContent = `${total + shipping} kr`;
+    mobileProductCount.textContent = `${totalQuantity} produkter`;
+    mobileTotalPrice.textContent = `${total + shipping} kr`;
+
+    // Show mobile notification when items are added to the cart
+    const mobileCartNotification = document.getElementById('mobileCartNotification');
+    if (totalQuantity > 0) {
+      mobileCartNotification.style.display = 'flex';
+    } else {
+      mobileCartNotification.style.display = 'none';
+    }
+  }
+
+  window.changeQuantity = function(itemId, change) {
+    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+    const itemIndex = formDataArry.findIndex(item => item.id === itemId);
+    
+    if (itemIndex !== -1) {
+        formDataArry[itemIndex].quantity += change;
+        
+        if (formDataArry[itemIndex].quantity <= 0) {
+            removeFromCart(itemId);
+        } else {
+            localStorage.setItem('formDataArry', JSON.stringify(formDataArry));
+            updateSidebarCart();
+        }
+    }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateSidebarCart();
+});
+  
+
+  // Remove item from the cart
+  window.removeFromCart = function(itemId) {
+    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+    formDataArry = formDataArry.filter(item => item.id !== itemId);
+    
+    localStorage.setItem('formDataArry', JSON.stringify(formDataArry));
+    updateSidebarCart();
+};
+  updateSidebarCart();
+});
+
+// --------------------------------------
 
 const submitCartForm = async (event) => {
   event.preventDefault();

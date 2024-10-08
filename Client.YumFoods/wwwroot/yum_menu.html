@@ -363,7 +363,7 @@
                 -->
                 <ul>
                   <li>
-                    <button class="common_btn" onclick="modalAddToCart()">
+                    <button class="common_btn" onclick="modalAddToCart(); openSidebar();" >
                       lägg till <i class="fas fa-cart-plus"></i>
                     </button>
                   </li>
@@ -449,10 +449,71 @@
         </div>
   </section>
 
+   <!--=============================
+        Side bar cart start
+    ==============================-->
+    <section>
+      <div id="overlay" class="overlay"></div>
+
+      <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header d-flex justify-content-between align-items-center p-3 bg-light">
+          <div>
+            <i class="fa fa-shopping-cart" style="color: orangered;"></i> Varukorg
+          </div>
+          <button class="btn-close" id="closeSidebar" aria-label="Close" >
+          </button>
+        </div>
+
+        <div id="sidebarCartItems" class="cart-body p-3">
+          <!-- Cart items will be populated here -->
+        </div>
+
+        <div class="row cart-footer p-3" style="margin-left: 0;position: fixed;margin-bottom: 0px;">
+          <div class="col-12 d-flex mb-2 justify-content-between" style="background: rgba(38, 50, 56, 0.1);">
+            <span>Frakt</span>
+            <span id="sidebarShipping"> kr</span>
+          </div>
+          <div class="col-12 d-flex justify-content-between" style="background: rgba(38, 50, 56, 0.1);">
+            <span>Totalt belopp inkl.moms <i class="fa fa-angle-down"></i></span>
+            <span id="sidebarTotal"> kr</span>
+          </div>
+          <div class="col-12 d-flex text-center">
+            <button class="btn btn-danger Fortsätt-Btn mt-3" 
+            style="border-radius: 6px;
+            background: var(--Complementary-color, #DD3902);display: flex;
+            height: 48px;
+            padding: 16px 24px;
+            justify-content: center;
+            align-items: center;
+            width: 220px;
+            margin-left: 130px;
+            margin-bottom: 40px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);" 
+            onclick="goToCheckout()">Fortsätt</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Cart Notification -->
+      <div id="mobileCartNotification" class="mobile-cart-notification">
+        <div class="row d-flex justify-content-between align-items-center">
+          <div class="col-3"><span id="mobileProductCount">1 </span></div>
+          <div class="col-3"><button class=" text-center btn see-cart-btn" onclick="goToCheckout()">Se din varukorg</button></div>
+          
+          <div class="col-3"><span id="mobileTotalPrice">0 kr</span></div>
+        </div>
+      </div>
+      
+    </section>
+    
+    <!--=============================
+        side bar cart END
+    ==============================-->
+
     <!--=============================
         MENU PAGE END
     ==============================-->
-
+ 
     <!--=============================
         FOOTER START
     ==============================-->
