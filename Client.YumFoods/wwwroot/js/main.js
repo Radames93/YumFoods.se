@@ -121,10 +121,12 @@ function Header() {
         <div class="loginBtn">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="#" onclick="myFunction()" class="dropbtn" > <i class="far fa-user"></i> Logga in </a>
+              <a href="#" class="dropbtn">
+                <i class="far fa-user"></i> Logga in
+              </a>
               <ul class="droap_menu">
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="sign_in.html">Login</a></li>
+                <li><a href="sign_up.html">Register</a></li>
               </ul>
             </li>
           </ul>
@@ -247,6 +249,114 @@ function navigateToMenuPage() {
   window.location.href = "/yum_menu.html";
 }
 
+// SIGN UP - Funktion för att visa rätt formulär beroende på kontotyp
+function toggleAccountType(isPersonal) {
+  document.getElementById("personalForm").style.display = isPersonal ? "block" : "none";
+  document.getElementById("businessForm").style.display = isPersonal ? "none" : "block";
+}
+
+function saveUserData() {
+  const accountType = document.getElementById("personalForm").style.display === "block" ? "personal" : "business";
+  const userData = {};
+
+  userData.email = document.getElementById("field2").value.trim();
+  userData.lösenord = document.getElementById("field3").value.trim();
+  const upprepaLösenord = document.getElementById("field4").value.trim();
+  userData.gatuadress = document.getElementById("field5").value.trim();
+  userData.postnummer = document.getElementById("postnummer").value.trim();
+  userData.ort = document.getElementById("ort").value.trim();
+  const termsAccepted = document.getElementById("terms1").checked;
+
+  // Validering 
+  if (!userData.email || !userData.lösenord || !upprepaLösenord || !userData.gatuadress || !userData.postnummer || !userData.ort) {
+      alert("Alla fält måste fyllas i!");
+      return false;
+  }
+
+  if (userData.lösenord !== upprepaLösenord) {
+      alert("Lösenorden matchar inte!");
+      return false;
+  }
+
+  if (!termsAccepted) {
+      alert("Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta.");
+      return false;
+  }
+
+  if (accountType === "personal") {
+      userData.kontoTyp = "personal";
+      userData.förnamn = document.getElementById("field1").value.trim();
+  } else if (accountType === "business") {
+      userData.kontoTyp = "business";
+      userData.företagsnamn = document.getElementById("businessName").value.trim();
+      userData.orgNummer = document.getElementById("orgNumber").value.trim();
+      userData.kontaktperson = document.getElementById("contactName").value.trim();
+  }
+
+  // Spara användardata i localStorage
+  localStorage.setItem("userData", JSON.stringify(userData));
+  alert(accountType === "personal" ? "Dina personliga uppgifter har sparats!" : "Dina företagsuppgifter har sparats!");
+  return true;
+}
+
+// Event listeners för att växla mellan kontotyper
+document.addEventListener("DOMContentLoaded", function() {
+  const btnPersonal = document.getElementById("btnPersonal");
+  const btnBusiness = document.getElementById("btnBusiness");
+  
+  if (btnPersonal) {
+    btnPersonal.addEventListener("click", function() {
+      toggleAccountType(true);
+      document.getElementById("accountTitle").textContent = "Skapa konto";
+    });
+  }
+
+  if (btnBusiness) {
+    btnBusiness.addEventListener("click", function() {
+      toggleAccountType(false);
+      document.getElementById("accountTitle").textContent = "Skapa företagskonto";
+    });
+  }
+});
+
+//LOGIN SIDA
+function validateLogin(event) {
+  event.preventDefault(); 
+
+  const email = document.getElementById('email-login').value.trim();
+  const password = document.getElementById('password-login').value.trim();
+  const savedUserData = JSON.parse(localStorage.getItem('userData'));
+
+  if (!savedUserData) {
+      alert('Det finns ingen registrerad användare. Vänligen skapa ett konto.');
+      return;
+  }
+
+  if (!email || !password) {
+      alert('Vänligen fyll i alla fält.');
+      return;
+  }
+
+  if (email === savedUserData.email && password === savedUserData.lösenord) {
+      if (document.getElementById('rememberMe').checked) {
+          localStorage.setItem('rememberedUser', JSON.stringify({ email: email, lösenord: password }));
+      } else {
+          localStorage.removeItem('rememberedUser');
+      }
+
+      window.location.href = 'dashboard.html';
+  } else {
+      alert('Fel e-postadress eller lösenord.');
+  }
+}
+
+// Event listener för inloggningsformuläret
+let loginForm = document.getElementById('loginForm');
+if (loginForm) {
+  loginForm.addEventListener('submit', validateLogin);
+}
+
+
 // secound part of start page
 const infoBox = document.querySelector(".info-box");
 if (infoBox !== null) {
@@ -305,6 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ".quantity-btn button:nth-of-type(1)"
   );
   const infoBox = document.querySelector(".info-box");
+  if (quantitySpan !== null){
   let currentQuantity = parseInt(quantitySpan.textContent, 10);
   function updateQuantity(newQuantity) {
     if (newQuantity >= 10 && newQuantity <= 20) {
@@ -314,6 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
       updateTotalPrice();
     }
   }
+}
   // update quantity boxes
   function updateBox4Selection() {
     document.querySelectorAll(".box4").forEach((box) => {
@@ -361,12 +473,16 @@ document.addEventListener("DOMContentLoaded", function () {
       updateQuantity(boxValue);
     });
   });
+  if (increaseButton !== null){
   increaseButton.addEventListener("click", function () {
     updateQuantity(currentQuantity + 5);
   });
+}
+if (decreaseButton !== null){
   decreaseButton.addEventListener("click", function () {
     updateQuantity(currentQuantity - 5);
   });
+}
 });
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {
@@ -636,7 +752,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
                   data-yum-diet=${yum.dietRef}
-                  onclick='realAddToCart(event)'
+                  onclick='realAddToCart(event); openSidebar();'
                   class="yum_btn"
                   style="border-radius: 12px;
                   padding: 18px 16px;
@@ -2331,14 +2447,30 @@ function modalAddToCart() {
   totalQuantity();
   var input = document.querySelector(".quantity");
   input.value = 1;
+  closeModal();
+  openSidebar();
+  updateSidebarCart();
+}
+
+//stäng modalen
+function closeModal() {
+  var modal = document.getElementById("modal"); 
+  modal.style.display = "none"; 
 }
 
 let id = "";
 
 //Display items in the cart
 const displayNewCart = () => {
+  const cartSidebar = document.getElementById('cartSidebar');
   const tableHead = document.getElementById("table_head");
   const summaryHead = document.getElementById("summary_head");
+  if (cartSidebar) {
+    cartSidebar.classList.add('open');
+  } else {
+    console.error('Cart sidebar element not found');
+  }
+  
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     if (formDataArry === null) {
@@ -2557,7 +2689,6 @@ setTimeout(() => {
       let fullDescrip = item.textContent;
       let text = item.textContent;
       item.textContent = truncateDescrip(text, 60);
-      console.log(item.textContent);
     });
   } else {
     console.error("not available yet");
@@ -2688,6 +2819,25 @@ totalQuantity();
 ///////// Dashboard functionality start ///////////
 ///////////////////////////////
 
+// function callUsers() {
+//    fetch("https://localhost:7216/subs")
+//     .then((resp) => resp.json())
+//     .then((data) => console.log(data));
+// }
+// callUsers();
+
+if (document.getElementById("dashboard_aside")) {
+  document.querySelectorAll(".dashActive").forEach((link) => {
+    link.addEventListener("click", function (ev) {
+      ev.preventDefault();
+      document
+        .querySelectorAll(".dashActive")
+        .forEach((link) => link.classList.remove("activeLink"));
+      this.classList.add("activeLink");
+    });
+  });
+}
+
 function unlockForms(btn) {
   const dashForm = btn.parentElement.nextElementSibling.closest(".dash_forms");
   const listInputs = dashForm.querySelectorAll("input");
@@ -2709,11 +2859,10 @@ function formCancelEdit(btn) {
 function dash_myProfile() {
   const myProfile = document.getElementById("contain_user_content");
   const dashAside = document.getElementById("dashboard_aside");
+  let linkProfile = document.getElementById("#dash_profile");
 
   if (myProfile) {
     myProfile.remove();
-  } else {
-    console.error("Element missing!");
   }
 
   if (!dashAside) {
@@ -2722,15 +2871,15 @@ function dash_myProfile() {
 
   const htmlString = `
   <section
-        id="contain_user_content"
-        class="flex-grow-1"
-        style="border: 1px solid red; width: 200px; height: fit-content"
-      >
-        <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
-        <section class="p-4">
+  id="contain_user_content"
+  class="flex-grow-1 wow fadeInUp"
+  style="width: 200px; height: fit-content"
+  >
+  <section class="p-4">
+  <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><i class="fas fa-arrow-left"></i>Tillbaka</p>
           <h2>Min Profil</h2>
 
-          <section class="dashboard_contact">
+          <section id="profilePage" class="dashboard_contact">
             <div class="d-flex">
               <h3>Kontaktinformation</h3>
               <i
@@ -2801,12 +2950,12 @@ function dash_myProfile() {
               <div class="dashboard_contact_btns">
                 <button
                   onclick="formCancelEdit(this)"
-                  class="btn btn-secondary formCancel"
+                  class="btn btn-secondary dashCancel"
                   type="button"
                 >
                   Avbryt
                 </button>
-                <button class="btn btn-secondary" type="button">
+                <button class="btn btn-secondary dashConfirm" type="button">
                   Spara Ändringar
                 </button>
               </div>
@@ -2853,12 +3002,12 @@ function dash_myProfile() {
               <div class="dashboard_contact_btns">
                 <button
                   onclick="formCancelEdit(this)"
-                  class="btn btn-secondary"
+                  class="btn btn-secondary dashCancel"
                   type="button"
                 >
                   Avbryt
                 </button>
-                <button class="btn btn-secondary" type="button">
+                <button class="btn btn-secondary dashConfirm" type="button">
                   Spara Ändringar
                 </button>
               </div>
@@ -2912,30 +3061,85 @@ function dash_myProfile() {
                   <input disabled type="text" />
                 </div>
               </div>
+
+                <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckChecked"
+                />
+                <label
+                  class="form-check-label ms-2"
+                  for="flexSwitchCheckDefault"
+                  >Lämna utanför dörren</label
+                >
+                </div>
+
               <div class="dashboard_contact_btns">
                 <button
                   onclick="formCancelEdit(this)"
-                  class="btn btn-secondary"
+                  class="btn btn-secondary dashCancel"
                   type="button"
                 >
                   Avbryt
                 </button>
-                <button class="btn btn-secondary" type="button">
+                <button class="btn btn-secondary dashConfirm" type="button">
                   Spara Ändringar
                 </button>
               </div>
             </form>
-          </section>
+            </section>
+
+            <div class="d-flex" style="gap:10px; margin-top: 25px;">
+            <button data-bs-toggle="modal" data-bs-target="#deleteUser" style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); color:black; background: white; border-color:black;" type="button" class="btn btn-primary">Radera Konto</button>
+            <button data-bs-toggle="modal" data-bs-target="#logOutUser" style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); color:white; background:black; border-color:black;" type="button" class="btn btn-primary">Logga Ut</button>
+            </div>
+
+
+            <div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom:none;">
+        <h4 class="modal-title text-center" id="exampleModalLabel">Är du säker på att du vill radera ditt konto?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Din information kommer att raderas, så du kan inte återaktivera kontot igen om du fortsätter.</p>
+      </div>
+      <div class="modal-footer mx-auto" style="border-top:none;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nej, avbryt</button>
+        <button type="button" class="btn btn-primary">Ja, radera kontot</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+            <div class="modal fade" id="logOutUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom:none;">
+        <h4 class="modal-title text-center" id="exampleModalLabel">Är du säker på att du vill logga ut?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer mx-auto" style="border-top:none;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nej, avbryt</button>
+        <button type="button" class="btn btn-primary">Ja, logga ut</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
         </section>
       </section>
   `;
   dashAside.insertAdjacentHTML("afterend", htmlString);
 }
 
-// if (document.getElementById('dashboard_aside')
-// ) {
-// dash_myProfile();
-// }
+if (document.getElementById("dashboard_aside")) {
+  dash_myProfile();
+}
 
 function dash_myOrders() {
   const dashAside = document.getElementById("dashboard_aside");
@@ -2954,11 +3158,11 @@ function dash_myOrders() {
   const htmlString = `
   <section
         id="contain_user_content"
-        class="flex-grow-1"
-        style="border: 1px solid red; width: 200px; height: fit-content"
+        class="flex-grow-1 wow fadeInUp"
+        style="width: 200px; height: fit-content"
       >
-        <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
-        <section class="p-4">
+      <section class="p-4">
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><i class="fas fa-arrow-left"></i>Tillbaka</p>
           <h2>Mina beställningar</h2>
 
           <p style="margin-top: 30px; font-weight: 600">
@@ -2981,7 +3185,7 @@ function dash_myOrders() {
                 <li>4st av den här sorten</li>
               </ul>
               <p style="color: var(--Dark-grey, #595959)">
-                du kan aboka din leverans senast den X/9 kl: xx:xx. Avboka här
+                du kan aboka din leverans senast den X/9 kl: xx:xx. <span data-bs-toggle="modal" data-bs-target="#cancelOrder" style="text-decoration: underline; cursor:pointer;">Avboka här.</span>
               </p>
             </div>
           </section>
@@ -3014,6 +3218,563 @@ function dash_myOrders() {
               </button>
             </div>
           </section>
+        </section>
+      </section>
+
+
+      <div class="modal fade" id="cancelOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header"  style="border-bottom: none">
+        <h3 class="modal-title" id="exampleModalLabel">Är du säker på att du vill avboka denna leverans?</h3>
+      </div>
+
+      <div class="modal-body">
+
+                <section class="dashboard_orders">
+            <div class="d-flex">
+              <h3>Dag - Månad - Klocka</h3>
+            </div>
+            <div>
+              <h5>Matlådor - antal(st)</h5>
+              <ul class="dash_list">
+                <li>3st matlådor av denna sort</li>
+                <li>3st av ett annat slag</li>
+                <li>4st av den här sorten</li>
+              </ul>
+            </div>
+          </section>
+
+      </div>
+
+      <div class="modal-footer mx-auto" style="border-top: none">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nej, avbryt</button>
+        <button type="button" class="btn btn-primary">Ja, avboka</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  `;
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+}
+
+function dash_mySubs() {
+  const dashAside = document.getElementById("dashboard_aside");
+  const myProfile = document.getElementById("contain_user_content");
+
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
+
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
+
+  const htmlString = `
+  <section
+        id="contain_user_content"
+        class="flex-grow-1 wow fadeInUp"
+        style="width: 200px; height: fit-content"
+      >
+      <section class="p-4">
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><i class="fas fa-arrow-left"></i>Tillbaka</p>
+          <h2>Mina beställningar</h2>
+
+          <section class="dashboard_orders">
+            <div class="d-flex">
+              <h3>Dag - Månad - Klocka</h3>
+              <h3 class="ms-auto align-self-center" style="color: #0eb116">
+                Aktiv
+              </h3>
+            </div>
+            <div>
+              <h5>Matlådor - antal(st)</h5>
+              <ul class="dash_list">
+                <li>3st matlådor av denna sort</li>
+                <li>3st av ett annat slag</li>
+                <li>4st av den här sorten</li>
+              </ul>
+            </div>
+            <div class="d-flex flex-row" style="gap: 10px">
+              <p style="color: #dd3902">Avsluta Prenumeration</p>
+              <p style="color: #dd3902">Pausa Prenumeration</p>
+            </div>
+          </section>
+
+          <section style="margin-top: 20px" class="dashboard_sub_delivery">
+            <div class="d-flex">
+              <h5>Leveransfönster</h5>
+              <i
+                onclick="dashEditDelivTime(this)"
+                class="far fa-edit ms-auto align-self-center unlock_form"
+                style="font-size: 32px; color: #dd3902"
+              ></i>
+            </div>
+            <p>Dag - kl: xx:xx</p>
+          </section>
+
+          <section style="margin-top: 20px" class="dashboard_orders">
+            <div class="d-flex">
+              <h5>Antal Portioner Per Leverans</h5>
+            </div>
+
+            <div
+              class="d-flex flex-row justify-content-center"
+              style="gap: 10px"
+            >
+              <div class="col-3">
+                <div class="box box4" data-value="10">
+                  <img
+                    class="green-check-kost2"
+                    src="images/Eo_circle_green_checkmark.svg.webp"
+                    alt=""
+                  />
+                  <p style="font-weight: 600">10</p>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="box box4" data-value="15">
+                  <img
+                    class="green-check-kost2"
+                    src="images/Eo_circle_green_checkmark.svg.webp"
+                    alt=""
+                  />
+                  <p style="font-weight: 600">15</p>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="box box4" data-value="20">
+                  <img
+                    class="green-check-kost2"
+                    src="images/Eo_circle_green_checkmark.svg.webp"
+                    alt=""
+                  />
+                  <p style="font-weight: 600">20</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="max-width: 388px; display: flex; margin: auto"
+              class="box1 large-box"
+            >
+              <div class="row">
+                <div class="col-7 text">
+                  <h5 style="text-align: left; margin-left: 10px">
+                    Välja ett eget antal
+                  </h5>
+                  <h6
+                    style="
+                      width: 250px;
+                      text-align: left;
+                      margin-left: 10px;
+                      font-size: 15px;
+                    "
+                  >
+                    Minst 10 matlådor per beställning
+                  </h6>
+                </div>
+                <div
+                  style="
+                    margin-left: 40px;
+                    border-radius: 4px;
+                    border: 1px solid #f63;
+                    background: #fff;
+                    width: 110px;
+                    justify-content: center;
+                  "
+                  class="col-3 quantity-btn d-flex align-items-center justify-content-end"
+                >
+                  <button
+                    class="btn btn-light"
+                    style="
+                      background-color: white;
+                      border-color: white;
+                      border-right: 1 px solid #f63 !important;
+                    "
+                  >
+                    -
+                  </button>
+                  <span class="mx-2">10</span>
+                  <button
+                    class="btn btn-light"
+                    style="
+                      background-color: white;
+                      border-color: white;
+                      border-left: 1 px solid #f63 !important;
+                    "
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="dashboard_contact" id="leverans">
+            <div class="d-flex">
+              <h3>Leveransinformation</h3>
+              <i
+                onclick="unlockForms(this)"
+                class="far fa-edit ms-auto align-self-center"
+                style="font-size: 32px; color: #fc5633"
+              ></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Förnamn</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Efternamn</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+
+              <div class="dash_inputs">
+                <label for="">Gatuadress</label>
+                <input disabled type="text" />
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Postnummer</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Ort</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Portkod/Porttelefon</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Våningsplan</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckChecked"
+                />
+                <label
+                  class="form-check-label ms-2"
+                  for="flexSwitchCheckDefault"
+                  >Lämna utanför dörren</label
+                >
+              </div>
+
+              <div class="dashboard_contact_btns">
+                <button
+                  onclick="formCancelEdit(this)"
+                  class="btn btn-secondary dashCancel"
+                  type="button"
+                >
+                  Avbryt
+                </button>
+                <button class="btn btn-secondary dashConfirm" type="button">
+                  Spara Ändringar
+                </button>
+              </div>
+            </form>
+          </section>
+        </section>
+      </section>
+  `;
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+}
+
+function dash_myDeals() {
+  const dashAside = document.getElementById("dashboard_aside");
+  const myProfile = document.getElementById("contain_user_content");
+
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
+
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
+
+  const htmlString = `
+        <section
+        id="contain_user_content"
+        class="flex-grow-1 wow fadeInUp"
+        style="width: 200px; height: fit-content"
+      >
+      <section class="p-4">
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><i class="fas fa-arrow-left"></i>Tillbaka</p>
+          <h2>Erbjudanden & Presentkort</h2>
+
+          <div class="mt-5">
+            <h3>Mina Erbjudande</h3>
+            <p class="mt-3 mb-3">
+              Du kan inte kombinera flera rabatter samtidigt
+            </p>
+
+            <div class="coupon_container d-flex flex-row" style="gap: 20px">
+              <section class="dashboard_deals">
+                <div class="d-flex flex-column" style="gap: 10px">
+                  <h4 style="font-weight: bold">
+                    10% på din första kasse när du prenumererar!
+                  </h4>
+                  <p>Lorem ipsum dolor sit amet consectetur</p>
+                  <button
+                    disabled
+                    type="button"
+                    class="btn btn-secondary w-60 mx-auto"
+                  >
+                    Rabatt Aktiverad
+                  </button>
+                </div>
+              </section>
+              <section class="dashboard_deals">
+                <div class="d-flex flex-column" style="gap: 10px">
+                  <h4 style="font-weight: bold">
+                    10% på din första kasse när du prenumererar!
+                  </h4>
+                  <p>Lorem ipsum dolor sit amet consectetur</p>
+                  <button type="button" class="btn btn-secondary w-60 mx-auto">
+                    Aktivera Rabatt
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <p style="color: #252627">Addera en rabattkod</p>
+            <div id="rabatt-kod" class="d-flex">
+              <input
+                id="rabatt-input"
+                class="rounded-left"
+                type="text"
+                style="width: 20%"
+              />
+              <button type="button" class="btn btn-dark rounded-0">
+                Aktivera
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <h3>Kreditvärde</h3>
+            <section style="margin-top: 20px" class="dashboard_deal_invite">
+              <div class="d-flex flex-column" style="gap: 15px">
+                <h5>Bjud in en vän och få rabatt på nästa matkasse!</h5>
+                <p>Bjud in en vän och samla kreditvärde.</p>
+                <div class="dash_inputs">
+                  <label for="fname">Dins väns mejladress</label>
+                  <div class="d-flex flex-row" style="gap: 20px">
+                    <input
+                      class="w-75"
+                      id="fname"
+                      type="email"
+                      placeholder="Ange din väns mejladress"
+                    />
+                    <button type="submit" class="btn btn-primary w-50">
+                      Skicka Inbjudan
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <section style="margin-top: 20px" class="dashboard_deal_invite">
+            <h5>Skickade inbjudningar</h5>
+            <div class="d-flex flex-column" style="gap: 15px">
+              <ul>
+                <li>mejladress vän 1</li>
+                <li>mejladress vän 2</li>
+                <li>mejladress vän 3</li>
+              </ul>
+            </div>
+          </section>
+
+          <div class="mt-5">
+            <h3>Mitt Presentkort</h3>
+            <section style="margin-top: 20px" class="dashboard_deal_invite">
+              <h5>Löst in ett presentkort</h5>
+              <div class="mt-3">
+                <p style="color: #252627">Ange presentkortets ID.</p>
+                <div id="rabatt-kod" class="d-flex">
+                  <input
+                    id="rabatt-input"
+                    class="rounded-left"
+                    type="text"
+                    style="width: 20%"
+                  />
+                  <button type="button" class="btn btn-dark rounded-0">
+                    Aktivera
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section
+              style="margin-top: 20px"
+              class="dashboard_deal_invite d-flex"
+              style="gap: 15px"
+            >
+
+            <div class="d-flex">
+            <h5>Saldo Presentkort</h5>
+            <h5 class="ms-auto" style="color: #0eb116">Aktiv</h5>
+            </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p>250:-</p>
+            </section>
+          </div>
+
+          <div class="mt-5">
+            <h3>Ge bort ett presentkort</h3>
+            <section
+              style="margin-top: 20px"
+              class="dashboard_deal_invite d-flex"
+              style="gap: 15px"
+            >
+              <b>Ge bort en smakfull upplevelse</b>
+              <p>
+                Digitalt presentkort - den perfekta gåvan till någon speciell
+              </p>
+            </section>
+          </div>
+        </section>
+      </section>
+  `;
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+}
+
+function dash_myNotifications() {
+  const dashAside = document.getElementById("dashboard_aside");
+  const myProfile = document.getElementById("contain_user_content");
+
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
+
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
+
+  const htmlString = `
+        <section
+        id="contain_user_content"
+        class="flex-grow-1 wow fadeInUp"
+        style="width: 200px; height: fit-content"
+      >
+      <section class="p-4">
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><i class="fas fa-arrow-left"></i>Tillbaka</p>
+          <h2>Aviseringar</h2>
+
+          <div class="mt-4">
+            <b>Preferenser för aviseringar via email</b>
+
+            <section
+              class="dashboard_notifications d-flex flex-column mt-3"
+              style="gap: 15px"
+            >
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Nyhetsbrev och tips från kocken</label
+                >
+              </div>
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Rabatter och erbjudanden</label
+                >
+              </div>
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Feedback på måltider</label
+                >
+              </div>
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Feedback till Yumfoods</label
+                >
+              </div>
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Produktuppdateringar om din prenumeration</label
+                >
+              </div>
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Alla mejl</label
+                >
+              </div>
+            </section>
+          </div>
         </section>
       </section>
   `;
@@ -3122,6 +3883,46 @@ function dashEditOrder(btn) {
   return (currentOrder.innerHTML = htlmString);
 }
 
+function dashEditDelivTime(btn) {
+  const currentOrder = document.querySelector(".dashboard_sub_delivery");
+  const htlmString = `
+  <h5>Redigera Beställning</h5>
+
+    <div class="d-flex flex-row justify-content-center" style="gap: 10px; margin-top:20px;">
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Veckodag
+        </button>
+
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Datum #1</a></li>
+        <li><a class="dropdown-item" href="#">Datum #2</a></li>
+        <li><a class="dropdown-item" href="#">Datum #3</a></li>
+        </ul>
+        </div>
+
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Tidspann
+        </button>
+
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Klocka #1</a></li>
+        <li><a class="dropdown-item" href="#">Klocka #2</a></li>
+        <li><a class="dropdown-item" href="#">Klocka #3</a></li>
+        </ul>
+        </div>
+
+        </div>
+
+        <div class="d-flex flex-row justify-content-center" style="gap:10px; margin-top:15px;">
+        <button onclick="dashCancelEditSub()" type="button" class="btn btn-primary">Avbryt</button>
+        <button onclick="dashConfirmEditSub()" type="button" class="btn btn-primary">Spara Ändringar</button>
+        </div>
+  `;
+  return (currentOrder.innerHTML = htlmString);
+}
+
 function dashCancelEdit() {
   const currentOrder = document.querySelector(".dashboard_orders");
   const htlmString = `
@@ -3149,6 +3950,24 @@ function dashCancelEdit() {
 }
 
 function dashConfirmEdit() {}
+
+function dashCancelEditSub() {
+  const currentOrder = document.querySelector(".dashboard_sub_delivery");
+  const htlmString = `
+            <div class="d-flex">
+              <h5>Leveransfönster</h5>
+              <i
+                onclick="dashEditDelivTime(this)"
+                class="far fa-edit ms-auto align-self-center unlock_form"
+                style="font-size: 32px; color: #dd3902"
+              ></i>
+            </div>
+            <p>Dag - kl: xx:xx</p>
+  `;
+  return (currentOrder.innerHTML = htlmString);
+}
+
+function dashConfirmEditSub() {}
 
 /////////////////////////////////
 ///////// Dashboard functionality end ///////////
@@ -4216,10 +5035,156 @@ var datesSwipes = new Swiper(".dates_swipe", {
 });
 
 
+//SIDE BAR CART
 
+// Show sidebar
+function openSidebar() {
+  const cartSidebar = document.getElementById('cartSidebar');
+  console.log('openSidebar called');
+  cartSidebar.classList.add('open');
+  const overlay = document.getElementById('overlay');
+  overlay.style.display = 'block';
+}
+// Redirect to checkout page
+function goToCheckout() {
+  window.location.href = 'cart_view.html';
+}
 
+// Funktion för att lägga till produkt i varukorgen
+function addToCart(product) {
+  localStorage.setItem('sidebarOpen', 'true');
+  openSidebar(); 
+}
 
+document.addEventListener('DOMContentLoaded', function() {
+  const closeSidebarBtn = document.getElementById('closeSidebar');
+  const cartSidebar = document.getElementById('cartSidebar');
+  const overlay = document.getElementById('overlay');
+  
+  if (closeSidebarBtn) {
+    closeSidebarBtn.addEventListener('click', function() {
+      cartSidebar.classList.remove('open');
+      overlay.style.display = 'none';
+      console.log("Sidebar closed!");
+    });
+  }
 
+  if (localStorage.getItem('sidebarOpen') === 'true') {
+    openSidebar();
+  }
+
+  // Update the sidebar cart with items and show mobile notification
+  function updateSidebarCart() {
+    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+    const sidebarCartItems = document.getElementById('sidebarCartItems');
+    const mobileProductCount = document.getElementById('mobileProductCount');
+    const mobileTotalPrice = document.getElementById('mobileTotalPrice');
+
+    sidebarCartItems.innerHTML = ''; 
+    let totalQuantity = 0;
+    let total = 0;
+    const shipping = 49; 
+
+    formDataArry.forEach(item => {
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+      totalQuantity += item.quantity; 
+
+      const dietImage = item.diet.includes(",") ? 
+        item.diet.split(",").map(diet => `<img src="${diet}" alt="diet image" class="diet_img"/>`).join('') :
+        `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
+
+      sidebarCartItems.innerHTML += `
+        <section class="col mb-5" id="${item.id}" >
+          <div class="row">
+            <div class="col-4">
+              <div class="imgContainer">
+                <img id="${item.id}" src="${item.img}" alt="bild på maträtt" class="pro_img cartPayDeliver cropImage"/>
+              </div>
+            </div>
+            <div class="col-4">
+              <h5 style="flex-direction: row; display: flex;">
+                ${item.title}
+                <div style="padding: 10px; margin-top: -17px;" class="d-flex">${dietImage}</div>
+              </h5>
+              <p data-bs-toggle="tooltip" data-bs-placement="top" title="${item.description}" class="food-description sidebar" style="width: 380px; max-height:50px;">
+                ${item.description}
+              </p>
+            </div>
+            <div class="col-4">
+              <h5 style="cursor: pointer;" onclick="removeFromCart('${item.id}')" class="ms-auto me-4">
+                Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i>
+              </h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="quentity_btn mt-0 btn-sidebar d-flex">
+                <button class="decrease" onclick="changeQuantity('${item.id}', -1)">
+                  <i style="font-size: 12px;" class="fas fa-minus"></i>
+                </button>
+                <input class="quantity" type="text" value="${item.quantity}" readonly>
+                <button class="increase" onclick="changeQuantity('${item.id}', 1)">
+                  <i style="font-size: 12px;" class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-end">
+              <h6 class="quantity_price currency mb_0">${item.price * item.quantity}</h6>
+              <h6 class="currency mb_0">kr</h6>
+            </div>
+          </div>
+        </section>`;
+    });
+
+    // Update totals in sidebar and mobile
+    document.getElementById('sidebarShipping').textContent = `${shipping} kr`;
+    document.getElementById('sidebarTotal').textContent = `${total + shipping} kr`;
+    mobileProductCount.textContent = `${totalQuantity} produkter`;
+    mobileTotalPrice.textContent = `${total + shipping} kr`;
+
+    // Show mobile notification when items are added to the cart
+    const mobileCartNotification = document.getElementById('mobileCartNotification');
+    if (totalQuantity > 0) {
+      mobileCartNotification.style.display = 'flex';
+    } else {
+      mobileCartNotification.style.display = 'none';
+    }
+  }
+
+  window.changeQuantity = function(itemId, change) {
+    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+    const itemIndex = formDataArry.findIndex(item => item.id === itemId);
+    
+    if (itemIndex !== -1) {
+        formDataArry[itemIndex].quantity += change;
+        
+        if (formDataArry[itemIndex].quantity <= 0) {
+            removeFromCart(itemId);
+        } else {
+            localStorage.setItem('formDataArry', JSON.stringify(formDataArry));
+            updateSidebarCart();
+        }
+    }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateSidebarCart();
+});
+  
+
+  // Remove item from the cart
+  window.removeFromCart = function(itemId) {
+    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+    formDataArry = formDataArry.filter(item => item.id !== itemId);
+    
+    localStorage.setItem('formDataArry', JSON.stringify(formDataArry));
+    updateSidebarCart();
+};
+  updateSidebarCart();
+});
+
+// --------------------------------------
 
 const submitCartForm = async (event) => {
   event.preventDefault();
