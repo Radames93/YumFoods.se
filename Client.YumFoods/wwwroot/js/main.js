@@ -547,27 +547,37 @@ if (searchBar !== null) {
 
 //Fetch items from database
 const loadProducts = async () => {
-    try {
-        const API_KEY = variables();
-        // Fetch the products from the API
-        const response = await fetch(`https://${API_KEY}/products`);
+  try {
+    const API_KEY = variables();
+    // Fetch the products from the API
+    const response = await fetch(`https://${API_KEY}/products`);
 
-      const data = await response.json();
-    
+    const data = await response.json();
+
     // Check if the response is OK (status code in the 200-299 range)
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
 
     // Parse the response data as JSON
-      const allProducts = data;
+    const allProducts = data;
 
     // Filter the products into different categories
-    const yumProductsList = allProducts.filter((product) => product.category === "Yum");
-    const dailyProductsList = allProducts.filter((product) => product.category === "Dagens");
-    const premiumProductsList = allProducts.filter((product) => product.category === "Premium");
-    const subscriptionsProductsList = allProducts.filter((product) => product.category === "Subscriptions");
-    const baguetterProductsList = allProducts.filter((product) => product.category === "Baguetter");
+    const yumProductsList = allProducts.filter(
+      (product) => product.category === "Yum"
+    );
+    const dailyProductsList = allProducts.filter(
+      (product) => product.category === "Dagens"
+    );
+    const premiumProductsList = allProducts.filter(
+      (product) => product.category === "Premium"
+    );
+    const subscriptionsProductsList = allProducts.filter(
+      (product) => product.category === "Subscriptions"
+    );
+    const baguetterProductsList = allProducts.filter(
+      (product) => product.category === "Baguetter"
+    );
 
     // Further filtering or categorization
     const yumFiltered = yumProductsList;
@@ -594,7 +604,6 @@ const loadProducts = async () => {
     CarouselFoodBoxes(yumProductsList);
     CarouselFoodBoxes2(yumProductsList);
     CarouselDietButtons(yumProductsList);
-
   } catch (err) {
     // Handle errors gracefully
     console.error("Error fetching products:", err);
@@ -603,7 +612,6 @@ const loadProducts = async () => {
 
 // Call the function to load the products
 loadProducts();
-
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
@@ -828,7 +836,7 @@ const yumProducts = (yumProductsList) => {
 
 const carouselContainer = document.getElementById("container");
 const carouselContainer2 = document.getElementById("container2");
-const carouselDietButtons = document.getElementById("dietButtons")
+const carouselDietButtons = document.getElementById("dietButtons");
 
 const CarouselFoodBoxes = (yumProductsList) => {
   if (carouselContainer !== null) {
@@ -998,64 +1006,62 @@ function Matlådor(element) {
 
 function handleBoxClick(element, boxType) {
   if (selectedBox && selectedBox !== element) {
-    const previousCheckmark = selectedBox.querySelector('.check-products img');
+    const previousCheckmark = selectedBox.querySelector(".check-products img");
     if (previousCheckmark) {
-      previousCheckmark.style.display = 'none';
+      previousCheckmark.style.display = "none";
     }
-    selectedBox.style.backgroundColor = '';
-    selectedBox.style.border = '';
+    selectedBox.style.backgroundColor = "";
+    selectedBox.style.border = "";
   }
 
-  const checkmark = element.querySelector('.check-products img');
-  const isDisplayed = checkmark && checkmark.style.display === 'block';
+  const checkmark = element.querySelector(".check-products img");
+  const isDisplayed = checkmark && checkmark.style.display === "block";
 
   if (checkmark) {
-    checkmark.style.display = isDisplayed ? 'none' : 'block';
+    checkmark.style.display = isDisplayed ? "none" : "block";
   }
 
   if (isDisplayed) {
-    element.style.backgroundColor = '';
-    element.style.border = '';
-    selectedBox = null; 
+    element.style.backgroundColor = "";
+    element.style.border = "";
+    selectedBox = null;
   } else {
-    element.style.backgroundColor = '#FFDFCE'; 
-    element.style.border = '2px solid black';
-    selectedBox = element; 
+    element.style.backgroundColor = "#FFDFCE";
+    element.style.border = "2px solid black";
+    selectedBox = element;
   }
 }
 
 // Carousel in product page
-let currentIndex =0;
-const itemsPerPage= 4;
+let currentIndex = 0;
+const itemsPerPage = 4;
 const CarouselDietButtons = (yumProductsList) => {
   if (carouselDietButtons !== null) {
     const dietFiltered = yumProductsList.map((yum) => yum.diet);
-    const uniqueDiets = [...new Set(dietFiltered)]; 
-    
+    const uniqueDiets = [...new Set(dietFiltered)];
+
     const htmlString = uniqueDiets
       .map((diet) => {
-        return (
-          `
+        return `
           <div class="swiper-slide">
             <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64)" onclick="fetchProductsByDiet('${diet}')">
               ${diet}
             </button>
           </div>
-          `
-        );
+          `;
       })
-      .join(""); 
-  carouselDietButtons.innerHTML = htmlString;  
+      .join("");
+    carouselDietButtons.innerHTML = htmlString;
   } else {
     return null;
- }
+  }
 };
 
 var swiper3 = new Swiper(".slide-content3", {
   centeredSlide: "true",
   fade: "true",
   grabCursor: "true",
-  spaceBetween: 10, 
+  spaceBetween: 10,
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
@@ -1087,41 +1093,41 @@ var swiper3 = new Swiper(".slide-content3", {
   loopedSlides: 4,
   loopAdditionalSlides: 1,
   on: {
-    slideChangeTransitionEnd: function() {
+    slideChangeTransitionEnd: function () {
       if (this.isEnd) {
         this.slideToLoop(0, 0);
       }
-    },}
+    },
+  },
 });
 
-let showPrevBtn = document.getElementById('show-prev-btn')
-let showNextBtn = document.getElementById('show-next-btn')
-if (showPrevBtn !== null){
-  showPrevBtn.addEventListener('click', () => {
+let showPrevBtn = document.getElementById("show-prev-btn");
+let showNextBtn = document.getElementById("show-next-btn");
+if (showPrevBtn !== null) {
+  showPrevBtn.addEventListener("click", () => {
     swiper3.slidePrev();
-});
-} 
-if (showNextBtn !== null){
-showNextBtn.addEventListener('click', () => {
+  });
+}
+if (showNextBtn !== null) {
+  showNextBtn.addEventListener("click", () => {
     swiper3.slideNext();
-}); 
+  });
 }
 
-
 // banner2 i product page
-document.addEventListener('DOMContentLoaded', function () {
-  var SwiperCustom = new Swiper('.mySwiper-custom', {
+document.addEventListener("DOMContentLoaded", function () {
+  var SwiperCustom = new Swiper(".mySwiper-custom", {
     slidesPerView: 4,
     spaceBetween: 5,
     loop: true,
     centeredSlides: true,
     pagination: {
-      el: '.swiper-pagination', 
+      el: ".swiper-pagination",
       clickable: true,
     },
     navigation: {
-      nextEl: '.mySwiper-custom-next',  
-      prevEl: '.mySwiper-custom-prev',
+      nextEl: ".mySwiper-custom-next",
+      prevEl: ".mySwiper-custom-prev",
     },
     breakpoints: {
       640: {
@@ -1153,7 +1159,6 @@ document.addEventListener('DOMContentLoaded', function () {
 //   });
 //   feed.run();
 // });
-
 
 //Function for payment accordions
 function togglePaymentMethod() {
@@ -2737,6 +2742,37 @@ function dash_myProfile() {
     console.error("Error! element missing!");
   }
 
+  if (document.getElementById("selectPage")) {
+    document
+      .getElementById("selectPage")
+      .addEventListener("change", function () {
+        const selectedVal = this.value;
+
+        switch (selectedVal) {
+          case "index.html":
+            window.location.href = selectedVal;
+            break;
+          case "2":
+            dash_myProfile();
+            break;
+          case "3":
+            dash_myOrders();
+            break;
+          case "4":
+            dash_mySubs();
+            break;
+          case "5":
+            dash_myDeals();
+            break;
+          case "6":
+            dash_myNotifications();
+            break;
+          default:
+            break;
+        }
+      });
+  }
+
   const htmlString = `
   <section
   id="contain_user_content"
@@ -2744,11 +2780,11 @@ function dash_myProfile() {
   style="width: 200px; height: fit-content"
   >
   <section class="p-4">
-  <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><i class="fas fa-arrow-left"></i>Tillbaka</p>
+  <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><span class="goBack"><i class="fas fa-arrow-left"></i>Tillbaka</span></p>
           <h2>Min Profil</h2>
 
           <section id="profilePage" class="dashboard_contact">
-            <div class="d-flex">
+            <div class="d-flex" id="title_icon">
               <h3>Kontaktinformation</h3>
               <i
                 onclick="unlockForms(this)"
@@ -2831,7 +2867,7 @@ function dash_myProfile() {
           </section>
 
           <section class="dashboard_contact" id="företag">
-            <div class="d-flex">
+            <div class="d-flex" id="title_icon">
               <h3>Företagsinformation</h3>
               <i
                 onclick="unlockForms(this)"
@@ -2883,7 +2919,7 @@ function dash_myProfile() {
           </section>
 
           <section class="dashboard_contact" id="leverans">
-            <div class="d-flex">
+            <div class="d-flex" id="title_icon">
               <h3>Leveransinformation</h3>
               <i
                 onclick="unlockForms(this)"
@@ -2930,8 +2966,9 @@ function dash_myProfile() {
                 </div>
               </div>
 
-                <div class="form-check form-switch d-flex align-items-end">
+                <div id="doorSwitch" class="form-check form-switch d-flex align-items-end">
                 <input
+                disabled
                   class="form-check-input"
                   type="checkbox"
                   role="switch"
@@ -3003,6 +3040,7 @@ function dash_myProfile() {
       </section>
   `;
   dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
 }
 
 if (document.getElementById("dashboard_aside")) {
@@ -3030,7 +3068,7 @@ function dash_myOrders() {
         style="width: 200px; height: fit-content"
       >
       <section class="p-4">
-      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><i class="fas fa-arrow-left"></i>Tillbaka</p>
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><span class="goBack"><i class="fas fa-arrow-left"></i>Tillbaka</span></p>
           <h2>Mina beställningar</h2>
 
           <p style="margin-top: 30px; font-weight: 600">
@@ -3127,6 +3165,7 @@ function dash_myOrders() {
 
   `;
   dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
 }
 
 function dash_mySubs() {
@@ -3150,7 +3189,7 @@ function dash_mySubs() {
         style="width: 200px; height: fit-content"
       >
       <section class="p-4">
-      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><i class="fas fa-arrow-left"></i>Tillbaka</p>
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><span class="goBack"><i class="fas fa-arrow-left"></i>Tillbaka</span></p>
           <h2>Mina beställningar</h2>
 
           <section class="dashboard_orders">
@@ -3287,7 +3326,7 @@ function dash_mySubs() {
           </section>
 
           <section class="dashboard_contact" id="leverans">
-            <div class="d-flex">
+            <div class="d-flex" id="title_icon">
               <h3>Leveransinformation</h3>
               <i
                 onclick="unlockForms(this)"
@@ -3334,7 +3373,7 @@ function dash_mySubs() {
                 </div>
               </div>
 
-              <div class="form-check form-switch d-flex align-items-end">
+              <div id="doorSwitch" class="form-check form-switch d-flex align-items-end">
                 <input
                   class="form-check-input"
                   type="checkbox"
@@ -3366,6 +3405,7 @@ function dash_mySubs() {
       </section>
   `;
   dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
 }
 
 function dash_myDeals() {
@@ -3389,7 +3429,7 @@ function dash_myDeals() {
         style="width: 200px; height: fit-content"
       >
       <section class="p-4">
-      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><i class="fas fa-arrow-left"></i>Tillbaka</p>
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><span class="goBack"><i class="fas fa-arrow-left"></i>Tillbaka</span></p>
           <h2>Erbjudanden & Presentkort</h2>
 
           <div class="mt-5">
@@ -3530,6 +3570,7 @@ function dash_myDeals() {
       </section>
   `;
   dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
 }
 
 function dash_myNotifications() {
@@ -3553,7 +3594,7 @@ function dash_myNotifications() {
         style="width: 200px; height: fit-content"
       >
       <section class="p-4">
-      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><i class="fas fa-arrow-left"></i>Tillbaka</p>
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><span class="goBack"><i class="fas fa-arrow-left"></i>Tillbaka</span></p>
           <h2>Aviseringar</h2>
 
           <div class="mt-4">
@@ -3647,14 +3688,27 @@ function dash_myNotifications() {
       </section>
   `;
   dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
 }
+
+function applyGoBack() {
+  if (document.querySelector(".goBack")) {
+    const backOnePage = document.querySelector(".goBack");
+    backOnePage.style.cursor = "pointer";
+    backOnePage.addEventListener("click", function () {
+      history.back();
+      return false;
+    });
+  }
+}
+applyGoBack();
 
 function dashEditOrder(btn) {
   const currentOrder = document.querySelector(".dashboard_orders");
   const htlmString = `
   <h3>Redigera Beställning</h3>
 
-    <div class="d-flex flex-row justify-content-center" style="gap: 10px; margin-top:20px;">
+    <div class="d-flex flex-row justify-content-center subsTimeEdit" style="gap: 10px; margin-top:20px;">
         <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Veckodag
@@ -3756,7 +3810,7 @@ function dashEditDelivTime(btn) {
   const htlmString = `
   <h5>Redigera Beställning</h5>
 
-    <div class="d-flex flex-row justify-content-center" style="gap: 10px; margin-top:20px;">
+    <div class="d-flex flex-row justify-content-center subsTimeEdit" style="gap: 10px; margin-top:20px;">
         <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Veckodag
@@ -4902,62 +4956,56 @@ var datesSwipes = new Swiper(".dates_swipe", {
   },
 });
 
-
-
-
-
-
-
 const submitCartForm = async (event) => {
   event.preventDefault();
-async function redirectToStripeCheckout() {
-  try {
-    // Retrieve cart information from local storage
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (!formDataArry || formDataArry.length === 0) {
-      console.error("No products in the cart.");
-      return;
+  async function redirectToStripeCheckout() {
+    try {
+      // Retrieve cart information from local storage
+      let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+      if (!formDataArry || formDataArry.length === 0) {
+        console.error("No products in the cart.");
+        return;
+      }
+
+      let products = formDataArry.map((item) => {
+        // Retrieve the unit price and total price for the selected quantity
+        let unitPrice = item.price; // Price per item
+        let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
+
+        return {
+          name: item.title, // Product name (title)
+          quantity: item.quantity, // Quantity of the product
+          price: unitPrice, // Unit price for the product
+          total: totalQuantityPrice, // Total price for the quantity
+        };
+      });
+
+      // Create a POST request to your backend endpoint to create the Stripe checkout session
+      const response = await fetch("https://localhost:7216/payments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          successPaymentUrl: "https://localhost:7023/payment_success.html",
+          cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+          products: products, // Send the products array
+        }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        // Redirect to the Stripe checkout session URL
+        window.location.href = result.checkoutUrl;
+        localStorage.clear();
+      } else {
+        console.error("Error creating Stripe session", result);
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
-
-    let products = formDataArry.map((item) => {
-      // Retrieve the unit price and total price for the selected quantity
-      let unitPrice = item.price; // Price per item
-      let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
-
-      return {
-        name: item.title, // Product name (title)
-        quantity: item.quantity, // Quantity of the product
-        price: unitPrice, // Unit price for the product
-        total: totalQuantityPrice, // Total price for the quantity
-      };
-    });
-
-    // Create a POST request to your backend endpoint to create the Stripe checkout session
-    const response = await fetch("https://localhost:7216/payments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        successPaymentUrl: "https://localhost:7023/payment_success.html",
-        cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-        products: products, // Send the products array
-      }),
-    });
-
-    const result = await response.json();
-    if (response.ok) {
-      // Redirect to the Stripe checkout session URL
-      window.location.href = result.checkoutUrl;
-      localStorage.clear();
-    } else {
-      console.error("Error creating Stripe session", result);
-    }
-  } catch (error) {
-    console.error("Error:", error);
   }
-}
-}
+};
 
 function Footer() {
   let footer = document.getElementById("footer");
