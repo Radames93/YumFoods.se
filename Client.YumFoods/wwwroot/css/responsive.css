@@ -161,6 +161,18 @@
     transform: scale(1);
     transition: transform 0.3s ease;
   }
+
+  /* =====================
+        SIDE BAR CART START
+    =======================*/
+    /* .cart-sidebar {
+      display: block;
+    } */
+  
+    .mobile-cart-notification {
+      display: none !important;
+    }
+
 }
 
 @media (min-width: 1200px) and (max-width: 1399.99px) {
@@ -491,6 +503,17 @@
     margin-left: 60px;
   }
 
+  .miljö-img{
+    width: 400px; 
+    height: 333px;
+    margin-top: 50px;
+  }
+
+  .miljö-info{
+    margin-left: -160px;
+    width: 450px;
+  }
+  
   /* =====================
         ABOUT PAGE END
     =======================*/
@@ -564,6 +587,18 @@
   }
 
   /* product page end */
+
+  /* =====================
+        SIDE BAR CART START
+    =======================*/
+    .cart-sidebar {
+      display: block;
+    }
+  
+    .mobile-cart-notification {
+      display: none !important;
+    }
+
 }
 
 @media (min-width: 992px) and (max-width: 1199.99px) {
@@ -1122,6 +1157,37 @@
     right: 0px;
   }
 
+  .img-fluid-about {
+    width: 425px;
+    height: 373px;
+}
+
+  .prenum-img{
+    width: 425px; 
+    height: 373px; 
+    margin-left: -10px;
+  }
+
+  .prenum-info{
+    width: 500px; 
+    height: 471px;
+    margin-left: 60px;
+  }
+
+  .about-title-part3{
+    margin-bottom: 0;
+  }
+
+  .miljö-img{
+    width: 425px;
+    height: 373px;
+    margin-top: 20px;
+  }
+
+  .miljö-info{
+    width: 400px;
+    margin-left: -150px;
+  }
   /* =====================
         ABOUT PAGE END
     =======================*/
@@ -1263,6 +1329,18 @@
   /* =====================
         MENU DETAILS END
     =======================*/
+
+    /* =====================
+        SIDE BAR CART START
+    =======================*/
+    .cart-sidebar {
+      display: block;
+    }
+  
+    .mobile-cart-notification {
+      display: none !important;
+    }
+
 }
 @media (min-width: 768px) and (max-width: 991.99px) {
   /* =====================
@@ -1915,21 +1993,22 @@
     margin-top: 25px;
   } */
 
-  .img-fluid-about {
-    width: 340px;
-    height: 383px;
-    margin-top: 20px;
+  .about-us.part1{
+    margin-top: -50px;
   }
+
   .about-us.part1 p {
-    width: 320px;
+    width: 350px;
     font-weight: 400;
     line-height: 24px;
+    margin-left: -10px !important;
   }
   .about-us.title h1 {
     font-size: 35px;
   }
   .about-us.part1 h1 {
     font-size: 35px;
+    margin-left: -10px !important;
   }
   .about_us_img {
     margin-bottom: 25px;
@@ -1941,7 +2020,7 @@
 
   .container.certified {
     display: flex;
-    padding: 64px 60px;
+    padding: 64px 0px;
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -1964,6 +2043,64 @@
     margin-left: 0;
     margin-top: 25px;
   }
+
+  .img-fluid-about {
+    width: 280px;
+    height: 300px;
+}
+
+  .prenum-img{
+    width: 300px; 
+    height: 390px; 
+    margin-left: -200px;
+    margin-top: 40px;
+  }
+
+  .prenum-info{
+    width: 320px; 
+    height: 471px;
+    margin-left: 290px;
+    margin-top: -400px;
+  }
+
+  .about-us-preBtn{
+    margin-left: -20px ;
+  }
+
+  .contacts-content.contacts{
+    margin-top: 30px !important;
+    margin-left: -30px !important;
+  }
+
+  .about-title-part3{
+    margin-bottom: 0;
+  }
+
+  .miljö-img{
+    width: 300px;
+    height: 250px;
+    margin-top: 50px;
+  }
+
+  .miljö-info{
+    width: 300px;
+    margin-left: 0px;
+  }
+
+  .about-us-box2.part4 {
+    padding: 26px 65px;
+    align-items: flex-start;
+    gap: 24px;
+    background: var(--Secondary-color, #ffdfce);
+    width: 100%;
+    margin-left: -60px;
+    margin-top: -60px;
+}
+
+.about-us-preBtn{
+  height: 10px;
+}
+
 
   /* =====================
         ABOUT PAGE END
@@ -2074,6 +2211,23 @@
 
   /* =====================
         DASHBOARD END
+    =======================*/
+    
+    /* =====================
+      SIGNUP START
+    =======================*/
+
+    .signup-input{
+      padding: 0 15px;
+    }
+
+    .login_area form input {
+      width: 100%;
+      max-width: 500px;
+  }
+  
+    /* =====================
+       sIGNUP END
     =======================*/
 
   .faq_area_img {
@@ -2284,7 +2438,26 @@
   /* =====================
         CART VIEW END
     =======================*/
+    /* =====================
+        SIDE BAR CART START
+    =======================*/
+    .cart-sidebar {
+      display: block;
+    }
+  
+    .mobile-cart-notification {
+      display: none !important;
+    }
 
+
+    .Fortsätt-Btn{
+      height: 48px !important;
+      padding: 0 !important;
+    }
+
+    .food-description.sidebar{
+      width: 380px;
+    }
   /* =====================
         LEVERANS START
     =======================*/
@@ -3201,7 +3374,7 @@
 
   .container.certified {
     display: flex;
-    padding: 64px 50px;
+    padding: 64px 30px;
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -3237,6 +3410,61 @@
   .about_us_img h3 span {
     font-size: 14px;
   }
+
+  .img-fluid-about {
+    width: 280px;
+    height: 300px;
+}
+
+  .prenum-img{
+    width: 200px; 
+    height: 200px; 
+  }
+
+  .prenum-info{
+    width: 300px; 
+    height: 400px;
+    margin-left: 250px;
+    margin-top: -210px;
+  }
+
+  .about-us-preBtn{
+    margin-left: -200px;
+    margin-top: 255px;
+  }
+
+  .about-contacats{
+    display: none;
+  }
+
+  .about-title-part3{
+    margin-bottom: 0;
+  }
+
+  .miljö-img{
+    width: 230px;
+    height: 250px;
+    margin-top: 50px;
+  }
+
+  .miljö-info{
+    width: 270px;
+    margin-left: -28px;
+  }
+
+  .about-us-box2.part4 {
+    padding: 26px 65px;
+    align-items: flex-start;
+    gap: 24px;
+    background: var(--Secondary-color, #ffdfce);
+    width: 100%;
+    margin-left: -60px;
+    margin-top: -160px;
+}
+
+.about-us-preBtn{
+  height: 10px;
+}
 
   /* =====================
         ABOUT PAGE END
@@ -3451,6 +3679,30 @@
 
   /* =====================
         DASHBOARD END
+    =======================*/
+
+       /* =====================
+      SIGNUP START
+    =======================*/
+
+    .signup-input{
+      padding: 0 15px;
+    }
+
+    .login_area form input {
+      width: 100%;
+      max-width: 400px;
+  }
+
+  .login_area {
+    width: 100%;
+    max-width: 490px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+    /* =====================
+       sIGNUP END
     =======================*/
 
   .faq_area_img {
@@ -3766,6 +4018,33 @@
   .h-captcha {
     padding-bottom: 20px;
   }
+
+    /* =====================
+      SIDE BAR START
+    =======================*/
+    .mobile-cart-notification {
+      display: flex !important; 
+      justify-content: space-between;
+    } 
+    
+    .cart-sidebar {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .Fortsätt-Btn{
+      height: 48px !important;
+      padding: 0 !important;
+    }
+
+    .mobile-cart-notification {
+      display: none !important;
+    }
+  
+    /* =====================
+      SIDE BAR END
+    =======================*/
+
   /* =====================
         LEVERANS START
     =======================*/
@@ -4681,8 +4960,8 @@
 
   .about-us.part1 p {
     margin-bottom: 25px;
-    width: 360px;
-    margin-left: 30px;
+    margin-left: 20px;
+    width: 340px;
   }
   .img-fluid-about {
     width: 360px;
@@ -4693,7 +4972,7 @@
     flex-direction: row;
   }
   .about-us.title .link {
-    margin-top: -120px;
+    margin-top: -30px;
     margin-left: 10px;
   }
   .about-us.title h1 {
@@ -4707,7 +4986,7 @@
   .about-us.part1 h1 {
     font-size: x-large;
     font-weight: 700;
-    margin-left: 30px;
+    margin-left: 10px;
   }
 
   .container.certified {
@@ -4717,6 +4996,7 @@
     align-items: center;
     gap: 10px;
     background: var(--Secondary-color, #ffdfce);
+    width: 100%;
   }
   .about_us_img .img {
     width: 300px;
@@ -4735,6 +5015,66 @@
     height: 120px;
     font-size: 35px;
   }
+
+  .img-fluid-about {
+    width: 280px;
+    height: 300px;
+    margin-left: 60px;
+}
+
+  .prenum-img{
+    width: 200px; 
+    height: 200px; 
+    margin-left: 100px;
+  }
+
+  .prenum-info{
+    width: 290px; 
+    height: 400px;
+  }
+  .about-contacats{
+    display: none;
+  }
+
+  .about-title-part3{
+    margin-bottom: 0;
+  }
+
+  .miljö-img{
+    width: 300px;
+    height: 250px;
+    margin-top: 30px;
+    margin-left: 0px;
+  }
+
+  .miljö-info{
+    width: 330px;
+    margin-left: -28px;
+  }
+
+  .about-us-box2.part4 {
+    padding: 26px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    background: var(--Secondary-color, #ffdfce);
+    width: 100%;
+    margin-left: 50px;
+    margin-right: auto;
+    margin-top: -160px;
+}
+
+.about-us-preBtn{
+  height: 10px;
+  margin-top: 20px;
+  margin-left:-80px;
+}
+
+.certified2 p{
+  width: 100%;
+  max-width: 350px;
+}
+
 
   /* =====================
         ABOUT PAGE END
@@ -4964,6 +5304,39 @@
 
   /* =====================
         DASHBOARD END
+    =======================*/
+
+  /* =====================
+      SIGNUP START
+    =======================*/
+
+    .signup-input{
+      padding: 0 15px;
+    }
+
+    .login_area form input {
+      width: 100%;
+      max-width: 300px;
+  }
+
+    .login_area {
+      width: 100%;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      left: -12px !important;
+    }
+
+    .login_area form button {
+      height: 40px;
+      padding-top: 5px !important;
+    }
+
+    .form-check-label.label2{
+      margin-top: -35px !important;
+    }
+    /* =====================
+       SIGNUP END
     =======================*/
 
   .faq_area_img {
@@ -5393,6 +5766,31 @@
   .slide-container {
     height: 300px;
   }
+
+  /* =====================
+      SIDE BAR START
+    =======================*/
+    .mobile-cart-notification {
+      display: flex !important; 
+      justify-content: space-between;
+    } 
+    .cart-sidebar {
+      display: none;
+    }
+
+    .mobile-cart-notification {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      z-index: 1000;
+    }
+  
+    .mobile-cart-notification span {
+      font-size: 16px;
+    }
+  
   /* =====================
         LEVERANS START
     =======================*/
@@ -5546,9 +5944,9 @@
   .pro_img > img {
     width: 130px !important;
   }
-  .quentity_btn {
+  /* .quentity_btn {
     justify-content: end !important;
-  }
+  } */
 }
 /* =====================
     company box informatiom in shopping cart and contact page

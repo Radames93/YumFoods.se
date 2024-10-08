@@ -121,10 +121,12 @@ function Header() {
         <div class="loginBtn">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="#" onclick="myFunction()" class="dropbtn" > <i class="far fa-user"></i> Logga in </a>
+              <a href="#" class="dropbtn">
+                <i class="far fa-user"></i> Logga in
+              </a>
               <ul class="droap_menu">
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="sign_in.html">Login</a></li>
+                <li><a href="sign_up.html">Register</a></li>
               </ul>
             </li>
           </ul>
@@ -247,6 +249,114 @@ function navigateToMenuPage() {
   window.location.href = "/yum_menu.html";
 }
 
+// SIGN UP - Funktion för att visa rätt formulär beroende på kontotyp
+function toggleAccountType(isPersonal) {
+  document.getElementById("personalForm").style.display = isPersonal ? "block" : "none";
+  document.getElementById("businessForm").style.display = isPersonal ? "none" : "block";
+}
+
+function saveUserData() {
+  const accountType = document.getElementById("personalForm").style.display === "block" ? "personal" : "business";
+  const userData = {};
+
+  userData.email = document.getElementById("field2").value.trim();
+  userData.lösenord = document.getElementById("field3").value.trim();
+  const upprepaLösenord = document.getElementById("field4").value.trim();
+  userData.gatuadress = document.getElementById("field5").value.trim();
+  userData.postnummer = document.getElementById("postnummer").value.trim();
+  userData.ort = document.getElementById("ort").value.trim();
+  const termsAccepted = document.getElementById("terms1").checked;
+
+  // Validering 
+  if (!userData.email || !userData.lösenord || !upprepaLösenord || !userData.gatuadress || !userData.postnummer || !userData.ort) {
+      alert("Alla fält måste fyllas i!");
+      return false;
+  }
+
+  if (userData.lösenord !== upprepaLösenord) {
+      alert("Lösenorden matchar inte!");
+      return false;
+  }
+
+  if (!termsAccepted) {
+      alert("Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta.");
+      return false;
+  }
+
+  if (accountType === "personal") {
+      userData.kontoTyp = "personal";
+      userData.förnamn = document.getElementById("field1").value.trim();
+  } else if (accountType === "business") {
+      userData.kontoTyp = "business";
+      userData.företagsnamn = document.getElementById("businessName").value.trim();
+      userData.orgNummer = document.getElementById("orgNumber").value.trim();
+      userData.kontaktperson = document.getElementById("contactName").value.trim();
+  }
+
+  // Spara användardata i localStorage
+  localStorage.setItem("userData", JSON.stringify(userData));
+  alert(accountType === "personal" ? "Dina personliga uppgifter har sparats!" : "Dina företagsuppgifter har sparats!");
+  return true;
+}
+
+// Event listeners för att växla mellan kontotyper
+document.addEventListener("DOMContentLoaded", function() {
+  const btnPersonal = document.getElementById("btnPersonal");
+  const btnBusiness = document.getElementById("btnBusiness");
+  
+  if (btnPersonal) {
+    btnPersonal.addEventListener("click", function() {
+      toggleAccountType(true);
+      document.getElementById("accountTitle").textContent = "Skapa konto";
+    });
+  }
+
+  if (btnBusiness) {
+    btnBusiness.addEventListener("click", function() {
+      toggleAccountType(false);
+      document.getElementById("accountTitle").textContent = "Skapa företagskonto";
+    });
+  }
+});
+
+//LOGIN SIDA
+function validateLogin(event) {
+  event.preventDefault(); 
+
+  const email = document.getElementById('email-login').value.trim();
+  const password = document.getElementById('password-login').value.trim();
+  const savedUserData = JSON.parse(localStorage.getItem('userData'));
+
+  if (!savedUserData) {
+      alert('Det finns ingen registrerad användare. Vänligen skapa ett konto.');
+      return;
+  }
+
+  if (!email || !password) {
+      alert('Vänligen fyll i alla fält.');
+      return;
+  }
+
+  if (email === savedUserData.email && password === savedUserData.lösenord) {
+      if (document.getElementById('rememberMe').checked) {
+          localStorage.setItem('rememberedUser', JSON.stringify({ email: email, lösenord: password }));
+      } else {
+          localStorage.removeItem('rememberedUser');
+      }
+
+      window.location.href = 'dashboard.html';
+  } else {
+      alert('Fel e-postadress eller lösenord.');
+  }
+}
+
+// Event listener för inloggningsformuläret
+let loginForm = document.getElementById('loginForm');
+if (loginForm) {
+  loginForm.addEventListener('submit', validateLogin);
+}
+
+
 // secound part of start page
 const infoBox = document.querySelector(".info-box");
 if (infoBox !== null) {
@@ -305,6 +415,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ".quantity-btn button:nth-of-type(1)"
   );
   const infoBox = document.querySelector(".info-box");
+  if (quantitySpan !== null){
   let currentQuantity = parseInt(quantitySpan.textContent, 10);
   function updateQuantity(newQuantity) {
     if (newQuantity >= 10 && newQuantity <= 20) {
@@ -314,6 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
       updateTotalPrice();
     }
   }
+}
   // update quantity boxes
   function updateBox4Selection() {
     document.querySelectorAll(".box4").forEach((box) => {
@@ -361,12 +473,16 @@ document.addEventListener("DOMContentLoaded", function () {
       updateQuantity(boxValue);
     });
   });
+  if (increaseButton !== null){
   increaseButton.addEventListener("click", function () {
     updateQuantity(currentQuantity + 5);
   });
+}
+if (decreaseButton !== null){
   decreaseButton.addEventListener("click", function () {
     updateQuantity(currentQuantity - 5);
   });
+}
 });
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {
@@ -644,7 +760,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
                   data-yum-diet=${yum.dietRef}
-                  onclick='realAddToCart(event)'
+                  onclick='realAddToCart(event); openSidebar();'
                   class="yum_btn"
                   style="border-radius: 12px;
                   padding: 18px 16px;
@@ -2336,14 +2452,30 @@ function modalAddToCart() {
   totalQuantity();
   var input = document.querySelector(".quantity");
   input.value = 1;
+  closeModal();
+  openSidebar();
+  updateSidebarCart();
+}
+
+//stäng modalen
+function closeModal() {
+  var modal = document.getElementById("modal"); 
+  modal.style.display = "none"; 
 }
 
 let id = "";
 
 //Display items in the cart
 const displayNewCart = () => {
+  const cartSidebar = document.getElementById('cartSidebar');
   const tableHead = document.getElementById("table_head");
   const summaryHead = document.getElementById("summary_head");
+  if (cartSidebar) {
+    cartSidebar.classList.add('open');
+  } else {
+    console.error('Cart sidebar element not found');
+  }
+  
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     if (formDataArry === null) {
@@ -4955,6 +5087,158 @@ var datesSwipes = new Swiper(".dates_swipe", {
     },
   },
 });
+
+
+//SIDE BAR CART
+
+// Show sidebar
+function openSidebar() {
+  const cartSidebar = document.getElementById('cartSidebar');
+  console.log('openSidebar called');
+  cartSidebar.classList.add('open');
+  const overlay = document.getElementById('overlay');
+  overlay.style.display = 'block';
+}
+// Redirect to checkout page
+function goToCheckout() {
+  window.location.href = 'cart_view.html';
+}
+
+// Funktion för att lägga till produkt i varukorgen
+function addToCart(product) {
+  localStorage.setItem('sidebarOpen', 'true');
+  openSidebar(); 
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const closeSidebarBtn = document.getElementById('closeSidebar');
+  const cartSidebar = document.getElementById('cartSidebar');
+  const overlay = document.getElementById('overlay');
+  
+  if (closeSidebarBtn) {
+    closeSidebarBtn.addEventListener('click', function() {
+      cartSidebar.classList.remove('open');
+      overlay.style.display = 'none';
+      console.log("Sidebar closed!");
+    });
+  }
+
+  if (localStorage.getItem('sidebarOpen') === 'true') {
+    openSidebar();
+  }
+
+  // Update the sidebar cart with items and show mobile notification
+  function updateSidebarCart() {
+    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+    const sidebarCartItems = document.getElementById('sidebarCartItems');
+    const mobileProductCount = document.getElementById('mobileProductCount');
+    const mobileTotalPrice = document.getElementById('mobileTotalPrice');
+
+    sidebarCartItems.innerHTML = ''; 
+    let totalQuantity = 0;
+    let total = 0;
+    const shipping = 49; 
+
+    formDataArry.forEach(item => {
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+      totalQuantity += item.quantity; 
+
+      const dietImage = item.diet.includes(",") ? 
+        item.diet.split(",").map(diet => `<img src="${diet}" alt="diet image" class="diet_img"/>`).join('') :
+        `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
+
+      sidebarCartItems.innerHTML += `
+        <section class="col mb-5" id="${item.id}" >
+          <div class="row">
+            <div class="col-4">
+              <div class="imgContainer">
+                <img id="${item.id}" src="${item.img}" alt="bild på maträtt" class="pro_img cartPayDeliver cropImage"/>
+              </div>
+            </div>
+            <div class="col-4">
+              <h5 style="flex-direction: row; display: flex;">
+                ${item.title}
+                <div style="padding: 10px; margin-top: -17px;" class="d-flex">${dietImage}</div>
+              </h5>
+              <p data-bs-toggle="tooltip" data-bs-placement="top" title="${item.description}" class="food-description sidebar" style="width: 380px; max-height:50px;">
+                ${item.description}
+              </p>
+            </div>
+            <div class="col-4">
+              <h5 style="cursor: pointer;" onclick="removeFromCart('${item.id}')" class="ms-auto me-4">
+                Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i>
+              </h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <div class="quentity_btn mt-0 btn-sidebar d-flex">
+                <button class="decrease" onclick="changeQuantity('${item.id}', -1)">
+                  <i style="font-size: 12px;" class="fas fa-minus"></i>
+                </button>
+                <input class="quantity" type="text" value="${item.quantity}" readonly>
+                <button class="increase" onclick="changeQuantity('${item.id}', 1)">
+                  <i style="font-size: 12px;" class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-end">
+              <h6 class="quantity_price currency mb_0">${item.price * item.quantity}</h6>
+              <h6 class="currency mb_0">kr</h6>
+            </div>
+          </div>
+        </section>`;
+    });
+
+    // Update totals in sidebar and mobile
+    document.getElementById('sidebarShipping').textContent = `${shipping} kr`;
+    document.getElementById('sidebarTotal').textContent = `${total + shipping} kr`;
+    mobileProductCount.textContent = `${totalQuantity} produkter`;
+    mobileTotalPrice.textContent = `${total + shipping} kr`;
+
+    // Show mobile notification when items are added to the cart
+    const mobileCartNotification = document.getElementById('mobileCartNotification');
+    if (totalQuantity > 0) {
+      mobileCartNotification.style.display = 'flex';
+    } else {
+      mobileCartNotification.style.display = 'none';
+    }
+  }
+
+  window.changeQuantity = function(itemId, change) {
+    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+    const itemIndex = formDataArry.findIndex(item => item.id === itemId);
+    
+    if (itemIndex !== -1) {
+        formDataArry[itemIndex].quantity += change;
+        
+        if (formDataArry[itemIndex].quantity <= 0) {
+            removeFromCart(itemId);
+        } else {
+            localStorage.setItem('formDataArry', JSON.stringify(formDataArry));
+            updateSidebarCart();
+        }
+    }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateSidebarCart();
+});
+  
+
+  // Remove item from the cart
+  window.removeFromCart = function(itemId) {
+    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+    formDataArry = formDataArry.filter(item => item.id !== itemId);
+    
+    localStorage.setItem('formDataArry', JSON.stringify(formDataArry));
+    updateSidebarCart();
+};
+  updateSidebarCart();
+});
+
+// --------------------------------------
 
 const submitCartForm = async (event) => {
   event.preventDefault();
