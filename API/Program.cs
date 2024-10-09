@@ -27,6 +27,7 @@ internal class Program
         builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
         builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
         builder.Services.AddScoped<UserRepository>();
+        builder.Services.AddScoped<OrderWithDetailsRepository>();
 
         // Retrieve KeyVault settings from appsettings.json
         var keyVaultURL = builder.Configuration["KeyVault:KeyVaultURL"];
@@ -120,6 +121,7 @@ internal class Program
         app.MapSubscriptionEndpoints();
         app.MapPaymentsEndPoints();
         app.MapUserEndpoints();
+        app.MapPurchaseEndpoints();
 
         app.UseHttpsRedirection();
         app.UseCors("AllowSpecificOrigins");  // Apply CORS
