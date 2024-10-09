@@ -32,9 +32,11 @@ public class UserRepository(YumFoodsUserDb context)
         return await context.User.FirstOrDefaultAsync(p => p.Email == email);
     }
 
-    public async Task<User?> GetUserTypeAsync(string userType)
+    public async Task<string?> GetUserTypeByEmailAsync(string email)
     {
-        return await context.User.FirstOrDefaultAsync(p => p.UserType == userType);
+        var user = await context.User.FirstOrDefaultAsync(u => u.Email == email);
+
+        return user?.UserType;
     }
 
     public async Task<bool> ValidateUserAsync(LoginModel login)
@@ -49,7 +51,6 @@ public class UserRepository(YumFoodsUserDb context)
 
         return passwordVerification.VerifyPassword(login.Password, user.PasswordHash);
     }
-
 
     public async Task AddUserAsync(User newUser)
     {
@@ -80,6 +81,29 @@ public class UserRepository(YumFoodsUserDb context)
         };
 
         await context.User.AddAsync(user);
+        await context.SaveChangesAsync();
+    }
+
+    public async Task UpdateUserAsync(int id, User newUser)
+    {
+        var oldUser = await context.User.FindAsync(id);
+        if (oldUser is null)
+        {
+            return;
+        }
+
+        oldUser.FirstName = newUser.FirstName ?? oldUser.FirstName;
+        oldUser.LastName = newUser.LastName ?? oldUser.LastName;
+        oldUser.UserType = newUser.UserType ?? oldUser.UserType;
+        oldUser.OrganizationNumber = newUser.OrganizationNumber ?? oldUser.OrganizationNumber;
+        oldUser.Email = newUser.Email ?? oldUser.Email;
+        oldUser.PhoneNumber = newUser.PhoneNumber ?? oldUser.PhoneNumber;
+        oldUser.Address = newUser.Address ?? oldUser.Address;
+        oldUser.City = newUser.City ?? oldUser.City;
+        oldUser.PostalCode = newUser.PostalCode ?? oldUser.PostalCode;
+        oldUser.Country = newUser.Country ?? oldUser.Country;
+        oldUser.Subscription = newUser.Subscription ?? oldUser.Subscription;
+
         await context.SaveChangesAsync();
     }
 

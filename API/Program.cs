@@ -57,7 +57,7 @@ builder.Services.AddScoped<StripeClient>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
-var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
+//var jwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

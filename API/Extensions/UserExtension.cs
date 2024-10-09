@@ -1,8 +1,4 @@
-﻿using DataAccess;
-using DataAccess.Repositories;
-using DataAccess.Security;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using DataAccess.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.DTOs;
@@ -16,7 +12,7 @@ public static class UserExtension
 {
     public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/users"); // Fixa routes(?)
+        var group = app.MapGroup("/users");
 
         group.MapGet("/", GetAllUsersAsync);
         group.MapGet("/id/{id}", GetUserByIdAsync);
@@ -24,11 +20,12 @@ public static class UserExtension
         group.MapGet("/email/{email}", GetUserByEmailAsync);
         group.MapGet("/org/{organization}", GetUserByOrganizationAsync);
 
-        group.MapGet("/type/{usertype}", GetUserTypeAsync);
-
+        group.MapGet("/type/{email}", GetUserTypeByEmailAsync);
 
         group.MapPost("/", AddUserAsync);
-        group.MapPost("/login", LoginUserAsync); // Adding login endpoint here
+        group.MapPost("/login", LoginUserAsync);
+
+        group.MapPatch("/{id}", UpdateUserAsync);
 
         group.MapDelete("/{id}", DeleteUserAsync);
         return app;
@@ -59,32 +56,15 @@ public static class UserExtension
         return Results.Ok(user);
     }
 
-
-    private static async Task<IResult> GetUserTypeAsync(UserRepository repo, string userType)
+    private static async Task<IResult> GetUserTypeByEmailAsync(UserRepository repo, string email)
     {
-        var user = await repo.GetUserTypeAsync(userType);
-        return Results.Ok(user);
-    }
-
-
-    private static async Task<IResult> GetCompanyData(ClaimsPrincipal user)
-    {
-        // Check if the user has the "Company" role
-        if (user.IsInRole("Company"))
+        var userType = await repo.GetUserTypeByEmailAsync(email);
+        if (userType == null)
         {
-            return Results.Ok("This is company data"); // Return data for company users
+            return Results.NotFound("User not found or email is invalid.");
         }
-        return Results.Unauthorized(); // Return unauthorized if the user does not have the role
-    }
 
-    private static async Task<IResult> GetUserData(ClaimsPrincipal user)
-    {
-        // Check if the user has the "User" role
-        if (user.IsInRole("User"))
-        {
-            return Results.Ok("This is regular user data"); // Return data for regular users
-        }
-        return Results.Unauthorized(); // Return unauthorized if the user does not have the role
+        return Results.Ok(new { Email = email, UserType = userType });
     }
 
     private static async Task<IResult> AddUserAsync(UserRepository repo, User newUser)
@@ -119,6 +99,18 @@ public static class UserExtension
         var token = auth.GenerateToken(user);
 
         return Results.Ok(new { Token = token });
+    }
+
+    private static async Task<IResult> UpdateUserAsync(UserRepository repo, int id, User newUser)
+    {
+        var existingUser = await repo.GetUserByIdAsync(id);
+        if (existingUser is null)
+        {
+            return Results.BadRequest($"User with id number {id} does not exist");
+        }
+
+        await repo.UpdateUserAsync(id, newUser);
+        return Results.Ok();
     }
 
     private static async Task<IResult> DeleteUserAsync(UserRepository repo, int id)

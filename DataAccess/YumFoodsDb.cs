@@ -7,7 +7,6 @@ public class YumFoodsDb : DbContext
 {
     public YumFoodsDb(DbContextOptions<YumFoodsDb> options) : base(options)
     {
-
     }
 
     public DbSet<Product> Product { get; set; }
