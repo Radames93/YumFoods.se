@@ -4287,19 +4287,19 @@ footer {
   justify-content: space-around;
 }
 
-.miljö-img{
-  width: 520px; 
+.miljö-img {
+  width: 520px;
   height: 333px;
 }
 
-.prenum-img{
-  width: 547px; 
-  height: 471px; 
+.prenum-img {
+  width: 547px;
+  height: 471px;
   margin-left: -10px;
 }
 
-.prenum-info{
-  width: 547px; 
+.prenum-info {
+  width: 547px;
   height: 471px;
 }
 
@@ -5643,13 +5643,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); 
-  display: none; 
-  z-index: 999; 
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 999;
 }
 
 .cart-sidebar.open .overlay {
-  display: block; 
+  display: block;
 }
 
 /* .cart-sidebar {
@@ -5658,22 +5658,23 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   right: 0;
   display: flex;
   flex-direction: column;
-  width: 45% !important; 
-  height: 100vh; 
+  width: 45% !important;
+  height: 100vh;
   background-color: white;
   color: black;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
-  transition: right 0.3s ease-in-out; 
+  transition: right 0.3s ease-in-out;
   z-index: 9999;
   display: flex;
   flex-direction: column;
 } */
 
 .cart-sidebar.open {
-  right: 0; 
+  right: 0;
 }
 
-.cart-header, .cart-footer {
+.cart-header,
+.cart-footer {
   position: sticky;
   background-color: #f8f9fa;
   z-index: 1000;
@@ -5684,7 +5685,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .cart-footer {
-  bottom: 0 ;
+  bottom: 0;
   margin-right: 10px;
 }
 
@@ -5696,7 +5697,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 #sidebarCartItems {
-  overflow-y: auto; 
+  overflow-y: auto;
 }
 
 .cart-sidebar {
@@ -5709,7 +5710,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
   transition: right 0.3s ease;
   z-index: 1000;
-  overflow-y: auto !important; 
+  overflow-y: auto !important;
 }
 
 .cart-sidebar.open {
@@ -5725,7 +5726,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   bottom: 0;
   width: 100%;
   max-width: 576px;
-  background-color: #DD3902;
+  background-color: #dd3902;
   color: white;
   padding: 10px;
   font-size: 18px;
@@ -5749,13 +5750,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   color: #0f0c0c;
 }
 
-#mobileTotalPrice{
+#mobileTotalPrice {
   color: white;
   margin-left: 40px;
   width: 100%;
 }
 
-#mobileProductCount{
+#mobileProductCount {
   color: white;
 }
 /*======================
@@ -6599,35 +6600,35 @@ table tbody tr td span {
 /*========================
     SIGN UP PAGE START
 =========================*/
-.signup-input{
+.signup-input {
   display: flex;
   height: 48px;
   padding: 16px;
   align-items: center;
   align-self: stretch;
   border-radius: 6px !important;
-  border: 1px solid var(--Stroke, #CED3D2);
-  background: #FFF;
+  border: 1px solid var(--Stroke, #ced3d2);
+  background: #fff;
 }
 
-.signup-company:hover{
-  background: #FFDFCE;
+.signup-company:hover {
+  background: #ffdfce;
   color: #000;
   border: 2px solid black;
 }
 
-.signup-company{
+.signup-company {
   border-radius: 6px;
   border: 1px solid var(--Black-for-design, #000);
   color: #000;
 }
 
-.signup-form label{
+.signup-form label {
   color: var(--Black-for-text, #252627);
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 22.4px; 
+  line-height: 22.4px;
 }
 
 .login_area .form-check input {
@@ -6636,7 +6637,7 @@ table tbody tr td span {
   height: 16px;
   margin-right: 10px;
   border: 1px solid var(--Components-Checkbox-Border, rgba(0, 0, 0, 0.15));
-  background: var(--Gray-White, #FFF);
+  background: var(--Gray-White, #fff);
   border-radius: 4px;
 }
 
@@ -6648,16 +6649,16 @@ table tbody tr td span {
   margin-left: auto;
 }
 
-.social-icons.sign-up a{
+.social-icons.sign-up a {
   width: 45px;
   height: 45px;
-  border: 0.4px solid #F89AEE;
-  background-color: #ECE9EC;
+  border: 0.4px solid #f89aee;
+  background-color: #ece9ec;
   border-radius: 50%;
 }
 
-.social-icons.sign-up a:hover{
-  border: 2px solid #F89AEE;
+.social-icons.sign-up a:hover {
+  border: 2px solid #f89aee;
 }
 
 .login_area .form-check input:checked {
@@ -6673,7 +6674,7 @@ table tbody tr td span {
     SIGN IN PAGE start
 =========================*/
 
-.login-form{
+.login-form {
   border-radius: 4px !important;
 }
 
@@ -7489,7 +7490,7 @@ table tbody tr td span {
 
 .dashboard_contact_btns {
   gap: 16px;
-  margin-top: 10px;
+  margin-top: 10px !important;
   display: none;
 }
 
