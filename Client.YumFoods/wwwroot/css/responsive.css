@@ -145,8 +145,12 @@
   }
 
   .swiper-products{
-    margin-left: 100px !important;
+    margin-left: 0px !important;
   }
+
+  /* .swiper-slide{
+    width: 24% !important;
+  } */
 
   .btn-productmeny.btn1{
     margin-left: 30px;
@@ -162,7 +166,6 @@
     transform: scale(1);
     transition: transform 0.3s ease;
   }
-
   /* =====================
         SIDE BAR CART START
     =======================*/
@@ -1279,7 +1282,7 @@
  }
 
  .slide-content3{
-  margin-left: 30px;
+  margin-left: 10px;
 }
 
  .swiper-content{
@@ -1292,7 +1295,7 @@
 }
 
 .btn-productmeny.btn2{
-  margin-right:160px;
+  margin-right:110px;
 }
 
 .container4{
@@ -3611,6 +3614,18 @@
     /* =====================
        sIGNUP END
     =======================*/
+    /* =====================
+       sIGNIN FORGOT START
+    =======================*/
+
+    .forgot-area{
+      width: 100%;
+      max-width: 500px !important;
+    }
+
+    /* =====================
+       sIGNIN FORGOT END
+    =======================*/
 
   .faq_area_img {
     height: auto;
@@ -5182,6 +5197,22 @@
     }
     /* =====================
        SIGNUP END
+    =======================*/
+     /* =====================
+       sIGNIN FORGOT START
+    =======================*/
+
+    .forgot-area{
+      width: 100%;
+      max-width: 300px !important;
+    }
+   
+    .glömtpass-form{
+      width: 280PX;
+      margin-right: 10px !important;
+    }
+    /* =====================
+       sIGNIN FORGOT END
     =======================*/
 
   .faq_area_img {
