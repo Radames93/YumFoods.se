@@ -118,29 +118,28 @@
     margin-left: 40px;
   }
 
-
-  .swiper-content{
+  .swiper-content {
     max-width: 800px;
   }
   /* banner2 */
 
-  .swiper-container4 .swiper-wrapper{
+  .swiper-container4 .swiper-wrapper {
     margin-right: 0px;
   }
 
-  .custom-swiper-buttons.swiper-button-prev{
+  .custom-swiper-buttons.swiper-button-prev {
     margin-left: 55px;
   }
 
-  .custom-swiper-buttons.custom-swiper-buttons.swiper-button-next{
+  .custom-swiper-buttons.custom-swiper-buttons.swiper-button-next {
     margin-left: 65px;
   }
 
-  .slide-content3{
+  .slide-content3 {
     margin-left: 10px;
   }
 
-  .swiper-container4 .swiper-slide{
+  .swiper-container4 .swiper-slide {
     width: 200px;
   }
 
@@ -553,40 +552,40 @@
     height: 85px;
   }
   /* product page start */
-  .FärdigaMatkassar{
-     width: 280px;
+  .FärdigaMatkassar {
+    width: 280px;
   }
 
-  .product-title{
+  .product-title {
     margin-top: 70px;
   }
-  
-  .swiper-content{
+
+  .swiper-content {
     margin-top: -45px;
   }
 
-  .slide-content3{
+  .slide-content3 {
     margin-left: 60px;
   }
 
-  .btn-productmeny.btn1{
+  .btn-productmeny.btn1 {
     margin-left: 300px;
   }
 
-  .btn-productmeny.btn2{
+  .btn-productmeny.btn2 {
     margin-right: 60px;
   }
 
   /* banner2 */
-  .swiper-container4 .swiper-wrapper{
+  .swiper-container4 .swiper-wrapper {
     margin-right: 0px;
   }
 
-  .custom-swiper-buttons.swiper-button-prev{
+  .custom-swiper-buttons.swiper-button-prev {
     margin-left: 55px;
   }
 
-  .custom-swiper-buttons.custom-swiper-buttons.swiper-button-next{
+  .custom-swiper-buttons.custom-swiper-buttons.swiper-button-next {
     margin-left: 65px;
   }
 
@@ -1231,6 +1230,11 @@
   /* =====================
         DASHBOARD START
     =======================*/
+
+  #doorSwitch {
+    flex-direction: row !important;
+  }
+
   .track_order ul li {
     font-size: 15px;
   }
@@ -1238,6 +1242,12 @@
   .dash_personal_info p span {
     min-width: 100%;
     margin-bottom: 10px;
+  }
+
+  .dash_forms > div {
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
   }
 
   /* =====================
@@ -1265,61 +1275,60 @@
   }
 
   /* product page start */
-  .FärdigaMatkassar{
+  .FärdigaMatkassar {
     width: 280px;
- }
+  }
 
- .FärdigaMatkassar.firstbox{
-   margin-left: -120px;
- }
+  .FärdigaMatkassar.firstbox {
+    margin-left: -120px;
+  }
 
- .FärdigaMatkassar.secoundbox{
-  margin-left: -30px;
-}
+  .FärdigaMatkassar.secoundbox {
+    margin-left: -30px;
+  }
 
- .product-title{
-   margin-top: 70px;
- }
+  .product-title {
+    margin-top: 70px;
+  }
 
  .slide-content3{
   margin-left: 10px;
 }
 
- .swiper-content{
-  margin-top: -45px;
-}
+  .swiper-content {
+    margin-top: -45px;
+  }
 
-
-.btn-productmeny.btn1{
-  margin-left: 275px;
-}
+  .btn-productmeny.btn1 {
+    margin-left: 275px;
+  }
 
 .btn-productmeny.btn2{
   margin-right:110px;
 }
 
-.container4{
-  max-width: 1140px;
-}
+  .container4 {
+    max-width: 1140px;
+  }
 
   /* banner2 */
-  .swiper-container4 .swiper-wrapper{
+  .swiper-container4 .swiper-wrapper {
     margin-right: 0px;
   }
 
-  .custom-swiper-buttons.swiper-button-prev{
+  .custom-swiper-buttons.swiper-button-prev {
     margin-left: 55px;
   }
 
-  .custom-swiper-buttons.custom-swiper-buttons.swiper-button-next{
+  .custom-swiper-buttons.custom-swiper-buttons.swiper-button-next {
     margin-left: 65px;
   }
 
-  .swiper-container4 .swiper-slide{
+  .swiper-container4 .swiper-slide {
     width: 200px;
   }
 
- /* product page end */
+  /* product page end */
   /* =====================
         MENU DETAILS END
     =======================*/
@@ -2154,6 +2163,15 @@
   /* =====================
         DASHBOARD START
     =======================*/
+
+  #doorSwitch {
+    flex-direction: row !important;
+  }
+
+  .form-check-input {
+    width: 0.3em !important;
+  }
+
   .dashboard_content {
     padding: 25px;
   }
@@ -2165,6 +2183,33 @@
   .dash_personal_info p span {
     min-width: 100%;
     margin-bottom: 10px;
+  }
+
+  .dash_forms > div {
+    flex-direction: column;
+    width: 75%;
+  }
+
+  #dashboard_aside {
+    display: none;
+  }
+
+  #selectPage {
+    display: block !important;
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  #userMainPage {
+    flex-direction: column !important;
+    width: 90% !important;
+  }
+
+  #contain_user_content {
+    width: 75% !important;
+    margin: auto;
   }
 
   /* =====================
@@ -2240,109 +2285,110 @@
     order: -1;
   }
 
-  .box.FärdigaMatkassar.firstbox{
+  .box.FärdigaMatkassar.firstbox {
     margin-left: -220px;
     width: 250px;
   }
 
-  .box.FärdigaMatkassar.secoundbox{
+  .box.FärdigaMatkassar.secoundbox {
     margin-left: -100px;
     width: 250px;
   }
 
-  .meny-option.B3{
+  .meny-option.B3 {
     display: none;
   }
 
   /* product page start */
-  .FärdigaMatkassar{
+  .FärdigaMatkassar {
     width: 280px;
- }
+  }
 
- .FärdigaMatkassar.firstbox{
-   margin-left: 10px;
- }
+  .FärdigaMatkassar.firstbox {
+    margin-left: 10px;
+  }
 
- .FärdigaMatkassar.secoundbox{
-  margin-left: -30px;
-}
+  .FärdigaMatkassar.secoundbox {
+    margin-left: -30px;
+  }
 
- .product-title{
-   margin-top: 70px;
- }
+  .product-title {
+    margin-top: 70px;
+  }
 
- .product-sök{
-  width: 180px;
- }
+  .product-sök {
+    width: 180px;
+  }
 
- .swiper-products{
-  max-width: 400px;
-  margin-top: -45px;
-  margin-left: -40px;
- }
+  .swiper-products {
+    max-width: 400px;
+    margin-top: -45px;
+    margin-left: -40px;
+  }
 
- .slide-content2 .swiper-slide{
-  margin-right: 0px !important;
-  width: 150px !important;
- }
+  .slide-content2 .swiper-slide {
+    margin-right: 0px !important;
+    width: 150px !important;
+  }
 
- .slide-content3{
-  margin-left: 40px;
- }
+  .slide-content3 {
+    margin-left: 40px;
+  }
 
- .btn-productmeny.btn1{
-  display: flex; 
-  margin-left:220px;
-  margin-top: -45px;
-  z-index: 2;
-}
+  .btn-productmeny.btn1 {
+    display: flex;
+    margin-left: 220px;
+    margin-top: -45px;
+    z-index: 2;
+  }
 
-.btn-productmeny.btn2{
-  margin-top: -45px;
-  margin-right:-5px;
-}
+  .btn-productmeny.btn2 {
+    margin-top: -45px;
+    margin-right: -5px;
+  }
 
-/* banner i product page */
-.custom-img-3{
-  width: 140px;
-  height: 140px;
-  margin-top: -170px;
-  margin-left: 120px;
-}
+  /* banner i product page */
+  .custom-img-3 {
+    width: 140px;
+    height: 140px;
+    margin-top: -170px;
+    margin-left: 120px;
+  }
 
-.banner1-h1{
-  margin-left: 50px;
-}
+  .banner1-h1 {
+    margin-left: 50px;
+  }
 
-.products-banner-1{
- padding-left: 20px;
-}
+  .products-banner-1 {
+    padding-left: 20px;
+  }
 
-.mikro-info{
-  margin-left: 50px;
-  display: flex;
-  flex-direction: row;
-}
+  .mikro-info {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+  }
 
-.micro-info-1, .micro-info-2 {
-  width: 70%; 
-}
+  .micro-info-1,
+  .micro-info-2 {
+    width: 70%;
+  }
 
-.micro-info-1 img {
-  width: 100px; 
-}
+  .micro-info-1 img {
+    width: 100px;
+  }
 
-.micro-info-2 {
-  padding-left: 120px; 
-  margin-top: -90px;
-}
+  .micro-info-2 {
+    padding-left: 120px;
+    margin-top: -90px;
+  }
 
-.banner1-p{
-  padding-left: 50px;
- }
+  .banner1-p {
+    padding-left: 50px;
+  }
 
-/* banner2 */
-/* .swiper-container4 .swiper-wrapper{
+  /* banner2 */
+  /* .swiper-container4 .swiper-wrapper{
   right: 100px;
 }
 
@@ -2356,7 +2402,7 @@
   left: 280px;
   top: 200px;
  }
- 
+
  .custom-swiper-buttons.swiper-button-next {
    width: 24px;
    position: absolute;
@@ -2367,13 +2413,13 @@
   .slide-content4 {
     margin-left: auto;
     max-width: 700px;
-}
-
-  .banner2{
-  width: 70%;
-  height: 100px;
   }
- /* product page end */
+
+  .banner2 {
+    width: 70%;
+    height: 100px;
+  }
+  /* product page end */
 
   /* =====================
         MENU DETAILS END
@@ -3537,6 +3583,15 @@
   /* =====================
         DASHBOARD START
     =======================*/
+
+  #doorSwitch {
+    flex-direction: row !important;
+  }
+
+  .form-check-input {
+    width: 0.3em !important;
+  }
+
   .dashboard_content {
     padding: 15px;
   }
@@ -3585,6 +3640,44 @@
 
   .dash_personal_info .personal_info_text {
     padding-top: 5px;
+  }
+
+  .dash_forms > div {
+    flex-direction: column;
+    width: 80%;
+  }
+
+  #title_icon {
+    flex-direction: column-reverse;
+  }
+
+  #title_icon > i {
+    margin-left: 0px !important;
+    align-self: flex-start !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  #dashboard_aside {
+    display: none;
+  }
+
+  #selectPage {
+    display: block !important;
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  #userMainPage {
+    flex-direction: column !important;
+    width: 90% !important;
+  }
+
+  #contain_user_content {
+    width: 75% !important;
+    margin: auto;
   }
 
   /* =====================
@@ -3714,98 +3807,99 @@
     max-width: 60%;
   }
 
-   /* product page start */
-  .FärdigaMatkassar{
+  /* product page start */
+  .FärdigaMatkassar {
     width: 280px;
- }
+  }
 
- .FärdigaMatkassar.firstbox{
-   margin-left: -260px;
-   max-width: 150px;
- }
+  .FärdigaMatkassar.firstbox {
+    margin-left: -260px;
+    max-width: 150px;
+  }
 
- .FärdigaMatkassar.secoundbox{
-  margin-left: -160px;
-  max-width: 150px;
-  height: 94.5px;
-}
+  .FärdigaMatkassar.secoundbox {
+    margin-left: -160px;
+    max-width: 150px;
+    height: 94.5px;
+  }
 
- .product-title{
-   margin-top: 70px;
- }
+  .product-title {
+    margin-top: 70px;
+  }
 
- .product-sök{
-  width: 180px;
- }
+  .product-sök {
+    width: 180px;
+  }
 
- .swiper-products{
-  max-width: 300px;
-  margin-top: -45px;
-  margin-left: -15px;
- }
+  .swiper-products {
+    max-width: 300px;
+    margin-top: -45px;
+    margin-left: -15px;
+  }
 
- .btn-productmeny.btn1{
-  display: flex; 
-  margin-left:220px;
-  margin-top: -45px;
-}
+  .btn-productmeny.btn1 {
+    display: flex;
+    margin-left: 220px;
+    margin-top: -45px;
+  }
 
-.btn-productmeny.btn2{
-  margin-top: -45px;
-  margin-right: 10px;
-}
+  .btn-productmeny.btn2 {
+    margin-top: -45px;
+    margin-right: 10px;
+  }
 
-.slide-content3{
-  margin-left: 30px;
-}
+  .slide-content3 {
+    margin-left: 30px;
+  }
 
-/* banner i product page */
-.custom-img-3{
-  width: 130px;
-  height: 120px;
-  margin-top: -170px;
-  margin-left: 240px;
-}
+  /* banner i product page */
+  .custom-img-3 {
+    width: 130px;
+    height: 120px;
+    margin-top: -170px;
+    margin-left: 240px;
+  }
 
-.mikro-info{
-  margin-left: 50px;
-  display: flex;
-  flex-direction: row;
-}
+  .mikro-info {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+  }
 
-.micro-info-1, .micro-info-2 {
-  width: 90%; 
-}
+  .micro-info-1,
+  .micro-info-2 {
+    width: 90%;
+  }
 
-.micro-info-1 img {
-  width: 100px; 
-}
+  .micro-info-1 img {
+    width: 100px;
+  }
 
-.micro-info-2 {
-  padding-left: 110px; 
-  margin-top: -120px;
-}
+  .micro-info-2 {
+    padding-left: 110px;
+    margin-top: -120px;
+  }
 
-.banner1-h1{
-  margin-left: 50px;
-}
+  .banner1-h1 {
+    margin-left: 50px;
+  }
 
-.products-banner-1{
- padding-left: 20px;
-}
+  .products-banner-1 {
+    padding-left: 20px;
+  }
 
-.banner1-p{
-  padding-left: 50px;
-  margin-bottom: 40px !important;
-  padding-right: 50px;
- }
- 
-.products-banner-1{
-  padding-left: 20px;
- }
+  .banner1-p {
+    padding-left: 50px;
+    margin-bottom: 40px !important;
+    padding-right: 50px;
+  }
 
- /* banner2 */
- /* .swiper-container4 .swiper-wrapper{
+  .products-banner-1 {
+    padding-left: 20px;
+  }
+
+  /* banner2 */
+  /* .swiper-container4 .swiper-wrapper{
   margin-left: 30px;
 }
 
@@ -3819,7 +3913,7 @@
   left: 200px;
   top: 200px;
  }
- 
+
  .custom-swiper-buttons.swiper-button-next {
    width: 24px;
    position: absolute;
@@ -3830,13 +3924,13 @@
   .slide-content4 {
     margin-left: 0;
     max-width: 580px;
-}
+  }
 
-.banner2{
-  width: 70%;
-  height: 100px;
-}
- /* product page end */
+  .banner2 {
+    width: 70%;
+    height: 100px;
+  }
+  /* product page end */
   /* =====================
         MENU DETAILS END
     =======================*/
@@ -5112,6 +5206,14 @@
   /* =====================
         DASHBOARD START
     =======================*/
+  #doorSwitch {
+    flex-direction: row !important;
+  }
+
+  .form-check-input {
+    width: 0.3em !important;
+  }
+
   .dashboard_content {
     padding: 15px;
   }
@@ -5160,6 +5262,59 @@
 
   .dash_personal_info .personal_info_text {
     padding-top: 5px;
+  }
+
+  .dash_forms > div {
+    flex-direction: column;
+    width: 85%;
+  }
+
+  #title_icon {
+    flex-direction: column-reverse;
+  }
+
+  #title_icon > i {
+    margin-left: 0px !important;
+    align-self: flex-start !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  #dashboard_aside {
+    display: none;
+  }
+
+  #selectPage {
+    display: block !important;
+    width: 200px;
+    margin: auto;
+  }
+
+  #dashboard_aside {
+    display: none;
+  }
+
+  #selectPage {
+    display: block !important;
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  #userMainPage {
+    flex-direction: column !important;
+    width: 75% !important;
+  }
+
+  #contain_user_content {
+    width: 120% !important;
+    /* margin: auto; */
+  }
+
+  .subsTimeEdit {
+    flex-direction: column !important;
+    align-items: center;
   }
 
   /* =====================
@@ -5313,7 +5468,7 @@
   }
 
   .image-container-product {
-    background-size: contain; 
+    background-size: contain;
     width: 100%;
     height: auto;
     margin-left: 0;
@@ -5344,7 +5499,7 @@
   .col-4 {
     width: 100%;
   }
-/* start product page */
+  /* start product page */
   .FärdigaMatkassar {
     width: 250px;
     margin-left: auto;
@@ -5376,23 +5531,23 @@
     margin-right: 0;
   }
 
-  .image-container-product p{
+  .image-container-product p {
     margin-top: 0;
   }
 
-  .image-container-product h1{
+  .image-container-product h1 {
     margin-top: 0;
   }
 
-  .slide-content3{
+  .slide-content3 {
     margin-left: 10px;
   }
 
-  .meny-option{
+  .meny-option {
     width: 120px !important;
   }
 
-  .product-first-banner{
+  .product-first-banner {
     margin-top: 0px !important;
     margin-bottom: 20px !important;
   }
@@ -5413,19 +5568,18 @@
   }
 
   .btn-productmeny.btn2 {
-    margin-right: 70px; 
+    margin-right: 70px;
     display: inline-block;
   }
 
-    .btn-productmeny.btn1 {
-      margin-left: 40px;
-      display: inline-block;
-    }
-  
+  .btn-productmeny.btn1 {
+    margin-left: 40px;
+    display: inline-block;
+  }
 
   .check-products img {
     margin-right: 0;
-    display: none; 
+    display: none;
     width: 15px;
     height: 15px;
   }
@@ -5434,55 +5588,54 @@
     margin-left: -40px;
   }
 
-
   /* banner i product page */
-.micro-info-2{
-  margin-left: 20px;
-  margin-top: -40px;
-}
+  .micro-info-2 {
+    margin-left: 20px;
+    margin-top: -40px;
+  }
 
-.banner1-h1{
-  margin-left: 50px;
-}
+  .banner1-h1 {
+    margin-left: 50px;
+  }
 
-.products-banner-1{
- padding-left: 20px;
-}
+  .products-banner-1 {
+    padding-left: 20px;
+  }
 
-.mikro-info{
-  margin-left: 30px;
-}
+  .mikro-info {
+    margin-left: 30px;
+  }
 
-.banner1-p{
-  padding-left: 50px;
-  margin-bottom: 0 !important;
- }
+  .banner1-p {
+    padding-left: 50px;
+    margin-bottom: 0 !important;
+  }
 
-.custom-img-3{
-  width: 110px;
-  height: 110px;
-  margin-top: -200px;
-  margin-left: 190px;
-}
+  .custom-img-3 {
+    width: 110px;
+    height: 110px;
+    margin-top: -200px;
+    margin-left: 190px;
+  }
 
-.custom-img-1{
-  margin-left: 0px;
-  width: 120px;
-}
+  .custom-img-1 {
+    margin-left: 0px;
+    width: 120px;
+  }
 
-.products-banner-1{
-  width: 100%;
-  max-width: 480px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
+  .products-banner-1 {
+    width: 100%;
+    max-width: 480px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
-.banner1-p{
-  padding-right: 50px;
- }
+  .banner1-p {
+    padding-right: 50px;
+  }
 
- /* banner2 */
- /* .swiper-wrapper2{
+  /* banner2 */
+  /* .swiper-wrapper2{
   margin: 0 auto;
   margin-right: 20px;
 }
@@ -5503,7 +5656,7 @@
   top: 140px;
   left: 215px;
  }
- 
+
  .custom-swiper-buttons.swiper-button-next {
    width: 5px;
    height: 5px;
@@ -5518,12 +5671,12 @@
     flex-direction: column !important;
   }
 
-  .banner2{
+  .banner2 {
     width: 70%;
     height: 100px;
   }
 
-/* end product page */
+  /* end product page */
   /* =====================
         MENU DETAILS END
     =======================*/
