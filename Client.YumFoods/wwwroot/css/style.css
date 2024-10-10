@@ -35,27 +35,39 @@ CSS TABLE OF CONTENTS
 }
 
 @font-face {
-    font-family: 'FontAwesome';
-    src: url('../webfonts/fa-brands-400.eot');
-    src: url('../webfonts/fa-brands-400.eot?#iefix') format('embedded-opentype'), url('../webfonts/fa-brands-400.woff2') format('woff2'), url('../webfonts/fa-brands-400.woff') format('woff'), url('../webfonts/fa-brands-400.ttf') format('truetype'), url('../webfonts/fa-brands-400.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-family: 'FontAwesome';
-    src: url('../webfonts/fa-regular-400.eot');
-    src: url('../webfonts/fa-regular-400.eot?#iefix') format('embedded-opentype'), url('../webfonts/fa-regular-400.woff2') format('woff2'), url('../webfonts/fa-regular-400.woff') format('woff'), url('../webfonts/fa-regular-400.ttf') format('truetype'), url('../webfonts/fa-regular-400.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-family: 'FontAwesome';
-    src: url('../webfonts/fa-solid-900.eot');
-    src: url('../webfonts/fa-solid-900.eot?#iefix') format('embedded-opentype'), url('../webfonts/fa-solid-900.woff2') format('woff2'), url('../webfonts/fa-solid-900.woff') format('woff'), url('../webfonts/fa-solid-900.ttf') format('truetype'), url('../webfonts/fa-solid-900.svg') format('svg');
-    font-weight: normal;
-    font-style: normal;
-    font-family: 'Poppins';
-    src: url('../webfonts/Poppins-Regular.ttf');
-    font-family: 'Inter';
-    src: url('../webfonts/Inter-Regular.ttf');
-    font-family: 'LeagueSpartan';
-    src: url('../webfonts/LeagueSpartan-Regular.ttf');
+  font-family: "FontAwesome";
+  src: url("../webfonts/fa-brands-400.eot");
+  src: url("../webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"),
+    url("../webfonts/fa-brands-400.woff2") format("woff2"),
+    url("../webfonts/fa-brands-400.woff") format("woff"),
+    url("../webfonts/fa-brands-400.ttf") format("truetype"),
+    url("../webfonts/fa-brands-400.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-family: "FontAwesome";
+  src: url("../webfonts/fa-regular-400.eot");
+  src: url("../webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"),
+    url("../webfonts/fa-regular-400.woff2") format("woff2"),
+    url("../webfonts/fa-regular-400.woff") format("woff"),
+    url("../webfonts/fa-regular-400.ttf") format("truetype"),
+    url("../webfonts/fa-regular-400.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-family: "FontAwesome";
+  src: url("../webfonts/fa-solid-900.eot");
+  src: url("../webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"),
+    url("../webfonts/fa-solid-900.woff2") format("woff2"),
+    url("../webfonts/fa-solid-900.woff") format("woff"),
+    url("../webfonts/fa-solid-900.ttf") format("truetype"),
+    url("../webfonts/fa-solid-900.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-family: "Poppins";
+  src: url("../webfonts/Poppins-Regular.ttf");
+  font-family: "Inter";
+  src: url("../webfonts/Inter-Regular.ttf");
+  font-family: "LeagueSpartan";
+  src: url("../webfonts/LeagueSpartan-Regular.ttf");
 }
 
 ul,
@@ -1315,13 +1327,8 @@ button {
   background-color: var(--Secondary-color, #ffdfce);
 }
 
-<<<<<<< HEAD
 .meny-option {
-  width: 140px !important;
-=======
-.meny-option{
   width: 100px !important;
->>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
   text-align: center;
   background-color: white;
 }
@@ -6690,7 +6697,6 @@ table tbody tr td span {
   border-color: black;
 }
 
-
 /*========================
     SIGN UP PAGE End
 =========================*/
@@ -6699,9 +6705,6 @@ table tbody tr td span {
     SIGN IN PAGE start
 =========================*/
 
-<<<<<<< HEAD
-.login-form {
-=======
 #forgotPasswordBox h1 {
   text-align: center;
 }
@@ -6710,18 +6713,17 @@ table tbody tr td span {
   padding: 0 15px;
 }
 
-.forgot-area{
+.forgot-area {
   width: 100%;
   max-width: 570px !important;
 }
 
-.glömtpass-form{
+.glömtpass-form {
   margin-left: auto;
   margin-right: auto;
 }
 
-.login-form{
->>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
+.login-form {
   border-radius: 4px !important;
 }
 

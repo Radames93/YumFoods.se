@@ -514,21 +514,17 @@ if (loginForm) {
   loginForm.addEventListener("submit", validateLogin);
 }
 
-<<<<<<< HEAD
-=======
 // FORGOT PASSWORD IN SIGN IN SIDA
 function showForgotPassword() {
-  document.getElementById('loginBox').style.display = 'none';
-  document.getElementById('forgotPasswordBox').style.display = 'block';
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("forgotPasswordBox").style.display = "block";
 }
 
 function showLogin() {
-  document.getElementById('forgotPasswordBox').style.display = 'none';
-  document.getElementById('loginBox').style.display = 'block';
+  document.getElementById("forgotPasswordBox").style.display = "none";
+  document.getElementById("loginBox").style.display = "block";
 }
 
-
->>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
 // secound part of start page
 const infoBox = document.querySelector(".info-box");
 if (infoBox !== null) {
@@ -835,21 +831,15 @@ if (searchBar !== null) {
 
 //Fetch items from database
 const loadProducts = async () => {
-<<<<<<< HEAD
   try {
     const API_KEY = variables();
     // Fetch the products from the API
-    const response = await fetch(`https://${API_KEY}/products`);
 
     // const response = await fetch(`https://localhost:7216/products`);
 
+    const response = await fetch(`https://${API_KEY}/products`);
+
     const data = await response.json();
-=======
-    try {
-        const API_KEY = variables();
-        // Fetch the products from the API
-        const response = await fetch(`https://localhost:7216/products`);
->>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
 
     // Check if the response is OK (status code in the 200-299 range)
     if (!response.ok) {
@@ -2465,7 +2455,7 @@ const sortingDishDietFunction = (el) => {
     }
   }
 };
-// loadProducts();
+loadProducts();
 
 // Make modal fetch data from json file
 var cardModal = document.getElementById("modal");
@@ -5294,19 +5284,17 @@ function goToCheckout() {
 // Funktion för att lägga till produkt i varukorgen
 // function addToCart(product) {
 //   localStorage.setItem('sidebarOpen', 'true');
-//   openSidebar(); 
+//   openSidebar();
 // }
 
 function addToCart(product) {
-<<<<<<< HEAD
-  localStorage.setItem("sidebarOpen", "true");
-  openSidebar();
-=======
-  console.log('addToCart called');
-  let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+  console.log("addToCart called");
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
 
-  const existingProductIndex = formDataArry.findIndex(item => item.id === product.id);
-  
+  const existingProductIndex = formDataArry.findIndex(
+    (item) => item.id === product.id
+  );
+
   if (existingProductIndex !== -1) {
     formDataArry[existingProductIndex].quantity += 1;
   } else {
@@ -5315,18 +5303,16 @@ function addToCart(product) {
       title: product.title,
       description: product.description,
       price: product.price,
-      quantity: 1, 
+      quantity: 1,
       img: product.img,
-      diet: product.diet
+      diet: product.diet,
     });
   }
 
   // Uppdatera varukorgsdata i localStorage
-  localStorage.setItem('formDataArry', JSON.stringify(formDataArry));
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   updateSidebarCart();
   openSidebar();
-  
->>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -5342,31 +5328,18 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-<<<<<<< HEAD
-  if (localStorage.getItem("sidebarOpen") === "true") {
-    openSidebar();
-  }
-
-  // Update the sidebar cart with items and show mobile notification
-  function updateSidebarCart() {
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
-    const sidebarCartItems = document.getElementById("sidebarCartItems");
-    const mobileProductCount = document.getElementById("mobileProductCount");
-    const mobileTotalPrice = document.getElementById("mobileTotalPrice");
-=======
   // if (localStorage.getItem('sidebarOpen') === 'true') {
   //   openSidebar();
   // }
 
   // Update the sidebar cart with items and show mobile notification
   function updateSidebarCart() {
-    console.log('updateSidebarCart called'); 
-    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
-    console.log('Cart contents:', formDataArry);
-    const sidebarCartItems = document.getElementById('sidebarCartItems');
-    const mobileProductCount = document.getElementById('mobileProductCount');
-    const mobileTotalPrice = document.getElementById('mobileTotalPrice');
->>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
+    console.log("updateSidebarCart called");
+    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
+    console.log("Cart contents:", formDataArry);
+    const sidebarCartItems = document.getElementById("sidebarCartItems");
+    const mobileProductCount = document.getElementById("mobileProductCount");
+    const mobileTotalPrice = document.getElementById("mobileTotalPrice");
 
     sidebarCartItems.innerHTML = "";
     let totalQuantity = 0;
@@ -5457,18 +5430,12 @@ document.addEventListener("DOMContentLoaded", function () {
       "mobileCartNotification"
     );
     if (totalQuantity > 0) {
-<<<<<<< HEAD
       mobileCartNotification.style.display = "flex";
+      openSidebar();
     } else {
       mobileCartNotification.style.display = "none";
-=======
-      mobileCartNotification.style.display = 'flex';
-      openSidebar();  
-    } else {
-      mobileCartNotification.style.display = 'none';
-      cartSidebar.classList.remove('open');  
-      overlay.style.display = 'none';
->>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
+      cartSidebar.classList.remove("open");
+      overlay.style.display = "none";
     }
   }
 
