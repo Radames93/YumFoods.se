@@ -79,7 +79,7 @@ internal class Program
         var completeConnectionString2 = $"{connectionString2};SslMode=VerifyCA;SslCa={tempFilePath}";
         //var completeConnectionString = "Server=localhost;Database=yumfoodsdb;Uid=root;Pwd=admin;";
         //var completeConnectionString2 = "Server=localhost;Database=yumfoods.userdb;Uid=root;Pwd=admin;";
-
+        // hello
         // Configure your DbContext to use MySQL with the retrieved connection string
         builder.Services.AddDbContext<YumFoodsDb>(options =>
         {

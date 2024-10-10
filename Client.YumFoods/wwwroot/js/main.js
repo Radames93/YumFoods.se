@@ -514,6 +514,21 @@ if (loginForm) {
   loginForm.addEventListener("submit", validateLogin);
 }
 
+<<<<<<< HEAD
+=======
+// FORGOT PASSWORD IN SIGN IN SIDA
+function showForgotPassword() {
+  document.getElementById('loginBox').style.display = 'none';
+  document.getElementById('forgotPasswordBox').style.display = 'block';
+}
+
+function showLogin() {
+  document.getElementById('forgotPasswordBox').style.display = 'none';
+  document.getElementById('loginBox').style.display = 'block';
+}
+
+
+>>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
 // secound part of start page
 const infoBox = document.querySelector(".info-box");
 if (infoBox !== null) {
@@ -820,6 +835,7 @@ if (searchBar !== null) {
 
 //Fetch items from database
 const loadProducts = async () => {
+<<<<<<< HEAD
   try {
     const API_KEY = variables();
     // Fetch the products from the API
@@ -828,6 +844,12 @@ const loadProducts = async () => {
     // const response = await fetch(`https://localhost:7216/products`);
 
     const data = await response.json();
+=======
+    try {
+        const API_KEY = variables();
+        // Fetch the products from the API
+        const response = await fetch(`https://localhost:7216/products`);
+>>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
 
     // Check if the response is OK (status code in the 200-299 range)
     if (!response.ok) {
@@ -925,7 +947,7 @@ const yumProducts = (yumProductsList) => {
                   padding: 18px 16px;
                   border: 1px solid white;
                   color: white;
-                  background: var(--Complementary-color, #DD3902);"><i class="fas fa-shopping-basket"></i></i>Lägg i varukorg</button>
+                  background: var(--Complementary-color, #DD3902);"><i class="fas fa-shopping-basket"></i>Lägg i varukorg</button>
 
                   <button
                     data-yum-id=${yum.id}
@@ -1319,7 +1341,7 @@ const CarouselDietButtons = (yumProductsList) => {
       .map((diet) => {
         return `
           <div class="swiper-slide">
-            <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64)" onclick="fetchProductsByDiet('${diet}')">
+            <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64)" onclick="sortingDishDietFunction('${diet}')" >
               ${diet}
             </button>
           </div>
@@ -1332,6 +1354,7 @@ const CarouselDietButtons = (yumProductsList) => {
   }
 };
 
+// swiper in product page-first part
 var swiper3 = new Swiper(".slide-content3", {
   centeredSlide: "true",
   fade: "true",
@@ -5269,9 +5292,41 @@ function goToCheckout() {
 }
 
 // Funktion för att lägga till produkt i varukorgen
+// function addToCart(product) {
+//   localStorage.setItem('sidebarOpen', 'true');
+//   openSidebar(); 
+// }
+
 function addToCart(product) {
+<<<<<<< HEAD
   localStorage.setItem("sidebarOpen", "true");
   openSidebar();
+=======
+  console.log('addToCart called');
+  let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+
+  const existingProductIndex = formDataArry.findIndex(item => item.id === product.id);
+  
+  if (existingProductIndex !== -1) {
+    formDataArry[existingProductIndex].quantity += 1;
+  } else {
+    formDataArry.push({
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      quantity: 1, 
+      img: product.img,
+      diet: product.diet
+    });
+  }
+
+  // Uppdatera varukorgsdata i localStorage
+  localStorage.setItem('formDataArry', JSON.stringify(formDataArry));
+  updateSidebarCart();
+  openSidebar();
+  
+>>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -5287,6 +5342,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+<<<<<<< HEAD
   if (localStorage.getItem("sidebarOpen") === "true") {
     openSidebar();
   }
@@ -5297,6 +5353,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const sidebarCartItems = document.getElementById("sidebarCartItems");
     const mobileProductCount = document.getElementById("mobileProductCount");
     const mobileTotalPrice = document.getElementById("mobileTotalPrice");
+=======
+  // if (localStorage.getItem('sidebarOpen') === 'true') {
+  //   openSidebar();
+  // }
+
+  // Update the sidebar cart with items and show mobile notification
+  function updateSidebarCart() {
+    console.log('updateSidebarCart called'); 
+    let formDataArry = JSON.parse(localStorage.getItem('formDataArry')) || [];
+    console.log('Cart contents:', formDataArry);
+    const sidebarCartItems = document.getElementById('sidebarCartItems');
+    const mobileProductCount = document.getElementById('mobileProductCount');
+    const mobileTotalPrice = document.getElementById('mobileTotalPrice');
+>>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
 
     sidebarCartItems.innerHTML = "";
     let totalQuantity = 0;
@@ -5387,9 +5457,18 @@ document.addEventListener("DOMContentLoaded", function () {
       "mobileCartNotification"
     );
     if (totalQuantity > 0) {
+<<<<<<< HEAD
       mobileCartNotification.style.display = "flex";
     } else {
       mobileCartNotification.style.display = "none";
+=======
+      mobileCartNotification.style.display = 'flex';
+      openSidebar();  
+    } else {
+      mobileCartNotification.style.display = 'none';
+      cartSidebar.classList.remove('open');  
+      overlay.style.display = 'none';
+>>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
     }
   }
 

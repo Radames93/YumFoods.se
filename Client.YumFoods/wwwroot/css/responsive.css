@@ -143,11 +143,15 @@
     width: 200px;
   }
 
-  .swiper-products {
-    margin-left: 100px !important;
+  .swiper-products{
+    margin-left: 0px !important;
   }
 
-  .btn-productmeny.btn1 {
+  /* .swiper-slide{
+    width: 24% !important;
+  } */
+
+  .btn-productmeny.btn1{
     margin-left: 30px;
   }
 
@@ -161,7 +165,6 @@
     transform: scale(1);
     transition: transform 0.3s ease;
   }
-
   /* =====================
         SIDE BAR CART START
     =======================*/
@@ -1288,9 +1291,9 @@
     margin-top: 70px;
   }
 
-  .slide-content3 {
-    margin-left: 30px;
-  }
+ .slide-content3{
+  margin-left: 10px;
+}
 
   .swiper-content {
     margin-top: -45px;
@@ -1300,9 +1303,9 @@
     margin-left: 275px;
   }
 
-  .btn-productmeny.btn2 {
-    margin-right: 160px;
-  }
+.btn-productmeny.btn2{
+  margin-right:110px;
+}
 
   .container4 {
     max-width: 1140px;
@@ -3704,6 +3707,18 @@
     /* =====================
        sIGNUP END
     =======================*/
+    /* =====================
+       sIGNIN FORGOT START
+    =======================*/
+
+    .forgot-area{
+      width: 100%;
+      max-width: 500px !important;
+    }
+
+    /* =====================
+       sIGNIN FORGOT END
+    =======================*/
 
   .faq_area_img {
     height: auto;
@@ -5337,6 +5352,22 @@
     }
     /* =====================
        SIGNUP END
+    =======================*/
+     /* =====================
+       sIGNIN FORGOT START
+    =======================*/
+
+    .forgot-area{
+      width: 100%;
+      max-width: 300px !important;
+    }
+   
+    .glömtpass-form{
+      width: 280PX;
+      margin-right: 10px !important;
+    }
+    /* =====================
+       sIGNIN FORGOT END
     =======================*/
 
   .faq_area_img {

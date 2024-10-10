@@ -56,12 +56,17 @@
       <div class="container pt-5">
         <div class="row justify-content-center">
           <div class="col-xl-6 col-lg-8 col-md-10">
+<<<<<<< HEAD
             <div class="login_area p-4 shadow rounded">
               <button
                 class="close-btn btn"
                 style="float: right"
                 onclick="window.location.href='index.html'"
               >
+=======
+            <div class="login_area p-4 shadow rounded" id="loginBox">
+              <button class="close-btn btn" style="float: right;" onclick="window.location.href='index.html'">
+>>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
                 Stäng &times;
               </button>
 
@@ -119,6 +124,7 @@
                       >Kom ihåg mig</label
                     >
                   </div>
+<<<<<<< HEAD
                   <a
                     href="#"
                     class="forgot-password mt-2"
@@ -129,6 +135,9 @@
                     "
                     >Glömt lösenord?</a
                   >
+=======
+                  <a href="#" class="forgot-password mt-2" onclick="showForgotPassword()" style="color: red; border-bottom: 1px solid red; margin-right: 50px;">Glömt lösenord?</a>
+>>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
                 </div>
 
                 <div class="d-flex justify-content-end mt-3">
@@ -196,7 +205,30 @@
           </div>
         </div>
       </div>
+    
+      <!-- Forgot Password Area -->
+      <div class="login_area forgot-area p-4 shadow rounded" id="forgotPasswordBox" style="display: none;">
+        <button class="close-btn btn" style="float: right;" onclick="window.location.href='index.html'">
+          Stäng &times;
+        </button>
+
+        <h1 class="text-center mt-5">Har du glömt ditt lösenord?</h1>
+        <p class="text-center mt-3" style="padding: 0 10px; color: grey;">Det är lätt hänt! Ange din mejladress för att <br>få lorem ipsum lorem ipsum lorem ipsum<br> lorem ipsum</p>
+
+        <form id="forgotPasswordForm" >
+          <div class="form-group glömtpass-form mb-3">
+            <label for="email">Email</label>
+            <input type="email" class="form-control login-form" id="email-reset" placeholder="Ange din email" required autocomplete="email">
+          </div>
+
+          <div class="d-flex justify-content-between mt-4">
+            <button type="button" class="btn btn-light" onclick="showLogin()" style="border: 1px solid black;">Avbryt</button>
+            <button type="submit" class="btn btn-danger">Återställ lösenord</button>
+          </div>
+        </form>
+      </div>
     </section>
+
 
     <!-- Login Modal Section -->
 
@@ -276,6 +308,7 @@
         </div>
       </div>
     </section> -->
+     
     <!--=========================
         SIGNIN END
     ==========================-->

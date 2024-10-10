@@ -1315,8 +1315,13 @@ button {
   background-color: var(--Secondary-color, #ffdfce);
 }
 
+<<<<<<< HEAD
 .meny-option {
   width: 140px !important;
+=======
+.meny-option{
+  width: 100px !important;
+>>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
   text-align: center;
   background-color: white;
 }
@@ -1351,7 +1356,7 @@ button {
 .btn-productmeny {
   border-radius: 50%;
   background-color: rgb(254, 254, 254);
-  padding: 10px;
+  padding: 5px;
   width: 35px;
   height: 35px;
   margin-right: 10px;
@@ -6685,6 +6690,7 @@ table tbody tr td span {
   border-color: black;
 }
 
+
 /*========================
     SIGN UP PAGE End
 =========================*/
@@ -6693,23 +6699,40 @@ table tbody tr td span {
     SIGN IN PAGE start
 =========================*/
 
+<<<<<<< HEAD
 .login-form {
+=======
+#forgotPasswordBox h1 {
+  text-align: center;
+}
+
+#forgotPasswordBox p {
+  padding: 0 15px;
+}
+
+.forgot-area{
+  width: 100%;
+  max-width: 570px !important;
+}
+
+.glömtpass-form{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-form{
+>>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
   border-radius: 4px !important;
 }
 
-/*========================
-    SIGN IN PAGE END
-=========================*/
-
-/*========================
-    SIGN IN PAGE START
-=========================*/
 .signin {
   background: #eef6eb;
   background: #f3f7fb;
 }
 
 .login_area {
+  margin: auto;
+  max-width: 100%;
   background: var(--colorWhite);
   padding: 50px;
   overflow: hidden;
