@@ -867,11 +867,11 @@ const loadProducts = async () => {
     );
 
     // Further filtering or categorization
-    const yumFiltered = yumProductsList;
-    const dailyFiltered = dailyProductsList;
-    const premiumFiltered = premiumProductsList;
-    const subscriptionsFiltered = subscriptionsProductsList;
-    const baguetterFiltered = baguetterProductsList;
+    yumFiltered = yumProductsList;
+    dailyFiltered = dailyProductsList;
+    premiumFiltered = premiumProductsList;
+    subscriptionsFiltered = subscriptionsProductsList;
+    baguetterFiltered = baguetterProductsList;
 
     // Combine all categories into one list
     const all = [
