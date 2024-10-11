@@ -159,7 +159,7 @@
                                                           bokning.
                                                       </p>
 
-                                                      <form id="purchase">
+                                                      <form id="purchase" onsubmit="savePurchaseData(event)">
                                                       <div class="mb-4">
                                                           <div class="d-flex flex-row deliverDate">
                                                               <div class="swiper-button-prev-dates calender-arrow">
@@ -272,7 +272,7 @@
                                                               <input class="rounded-3"
                                                                      type="text"
                                                                      placeholder="Ange gatuadress"
-                                                                     id="adressInput"/>
+                                                                     id="addressInput"/>
                                                           </div>
                                                       </div>
                                                       <div class="d-flex flex-row mb-4">
@@ -389,21 +389,21 @@
                                                       </div>
                                                       <div class="mb-4">
                                                           <p class="mb-2 font-fix">Mejladress *</p>
-                                                          <div class="d-flex justify-content-between" >
+                                                          <div class="d-flex justify-content-between">
                                                               <input class="rounded-3"
                                                                      type="text"
                                                                      placeholder="Ange mejladress"
-                                                                     id="mailInput"/>
+                                                                     id="mailInput" />
                                                           </div>
                                                           <!-- Hello test-->
-                                                          <!-- test nr 2-->
+                                                          <!-- test nr 2 och spara onclick="window.location.href='payment.html'"-->
                                                       </div>
                                                       </form>
                                                       </section>
                                                       </div>
                                               <button class="font-fix"
                                                       id="cart-next-btn"
-                                                      onclick="window.location.href='payment.html'"
+                                                      onclick="saveAndProceed()"
                                                       type="button"
                                                       data-bs-toggle="collapse"
                                                       data-bs-target="#collapseOne"

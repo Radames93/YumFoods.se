@@ -303,6 +303,101 @@ function toggleAccountType(isPersonal) {
         : "block";
 }
 
+//spara purcahse form
+async function saveAndProceed() {
+    // Försök att spara formulärdata
+    const formSaved = await savePurchaseData(event);
+
+    if (formSaved) {
+        // Om formulärdata har sparats, gå vidare till betalning
+        window.location.href = 'payment.html';
+    } else {
+        alert("Kunde inte spara formulärdata. Kontrollera att alla fält är korrekt ifyllda.");
+    }
+}
+
+
+// Purchase form 
+async function savePurchaseData(event) {
+    event.preventDefault();
+
+    const purchaseData = {};
+    const missingFields = [];
+
+    //lägg till leverans datum och tid 
+    purchaseData.Adress = document.getElementById("addressInput").value.trim();
+    purchaseData.PostalCode = document.getElementById("postalCodeInput").value.trim();
+    purchaseData.ort = document.getElementById("cityInput").value.trim();
+    const housing = document.getElementById("houseTypeBtn").checked;
+    purchaseData.Housing = housing;
+    const apartment = document.getElementById("lägenhet").checked;
+    const house = document.getElementById("villa_hus").checked;
+    const radhus = document.getElementById("radhus").checked;
+    purchaseData.Port = document.getElementById("portInput").value.trim();
+    purchaseData.Floor = document.getElementById("floorInput").value.trim();
+    //purchaseData.ort = document.getElementById("cityInput").value.trim();
+    const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+    purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
+
+    purchaseData.firstName = document.getElementById("firstNameInput").value.trim();
+    purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
+    purchaseData.phone = document.getElementById("phoneInput").value.trim();
+    purchaseData.email = document.getElementById("mailInput").value.trim();
+
+
+    if (!purchaseData.Adress) missingFields.push("adress");
+    if (!purchaseData.PostalCode) missingFields.push("postnummer");
+    if (!purchaseData.ort) missingFields.push("Ort");
+
+    if (!purchaseData.firstName) missingFields.push("förnamn");
+    if (!purchaseData.lastName) missingFields.push("efternamn");
+    if (!purchaseData.phone) missingFields.push("telefonnummer");
+    if (!purchaseData.email) missingFields.push("email");
+
+    if (
+        !purchaseData.Adress ||
+        !purchaseData.PostalCode ||
+        !purchaseData.ort ||
+        !purchaseData.firstName ||
+        !purchaseData.lastName ||
+        !purchaseData.phone ||
+        !purchaseData.email
+    ) {
+        alert(
+            "Alla fält måste fyllas i! Vänligen fyll i: " + missingFields.join(", ")
+        );
+        return;
+    }
+    if (!housing) {
+        alert(
+            "Du måste välja boendetyp för att fortsätta."
+        );
+        return;
+    }
+
+    try {
+        // Skicka en POST-förfrågan till backend för att spara köpdata
+        const response = await fetch('https://din-api-url/purchase', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(purchaseData),
+        });
+
+        if (response.ok) {
+            alert("Köpdata sparad framgångsrikt!");
+        } else {
+            alert("Fel uppstod vid sparandet av köpdata.");
+        }
+    } 
+    catch (error) {
+        console.error('Error:', error);
+        alert("Ett fel uppstod: " + error.message);
+
+    }
+}
+
 //Personal Form
 function saveUserData(event) {
     event.preventDefault();
@@ -5522,8 +5617,8 @@ async function redirectToStripeCheckout() {
 
 
 function Footer() {
-  let footer = document.getElementById("footer");
-  footer.innerHTML = `
+    let footer = document.getElementById("footer");
+    footer.innerHTML = `
      <div class="pt_20 xs_pt_20">
     <div class="container">
      <div id="footer-new" class="row justify-content-around pt_50">
