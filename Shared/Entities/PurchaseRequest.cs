@@ -8,7 +8,7 @@ namespace Shared.Entities
 {
     public class PurchaseRequest
     {
-        //public int UserId { get; set; }                // The ID of the user making the purchase
+        public int UserId { get; set; }                // The ID of the user making the purchase
         public List<Product> Products { get; set; }    // The list of products being purchased
         public int Quantity { get; set; }              // Total quantity of items being purchased
         public double Total { get; set; }              // Total price of the order
@@ -23,6 +23,9 @@ namespace Shared.Entities
         public int DeliveryPostalCode { get; set; }    // The delivery postal code
         public string DeliveryCountry { get; set; }    // The delivery country
         public int OrderId { get; set; }
+        //lägg till i databasen?
+        public string Floor { get; set; }
+        public bool LeaveAtDoor { get; set; }
 
         
     }

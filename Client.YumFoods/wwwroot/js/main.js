@@ -550,7 +550,8 @@ const loadProducts = async () => {
     try {
         const API_KEY = variables();
         // Fetch the products from the API
-        const response = await fetch(`https://${API_KEY}/products`);
+        //const response = await fetch(`https://${API_KEY}/products`);
+        const response = await fetch(`https://localhost:7216/products`);
 
         const data = await response.json();
 
@@ -4219,6 +4220,60 @@ var datesSwipes = new Swiper(".dates_swipe", {
 
 
 
+const submitOrderAndDetails = async () => {
+    try {
+        // Hämta värden från formuläret
+        const deliveryAdress = document.querySelector('input[placeholder="Ange gatuadress"]').value;
+        const deliveryPostalCode = document.querySelector('input[placeholder="Ange postnummer"]').value;
+        const deliveryCity = document.querySelector('input[placeholder="Ange ort"]').value;
+        const portCode = document.querySelector('input[placeholder="Ange portkod/porttelefon"]').value;
+        const floor = document.querySelector('input[placeholder="Ange våningsplan"]').value;
+        const leaveAtDoor = document.getElementById('flexSwitchCheckDefault').checked;
+        const firstName = document.querySelector('input[placeholder="Ange förnamn"]').value;
+        const lastName = document.querySelector('input[placeholder="Ange efternamn"]').value;
+        const phoneNumber = document.querySelector('input[placeholder="Ange Telefonnummer"]').value;
+        const email = document.querySelector('input[placeholder="Ange mejladress"]').value;
+
+        // Skapa objekt med leverans och personuppgifter
+        const purchase = {
+            deliveryAdress,
+            deliveryPostalCode,
+            deliveryCity,
+            portCode,
+            floor,
+            leaveAtDoor,
+            firstName,
+            lastName,
+            phoneNumber,
+            email
+        };
+
+        // Skicka POST-förfrågan till backend för att spara leverans- och personuppgifter
+        const response = await fetch('https://localhost:7216/purchase', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(purchase), // Skickar objektet
+        });
+
+        if (response.ok) {
+            console.log('Order details saved successfully!');
+            // Omdirigera användaren till betalningssidan efter att informationen är sparad
+            window.location.href = 'payment.html';
+        } else {
+            console.error('Error saving order details');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
+
+// Koppla knappen till submitOrderDetails-funktionen
+document.addEventListener('DOMContentLoaded', function () {
+    const submitBtn = document.getElementById('cart-next-btn');
+    submitBtn.addEventListener('click', submitOrderAndDetails);
+});
 
 
 
@@ -4247,7 +4302,8 @@ const redirectToStripeCheckout = async () => {
         });
 
         // Create a POST request to your backend endpoint to create the Stripe checkout session
-        const response = await fetch(`https://${API_KEY}/payments`, {
+       /* const response = await fetch(`https://${API_KEY}/payments`, {*/
+        const response = await fetch(`https://localhost:7216/payments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -4272,6 +4328,8 @@ const redirectToStripeCheckout = async () => {
         console.error("Error:", error);
     }
 }
+
+
 
 
 
