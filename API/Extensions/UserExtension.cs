@@ -1,5 +1,4 @@
 ﻿using DataAccess.Repositories;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 using Shared.DTOs;
@@ -65,19 +64,7 @@ public static class UserExtension
             return Results.NotFound("User not found or email is invalid.");
         }
 
-        if (userType == "Company")
-        {
-            return Results.Ok("Company realted info:" +
-                "here show the html page only for company");
-        }
-
-        else if (userType == "User")
-        {
-            return Results.Ok("User related info:" +
-                "here show html page only for resgular users");
-        }
-
-        return Results.BadRequest("somw error");
+        return Results.Ok(new { Email = email, UserType = userType });
     }
 
     private static async Task<IResult> AddUserAsync(UserRepository repo, User newUser)
