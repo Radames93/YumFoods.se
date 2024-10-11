@@ -3712,8 +3712,13 @@ footer {
 }
 
 .footer_content .social_link li a:hover {
-  background: var(--colorWhite);
-  color: var(--colorPrimary);
+  background: rgb(6, 0, 61);
+  color: white;
+}
+
+.footer_content #faq-ul li i:hover {
+  background: rgb(6, 0, 61);
+  color: white;
 }
 
 .footer_content .info {
