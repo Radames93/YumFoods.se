@@ -143,7 +143,7 @@
     width: 200px;
   }
 
-  .swiper-products{
+  .swiper-products {
     margin-left: 0px !important;
   }
 
@@ -151,7 +151,7 @@
     width: 24% !important;
   } */
 
-  .btn-productmeny.btn1{
+  .btn-productmeny.btn1 {
     margin-left: 30px;
   }
 
@@ -168,14 +168,13 @@
   /* =====================
         SIDE BAR CART START
     =======================*/
-    /* .cart-sidebar {
+  /* .cart-sidebar {
       display: block;
     } */
-  
-    .mobile-cart-notification {
-      display: none !important;
-    }
 
+  .mobile-cart-notification {
+    display: none !important;
+  }
 }
 
 @media (min-width: 1200px) and (max-width: 1399.99px) {
@@ -506,17 +505,17 @@
     margin-left: 60px;
   }
 
-  .miljö-img{
-    width: 400px; 
+  .miljö-img {
+    width: 400px;
     height: 333px;
     margin-top: 50px;
   }
 
-  .miljö-info{
+  .miljö-info {
     margin-left: -160px;
     width: 450px;
   }
-  
+
   /* =====================
         ABOUT PAGE END
     =======================*/
@@ -594,14 +593,13 @@
   /* =====================
         SIDE BAR CART START
     =======================*/
-    .cart-sidebar {
-      display: block;
-    }
-  
-    .mobile-cart-notification {
-      display: none !important;
-    }
+  .cart-sidebar {
+    display: block;
+  }
 
+  .mobile-cart-notification {
+    display: none !important;
+  }
 }
 
 @media (min-width: 992px) and (max-width: 1199.99px) {
@@ -1163,31 +1161,31 @@
   .img-fluid-about {
     width: 425px;
     height: 373px;
-}
+  }
 
-  .prenum-img{
-    width: 425px; 
-    height: 373px; 
+  .prenum-img {
+    width: 425px;
+    height: 373px;
     margin-left: -10px;
   }
 
-  .prenum-info{
-    width: 500px; 
+  .prenum-info {
+    width: 500px;
     height: 471px;
     margin-left: 60px;
   }
 
-  .about-title-part3{
+  .about-title-part3 {
     margin-bottom: 0;
   }
 
-  .miljö-img{
+  .miljö-img {
     width: 425px;
     height: 373px;
     margin-top: 20px;
   }
 
-  .miljö-info{
+  .miljö-info {
     width: 400px;
     margin-left: -150px;
   }
@@ -1291,9 +1289,9 @@
     margin-top: 70px;
   }
 
- .slide-content3{
-  margin-left: 10px;
-}
+  .slide-content3 {
+    margin-left: 10px;
+  }
 
   .swiper-content {
     margin-top: -45px;
@@ -1303,9 +1301,9 @@
     margin-left: 275px;
   }
 
-.btn-productmeny.btn2{
-  margin-right:110px;
-}
+  .btn-productmeny.btn2 {
+    margin-right: 110px;
+  }
 
   .container4 {
     max-width: 1140px;
@@ -1333,17 +1331,16 @@
         MENU DETAILS END
     =======================*/
 
-    /* =====================
+  /* =====================
         SIDE BAR CART START
     =======================*/
-    .cart-sidebar {
-      display: block;
-    }
-  
-    .mobile-cart-notification {
-      display: none !important;
-    }
+  .cart-sidebar {
+    display: block;
+  }
 
+  .mobile-cart-notification {
+    display: none !important;
+  }
 }
 @media (min-width: 768px) and (max-width: 991.99px) {
   /* =====================
@@ -1996,7 +1993,7 @@
     margin-top: 25px;
   } */
 
-  .about-us.part1{
+  .about-us.part1 {
     margin-top: -50px;
   }
 
@@ -2050,42 +2047,42 @@
   .img-fluid-about {
     width: 280px;
     height: 300px;
-}
+  }
 
-  .prenum-img{
-    width: 300px; 
-    height: 390px; 
+  .prenum-img {
+    width: 300px;
+    height: 390px;
     margin-left: -200px;
     margin-top: 40px;
   }
 
-  .prenum-info{
-    width: 320px; 
+  .prenum-info {
+    width: 320px;
     height: 471px;
     margin-left: 290px;
     margin-top: -400px;
   }
 
-  .about-us-preBtn{
-    margin-left: -20px ;
+  .about-us-preBtn {
+    margin-left: -20px;
   }
 
-  .contacts-content.contacts{
+  .contacts-content.contacts {
     margin-top: 30px !important;
     margin-left: -30px !important;
   }
 
-  .about-title-part3{
+  .about-title-part3 {
     margin-bottom: 0;
   }
 
-  .miljö-img{
+  .miljö-img {
     width: 300px;
     height: 250px;
     margin-top: 50px;
   }
 
-  .miljö-info{
+  .miljö-info {
     width: 300px;
     margin-left: 0px;
   }
@@ -2098,12 +2095,11 @@
     width: 100%;
     margin-left: -60px;
     margin-top: -60px;
-}
+  }
 
-.about-us-preBtn{
-  height: 10px;
-}
-
+  .about-us-preBtn {
+    height: 10px;
+  }
 
   /* =====================
         ABOUT PAGE END
@@ -2215,21 +2211,21 @@
   /* =====================
         DASHBOARD END
     =======================*/
-    
-    /* =====================
+
+  /* =====================
       SIGNUP START
     =======================*/
 
-    .signup-input{
-      padding: 0 15px;
-    }
-
-    .login_area form input {
-      width: 100%;
-      max-width: 500px;
+  .signup-input {
+    padding: 0 15px;
   }
-  
-    /* =====================
+
+  .login_area form input {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  /* =====================
        sIGNUP END
     =======================*/
 
@@ -2441,26 +2437,25 @@
   /* =====================
         CART VIEW END
     =======================*/
-    /* =====================
+  /* =====================
         SIDE BAR CART START
     =======================*/
-    .cart-sidebar {
-      display: block;
-    }
-  
-    .mobile-cart-notification {
-      display: none !important;
-    }
+  .cart-sidebar {
+    display: block;
+  }
 
+  .mobile-cart-notification {
+    display: none !important;
+  }
 
-    .Fortsätt-Btn{
-      height: 48px !important;
-      padding: 0 !important;
-    }
+  .Fortsätt-Btn {
+    height: 48px !important;
+    padding: 0 !important;
+  }
 
-    .food-description.sidebar{
-      width: 380px;
-    }
+  .food-description.sidebar {
+    width: 380px;
+  }
   /* =====================
         LEVERANS START
     =======================*/
@@ -3165,30 +3160,33 @@
   .fa-question {
     margin-left: -140px;
   }
-
   .footer_links_1 {
     margin-left: 50px;
     text-align: left;
   }
-
   .fa-teamspeak {
     margin-left: -140px;
   }
-
   .fa-file-alt {
     margin-left: -140px;
   }
-
   .reservation_form h2 {
     font-size: 25px;
   }
-
   .menu_item_img {
     height: 200px;
   }
-
   .social_link {
     margin: 0 auto;
+  }
+  .terms-p1 {
+    margin-right: -40px;
+  }
+  .terms-p2 {
+    margin-right: -50px;
+  }
+  .terms-p3 {
+    margin-right: -10px;
   }
 
   .footer_content {
@@ -3417,40 +3415,40 @@
   .img-fluid-about {
     width: 280px;
     height: 300px;
-}
-
-  .prenum-img{
-    width: 200px; 
-    height: 200px; 
   }
 
-  .prenum-info{
-    width: 300px; 
+  .prenum-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .prenum-info {
+    width: 300px;
     height: 400px;
     margin-left: 250px;
     margin-top: -210px;
   }
 
-  .about-us-preBtn{
+  .about-us-preBtn {
     margin-left: -200px;
     margin-top: 255px;
   }
 
-  .about-contacats{
+  .about-contacats {
     display: none;
   }
 
-  .about-title-part3{
+  .about-title-part3 {
     margin-bottom: 0;
   }
 
-  .miljö-img{
+  .miljö-img {
     width: 230px;
     height: 250px;
     margin-top: 50px;
   }
 
-  .miljö-info{
+  .miljö-info {
     width: 270px;
     margin-left: -28px;
   }
@@ -3463,11 +3461,11 @@
     width: 100%;
     margin-left: -60px;
     margin-top: -160px;
-}
+  }
 
-.about-us-preBtn{
-  height: 10px;
-}
+  .about-us-preBtn {
+    height: 10px;
+  }
 
   /* =====================
         ABOUT PAGE END
@@ -3684,17 +3682,17 @@
         DASHBOARD END
     =======================*/
 
-       /* =====================
+  /* =====================
       SIGNUP START
     =======================*/
 
-    .signup-input{
-      padding: 0 15px;
-    }
+  .signup-input {
+    padding: 0 15px;
+  }
 
-    .login_area form input {
-      width: 100%;
-      max-width: 400px;
+  .login_area form input {
+    width: 100%;
+    max-width: 400px;
   }
 
   .login_area {
@@ -3703,20 +3701,20 @@
     margin-left: auto;
     margin-right: auto;
   }
-  
-    /* =====================
+
+  /* =====================
        sIGNUP END
     =======================*/
-    /* =====================
+  /* =====================
        sIGNIN FORGOT START
     =======================*/
 
-    .forgot-area{
-      width: 100%;
-      max-width: 500px !important;
-    }
+  .forgot-area {
+    width: 100%;
+    max-width: 500px !important;
+  }
 
-    /* =====================
+  /* =====================
        sIGNIN FORGOT END
     =======================*/
 
@@ -4034,29 +4032,29 @@
     padding-bottom: 20px;
   }
 
-    /* =====================
+  /* =====================
       SIDE BAR START
     =======================*/
-    .mobile-cart-notification {
-      display: flex !important; 
-      justify-content: space-between;
-    } 
-    
-    .cart-sidebar {
-      display: flex;
-      flex-direction: column;
-    }
+  .mobile-cart-notification {
+    display: flex !important;
+    justify-content: space-between;
+  }
 
-    .Fortsätt-Btn{
-      height: 48px !important;
-      padding: 0 !important;
-    }
+  .cart-sidebar {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .mobile-cart-notification {
-      display: none !important;
-    }
-  
-    /* =====================
+  .Fortsätt-Btn {
+    height: 48px !important;
+    padding: 0 !important;
+  }
+
+  .mobile-cart-notification {
+    display: none !important;
+  }
+
+  /* =====================
       SIDE BAR END
     =======================*/
 
@@ -4792,19 +4790,25 @@
     margin-left: auto;
     margin-right: auto;
   }
-
   #faq-ul {
     margin-left: -130px;
   }
-
   #link_title {
     margin-left: auto;
     margin-right: auto;
   }
-
   .footer_links_1 {
     margin-left: 160px;
     text-align: left;
+  }
+  .terms-p1 {
+    margin-right: -150px;
+  }
+  .terms-p2 {
+    margin-right: -160px;
+  }
+  .terms-p3 {
+    margin-right: -120px;
   }
 
   .reservation_form h2 {
@@ -5035,34 +5039,34 @@
     width: 280px;
     height: 300px;
     margin-left: 60px;
-}
+  }
 
-  .prenum-img{
-    width: 200px; 
-    height: 200px; 
+  .prenum-img {
+    width: 200px;
+    height: 200px;
     margin-left: 100px;
   }
 
-  .prenum-info{
-    width: 290px; 
+  .prenum-info {
+    width: 290px;
     height: 400px;
   }
-  .about-contacats{
+  .about-contacats {
     display: none;
   }
 
-  .about-title-part3{
+  .about-title-part3 {
     margin-bottom: 0;
   }
 
-  .miljö-img{
+  .miljö-img {
     width: 300px;
     height: 250px;
     margin-top: 30px;
     margin-left: 0px;
   }
 
-  .miljö-info{
+  .miljö-info {
     width: 330px;
     margin-left: -28px;
   }
@@ -5077,19 +5081,18 @@
     margin-left: 50px;
     margin-right: auto;
     margin-top: -160px;
-}
+  }
 
-.about-us-preBtn{
-  height: 10px;
-  margin-top: 20px;
-  margin-left:-80px;
-}
+  .about-us-preBtn {
+    height: 10px;
+    margin-top: 20px;
+    margin-left: -80px;
+  }
 
-.certified2 p{
-  width: 100%;
-  max-width: 350px;
-}
-
+  .certified2 p {
+    width: 100%;
+    max-width: 350px;
+  }
 
   /* =====================
         ABOUT PAGE END
@@ -5325,48 +5328,48 @@
       SIGNUP START
     =======================*/
 
-    .signup-input{
-      padding: 0 15px;
-    }
-
-    .login_area form input {
-      width: 100%;
-      max-width: 300px;
+  .signup-input {
+    padding: 0 15px;
   }
 
-    .login_area {
-      width: 100%;
-      max-width: 320px;
-      margin-left: auto;
-      margin-right: auto;
-      left: -12px !important;
-    }
+  .login_area form input {
+    width: 100%;
+    max-width: 300px;
+  }
 
-    .login_area form button {
-      height: 40px;
-      padding-top: 5px !important;
-    }
+  .login_area {
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    left: -12px !important;
+  }
 
-    .form-check-label.label2{
-      margin-top: -35px !important;
-    }
-    /* =====================
+  .login_area form button {
+    height: 40px;
+    padding-top: 5px !important;
+  }
+
+  .form-check-label.label2 {
+    margin-top: -35px !important;
+  }
+  /* =====================
        SIGNUP END
     =======================*/
-     /* =====================
+  /* =====================
        sIGNIN FORGOT START
     =======================*/
 
-    .forgot-area{
-      width: 100%;
-      max-width: 300px !important;
-    }
-   
-    .glömtpass-form{
-      width: 280PX;
-      margin-right: 10px !important;
-    }
-    /* =====================
+  .forgot-area {
+    width: 100%;
+    max-width: 300px !important;
+  }
+
+  .glömtpass-form {
+    width: 280px;
+    margin-right: 10px !important;
+  }
+  /* =====================
        sIGNIN FORGOT END
     =======================*/
 
@@ -5801,27 +5804,27 @@
   /* =====================
       SIDE BAR START
     =======================*/
-    .mobile-cart-notification {
-      display: flex !important; 
-      justify-content: space-between;
-    } 
-    .cart-sidebar {
-      display: none;
-    }
+  .mobile-cart-notification {
+    display: flex !important;
+    justify-content: space-between;
+  }
+  .cart-sidebar {
+    display: none;
+  }
 
-    .mobile-cart-notification {
-      display: flex;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      padding: 10px;
-      z-index: 1000;
-    }
-  
-    .mobile-cart-notification span {
-      font-size: 16px;
-    }
-  
+  .mobile-cart-notification {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    z-index: 1000;
+  }
+
+  .mobile-cart-notification span {
+    font-size: 16px;
+  }
+
   /* =====================
         LEVERANS START
     =======================*/
