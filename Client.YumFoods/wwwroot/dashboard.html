@@ -28,17 +28,17 @@
   </head>
 
   <body>
-      <!--=============================
+    <!--=============================
         MENU START
     ==============================-->
-      <header-component id="header"></header-component>
-      <!--=============================
+    <header-component id="header"></header-component>
+    <!--=============================
         MENU END
     ==============================-->
-      <!--=============================
+    <!--=============================
         BREADCRUMB START
     ==============================-->
-      <!-- <section class="page_breadcrumb" style="background: url(images/cover.png)">
+    <!-- <section class="page_breadcrumb" style="background: url(images/cover.png)">
       <div class="breadcrumb_overlay">
         <div class="container">
           <div class="breadcrumb_text">
@@ -51,241 +51,88 @@
         </div>
       </div>
     </section> -->
-      <!--=============================
+    <!--=============================
         BREADCRUMB END
     ==============================-->
-      <!--=========================
+    <!--=========================
         DASHBOARD START
     ==========================-->
 
-      <main class="d-flex justify-content-center w-75 align-item-center mx-auto"
-            style="padding-top: 100px">
-          <aside id="dashboard_aside"
-                 style="
-          border: 1px solid green;
+    <main
+      id="userMainPage"
+      class="d-flex justify-content-center w-75 align-item-center mx-auto"
+      style="padding-top: 100px"
+    >
+      <select
+        class="form-select"
+        id="selectPage"
+        aria-label="Default select example"
+        style="display: none"
+      >
+        <option value="index.html">Startsida</option>
+        <option selected value="2">Min Profil</option>
+        <option value="3">Mina Beställningar</option>
+        <option value="4">Prenumeration</option>
+        <option value="5">Erbjudanden & Presentkort</option>
+        <option value="6">Aviseringar</option>
+        <option value="7" data-bs-toggle="modal" data-bs-target="#logOutUser">
+          Logga Ut
+        </option>
+      </select>
+
+      <aside
+        id="dashboard_aside"
+        style="
           width: fit-content;
           margin-right: 5px;
           height: 500px;
           border-right: 1px solid #ffb9a7;
           padding: 15px;
-        ">
-              <nav>
-                  <ul>
-                      <li>
-                          <i class="fas fa-home"></i><a href="index.html">Startsida</a>
-                      </li>
-                      <li onclick="dash_myProfile()">
-                          <i class="fas fa-user-circle"></i>Min Profil
-                      </li>
-                      <li onclick="dash_myOrders()">
-                          <i class="fas fa-list-alt"></i>Mina Beställningar
-                      </li>
-                      <li onclick="dash_subscriptions()">
-                          <i class="fas fa-redo-alt"></i>Prenumeration
-                      </li>
-                      <li><i class="fas fa-percentage"></i>Erbjudanden & Presentkort</li>
-                      <li><i class="fas fa-bell"></i>Aviseringar</li>
-                  </ul>
-                  <div class="d-flex justify-content-center mt-4">
-                      <button class="btn btn-primary" type="button">Logga ut</button>
-                  </div>
-              </nav>
-          </aside>
+        "
+      >
+        <nav>
+          <ul>
+            <li style="padding: 4px; font-family: Poppins">
+              <i style="margin: 0px 10px" class="fas fa-home"></i
+              ><a href="index.html">Startsida</a>
+            </li>
+            <li
+              class="dashActive activeLink"
+              id="dash_profile"
+              onclick="dash_myProfile()"
+            >
+              <i class="fas fa-user-circle"></i>Min Profil
+            </li>
+            <li class="dashActive" onclick="dash_myOrders()">
+              <i class="fas fa-list-alt"></i>Mina Beställningar
+            </li>
+            <li class="dashActive" onclick="dash_mySubs()">
+              <i class="fas fa-redo-alt"></i>Prenumeration
+            </li>
+            <li class="dashActive" onclick="dash_myDeals()">
+              <i class="fas fa-percentage"></i>Erbjudanden & Presentkort
+            </li>
+            <li class="dashActive" onclick="dash_myNotifications()">
+              <i class="fas fa-bell"></i>Aviseringar
+            </li>
+          </ul>
+          <div class="d-flex justify-content-center mt-4">
+            <button
+              data-bs-toggle="modal"
+              data-bs-target="#logOutUser"
+              class="btn btn-primary"
+              type="button"
+            >
+              Logga ut
+            </button>
+          </div>
+        </nav>
+      </aside>
 
-          <section id="contain_user_content"
-                   class="flex-grow-1"
-                   style="border: 1px solid red; width: 200px; height: fit-content">
-              <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
-              <section class="p-4">
-                  <h2>Mina beställningar</h2>
+      <!-- 'Dynamic' dashboard content will appear here -->
+    </main>
 
-                  <section class="dashboard_orders">
-                      <div class="d-flex">
-                          <h3>Dag - Månad - Klocka</h3>
-                          <h3 class="ms-auto align-self-center" style="color: #0eb116">
-                              Aktiv
-                          </h3>
-                      </div>
-                      <div>
-                          <h5>Matlådor - antal(st)</h5>
-                          <ul class="dash_list">
-                              <li>3st matlådor av denna sort</li>
-                              <li>3st av ett annat slag</li>
-                              <li>4st av den här sorten</li>
-                          </ul>
-                      </div>
-                      <div class="d-flex flex-row" style="gap: 10px">
-                          <p style="color: #dd3902">Avsluta Prenumeration</p>
-                          <p style="color: #dd3902">Pausa Prenumeration</p>
-                      </div>
-                  </section>
-
-                  <section style="margin-top: 20px" class="dashboard_orders">
-                      <div class="d-flex">
-                          <h5>Leveransfönster</h5>
-                          <i onclick="dashEditOrder(this)"
-                             class="far fa-edit ms-auto align-self-center unlock_form"
-                             style="font-size: 32px; color: #dd3902"></i>
-                      </div>
-                      <p>Dag - kl: xx:xx</p>
-                  </section>
-
-                  <section style="margin-top: 20px" class="dashboard_orders">
-                      <div class="d-flex">
-                          <h5>Antal Portioner Per Leverans</h5>
-                      </div>
-
-                      <div class="d-flex flex-row justify-content-center"
-                           style="gap: 10px">
-                          <div class="col-3">
-                              <div class="box box4" data-value="10">
-                                  <img class="green-check-kost2"
-                                       src="images/Eo_circle_green_checkmark.svg.webp"
-                                       alt="" />
-                                  <p style="font-weight: 600">10</p>
-                              </div>
-                          </div>
-
-                          <div class="col-3">
-                              <div class="box box4" data-value="15">
-                                  <img class="green-check-kost2"
-                                       src="images/Eo_circle_green_checkmark.svg.webp"
-                                       alt="" />
-                                  <p style="font-weight: 600">15</p>
-                              </div>
-                          </div>
-
-                          <div class="col-3">
-                              <div class="box box4" data-value="20">
-                                  <img class="green-check-kost2"
-                                       src="images/Eo_circle_green_checkmark.svg.webp"
-                                       alt="" />
-                                  <p style="font-weight: 600">20</p>
-                              </div>
-                          </div>
-                      </div>
-
-                      <div style="max-width: 388px; display: flex; margin: auto"
-                           class="box1 large-box">
-                          <div class="row">
-                              <div class="col-7 text">
-                                  <h5 style="text-align: left; margin-left: 10px">
-                                      Välja ett eget antal
-                                  </h5>
-                                  <h6 style="
-                      width: 250px;
-                      text-align: left;
-                      margin-left: 10px;
-                      font-size: 15px;
-                    ">
-                                      Minst 10 matlådor per beställning
-                                  </h6>
-                              </div>
-                              <div style="
-                    margin-left: 40px;
-                    border-radius: 4px;
-                    border: 1px solid #f63;
-                    background: #fff;
-                    width: 110px;
-                    justify-content: center;
-                  "
-                                   class="col-3 quantity-btn d-flex align-items-center justify-content-end">
-                                  <button class="btn btn-light"
-                                          style="
-                      background-color: white;
-                      border-color: white;
-                      border-right: 1 px solid #f63 !important;
-                    ">
-                                      -
-                                  </button>
-                                  <span class="mx-2">10</span>
-                                  <button class="btn btn-light"
-                                          style="
-                      background-color: white;
-                      border-color: white;
-                      border-left: 1 px solid #f63 !important;
-                    ">
-                                      +
-                                  </button>
-                              </div>
-                          </div>
-                      </div>
-                  </section>
-
-                  <section class="dashboard_contact" id="leverans">
-                      <div class="d-flex">
-                          <h3>Leveransinformation</h3>
-                          <i onclick="unlockForms(this)"
-                             class="far fa-edit ms-auto align-self-center"
-                             style="font-size: 32px"></i>
-                      </div>
-                      <form action="" class="dash_forms">
-                          <div class="d-flex flex-direction-row" style="gap: 15px">
-                              <div class="dash_inputs flex-grow-1">
-                                  <label for="">Förnamn</label>
-                                  <input disabled type="text" />
-                              </div>
-                              <div class="dash_inputs flex-grow-1">
-                                  <label for="">Efternamn</label>
-                                  <input disabled type="text" />
-                              </div>
-                          </div>
-
-                          <div class="dash_inputs">
-                              <label for="">Gatuadress</label>
-                              <input disabled type="text" />
-                          </div>
-
-                          <div class="d-flex flex-direction-row" style="gap: 15px">
-                              <div class="dash_inputs flex-grow-1">
-                                  <label for="">Postnummer</label>
-                                  <input disabled type="text" />
-                              </div>
-                              <div class="dash_inputs flex-grow-1">
-                                  <label for="">Ort</label>
-                                  <input disabled type="text" />
-                              </div>
-                          </div>
-
-                          <div class="d-flex flex-direction-row" style="gap: 15px">
-                              <div class="dash_inputs flex-grow-1">
-                                  <label for="">Portkod/Porttelefon</label>
-                                  <input disabled type="text" />
-                              </div>
-                              <div class="dash_inputs flex-grow-1">
-                                  <label for="">Våningsplan</label>
-                                  <input disabled type="text" />
-                              </div>
-                          </div>
-
-                          <div class="form-check form-switch d-flex align-items-end">
-                              <input class="form-check-input"
-                                     type="checkbox"
-                                     role="switch"
-                                     id="flexSwitchCheckChecked" />
-                              <label class="form-check-label ms-2"
-                                     for="flexSwitchCheckDefault">Lämna utanför dörren</label>
-                          </div>
-
-                          <div class="dashboard_contact_btns">
-                              <button onclick="formCancelEdit(this)"
-                                      class="btn btn-secondary"
-                                      type="button">
-                                  Avbryt
-                              </button>
-                              <button class="btn btn-secondary" type="button">
-                                  Spara Ändringar
-                              </button>
-                          </div>
-                      </form>
-                  </section>
-              </section>
-          </section>
-
-          <!-- 'Dynamic' dashboard content will appear here -->
-      </main>
-
-      <!-- <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
+    <!-- <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
       <div class="container">
         <div class="dashboard_area">
           <div class="row">
@@ -371,13 +218,13 @@
         </div>
       </div>
     </section> -->
-      <!--=========================
+    <!--=========================
         DASHBOARD END
     ==========================-->
-      <!--=========================
+    <!--=========================
         DASHBOARD COPY START
     ==========================-->
-      <!-- <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
+    <!-- <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
       <div class="container">
         <div class="dashboard_area">
           <div class="row">
@@ -463,53 +310,53 @@
         </div>
       </div>
     </section> -->
-      <!--=========================
+    <!--=========================
         DASHBOARD COPY END
     ==========================-->
-      <!--=============================
+    <!--=============================
         FOOTER START
     ==============================-->
-      <footer-component id="footer"></footer-component>
-      <!--=============================
+    <footer-component id="footer"></footer-component>
+    <!--=============================
         FOOTER END
     ==============================-->
-      <!--=============================
+    <!--=============================
         SCROLL BUTTON START
     ==============================-->
-      <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
-      <!--=============================
+    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+    <!--=============================
         SCROLL BUTTON END
     ==============================-->
-      <!-- hotjar code -->
-      <script src="js/hotjar.js"></script>
-      <!-- swiper slider -->
-      <script src="js/swiper-bundle.min.js" rel="preload"></script>
-      <!--jquery library js-->
-      <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
-      <!--main/env js-->
-      <script src="js/env.js"></script>
-      <!--main/custom js-->
-      <script rel="preload" src="js/main.js"></script>
-      <!--bootstrap js-->
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <!-- isotop js -->
-      <script src="js/isotope.pkgd.min.js"></script>
-      <!-- counter up js -->
-      <script src="js/jquery.waypoints.min.js"></script>
-      <script src="js/jquery.countup.min.js"></script>
-      <!-- nice select js -->
-      <script src="js/jquery.nice-select.min.js"></script>
-      <!-- venobox js -->
-      <script src="js/venobox.min.js"></script>
-      <!-- sticky sidebar js -->
-      <script src="js/sticky_sidebar.js"></script>
-      <!-- wow js -->
-      <script src="js/wow.min.js"></script>
-      <!-- ex zoom js -->
-      <script src="js/jquery.exzoom.js"></script>
-      <link rel="stylesheet" href="css/venobox.min.css" />
-      <link rel="stylesheet" href="css/animate.css" />
-      <link rel="stylesheet" href="css/jquery.exzoom.css" />
-      <link rel="stylesheet" href="css/nice-select.css" />
+    <!-- hotjar code -->
+    <script src="js/hotjar.js"></script>
+    <!-- swiper slider -->
+    <script src="js/swiper-bundle.min.js" rel="preload"></script>
+    <!--jquery library js-->
+    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/env js-->
+    <script src="js/env.js"></script>
+    <!--main/custom js-->
+    <script rel="preload" src="js/main.js"></script>
+    <!--bootstrap js-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- isotop js -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- counter up js -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="js/jquery.exzoom.js"></script>
+    <link rel="stylesheet" href="css/venobox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="css/nice-select.css" />
   </body>
 </html>
