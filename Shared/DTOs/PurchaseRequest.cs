@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shared.Entities;
 
-namespace Shared.Entities
+namespace Shared.DTOs
 {
     public class PurchaseRequest
     {

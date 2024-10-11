@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="sv">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi"
-    />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi" />
     <title>YumFoods</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="images/favicon-32x32.png"
-    />
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="images/favicon-32x32.png" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/custom_spacing.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
-  </head>
+</head>
 
-  <body>
+<body>
     <!--=============================
         MENU START
     ==============================-->
@@ -53,438 +49,367 @@
     ==========================-->
     <!-- Signup Section -->
     <section class="signup pt_100 xs_pt_70 pb_100 xs_pb_70">
-      <div class="container pt-5">
-        <div class="row justify-content-center">
-          <div class="col-xl-6 col-lg-8 col-md-10">
-            <div class="login_area p-4 shadow rounded">
-              <button
-                class="close-btn btn"
-                style="float: right"
-                onclick="window.location.href='index.html'"
-              >
-                Stäng &times;
-              </button>
-              <div class="text-center mt-5 mb-4">
-                <div>
-                  <h2 class="text-center mt-4 mb-4" id="accountTitle">
-                    Skapa konto
-                  </h2>
-                </div>
-                <button class="btn signup-company mx-2" id="btnPersonal">
-                  Privat
-                </button>
-                <button class="btn signup-company mx-2" id="btnBusiness">
-                  Företag
-                </button>
-              </div>
+        <div class="container pt-5">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8 col-md-10">
+                    <div class="login_area p-4 shadow rounded">
+                        <button class="close-btn btn"
+                                style="float: right"
+                                onclick="window.location.href='index.html'">
+                            Stäng &times;
+                        </button>
+                        <div class="text-center mt-5 mb-4">
+                            <div>
+                                <h2 class="text-center mt-4 mb-4" id="accountTitle">
+                                    Skapa konto
+                                </h2>
+                            </div>
+                            <button class="btn signup-company mx-2" id="btnPersonal">
+                                Privat
+                            </button>
+                            <button class="btn signup-company mx-2" id="btnBusiness">
+                                Företag
+                            </button>
+                        </div>
 
-              <!-- Personal Account Form -->
-              <div id="personalForm">
-                <form id="signupFormPersonal" onsubmit="saveUserData(event)">
-                  <div class="row">
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="förnamn">Förnamn och efternamn</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="field1"
-                          placeholder="Ange Förnamn och efternamn"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <!-- Kommentera tillbaka när användare namn krävs igen -->
-                    <!-- <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="username">Användare namn:</label>
-                        <input type="text" class="form-control signup-input" id="username" placeholder="Ange synligt användar namn" required/>
-                      </div>
-                    </div> -->
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="email">Email</label>
-                        <input
-                          type="email"
-                          class="form-control signup-input"
-                          id="field2"
-                          placeholder="Enter your email"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="lösenord">Lösenord</label>
-                        <input
-                          type="password"
-                          class="form-control signup-input"
-                          id="field3"
-                          placeholder="Ange lösenord"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="uppdatera lösenord">Upprepa lösenord</label>
-                        <input
-                          type="password"
-                          class="form-control signup-input"
-                          id="field4"
-                          placeholder="Ange lösenord"
-                          required
-                        />
-                        <span
-                          id="passwordError"
-                          class="text-danger"
-                          style="display: none"
-                          >Lösenorden matchar inte!</span
-                        >
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="gatuadress">Gatuadress</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="field5"
-                          placeholder="Ange Gatuadress"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="postnummer">Postnummer</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="postnummer"
-                          placeholder="T.ex. 411 19"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="ort">Ort</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="ort"
-                          placeholder="T.ex.Göteborg"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mt-4 mb-2">
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="terms1"
-                        />
-                        <label for="terms1" class="form-check-label">
-                          Jag bekräftar att jag har läst och förstått <br />
-                          <a
-                            href="faq.html"
-                            style="color: red; border-bottom: 1px solid red"
-                            >Användarvillkor och Integritetspolicy.</a
-                          >
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-xl-12">
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="terms2"
-                        />
-                        <label for="terms2" class="form-check-label label2">
-                          Ja, skicka mig nyheter och erbjudanden från Yumfoods
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mt-3">
-                      <div class="d-flex justify-content-center">
-                        <button
-                          type="button"
-                          class="btn btn-light mx-5"
-                          onclick="window.location.href='index.html'"
-                        >
-                          Avbryt
-                        </button>
-                        <button type="submit" class="btn btn-danger mx-5">
-                          Skapa konto
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
+                        <!-- Personal Account Form -->
+                        <div id="personalForm">
+                            <form id="signupFormPersonal" onsubmit="saveUserData(event)">
+                                <div class="row">
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="förnamn">Förnamn och efternamn</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="field1"
+                                                   placeholder="Ange Förnamn och efternamn"
+                                                   required />
+                                        </div>
+                                    </div>
+                                    <!-- Kommentera tillbaka när användare namn krävs igen -->
+                                    <!-- <div class="col-xl-12 mb-3">
+                                      <div class="form-group signup-form">
+                                        <label for="username">Användare namn:</label>
+                                        <input type="text" class="form-control signup-input" id="username" placeholder="Ange synligt användar namn" required/>
+                                      </div>
+                                    </div> -->
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="email">Email</label>
+                                            <input type="email"
+                                                   class="form-control signup-input"
+                                                   id="field2"
+                                                   placeholder="Enter your email"
+                                                   required />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="lösenord">Lösenord</label>
+                                            <input type="password"
+                                                   class="form-control signup-input"
+                                                   id="field3"
+                                                   placeholder="Ange lösenord"
+                                                   required />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="uppdatera lösenord">Upprepa lösenord</label>
+                                            <input type="password"
+                                                   class="form-control signup-input"
+                                                   id="field4"
+                                                   placeholder="Ange lösenord"
+                                                   required />
+                                            <span id="passwordError"
+                                                  class="text-danger"
+                                                  style="display: none">Lösenorden matchar inte!</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="gatuadress">Gatuadress</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="field5"
+                                                   placeholder="Ange Gatuadress"
+                                                   required />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="postnummer">Postnummer</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="postnummer"
+                                                   placeholder="T.ex. 411 19"
+                                                   required />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="ort">Ort</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="ort"
+                                                   placeholder="T.ex.Göteborg"
+                                                   required />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mt-4 mb-2">
+                                        <div class="form-check">
+                                            <input type="checkbox"
+                                                   class="form-check-input"
+                                                   id="terms1" />
+                                            <label for="terms1" class="form-check-label">
+                                                Jag bekräftar att jag har läst och förstått <br />
+                                                <a href="faq.html"
+                                                   style="color: red; border-bottom: 1px solid red">Användarvillkor och Integritetspolicy.</a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="form-check">
+                                            <input type="checkbox"
+                                                   class="form-check-input"
+                                                   id="terms2" />
+                                            <label for="terms2" class="form-check-label label2">
+                                                Ja, skicka mig nyheter och erbjudanden från Yumfoods
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mt-3">
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button"
+                                                    class="btn btn-light mx-5"
+                                                    onclick="window.location.href='index.html'">
+                                                Avbryt
+                                            </button>
+                                            <button type="submit" class="btn btn-danger mx-5" onclick="register()">
+                                                Skapa konto
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
 
-              <!-- Business Account Form -->
-              <div id="businessForm" style="display: none">
-                <h3 class="text-center mb-4">Företagsinformation</h3>
-                <form
-                  id="signupFormBusiness"
-                  onsubmit="saveUserDataBusiness(event)"
-                >
-                  <div class="row">
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="businessName">Företagsnamn</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="businessName"
-                          placeholder="Ange företagsnamn"
-                        />
-                      </div>
-<<<<<<< HEAD
-=======
-                      <div class="col-md-6 mb-3">
-                          <div class="form-group signup-form">
-                              <label for="ort">Ort</label>
-                              <input type="text" class="form-control signup-input" id="ort" placeholder="T.ex. Göteborg" />
-                          </div>
-                      </div>
-                        <h3 class="text-center mb-3 mt-2">Kontaktperson</h3>
-                        <div class="col-xl-12 mb-3">
-                            <div class="form-group signup-form">
-                                <label for="contactName">Förnamn och efternamn</label>
-                                <input type="text" class="form-control signup-input" id="contactName" placeholder="Ange förnamn och efternamn" />
-                            </div>
+                        <!-- Business Account Form -->
+                        <div id="businessForm" style="display: none">
+                            <h3 class="text-center mb-4">Företagsinformation</h3>
+                            <form id="signupFormBusiness"
+                                  onsubmit="saveUserDataBusiness(event)">
+                                <div class="row">
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="businessName">Företagsnamn</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="businessName"
+                                                   placeholder="Ange företagsnamn" />
+                                        </div>
+                                      
+                                        <div class="col-md-6 mb-3">
+                                            <div class="form-group signup-form">
+                                                <label for="ort">Ort</label>
+                                                <input type="text" class="form-control signup-input" id="ort" placeholder="T.ex. Göteborg" />
+                                            </div>
+                                        </div>
+                                        <h3 class="text-center mb-3 mt-2">Kontaktperson</h3>
+                                        <div class="col-xl-12 mb-3">
+                                            <div class="form-group signup-form">
+                                                <label for="contactName">Förnamn och efternamn</label>
+                                                <input type="text" class="form-control signup-input" id="contactName" placeholder="Ange förnamn och efternamn" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 mb-3">
+                                            <div class="form-group signup-form">
+                                                <label for="email">Email</label>
+                                                <input type="text" class="form-control signup-input" id="field2" placeholder="Ange din email" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 mb-3">
+                                            <div class="form-group signup-form">
+                                                <label for="lösenord">Lösenord</label>
+                                                <input type="password" class="form-control signup-input" id="field3" placeholder="Ange lösenord" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 mb-3">
+                                            <div class="form-group signup-form">
+                                                <label for="upprepaLösenord">Upprepa lösenord</label>
+                                                <input type="password" class="form-control signup-input" id="field4" placeholder="Upprepa lösenord" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 mt-4 mb-2">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input input-b" id="terms1" />
+                                                <label for="terms1" class="form-check-label" style=" margin-top:-20px !important">
+                                                    Jag bekräftar, på uppdrag av företaget
+                                                    jag representerar, att jag har läst och
+                                                    förstått Användarvillkor och
+                                                    Integritetspolicy.
+                                                    <a href="faq.html" style="color: red; border-bottom: 1px solid red;">Användarvillkor och Integritetspolicy.</a>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 mt-3">
+                                            <div class="d-flex justify-content-center">
+                                                <button type="button" class="btn btn-light mx-5" onclick="window.location.href='index.html'">Avbryt</button>
+                                                <button type="submit" class="btn btn-danger mx-5">Skapa konto</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="orgNumber">Organisationsnummer</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="orgNumber"
+                                                   placeholder="Ange organisationsnummer" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="field5B">Gatuadress</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="field5B"
+                                                   placeholder="Ange gatuadress" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="postnummerB">Postnummer</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="postnummerB"
+                                                   placeholder="T.ex. 411 19" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="ortB">Ort</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="ortB"
+                                                   placeholder="T.ex. Göteborg" />
+                                        </div>
+                                    </div>
+                                    <h3 class="text-center mb-3 mt-2">Kontaktperson</h3>
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="contactName">Förnamn och efternamn</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="contactName"
+                                                   placeholder="Ange förnamn och efternamn" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="field2B">Email</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="field2B"
+                                                   placeholder="Ange din email" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="field3B">Lösenord</label>
+                                            <input type="password"
+                                                   class="form-control signup-input"
+                                                   id="field3B"
+                                                   placeholder="Ange lösenord" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="field4B">Upprepa lösenord</label>
+                                            <input type="password"
+                                                   class="form-control signup-input"
+                                                   id="field4B"
+                                                   placeholder="Upprepa lösenord" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mt-4 mb-2">
+                                        <div class="form-check">
+                                            <input type="checkbox"
+                                                   class="form-check-input"
+                                                   id="terms1B" />
+                                            <label for="terms1" class="form-check-label">
+                                                Jag bekräftar att jag har läst och förstått <br />
+                                                <a href="faq.html"
+                                                   style="color: red; border-bottom: 1px solid red">Användarvillkor och Integritetspolicy.</a>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="form-check">
+                                            <input type="checkbox"
+                                                   class="form-check-input"
+                                                   id="terms2" />
+                                            <label for="terms2" class="form-check-label label2">
+                                                Ja, skicka mig nyheter och erbjudanden från Yumfoods
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 mt-3">
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button"
+                                                    class="btn btn-light mx-5"
+                                                    onclick="window.location.href='index.html'">
+                                                Avbryt
+                                            </button>
+                                            <button type="submit" class="btn btn-danger mx-5" onclick="register()">
+                                                Skapa konto
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="col-xl-12 mb-3">
-                            <div class="form-group signup-form">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control signup-input" id="field2" placeholder="Ange din email" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12 mb-3">
-                            <div class="form-group signup-form">
-                                <label for="lösenord">Lösenord</label>
-                                <input type="password" class="form-control signup-input" id="field3" placeholder="Ange lösenord" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12 mb-3">
-                            <div class="form-group signup-form">
-                                <label for="upprepaLösenord">Upprepa lösenord</label>
-                                <input type="password" class="form-control signup-input" id="field4" placeholder="Upprepa lösenord" />
-                            </div>
-                        </div>
-                        <div class="col-xl-12 mt-4 mb-2">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input input-b" id="terms1" />
-                                <label for="terms1" class="form-check-label" style=" margin-top:-20px !important">
-                                  Jag bekräftar, på uppdrag av företaget 
-                                  jag representerar, att jag har läst och 
-                                  förstått Användarvillkor och 
-                                  Integritetspolicy.
-                                    <a href="faq.html" style="color: red; border-bottom: 1px solid red;">Användarvillkor och Integritetspolicy.</a>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 mt-3">
-                            <div class="d-flex justify-content-center">
-                                <button type="button" class="btn btn-light mx-5" onclick="window.location.href='index.html'">Avbryt</button>
-                                <button type="submit" class="btn btn-danger mx-5">Skapa konto</button>
-                            </div>
-                        </div>
->>>>>>> ff3ac79e309304af07e9d73dd262f28a5b332072
-                    </div>
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="orgNumber">Organisationsnummer</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="orgNumber"
-                          placeholder="Ange organisationsnummer"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="field5B">Gatuadress</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="field5B"
-                          placeholder="Ange gatuadress"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="postnummerB">Postnummer</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="postnummerB"
-                          placeholder="T.ex. 411 19"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="ortB">Ort</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="ortB"
-                          placeholder="T.ex. Göteborg"
-                        />
-                      </div>
-                    </div>
-                    <h3 class="text-center mb-3 mt-2">Kontaktperson</h3>
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="contactName">Förnamn och efternamn</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="contactName"
-                          placeholder="Ange förnamn och efternamn"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="field2B">Email</label>
-                        <input
-                          type="text"
-                          class="form-control signup-input"
-                          id="field2B"
-                          placeholder="Ange din email"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="field3B">Lösenord</label>
-                        <input
-                          type="password"
-                          class="form-control signup-input"
-                          id="field3B"
-                          placeholder="Ange lösenord"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mb-3">
-                      <div class="form-group signup-form">
-                        <label for="field4B">Upprepa lösenord</label>
-                        <input
-                          type="password"
-                          class="form-control signup-input"
-                          id="field4B"
-                          placeholder="Upprepa lösenord"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mt-4 mb-2">
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="terms1B"
-                        />
-                        <label for="terms1" class="form-check-label">
-                          Jag bekräftar att jag har läst och förstått <br />
-                          <a
-                            href="faq.html"
-                            style="color: red; border-bottom: 1px solid red"
-                            >Användarvillkor och Integritetspolicy.</a
-                          >
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-xl-12">
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="terms2"
-                        />
-                        <label for="terms2" class="form-check-label label2">
-                          Ja, skicka mig nyheter och erbjudanden från Yumfoods
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-xl-12 mt-3">
-                      <div class="d-flex justify-content-center">
-                        <button
-                          type="button"
-                          class="btn btn-light mx-5"
-                          onclick="window.location.href='index.html'"
-                        >
-                          Avbryt
-                        </button>
-                        <button type="submit" class="btn btn-danger mx-5">
-                          Skapa konto
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
 
-              <!-- social media -->
-              <div class="text-center mt-4">
-                <div class="social-icons">
-                  <div class="social-icons sign-up">
-                    <a
-                      href="https://www.facebook.com/yumfoods.se"
-                      target="_blank"
-                      aria-label="Facebook"
-                      ><i
-                        class="fab fa-facebook-f mr-2"
-                        style="
+                        <!-- social media -->
+                        <div class="text-center mt-4">
+                            <div class="social-icons">
+                                <div class="social-icons sign-up">
+                                    <a href="https://www.facebook.com/yumfoods.se"
+                                       target="_blank"
+                                       aria-label="Facebook">
+                                        <i class="fab fa-facebook-f mr-2"
+                                           style="
                           width: 52px;
                           height: 52px;
                           margin-top: 14px;
                           color: rgb(37, 30, 36);
                           z-index: 2;
-                        "
-                      ></i
-                    ></a>
-                    <a
-                      href="https://www.google.com/yumfoods.se"
-                      target="_blank"
-                      aria-label="Google"
-                      ><i
-                        class="fab fa-google mr-2"
-                        style="margin-top: 14px; color: rgb(37, 30, 36)"
-                      ></i
-                    ></a>
-                    <a
-                      href="https://www.apple.com"
-                      target="_blank"
-                      aria-label="Apple"
-                      ><i
-                        class="fab fa-apple"
-                        style="margin-top: 14px; color: rgb(37, 30, 36)"
-                      ></i
-                    ></a>
-                  </div>
+                        "></i>
+                                    </a>
+                                    <a href="https://www.google.com/yumfoods.se"
+                                       target="_blank"
+                                       aria-label="Google">
+                                        <i class="fab fa-google mr-2"
+                                           style="margin-top: 14px; color: rgb(37, 30, 36)"></i>
+                                    </a>
+                                    <a href="https://www.apple.com"
+                                       target="_blank"
+                                       aria-label="Apple">
+                                        <i class="fab fa-apple"
+                                           style="margin-top: 14px; color: rgb(37, 30, 36)"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-center mt-3">
+                            Har du redan ett konto?
+                            <a href="sign_in.html"
+                               style="color: red; border-bottom: 1px solid red">Logga in</a>
+                        </p>
+                    </div>
                 </div>
-              </div>
-              <p class="text-center mt-3">
-                Har du redan ett konto?
-                <a
-                  href="sign_in.html"
-                  style="color: red; border-bottom: 1px solid red"
-                  >Logga in</a
-                >
-              </p>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- <section class="signin pt_100 xs_pt_70 pb_100 xs_pb_70">
@@ -495,72 +420,38 @@
         >
           <div class="col-xl-5 col-sm-10 col-md-8 col-lg-6">
             <div class="login_area">
-              <h2>Välkommen!</h2>
+              <h2>Välkommen tillbaka</h2>
               <p>Bli medlem för att fortsätta</p>
-              <form id="registerForm">
-                  <div class="row">
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="text" id="firstName" placeholder="Förnamn" required />
-                          </div>
-                      </div>
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="text" id="lastName" placeholder="Efternamn" required />
-                          </div>
-                      </div>
-                      <!--<div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="number" id="organizationNumber" placeholder="Organisationsnummer" />
-                          </div>
-                      </div>-->
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="email" id="email" placeholder="Mejl" required />
-                          </div>
-                      </div>
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="text" id="phoneNumber" placeholder="Telefonnummer" />
-                          </div>
-                      </div>
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="text" id="address" placeholder="Adress" />
-                          </div>
-                      </div>
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="text" id="city" placeholder="Stad" />
-                          </div>
-                      </div>
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="text" id="postalCode" placeholder="Postnummer" />
-                          </div>
-                      </div>
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="text" id="country" placeholder="Land" />
-                          </div>
-                      </div>
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="password" id="password" placeholder="Lösenord" required />
-                          </div>
-                      </div>
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <input type="password" id="confirmPassword" placeholder="Bekräfta Lösenord" required />
-                          </div>
-                      </div>
-                      <div class="col-xl-12">
-                          <div class="login_imput">
-                              <button type="submit" 
-                                      class="common_btn">Skapa Konto</button>
-                          </div>
-                      </div>
+              <form>
+                <div class="row">
+                  <div class="col-xl-12">
+                    <div class="login_imput">
+                      <input type="text" placeholder="Namn" />
+                    </div>
                   </div>
+                  <div class="col-xl-12">
+                    <div class="login_imput">
+                      <input type="email" placeholder="Melj" />
+                    </div>
+                  </div>
+                  <div class="col-xl-12">
+                    <div class="login_imput">
+                      <input type="password" placeholder="Lösenord" />
+                    </div>
+                  </div>
+                  <div class="col-xl-12">
+                    <div class="login_imput">
+                      <input type="password" placeholder="Bekräfta Lösenord" />
+                    </div>
+                  </div>
+                  <div class="col-xl-12">
+                    <div class="login_imput">
+                      <button type="submit" class="common_btn">
+                        skapa konto
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </form>
               <p class="or"><span>or</span></p>
               <ul class="d-flex">
@@ -634,5 +525,5 @@
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/jquery.exzoom.css" />
     <link rel="stylesheet" href="css/nice-select.css" />
-  </body>
+</body>
 </html>

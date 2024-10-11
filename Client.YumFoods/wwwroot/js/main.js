@@ -844,12 +844,12 @@ if (searchBar !== null) {
 //Fetch items from database
 const loadProducts = async () => {
   try {
-    const API_KEY = variables();
+    //const API_KEY = variables();
     // Fetch the products from the API
 
-    // const response = await fetch(`https://localhost:7216/products`);
+     const response = await fetch(`https://localhost:7216/products`);
 
-    const response = await fetch(`https://${API_KEY}/products`);
+    //const response = await fetch(`https://${API_KEY}/products`);
 
     const data = await response.json();
 
@@ -914,18 +914,28 @@ loadProducts();
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
-  if (yum !== null) {
-    const htmlString = yumProductsList
-      .map((yum) => {
-        let title = JSON.stringify(yum.title);
-        let description = JSON.stringify(yum.description);
-        let ingredients = JSON.stringify(yum.ingredients);
-        return (
-          `<div
-            class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
-            data-wow-duration="1s"
-                        >
-          <div class="menu_item"
+    if (yum !== null) {
+        const htmlString = yumProductsList
+            .map((yum) => {
+                let title = JSON.stringify(yum.title);
+                let description = JSON.stringify(yum.description);
+                let ingredients = JSON.stringify(yum.ingredients);
+                return (
+                    `
+
+          <div
+          class="wow fadeInUp "
+          data-wow-duration="1s"
+                      >
+        <div class="menu_item yum_product_display_item"
+                style="border: 1px solid var(--Stroke, #CED3D2); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:364px; height:330px; border-radius:12px;"
+                 >
+
+                <div class="yum_item_buttons d-flex flex-column align-items-center">
+                  <button
+                  data-id=` +
+                    yum.id +
+                    `
                   data-yum-id=${yum.id}
                   data-yum-title=${title}
                   data-yum-price=${yum.price}
@@ -962,8 +972,8 @@ const yumProducts = (yumProductsList) => {
                 <div class="menu_item_img" style="border-bottom:solid 1px grey;">
                   <img
                     src=` +
-          yum.imgRef +
-          `
+                    yum.imgRef +
+                    `
                     alt="yum-meny-bild"
                     class="img-fluid w-100"
                     class="title"
@@ -989,15 +999,15 @@ const yumProducts = (yumProductsList) => {
                     data-bs-toggle="modal"
                     data-bs-target="#modal"
                     >` +
-          yum.title +
-          `</a>
+                    yum.title +
+                    `</a>
                   <div class="d-flex justify-content-between">
                             <h5 class="price">` +
-          yum.price +
-          `kr</h5>
+                    yum.price +
+                    `kr</h5>
                             <img src=` +
-          yum.dietRef +
-          `
+                    yum.dietRef +
+                    `
                             alt="dagens-meny-bild"
                             class="img-fluid diet_img"
                             href="#"/>
@@ -1470,14 +1480,14 @@ window.onload = function () {
 
 //Display daily items
 const dailyProducts = (dailyProductsList) => {
-  if (daily !== null) {
-    const htmlString = dailyProductsList
-      .map((daily) => {
-        let title = JSON.stringify(daily.title);
-        let description = JSON.stringify(daily.description);
-        let ingredients = JSON.stringify(daily.ingredients);
-        return (
-          `<div
+    if (daily !== null) {
+        const htmlString = dailyProductsList
+            .map((daily) => {
+                let title = JSON.stringify(daily.title);
+                let description = JSON.stringify(daily.description);
+                let ingredients = JSON.stringify(daily.ingredients);
+                return (
+                    `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -1494,8 +1504,8 @@ const dailyProducts = (dailyProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          daily.imgRef +
-          `
+                    daily.imgRef +
+                    `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -1507,16 +1517,16 @@ const dailyProducts = (dailyProductsList) => {
                <div class="d-flex">
                <img
                   src=` +
-          daily.dietRef +
-          `
+                    daily.dietRef +
+                    `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
 
                 /></div>
                 <a class="category" href="#">` +
-          daily.category +
-          `</a>
+                    daily.category +
+                    `</a>
           </div>
               <div class="menu_item_text">
                 <a
@@ -1533,25 +1543,25 @@ const dailyProducts = (dailyProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          daily.title.replace(/'/g, "") +
-          `</a
+                    daily.title.replace(/'/g, "") +
+                    `</a
                 >
                 <h5 class="price">` +
-          daily.price +
-          `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='amenu_add_to_cart' data - id=" +
-          daily.id +
-          `
+                    daily.price +
+                    `kr</h5>` +
+                    "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='amenu_add_to_cart' data - id=" +
+                    daily.id +
+                    `
           data-yum-id=${daily.id}
           data-yum-title=${title}
           data-yum-price=${daily.price}
           data-yum-img=${daily.imgRef}
           data-yum-quantity-price=${daily.price}
           data-yum-description=${description}
-          data-yum-diet=${daily.dietRef}
+          data-yum-diet=${daily.dietRef}    
           ` +
-          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
-          `<!--
+                    ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
+                    `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -1564,25 +1574,25 @@ const dailyProducts = (dailyProductsList) => {
               </div>
             </div>
           </div>`
-        );
-      })
-      .join("");
-    daily.innerHTML = htmlString;
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        daily.innerHTML = htmlString;
+    } else {
+        return null;
+    }
 };
 
 //Display premium items
 const premiumProducts = (premiumProductsList) => {
-  if (premium !== null) {
-    const htmlString = premiumProductsList
-      .map((premium) => {
-        let title = JSON.stringify(premium.title);
-        let description = JSON.stringify(premium.description);
-        let ingredients = JSON.stringify(premium.ingredients);
-        return (
-          `<div
+    if (premium !== null) {
+        const htmlString = premiumProductsList
+            .map((premium) => {
+                let title = JSON.stringify(premium.title);
+                let description = JSON.stringify(premium.description);
+                let ingredients = JSON.stringify(premium.ingredients);
+                return (
+                    `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -1599,8 +1609,8 @@ const premiumProducts = (premiumProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-          premium.imgRef +
-          `
+                    premium.imgRef +
+                    `
                   alt="premium-meny-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -1612,16 +1622,16 @@ const premiumProducts = (premiumProductsList) => {
                <div class="d-flex">
                <img
                   src=` +
-          premium.dietRef +
-          `
+                    premium.dietRef +
+                    `
                   alt="premium-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
 
                 /></div>
                 <a class="category" href="#">` +
-          premium.category +
-          `</a>
+                    premium.category +
+                    `</a>
           </div>
               <div class="menu_item_text">
                 <a
@@ -1638,15 +1648,15 @@ const premiumProducts = (premiumProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-          premium.title.replace(/'/g, "") +
-          `</a
+                    premium.title.replace(/'/g, "") +
+                    `</a
                 >
                 <h5 class="price">` +
-          premium.price +
-          `kr</h5>` +
-          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='menu_add_to_cart' data-id=" +
-          premium.id +
-          `
+                    premium.price +
+                    `kr</h5>` +
+                    "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='menu_add_to_cart' data-id=" +
+                    premium.id +
+                    `
           data-yum-id=${premium.id}
           data-yum-title=${title}
           data-yum-price=${premium.price}
@@ -1655,8 +1665,8 @@ const premiumProducts = (premiumProductsList) => {
           data-yum-description=${description}
           data-yum-diet=${premium.dietRef}
           ` +
-          ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
-          `<!--
+                    ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
+                    `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -1669,13 +1679,13 @@ const premiumProducts = (premiumProductsList) => {
               </div>
             </div>
           </div>`
-        );
-      })
-      .join("");
-    premium.innerHTML = htmlString;
-  } else {
-    return null;
-  }
+                );
+            })
+            .join("");
+        premium.innerHTML = htmlString;
+    } else {
+        return null;
+    }
 };
 
 //Show baguetter
@@ -5291,6 +5301,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </section>`;
     });
 
+
     // Update totals in sidebar and mobile
     document.getElementById("sidebarShipping").textContent = `${shipping} kr`;
     document.getElementById("sidebarTotal").textContent = `${
@@ -5344,11 +5355,7 @@ document.addEventListener("DOMContentLoaded", function () {
   updateSidebarCart();
 });
 
-// --------------------------------------
-
-const submitCartForm = async (event) => {
-  event.preventDefault();
-  async function redirectToStripeCheckout() {
+async function redirectToStripeCheckout() {
     try {
       // Retrieve cart information from local storage
       let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
@@ -5394,8 +5401,63 @@ const submitCartForm = async (event) => {
     } catch (error) {
       console.error("Error:", error);
     }
-  }
 };
+
+function register(userData) {
+    fetch('https://localhost7023/users/', {  
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData) // Send the form data to the backend
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.success) {
+                alert('User registered successfully!');
+                console.log('User registered:', data);
+            } else {
+                alert('Error: ' + data.message);
+                console.error('Registration error:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error during registration:', error);
+        });
+}
+
+function login() {
+    const loginData = {
+        email: document.getElementById("field2").value.trim(),
+        password: document.getElementById("field3").value.trim(),
+    };
+
+    fetch('https://localhost7023/users/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loginData)
+    })
+        .then(response => {
+            if (response.status === 401) {
+                alert('Incorrect email or password.');
+                console.error('Unauthorized: Incorrect email or password');
+            } else if (response.ok) {
+                return response.json();
+            }
+        })
+        .then(data => {
+            if (data && data.Token) {
+                localStorage.setItem('authToken', data.Token); 
+
+                alert('Login successful!');
+            }
+        })
+        .catch(error => {
+            console.error('Error during login:', error);
+        });
+}
 
 function Footer() {
   let footer = document.getElementById("footer");
