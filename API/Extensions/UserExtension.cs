@@ -10,7 +10,7 @@ public static class UserExtension
 
         group.MapGet("/", GetAllUsersAsync);
         group.MapGet("/{id}", GetUserByIdAsync);
-        group.MapGet("/name", GetUserByNameAsync);
+        group.MapGet("/name/{name}", GetUserByNameAsync);
         group.MapGet("/email", GetUserByEmailAsync);
         group.MapGet("/organization", GetUserByOrganizationAsync);
 
