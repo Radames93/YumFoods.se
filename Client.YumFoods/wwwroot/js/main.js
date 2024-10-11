@@ -547,27 +547,37 @@ if (searchBar !== null) {
 
 //Fetch items from database
 const loadProducts = async () => {
-    try {
-        const API_KEY = variables();
-        // Fetch the products from the API
-        const response = await fetch(`https://${API_KEY}/products`);
+  try {
+    const API_KEY = variables();
+    // Fetch the products from the API
+    const response = await fetch(`https://${API_KEY}/products`);
+    // const response = await fetch(`https://localhost:7216/products`);
+    const data = await response.json();
 
-      const data = await response.json();
-    
     // Check if the response is OK (status code in the 200-299 range)
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
 
     // Parse the response data as JSON
-      const allProducts = data;
+    const allProducts = data;
 
     // Filter the products into different categories
-    const yumProductsList = allProducts.filter((product) => product.category === "Yum");
-    const dailyProductsList = allProducts.filter((product) => product.category === "Dagens");
-    const premiumProductsList = allProducts.filter((product) => product.category === "Premium");
-    const subscriptionsProductsList = allProducts.filter((product) => product.category === "Subscriptions");
-    const baguetterProductsList = allProducts.filter((product) => product.category === "Baguetter");
+    const yumProductsList = allProducts.filter(
+      (product) => product.category === "Yum"
+    );
+    const dailyProductsList = allProducts.filter(
+      (product) => product.category === "Dagens"
+    );
+    const premiumProductsList = allProducts.filter(
+      (product) => product.category === "Premium"
+    );
+    const subscriptionsProductsList = allProducts.filter(
+      (product) => product.category === "Subscriptions"
+    );
+    const baguetterProductsList = allProducts.filter(
+      (product) => product.category === "Baguetter"
+    );
 
     // Further filtering or categorization
     const yumFiltered = yumProductsList;
@@ -594,7 +604,6 @@ const loadProducts = async () => {
     CarouselFoodBoxes(yumProductsList);
     CarouselFoodBoxes2(yumProductsList);
     CarouselDietButtons(yumProductsList);
-
   } catch (err) {
     // Handle errors gracefully
     console.error("Error fetching products:", err);
@@ -603,7 +612,6 @@ const loadProducts = async () => {
 
 // Call the function to load the products
 loadProducts();
-
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
@@ -828,7 +836,7 @@ const yumProducts = (yumProductsList) => {
 
 const carouselContainer = document.getElementById("container");
 const carouselContainer2 = document.getElementById("container2");
-const carouselDietButtons = document.getElementById("dietButtons")
+const carouselDietButtons = document.getElementById("dietButtons");
 
 const CarouselFoodBoxes = (yumProductsList) => {
   if (carouselContainer !== null) {
@@ -998,64 +1006,62 @@ function Matlådor(element) {
 
 function handleBoxClick(element, boxType) {
   if (selectedBox && selectedBox !== element) {
-    const previousCheckmark = selectedBox.querySelector('.check-products img');
+    const previousCheckmark = selectedBox.querySelector(".check-products img");
     if (previousCheckmark) {
-      previousCheckmark.style.display = 'none';
+      previousCheckmark.style.display = "none";
     }
-    selectedBox.style.backgroundColor = '';
-    selectedBox.style.border = '';
+    selectedBox.style.backgroundColor = "";
+    selectedBox.style.border = "";
   }
 
-  const checkmark = element.querySelector('.check-products img');
-  const isDisplayed = checkmark && checkmark.style.display === 'block';
+  const checkmark = element.querySelector(".check-products img");
+  const isDisplayed = checkmark && checkmark.style.display === "block";
 
   if (checkmark) {
-    checkmark.style.display = isDisplayed ? 'none' : 'block';
+    checkmark.style.display = isDisplayed ? "none" : "block";
   }
 
   if (isDisplayed) {
-    element.style.backgroundColor = '';
-    element.style.border = '';
-    selectedBox = null; 
+    element.style.backgroundColor = "";
+    element.style.border = "";
+    selectedBox = null;
   } else {
-    element.style.backgroundColor = '#FFDFCE'; 
-    element.style.border = '2px solid black';
-    selectedBox = element; 
+    element.style.backgroundColor = "#FFDFCE";
+    element.style.border = "2px solid black";
+    selectedBox = element;
   }
 }
 
 // Carousel in product page
-let currentIndex =0;
-const itemsPerPage= 4;
+let currentIndex = 0;
+const itemsPerPage = 4;
 const CarouselDietButtons = (yumProductsList) => {
   if (carouselDietButtons !== null) {
     const dietFiltered = yumProductsList.map((yum) => yum.diet);
-    const uniqueDiets = [...new Set(dietFiltered)]; 
-    
+    const uniqueDiets = [...new Set(dietFiltered)];
+
     const htmlString = uniqueDiets
       .map((diet) => {
-        return (
-          `
+        return `
           <div class="swiper-slide">
             <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64)" onclick="fetchProductsByDiet('${diet}')">
               ${diet}
             </button>
           </div>
-          `
-        );
+          `;
       })
-      .join(""); 
-  carouselDietButtons.innerHTML = htmlString;  
+      .join("");
+    carouselDietButtons.innerHTML = htmlString;
   } else {
     return null;
- }
+  }
 };
 
 var swiper3 = new Swiper(".slide-content3", {
   centeredSlide: "true",
   fade: "true",
   grabCursor: "true",
-  spaceBetween: 10, 
+  spaceBetween: 10,
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
@@ -1087,41 +1093,41 @@ var swiper3 = new Swiper(".slide-content3", {
   loopedSlides: 4,
   loopAdditionalSlides: 1,
   on: {
-    slideChangeTransitionEnd: function() {
+    slideChangeTransitionEnd: function () {
       if (this.isEnd) {
         this.slideToLoop(0, 0);
       }
-    },}
+    },
+  },
 });
 
-let showPrevBtn = document.getElementById('show-prev-btn')
-let showNextBtn = document.getElementById('show-next-btn')
-if (showPrevBtn !== null){
-  showPrevBtn.addEventListener('click', () => {
+let showPrevBtn = document.getElementById("show-prev-btn");
+let showNextBtn = document.getElementById("show-next-btn");
+if (showPrevBtn !== null) {
+  showPrevBtn.addEventListener("click", () => {
     swiper3.slidePrev();
-});
-} 
-if (showNextBtn !== null){
-showNextBtn.addEventListener('click', () => {
+  });
+}
+if (showNextBtn !== null) {
+  showNextBtn.addEventListener("click", () => {
     swiper3.slideNext();
-}); 
+  });
 }
 
-
 // banner2 i product page
-document.addEventListener('DOMContentLoaded', function () {
-  var SwiperCustom = new Swiper('.mySwiper-custom', {
+document.addEventListener("DOMContentLoaded", function () {
+  var SwiperCustom = new Swiper(".mySwiper-custom", {
     slidesPerView: 4,
     spaceBetween: 5,
     loop: true,
     centeredSlides: true,
     pagination: {
-      el: '.swiper-pagination', 
+      el: ".swiper-pagination",
       clickable: true,
     },
     navigation: {
-      nextEl: '.mySwiper-custom-next',  
-      prevEl: '.mySwiper-custom-prev',
+      nextEl: ".mySwiper-custom-next",
+      prevEl: ".mySwiper-custom-prev",
     },
     breakpoints: {
       640: {
@@ -1153,7 +1159,6 @@ document.addEventListener('DOMContentLoaded', function () {
 //   });
 //   feed.run();
 // });
-
 
 //Function for payment accordions
 function togglePaymentMethod() {
@@ -4427,6 +4432,624 @@ if (contactForm !== null) {
 
 //popup in start page
 document.addEventListener("DOMContentLoaded", function () {
+  // Lista över Göteborgs postnummer
+  const goteborgPostcodes = [
+    "40010",
+    "40012",
+    "40013",
+    "40014",
+    "40015",
+    "40016",
+    "40018",
+    "40020",
+    "40022",
+    "40024",
+    "40025",
+    "40026",
+    "40027",
+    "40028",
+    "40029",
+    "40031",
+    "40032",
+    "40036",
+    "40040",
+    "40043",
+    "40050",
+    "40053",
+    "40060",
+    "40064",
+    "40070",
+    "40072",
+    "40090",
+    "40091",
+    "40092",
+    "40093",
+    "40094",
+    "40095",
+    "40096",
+    "40097",
+    "40099",
+    "40110",
+    "40111",
+    "40120",
+    "40121",
+    "40122",
+    "40123",
+    "40124",
+    "40125",
+    "40126",
+    "40127",
+    "40150",
+    "40151",
+    "40180",
+    "40182",
+    "40183",
+    "40184",
+    "40199",
+    "40220",
+    "40221",
+    "40222",
+    "40223",
+    "40224",
+    "40225",
+    "40226",
+    "40227",
+    "40228",
+    "40229",
+    "40231",
+    "40232",
+    "40233",
+    "40234",
+    "40238",
+    "40240",
+    "40241",
+    "40242",
+    "40243",
+    "40250",
+    "40251",
+    "40252",
+    "40253",
+    "40254",
+    "40255",
+    "40256",
+    "40257",
+    "40258",
+    "40259",
+    "40261",
+    "40262",
+    "40264",
+    "40271",
+    "40272",
+    "40273",
+    "40274",
+    "40275",
+    "40276",
+    "40277",
+    "40278",
+    "40310",
+    "40311",
+    "40312",
+    "40313",
+    "40314",
+    "40315",
+    "40316",
+    "40317",
+    "40320",
+    "40321",
+    "40330",
+    "40331",
+    "40332",
+    "40336",
+    "40338",
+    "40339",
+    "40340",
+    "40343",
+    "40401",
+    "40420",
+    "40421",
+    "40422",
+    "40423",
+    "40424",
+    "40425",
+    "40426",
+    "40427",
+    "40428",
+    "40429",
+    "40430",
+    "40431",
+    "40432",
+    "40480",
+    "40482",
+    "40483",
+    "40484",
+    "40485",
+    "40502",
+    "40503",
+    "40504",
+    "40505",
+    "40506",
+    "40507",
+    "40508",
+    "40509",
+    "40510",
+    "40512",
+    "40513",
+    "40514",
+    "40515",
+    "40516",
+    "40518",
+    "40519",
+    "40521",
+    "40522",
+    "40523",
+    "40524",
+    "40530",
+    "40531",
+    "40532",
+    "40533",
+    "40534",
+    "40535",
+    "40536",
+    "40537",
+    "40538",
+    "40540",
+    "40550",
+    "40560",
+    "40600",
+    "40620",
+    "40648",
+    "40649",
+    "40650",
+    "40651",
+    "40652",
+    "40653",
+    "40654",
+    "40655",
+    "40656",
+    "40657",
+    "40658",
+    "40659",
+    "40660",
+    "40662",
+    "40663",
+    "40664",
+    "40665",
+    "40666",
+    "40667",
+    "40668",
+    "40669",
+    "40670",
+    "40671",
+    "40672",
+    "40673",
+    "40674",
+    "40675",
+    "40676",
+    "40677",
+    "40678",
+    "40679",
+    "40680",
+    "40681",
+    "40682",
+    "40683",
+    "40684",
+    "40685",
+    "40686",
+    "40687",
+    "40688",
+    "40689",
+    "40690",
+    "40691",
+    "40692",
+    "40693",
+    "40694",
+    "40695",
+    "40696",
+    "40697",
+    "40698",
+    "40699",
+    "40700",
+    "40701",
+    "40702",
+    "40703",
+    "40704",
+    "40705",
+    "40706",
+    "40707",
+    "40708",
+    "40709",
+    "40710",
+    "40711",
+    "40712",
+    "40713",
+    "40714",
+    "40715",
+    "40716",
+    "40717",
+    "40718",
+    "40719",
+    "40720",
+    "40721",
+    "40722",
+    "40723",
+    "40724",
+    "40725",
+    "40726",
+    "40727",
+    "40728",
+    "40729",
+    "40730",
+    "40731",
+    "40732",
+    "40733",
+    "40734",
+    "40735",
+    "40736",
+    "40737",
+    "40738",
+    "40739",
+    "40740",
+    "40741",
+    "40742",
+    "40743",
+    "40744",
+    "40745",
+    "40746",
+    "40747",
+    "40748",
+    "40749",
+    "40750",
+    "40751",
+    "40752",
+    "40753",
+    "40754",
+    "40755",
+    "40756",
+    "40757",
+    "40758",
+    "40759",
+    "40760",
+    "40761",
+    "40762",
+    "40763",
+    "40764",
+    "40765",
+    "40766",
+    "40767",
+    "40768",
+    "40769",
+    "40770",
+    "40771",
+    "40772",
+    "40773",
+    "40774",
+    "40775",
+    "40776",
+    "40777",
+    "40778",
+    "40779",
+    "40780",
+    "40781",
+    "40782",
+    "40783",
+    "40784",
+    "40785",
+    "40786",
+    "40787",
+    "40788",
+    "40789",
+    "40790",
+    "40791",
+    "40792",
+    "40793",
+    "40794",
+    "40795",
+    "40796",
+    "40797",
+    "40798",
+    "40799",
+    "40800",
+    "40801",
+    "40802",
+    "40803",
+    "40804",
+    "40805",
+    "40806",
+    "40807",
+    "40808",
+    "40809",
+    "40810",
+    "40811",
+    "40812",
+    "40813",
+    "40814",
+    "40815",
+    "40816",
+    "40817",
+    "40818",
+    "40819",
+    "40820",
+    "40821",
+    "40822",
+    "40823",
+    "40824",
+    "40825",
+    "40826",
+    "40827",
+    "40828",
+    "40829",
+    "40830",
+    "40831",
+    "40832",
+    "40833",
+    "40834",
+    "40835",
+    "40836",
+    "40837",
+    "40838",
+    "40839",
+    "40840",
+    "40841",
+    "40842",
+    "40843",
+    "40844",
+    "40845",
+    "40846",
+    "40847",
+    "40848",
+    "40849",
+    "40850",
+    "40851",
+    "40852",
+    "40853",
+    "40854",
+    "40855",
+    "40856",
+    "40857",
+    "40858",
+    "40859",
+    "40860",
+    "40861",
+    "40862",
+    "40863",
+    "40864",
+    "40865",
+    "40866",
+    "40867",
+    "40868",
+    "40869",
+    "40870",
+    "40871",
+    "40872",
+    "40873",
+    "40874",
+    "40875",
+    "40876",
+    "40877",
+    "40878",
+    "40879",
+    "40880",
+    "40881",
+    "40882",
+    "40883",
+    "40884",
+    "40885",
+    "40886",
+    "40887",
+    "40888",
+    "40889",
+    "40890",
+    "40891",
+    "40892",
+    "40893",
+    "40894",
+    "40895",
+    "40896",
+    "40897",
+    "40898",
+    "40899",
+    "40900",
+    "40901",
+    "40902",
+    "40903",
+    "40904",
+    "40905",
+    "40906",
+    "40907",
+    "40908",
+    "40909",
+    "40910",
+    "40911",
+    "40912",
+    "40913",
+    "40914",
+    "40915",
+    "40916",
+    "40917",
+    "40918",
+    "40919",
+    "40920",
+    "40921",
+    "40922",
+    "40923",
+    "40924",
+    "40925",
+    "40926",
+    "40927",
+    "40928",
+    "40929",
+    "40930",
+    "40931",
+    "40932",
+    "40933",
+    "40934",
+    "40935",
+    "40936",
+    "40937",
+    "40938",
+    "40939",
+    "40940",
+    "40941",
+    "40942",
+    "40943",
+    "40944",
+    "40945",
+    "40946",
+    "40947",
+    "40948",
+    "40949",
+    "40950",
+    "40951",
+    "40952",
+    "40953",
+    "40954",
+    "40955",
+    "40956",
+    "40957",
+    "40958",
+    "40959",
+    "40960",
+    "40961",
+    "40962",
+    "40963",
+    "40964",
+    "40965",
+    "40966",
+    "40967",
+    "40968",
+    "40969",
+    "40970",
+    "40971",
+    "40972",
+    "40973",
+    "40974",
+    "40975",
+    "40976",
+    "40977",
+    "40978",
+    "40979",
+    "40980",
+    "40981",
+    "40982",
+    "40983",
+    "40984",
+    "40985",
+    "40986",
+    "40987",
+    "40988",
+    "40989",
+    "40990",
+    "40991",
+    "40992",
+    "40993",
+    "40994",
+    "40995",
+    "40996",
+    "40997",
+    "40998",
+    "40999",
+    "41100",
+    "41101",
+    "41102",
+    "41103",
+    "41104",
+    "41105",
+    "41106",
+    "41107",
+    "41108",
+    "41109",
+    "41110",
+    "41111",
+    "41112",
+    "41113",
+    "41114",
+    "41115",
+    "41116",
+    "41117",
+    "41118",
+    "41119",
+    "41120",
+    "41121",
+    "41122",
+    "41123",
+    "41124",
+    "41125",
+    "41126",
+    "41127",
+    "41128",
+    "41129",
+    "41130",
+    "41131",
+    "41132",
+    "41133",
+    "41134",
+    "41135",
+    "41136",
+    "41137",
+    "41138",
+    "41139",
+    "41140",
+    "41141",
+    "41142",
+    "41143",
+    "41144",
+    "41145",
+    "41146",
+    "41147",
+    "41148",
+    "41149",
+    "41150",
+    "41151",
+    "41152",
+    "41153",
+    "41154",
+    "41155",
+    "41156",
+    "41157",
+    "41158",
+    "41159",
+    "41160",
+    "41161",
+    "41162",
+    "41163",
+    "41164",
+    "41165",
+    "41166",
+    "41167",
+    "41168",
+    "41169",
+    "41170",
+    "41171",
+    "41172",
+    "41173",
+    "41174",
+    "41175",
+    "41176",
+    "41177",
+    "41178",
+    "41179",
+    "41180",
+    "41181",
+    "41182",
+    "41183",
+    "41184",
+    "41185",
+    "41186",
+    "41187",
+    "41188",
+    "41189",
+    "41190",
+    "41191",
+    "41192",
+    "41193",
+    "41194",
+    "41195",
+    "41196",
+    "41197",
+    "41198",
+    "41199",
+  ];
+
   let deliveryModal = document.getElementById("deliveryModal");
   if (deliveryModal !== null) {
     var myModal = bootstrap.Modal.getOrCreateInstance(
@@ -4437,70 +5060,81 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     myModal.show();
   }
-});
-let confirmButton = document.getElementById("confirmButton");
-if (confirmButton !== null) {
-  confirmButton.addEventListener("click", function () {
-    var postcode = document.getElementById("postcodeInput").value;
-    if (postcode === "") {
-      document.getElementById("confirmationMessage").style.display = "none";
-      document.getElementById("wrong-message").style.display = "none";
-      document.getElementById("wrong-message2").style.display = "block";
-      document.getElementById("no-place").style.display = "none";
-    } else if (postcode) {
-      document.getElementById("confirmationMessage").style.display = "block";
-      document.getElementById("wrong-message").style.display = "none";
-      document.getElementById("wrong-message2").style.display = "none";
-      document.getElementById("no-place").style.display = "none";
-      localStorage.setItem("Postcode", postcode);
-      console.log(localStorage.getItem("Postcode"));
-    } else {
-      document.getElementById("wrong-message").style.display = "block";
-      document.getElementById("confirmationMessage").style.display = "none";
-      document.getElementById("wrong-message2").style.display = "none";
-      document.getElementById("no-place").style.display = "none";
-    }
-  });
-}
-let findLocation = document.getElementById("findLocationButton");
 
-if (findLocation !== null) {
-  findLocation.addEventListener("click", function () {
-    var postcode = document.getElementById("postcodeInput").value;
-    if (postcode === "") {
-      document.getElementById("confirmationMessage").style.display = "none";
-      document.getElementById("wrong-message").style.display = "none";
-      document.getElementById("wrong-message2").style.display = "block";
-      document.getElementById("no-place").style.display = "none";
-    } else if (postcode && postcode.length === 5 && /^[0-9]+$/) {
-      fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=API_KEY`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.status === "OK") {
-            var address = data.results[0].formatted_address;
-            alert("Platsen hittades: " + address);
-          } else {
-            document.getElementById("no-place").style.display = "block";
-            document.getElementById("wrong-message").style.display = "none";
-            document.getElementById("confirmationMessage").style.display =
-              "none";
-            document.getElementById("wrong-message2").style.display = "none";
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("Ett fel uppstod vid sökningen.");
-        });
-    } else {
-      document.getElementById("wrong-message2").style.display = "none";
-      document.getElementById("wrong-message").style.display = "block";
-      document.getElementById("confirmationMessage").style.display = "none";
-      document.getElementById("no-place").style.display = "none";
-    }
-  });
-}
+  let confirmButton = document.getElementById("confirmButton");
+  if (confirmButton !== null) {
+    confirmButton.addEventListener("click", function () {
+      var postcode = document
+        .getElementById("postcodeInput")
+        .value.replace(/\s+/g, ""); // Tar bort mellanslag
+
+      if (postcode === "") {
+        document.getElementById("confirmationMessage").style.display = "none";
+        document.getElementById("wrong-message").style.display = "none";
+        document.getElementById("wrong-message2").style.display = "block";
+        document.getElementById("no-place").style.display = "none";
+      } else if (goteborgPostcodes.includes(postcode)) {
+        document.getElementById("confirmationMessage").style.display = "block";
+        document.getElementById("wrong-message").style.display = "none";
+        document.getElementById("wrong-message2").style.display = "none";
+        document.getElementById("no-place").style.display = "none";
+        localStorage.setItem("Postcode", postcode);
+        console.log(localStorage.getItem("Postcode"));
+      } else {
+        document.getElementById("wrong-message").style.display = "block";
+        document.getElementById("confirmationMessage").style.display = "none";
+        document.getElementById("wrong-message2").style.display = "none";
+        document.getElementById("no-place").style.display = "none";
+      }
+    });
+  }
+
+  let findLocation = document.getElementById("findLocationButton");
+  if (findLocation !== null) {
+    findLocation.addEventListener("click", function () {
+      var postcode = document
+        .getElementById("postcodeInput")
+        .value.replace(/\s+/g, ""); // Tar bort mellanslag
+      if (postcode === "") {
+        document.getElementById("confirmationMessage").style.display = "none";
+        document.getElementById("wrong-message").style.display = "none";
+        document.getElementById("wrong-message2").style.display = "block";
+        document.getElementById("no-place").style.display = "none";
+      } else if (
+        postcode &&
+        postcode.length === 5 &&
+        /^[0-9]+$/.test(postcode)
+      ) {
+        fetch(
+          `https://maps.googleapis.com/maps/api/geocode/json?address=${postcode}&key=API_KEY`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "OK") {
+              var address = data.results[0].formatted_address;
+              alert("Platsen hittades: " + address);
+            } else {
+              document.getElementById("no-place").style.display = "block";
+              document.getElementById("wrong-message").style.display = "none";
+              document.getElementById("confirmationMessage").style.display =
+                "none";
+              document.getElementById("wrong-message2").style.display = "none";
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("Ett fel uppstod vid sökningen.");
+          });
+      } else {
+        document.getElementById("wrong-message2").style.display = "none";
+        document.getElementById("wrong-message").style.display = "block";
+        document.getElementById("confirmationMessage").style.display = "none";
+        document.getElementById("no-place").style.display = "none";
+      }
+    });
+  }
+});
+
 //Count quantity and display in the popup cart icon
 function totalQuantity() {
   let count = document.getElementById("count");
@@ -4902,62 +5536,56 @@ var datesSwipes = new Swiper(".dates_swipe", {
   },
 });
 
-
-
-
-
-
-
 const submitCartForm = async (event) => {
   event.preventDefault();
-async function redirectToStripeCheckout() {
-  try {
-    // Retrieve cart information from local storage
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (!formDataArry || formDataArry.length === 0) {
-      console.error("No products in the cart.");
-      return;
+  async function redirectToStripeCheckout() {
+    try {
+      // Retrieve cart information from local storage
+      let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+      if (!formDataArry || formDataArry.length === 0) {
+        console.error("No products in the cart.");
+        return;
+      }
+
+      let products = formDataArry.map((item) => {
+        // Retrieve the unit price and total price for the selected quantity
+        let unitPrice = item.price; // Price per item
+        let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
+
+        return {
+          name: item.title, // Product name (title)
+          quantity: item.quantity, // Quantity of the product
+          price: unitPrice, // Unit price for the product
+          total: totalQuantityPrice, // Total price for the quantity
+        };
+      });
+
+      // Create a POST request to your backend endpoint to create the Stripe checkout session
+      const response = await fetch("https://localhost:7216/payments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          successPaymentUrl: "https://localhost:7023/payment_success.html",
+          cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+          products: products, // Send the products array
+        }),
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        // Redirect to the Stripe checkout session URL
+        window.location.href = result.checkoutUrl;
+        localStorage.clear();
+      } else {
+        console.error("Error creating Stripe session", result);
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
-
-    let products = formDataArry.map((item) => {
-      // Retrieve the unit price and total price for the selected quantity
-      let unitPrice = item.price; // Price per item
-      let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
-
-      return {
-        name: item.title, // Product name (title)
-        quantity: item.quantity, // Quantity of the product
-        price: unitPrice, // Unit price for the product
-        total: totalQuantityPrice, // Total price for the quantity
-      };
-    });
-
-    // Create a POST request to your backend endpoint to create the Stripe checkout session
-    const response = await fetch("https://localhost:7216/payments", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        successPaymentUrl: "https://localhost:7023/payment_success.html",
-        cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-        products: products, // Send the products array
-      }),
-    });
-
-    const result = await response.json();
-    if (response.ok) {
-      // Redirect to the Stripe checkout session URL
-      window.location.href = result.checkoutUrl;
-      localStorage.clear();
-    } else {
-      console.error("Error creating Stripe session", result);
-    }
-  } catch (error) {
-    console.error("Error:", error);
   }
-}
-}
+};
 
 function Footer() {
   let footer = document.getElementById("footer");
@@ -5043,9 +5671,24 @@ function Footer() {
               <div class="footer_content">
               <h2 id="link_title">Hjälp & Villkor</h2>
               <ul id="faq-ul">
-                  <li><i class="fas fa-question"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html">Få snabbt svar FAQ</a></li>
-                  <li><i style="margin-top: 30px;" class="fab fa-teamspeak"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html"> Kontakta kundservice</a></li>
-                  <li><i style="margin-top: 30px;" class="fas fa-file-alt"></i><a style="margin-top: -22px;" class="footer_links_1" href="terms_condition.html">Allmänna villkor</a></li>
+                  <li style="margin-bottom: 30px;"><a
+                  href="faq.html"
+                  target="_blank"
+                  aria-label="Länk till instagram sida"
+                  ><i class="fas fa-question"></i
+                ></a><p class="terms-p1" style="margin-top: -20px; margin-left: 10px;">Få snabbt svar FAQ</p></li>
+                <li style="margin-bottom: 30px;"><a
+                href="faq.html"
+                target="_blank"
+                aria-label="Länk till instagram sida"
+                ><i class="fab fa-teamspeak"></i
+              ></a><p class="terms-p2" style="margin-top: -20px; margin-left: 10px;">Kontakta kundservice</p></li>
+              <li><a
+              href="terms_condition.html"
+              target="_blank"
+              aria-label="Länk till instagram sida"
+              ><i class="fas fa-file-alt"></i
+            ></a><p class="terms-p3" style="margin-top: -20px; margin-left: 10px;">Allmänna villkor</p></li>
                   <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
                 </ul>
               </div>
