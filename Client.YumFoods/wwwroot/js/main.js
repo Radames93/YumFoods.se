@@ -835,9 +835,9 @@ const loadProducts = async () => {
     const API_KEY = variables();
     // Fetch the products from the API
 
-    const response = await fetch(`https://localhost:7216/products`);
+    // const response = await fetch(`https://localhost:7216/products`);
 
-    // const response = await fetch(`https://${API_KEY}/products`);
+    const response = await fetch(`https://${API_KEY}/products`);
 
     const data = await response.json();
 
@@ -2996,12 +2996,12 @@ totalQuantity();
 ///////// Dashboard functionality start ///////////
 ///////////////////////////////
 
-function callUsers() {
-  fetch("https://localhost:7216/users/9")
-    .then((resp) => resp.json())
-    .then((data) => console.log(data));
-}
-callUsers();
+// function callUsers() {
+//   fetch("https://localhost:7216/users/9")
+//     .then((resp) => resp.json())
+//     .then((data) => console.log(data));
+// }
+// callUsers();
 
 if (document.getElementById("dashboard_aside")) {
   document.querySelectorAll(".dashActive").forEach((link) => {
