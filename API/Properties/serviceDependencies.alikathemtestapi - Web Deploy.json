@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/alikathemtestapi/providers/Microsoft.ServiceLinker/linkers/VaultUri_DC65414A23",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.KeyVault/vaults/Yumfoodskeyvaults",
+      "type": "secrets.keyVault",
+      "connectionId": "VaultUri",
+      "dynamicId": null
+    },
+    "storage1": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/alikathemtestapi/providers/Microsoft.ServiceLinker/linkers/BlobStorageConnectionString_A4615B97B0, /subscriptions/b38fdb02-99ba-48b5-990a-6f34ee1cc2aa/resourceGroups/YumFoodsAB/providers/Microsoft.Web/sites/alikathemtestapi/providers/Microsoft.ServiceLinker/linkers/BlobStorageConnectionString_66BEF885AD",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/yumfoodsstorage",
+      "type": "storage.azure",
+      "connectionId": "BlobStorage:ConnectionString",
+      "dynamicId": null
+    }
+  }
+}

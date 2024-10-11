@@ -19,6 +19,12 @@
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <style>
+      input,
+      label {
+        display: block;
+      }
+    </style>
   </head>
 
   <body>
@@ -29,11 +35,10 @@
     <!--=============================
         MENU END
     ==============================-->
-
     <!--=============================
         BREADCRUMB START
     ==============================-->
-    <section class="page_breadcrumb" style="background: url(images/cover.png)">
+    <!-- <section class="page_breadcrumb" style="background: url(images/cover.png)">
       <div class="breadcrumb_overlay">
         <div class="container">
           <div class="breadcrumb_text">
@@ -45,15 +50,89 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!--=============================
         BREADCRUMB END
     ==============================-->
-
     <!--=========================
         DASHBOARD START
     ==========================-->
-    <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
+
+    <main
+      id="userMainPage"
+      class="d-flex justify-content-center w-75 align-item-center mx-auto"
+      style="padding-top: 100px"
+    >
+      <select
+        class="form-select"
+        id="selectPage"
+        aria-label="Default select example"
+        style="display: none"
+      >
+        <option value="index.html">Startsida</option>
+        <option selected value="2">Min Profil</option>
+        <option value="3">Mina Beställningar</option>
+        <option value="4">Prenumeration</option>
+        <option value="5">Erbjudanden & Presentkort</option>
+        <option value="6">Aviseringar</option>
+        <option value="7" data-bs-toggle="modal" data-bs-target="#logOutUser">
+          Logga Ut
+        </option>
+      </select>
+
+      <aside
+        id="dashboard_aside"
+        style="
+          width: fit-content;
+          margin-right: 5px;
+          height: 500px;
+          border-right: 1px solid #ffb9a7;
+          padding: 15px;
+        "
+      >
+        <nav>
+          <ul>
+            <li style="padding: 4px; font-family: Poppins">
+              <i style="margin: 0px 10px" class="fas fa-home"></i
+              ><a href="index.html">Startsida</a>
+            </li>
+            <li
+              class="dashActive activeLink"
+              id="dash_profile"
+              onclick="dash_myProfile()"
+            >
+              <i class="fas fa-user-circle"></i>Min Profil
+            </li>
+            <li class="dashActive" onclick="dash_myOrders()">
+              <i class="fas fa-list-alt"></i>Mina Beställningar
+            </li>
+            <li class="dashActive" onclick="dash_mySubs()">
+              <i class="fas fa-redo-alt"></i>Prenumeration
+            </li>
+            <li class="dashActive" onclick="dash_myDeals()">
+              <i class="fas fa-percentage"></i>Erbjudanden & Presentkort
+            </li>
+            <li class="dashActive" onclick="dash_myNotifications()">
+              <i class="fas fa-bell"></i>Aviseringar
+            </li>
+          </ul>
+          <div class="d-flex justify-content-center mt-4">
+            <button
+              data-bs-toggle="modal"
+              data-bs-target="#logOutUser"
+              class="btn btn-primary"
+              type="button"
+            >
+              Logga ut
+            </button>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- 'Dynamic' dashboard content will appear here -->
+    </main>
+
+    <!-- <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
       <div class="container">
         <div class="dashboard_area">
           <div class="row">
@@ -138,11 +217,102 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
     <!--=========================
-        DASHBOARD END 
+        DASHBOARD END
     ==========================-->
+    <!--=========================
+        DASHBOARD COPY START
+    ==========================-->
+    <!-- <section class="dashboard mt_100 xs_mt_70 mb_100 xs_mb_70">
+      <div class="container">
+        <div class="dashboard_area">
+          <div class="row">
+            <div class="col-xl-3 col-lg-4 wow fadeInUp" data-wow-duration="1s">
+              <div class="dashboard_menu">
+                <div class="dasboard_header">
+                  <div class="dasboard_header_img">
+                    <img
+                      src="images/Avatar.png"
+                      alt="user"
+                      class="img-fluid w-100"
+                    />
+                    <label for="upload"><i class="far fa-camera"></i></label>
+                    <input type="file" id="upload" hidden />
+                  </div>
+                  <h2>Ella Olofsson</h2>
+                </div>
+                <ul>
+                  <li>
+                    <a class="active" href="dashboard.html"
+                      ><span><i class="fas fa-user"></i></span> Personligt
+                      information</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_address.html"
+                      ><span><i class="fas fa-user"></i></span>adress</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_order.html"
+                      ><span><i class="fas fa-bags-shopping"></i></span>
+                      order</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_wishlist.html"
+                      ><span><i class="far fa-heart"></i></span> önskelista</a
+                    >
+                  </li>
+                  <li>
+                    <a href="dashboard_change_password.html"
+                      ><span><i class="fas fa-user-lock"></i></span> Byt
+                      lösenord</a
+                    >
+                  </li>
+                  <li>
+                    <a href="#"
+                      ><span> <i class="fas fa-sign-out-alt"></i></span> Logga
+                      ut</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-9 col-lg-8 wow fadeInUp" data-wow-duration="1s">
+              <div class="dashboard_content">
+                <div class="dashboard_body">
+                  <h3>
+                    Personligt Information
+                    <a
+                      class="dash_add_new_address"
+                      href="dashboard_info_edit.html"
+                      >redigera</a
+                    >
+                  </h3>
 
+                  <div class="dash_personal_info">
+                    <div class="personal_info_text">
+                      <p><span>Namn:</span> Olla Olofsson</p>
+                      <p><span>Melj:</span> ollaolofsson@gmail.com</p>
+                      <p><span>Telefonnumer:</span> 023 434 54354</p>
+                      <p>
+                        <span>Address:</span> Stora Badhusgatan 18, 411 21
+                        Göteborg
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!--=========================
+        DASHBOARD COPY END
+    ==========================-->
     <!--=============================
         FOOTER START
     ==============================-->
@@ -150,13 +320,12 @@
     <!--=============================
         FOOTER END
     ==============================-->
-
     <!--=============================
         SCROLL BUTTON START
     ==============================-->
     <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
     <!--=============================
-        SCROLL BUTTON END 
+        SCROLL BUTTON END
     ==============================-->
     <!-- hotjar code -->
     <script src="js/hotjar.js"></script>
@@ -164,6 +333,8 @@
     <script src="js/swiper-bundle.min.js" rel="preload"></script>
     <!--jquery library js-->
     <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/env js-->
+    <script src="js/env.js"></script>
     <!--main/custom js-->
     <script rel="preload" src="js/main.js"></script>
     <!--bootstrap js-->

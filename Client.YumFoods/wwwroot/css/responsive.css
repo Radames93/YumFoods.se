@@ -118,6 +118,43 @@
     margin-left: 40px;
   }
 
+  .swiper-content {
+    max-width: 800px;
+  }
+  /* banner2 */
+
+  .swiper-container4 .swiper-wrapper {
+    margin-right: 0px;
+  }
+
+  .custom-swiper-buttons.swiper-button-prev {
+    margin-left: 55px;
+  }
+
+  .custom-swiper-buttons.custom-swiper-buttons.swiper-button-next {
+    margin-left: 65px;
+  }
+
+  .slide-content3 {
+    margin-left: 10px;
+  }
+
+  .swiper-container4 .swiper-slide {
+    width: 200px;
+  }
+
+  .swiper-products {
+    margin-left: 0px !important;
+  }
+
+  /* .swiper-slide{
+    width: 24% !important;
+  } */
+
+  .btn-productmeny.btn1 {
+    margin-left: 30px;
+  }
+
   .yum_product_display {
     justify-content: center;
     display: grid;
@@ -127,6 +164,16 @@
   .yum_product_display_item {
     transform: scale(1);
     transition: transform 0.3s ease;
+  }
+  /* =====================
+        SIDE BAR CART START
+    =======================*/
+  /* .cart-sidebar {
+      display: block;
+    } */
+
+  .mobile-cart-notification {
+    display: none !important;
   }
 }
 
@@ -458,6 +505,17 @@
     margin-left: 60px;
   }
 
+  .miljö-img {
+    width: 400px;
+    height: 333px;
+    margin-top: 50px;
+  }
+
+  .miljö-info {
+    margin-left: -160px;
+    width: 450px;
+  }
+
   /* =====================
         ABOUT PAGE END
     =======================*/
@@ -491,6 +549,56 @@
 
   .single_payment {
     height: 85px;
+  }
+  /* product page start */
+  .FärdigaMatkassar {
+    width: 280px;
+  }
+
+  .product-title {
+    margin-top: 70px;
+  }
+
+  .swiper-content {
+    margin-top: -45px;
+  }
+
+  .slide-content3 {
+    margin-left: 60px;
+  }
+
+  .btn-productmeny.btn1 {
+    margin-left: 300px;
+  }
+
+  .btn-productmeny.btn2 {
+    margin-right: 60px;
+  }
+
+  /* banner2 */
+  .swiper-container4 .swiper-wrapper {
+    margin-right: 0px;
+  }
+
+  .custom-swiper-buttons.swiper-button-prev {
+    margin-left: 55px;
+  }
+
+  .custom-swiper-buttons.custom-swiper-buttons.swiper-button-next {
+    margin-left: 65px;
+  }
+
+  /* product page end */
+
+  /* =====================
+        SIDE BAR CART START
+    =======================*/
+  .cart-sidebar {
+    display: block;
+  }
+
+  .mobile-cart-notification {
+    display: none !important;
   }
 }
 
@@ -1050,6 +1158,37 @@
     right: 0px;
   }
 
+  .img-fluid-about {
+    width: 425px;
+    height: 373px;
+  }
+
+  .prenum-img {
+    width: 425px;
+    height: 373px;
+    margin-left: -10px;
+  }
+
+  .prenum-info {
+    width: 500px;
+    height: 471px;
+    margin-left: 60px;
+  }
+
+  .about-title-part3 {
+    margin-bottom: 0;
+  }
+
+  .miljö-img {
+    width: 425px;
+    height: 373px;
+    margin-top: 20px;
+  }
+
+  .miljö-info {
+    width: 400px;
+    margin-left: -150px;
+  }
   /* =====================
         ABOUT PAGE END
     =======================*/
@@ -1089,6 +1228,11 @@
   /* =====================
         DASHBOARD START
     =======================*/
+
+  #doorSwitch {
+    flex-direction: row !important;
+  }
+
   .track_order ul li {
     font-size: 15px;
   }
@@ -1096,6 +1240,12 @@
   .dash_personal_info p span {
     min-width: 100%;
     margin-bottom: 10px;
+  }
+
+  .dash_forms > div {
+    flex-direction: column;
+    width: 90%;
+    margin: auto;
   }
 
   /* =====================
@@ -1122,9 +1272,75 @@
     max-width: 35%;
   }
 
+  /* product page start */
+  .FärdigaMatkassar {
+    width: 280px;
+  }
+
+  .FärdigaMatkassar.firstbox {
+    margin-left: -120px;
+  }
+
+  .FärdigaMatkassar.secoundbox {
+    margin-left: -30px;
+  }
+
+  .product-title {
+    margin-top: 70px;
+  }
+
+  .slide-content3 {
+    margin-left: 10px;
+  }
+
+  .swiper-content {
+    margin-top: -45px;
+  }
+
+  .btn-productmeny.btn1 {
+    margin-left: 275px;
+  }
+
+  .btn-productmeny.btn2 {
+    margin-right: 110px;
+  }
+
+  .container4 {
+    max-width: 1140px;
+  }
+
+  /* banner2 */
+  .swiper-container4 .swiper-wrapper {
+    margin-right: 0px;
+  }
+
+  .custom-swiper-buttons.swiper-button-prev {
+    margin-left: 55px;
+  }
+
+  .custom-swiper-buttons.custom-swiper-buttons.swiper-button-next {
+    margin-left: 65px;
+  }
+
+  .swiper-container4 .swiper-slide {
+    width: 200px;
+  }
+
+  /* product page end */
   /* =====================
         MENU DETAILS END
     =======================*/
+
+  /* =====================
+        SIDE BAR CART START
+    =======================*/
+  .cart-sidebar {
+    display: block;
+  }
+
+  .mobile-cart-notification {
+    display: none !important;
+  }
 }
 @media (min-width: 768px) and (max-width: 991.99px) {
   /* =====================
@@ -1777,21 +1993,22 @@
     margin-top: 25px;
   } */
 
-  .img-fluid-about {
-    width: 340px;
-    height: 383px;
-    margin-top: 20px;
+  .about-us.part1 {
+    margin-top: -50px;
   }
+
   .about-us.part1 p {
-    width: 320px;
+    width: 350px;
     font-weight: 400;
     line-height: 24px;
+    margin-left: -10px !important;
   }
   .about-us.title h1 {
     font-size: 35px;
   }
   .about-us.part1 h1 {
     font-size: 35px;
+    margin-left: -10px !important;
   }
   .about_us_img {
     margin-bottom: 25px;
@@ -1803,7 +2020,7 @@
 
   .container.certified {
     display: flex;
-    padding: 64px 60px;
+    padding: 64px 0px;
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -1825,6 +2042,63 @@
   .about_choose_img {
     margin-left: 0;
     margin-top: 25px;
+  }
+
+  .img-fluid-about {
+    width: 280px;
+    height: 300px;
+  }
+
+  .prenum-img {
+    width: 300px;
+    height: 390px;
+    margin-left: -200px;
+    margin-top: 40px;
+  }
+
+  .prenum-info {
+    width: 320px;
+    height: 471px;
+    margin-left: 290px;
+    margin-top: -400px;
+  }
+
+  .about-us-preBtn {
+    margin-left: -20px;
+  }
+
+  .contacts-content.contacts {
+    margin-top: 30px !important;
+    margin-left: -30px !important;
+  }
+
+  .about-title-part3 {
+    margin-bottom: 0;
+  }
+
+  .miljö-img {
+    width: 300px;
+    height: 250px;
+    margin-top: 50px;
+  }
+
+  .miljö-info {
+    width: 300px;
+    margin-left: 0px;
+  }
+
+  .about-us-box2.part4 {
+    padding: 26px 65px;
+    align-items: flex-start;
+    gap: 24px;
+    background: var(--Secondary-color, #ffdfce);
+    width: 100%;
+    margin-left: -60px;
+    margin-top: -60px;
+  }
+
+  .about-us-preBtn {
+    height: 10px;
   }
 
   /* =====================
@@ -1885,6 +2159,15 @@
   /* =====================
         DASHBOARD START
     =======================*/
+
+  #doorSwitch {
+    flex-direction: row !important;
+  }
+
+  .form-check-input {
+    width: 0.3em !important;
+  }
+
   .dashboard_content {
     padding: 25px;
   }
@@ -1898,8 +2181,52 @@
     margin-bottom: 10px;
   }
 
+  .dash_forms > div {
+    flex-direction: column;
+    width: 75%;
+  }
+
+  #dashboard_aside {
+    display: none;
+  }
+
+  #selectPage {
+    display: block !important;
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  #userMainPage {
+    flex-direction: column !important;
+    width: 90% !important;
+  }
+
+  #contain_user_content {
+    width: 75% !important;
+    margin: auto;
+  }
+
   /* =====================
         DASHBOARD END
+    =======================*/
+
+  /* =====================
+      SIGNUP START
+    =======================*/
+
+  .signup-input {
+    padding: 0 15px;
+  }
+
+  .login_area form input {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  /* =====================
+       sIGNUP END
     =======================*/
 
   .faq_area_img {
@@ -1954,6 +2281,142 @@
     order: -1;
   }
 
+  .box.FärdigaMatkassar.firstbox {
+    margin-left: -220px;
+    width: 250px;
+  }
+
+  .box.FärdigaMatkassar.secoundbox {
+    margin-left: -100px;
+    width: 250px;
+  }
+
+  .meny-option.B3 {
+    display: none;
+  }
+
+  /* product page start */
+  .FärdigaMatkassar {
+    width: 280px;
+  }
+
+  .FärdigaMatkassar.firstbox {
+    margin-left: 10px;
+  }
+
+  .FärdigaMatkassar.secoundbox {
+    margin-left: -30px;
+  }
+
+  .product-title {
+    margin-top: 70px;
+  }
+
+  .product-sök {
+    width: 180px;
+  }
+
+  .swiper-products {
+    max-width: 400px;
+    margin-top: -45px;
+    margin-left: -40px;
+  }
+
+  .slide-content2 .swiper-slide {
+    margin-right: 0px !important;
+    width: 150px !important;
+  }
+
+  .slide-content3 {
+    margin-left: 40px;
+  }
+
+  .btn-productmeny.btn1 {
+    display: flex;
+    margin-left: 220px;
+    margin-top: -45px;
+    z-index: 2;
+  }
+
+  .btn-productmeny.btn2 {
+    margin-top: -45px;
+    margin-right: -5px;
+  }
+
+  /* banner i product page */
+  .custom-img-3 {
+    width: 140px;
+    height: 140px;
+    margin-top: -170px;
+    margin-left: 120px;
+  }
+
+  .banner1-h1 {
+    margin-left: 50px;
+  }
+
+  .products-banner-1 {
+    padding-left: 20px;
+  }
+
+  .mikro-info {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .micro-info-1,
+  .micro-info-2 {
+    width: 70%;
+  }
+
+  .micro-info-1 img {
+    width: 100px;
+  }
+
+  .micro-info-2 {
+    padding-left: 120px;
+    margin-top: -90px;
+  }
+
+  .banner1-p {
+    padding-left: 50px;
+  }
+
+  /* banner2 */
+  /* .swiper-container4 .swiper-wrapper{
+  right: 100px;
+}
+
+.swiper-container4 .swiper-slide {
+  width: 120px;
+}
+
+.custom-swiper-buttons.swiper-button-prev {
+  width: 24px;
+  position: absolute;
+  left: 280px;
+  top: 200px;
+ }
+
+ .custom-swiper-buttons.swiper-button-next {
+   width: 24px;
+   position: absolute;
+   top: 200px;
+   left: 380px;
+  } */
+
+  .slide-content4 {
+    margin-left: auto;
+    max-width: 700px;
+  }
+
+  .banner2 {
+    width: 70%;
+    height: 100px;
+  }
+  /* product page end */
+
   /* =====================
         MENU DETAILS END
     =======================*/
@@ -1974,7 +2437,25 @@
   /* =====================
         CART VIEW END
     =======================*/
+  /* =====================
+        SIDE BAR CART START
+    =======================*/
+  .cart-sidebar {
+    display: block;
+  }
 
+  .mobile-cart-notification {
+    display: none !important;
+  }
+
+  .Fortsätt-Btn {
+    height: 48px !important;
+    padding: 0 !important;
+  }
+
+  .food-description.sidebar {
+    width: 380px;
+  }
   /* =====================
         LEVERANS START
     =======================*/
@@ -2679,30 +3160,33 @@
   .fa-question {
     margin-left: -140px;
   }
-
   .footer_links_1 {
     margin-left: 50px;
     text-align: left;
   }
-
   .fa-teamspeak {
     margin-left: -140px;
   }
-
   .fa-file-alt {
     margin-left: -140px;
   }
-
   .reservation_form h2 {
     font-size: 25px;
   }
-
   .menu_item_img {
     height: 200px;
   }
-
   .social_link {
     margin: 0 auto;
+  }
+  .terms-p1 {
+    margin-right: -40px;
+  }
+  .terms-p2 {
+    margin-right: -50px;
+  }
+  .terms-p3 {
+    margin-right: -10px;
   }
 
   .footer_content {
@@ -2891,7 +3375,7 @@
 
   .container.certified {
     display: flex;
-    padding: 64px 50px;
+    padding: 64px 30px;
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -2926,6 +3410,61 @@
   }
   .about_us_img h3 span {
     font-size: 14px;
+  }
+
+  .img-fluid-about {
+    width: 280px;
+    height: 300px;
+  }
+
+  .prenum-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .prenum-info {
+    width: 300px;
+    height: 400px;
+    margin-left: 250px;
+    margin-top: -210px;
+  }
+
+  .about-us-preBtn {
+    margin-left: -200px;
+    margin-top: 255px;
+  }
+
+  .about-contacats {
+    display: none;
+  }
+
+  .about-title-part3 {
+    margin-bottom: 0;
+  }
+
+  .miljö-img {
+    width: 230px;
+    height: 250px;
+    margin-top: 50px;
+  }
+
+  .miljö-info {
+    width: 270px;
+    margin-left: -28px;
+  }
+
+  .about-us-box2.part4 {
+    padding: 26px 65px;
+    align-items: flex-start;
+    gap: 24px;
+    background: var(--Secondary-color, #ffdfce);
+    width: 100%;
+    margin-left: -60px;
+    margin-top: -160px;
+  }
+
+  .about-us-preBtn {
+    height: 10px;
   }
 
   /* =====================
@@ -3042,6 +3581,15 @@
   /* =====================
         DASHBOARD START
     =======================*/
+
+  #doorSwitch {
+    flex-direction: row !important;
+  }
+
+  .form-check-input {
+    width: 0.3em !important;
+  }
+
   .dashboard_content {
     padding: 15px;
   }
@@ -3092,8 +3640,82 @@
     padding-top: 5px;
   }
 
+  .dash_forms > div {
+    flex-direction: column;
+    width: 80%;
+  }
+
+  #title_icon {
+    flex-direction: column-reverse;
+  }
+
+  #title_icon > i {
+    margin-left: 0px !important;
+    align-self: flex-start !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  #dashboard_aside {
+    display: none;
+  }
+
+  #selectPage {
+    display: block !important;
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  #userMainPage {
+    flex-direction: column !important;
+    width: 90% !important;
+  }
+
+  #contain_user_content {
+    width: 75% !important;
+    margin: auto;
+  }
+
   /* =====================
         DASHBOARD END
+    =======================*/
+
+  /* =====================
+      SIGNUP START
+    =======================*/
+
+  .signup-input {
+    padding: 0 15px;
+  }
+
+  .login_area form input {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .login_area {
+    width: 100%;
+    max-width: 490px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* =====================
+       sIGNUP END
+    =======================*/
+  /* =====================
+       sIGNIN FORGOT START
+    =======================*/
+
+  .forgot-area {
+    width: 100%;
+    max-width: 500px !important;
+  }
+
+  /* =====================
+       sIGNIN FORGOT END
     =======================*/
 
   .faq_area_img {
@@ -3183,6 +3805,130 @@
     max-width: 60%;
   }
 
+  /* product page start */
+  .FärdigaMatkassar {
+    width: 280px;
+  }
+
+  .FärdigaMatkassar.firstbox {
+    margin-left: -260px;
+    max-width: 150px;
+  }
+
+  .FärdigaMatkassar.secoundbox {
+    margin-left: -160px;
+    max-width: 150px;
+    height: 94.5px;
+  }
+
+  .product-title {
+    margin-top: 70px;
+  }
+
+  .product-sök {
+    width: 180px;
+  }
+
+  .swiper-products {
+    max-width: 300px;
+    margin-top: -45px;
+    margin-left: -15px;
+  }
+
+  .btn-productmeny.btn1 {
+    display: flex;
+    margin-left: 220px;
+    margin-top: -45px;
+  }
+
+  .btn-productmeny.btn2 {
+    margin-top: -45px;
+    margin-right: 10px;
+  }
+
+  .slide-content3 {
+    margin-left: 30px;
+  }
+
+  /* banner i product page */
+  .custom-img-3 {
+    width: 130px;
+    height: 120px;
+    margin-top: -170px;
+    margin-left: 240px;
+  }
+
+  .mikro-info {
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .micro-info-1,
+  .micro-info-2 {
+    width: 90%;
+  }
+
+  .micro-info-1 img {
+    width: 100px;
+  }
+
+  .micro-info-2 {
+    padding-left: 110px;
+    margin-top: -120px;
+  }
+
+  .banner1-h1 {
+    margin-left: 50px;
+  }
+
+  .products-banner-1 {
+    padding-left: 20px;
+  }
+
+  .banner1-p {
+    padding-left: 50px;
+    margin-bottom: 40px !important;
+    padding-right: 50px;
+  }
+
+  .products-banner-1 {
+    padding-left: 20px;
+  }
+
+  /* banner2 */
+  /* .swiper-container4 .swiper-wrapper{
+  margin-left: 30px;
+}
+
+.swiper-container4 .swiper-slide {
+  width: 80px;
+}
+
+.custom-swiper-buttons.swiper-button-prev {
+  width: 24px;
+  position: absolute;
+  left: 200px;
+  top: 200px;
+ }
+
+ .custom-swiper-buttons.swiper-button-next {
+   width: 24px;
+   position: absolute;
+   top: 200px;
+   left: 280px;
+  } */
+
+  .slide-content4 {
+    margin-left: 0;
+    max-width: 580px;
+  }
+
+  .banner2 {
+    width: 70%;
+    height: 100px;
+  }
+  /* product page end */
   /* =====================
         MENU DETAILS END
     =======================*/
@@ -3285,6 +4031,33 @@
   .h-captcha {
     padding-bottom: 20px;
   }
+
+  /* =====================
+      SIDE BAR START
+    =======================*/
+  .mobile-cart-notification {
+    display: flex !important;
+    justify-content: space-between;
+  }
+
+  .cart-sidebar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Fortsätt-Btn {
+    height: 48px !important;
+    padding: 0 !important;
+  }
+
+  .mobile-cart-notification {
+    display: none !important;
+  }
+
+  /* =====================
+      SIDE BAR END
+    =======================*/
+
   /* =====================
         LEVERANS START
     =======================*/
@@ -4017,19 +4790,25 @@
     margin-left: auto;
     margin-right: auto;
   }
-
   #faq-ul {
     margin-left: -130px;
   }
-
   #link_title {
     margin-left: auto;
     margin-right: auto;
   }
-
   .footer_links_1 {
     margin-left: 160px;
     text-align: left;
+  }
+  .terms-p1 {
+    margin-right: -150px;
+  }
+  .terms-p2 {
+    margin-right: -160px;
+  }
+  .terms-p3 {
+    margin-right: -120px;
   }
 
   .reservation_form h2 {
@@ -4200,8 +4979,8 @@
 
   .about-us.part1 p {
     margin-bottom: 25px;
-    width: 360px;
-    margin-left: 30px;
+    margin-left: 20px;
+    width: 340px;
   }
   .img-fluid-about {
     width: 360px;
@@ -4212,7 +4991,7 @@
     flex-direction: row;
   }
   .about-us.title .link {
-    margin-top: -120px;
+    margin-top: -30px;
     margin-left: 10px;
   }
   .about-us.title h1 {
@@ -4226,7 +5005,7 @@
   .about-us.part1 h1 {
     font-size: x-large;
     font-weight: 700;
-    margin-left: 30px;
+    margin-left: 10px;
   }
 
   .container.certified {
@@ -4236,6 +5015,7 @@
     align-items: center;
     gap: 10px;
     background: var(--Secondary-color, #ffdfce);
+    width: 100%;
   }
   .about_us_img .img {
     width: 300px;
@@ -4253,6 +5033,65 @@
     width: 120px;
     height: 120px;
     font-size: 35px;
+  }
+
+  .img-fluid-about {
+    width: 280px;
+    height: 300px;
+    margin-left: 60px;
+  }
+
+  .prenum-img {
+    width: 200px;
+    height: 200px;
+    margin-left: 100px;
+  }
+
+  .prenum-info {
+    width: 290px;
+    height: 400px;
+  }
+  .about-contacats {
+    display: none;
+  }
+
+  .about-title-part3 {
+    margin-bottom: 0;
+  }
+
+  .miljö-img {
+    width: 300px;
+    height: 250px;
+    margin-top: 30px;
+    margin-left: 0px;
+  }
+
+  .miljö-info {
+    width: 330px;
+    margin-left: -28px;
+  }
+
+  .about-us-box2.part4 {
+    padding: 26px 0px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    background: var(--Secondary-color, #ffdfce);
+    width: 100%;
+    margin-left: 50px;
+    margin-right: auto;
+    margin-top: -160px;
+  }
+
+  .about-us-preBtn {
+    height: 10px;
+    margin-top: 20px;
+    margin-left: -80px;
+  }
+
+  .certified2 p {
+    width: 100%;
+    max-width: 350px;
   }
 
   /* =====================
@@ -4370,6 +5209,14 @@
   /* =====================
         DASHBOARD START
     =======================*/
+  #doorSwitch {
+    flex-direction: row !important;
+  }
+
+  .form-check-input {
+    width: 0.3em !important;
+  }
+
   .dashboard_content {
     padding: 15px;
   }
@@ -4420,8 +5267,110 @@
     padding-top: 5px;
   }
 
+  .dash_forms > div {
+    flex-direction: column;
+    width: 85%;
+  }
+
+  #title_icon {
+    flex-direction: column-reverse;
+  }
+
+  #title_icon > i {
+    margin-left: 0px !important;
+    align-self: flex-start !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  #dashboard_aside {
+    display: none;
+  }
+
+  #selectPage {
+    display: block !important;
+    width: 200px;
+    margin: auto;
+  }
+
+  #dashboard_aside {
+    display: none;
+  }
+
+  #selectPage {
+    display: block !important;
+    width: 200px;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  #userMainPage {
+    flex-direction: column !important;
+    width: 75% !important;
+  }
+
+  #contain_user_content {
+    width: 120% !important;
+    /* margin: auto; */
+  }
+
+  .subsTimeEdit {
+    flex-direction: column !important;
+    align-items: center;
+  }
+
   /* =====================
         DASHBOARD END
+    =======================*/
+
+  /* =====================
+      SIGNUP START
+    =======================*/
+
+  .signup-input {
+    padding: 0 15px;
+  }
+
+  .login_area form input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .login_area {
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+    left: -12px !important;
+  }
+
+  .login_area form button {
+    height: 40px;
+    padding-top: 5px !important;
+  }
+
+  .form-check-label.label2 {
+    margin-top: -35px !important;
+  }
+  /* =====================
+       SIGNUP END
+    =======================*/
+  /* =====================
+       sIGNIN FORGOT START
+    =======================*/
+
+  .forgot-area {
+    width: 100%;
+    max-width: 300px !important;
+  }
+
+  .glömtpass-form {
+    width: 280px;
+    margin-right: 10px !important;
+  }
+  /* =====================
+       sIGNIN FORGOT END
     =======================*/
 
   .faq_area_img {
@@ -4515,6 +5464,222 @@
     max-width: 60%;
   }
 
+  .product-title {
+    font-size: 30px;
+    line-height: 45px;
+    margin-top: 40px;
+  }
+
+  .image-container-product {
+    background-size: contain;
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    border-radius: 10px;
+  }
+
+  .image-container-product h1 {
+    font-size: 35px;
+    margin-left: 20px;
+    margin-top: 20px;
+    width: auto;
+  }
+
+  .image-container-product p {
+    width: auto;
+    margin-left: 20px;
+    font-size: 14px;
+  }
+
+  .product-box {
+    margin-left: 0;
+    margin-right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .col-4 {
+    width: 100%;
+  }
+  /* start product page */
+  .FärdigaMatkassar {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .box img {
+    width: 50px;
+    height: auto;
+  }
+
+  .products-title-utforska {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .products-alternative {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .slider-items {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .slide-container2 {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .image-container-product p {
+    margin-top: 0;
+  }
+
+  .image-container-product h1 {
+    margin-top: 0;
+  }
+
+  .slide-content3 {
+    margin-left: 10px;
+  }
+
+  .meny-option {
+    width: 120px !important;
+  }
+
+  .product-first-banner {
+    margin-top: 0px !important;
+    margin-bottom: 20px !important;
+  }
+  .swiper-slide {
+    flex: 0 0 calc(33.33% - 10px);
+    margin-right: 5px;
+    box-sizing: border-box;
+  }
+
+  .swiper-content {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .btn-productmeny {
+    width: 30px;
+    height: 30px;
+  }
+
+  .btn-productmeny.btn2 {
+    margin-right: 70px;
+    display: inline-block;
+  }
+
+  .btn-productmeny.btn1 {
+    margin-left: 40px;
+    display: inline-block;
+  }
+
+  .check-products img {
+    margin-right: 0;
+    display: none;
+    width: 15px;
+    height: 15px;
+  }
+
+  .product-sök {
+    margin-left: -40px;
+  }
+
+  /* banner i product page */
+  .micro-info-2 {
+    margin-left: 20px;
+    margin-top: -40px;
+  }
+
+  .banner1-h1 {
+    margin-left: 50px;
+  }
+
+  .products-banner-1 {
+    padding-left: 20px;
+  }
+
+  .mikro-info {
+    margin-left: 30px;
+  }
+
+  .banner1-p {
+    padding-left: 50px;
+    margin-bottom: 0 !important;
+  }
+
+  .custom-img-3 {
+    width: 110px;
+    height: 110px;
+    margin-top: -200px;
+    margin-left: 190px;
+  }
+
+  .custom-img-1 {
+    margin-left: 0px;
+    width: 120px;
+  }
+
+  .products-banner-1 {
+    width: 100%;
+    max-width: 480px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .banner1-p {
+    padding-right: 50px;
+  }
+
+  /* banner2 */
+  /* .swiper-wrapper2{
+  margin: 0 auto;
+  margin-right: 20px;
+}
+
+.swiper-container4 .swiper-slide {
+  width: 30px;
+  height: 70px;
+}
+
+.swiper-container4 .swiper-slide img {
+  height: 55px;
+}
+
+.custom-swiper-buttons.swiper-button-prev {
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 140px;
+  left: 215px;
+ }
+
+ .custom-swiper-buttons.swiper-button-next {
+   width: 5px;
+   height: 5px;
+   position: absolute;
+   top: 140px;
+   left: 260px;
+  } */
+  .slide-content4 {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 200px;
+    flex-direction: column !important;
+  }
+
+  .banner2 {
+    width: 70%;
+    height: 100px;
+  }
+
+  /* end product page */
   /* =====================
         MENU DETAILS END
     =======================*/
@@ -4635,6 +5800,31 @@
   .slide-container {
     height: 300px;
   }
+
+  /* =====================
+      SIDE BAR START
+    =======================*/
+  .mobile-cart-notification {
+    display: flex !important;
+    justify-content: space-between;
+  }
+  .cart-sidebar {
+    display: none;
+  }
+
+  .mobile-cart-notification {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    z-index: 1000;
+  }
+
+  .mobile-cart-notification span {
+    font-size: 16px;
+  }
+
   /* =====================
         LEVERANS START
     =======================*/
@@ -4788,9 +5978,9 @@
   .pro_img > img {
     width: 130px !important;
   }
-  .quentity_btn {
+  /* .quentity_btn {
     justify-content: end !important;
-  }
+  } */
 }
 /* =====================
     company box informatiom in shopping cart and contact page
