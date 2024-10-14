@@ -159,7 +159,7 @@
                                                           bokning.
                                                       </p>
 
-
+                                                      <form id="purchase" onsubmit="savePurchaseData(event)">
                                                       <div class="mb-4">
                                                           <div class="d-flex flex-row deliverDate">
                                                               <div class="swiper-button-prev-dates calender-arrow">
@@ -271,7 +271,8 @@
                                                           <div class="d-flex justify-content-between">
                                                               <input class="rounded-3"
                                                                      type="text"
-                                                                     placeholder="Ange gatuadress" />
+                                                                     placeholder="Ange gatuadress"
+                                                                     id="addressInput"/>
                                                           </div>
                                                       </div>
                                                       <div class="d-flex flex-row mb-4">
@@ -279,16 +280,18 @@
                                                               <p class="font-fix">Postnummer *</p>
                                                               <input class="rounded-3 setBoxSize"
                                                                      type="text"
-                                                                     placeholder="Ange postnummer" />
+                                                                     placeholder="Ange postnummer"
+                                                                     id="postalCodeInput"/>
                                                           </div>
                                                           <div class="ms-auto w-50">
                                                               <p class="font-fix">Ort *</p>
                                                               <input class="rounded-3 setBoxSize"
                                                                      type="text"
-                                                                     placeholder="Ange ort" />
+                                                                     placeholder="Ange ort"
+                                                                     id="cityInput"/>
                                                           </div>
                                                       </div>
-                                                      <div style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 32px; margin-top: 15px;">
+                                                      <div id="houseTypeBtn" style="display: flex; justify-content: flex-start; align-items: center; margin-bottom: 32px; margin-top: 15px;">
                                                           <div class="form-check radio_house">
                                                               <input class="form-check-input house_input" type="radio" name="housing" id="lägenhet">
                                                               <label class="form-check-label" for="lägenhet">
@@ -313,13 +316,15 @@
                                                               <p class="font-fix">Portkod/Porttelefon *</p>
                                                               <input class="rounded-3 setBoxSize"
                                                                      type="text"
-                                                                     placeholder="Ange portkod/porttelefon" />
+                                                                     placeholder="Ange portkod/porttelefon"
+                                                                     id="portInput"/>
                                                           </div>
                                                           <div class="ms-auto w-50">
                                                               <p class="font-fix">Våningsplan *</p>
                                                               <input class="rounded-3 setBoxSize"
                                                                      type="text"
-                                                                     placeholder="Ange våningsplan" />
+                                                                     placeholder="Ange våningsplan"
+                                                                     id="floorInput"/>
                                                           </div>
                                                       </div>
                                                       <div class="d-flex flex-row">
@@ -342,7 +347,7 @@
                                                                     placeholder="Lämna kommentar här"
                                                                     id="floatingTextarea"></textarea>
                                                       </div>
-                                                      <h5 class="mb-3 fw-bold mt-5 font-fix">
+                                                      <h5 class="mb-3 fw-bold mt-5 font-fix" id="contactInformationSection">
                                                           Kontaktuppgifter
                                                       </h5>
                                                       <!-- <div class="d-flex flex-row mb-4">
@@ -353,30 +358,33 @@
                                                             Företag
                                                         </button>
                                                     </div> -->
-                                                      <div class="d-flex flex-row mb-4">
+                                                      <div class="d-flex flex-row mb-4" id="fullNameContact">
                                                           <div class="w-50 me-5">
                                                               <p class="font-fix">Förnamn *</p>
                                                               <input type="text"
                                                                      class="setBoxSize rounded-3"
                                                                      placeholder="Ange förnamn"
                                                                      aria-label="Username"
-                                                                     aria-describedby="basic-addon1" />
+                                                                     aria-describedby="basic-addon1"
+                                                                     id="firstNameInput"/>
                                                           </div>
-                                                          <div class="ms-auto w-50">
+                                                          <div class="ms-auto w-50" >
                                                               <p class="font-fix">Efternamn *</p>
                                                               <input type="text"
                                                                      class="setBoxSize rounded-3"
                                                                      placeholder="Ange efternamn"
                                                                      aria-label="Username"
-                                                                     aria-describedby="basic-addon1" />
+                                                                     aria-describedby="basic-addon1"
+                                                                     id="lastNameInput"/>
                                                           </div>
                                                       </div>
                                                       <div class="mb-4">
                                                           <p class="mb-2 font-fix">Telefonnummer *</p>
-                                                          <div class="d-flex justify-content-between">
+                                                          <div class="d-flex justify-content-between" >
                                                               <input class="rounded-3"
                                                                      type="text"
-                                                                     placeholder="Ange Telefonnummer" />
+                                                                     placeholder="Ange Telefonnummer"
+                                                                     id="phoneInput"/>
                                                           </div>
                                                       </div>
                                                       <div class="mb-4">
@@ -384,15 +392,18 @@
                                                           <div class="d-flex justify-content-between">
                                                               <input class="rounded-3"
                                                                      type="text"
-                                                                     placeholder="Ange mejladress" />
+                                                                     placeholder="Ange mejladress"
+                                                                     id="mailInput" />
                                                           </div>
                                                           <!-- Hello test-->
-                                                          <!-- test nr 2-->
+                                                          <!-- test nr 2 och spara onclick="window.location.href='payment.html'"-->
                                                       </div>
-                                              </div>
+                                                      </form>
+                                                      </section>
+                                                      </div>
                                               <button class="font-fix"
                                                       id="cart-next-btn"
-                                                      onclick="window.location.href='payment.html'"
+                                                      onclick="saveAndProceed()"
                                                       type="button"
                                                       data-bs-toggle="collapse"
                                                       data-bs-target="#collapseOne"
@@ -400,8 +411,16 @@
                                                       aria-controls="collapseOne">
                                                   Fortsätt till betalning
                                               </button>
+</section>
+</div>
                                       </div>
-      </section>
+                                      </div>
+                                      </div>
+                                      </div>
+                                      </div>
+                                      </div>
+                                      </div>
+                                      </section>
 
 
 
@@ -416,12 +435,8 @@
     >
       Fortsätt till leverans
     </button>-->
-      </div>
-      </section>
       <!-- -------------------Content End------------------- -->
-      </div>
-      </div>
-      </div>
+    
 
 
       <!--
@@ -626,8 +641,7 @@
       </thead>
       <tbody id="cart-item"></tbody>
     </table> -->
-      </div>
-      </div>
+  
 
       <!--
     <div class="col-lg-12 wow fadeInUp" data-wow-duration="1s">
@@ -848,10 +862,7 @@
         </div>
       </div>
        -->
-      </div>
-      </div>
-      </div>
-      </section>
+   
 
       <!--============================
         CART VIEW END

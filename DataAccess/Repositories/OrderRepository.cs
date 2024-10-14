@@ -49,13 +49,23 @@ namespace DataAccess.Repositories
                 //UserId = newOrder.UserId,
                 OrderDate = newOrder.OrderDate,
                 DeliveryDate = newOrder.DeliveryDate,
-                Products = newOrder.Products,
+
                 Quantity = newOrder.Quantity,
+                PaymentMethod = newOrder.PaymentMethod,
                 Total = newOrder.Total
             };
 
-            await context.Order.AddAsync(order);
-            await context.SaveChangesAsync();
+            foreach (var prod in newOrder.Products)
+            {
+                var existingProd = await context.Product.FindAsync(prod.Id);
+                if (existingProd != null)
+                {
+                    order.Products.Add(existingProd);
+                }
+
+                await context.Order.AddAsync(order);
+                await context.SaveChangesAsync();
+            }
         }
 
         /// <summary>
@@ -73,5 +83,14 @@ namespace DataAccess.Repositories
             context.Order.Remove(order);
             await context.SaveChangesAsync();
         }
+
+        //public async Task<List<Order>> GetOrdersByUserIdAsync(int userId)
+        //{
+        //    return await context.Order
+        //        .Where(o => o.User.Id == userId)
+        //        .Include(o => o.OrderDetails) // Hämta även orderdetaljer
+        //        .ToListAsync();
+        //}
+
     }
 }
