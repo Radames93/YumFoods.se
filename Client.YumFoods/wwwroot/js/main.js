@@ -377,7 +377,7 @@ async function savePurchaseData(event) {
 
     try {
         // Skicka en POST-förfrågan till backend för att spara köpdata
-        const response = await fetch('https://din-api-url/purchase', {
+        const response = await fetch('https://localhost:7216/purchase', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -386,9 +386,10 @@ async function savePurchaseData(event) {
         });
 
         if (response.ok) {
-            alert("Köpdata sparad framgångsrikt!");
+            alert("Horayy");
+            purchaseData.clear();
         } else {
-            alert("Fel uppstod vid sparandet av köpdata.");
+            alert("Fel uppstod vid sparandet av köp.");
         }
     } 
     catch (error) {
