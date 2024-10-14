@@ -1,4 +1,5 @@
 ﻿using DataAccess.Repositories;
+using Shared.Entities;
 
 namespace API.Extensions;
 
@@ -37,9 +38,9 @@ public static class UserExtension
         var user = await repo.GetUserByNameAsync(name);
         return Results.Ok(user);
     }
-    private static async Task<IResult> GetUserByOrganizationAsync(UserRepository repo, string name)
+    private static async Task<IResult> GetUserByOrganizationNumberAsync(UserRepository repo, int organizationNumber)
     {
-        var user = await repo.GetUserByNameAsync(name);
+        var user = await repo.GetUserByOrganizationAsync(organizationNumber);
         return Results.Ok(user);
     }
     private static async Task<IResult> GetUserByEmailAsync(UserRepository repo, string name)
@@ -56,15 +57,21 @@ public static class UserExtension
 
     // FIXA DESSA TVÅ UNDER
 
-    private static async Task<IResult> AddUserAsync(UserRepository repo, string name)
+    private static async Task<IResult> AddUserAsync(UserRepository repo, User newUser)
     {
-        var user = await repo.GetUserByNameAsync(name);
-        return Results.Ok(user);
+        var user = await repo.GetUserByIdAsync(newUser.Id);
+        if (user is not null)
+        {
+            return Results.BadRequest($"User with {newUser.Id} already exists.");
+        }
+
+        await repo.AddUserAsync(newUser);
+        return Results.Ok();
     }
 
-    private static async Task<IResult> DeleteUserAsync(UserRepository repo, string name)
+    private static async Task<IResult> DeleteUserAsync(UserRepository repo, int id)
     {
-        var user = await repo.GetUserByNameAsync(name);
-        return Results.Ok(user);
+        await repo.DeleteUserAsync(id);
+        return Results.Ok();
     }
 }

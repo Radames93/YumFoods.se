@@ -73,4 +73,13 @@ public class UserRepository(YumFoodsUserDb context)
 
     }
 
+    public async Task DeleteUserAsync(int id)
+    {
+        var user = context.User.FirstOrDefault(u => u.Id == id);
+        if (user is null) { return; }
+
+        context.User.Remove(user);
+        await context.SaveChangesAsync();
+    }
+
 }
