@@ -364,9 +364,8 @@ async function savePurchaseData() {
 
     if (missingFields.length > 0) {
         alert("Följande fält måste fyllas i: " + missingFields.join(", "));
-        return false; // Returnera false om formuläret inte är komplett
+        return false; 
     }
-    // Om formuläret är komplett returnera true
     return true;
 
     console.log(purchaseData);
