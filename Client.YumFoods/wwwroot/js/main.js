@@ -5403,7 +5403,21 @@ async function redirectToStripeCheckout() {
     }
 };
 
-function register(userData) {
+function register(event) {
+    event.preventDefault();
+
+    // Extract form data
+    const userData = {
+        name: document.getElementById("field1").value.trim(),
+        email: document.getElementById("field2").value.trim(),
+        password: document.getElementById("field3").value.trim(),
+        repeatPassword: document.getElementById("field4").value.trim(),
+        address: document.getElementById("field5").value.trim(),
+        postalCode: document.getElementById("postnummer").value.trim(),
+        city: document.getElementById("ort").value.trim(),
+        termsAccepted: document.getElementById("terms1").checked
+    };
+
     fetch('https://localhost7023/users/', {  
         method: 'POST',
         headers: {
@@ -5427,10 +5441,14 @@ function register(userData) {
 }
 
 function login() {
+
+    //cahing problem 
     const loginData = {
-        email: document.getElementById("field2").value.trim(),
-        password: document.getElementById("field3").value.trim(),
+        email: document.getElementById("email-login").value,
+        password: document.getElementById("password-login").value
     };
+
+    console.log(loginData.email);
 
     fetch('https://localhost7023/users/login', {
         method: 'POST',
