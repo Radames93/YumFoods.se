@@ -12,7 +12,7 @@ namespace Shared.DTOs
         public int UserId { get; set; }                // The ID of the user making the purchase
         public List<Product> Products { get; set; }    // The list of products being purchased
         public int Quantity { get; set; }              // Total quantity of items being purchased
-        public double? Total { get; set; }              // Total price of the order
+        public double Total { get; set; }              // Total price of the order
         public string? PaymentMethod { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
