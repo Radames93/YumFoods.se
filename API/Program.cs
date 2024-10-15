@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using API.Extensions;
 using API.Stripe;
 using Azure.Identity;
@@ -6,13 +7,10 @@ using Azure.Storage.Blobs;
 using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Shared.Entities;
 using Shared.Interfaces;
-using Azure.Extensions.AspNetCore.Configuration.Secrets;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
+
+namespace API;
 
 internal class Program
 {
@@ -103,8 +101,8 @@ internal class Program
             options.AddPolicy("AllowSpecificOrigins", policy =>
             {
                 policy.WithOrigins("https://localhost:7023", "https://yumfoodsdev.azurewebsites.net")
-                      .AllowAnyMethod()
-                      .AllowAnyHeader();
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
             });
         });
 
