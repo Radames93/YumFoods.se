@@ -42,8 +42,8 @@ public class StripeClient
             PaymentMethodTypes = new List<string>
             {
                 "card",
-                "klarna",
-                "paypal",
+                //"klarna",
+                //"paypal",
             },
             SuccessUrl = request.SuccessPaymentUrl,
             CancelUrl = request.CancelPaymentUrl,

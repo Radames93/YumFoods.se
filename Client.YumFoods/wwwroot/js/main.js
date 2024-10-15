@@ -321,6 +321,7 @@ async function saveAndProceed() {
 async function savePurchaseData(event) {
     event.preventDefault();
 
+    let houseType = "";
     const purchaseData = {};
     const missingFields = [];
 
@@ -328,13 +329,9 @@ async function savePurchaseData(event) {
     purchaseData.Adress = document.getElementById("addressInput").value.trim();
     purchaseData.PostalCode = document.getElementById("postalCodeInput").value.trim();
     purchaseData.ort = document.getElementById("cityInput").value.trim();
-    const housing = document.getElementById("houseTypeBtn").checked;
-    purchaseData.Housing = housing;
     const apartment = document.getElementById("lägenhet").checked;
     const house = document.getElementById("villa_hus").checked;
     const radhus = document.getElementById("radhus").checked;
-    purchaseData.Port = document.getElementById("portInput").value.trim();
-    purchaseData.Floor = document.getElementById("floorInput").value.trim();
     //purchaseData.ort = document.getElementById("cityInput").value.trim();
     const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
     purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
@@ -354,49 +351,66 @@ async function savePurchaseData(event) {
     if (!purchaseData.phone) missingFields.push("telefonnummer");
     if (!purchaseData.email) missingFields.push("email");
 
-    if (
-        !purchaseData.Adress ||
-        !purchaseData.PostalCode ||
-        !purchaseData.ort ||
-        !purchaseData.firstName ||
-        !purchaseData.lastName ||
-        !purchaseData.phone ||
-        !purchaseData.email
-    ) {
-        alert(
-            "Alla fält måste fyllas i! Vänligen fyll i: " + missingFields.join(", ")
-        );
-        return;
-    }
-    if (!housing) {
-        alert(
-            "Du måste välja boendetyp för att fortsätta."
-        );
-        return;
+    if (apartment) {
+        houseType = "Lägenhet";
+        purchaseData.Port = document.getElementById("portInput").value.trim();
+        purchaseData.Floor = document.getElementById("floorInput").value.trim();
+
+        //if (!purchaseData.Port) missingFields.push("portkod");
+        //if (!purchaseData.Floor) missingFields.push("våningsplan");
+    } else if (house) {
+        houseType = "Villa/Hus";
+    } else if (radhus) {
+        houseType = "Radhus";
     }
 
-    try {
-        // Skicka en POST-förfrågan till backend för att spara köpdata
-        const response = await fetch('https://localhost:7216/purchase', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(purchaseData),
-        });
+    purchaseData.houseType = houseType;
 
-        if (response.ok) {
-            alert("Horayy");
-            purchaseData.clear();
-        } else {
-            alert("Fel uppstod vid sparandet av köp.");
-        }
-    } 
-    catch (error) {
-        console.error('Error:', error);
-        alert("Ett fel uppstod: " + error.message);
 
-    }
+    //if (
+    //    !purchaseData.Adress ||
+    //    !purchaseData.PostalCode ||
+    //    !purchaseData.ort ||
+    //    !purchaseData.firstName ||
+    //    !purchaseData.lastName ||
+    //    !purchaseData.phone ||
+    //    !purchaseData.email
+    //) {
+    //    alert(
+    //        "Alla fält måste fyllas i! Vänligen fyll i: " + missingFields.join(", ")
+    //    );
+    //    return;
+    //}
+    //if (!housing) {
+    //    alert(
+    //        "Du måste välja boendetyp för att fortsätta."
+    //    );
+    //    return;
+    //}
+    console.log(purchaseData);
+
+    //try {
+    //    // Skicka en POST-förfrågan till backend för att spara köpdata
+    //    const response = await fetch("https://localhost:7216/purchase", {
+    //        method: 'POST',
+    //        headers: {
+    //            'Content-Type': 'application/json',
+    //        },
+    //        body: JSON.stringify(purchaseData),
+    //    });
+
+    //    if (response.ok) {
+    //        alert("Horayy");
+    //        purchaseData.clear();
+    //    } else {
+    //        alert("Fel uppstod vid sparandet av köp.");
+    //    }
+    //}
+    //catch (error) {
+    //    console.error('Error:', error);
+    //    alert("Ett fel uppstod: " + error.message);
+
+    //}
 }
 
 //Personal Form
