@@ -306,7 +306,7 @@ function toggleAccountType(isPersonal) {
 //spara purcahse form
 async function saveAndProceed() {
     // Försök att spara formulärdata
-    const formSaved = await savePurchaseData(event);
+    const formSaved = await savePurchaseData();
 
     if (formSaved) {
         // Om formulärdata har sparats, gå vidare till betalning
@@ -318,8 +318,7 @@ async function saveAndProceed() {
 
 
 // Purchase form 
-async function savePurchaseData(event) {
-    event.preventDefault();
+async function savePurchaseData() {
 
     let houseType = "";
     const purchaseData = {};
@@ -332,10 +331,8 @@ async function savePurchaseData(event) {
     const apartment = document.getElementById("lägenhet").checked;
     const house = document.getElementById("villa_hus").checked;
     const radhus = document.getElementById("radhus").checked;
-    //purchaseData.ort = document.getElementById("cityInput").value.trim();
     const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
-    purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
-
+    //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
     purchaseData.firstName = document.getElementById("firstNameInput").value.trim();
     purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
     purchaseData.phone = document.getElementById("phoneInput").value.trim();
@@ -363,30 +360,15 @@ async function savePurchaseData(event) {
     } else if (radhus) {
         houseType = "Radhus";
     }
-
     purchaseData.houseType = houseType;
 
+    if (missingFields.length > 0) {
+        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+        return false; // Returnera false om formuläret inte är komplett
+    }
+    // Om formuläret är komplett returnera true
+    return true;
 
-    //if (
-    //    !purchaseData.Adress ||
-    //    !purchaseData.PostalCode ||
-    //    !purchaseData.ort ||
-    //    !purchaseData.firstName ||
-    //    !purchaseData.lastName ||
-    //    !purchaseData.phone ||
-    //    !purchaseData.email
-    //) {
-    //    alert(
-    //        "Alla fält måste fyllas i! Vänligen fyll i: " + missingFields.join(", ")
-    //    );
-    //    return;
-    //}
-    //if (!housing) {
-    //    alert(
-    //        "Du måste välja boendetyp för att fortsätta."
-    //    );
-    //    return;
-    //}
     console.log(purchaseData);
 
     //try {
@@ -5731,9 +5713,9 @@ async function redirectToStripeCheckout() {
         });
 
         // Create a POST request to your backend endpoint to create the Stripe checkout session
-        //const response = await fetch("https://localhost:7216/payments", {
-        const API_KEY = variables();
-        const response = await fetch(`https://${API_KEY}/payments`, {
+        const response = await fetch("https://localhost:7216/payments", {
+        //const API_KEY = variables();
+        //const response = await fetch(`https://${API_KEY}/payments`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

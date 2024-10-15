@@ -56,7 +56,7 @@ public class UserRepository(YumFoodsUserDb context)
         {
             FirstName = newUser.FirstName,
             LastName = newUser.LastName,
-            UserTypeId = newUser.UserTypeId,
+            UserType = newUser.UserType,
             OrganizationNumber = newUser.OrganizationNumber,
             Email = newUser.Email,
             PhoneNumber = newUser.PhoneNumber,

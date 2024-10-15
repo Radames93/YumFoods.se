@@ -77,13 +77,13 @@ namespace DataAccess.Repositories
             {
                 var orderWithDetails = new PurchaseRequest
                 {
-                    OrderId = order.Id,
+                    
                     OrderDate = order.OrderDate,
                     DeliveryDate = order.DeliveryDate,
                     Quantity = order.Quantity,
                     PaymentMethod = order.PaymentMethod,
                     Total = order.Total,
-                    OrderDetails = orderDetails.Where(od => od.OrderId == order.Id).ToList() // Matcha orderdetaljer
+                    //OrderDetails = orderDetails.Where(od => od.OrderId == order.Id).ToList() // Matcha orderdetaljer
                 };
 
                 result.Add(orderWithDetails);

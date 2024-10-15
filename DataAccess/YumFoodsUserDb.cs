@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shared.Entities;
+using Shared.Enums;
+
 namespace DataAccess;
 public class YumFoodsUserDb : DbContext
 {
@@ -8,7 +10,7 @@ public class YumFoodsUserDb : DbContext
     }
     public DbSet<User> User { get; set; }
     public DbSet<OrderDetail> OrderDetail { get; set; }
-    public DbSet<UserType> UserType { get; set; }
+    public DbSet<Company> Company { get; set; }
 }
 
 
