@@ -2,6 +2,7 @@
 using DataAccess.Repositories;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
+using Shared.DTOs;
 
 namespace API.Extensions
 {

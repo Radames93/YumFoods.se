@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shared.Entities;
 
-namespace Shared.Entities
+namespace Shared.DTOs
 {
     public class PurchaseRequest
     {
@@ -15,18 +16,19 @@ namespace Shared.Entities
         public string? PaymentMethod { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime DeliveryDate { get; set; }
-        public List<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        //public List<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
         // Delivery Information (for OrderDetail)
         public string DeliveryAddress { get; set; }    // The delivery address
         public string DeliveryCity { get; set; }       // The delivery city
         public int DeliveryPostalCode { get; set; }    // The delivery postal code
         public string DeliveryCountry { get; set; }    // The delivery country
-        public int OrderId { get; set; }
+        //public int OrderId { get; set; }
         //lägg till i databasen?
-        public string Floor { get; set; }
+        public int Floor { get; set; }
+        public int PortCode { get; set; }
         public bool LeaveAtDoor { get; set; }
 
-        
+
     }
 }

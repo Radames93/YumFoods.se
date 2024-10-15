@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shared.DTOs;
 using Shared.Entities;
 using Shared.Interfaces;
 
