@@ -941,7 +941,7 @@ const showAllProducts = (allProducts) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
                   data-yum-diet=${yum.dietRef}
-                  onclick='realAddToCart(event); openSidebar();'
+                  onclick='realAddToCart(event); openSidebar(); '
                   class="yum_btn"
                   style="border-radius: 12px;
                   padding: 18px 16px;
@@ -1065,7 +1065,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
                   data-yum-diet=${yum.dietRef}
-                  onclick='realAddToCart(event); openSidebar();'
+                  onclick='realAddToCart(event);updateSidebarCart();openSidebar()'
                   class="yum_btn"
                   style="border-radius: 12px;
                   padding: 18px 16px;
@@ -5053,7 +5053,7 @@ function totalQuantity() {
       count.innerHTML = totalQuantity;
       formDataArry = [];
     }
-  }
+    }
 }
 
 // Update fiels title,quantity,quantiyPrice to send to email
@@ -5461,7 +5461,8 @@ document.addEventListener("DOMContentLoaded", function () {
       overlay.style.display = "none";
       console.log("Sidebar closed!");
     });
-  }
+    }
+  })
 
   // if (localStorage.getItem('sidebarOpen') === 'true') {
   //   openSidebar();
@@ -5474,9 +5475,8 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Cart contents:", formDataArry);
     const sidebarCartItems = document.getElementById("sidebarCartItems");
     const mobileProductCount = document.getElementById("mobileProductCount");
-    const mobileTotalPrice = document.getElementById("mobileTotalPrice");
+      const mobileTotalPrice = document.getElementById("mobileTotalPrice");
 
-    sidebarCartItems.innerHTML = "";
     let totalQuantity = 0;
     let total = 0;
     const shipping = 49;
@@ -5582,10 +5582,12 @@ document.addEventListener("DOMContentLoaded", function () {
       formDataArry[itemIndex].quantity += change;
 
       if (formDataArry[itemIndex].quantity <= 0) {
-        removeFromCart(itemId);
+          removeFromCart(itemId);
+          totalQuantity();
       } else {
         localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-        updateSidebarCart();
+          updateSidebarCart();
+          totalQuantity();
       }
     }
   };
@@ -5603,7 +5605,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateSidebarCart();
   };
   updateSidebarCart();
-});
 
 // --------------------------------------
 
