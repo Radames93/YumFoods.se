@@ -5722,8 +5722,8 @@ async function redirectToStripeCheckout() {
             body: JSON.stringify({
                 //successPaymentUrl: "https://localhost:7023/payment_success.html",
                 //cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-                successPaymentUrl: `https://${API_KEY}/payment_success.html`,
-                cancelPaymentUrl: `https://${API_KEY}/payment_cancel.html`,
+                successPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+                cancelPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
                 products: products, // Send the products array
             }),
         });
