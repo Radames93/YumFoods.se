@@ -1,4 +1,6 @@
-﻿namespace Shared.Entities;
+﻿using Shared.Enums;
+
+namespace Shared.Entities;
 
 public class Order
 {
@@ -10,5 +12,8 @@ public class Order
     public int Quantity { get; set; }
     public string? PaymentMethod { get; set; }
     public double Total { get; set; }
-
+    public double DiscountTotal { get; set; }
+    public HouseType HouseType { get; set; }
+    public int PortCode { get; set; }
+    public int Floor { get; set; }
 }
