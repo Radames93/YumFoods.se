@@ -62,7 +62,7 @@
                             Ange dina uppgifter
                         </p>
 
-                        <form id="loginForm">
+                        <form id="loginForm" onsubmit="login(event)">
                             <!-- Kommentera tillbaka när användare namn krävs igen -->
                             <!-- <div class="form-group mb-3">
                               <label for="username-login">Användarnamn</label>
@@ -112,7 +112,7 @@
                                         style="border: 1px solid black">
                                     Avbryt
                                 </button>
-                                <button onclick="login()"type="submit" class="btn btn-danger">Logga in</button>
+                                <button class="btn btn-danger" onclick="login(event)">Logga in</button>
                             </div>
                         </form>
 

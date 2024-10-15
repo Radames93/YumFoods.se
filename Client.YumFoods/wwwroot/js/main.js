@@ -5404,32 +5404,50 @@ async function redirectToStripeCheckout() {
 };
 
 function register(event) {
-    event.preventDefault();
+    event.preventDefault(); // Prevent the default form submission behavior
 
-    // Extract form data
+    // Get form data
     const userData = {
-        name: document.getElementById("field1").value.trim(),
-        email: document.getElementById("field2").value.trim(),
-        password: document.getElementById("field3").value.trim(),
-        repeatPassword: document.getElementById("field4").value.trim(),
-        address: document.getElementById("field5").value.trim(),
-        postalCode: document.getElementById("postnummer").value.trim(),
-        city: document.getElementById("ort").value.trim(),
+        firstName: document.getElementById("field1").value,
+        lastname: document.getElementById("field1.2").value,
+        email: document.getElementById("field2").value,
+        password: document.getElementById("field3").value,
+        repeatPassword: document.getElementById("field4").value,
+        address: document.getElementById("field5").value,
+        postalCode: document.getElementById("postnummer").value,
+        city: document.getElementById("ort").value,
+        userType: null,
+        organizationNumber: null,
+        phoneNumber: null,
+        country: null,
+        subscription: null,
         termsAccepted: document.getElementById("terms1").checked
     };
 
-    fetch('https://localhost7023/users/', {  
+    // Validate the form (e.g., check password match)
+    if (userData.password !== userData.repeatPassword) {
+        document.getElementById("passwordError").style.display = "block";
+        return;
+    } else {
+        document.getElementById("passwordError").style.display = "none";
+    }
+
+    // Send the data to the backend
+    fetch('https://localhost:7023/users/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(userData) // Send the form data to the backend
+        body: JSON.stringify(userData)
     })
         .then(response => response.json())
         .then(data => {
             if (data && data.success) {
                 alert('User registered successfully!');
                 console.log('User registered:', data);
+
+                // Optionally redirect the user to the login page after successful registration
+                window.location.href = "login.html";
             } else {
                 alert('Error: ' + data.message);
                 console.error('Registration error:', data);
@@ -5440,15 +5458,18 @@ function register(event) {
         });
 }
 
-function login() {
+function login(event) {
+    event.preventDefault();
 
-    //cahing problem 
+    // Get form data
+    const email = document.getElementById("email-login").value.trim
+    const password = document.getElementById("password-login").value.trim();
+
+    // Create user object to send to backend
     const loginData = {
-        email: document.getElementById("email-login").value,
-        password: document.getElementById("password-login").value
+        email: email,
+        password: password
     };
-
-    console.log(loginData.email);
 
     fetch('https://localhost7023/users/login', {
         method: 'POST',

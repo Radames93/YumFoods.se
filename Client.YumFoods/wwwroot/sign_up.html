@@ -74,25 +74,30 @@
 
                         <!-- Personal Account Form -->
                         <div id="personalForm">
-                            <form id="signupFormPersonal" onsubmit="saveUserData(event)">
+                            <form id="signupFormPersonal" onsubmit="register(event)">
                                 <div class="row">
                                     <div class="col-xl-12 mb-3">
                                         <div class="form-group signup-form">
-                                            <label for="förnamn">Förnamn och efternamn</label>
+                                            <label for="förnamn">Förnamn</label>
                                             <input type="text"
                                                    class="form-control signup-input"
                                                    id="field1"
-                                                   placeholder="Ange Förnamn och efternamn"
+                                                   placeholder="Ange Förnamn"
                                                    required />
                                         </div>
                                     </div>
-                                    <!-- Kommentera tillbaka när användare namn krävs igen -->
-                                    <!-- <div class="col-xl-12 mb-3">
-                                      <div class="form-group signup-form">
-                                        <label for="username">Användare namn:</label>
-                                        <input type="text" class="form-control signup-input" id="username" placeholder="Ange synligt användar namn" required/>
-                                      </div>
-                                    </div> -->
+
+                                    <div class="col-xl-12 mb-3">
+                                        <div class="form-group signup-form">
+                                            <label for="efternamn">Efternamn</label>
+                                            <input type="text"
+                                                   class="form-control signup-input"
+                                                   id="field1.2"
+                                                   placeholder="Ange efternamn"
+                                                   required />
+                                        </div>
+                                    </div>
+
                                     <div class="col-xl-12 mb-3">
                                         <div class="form-group signup-form">
                                             <label for="email">Email</label>
@@ -185,7 +190,7 @@
                                                     onclick="window.location.href='index.html'">
                                                 Avbryt
                                             </button>
-                                            <button type="submit" class="btn btn-danger mx-5" onclick="register()">
+                                            <button type="submit" class="btn btn-danger mx-5" onclick="register(event)">
                                                 Skapa konto
                                             </button>
                                         </div>
