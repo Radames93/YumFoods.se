@@ -5403,59 +5403,87 @@ async function redirectToStripeCheckout() {
     }
 };
 
-function register(event) {
-    event.preventDefault(); // Prevent the default form submission behavior
+async function register() {
+    const userData = {};
 
-    // Get form data
-    const userData = {
-        firstName: document.getElementById("field1").value,
-        lastname: document.getElementById("field1.2").value,
-        email: document.getElementById("field2").value,
-        password: document.getElementById("field3").value,
-        repeatPassword: document.getElementById("field4").value,
-        address: document.getElementById("field5").value,
-        postalCode: document.getElementById("postnummer").value,
-        city: document.getElementById("ort").value,
+    // Ta ut värde från local storage genom metoden saveUserData (userData)
+    userData.firstName = document.getElementById("field1").value;
+    userData.lastName = document.getElementById("field1.2").value;
+    userData.email = document.getElementById("field2").value;
+    userData.password = document.getElementById("field3").value;
+    userData.address = document.getElementById("field5").value;
+    userData.postalCode = document.getElementById("postnummer").value;
+    userData.city = document.getElementById("ort").value;
+
+    // Skapa konstanter för att kontrollera lösen och termer
+    const repeatPassword = document.getElementById("field4").value;
+    const termsAccepted = document.getElementById("terms1").checked;
+
+    // Validering
+    if (userData.password !== repeatPassword) {
+        alert("Lösenorden matchar inte!");
+        return;
+    }
+
+    if (!termsAccepted) {
+        alert("Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta.");
+        return;
+    }
+
+    // Konvertera obj till sträng
+    localStorage.setItem("userData", JSON.stringify(userData));
+
+    // Tar ut datan
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    
+    // Kontrollera att det finns data i localStorage
+    if (!storedUserData) {
+        console.error("No user data found in localStorage.");
+        return;
+    }
+
+    // Skapa nytt objektet som ska matcha datan i databasen
+    const userToRegister = {
+        firstName: storedUserData.firstName,
+        lastName: storedUserData.lastName,
+        email: storedUserData.email,
+        password: storedUserData.password,
+        address: storedUserData.address,
+        postalCode: storedUserData.postalCode,
+        city: storedUserData.city,
         userType: null,
         organizationNumber: null,
         phoneNumber: null,
         country: null,
-        subscription: null,
-        termsAccepted: document.getElementById("terms1").checked
+        subscription: null
     };
 
-    // Validate the form (e.g., check password match)
-    if (userData.password !== userData.repeatPassword) {
-        document.getElementById("passwordError").style.display = "block";
-        return;
-    } else {
-        document.getElementById("passwordError").style.display = "none";
-    }
-
-    // Send the data to the backend
-    fetch('https://localhost:7023/users/', {
+    // Anropa apiet
+    const response = await fetch('https://localhost:7216/users/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(userData)
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data && data.success) {
-                alert('User registered successfully!');
-                console.log('User registered:', data);
+        body: JSON.stringify(userToRegister)
+    });
 
-                // Optionally redirect the user to the login page after successful registration
-                window.location.href = "login.html";
-            } else {
-                alert('Error: ' + data.message);
-                console.error('Registration error:', data);
-            }
-        })
-        .catch(error => {
-            console.error('Error during registration:', error);
-        });
+    // Error handling
+    if (!response.ok) {
+        const errorData = await response.json();
+        alert('Fel: ' + (errorData.message || 'An unknown error occurred.'));
+        console.error('Registration error:', errorData);
+        return;
+    }
+
+    const data = await response.json();
+    alert('Användare registrerad framgångsrikt!');
+    console.log('User registered:', data);
+
+    // Optionally, clear localStorage
+    localStorage.removeItem("userData");
+
+    // Redirect after successful registrationx  
+    window.location.href = "login.html";
 }
 
 function login(event) {
