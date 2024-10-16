@@ -74,7 +74,6 @@ public class UserRepository(YumFoodsUserDb context)
             Address = newUser.Address,
             City = newUser.City,
             PostalCode = newUser.PostalCode,
-            Country = newUser.Country,
             Cart = newUser.Cart,
             Subscription = newUser.Subscription,
             PasswordHash = hashedPassword
@@ -101,8 +100,8 @@ public class UserRepository(YumFoodsUserDb context)
         oldUser.Address = newUser.Address ?? oldUser.Address;
         oldUser.City = newUser.City ?? oldUser.City;
         oldUser.PostalCode = newUser.PostalCode ?? oldUser.PostalCode;
-        oldUser.Country = newUser.Country ?? oldUser.Country;
         oldUser.Subscription = newUser.Subscription ?? oldUser.Subscription;
+
 
         await context.SaveChangesAsync();
     }

@@ -315,14 +315,18 @@ function saveUserData(event) {
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
 
-  userData.email = document.getElementById("field2").value.trim();
-  userData.lösenord = document.getElementById("field3").value.trim();
-  const upprepaLösenord = document.getElementById("field4").value.trim();
-  userData.gatuadress = document.getElementById("field5").value.trim();
-  userData.postnummer = document.getElementById("postnummer").value.trim();
-  userData.ort = document.getElementById("ort").value.trim();
+    userData.firstname = document.getElementById("field1").value,
+   userData.lastname = document.getElementById("field1.2").value,
+  userData.email = document.getElementById("field2").value;
+  userData.lösenord = document.getElementById("field3").value;
+  const upprepaLösenord = document.getElementById("field4").value;
+  userData.gatuadress = document.getElementById("field5").value;
+  userData.postnummer = document.getElementById("postnummer").value;
+  userData.ort = document.getElementById("ort").value;
   const termsAccepted = document.getElementById("terms1").checked;
 
+    if (!userData.firstName) missingFields.push("first name");
+    if (!userData.lastName) missingFields.push("last name");
   if (!userData.email) missingFields.push("mail");
   if (!userData.lösenord) missingFields.push("pass");
   if (!upprepaLösenord) missingFields.push("pass repeat");
@@ -332,7 +336,9 @@ function saveUserData(event) {
 
   // Validering
   // !userData.username ||
-  if (
+    if (
+        !userData.firstName ||
+        !userData.lastName ||
     !userData.email ||
     !userData.lösenord ||
     !upprepaLösenord ||
@@ -360,7 +366,7 @@ function saveUserData(event) {
 
   if (accountType === "personal") {
     userData.kontoTyp = "personal";
-    userData.förnamn = document.getElementById("field1").value.trim();
+    userData.firstName = document.getElementById("field1").value;
   }
 
   // Spara användardata i localStorage
@@ -5406,11 +5412,11 @@ async function redirectToStripeCheckout() {
 async function register() {
     const userData = {};
 
-    // Ta ut värde från local storage genom metoden saveUserData (userData)
+    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
     userData.firstName = document.getElementById("field1").value;
     userData.lastName = document.getElementById("field1.2").value;
     userData.email = document.getElementById("field2").value;
-    userData.password = document.getElementById("field3").value;
+    userData.passwordhash = document.getElementById("field3").value;
     userData.address = document.getElementById("field5").value;
     userData.postalCode = document.getElementById("postnummer").value;
     userData.city = document.getElementById("ort").value;
@@ -5420,7 +5426,7 @@ async function register() {
     const termsAccepted = document.getElementById("terms1").checked;
 
     // Validering
-    if (userData.password !== repeatPassword) {
+    if (userData.passwordhash !== repeatPassword) {
         alert("Lösenorden matchar inte!");
         return;
     }
@@ -5447,19 +5453,19 @@ async function register() {
         firstName: storedUserData.firstName,
         lastName: storedUserData.lastName,
         email: storedUserData.email,
-        password: storedUserData.password,
+        passwordhash: storedUserData.passwordhash,
         address: storedUserData.address,
         postalCode: storedUserData.postalCode,
         city: storedUserData.city,
         userType: null,
         organizationNumber: null,
+        cart: null,
         phoneNumber: null,
-        country: null,
         subscription: null
     };
 
     // Anropa apiet
-    const response = await fetch('https://localhost:7216/users/', {
+    const response = await fetch('https://localhost:7216/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -5467,63 +5473,48 @@ async function register() {
         body: JSON.stringify(userToRegister)
     });
 
-    // Error handling
-    if (!response.ok) {
-        const errorData = await response.json();
-        alert('Fel: ' + (errorData.message || 'An unknown error occurred.'));
-        console.error('Registration error:', errorData);
-        return;
-    }
-
     const data = await response.json();
     alert('Användare registrerad framgångsrikt!');
-    console.log('User registered:', data);
 
     // Optionally, clear localStorage
     localStorage.removeItem("userData");
 
-    // Redirect after successful registrationx  
-    window.location.href = "login.html";
+    // Redirect after successful registration
+    window.location.href = "sign_in.html";
 }
 
-function login(event) {
-    event.preventDefault();
+async function login() {
+    const userLoginData = {};
 
-    // Get form data
-    const email = document.getElementById("email-login").value.trim
-    const password = document.getElementById("password-login").value.trim();
+    userLoginData.email = document.getElementById("email-login").value,
+    userLoginData.passwordHash = document.getElementById("password-login").value
 
-    // Create user object to send to backend
+    localStorage.setItem("userLoginData", JSON.stringify(userLoginData));
+
+    const storedLoginData = JSON.parse(localStorage.getItem("userLoginData"));
+
     const loginData = {
-        email: email,
-        password: password
+        email: storedLoginData.email,
+        passwordHash: storedLoginData.passwordHash
     };
 
-    fetch('https://localhost7023/users/login', {
+    console.log(userLoginData)
+    console.log(loginData)
+
+    const response = await fetch('https://localhost7023/users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(loginData)
     })
-        .then(response => {
-            if (response.status === 401) {
-                alert('Incorrect email or password.');
-                console.error('Unauthorized: Incorrect email or password');
-            } else if (response.ok) {
-                return response.json();
-            }
-        })
-        .then(data => {
-            if (data && data.Token) {
-                localStorage.setItem('authToken', data.Token); 
 
-                alert('Login successful!');
-            }
-        })
-        .catch(error => {
-            console.error('Error during login:', error);
-        });
+    const data = await response.json();
+    alert('Login successful!');
+
+    localStorage.removeItem("userLoginData");
+
+    window.location.href = "dashboard.html";
 }
 
 function Footer() {
