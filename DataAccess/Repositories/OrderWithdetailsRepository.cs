@@ -77,12 +77,11 @@ namespace DataAccess.Repositories
 
             var result = new List<PurchaseRequest>();
 
-            //kanske måste hanteras separat
             foreach (var order in orders)
             {
                 var orderWithDetails = new PurchaseRequest
                 {
-
+                    Products = order.Products.ToList(),
                     OrderDate = order.OrderDate,
                     DeliveryDate = order.DeliveryDate,
                     Quantity = order.Quantity,

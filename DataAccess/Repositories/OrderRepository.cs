@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Runtime.InteropServices.JavaScript;
+using Microsoft.EntityFrameworkCore;
 using Shared.Entities;
 using Shared.Interfaces;
 
@@ -46,13 +47,17 @@ namespace DataAccess.Repositories
             var order = new Order()
             {
                 Id = newId,
-                //UserId = newOrder.UserId,
-                OrderDate = newOrder.OrderDate,
+                UserId = newOrder.UserId,
+                OrderDate = DateTime.UtcNow,
                 DeliveryDate = newOrder.DeliveryDate,
-
                 Quantity = newOrder.Quantity,
                 PaymentMethod = newOrder.PaymentMethod,
-                Total = newOrder.Total
+                Total = newOrder.Total,
+                DiscountTotal = newOrder.DiscountTotal,
+                HouseType = newOrder.HouseType,
+                PortCode = newOrder.PortCode,
+                Floor = newOrder.Floor,
+                Products = new List<Product>()
             };
 
             foreach (var prod in newOrder.Products)
