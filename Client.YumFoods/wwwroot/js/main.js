@@ -111,9 +111,11 @@ function Header() {
         </div>
 
         <!-- company button -->
+        <!--
         <div class="companyBtn">
           <button class="company" onclick="window.location.href='contact.html'"> För företag </button>
         </div>
+        -->
       </div>
 
       <div class="navbar-left">
@@ -198,12 +200,54 @@ function Header() {
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Kontakta oss</a>
             </li>
+            <li class="nav-item" id="logInDrop">
+              <a class="nav-link" href="contact.html">Logga In</a>
+                <ul class="droap_menu">
+                 <li><a href="sign_in.html">Login</a></li>
+                 <li><a href="sign_up.html">Register</a></li>
+              </ul>
+            </li>
           </ul>
           </div>
         </div>
       </div>
   </nav>
     `;
+
+  if (localStorage.getItem("isLoggedIn") === "true") {
+    const savedUserData = JSON.parse(localStorage.getItem("userData"));
+
+    document.querySelector("#logInDrop").innerHTML = `
+    <a class="nav-link" href="contact.html">
+    ${savedUserData.förnamn}
+    </a>
+    `;
+    document.querySelector(".loginBtn").innerHTML = `
+    <ul class="navbar-nav">
+    <li class="nav-item">
+        <a id="logIn" href="dashboard.html" class="dropbtn">
+        <i class="far fa-user">${savedUserData.förnamn
+          .charAt(0)
+          .toUpperCase()}</i>
+        </a>
+    </li>
+  </ul>
+`;
+  } else {
+    document.querySelector(".loginBtn").innerHTML = `
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a id="logIn" href="#" class="dropbtn">
+                <i class="far fa-user"></i> Logga in
+              </a>
+              <ul class="droap_menu">
+                <li><a href="sign_in.html">Login</a></li>
+                <li><a href="sign_up.html">Register</a></li>
+              </ul>
+            </li>
+          </ul>
+`;
+  }
 }
 
 Header();
@@ -212,38 +256,21 @@ function loggedIn() {
   if (localStorage.getItem("isLoggedIn") === "true") {
     const savedUserData = JSON.parse(localStorage.getItem("userData"));
 
-    if (document.querySelector(".navbar") && savedUserData) {
-      const logInDiv = document.querySelector(".loginBtn");
-      const loginBtn = document.querySelector("#logIn");
-
-      const htmlStringLogging = `
+    document.querySelector(".loginBtn").innerHTML = `
           <ul class="navbar-nav">
           <li class="nav-item">
               <a id="logIn" href="dashboard.html" class="dropbtn">
-              <i class="far fa-user"></i>
-              <div class="spinner-border text-light" role="status">
-              <span class="sr-only">Loading...</span>
-              </div>
+              <i class="far fa-user">${savedUserData.förnamn
+                .charAt(0)
+                .toUpperCase()}</i>
               </a>
           </li>
         </ul>
-      `;
+    `;
 
-      const htmlStringloggedIn = `
-      <ul class="navbar-nav">
-          <li class="nav-item">
-              <a id="logIn" href="dashboard.html" class="dropbtn">
-              <i class="far fa-user"></i>
-              </a>
-          </li>
-        </ul>
-      `;
-      logInDiv.innerHTML = htmlStringloggedIn;
-
-      loginBtn.addEventListener("click", function () {
-        console.log("come on, log in!");
-      });
-    }
+    document.querySelector("#logIn").addEventListener("click", function () {
+      console.log("come on, log in!");
+    });
   }
 }
 
@@ -310,7 +337,6 @@ function saveUserData(event) {
   const accountType = "personal";
 
   const userData = {};
-  const missingFields = [];
 
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
@@ -322,13 +348,8 @@ function saveUserData(event) {
   userData.postnummer = document.getElementById("postnummer").value.trim();
   userData.ort = document.getElementById("ort").value.trim();
   const termsAccepted = document.getElementById("terms1").checked;
-
-  if (!userData.email) missingFields.push("mail");
-  if (!userData.lösenord) missingFields.push("pass");
-  if (!upprepaLösenord) missingFields.push("pass repeat");
-  if (!userData.gatuadress) missingFields.push("adress");
-  if (!userData.postnummer) missingFields.push("postal code");
-  if (!userData.ort) missingFields.push("location");
+  let currentForm = document.getElementById("signupFormPersonal");
+  let allInputs = currentForm.querySelectorAll("input");
 
   // Validering
   // !userData.username ||
@@ -340,9 +361,33 @@ function saveUserData(event) {
     !userData.postnummer ||
     !userData.ort
   ) {
-    alert(
-      "Alla fält måste fyllas i! det som saknas: " + missingFields.join(", ")
-    );
+    const missingFields = [];
+
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
     return;
   }
 
@@ -352,6 +397,12 @@ function saveUserData(event) {
   }
 
   if (!termsAccepted) {
+    allInputs.forEach((input) => {
+      const warning = input.nextElementSibling;
+      if (warning && warning.classList.contains("warning")) {
+        warning.remove();
+      }
+    });
     alert(
       "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
     );
@@ -748,6 +799,9 @@ let subscriptionsFiltered = [];
 let baguetterFiltered = [];
 let all = [];
 
+//The saved user details (passwords and other sensitive data to be excluded in the future)
+let loggedInUser;
+
 //Create a function to enable text field if appropriate radio button is checked
 function ifChecked() {
   // option3Checked.getElementById("payment3isChecked");
@@ -835,9 +889,9 @@ const loadProducts = async () => {
     const API_KEY = variables();
     // Fetch the products from the API
 
-    // const response = await fetch(`https://localhost:7216/products`);
+    const response = await fetch(`https://localhost:7216/products`);
 
-    const response = await fetch(`https://${API_KEY}/products`);
+    // const response = await fetch(`https://${API_KEY}/products`);
 
     const data = await response.json();
 
@@ -3040,6 +3094,26 @@ function logOut() {
 }
 
 function dash_myProfile() {
+  async function getUser() {
+    try {
+      const response = await fetch(`https://localhost:7216/users/9`);
+      const data = await response.json();
+      console.log(data);
+
+      document.getElementById("fname").value = data.firstName;
+      document.getElementById("lname").value = data.lastName;
+      document.getElementById("email").value = data.email;
+      document.getElementById("country").value = data.city;
+      document.getElementById("phone").value = data.phoneNumber;
+      document.getElementById("orgNumb").value = data.organizationNumber;
+      document.getElementById("postal").value = data.postalCode;
+      document.getElementById("invoice").value = data.adress;
+    } catch (error) {
+      console.error("Could not fetch user " + error);
+    }
+  }
+  getUser();
+
   const myProfile = document.getElementById("contain_user_content");
   const dashAside = document.getElementById("dashboard_aside");
   let linkProfile = document.getElementById("#dash_profile");
