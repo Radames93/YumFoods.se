@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataAccess.Security;
+using Microsoft.EntityFrameworkCore;
 using Shared.DTOs;
 using Shared.Entities;
+using Shared.Enums;
 using Shared.Interfaces;
 
 namespace DataAccess.Repositories
@@ -46,17 +48,19 @@ namespace DataAccess.Repositories
 
         public async Task<List<PurchaseRequest>> GetOrdersByUserIdAsync(int userId)
         {
-            var user = await _orderDetailContext.User
-                                          .FirstOrDefaultAsync(u => u.Id == userId);
+            var user = await _orderDetailContext
+                .User
+                .FirstOrDefaultAsync(u => u.Id == userId);
 
             if (user == null)
             {
                 return null;
             }
 
-            var orders = await _orderContext.Order
-                                             .Where(o => o.UserId == userId)
-                                             .ToListAsync();
+            var orders = await _orderContext
+                .Order
+                .Where(o => o.UserId == userId)
+                .ToListAsync();
 
             if (orders.Count == 0)
             {
@@ -66,9 +70,10 @@ namespace DataAccess.Repositories
 
             var orderIds = orders.Select(o => o.Id).ToList();
 
-            var orderDetails = await _orderDetailContext.OrderDetail
-                                                  .Where(od => orderIds.Contains(od.OrderId))
-                                                  .ToListAsync();
+            var orderDetails = await _orderDetailContext
+                .OrderDetail
+                .Where(od => orderIds.Contains(od.OrderId))
+                .ToListAsync();
 
             var result = new List<PurchaseRequest>();
 
@@ -77,7 +82,7 @@ namespace DataAccess.Repositories
             {
                 var orderWithDetails = new PurchaseRequest
                 {
-                    
+
                     OrderDate = order.OrderDate,
                     DeliveryDate = order.DeliveryDate,
                     Quantity = order.Quantity,
@@ -90,6 +95,46 @@ namespace DataAccess.Repositories
             }
 
             return result;
+        }
+
+        public async Task AddUserAsync(User newUser)
+        {
+            // Hash the password before storing the user
+            var pwHasher = new PasswordEncryption();
+            var hashedPassword = pwHasher.HashPassword(newUser.PasswordHash);
+
+            if (newUser.UserType == null)
+            {
+                newUser.UserType = UserType.Guest;
+            }
+
+            var user = new User()
+            {
+                FirstName = newUser.FirstName,
+                LastName = newUser.LastName,
+                UserType = newUser.UserType,
+                OrganizationNumber = newUser.OrganizationNumber,
+                Email = newUser.Email,
+                PhoneNumber = newUser.PhoneNumber,
+                Address = newUser.Address,
+                City = newUser.City,
+                PostalCode = newUser.PostalCode,
+                Country = newUser.Country,
+                Subscription = newUser.Subscription,
+                PasswordHash = hashedPassword,
+                Orders = new List<Order>()
+            };
+
+            foreach (var order in newUser.Orders)
+            {
+                var existingOrder = await _orderContext.Order.FindAsync(order.Id);
+                if (existingOrder != null)
+                {
+                    user.Orders.Add(existingOrder);
+                }
+            }
+            await _orderDetailContext.User.AddAsync(user);
+            await _orderDetailContext.SaveChangesAsync();
         }
 
     }

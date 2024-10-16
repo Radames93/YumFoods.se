@@ -62,10 +62,9 @@ namespace DataAccess.Repositories
                 {
                     order.Products.Add(existingProd);
                 }
-
-                await context.Order.AddAsync(order);
-                await context.SaveChangesAsync();
             }
+            await context.Order.AddAsync(order);
+            await context.SaveChangesAsync();
         }
 
         /// <summary>

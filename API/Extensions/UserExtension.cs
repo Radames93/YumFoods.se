@@ -7,7 +7,7 @@ public static class UserExtension
 {
     public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("/users"); // Fixa routes(?)
+        var group = app.MapGroup("/users");
 
         group.MapGet("/", GetAllUsersAsync);
         group.MapGet("/{id}", GetUserByIdAsync);
@@ -16,8 +16,7 @@ public static class UserExtension
         group.MapGet("/organization/{orgName}", GetUserByOrganizationNumberAsync);
 
         //group.MapGet("/login", LoginUserAsync);
-
-        group.MapPost("/", AddUserAsync);
+        //group.MapPost("/", AddUserAsync);
 
         group.MapDelete("/{id}", DeleteUserAsync);
         return app;
@@ -33,9 +32,9 @@ public static class UserExtension
         var user = await repo.GetUserByIdAsync(id);
         return Results.Ok(user);
     }
-    private static async Task<IResult> GetUserByNameAsync(UserRepository repo, string name)
+    private static async Task<IResult> GetUserByNameAsync(UserRepository repo, string lastName)
     {
-        var user = await repo.GetUserByNameAsync(name);
+        var user = await repo.GetUserByNameAsync(lastName);
         return Results.Ok(user);
     }
     private static async Task<IResult> GetUserByOrganizationNumberAsync(UserRepository repo, int organizationNumber)
@@ -43,9 +42,9 @@ public static class UserExtension
         var user = await repo.GetUserByOrganizationAsync(organizationNumber);
         return Results.Ok(user);
     }
-    private static async Task<IResult> GetUserByEmailAsync(UserRepository repo, string name)
+    private static async Task<IResult> GetUserByEmailAsync(UserRepository repo, string email)
     {
-        var user = await repo.GetUserByNameAsync(name);
+        var user = await repo.GetUserByEmailAsync(email);
         return Results.Ok(user);
     }
 
@@ -57,17 +56,17 @@ public static class UserExtension
 
     // FIXA DESSA TVÅ UNDER
 
-    private static async Task<IResult> AddUserAsync(UserRepository repo, User newUser)
-    {
-        var user = await repo.GetUserByIdAsync(newUser.Id);
-        if (user is not null)
-        {
-            return Results.BadRequest($"User with {newUser.Id} already exists.");
-        }
+    //private static async Task<IResult> AddUserAsync(UserRepository repo, User newUser)
+    //{
+    //    var user = await repo.GetUserByIdAsync(newUser.Id);
+    //    if (user is not null)
+    //    {
+    //        return Results.BadRequest($"User with {newUser.Id} already exists.");
+    //    }
 
-        await repo.AddUserAsync(newUser);
-        return Results.Ok();
-    }
+    //    await repo.AddUserAsync(newUser);
+    //    return Results.Ok();
+    //}
 
     private static async Task<IResult> DeleteUserAsync(UserRepository repo, int id)
     {
