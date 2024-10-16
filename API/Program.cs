@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using API.Extensions;
 using API.Stripe;
 using Azure.Identity;
@@ -6,13 +7,10 @@ using Azure.Storage.Blobs;
 using DataAccess;
 using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.AzureKeyVault;
 using Shared.Entities;
 using Shared.Interfaces;
-using Azure.Extensions.AspNetCore.Configuration.Secrets;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
+
+namespace API;
 
 internal class Program
 {
@@ -26,6 +24,8 @@ internal class Program
         builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();
         builder.Services.AddScoped<IOrderDetailRepository<OrderDetail>, OrderDetailRepository>();
         builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
+        builder.Services.AddScoped<UserRepository>();
+        builder.Services.AddScoped<OrderWithDetailsRepository>();
 
         // Retrieve KeyVault settings from appsettings.json
         var keyVaultURL = builder.Configuration["KeyVault:KeyVaultURL"];
@@ -77,18 +77,22 @@ internal class Program
         // Construct the connection string for YumFoodsDb with SSL options
         var completeConnectionString = $"{connectionString};SslMode=VerifyCA;SslCa={tempFilePath}";
         var completeConnectionString2 = $"{connectionString2};SslMode=VerifyCA;SslCa={tempFilePath}";
-        //var completeConnectionString = "Server=localhost;Database=yumfoodsdb;Uid=root;Pwd=admin;";
-        //var completeConnectionString2 = "Server=localhost;Database=yumfoods.userdb;Uid=root;Pwd=admin;";
-        // hello
+
+        //vivians strings
+        var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
+        var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
+        var localConn1 = "Server=localhost;Database=yumfoodsdb;Uid=root;Pwd=admin;";
+        var localConn2 = "Server=localhost;Database=yumfoods.userdb;Uid=root;Pwd=admin;";
+
         // Configure your DbContext to use MySQL with the retrieved connection string
         builder.Services.AddDbContext<YumFoodsDb>(options =>
         {
-            options.UseMySql(completeConnectionString, ServerVersion.AutoDetect(completeConnectionString));
+            options.UseMySql(localConn1, ServerVersion.AutoDetect(localConn1));
         });
 
         builder.Services.AddDbContext<YumFoodsUserDb>(options =>
         {
-            options.UseMySql(completeConnectionString2, ServerVersion.AutoDetect(completeConnectionString2));
+            options.UseMySql(localConn2, ServerVersion.AutoDetect(localConn2));
         });
 
         // CORS policy configuration
@@ -97,8 +101,8 @@ internal class Program
             options.AddPolicy("AllowSpecificOrigins", policy =>
             {
                 policy.WithOrigins("https://localhost:7023", "https://yumfoodsdev.azurewebsites.net")
-                      .AllowAnyMethod()
-                      .AllowAnyHeader();
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
             });
         });
 
@@ -114,6 +118,8 @@ internal class Program
         app.MapOrderDetailEndpoints();
         app.MapSubscriptionEndpoints();
         app.MapPaymentsEndPoints();
+        app.MapUserEndpoints();
+        app.MapPurchaseEndpoints();
 
         app.UseHttpsRedirection();
         app.UseCors("AllowSpecificOrigins");  // Apply CORS
