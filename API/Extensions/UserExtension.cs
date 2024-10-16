@@ -16,11 +16,12 @@ public static class UserExtension
         group.MapGet("/organization/{orgName}", GetUserByOrganizationNumberAsync);
 
         //group.MapGet("/login", LoginUserAsync);
-        //group.MapPost("/", AddUserAsync);
+        group.MapPost("/", AddUserAsync);
 
         group.MapDelete("/{id}", DeleteUserAsync);
         return app;
     }
+
 
     private static async Task<IResult> GetAllUsersAsync(UserRepository repo)
     {
@@ -54,19 +55,16 @@ public static class UserExtension
     //    return Results.Ok(user);
     //}
 
-    // FIXA DESSA TVÅ UNDER
-
-    //private static async Task<IResult> AddUserAsync(UserRepository repo, User newUser)
-    //{
-    //    var user = await repo.GetUserByIdAsync(newUser.Id);
-    //    if (user is not null)
-    //    {
-    //        return Results.BadRequest($"User with {newUser.Id} already exists.");
-    //    }
-
-    //    await repo.AddUserAsync(newUser);
-    //    return Results.Ok();
-    //}
+    private static async Task<IResult> AddUserAsync(OrderWithDetailsRepository repo, UserRepository repo2, User newUser)
+    {
+        var user = await repo2.GetUserByIdAsync(newUser.Id);
+        if (user is not null)
+        {
+            return Results.BadRequest($"User with {newUser.Id} already exists.");
+        }
+        await repo.AddUserAsync(newUser);
+        return Results.Ok(user);
+    }
 
     private static async Task<IResult> DeleteUserAsync(UserRepository repo, int id)
     {
