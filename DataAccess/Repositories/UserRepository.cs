@@ -17,14 +17,14 @@ public class UserRepository(YumFoodsUserDb context)
         return await context.User.FindAsync(id);
     }
 
-    public async Task<List<User?>> GetUserByNameAsync(string LastName)
+    public async Task<List<User>> GetUserByLastNameAsync(string name)
     {
-        return await context.User.Where(u => u.LastName == LastName).ToListAsync();
+        return await context.User.Where(u => u.LastName == name).ToListAsync();
     }
 
-    public async Task<User?> GetUserByOrganizationAsync(int organizationNumber)
+    public async Task<User?> GetUserByOrganizationAsync(int orgNumber)
     {
-        return await context.User.FirstOrDefaultAsync(p => p.OrganizationNumber == organizationNumber);
+        return await context.User.FirstOrDefaultAsync(p => p.OrganizationNumber == orgNumber);
     }
 
     public async Task<User?> GetUserByEmailAsync(string email)
