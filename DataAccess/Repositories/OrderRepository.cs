@@ -50,6 +50,7 @@ namespace DataAccess.Repositories
                 UserId = newOrder.UserId,
                 OrderDate = DateTime.UtcNow,
                 DeliveryDate = newOrder.DeliveryDate,
+                DeliveryTime = newOrder.DeliveryTime,
                 Quantity = newOrder.Quantity,
                 PaymentMethod = newOrder.PaymentMethod,
                 Total = newOrder.Total,

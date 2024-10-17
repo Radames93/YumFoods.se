@@ -22,6 +22,8 @@ namespace API.Extensions
             YumFoodsDb productDb,  // Assuming this is the DbContext for products
             PurchaseRequest purchaseRequest)
         {
+           
+
             // Fetch existing products from the database using Product IDs in the request
             var productIds = purchaseRequest.Products.Select(p => p.Id).ToList();
             var existingProducts = await productDb.Product
@@ -37,6 +39,7 @@ namespace API.Extensions
             // Create a new Order using existing products from the database
             var newOrder = new Order
             {
+                UserId = purchaseRequest.UserId,
                 OrderDate = DateTime.Now,
                 DeliveryDate = purchaseRequest.DeliveryDate,
                 Products = existingProducts, // Use the fetched existing products
@@ -54,7 +57,7 @@ namespace API.Extensions
             };
 
             // Call the method to add both order and order detail
-            await repo.AddOrderAndDetailsAsync(newOrder, newOrderDetail);
+            await repo.AddOrderAndDetailsAsync(newOrder, newOrderDetail, purchaseRequest.UserId);
 
             return Results.Ok(new { Message = "Purchase completed successfully", OrderId = newOrder.Id });
         }
