@@ -47,7 +47,7 @@ namespace API.Extensions
             // Create a new OrderDetail from the purchaseRequest
             var newOrderDetail = new OrderDetail
             {
-                DeliveryAdress = purchaseRequest.DeliveryAddress,
+                DeliveryAddress = purchaseRequest.DeliveryAddress,
                 DeliveryCity = purchaseRequest.DeliveryCity,
                 DeliveryPostalCode = purchaseRequest.DeliveryPostalCode,
                 DeliveryCountry = purchaseRequest.DeliveryCountry

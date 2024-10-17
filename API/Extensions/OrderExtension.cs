@@ -18,12 +18,17 @@ namespace API.Extensions
 
             group.MapGet("/{id}", GetOrderByIdAsync);
 
-            //group.MapGet("/{email}", GetOrderByEmailAsync);
+            group.MapGet("/userId/{userId}", GetOrdersByUserIdAsync);
 
             group.MapPost("/", PostOrderAsync);
 
             group.MapDelete("/{id}", DeleteOrderAsync);
             return app;
+        }
+
+        private static async Task<IResult> GetOrdersByUserIdAsync(HttpContext context)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

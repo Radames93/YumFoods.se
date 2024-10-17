@@ -986,7 +986,7 @@ const loadProducts = async () => {
 
     const response = await fetch(`https://localhost:7216/products`);
 
-    // const response = await fetch(`https://${API_KEY}/products`);
+    //const response = await fetch(`https://${API_KEY}/products`);
 
     const data = await response.json();
 

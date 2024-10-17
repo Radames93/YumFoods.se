@@ -17,15 +17,16 @@ public class UserRepository(YumFoodsUserDb context)
         return await context.User.FindAsync(id);
     }
 
-    public async Task<User?> GetUserByNameAsync(string name)
+    public async Task<List<User>> GetUserByLastNameAsync(string name)
     {
-        return await context.User.FirstOrDefaultAsync(p => p.FirstName == name);
+        return await context.User.Where(u => u.LastName == name).ToListAsync();
     }
 
-    public async Task<User?> GetUserByOrganizationAsync(int organizationNumber)
+    public async Task<User?> GetUserByOrganizationAsync(int orgNumber)
     {
-        return await context.User.FirstOrDefaultAsync(p => p.OrganizationNumber == organizationNumber);
+        return await context.User.FirstOrDefaultAsync(p => p.OrganizationNumber == orgNumber);
     }
+
     public async Task<User?> GetUserByEmailAsync(string email)
     {
         return await context.User.FirstOrDefaultAsync(p => p.Email == email);
@@ -43,34 +44,6 @@ public class UserRepository(YumFoodsUserDb context)
         }
 
         return passwordVerification.VerifyPassword(password, user.PasswordHash);
-    }
-
-    public async Task AddUserAsync(User newUser)
-    {
-        // Hash the password before storing the user
-        var pwHasher = new PasswordEncryption();
-        var hashedPassword = pwHasher.HashPassword(newUser.PasswordHash);
-
-
-        var user = new User()
-        {
-            FirstName = newUser.FirstName,
-            LastName = newUser.LastName,
-            UserType = newUser.UserType,
-            OrganizationNumber = newUser.OrganizationNumber,
-            Email = newUser.Email,
-            PhoneNumber = newUser.PhoneNumber,
-            Address = newUser.Address,
-            City = newUser.City,
-            PostalCode = newUser.PostalCode,
-            Country = newUser.Country,
-            Subscription = newUser.Subscription,
-            PasswordHash = hashedPassword,
-        };
-
-        await context.User.AddAsync(user);
-        await context.SaveChangesAsync();
-
     }
 
     public async Task DeleteUserAsync(int id)

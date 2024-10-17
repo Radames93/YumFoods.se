@@ -13,13 +13,14 @@ public class YumFoodsUserDb : DbContext
     public DbSet<Company> Company { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-  {
-      base.OnModelCreating(modelBuilder);
+    {
+        base.OnModelCreating(modelBuilder);
 
-      modelBuilder.Entity<Company>()
-          .HasKey(c => c.OrganizationNumber);
-      modelBuilder.Entity<User>()
-          .Property(u => u.UserType)
-          .HasConversion<string>();
-  }
+        modelBuilder.Entity<Company>()
+            .HasKey(c => c.OrganizationNumber);
+        modelBuilder.Entity<User>()
+            .Property(u => u.UserType)
+            .HasConversion<string>();
+    }
+
 }
