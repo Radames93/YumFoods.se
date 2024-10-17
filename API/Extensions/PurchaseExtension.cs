@@ -2,6 +2,7 @@
 using DataAccess.Repositories;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
+using Shared.DTOs;
 
 namespace API.Extensions
 {
@@ -37,7 +38,7 @@ namespace API.Extensions
             var newOrder = new Order
             {
                 OrderDate = DateTime.Now,
-                DeliveryDate = DateTime.Now.AddDays(3),
+                DeliveryDate = purchaseRequest.DeliveryDate,
                 Products = existingProducts, // Use the fetched existing products
                 Quantity = purchaseRequest.Quantity,
                 Total = purchaseRequest.Total

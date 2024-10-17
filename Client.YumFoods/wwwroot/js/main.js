@@ -303,6 +303,100 @@ function toggleAccountType(isPersonal) {
     : "block";
 }
 
+//spara purcahse form
+async function saveAndProceed() {
+  // Försök att spara formulärdata
+  const formSaved = await savePurchaseData();
+
+  if (formSaved) {
+    // Om formulärdata har sparats, gå vidare till betalning
+    window.location.href = "payment.html";
+  } else {
+    alert(
+      "Kunde inte spara formulärdata. Kontrollera att alla fält är korrekt ifyllda."
+    );
+  }
+}
+
+// Purchase form
+async function savePurchaseData() {
+  let houseType = "";
+  const purchaseData = {};
+  const missingFields = [];
+
+  //lägg till leverans datum och tid
+  purchaseData.Adress = document.getElementById("addressInput").value.trim();
+  purchaseData.PostalCode = document
+    .getElementById("postalCodeInput")
+    .value.trim();
+  purchaseData.ort = document.getElementById("cityInput").value.trim();
+  const apartment = document.getElementById("lägenhet").checked;
+  const house = document.getElementById("villa_hus").checked;
+  const radhus = document.getElementById("radhus").checked;
+  const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+  //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
+  purchaseData.firstName = document
+    .getElementById("firstNameInput")
+    .value.trim();
+  purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
+  purchaseData.phone = document.getElementById("phoneInput").value.trim();
+  purchaseData.email = document.getElementById("mailInput").value.trim();
+
+  if (!purchaseData.Adress) missingFields.push("adress");
+  if (!purchaseData.PostalCode) missingFields.push("postnummer");
+  if (!purchaseData.ort) missingFields.push("Ort");
+
+  if (!purchaseData.firstName) missingFields.push("förnamn");
+  if (!purchaseData.lastName) missingFields.push("efternamn");
+  if (!purchaseData.phone) missingFields.push("telefonnummer");
+  if (!purchaseData.email) missingFields.push("email");
+
+  if (apartment) {
+    houseType = "Lägenhet";
+    purchaseData.Port = document.getElementById("portInput").value.trim();
+    purchaseData.Floor = document.getElementById("floorInput").value.trim();
+
+    //if (!purchaseData.Port) missingFields.push("portkod");
+    //if (!purchaseData.Floor) missingFields.push("våningsplan");
+  } else if (house) {
+    houseType = "Villa/Hus";
+  } else if (radhus) {
+    houseType = "Radhus";
+  }
+  purchaseData.houseType = houseType;
+
+  if (missingFields.length > 0) {
+    alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+    return false;
+  }
+  return true;
+
+  console.log(purchaseData);
+
+  //try {
+  //    // Skicka en POST-förfrågan till backend för att spara köpdata
+  //    const response = await fetch("https://localhost:7216/purchase", {
+  //        method: 'POST',
+  //        headers: {
+  //            'Content-Type': 'application/json',
+  //        },
+  //        body: JSON.stringify(purchaseData),
+  //    });
+
+  //    if (response.ok) {
+  //        alert("Horayy");
+  //        purchaseData.clear();
+  //    } else {
+  //        alert("Fel uppstod vid sparandet av köp.");
+  //    }
+  //}
+  //catch (error) {
+  //    console.error('Error:', error);
+  //    alert("Ett fel uppstod: " + error.message);
+
+  //}
+}
+
 //Personal Form
 function saveUserData(event) {
   event.preventDefault();
@@ -836,9 +930,9 @@ const loadProducts = async () => {
     const API_KEY = variables();
     // Fetch the products from the API
 
-    // const response = await fetch(`https://localhost:7216/products`);
+    const response = await fetch(`https://localhost:7216/products`);
 
-    const response = await fetch(`https://${API_KEY}/products`);
+    //const response = await fetch(`https://${API_KEY}/products`);
 
     const data = await response.json();
 
@@ -892,7 +986,6 @@ const loadProducts = async () => {
     CarouselFoodBoxes(yumProductsList);
     CarouselFoodBoxes2(yumProductsList);
     CarouselDietButtons(yumProductsList);
-    //showAllProducts(allProducts);
   } catch (err) {
     // Handle errors gracefully
     console.error("Error fetching products:", err);
@@ -1045,6 +1138,7 @@ const yumProducts = (yumProductsList) => {
         let ingredients = JSON.stringify(yum.ingredients);
         return (
           `
+
           <div
           class="wow fadeInUp "
           data-wow-duration="1s"
@@ -2139,10 +2233,9 @@ const sortingNamePriceFunction = (el) => {
 };
 
 //Sort function for diet
-const sortingDishDietFunction = (diet) => {
-  const option = diet;
-  console.log(option);
-  if (option === "Vegan") {
+const sortingDishDietFunction = (el) => {
+  const option = el.value;
+  if (option === "vegan") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet.includes("Vegan");
     });
@@ -2201,7 +2294,40 @@ const sortingDishDietFunction = (diet) => {
       baguetterFilterMessage.classList.remove("show");
       baguetterFilterMessage.classList.add("hide");
     }
-  } else if (option === "Vegetarian") {
+  } else if (option === "AL") {
+    const sortedYumArray = yumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedDailyArray = dailyFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    yumProducts(sortedYumArray);
+    dailyProducts(sortedDailyArray);
+    premiumProducts(sortedPremiumArray);
+    baguetterProducts(sortedBaguetterArray);
+    if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "vegetarian") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet.includes("Vegetarian");
     });
@@ -2260,7 +2386,7 @@ const sortingDishDietFunction = (diet) => {
       baguetterFilterMessage.classList.remove("show");
       baguetterFilterMessage.classList.add("hide");
     }
-  } else if (option === "Cow") {
+  } else if (option === "cow") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet === "Cow";
     });
@@ -2319,7 +2445,7 @@ const sortingDishDietFunction = (diet) => {
       baguetterFilterMessage.classList.remove("show");
       baguetterFilterMessage.classList.add("hide");
     }
-  } else if (option === "Fish") {
+  } else if (option === "fish") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet.includes("Fish");
     });
@@ -2378,7 +2504,7 @@ const sortingDishDietFunction = (diet) => {
       baguetterFilterMessage.classList.remove("show");
       baguetterFilterMessage.classList.add("hide");
     }
-  } else if (option === "Pork") {
+  } else if (option === "pork") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet === "Pork";
     });
@@ -2437,7 +2563,7 @@ const sortingDishDietFunction = (diet) => {
       baguetterFilterMessage.classList.remove("show");
       baguetterFilterMessage.classList.add("hide");
     }
-  } else if (option === "Chicken") {
+  } else if (option === "chicken") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet.includes("Chicken");
     });
@@ -2496,7 +2622,7 @@ const sortingDishDietFunction = (diet) => {
       baguetterFilterMessage.classList.remove("show");
       baguetterFilterMessage.classList.add("hide");
     }
-  } else if (option === "Pork, Cow") {
+  } else if (option === "mix") {
     const filteredYumProducts = yumProductsList.filter((product) => {
       return product.diet.includes("Pork, Cow");
     });
@@ -2552,39 +2678,6 @@ const sortingDishDietFunction = (diet) => {
       baguetterFilterMessage.classList.remove("hide");
       baguetterFilterMessage.classList.add("show");
     } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else {
-    const sortedYumArray = yumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedDailyArray = dailyFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    yumProducts(sortedYumArray);
-    dailyProducts(sortedDailyArray);
-    premiumProducts(sortedPremiumArray);
-    baguetterProducts(sortedBaguetterArray);
-    if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML !== "") {
       baguetterFilterMessage.classList.remove("show");
       baguetterFilterMessage.classList.add("hide");
     }
@@ -4579,19 +4672,19 @@ timeBox.forEach((btn) => {
 
 {
   /* <div class="d-flex calendar justify-content-center">
-<div class="date-box box1 text-center mx-2">
-  <div class="day">Måndag</div>
-  <div class="date">2 Sep</div>
-</div>
-<div class="date-box text-center mx-2">
-  <div class="day">Tisdag</div>
-  <div class="date">3 Sep</div>
-</div>
-<div class="date-box box3 text-center mx-2">
-  <div class="day">Onsdag</div>
-  <div class="date">4 Sep</div>
-</div>
-</div>  */
+  <div class="date-box box1 text-center mx-2">
+    <div class="day">Måndag</div>
+    <div class="date">2 Sep</div>
+  </div>
+  <div class="date-box text-center mx-2">
+    <div class="day">Tisdag</div>
+    <div class="date">3 Sep</div>
+  </div>
+  <div class="date-box box3 text-center mx-2">
+    <div class="day">Onsdag</div>
+    <div class="date">4 Sep</div>
+  </div>
+  </div>  */
 }
 
 // ----------------------------------
@@ -5053,7 +5146,7 @@ function totalQuantity() {
       count.innerHTML = totalQuantity;
       formDataArry = [];
     }
-    }
+  }
 }
 
 // Update fiels title,quantity,quantiyPrice to send to email
@@ -5461,8 +5554,7 @@ document.addEventListener("DOMContentLoaded", function () {
       overlay.style.display = "none";
       console.log("Sidebar closed!");
     });
-    }
-  })
+  }
 
   // if (localStorage.getItem('sidebarOpen') === 'true') {
   //   openSidebar();
@@ -5475,8 +5567,9 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Cart contents:", formDataArry);
     const sidebarCartItems = document.getElementById("sidebarCartItems");
     const mobileProductCount = document.getElementById("mobileProductCount");
-      const mobileTotalPrice = document.getElementById("mobileTotalPrice");
+    const mobileTotalPrice = document.getElementById("mobileTotalPrice");
 
+    sidebarCartItems.innerHTML = "";
     let totalQuantity = 0;
     let total = 0;
     const shipping = 49;
@@ -5582,12 +5675,10 @@ document.addEventListener("DOMContentLoaded", function () {
       formDataArry[itemIndex].quantity += change;
 
       if (formDataArry[itemIndex].quantity <= 0) {
-          removeFromCart(itemId);
-          totalQuantity();
+        removeFromCart(itemId);
       } else {
         localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-          updateSidebarCart();
-          totalQuantity();
+        updateSidebarCart();
       }
     }
   };
@@ -5605,59 +5696,62 @@ document.addEventListener("DOMContentLoaded", function () {
     updateSidebarCart();
   };
   updateSidebarCart();
+});
 
 // --------------------------------------
 
-const submitCartForm = async (event) => {
-  event.preventDefault();
-  async function redirectToStripeCheckout() {
-    try {
-      // Retrieve cart information from local storage
-      let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-      if (!formDataArry || formDataArry.length === 0) {
-        console.error("No products in the cart.");
-        return;
-      }
-
-      let products = formDataArry.map((item) => {
-        // Retrieve the unit price and total price for the selected quantity
-        let unitPrice = item.price; // Price per item
-        let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
-
-        return {
-          name: item.title, // Product name (title)
-          quantity: item.quantity, // Quantity of the product
-          price: unitPrice, // Unit price for the product
-          total: totalQuantityPrice, // Total price for the quantity
-        };
-      });
-
-      // Create a POST request to your backend endpoint to create the Stripe checkout session
-      const response = await fetch("https://localhost:7216/payments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          successPaymentUrl: "https://localhost:7023/payment_success.html",
-          cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-          products: products, // Send the products array
-        }),
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        // Redirect to the Stripe checkout session URL
-        window.location.href = result.checkoutUrl;
-        localStorage.clear();
-      } else {
-        console.error("Error creating Stripe session", result);
-      }
-    } catch (error) {
-      console.error("Error:", error);
+async function redirectToStripeCheckout() {
+  try {
+    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    if (!formDataArry || formDataArry.length === 0) {
+      console.error("No products in the cart.");
+      return;
     }
+
+    let products = formDataArry.map((item) => {
+      // Retrieve the unit price and total price for the selected quantity
+      let unitPrice = item.price; // Price per item
+      let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
+
+      return {
+        name: item.title, // Product name (title)
+        quantity: item.quantity, // Quantity of the product
+        price: unitPrice, // Unit price for the product
+        total: totalQuantityPrice, // Total price for the quantity
+      };
+    });
+
+    // Create a POST request to your backend endpoint to create the Stripe checkout session
+    const response = await fetch("https://localhost:7216/payments", {
+      //const API_KEY = variables();
+      //const response = await fetch(`https://${API_KEY}/payments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        //successPaymentUrl: "https://localhost:7023/payment_success.html",
+        //cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+        successPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+        cancelPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+        products: products, // Send the products array
+      }),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      // Redirect to the Stripe checkout session URL
+      window.location.href = result.checkoutUrl;
+      localStorage.clear();
+    } else {
+      console.error("Error creating Stripe session", result);
+    }
+  } catch (error) {
+    console.error("Error:", error);
   }
-};
+}
 
 function Footer() {
   let footer = document.getElementById("footer");
