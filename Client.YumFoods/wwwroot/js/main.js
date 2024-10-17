@@ -330,6 +330,100 @@ function toggleAccountType(isPersonal) {
     : "block";
 }
 
+//spara purcahse form
+async function saveAndProceed() {
+  // Försök att spara formulärdata
+  const formSaved = await savePurchaseData();
+
+  if (formSaved) {
+    // Om formulärdata har sparats, gå vidare till betalning
+    window.location.href = "payment.html";
+  } else {
+    alert(
+      "Kunde inte spara formulärdata. Kontrollera att alla fält är korrekt ifyllda."
+    );
+  }
+}
+
+// Purchase form
+async function savePurchaseData() {
+  let houseType = "";
+  const purchaseData = {};
+  const missingFields = [];
+
+  //lägg till leverans datum och tid
+  purchaseData.Adress = document.getElementById("addressInput").value.trim();
+  purchaseData.PostalCode = document
+    .getElementById("postalCodeInput")
+    .value.trim();
+  purchaseData.ort = document.getElementById("cityInput").value.trim();
+  const apartment = document.getElementById("lägenhet").checked;
+  const house = document.getElementById("villa_hus").checked;
+  const radhus = document.getElementById("radhus").checked;
+  const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+  //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
+  purchaseData.firstName = document
+    .getElementById("firstNameInput")
+    .value.trim();
+  purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
+  purchaseData.phone = document.getElementById("phoneInput").value.trim();
+  purchaseData.email = document.getElementById("mailInput").value.trim();
+
+  if (!purchaseData.Adress) missingFields.push("adress");
+  if (!purchaseData.PostalCode) missingFields.push("postnummer");
+  if (!purchaseData.ort) missingFields.push("Ort");
+
+  if (!purchaseData.firstName) missingFields.push("förnamn");
+  if (!purchaseData.lastName) missingFields.push("efternamn");
+  if (!purchaseData.phone) missingFields.push("telefonnummer");
+  if (!purchaseData.email) missingFields.push("email");
+
+  if (apartment) {
+    houseType = "Lägenhet";
+    purchaseData.Port = document.getElementById("portInput").value.trim();
+    purchaseData.Floor = document.getElementById("floorInput").value.trim();
+
+    //if (!purchaseData.Port) missingFields.push("portkod");
+    //if (!purchaseData.Floor) missingFields.push("våningsplan");
+  } else if (house) {
+    houseType = "Villa/Hus";
+  } else if (radhus) {
+    houseType = "Radhus";
+  }
+  purchaseData.houseType = houseType;
+
+  if (missingFields.length > 0) {
+    alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+    return false;
+  }
+  return true;
+
+  console.log(purchaseData);
+
+  //try {
+  //    // Skicka en POST-förfrågan till backend för att spara köpdata
+  //    const response = await fetch("https://localhost:7216/purchase", {
+  //        method: 'POST',
+  //        headers: {
+  //            'Content-Type': 'application/json',
+  //        },
+  //        body: JSON.stringify(purchaseData),
+  //    });
+
+  //    if (response.ok) {
+  //        alert("Horayy");
+  //        purchaseData.clear();
+  //    } else {
+  //        alert("Fel uppstod vid sparandet av köp.");
+  //    }
+  //}
+  //catch (error) {
+  //    console.error('Error:', error);
+  //    alert("Ett fel uppstod: " + error.message);
+
+  //}
+}
+
 //Personal Form
 function saveUserData(event) {
   event.preventDefault();
@@ -760,6 +854,7 @@ function updateTotalPrice() {
 
 //Get elements from the DOM
 let summary = document.getElementById("cost_summary");
+//let products = document.getElementById("products");
 let yum = document.getElementById("yum");
 let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
@@ -954,6 +1049,139 @@ const loadProducts = async () => {
 // Call the function to load the products
 loadProducts();
 
+/*
+// Dispay all products
+const showAllProducts = (allProducts) => {
+  if (products !== null) {
+    allProducts.map((yum) => {
+      let filteredProducts = allProducts.filter((products) => {
+        return products.diet.includes(yum.diet)
+      })
+      const htmlString = filteredProducts.map((yum) => {
+        let title = JSON.stringify(yum.title);
+        let description = JSON.stringify(yum.description);
+        let ingredients = JSON.stringify(yum.ingredients);
+        return (`
+        <div class="d-flex">
+        <div>
+            ${yum.diet}
+            </div> -
+             <img alt="dagens-meny-bild" class="img-fluid diet_img" src="${yum.dietRef}" /></div>
+             ${filteredProducts}
+             <div
+          class="wow fadeInUp "
+          data-wow-duration="1s"
+                      >
+        <div class="menu_item yum_product_display_item"
+                style="border: 1px solid var(--Stroke, #CED3D2); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:364px; height:330px; border-radius:12px;"
+                 >
+
+                <div class="yum_item_buttons d-flex flex-column align-items-center">
+                  <button
+                  data-id=` +
+          yum.id +
+          `
+                  data-yum-id=${yum.id}
+                  data-yum-title=${title}
+                  data-yum-price=${yum.price}
+                  data-yum-img=${yum.imgRef}
+                  data-yum-quantity-price=${yum.price}
+                  data-yum-description=${description}
+                  data-yum-diet=${yum.dietRef}
+                  onclick='realAddToCart(event); openSidebar();'
+                  class="yum_btn"
+                  style="border-radius: 12px;
+                  padding: 18px 16px;
+                  border: 1px solid white;
+                  color: white;
+                  background: var(--Complementary-color, #DD3902);"><i class="fas fa-shopping-basket"></i>Lägg i varukorg</button>
+
+                  <button
+                    data-yum-id=${yum.id}
+                    data-yum-title=${title}
+                    data-yum-price=${yum.price}
+                    data-yum-img=${yum.imgRef}
+                    data-yum-quantity-price=${yum.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${yum.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                  class="yum_btn aboutYumItem"
+                  style="border-radius: 12px;
+                  padding: 13px 7px;
+                  border: 1px solid black;">Läs mer om produkten</button>
+                </div>
+
+                <div class="backOpacity">
+                <div class="menu_item_img" style="border-bottom:solid 1px grey;">
+                  <img
+                    src=` +
+          yum.imgRef +
+          `
+                    alt="yum-meny-bild"
+                    class="img-fluid w-100"
+                    class="title"
+                    href="#"
+                  />
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+
+            </div>
+
+                <div class="menu_item_text m-4">
+                  <a
+                    class="title"
+                    href="#"
+                    data-yum-id=${yum.id}
+                    data-yum-title=${title}
+                    data-yum-price=${yum.price}
+                    data-yum-img=${yum.imgRef}
+                    data-yum-quantity-price=${yum.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${yum.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                    >` +
+          yum.title +
+          `</a>
+                  <div class="d-flex justify-content-between">
+                            <h5 class="price">` +
+          yum.price +
+          `kr</h5>
+                            <img src=` +
+          yum.dietRef +
+          `
+                            alt="dagens-meny-bild"
+                            class="img-fluid diet_img"
+                            href="#"/>
+                    </div>
+            <!--
+            <ul class="d-flex flex-wrap justify-content-end">
+                    <li>
+                      <a href="#"><i class="fa fa-heart"></i></a>
+                    </li>
+                    <li>
+                      <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+                    </li>
+                  </ul>
+                  -->
+
+                </div>
+                </div>
+          </div>
+        </div>
+        ` );
+      })
+        .join("");
+      products.innerHTML = htmlString;
+    })
+  } else {
+    return null;
+  }
+};
+*/
 //Display yum items
 const yumProducts = (yumProductsList) => {
   if (yum !== null) {
@@ -4518,19 +4746,19 @@ timeBox.forEach((btn) => {
 
 {
   /* <div class="d-flex calendar justify-content-center">
-<div class="date-box box1 text-center mx-2">
-  <div class="day">Måndag</div>
-  <div class="date">2 Sep</div>
-</div>
-<div class="date-box text-center mx-2">
-  <div class="day">Tisdag</div>
-  <div class="date">3 Sep</div>
-</div>
-<div class="date-box box3 text-center mx-2">
-  <div class="day">Onsdag</div>
-  <div class="date">4 Sep</div>
-</div>
-</div>  */
+  <div class="date-box box1 text-center mx-2">
+    <div class="day">Måndag</div>
+    <div class="date">2 Sep</div>
+  </div>
+  <div class="date-box text-center mx-2">
+    <div class="day">Tisdag</div>
+    <div class="date">3 Sep</div>
+  </div>
+  <div class="date-box box3 text-center mx-2">
+    <div class="day">Onsdag</div>
+    <div class="date">4 Sep</div>
+  </div>
+  </div>  */
 }
 
 // ----------------------------------
@@ -5546,56 +5774,58 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // --------------------------------------
 
-const submitCartForm = async (event) => {
-  event.preventDefault();
-  async function redirectToStripeCheckout() {
-    try {
-      // Retrieve cart information from local storage
-      let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-      if (!formDataArry || formDataArry.length === 0) {
-        console.error("No products in the cart.");
-        return;
-      }
-
-      let products = formDataArry.map((item) => {
-        // Retrieve the unit price and total price for the selected quantity
-        let unitPrice = item.price; // Price per item
-        let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
-
-        return {
-          name: item.title, // Product name (title)
-          quantity: item.quantity, // Quantity of the product
-          price: unitPrice, // Unit price for the product
-          total: totalQuantityPrice, // Total price for the quantity
-        };
-      });
-
-      // Create a POST request to your backend endpoint to create the Stripe checkout session
-      const response = await fetch("https://localhost:7216/payments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          successPaymentUrl: "https://localhost:7023/payment_success.html",
-          cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-          products: products, // Send the products array
-        }),
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        // Redirect to the Stripe checkout session URL
-        window.location.href = result.checkoutUrl;
-        localStorage.clear();
-      } else {
-        console.error("Error creating Stripe session", result);
-      }
-    } catch (error) {
-      console.error("Error:", error);
+async function redirectToStripeCheckout() {
+  try {
+    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    if (!formDataArry || formDataArry.length === 0) {
+      console.error("No products in the cart.");
+      return;
     }
+
+    let products = formDataArry.map((item) => {
+      // Retrieve the unit price and total price for the selected quantity
+      let unitPrice = item.price; // Price per item
+      let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
+
+      return {
+        name: item.title, // Product name (title)
+        quantity: item.quantity, // Quantity of the product
+        price: unitPrice, // Unit price for the product
+        total: totalQuantityPrice, // Total price for the quantity
+      };
+    });
+
+    // Create a POST request to your backend endpoint to create the Stripe checkout session
+    const response = await fetch("https://localhost:7216/payments", {
+      //const API_KEY = variables();
+      //const response = await fetch(`https://${API_KEY}/payments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        //successPaymentUrl: "https://localhost:7023/payment_success.html",
+        //cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+        successPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+        cancelPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+        products: products, // Send the products array
+      }),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      // Redirect to the Stripe checkout session URL
+      window.location.href = result.checkoutUrl;
+      localStorage.clear();
+    } else {
+      console.error("Error creating Stripe session", result);
+    }
+  } catch (error) {
+    console.error("Error:", error);
   }
-};
+}
 
 function Footer() {
   let footer = document.getElementById("footer");

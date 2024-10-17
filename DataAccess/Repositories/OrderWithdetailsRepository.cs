@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shared.DTOs;
 using Shared.Entities;
 using Shared.Interfaces;
 
@@ -42,5 +43,54 @@ namespace DataAccess.Repositories
                 throw new Exception("Error adding order and order details: " + ex.Message);
             }
         }
+
+        public async Task<List<PurchaseRequest>> GetOrdersByUserIdAsync(int userId)
+        {
+            var user = await _orderDetailContext.User
+                                          .FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            var orders = await _orderContext.Order
+                                             .Where(o => o.UserId == userId)
+                                             .ToListAsync();
+
+            if (orders.Count == 0)
+            {
+                return new List<PurchaseRequest>();
+            }
+
+
+            var orderIds = orders.Select(o => o.Id).ToList();
+
+            var orderDetails = await _orderDetailContext.OrderDetail
+                                                  .Where(od => orderIds.Contains(od.OrderId))
+                                                  .ToListAsync();
+
+            var result = new List<PurchaseRequest>();
+
+            //kanske måste hanteras separat
+            foreach (var order in orders)
+            {
+                var orderWithDetails = new PurchaseRequest
+                {
+                    
+                    OrderDate = order.OrderDate,
+                    DeliveryDate = order.DeliveryDate,
+                    Quantity = order.Quantity,
+                    PaymentMethod = order.PaymentMethod,
+                    Total = order.Total,
+                    //OrderDetails = orderDetails.Where(od => od.OrderId == order.Id).ToList() // Matcha orderdetaljer
+                };
+
+                result.Add(orderWithDetails);
+            }
+
+            return result;
+        }
+
     }
 }
