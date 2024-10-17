@@ -1,3 +1,4 @@
+using DataAccess.Repositories;
 using Shared.Entities;
 using Shared.Interfaces;
 
@@ -26,9 +27,10 @@ namespace API.Extensions
             return app;
         }
 
-        private static async Task<IResult> GetOrdersByUserIdAsync(HttpContext context)
+        private static async Task<IResult> GetOrdersByUserIdAsync(OrderWithDetailsRepository repo, int userId)
         {
-            throw new NotImplementedException();
+            var purchase = await repo.GetOrdersByUserIdAsync(userId);
+            return Results.Ok(purchase);
         }
 
         /// <summary>

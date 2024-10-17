@@ -1,9 +1,12 @@
-﻿namespace Shared.Enums;
+﻿using System.Runtime.Serialization;
+
+namespace Shared.Enums;
 
 public enum HouseType
 {
     Apartment,
     Radhus,
-    Villa,
+    [EnumMember(Value = "Villa/Hus")] 
+    VillaHus,
     Company
 }

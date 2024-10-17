@@ -1,5 +1,6 @@
 ﻿using DataAccess.Security;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Bcpg;
 using Shared.DTOs;
 using Shared.Entities;
 using Shared.Enums;
@@ -19,7 +20,7 @@ namespace DataAccess.Repositories
         }
 
         // Method to add both Order and OrderDetail
-        public async Task AddOrderAndDetailsAsync(Order newOrder, OrderDetail newOrderDetail)
+        public async Task AddOrderAndDetailsAsync(Order newOrder, OrderDetail newOrderDetail, int userId)
         {
             try
             {
@@ -31,6 +32,17 @@ namespace DataAccess.Repositories
                 newOrderDetail.OrderId = newOrder.Id; // Link the new order's ID to the order detail
                 await _orderDetailContext.OrderDetail.AddAsync(newOrderDetail);
                 await _orderDetailContext.SaveChangesAsync();
+
+                var user = await _orderDetailContext.User.FindAsync(userId);
+                if (user != null)
+                {
+                    if (user.Orders is null)
+                    {
+                        user.Orders = new List<Order>(); 
+                    }
+                    user.Orders.Add(newOrder);
+                    await _orderDetailContext.SaveChangesAsync();
+                }
             }
             catch (Exception ex)
             {
@@ -81,6 +93,7 @@ namespace DataAccess.Repositories
             {
                 var orderWithDetails = new PurchaseRequest
                 {
+                    UserId = order.UserId,
                     Products = order.Products.ToList(),
                     OrderDate = order.OrderDate,
                     DeliveryDate = order.DeliveryDate,
