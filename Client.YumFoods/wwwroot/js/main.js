@@ -1213,7 +1213,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
                   data-yum-diet=${yum.dietRef}
-                  onclick='realAddToCart(event); openSidebar();'
+                  onclick='realAddToCart(event);'
                   class="yum_btn"
                   style="border-radius: 12px;
                   padding: 18px 16px;
@@ -2907,8 +2907,8 @@ function modalAddToCart() {
   var input = document.querySelector(".quantity");
   input.value = 1;
   closeModal();
-  openSidebar();
-  updateSidebarCart();
+  // openSidebar();
+  // updateSidebarCart();
 }
 
 //stäng modalen
@@ -2921,14 +2921,14 @@ let id = "";
 
 //Display items in the cart
 const displayNewCart = () => {
-  const cartSidebar = document.getElementById("cartSidebar");
+  // const cartSidebar = document.getElementById("cartSidebar");
   const tableHead = document.getElementById("table_head");
   const summaryHead = document.getElementById("summary_head");
-  if (cartSidebar) {
-    cartSidebar.classList.add("open");
-  } else {
-    console.error("Cart sidebar element not found");
-  }
+  // if (cartSidebar) {
+  //   cartSidebar.classList.add("open");
+  // } else {
+  //   console.error("Cart sidebar element not found");
+  // }
 
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
@@ -5168,23 +5168,23 @@ if (findLocation !== null) {
   });
 }
 //Count quantity and display in the popup cart icon
-function totalQuantity() {
-  let count = document.getElementById("count");
-  let totalQuantity = 0;
-  if (count !== null) {
-    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (formDataArry !== null) {
-      for (let i = 0; i < formDataArry.length; i++) {
-        totalQuantity += parseInt(formDataArry[i].quantity);
-      }
-      count.innerHTML = totalQuantity;
-      localStorage.setItem("totalQuantity", totalQuantity);
-    } else {
-      count.innerHTML = totalQuantity;
-      formDataArry = [];
-    }
-  }
-}
+// function totalQuantity() {
+//   let count = document.getElementById("count");
+//   let totalQuantity = 0;
+//   if (count !== null) {
+//     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+//     if (formDataArry !== null) {
+//       for (let i = 0; i < formDataArry.length; i++) {
+//         totalQuantity += parseInt(formDataArry[i].quantity);
+//       }
+//       count.innerHTML = totalQuantity;
+//       localStorage.setItem("totalQuantity", totalQuantity);
+//     } else {
+//       count.innerHTML = totalQuantity;
+//       formDataArry = [];
+//     }
+//   }
+// }
 
 // Calculate and display total sum in the cart total
 function totalSum() {
@@ -5572,8 +5572,8 @@ var datesSwipes = new Swiper(".dates_swipe", {
 
 // Show sidebar
 function openSidebar() {
-  const cartSidebar = document.getElementById("cartSidebar");
   console.log("openSidebar called");
+  const cartSidebar = document.getElementById("cartSidebar");
   cartSidebar.classList.add("open");
   const overlay = document.getElementById("overlay");
   overlay.style.display = "block";
@@ -5591,7 +5591,7 @@ function goToCheckout() {
 
 function addToCart(product) {
   console.log("addToCart called");
-  let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
   const existingProductIndex = formDataArry.findIndex(
     (item) => item.id === product.id
@@ -5613,8 +5613,8 @@ function addToCart(product) {
 
   // Uppdatera varukorgsdata i localStorage
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-  updateSidebarCart();
-  openSidebar();
+  // updateSidebarCart();
+  // openSidebar();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -5634,24 +5634,58 @@ document.addEventListener("DOMContentLoaded", function () {
   //   openSidebar();
   // }
 
-  // Update the sidebar cart with items and show mobile notification
-  function updateSidebarCart() {
-    console.log("updateSidebarCart called");
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
-    console.log("Cart contents:", formDataArry);
-    const sidebarCartItems = document.getElementById("sidebarCartItems");
-    const mobileProductCount = document.getElementById("mobileProductCount");
-    const mobileTotalPrice = document.getElementById("mobileTotalPrice");
+  document.addEventListener("DOMContentLoaded", function () {
+    // updateSidebarCart();
+  });
 
-    sidebarCartItems.innerHTML = "";
-    let totalQuantity = 0;
-    let total = 0;
-    const shipping = 49;
+  // updateSidebarCart();
+});
 
-    formDataArry.forEach((item) => {
+// Remove item from the cart, globally available
+function removeFromCart(itemId) {
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  formDataArry = formDataArry.filter((item) => item.id !== itemId);
+
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  // updateSidebarCart();
+}
+
+// globally available quantity change
+function changeQuantity(itemId, change) {
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  const itemIndex = formDataArry.findIndex((item) => item.id === itemId);
+
+  if (itemIndex !== -1) {
+    formDataArry[itemIndex].quantity += change;
+
+    if (formDataArry[itemIndex].quantity <= 0) {
+      removeFromCart(itemId);
+    } else {
+      localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+      // updateSidebarCart();
+    }
+  }
+}
+
+// Update the sidebar cart with items and show mobile notification
+function updateSidebarCart() {
+  console.log("updateSidebarCart called");
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  console.log("Cart contents:", formDataArry);
+  const sidebarCartItems = document.getElementById("sidebarCartItems");
+  const mobileProductCount = document.getElementById("mobileProductCount");
+  const mobileTotalPrice = document.getElementById("mobileTotalPrice");
+
+  sidebarCartItems.innerHTML = "";
+  let totalQuantity = 0;
+  let total = 0;
+  const shipping = 49;
+
+  formDataArry.forEach((item) => {
+    if (formDataArry) {
       const itemTotal = item.price * item.quantity;
       total += itemTotal;
-      totalQuantity += item.quantity;
+      totalQuantity = item.quantity;
 
       const dietImage = item.diet.includes(",")
         ? item.diet
@@ -5663,114 +5697,99 @@ document.addEventListener("DOMContentLoaded", function () {
         : `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
 
       sidebarCartItems.innerHTML += `
-        <section class="col mb-5 border-bottom pb-3" id="${item.id}">
-          <div class="row">
-            <div class="col-4">
-              <div class="imgContainer">
-                <img id="${item.id}" src="${
+          <section class="col mb-5 border-bottom pb-3" id="${item.id}">
+            <div class="row">
+              <div class="col-4">
+                <div class="imgContainer">
+                  <img id="${item.id}" src="${
         item.img
       }" alt="bild på maträtt" class="pro_img cartPayDeliver cropImage"/>
+                </div>
+              </div>
+              <div class="col-4">
+                <h5 style="flex-direction: row; display: flex;">
+                  ${item.title}
+                  <div style="padding: 10px; margin-top: -17px;" class="d-flex">${dietImage}</div>
+                </h5>
+                <p data-bs-toggle="tooltip" data-bs-placement="top" title="${
+                  item.description
+                }" class="food-description sidebar" style="width: 380px; max-height:50px;">
+                  ${item.description}
+                </p>
+              </div>
+              <div class="col-4">
+                <h5 style="cursor: pointer;" onclick="removeFromCart('${
+                  item.id
+                }')" class="ms-auto me-4">
+                  Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i>
+                </h5>
               </div>
             </div>
-            <div class="col-4">
-              <h5 style="flex-direction: row; display: flex;">
-                ${item.title}
-                <div style="padding: 10px; margin-top: -17px;" class="d-flex">${dietImage}</div>
-              </h5>
-              <p data-bs-toggle="tooltip" data-bs-placement="top" title="${
-                item.description
-              }" class="food-description sidebar" style="width: 380px; max-height:50px;">
-                ${item.description}
-              </p>
-            </div>
-            <div class="col-4">
-              <h5 style="cursor: pointer;" onclick="removeFromCart('${
-                item.id
-              }')" class="ms-auto me-4">
-                Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i>
-              </h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-4">
-              <div class="quentity_btn mt-0 btn-sidebar d-flex">
-                <button class="decrease" onclick="changeQuantity('${
-                  item.id
-                }', -1)">
-                  <i style="font-size: 12px;" class="fas fa-minus"></i>
-                </button>
-                <input class="quantity" type="text" value="${
-                  item.quantity
-                }" readonly>
-                <button class="increase" onclick="changeQuantity('${
-                  item.id
-                }', 1)" style="padding-left:22px;">
-                  <i style="font-size: 12px;" class="fas fa-plus"></i>
-                </button>
+            <div class="row">
+              <div class="col-4">
+                <div class="quentity_btn mt-0 btn-sidebar d-flex">
+                  <button class="decrease" onclick="changeQuantity('${
+                    item.id
+                  }', -1)">
+                    <i style="font-size: 12px;" class="fas fa-minus"></i>
+                  </button>
+                  <input class="quantity" type="text" value="${
+                    item.quantity
+                  }" readonly>
+                  <button class="increase" onclick="changeQuantity('${
+                    item.id
+                  }', 1)" style="padding-left:22px;">
+                    <i style="font-size: 12px;" class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-6 d-flex align-items-center justify-content-end">
+                <h6 class="quantity_price currency mb_0">${
+                  item.price * item.quantity
+                }</h6>
+                <h6 class="currency mb_0">kr</h6>
               </div>
             </div>
-            <div class="col-6 d-flex align-items-center justify-content-end">
-              <h6 class="quantity_price currency mb_0">${
-                item.price * item.quantity
-              }</h6>
-              <h6 class="currency mb_0">kr</h6>
-            </div>
-          </div>
-        </section>`;
-    });
-
-    // Update totals in sidebar and mobile
-    document.getElementById("sidebarShipping").textContent = `${shipping} kr`;
-    document.getElementById("sidebarTotal").textContent = `${
-      total + shipping
-    } kr`;
-    mobileProductCount.textContent = `${totalQuantity} produkter`;
-    mobileTotalPrice.textContent = `${total + shipping} kr`;
-
-    // Show mobile notification when items are added to the cart
-    const mobileCartNotification = document.getElementById(
-      "mobileCartNotification"
-    );
-    if (totalQuantity > 0) {
-      mobileCartNotification.style.display = "flex";
-      openSidebar();
+          </section>`;
     } else {
-      mobileCartNotification.style.display = "none";
-      cartSidebar.classList.remove("open");
-      overlay.style.display = "none";
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+      totalQuantity = item.quantity;
+
+      const dietImage = item.diet.includes(",")
+        ? item.diet
+            .split(",")
+            .map(
+              (diet) => `<img src="${diet}" alt="diet image" class="diet_img"/>`
+            )
+            .join("")
+        : `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
+
+      sidebarCartItems.innerHTML = "";
     }
-  }
-
-  window.changeQuantity = function (itemId, change) {
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
-    const itemIndex = formDataArry.findIndex((item) => item.id === itemId);
-
-    if (itemIndex !== -1) {
-      formDataArry[itemIndex].quantity += change;
-
-      if (formDataArry[itemIndex].quantity <= 0) {
-        removeFromCart(itemId);
-      } else {
-        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-        updateSidebarCart();
-      }
-    }
-  };
-
-  document.addEventListener("DOMContentLoaded", function () {
-    updateSidebarCart();
   });
 
-  // Remove item from the cart
-  window.removeFromCart = function (itemId) {
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
-    formDataArry = formDataArry.filter((item) => item.id !== itemId);
+  // Update totals in sidebar and mobile
+  document.getElementById("sidebarShipping").textContent = `${shipping} kr`;
+  document.getElementById("sidebarTotal").textContent = `${
+    total + shipping
+  } kr`;
+  mobileProductCount.textContent = `${totalQuantity} produkter`;
+  mobileTotalPrice.textContent = `${total + shipping} kr`;
 
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-    updateSidebarCart();
-  };
-  updateSidebarCart();
-});
+  // Show mobile notification when items are added to the cart
+  const mobileCartNotification = document.getElementById(
+    "mobileCartNotification"
+  );
+  if (totalQuantity > 0) {
+    mobileCartNotification.style.display = "flex";
+    // openSidebar();
+  } else {
+    mobileCartNotification.style.display = "none";
+    cartSidebar.classList.remove("open");
+    overlay.style.display = "none";
+  }
+}
 
 // --------------------------------------
 
