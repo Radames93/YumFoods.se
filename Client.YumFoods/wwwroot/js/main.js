@@ -159,8 +159,8 @@ function Header() {
           <i class="fa fa-bars menu_icon_bar"></i>
           <i class="fa fa-times close_icon_close"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+        <div class="collapse navbar-collapse wow" id="navbarNav">
+          <ul class="navbar-nav" style="align-items: center;">
             <li class="nav-item">
               <a class="nav-link" href="#"
                 >Meny <i class="fa fa-angle-down"></i
