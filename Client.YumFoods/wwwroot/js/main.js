@@ -5663,7 +5663,7 @@ document.addEventListener("DOMContentLoaded", function () {
         : `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
 
       sidebarCartItems.innerHTML += `
-        <section class="col mb-5" id="${item.id}" >
+        <section class="col mb-5 border-bottom pb-3" id="${item.id}">
           <div class="row">
             <div class="col-4">
               <div class="imgContainer">
@@ -5704,7 +5704,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }" readonly>
                 <button class="increase" onclick="changeQuantity('${
                   item.id
-                }', 1)">
+                }', 1)" style="padding-left:22px;">
                   <i style="font-size: 12px;" class="fas fa-plus"></i>
                 </button>
               </div>
