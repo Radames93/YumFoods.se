@@ -11,9 +11,9 @@ public static class UserExtension
 
         group.MapGet("/", GetAllUsersAsync);
         group.MapGet("/{id}", GetUserByIdAsync);
-        group.MapGet("/name/{name}", GetUserByNameAsync);
-        group.MapGet("/email{email}", GetUserByEmailAsync);
-        group.MapGet("/organization/{orgName}", GetUserByOrganizationNumberAsync);
+        group.MapGet("/name/{name}", GetUserByLastNameAsync);
+        group.MapGet("/email/{email}", GetUserByEmailAsync);
+        group.MapGet("/organization/{orgNumber}", GetUserByOrganizationNumberAsync);
 
         //group.MapGet("/login", LoginUserAsync);
         group.MapPost("/", AddUserAsync);
@@ -33,14 +33,14 @@ public static class UserExtension
         var user = await repo.GetUserByIdAsync(id);
         return Results.Ok(user);
     }
-    private static async Task<IResult> GetUserByNameAsync(UserRepository repo, string lastName)
+    private static async Task<IResult> GetUserByLastNameAsync(UserRepository repo, string name)
     {
-        var user = await repo.GetUserByNameAsync(lastName);
+        var user = await repo.GetUserByLastNameAsync(name);
         return Results.Ok(user);
     }
-    private static async Task<IResult> GetUserByOrganizationNumberAsync(UserRepository repo, int organizationNumber)
+    private static async Task<IResult> GetUserByOrganizationNumberAsync(UserRepository repo, int orgNumber)
     {
-        var user = await repo.GetUserByOrganizationAsync(organizationNumber);
+        var user = await repo.GetUserByOrganizationAsync(orgNumber);
         return Results.Ok(user);
     }
     private static async Task<IResult> GetUserByEmailAsync(UserRepository repo, string email)

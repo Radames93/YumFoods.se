@@ -34,5 +34,9 @@ public class YumFoodsDb : DbContext
                     .HasForeignKey("ProductId")
                     .OnDelete(DeleteBehavior.Cascade));
 
+        modelBuilder.Entity<Order>()
+            .Property(o => o.HouseType)
+            .HasConversion<string>();
+
     }
 }
