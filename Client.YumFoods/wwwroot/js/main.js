@@ -618,7 +618,6 @@ function sendUserQuery(event) {
 
   const contactData = {};
 
-  // För de utkommenterade fälten för användare namn
   contactData.name = document.getElementById("name").value.trim();
   contactData.email = document.getElementById("email").value.trim();
   contactData.telefon = document.getElementById("phone").value.trim();
@@ -5177,7 +5176,7 @@ function showPrivateForm() {
   }
 }
 
-// Function to send form to email
+// // Function to send form to email
 const contactForm = document.getElementById("contact-form");
 const form = document.getElementById("form");
 const result = document.getElementById("result");
@@ -5185,6 +5184,7 @@ const result = document.getElementById("result");
 if (contactForm !== null) {
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
+
     const formData = new FormData(contactForm);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
