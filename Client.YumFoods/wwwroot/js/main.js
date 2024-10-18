@@ -429,7 +429,6 @@ function saveUserData(event) {
   event.preventDefault();
 
   const accountType = "personal";
-
   const userData = {};
 
   // För de utkommenterade fälten för användare namn
@@ -521,7 +520,6 @@ function saveUserDataBusiness(event) {
 
   const accountType = "Business";
   const userData = {};
-  const missingFields = [];
 
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
@@ -530,16 +528,13 @@ function saveUserDataBusiness(event) {
   userData.lösenord = document.getElementById("field3B").value.trim();
   const upprepaLösenord = document.getElementById("field4B").value.trim();
   userData.gatuadress = document.getElementById("field5B").value.trim();
-  userData.postnummer = document.getElementById("postnummerB").value.trim();
+  userData.postnummer = document.getElementById("contactName").value.trim();
+  userData.telefon = document.getElementById("phoneB").value.trim();
+  userData.kontakt = document.getElementById("postnummerB").value.trim();
   userData.ort = document.getElementById("ortB").value.trim();
   const termsAccepted = document.getElementById("terms1B").checked;
-
-  if (!userData.email) missingFields.push("mail" + "<br>");
-  if (!userData.lösenord) missingFields.push("pass" + "<br>");
-  if (!upprepaLösenord) missingFields.push("pass repeat" + "<br>");
-  if (!userData.gatuadress) missingFields.push("adress" + "<br>");
-  if (!userData.postnummer) missingFields.push("postal code" + "<br>");
-  if (!userData.ort) missingFields.push("location" + "<br>");
+  let currentForm = document.getElementById("signupFormBusiness");
+  let allInputs = currentForm.querySelectorAll("input");
 
   // Validering
   // !userData.username ||
@@ -549,11 +544,35 @@ function saveUserDataBusiness(event) {
     !upprepaLösenord ||
     !userData.gatuadress ||
     !userData.postnummer ||
-    !userData.ort
+    !userData.ort ||
+    !userData.kontakt ||
+    !userData.telefon
   ) {
-    alert(
-      "Alla fält måste fyllas i! det som saknas: " + missingFields.join(", ")
-    );
+    const missingFields = [];
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
     return;
   }
 
@@ -563,6 +582,12 @@ function saveUserDataBusiness(event) {
   }
 
   if (!termsAccepted) {
+    allInputs.forEach((input) => {
+      const warning = input.nextElementSibling;
+      if (warning && warning.classList.contains("warning")) {
+        warning.remove();
+      }
+    });
     alert(
       "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
     );
@@ -585,6 +610,90 @@ function saveUserDataBusiness(event) {
 
   alert("Dina företagsuppgifter har sparats!");
   window.location.href = "sign_in.html";
+}
+
+// Kontakta oss form
+function sendUserQuery(event) {
+  event.preventDefault();
+
+  const contactData = {};
+
+  // För de utkommenterade fälten för användare namn
+  contactData.name = document.getElementById("name").value.trim();
+  contactData.email = document.getElementById("email").value.trim();
+  contactData.telefon = document.getElementById("phone").value.trim();
+  contactData.amne = document.getElementById("subject").value.trim();
+  contactData.meddelande = document.getElementById("message").value.trim();
+  let currentForm = document.getElementById("contact-form");
+  let allInputs = currentForm.querySelectorAll("input");
+
+  // Validering
+  // !userData.username ||
+  if (
+    !contactData.name ||
+    !contactData.email ||
+    !contactData.telefon ||
+    !contactData.amne ||
+    !contactData.meddelande
+  ) {
+    const missingFields = [];
+
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
+    return;
+  }
+
+  // if (userData.lösenord !== upprepaLösenord) {
+  //   alert("Lösenorden matchar inte!");
+  //   return;
+  // }
+
+  // if (!termsAccepted) {
+  //   allInputs.forEach((input) => {
+  //     const warning = input.nextElementSibling;
+  //     if (warning && warning.classList.contains("warning")) {
+  //       warning.remove();
+  //     }
+  //   });
+  //   alert(
+  //     "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+  //   );
+  //   return;
+  // }
+
+  // if (accountType === "personal") {
+  //   userData.kontoTyp = "personal";
+  //   userData.förnamn = document.getElementById("field1").value.trim();
+  // }
+
+  // Spara användardata i localStorage
+  localStorage.setItem("contactData", JSON.stringify(contactData));
+
+  // alert("Dina personliga uppgifter har sparats!");
+  // window.location.href = "sign_in.html";
 }
 
 // Event listeners för att växla mellan kontotyper
@@ -4989,6 +5098,7 @@ function showCompanyForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = `
+    <!--
                 <div class="col-xl-12">
                   <div for="company name" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
@@ -4999,6 +5109,16 @@ function showCompanyForm() {
                     />
                   </div>
                 </div>
+    -->
+                    <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="company">Företagsnamn</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Företagsnamn"
+                      />
+                    </div>
+    <!--
                 <div class="d-flex contact-input">
                 <div class="col-xl-6 col-sm-12">
                   <div for="role" class="contact_form_input contact-befattning">
@@ -5006,6 +5126,16 @@ function showCompanyForm() {
                     <input name="role" type="text" placeholder="Befattning(bara för företag)" />
                   </div>
                 </div>
+    -->
+                    <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="companyBefatt">Befattning</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Befattning"
+                      />
+                    </div>
+<!--
                 <div class="col-xl-6 col-sm-12">
                   <div for="number of employees" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
@@ -5016,10 +5146,20 @@ function showCompanyForm() {
                     />
                   </div>
                 </div>
+-->
+                      <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="company">Företagsnamn</label>
+                      <input
+                        type="number"
+                        name="number of employees"
+                        class="form-control"
+                        placeholder="Antal Anställda"
+                      />
+                    </div>
                 </div>
                   `;
-    company_button.className = "focus_common_btn";
-    private_button.className = "common_btn";
+    // company_button.className = "focus_common_btn";
+    // private_button.className = "common_btn";
   } else {
     null;
   }
@@ -5030,8 +5170,8 @@ function showPrivateForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = "";
-    private_button.className = "focus_common_btn";
-    company_button.className = "common_btn";
+    // private_button.className = "focus_common_btn";
+    // company_button.className = "common_btn";
   } else {
     null;
   }
@@ -5196,6 +5336,8 @@ function totalSum() {
       for (let i = 0; i < formDataArry.length; i++) {
         sum += parseInt(formDataArry[i].quantityPrice);
       }
+      let shipping = parseInt(document.getElementById("shipping").textContent);
+      sum = sum + shipping;
       totalPrice.innerHTML = sum + "kr";
       localStorage.setItem("sum", sum);
     } else {
