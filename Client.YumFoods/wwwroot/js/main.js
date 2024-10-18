@@ -1092,9 +1092,9 @@ const loadProducts = async () => {
     const API_KEY = variables();
     // Fetch the products from the API
 
-    const response = await fetch(`https://localhost:7216/products`);
+    //const response = await fetch(`https://localhost:7216/products`);
 
-    //const response = await fetch(`https://${API_KEY}/products`);
+    const response = await fetch(`https://${API_KEY}/products`);
 
     const data = await response.json();
 
@@ -1196,7 +1196,7 @@ const showAllProducts = (allProducts) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
                   data-yum-diet=${yum.dietRef}
-                  onclick='realAddToCart(event); openSidebar();'
+                  onclick='realAddToCart(event); openSidebar(); '
                   class="yum_btn"
                   style="border-radius: 12px;
                   padding: 18px 16px;
@@ -1321,7 +1321,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
                   data-yum-diet=${yum.dietRef}
-                  onclick='realAddToCart(event);'
+                  onclick='realAddToCart(event);updateSidebarCart();openSidebar()'
                   class="yum_btn"
                   style="border-radius: 12px;
                   padding: 18px 16px;
@@ -5308,23 +5308,23 @@ if (findLocation !== null) {
   });
 }
 //Count quantity and display in the popup cart icon
-// function totalQuantity() {
-//   let count = document.getElementById("count");
-//   let totalQuantity = 0;
-//   if (count !== null) {
-//     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-//     if (formDataArry !== null) {
-//       for (let i = 0; i < formDataArry.length; i++) {
-//         totalQuantity += parseInt(formDataArry[i].quantity);
-//       }
-//       count.innerHTML = totalQuantity;
-//       localStorage.setItem("totalQuantity", totalQuantity);
-//     } else {
-//       count.innerHTML = totalQuantity;
-//       formDataArry = [];
-//     }
-//   }
-// }
+function totalQuantity() {
+  let count = document.getElementById("count");
+  let totalQuantity = 0;
+  if (count !== null) {
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    if (formDataArry !== null) {
+      for (let i = 0; i < formDataArry.length; i++) {
+        totalQuantity += parseInt(formDataArry[i].quantity);
+      }
+      count.innerHTML = totalQuantity;
+      localStorage.setItem("totalQuantity", totalQuantity);
+    } else {
+      count.innerHTML = totalQuantity;
+      formDataArry = [];
+    }
+  }
+}
 
 // Calculate and display total sum in the cart total
 function totalSum() {
@@ -5336,8 +5336,6 @@ function totalSum() {
       for (let i = 0; i < formDataArry.length; i++) {
         sum += parseInt(formDataArry[i].quantityPrice);
       }
-      let shipping = parseInt(document.getElementById("shipping").textContent);
-      sum = sum + shipping;
       totalPrice.innerHTML = sum + "kr";
       localStorage.setItem("sum", sum);
     } else {
