@@ -5722,16 +5722,18 @@ async function redirectToStripeCheckout() {
     });
 
     // Create a POST request to your backend endpoint to create the Stripe checkout session
-    const response = await fetch("https://localhost:7216/payments", {
-      //const API_KEY = variables();
-      //const response = await fetch(`https://${API_KEY}/payments`, {
+    //const response = await fetch("https://localhost:7216/payments", {
+      const API_KEY = variables();
+      const response = await fetch(`https://${API_KEY}/payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        //successPaymentUrl: "https://localhost:7023/payment_success.html",
+          body: JSON.stringify({
+          /*
+        successPaymentUrl: "https://localhost:7023/payment_success.html",
         //cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+        */
         successPaymentUrl:
           "https://yumfoodsdev.azurewebsites.net/payment_success.html",
         cancelPaymentUrl:
