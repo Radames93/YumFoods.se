@@ -3,6 +3,7 @@ using DataAccess.Repositories;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Shared.DTOs;
+using Shared.Enums;
 
 namespace API.Extensions
 {
@@ -40,11 +41,14 @@ namespace API.Extensions
             var newOrder = new Order
             {
                 UserId = purchaseRequest.UserId,
-                OrderDate = DateTime.Now,
+                OrderDate = purchaseRequest.OrderDate,
                 DeliveryDate = purchaseRequest.DeliveryDate,
+                DeliveryTime = purchaseRequest.DeliveryTime,
                 Products = existingProducts, // Use the fetched existing products
                 Quantity = purchaseRequest.Quantity,
-                Total = purchaseRequest.Total
+                Total = purchaseRequest.Total,
+                Floor = purchaseRequest.Floor,
+                PortCode = purchaseRequest.PortCode
             };
 
             // Create a new OrderDetail from the purchaseRequest
