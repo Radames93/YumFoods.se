@@ -470,55 +470,53 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //LOGIN SIDA
-function validateLogin(event) {
-  event.preventDefault();
 
-  const email = document.getElementById("email-login").value.trim();
-  const password = document.getElementById("password-login").value.trim();
+//function validateLogin(event) {
+//  event.preventDefault();
 
-  // För de utkommenterade fälten för användare namn
-  // const username = document.getElementById("username-login").value.trim();
+//  const email = document.getElementById("email-login").value.trim();
+//  const password = document.getElementById("password-login").value.trim();
 
-  const savedUserData = JSON.parse(localStorage.getItem("userData"));
+//  const savedUserData = JSON.parse(localStorage.getItem("userData"));
 
-  if (!savedUserData) {
-    alert("Det finns ingen registrerad användare. Vänligen skapa ett konto.");
-    return;
-  }
+//  if (!savedUserData) {
+//    alert("Det finns ingen registrerad användare. Vänligen skapa ett konto.");
+//    return;
+//  }
 
-  //  || !username
-  if (!email || !password) {
-    alert("Vänligen fyll i alla fält.");
-    return;
-  }
+//  //  || !username
+//  if (!email || !password) {
+//    alert("Vänligen fyll i alla fält.");
+//    return;
+//  }
 
-  // && username === savedUserData.username
-  if (email === savedUserData.email && password === savedUserData.lösenord) {
-    if (document.getElementById("rememberMe").checked) {
-      localStorage.setItem(
-        "rememberedUser",
-        JSON.stringify({
-          email: email,
-          lösenord: password,
-          användare: username,
-        })
-      );
-    } else {
-      localStorage.removeItem("rememberedUser");
-    }
-    localStorage.setItem("isLoggedIn", "true");
-    loggedIn();
-    window.location.href = "dashboard.html";
-  } else {
-    alert("Fel e-postadress, lösenord eller användarnamn.");
-  }
-}
+//  // && username === savedUserData.username
+//  if (email === savedUserData.email && password === savedUserData.lösenord) {
+//    if (document.getElementById("rememberMe").checked) {
+//      localStorage.setItem(
+//        "rememberedUser",
+//        JSON.stringify({
+//          email: email,
+//          lösenord: password,
+//          användare: username,
+//        })
+//      );
+//    } else {
+//      localStorage.removeItem("rememberedUser");
+//    }
+//    localStorage.setItem("isLoggedIn", "true");
+//    loggedIn();
+//    window.location.href = "dashboard.html";
+//  } else {
+//    alert("Fel e-postadress, lösenord eller användarnamn.");
+//  }
+//}
 
 // Event listener för inloggningsformuläret
-let loginForm = document.getElementById("loginForm");
-if (loginForm) {
-  loginForm.addEventListener("submit", validateLogin);
-}
+//let loginForm = document.getElementById("loginForm");
+//if (loginForm) {
+//  loginForm.addEventListener("submit", validateLogin);
+//}
 
 // FORGOT PASSWORD IN SIGN IN SIDA
 function showForgotPassword() {
@@ -5484,38 +5482,55 @@ async function register() {
 }
 
 async function login() {
-    const userLoginData = {};
-
-    userLoginData.email = document.getElementById("email-login").value,
-    userLoginData.passwordHash = document.getElementById("password-login").value
-
-    localStorage.setItem("userLoginData", JSON.stringify(userLoginData));
-
-    const storedLoginData = JSON.parse(localStorage.getItem("userLoginData"));
-
+    // Create an object to hold login data
     const loginData = {
-        email: storedLoginData.email,
-        passwordHash: storedLoginData.passwordHash
+        email: document.getElementById("email-login").value.trim(),
+        password: document.getElementById("password-login").value.trim()
     };
 
-    console.log(userLoginData)
-    console.log(loginData)
+    // Validate the inputs
+    if (!loginData.email || !loginData.password) {
+        alert("Both email and password are required.");
+        return;
+    }
 
-    const response = await fetch('https://localhost7023/users/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginData)
-    })
+    try {
 
-    const data = await response.json();
-    alert('Login successful!');
+        const response = await fetch('https://localhost:7216/users/login', {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        });
 
-    localStorage.removeItem("userLoginData");
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Response data: ", data); 
 
-    window.location.href = "dashboard.html";
+            if (data && data.token) { // If a token is received
+                localStorage.setItem('authToken', data.token); // Store the token
+                alert('Login successful!'); // Inform user
+                window.location.href = "dashboard.html"; // Redirect to the dashboard
+            } else {
+                alert('Login failed: No token received from the server.');
+            }
+        } else {
+            // Handle error responses
+            const errorText = await response.text(); // Get error response text
+            alert(`Login failed: ${errorText}`);
+        }
+    } catch (error) {
+        console.error('Network or unexpected error during login:', error);
+        alert('An error occurred during login. Please try again.');
+    }
 }
+
+// Event listener for the login form
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+    login(); // Call the login function
+});
 
 function Footer() {
   let footer = document.getElementById("footer");

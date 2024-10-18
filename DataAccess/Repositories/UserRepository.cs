@@ -41,15 +41,25 @@ public class UserRepository(YumFoodsUserDb context)
 
     public async Task<bool> ValidateUserAsync(LoginModel login)
     {
-        var passwordVerification = new PasswordVerification();
         var user = await GetUserByEmailAsync(login.Email);
 
         if (user == null)
         {
+            Console.WriteLine($"User not found for email: {login.Email}");
             return false;
         }
 
-        return passwordVerification.VerifyPassword(login.Password, user.PasswordHash);
+        var passwordVerification = new PasswordVerification();
+
+        // Verify the password
+        bool isPasswordValid = passwordVerification.VerifyPassword(login.Password, user.PasswordHash);
+
+        if (!isPasswordValid)
+        {
+            Console.WriteLine($"Invalid password for email: {login.Email}");
+        }
+
+        return isPasswordValid;
     }
 
     public async Task AddUserAsync(User newUser)
@@ -62,9 +72,14 @@ public class UserRepository(YumFoodsUserDb context)
         var pwHasher = new PasswordEncryption();
         var hashedPassword = pwHasher.HashPassword(newUser.PasswordHash);
 
+        var maxId = await context.User
+                       .MaxAsync(o => (int?)o.Id);
+
+        var newId = (maxId ?? 0) + 1;
 
         var user = new User()
         {
+            Id = newId,
             FirstName = newUser.FirstName,
             LastName = newUser.LastName,
             UserType = newUser.UserType,
@@ -101,7 +116,7 @@ public class UserRepository(YumFoodsUserDb context)
         oldUser.City = newUser.City ?? oldUser.City;
         oldUser.PostalCode = newUser.PostalCode ?? oldUser.PostalCode;
         oldUser.Subscription = newUser.Subscription ?? oldUser.Subscription;
-
+        oldUser.PasswordHash = newUser.PasswordHash ?? oldUser.PasswordHash;
 
         await context.SaveChangesAsync();
     }

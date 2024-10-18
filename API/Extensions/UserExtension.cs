@@ -15,7 +15,7 @@ public static class UserExtension
             var group = app.MapGroup("/users");
 
             group.MapGet("/", GetAllUsersAsync);
-            group.MapGet("/id/{id}", GetUserByIdAsync);
+            group.MapGet("/{id}", GetUserByIdAsync);
             group.MapGet("/user/{name}", GetUserByNameAsync);
             group.MapGet("/email/{email}", GetUserByEmailAsync);
             group.MapGet("/org/{organization}", GetUserByOrganizationAsync);
@@ -90,7 +90,7 @@ public static class UserExtension
 
         if (!isValid)
         {
-            return Results.Unauthorized(); // Return Unauthorized if email or password is incorrect
+            return Results.Unauthorized();
         }
 
         var user = await repo.GetUserByEmailAsync(login.Email);
@@ -100,6 +100,9 @@ public static class UserExtension
 
         return Results.Ok(new { Token = token });
     }
+
+
+
 
     private static async Task<IResult> UpdateUserAsync(UserRepository repo, int id, User newUser)
     {

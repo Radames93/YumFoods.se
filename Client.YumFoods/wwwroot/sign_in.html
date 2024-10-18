@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 
 <body>
@@ -62,7 +63,7 @@
                             Ange dina uppgifter
                         </p>
 
-                        <form id="loginForm" onsubmit="login(event)">
+                        <form id="loginForm">
                             <!-- Kommentera tillbaka när användare namn krävs igen -->
                             <!-- <div class="form-group mb-3">
                               <label for="username-login">Användarnamn</label>
@@ -112,7 +113,7 @@
                                         style="border: 1px solid black">
                                     Avbryt
                                 </button>
-                                <button class="btn btn-danger" onclick="login(event)">Logga in</button>
+                                <button class="btn btn-danger" onclick="login()">Logga in</button>
                             </div>
                         </form>
 
