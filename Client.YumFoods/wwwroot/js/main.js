@@ -3027,16 +3027,16 @@ function dash_myProfile() {
                   placeholder="Ange lösenord"
                 />
               </div>
-              <div class="d-flex flex-direction-row" style="gap: 15px">
-                <div class="dash_inputs flex-grow-1">
-                  <label for="country">Land</label>
-                  <input
-                    disabled
-                    id="country"
-                    type="text"
-                    placeholder="Sverige +46"
-                  />
-                </div>
+              //<div class="d-flex flex-direction-row" style="gap: 15px">
+              //  <div class="dash_inputs flex-grow-1">
+              //    <label for="country">Land</label>
+              //    <input
+              //      disabled
+              //      id="country"
+              //      type="text"
+              //      placeholder="Sverige +46"
+              //    />
+              //  </div>
                 <div class="dash_inputs flex-grow-1">
                   <label for="phone">Telefonnumer</label>
                   <input
@@ -3055,7 +3055,7 @@ function dash_myProfile() {
                 >
                   Avbryt
                 </button>
-                <button class="btn btn-secondary dashConfirm" type="button">
+                <button class="btn btn-secondary" type="button" onclick="updateProfile()">
                   Spara Ändringar
                 </button>
               </div>
@@ -5525,12 +5525,117 @@ async function login() {
         alert('An error occurred during login. Please try again.');
     }
 }
-
 // Event listener for the login form
+//kräver detta på denna metod??
 document.getElementById("loginForm").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
     login(); // Call the login function
 });
+
+async function updateProfile() {
+
+    const id = localStorage.getItem('userId');
+
+    const updatedUserData = {
+        firstName: document.getElementById("fname").value,
+        lastName: document.getElementById("lname").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("pass").value,
+        phone: document.getElementById("phone").value
+    };
+
+    try {
+
+        const response = await fetch(`https://localhost:7216/users/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${authToken}`
+            },
+            body: JSON.stringify(updatedUserData)
+        });
+
+        // Handle the response
+        if (response.ok) {
+            const data = await response.json();
+            alert('Profile updated successfully!');
+            console.log("Updated User Data: ", data);
+        } else {
+            const errorText = await response.text();
+            alert(`Failed to update profile: ${errorText}`);
+        }
+    } catch (error) {
+        console.error('Error while updating profile:', error);
+        alert('An error occurred. Please try again.');
+    }
+}
+
+//KOPPLA DETTA DOCK TILL USER
+async function getOrderById() {
+    const orderId = document.getElementById("").value;
+
+    if (!orderId) {
+        alert("Please enter an order ID");
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://localhost:7216/orders/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (response.ok) {
+            const orderData = await response.json();
+            displayOrder(orderData); // Function to display order details
+        } else {
+            alert(`Error: ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error("Error fetching the order:", error);
+        alert('Failed to fetch order. Please try again.');
+    }
+}
+
+async function getOrderDetialById() {
+    const orderDetailId = document.getElementById("").value;
+
+    if (!orderDetailId) {
+        alert("Please enter an order ID");
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://localhost:7216/orders/${userId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (response.ok) {
+            const orderData = await response.json();
+            displayOrder(orderData); // Function to display order details
+        } else {
+            alert(`Error: ${response.statusText}`);
+        }
+    } catch (error) {
+        console.error("Error fetching the order:", error);
+        alert('Failed to fetch order. Please try again.');
+    }
+}
+
+
+function displayOrder(order) {
+    const orderDetailsDiv = document.getElementById("orderDetails");
+
+    if (!order) {
+        orderDetailsDiv.innerHTML = "No order found.";
+        return;
+    }
+
 
 function Footer() {
   let footer = document.getElementById("footer");
