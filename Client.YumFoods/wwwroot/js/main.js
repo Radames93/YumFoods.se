@@ -111,9 +111,11 @@ function Header() {
         </div>
 
         <!-- company button -->
+        <!--
         <div class="companyBtn">
           <button class="company" onclick="window.location.href='contact.html'"> För företag </button>
         </div>
+        -->
       </div>
 
       <div class="navbar-left">
@@ -157,8 +159,8 @@ function Header() {
           <i class="fa fa-bars menu_icon_bar"></i>
           <i class="fa fa-times close_icon_close"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+        <div class="collapse navbar-collapse wow" id="navbarNav">
+          <ul class="navbar-nav" style="align-items: center;">
             <li class="nav-item">
               <a class="nav-link" href="#"
                 >Meny <i class="fa fa-angle-down"></i
@@ -198,12 +200,54 @@ function Header() {
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Kontakta oss</a>
             </li>
+            <li class="nav-item" id="logInDrop">
+              <a class="nav-link" href="sign_in.html">Logga In</a>
+                <ul class="droap_menu">
+                 <li><a href="sign_in.html">Login</a></li>
+                 <li><a href="sign_up.html">Register</a></li>
+              </ul>
+            </li>
           </ul>
           </div>
         </div>
       </div>
   </nav>
     `;
+
+  if (localStorage.getItem("isLoggedIn") === "true") {
+    const savedUserData = JSON.parse(localStorage.getItem("userData"));
+
+    document.querySelector("#logInDrop").innerHTML = `
+    <a class="nav-link" href="contact.html">
+    ${savedUserData.förnamn}
+    </a>
+    `;
+    document.querySelector(".loginBtn").innerHTML = `
+    <ul class="navbar-nav">
+    <li class="nav-item">
+        <a id="logIn" href="dashboard.html" class="dropbtn">
+        <i class="far fa-user">${savedUserData.förnamn
+          .charAt(0)
+          .toUpperCase()}</i>
+        </a>
+    </li>
+  </ul>
+`;
+  } else {
+    document.querySelector(".loginBtn").innerHTML = `
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a id="logIn" href="#" class="dropbtn">
+                <i class="far fa-user"></i> Logga in
+              </a>
+              <ul class="droap_menu">
+                <li><a href="sign_in.html">Login</a></li>
+                <li><a href="sign_up.html">Register</a></li>
+              </ul>
+            </li>
+          </ul>
+`;
+  }
 }
 
 Header();
@@ -212,38 +256,21 @@ function loggedIn() {
   if (localStorage.getItem("isLoggedIn") === "true") {
     const savedUserData = JSON.parse(localStorage.getItem("userData"));
 
-    if (document.querySelector(".navbar") && savedUserData) {
-      const logInDiv = document.querySelector(".loginBtn");
-      const loginBtn = document.querySelector("#logIn");
-
-      const htmlStringLogging = `
+    document.querySelector(".loginBtn").innerHTML = `
           <ul class="navbar-nav">
           <li class="nav-item">
               <a id="logIn" href="dashboard.html" class="dropbtn">
-              <i class="far fa-user"></i>
-              <div class="spinner-border text-light" role="status">
-              <span class="sr-only">Loading...</span>
-              </div>
+              <i class="far fa-user">${savedUserData.förnamn
+                .charAt(0)
+                .toUpperCase()}</i>
               </a>
           </li>
         </ul>
-      `;
+    `;
 
-      const htmlStringloggedIn = `
-      <ul class="navbar-nav">
-          <li class="nav-item">
-              <a id="logIn" href="dashboard.html" class="dropbtn">
-              <i class="far fa-user"></i>
-              </a>
-          </li>
-        </ul>
-      `;
-      logInDiv.innerHTML = htmlStringloggedIn;
-
-      loginBtn.addEventListener("click", function () {
-        console.log("come on, log in!");
-      });
-    }
+    document.querySelector("#logIn").addEventListener("click", function () {
+      console.log("come on, log in!");
+    });
   }
 }
 
@@ -402,9 +429,7 @@ function saveUserData(event) {
   event.preventDefault();
 
   const accountType = "personal";
-
   const userData = {};
-  const missingFields = [];
 
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
@@ -416,13 +441,8 @@ function saveUserData(event) {
   userData.postnummer = document.getElementById("postnummer").value.trim();
   userData.ort = document.getElementById("ort").value.trim();
   const termsAccepted = document.getElementById("terms1").checked;
-
-  if (!userData.email) missingFields.push("mail");
-  if (!userData.lösenord) missingFields.push("pass");
-  if (!upprepaLösenord) missingFields.push("pass repeat");
-  if (!userData.gatuadress) missingFields.push("adress");
-  if (!userData.postnummer) missingFields.push("postal code");
-  if (!userData.ort) missingFields.push("location");
+  let currentForm = document.getElementById("signupFormPersonal");
+  let allInputs = currentForm.querySelectorAll("input");
 
   // Validering
   // !userData.username ||
@@ -434,9 +454,33 @@ function saveUserData(event) {
     !userData.postnummer ||
     !userData.ort
   ) {
-    alert(
-      "Alla fält måste fyllas i! det som saknas: " + missingFields.join(", ")
-    );
+    const missingFields = [];
+
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
     return;
   }
 
@@ -446,6 +490,12 @@ function saveUserData(event) {
   }
 
   if (!termsAccepted) {
+    allInputs.forEach((input) => {
+      const warning = input.nextElementSibling;
+      if (warning && warning.classList.contains("warning")) {
+        warning.remove();
+      }
+    });
     alert(
       "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
     );
@@ -470,7 +520,6 @@ function saveUserDataBusiness(event) {
 
   const accountType = "Business";
   const userData = {};
-  const missingFields = [];
 
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
@@ -479,16 +528,13 @@ function saveUserDataBusiness(event) {
   userData.lösenord = document.getElementById("field3B").value.trim();
   const upprepaLösenord = document.getElementById("field4B").value.trim();
   userData.gatuadress = document.getElementById("field5B").value.trim();
-  userData.postnummer = document.getElementById("postnummerB").value.trim();
+  userData.postnummer = document.getElementById("contactName").value.trim();
+  userData.telefon = document.getElementById("phoneB").value.trim();
+  userData.kontakt = document.getElementById("postnummerB").value.trim();
   userData.ort = document.getElementById("ortB").value.trim();
   const termsAccepted = document.getElementById("terms1B").checked;
-
-  if (!userData.email) missingFields.push("mail" + "<br>");
-  if (!userData.lösenord) missingFields.push("pass" + "<br>");
-  if (!upprepaLösenord) missingFields.push("pass repeat" + "<br>");
-  if (!userData.gatuadress) missingFields.push("adress" + "<br>");
-  if (!userData.postnummer) missingFields.push("postal code" + "<br>");
-  if (!userData.ort) missingFields.push("location" + "<br>");
+  let currentForm = document.getElementById("signupFormBusiness");
+  let allInputs = currentForm.querySelectorAll("input");
 
   // Validering
   // !userData.username ||
@@ -498,11 +544,35 @@ function saveUserDataBusiness(event) {
     !upprepaLösenord ||
     !userData.gatuadress ||
     !userData.postnummer ||
-    !userData.ort
+    !userData.ort ||
+    !userData.kontakt ||
+    !userData.telefon
   ) {
-    alert(
-      "Alla fält måste fyllas i! det som saknas: " + missingFields.join(", ")
-    );
+    const missingFields = [];
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
     return;
   }
 
@@ -512,6 +582,12 @@ function saveUserDataBusiness(event) {
   }
 
   if (!termsAccepted) {
+    allInputs.forEach((input) => {
+      const warning = input.nextElementSibling;
+      if (warning && warning.classList.contains("warning")) {
+        warning.remove();
+      }
+    });
     alert(
       "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
     );
@@ -534,6 +610,89 @@ function saveUserDataBusiness(event) {
 
   alert("Dina företagsuppgifter har sparats!");
   window.location.href = "sign_in.html";
+}
+
+// Kontakta oss form
+function sendUserQuery(event) {
+  event.preventDefault();
+
+  const contactData = {};
+
+  contactData.name = document.getElementById("name").value.trim();
+  contactData.email = document.getElementById("email").value.trim();
+  contactData.telefon = document.getElementById("phone").value.trim();
+  contactData.amne = document.getElementById("subject").value.trim();
+  contactData.meddelande = document.getElementById("message").value.trim();
+  let currentForm = document.getElementById("contact-form");
+  let allInputs = currentForm.querySelectorAll("input");
+
+  // Validering
+  // !userData.username ||
+  if (
+    !contactData.name ||
+    !contactData.email ||
+    !contactData.telefon ||
+    !contactData.amne ||
+    !contactData.meddelande
+  ) {
+    const missingFields = [];
+
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
+    return;
+  }
+
+  // if (userData.lösenord !== upprepaLösenord) {
+  //   alert("Lösenorden matchar inte!");
+  //   return;
+  // }
+
+  // if (!termsAccepted) {
+  //   allInputs.forEach((input) => {
+  //     const warning = input.nextElementSibling;
+  //     if (warning && warning.classList.contains("warning")) {
+  //       warning.remove();
+  //     }
+  //   });
+  //   alert(
+  //     "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+  //   );
+  //   return;
+  // }
+
+  // if (accountType === "personal") {
+  //   userData.kontoTyp = "personal";
+  //   userData.förnamn = document.getElementById("field1").value.trim();
+  // }
+
+  // Spara användardata i localStorage
+  localStorage.setItem("contactData", JSON.stringify(contactData));
+
+  // alert("Dina personliga uppgifter har sparats!");
+  // window.location.href = "sign_in.html";
 }
 
 // Event listeners för att växla mellan kontotyper
@@ -843,6 +1002,9 @@ let subscriptionsFiltered = [];
 let baguetterFiltered = [];
 let all = [];
 
+//The saved user details (passwords and other sensitive data to be excluded in the future)
+let loggedInUser;
+
 //Create a function to enable text field if appropriate radio button is checked
 function ifChecked() {
   // option3Checked.getElementById("payment3isChecked");
@@ -1117,7 +1279,7 @@ const showAllProducts = (allProducts) => {
                 </div>
                 </div>
           </div>
-        </div>   
+        </div>
         ` );
       })
         .join("");
@@ -2853,8 +3015,8 @@ function modalAddToCart() {
   var input = document.querySelector(".quantity");
   input.value = 1;
   closeModal();
-  openSidebar();
-  updateSidebarCart();
+  // openSidebar();
+  // updateSidebarCart();
 }
 
 //stäng modalen
@@ -2867,14 +3029,14 @@ let id = "";
 
 //Display items in the cart
 const displayNewCart = () => {
-  const cartSidebar = document.getElementById("cartSidebar");
+  // const cartSidebar = document.getElementById("cartSidebar");
   const tableHead = document.getElementById("table_head");
   const summaryHead = document.getElementById("summary_head");
-  if (cartSidebar) {
-    cartSidebar.classList.add("open");
-  } else {
-    console.error("Cart sidebar element not found");
-  }
+  // if (cartSidebar) {
+  //   cartSidebar.classList.add("open");
+  // } else {
+  //   console.error("Cart sidebar element not found");
+  // }
 
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
@@ -3225,7 +3387,7 @@ totalQuantity();
 ///////////////////////////////
 
 // function callUsers() {
-//    fetch("https://localhost:7216/subs")
+//   fetch("https://localhost:7216/users/9")
 //     .then((resp) => resp.json())
 //     .then((data) => console.log(data));
 // }
@@ -3268,6 +3430,26 @@ function logOut() {
 }
 
 function dash_myProfile() {
+  async function getUser() {
+    try {
+      const response = await fetch(`https://localhost:7216/users/9`);
+      const data = await response.json();
+      console.log(data);
+
+      document.getElementById("fname").value = data.firstName;
+      document.getElementById("lname").value = data.lastName;
+      document.getElementById("email").value = data.email;
+      document.getElementById("country").value = data.city;
+      document.getElementById("phone").value = data.phoneNumber;
+      document.getElementById("orgNumb").value = data.organizationNumber;
+      document.getElementById("postal").value = data.postalCode;
+      document.getElementById("invoice").value = data.adress;
+    } catch (error) {
+      console.error("Could not fetch user " + error);
+    }
+  }
+  getUser();
+
   const myProfile = document.getElementById("contain_user_content");
   const dashAside = document.getElementById("dashboard_aside");
   let linkProfile = document.getElementById("#dash_profile");
@@ -4915,6 +5097,7 @@ function showCompanyForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = `
+    <!--
                 <div class="col-xl-12">
                   <div for="company name" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
@@ -4925,6 +5108,16 @@ function showCompanyForm() {
                     />
                   </div>
                 </div>
+    -->
+                    <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="company">Företagsnamn</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Företagsnamn"
+                      />
+                    </div>
+    <!--
                 <div class="d-flex contact-input">
                 <div class="col-xl-6 col-sm-12">
                   <div for="role" class="contact_form_input contact-befattning">
@@ -4932,6 +5125,16 @@ function showCompanyForm() {
                     <input name="role" type="text" placeholder="Befattning(bara för företag)" />
                   </div>
                 </div>
+    -->
+                    <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="companyBefatt">Befattning</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Befattning"
+                      />
+                    </div>
+<!--
                 <div class="col-xl-6 col-sm-12">
                   <div for="number of employees" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
@@ -4942,10 +5145,20 @@ function showCompanyForm() {
                     />
                   </div>
                 </div>
+-->
+                      <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="company">Företagsnamn</label>
+                      <input
+                        type="number"
+                        name="number of employees"
+                        class="form-control"
+                        placeholder="Antal Anställda"
+                      />
+                    </div>
                 </div>
                   `;
-    company_button.className = "focus_common_btn";
-    private_button.className = "common_btn";
+    // company_button.className = "focus_common_btn";
+    // private_button.className = "common_btn";
   } else {
     null;
   }
@@ -4956,14 +5169,14 @@ function showPrivateForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = "";
-    private_button.className = "focus_common_btn";
-    company_button.className = "common_btn";
+    // private_button.className = "focus_common_btn";
+    // company_button.className = "common_btn";
   } else {
     null;
   }
 }
 
-// Function to send form to email
+// // Function to send form to email
 const contactForm = document.getElementById("contact-form");
 const form = document.getElementById("form");
 const result = document.getElementById("result");
@@ -4971,6 +5184,7 @@ const result = document.getElementById("result");
 if (contactForm !== null) {
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
+
     const formData = new FormData(contactForm);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
@@ -5498,8 +5712,8 @@ var datesSwipes = new Swiper(".dates_swipe", {
 
 // Show sidebar
 function openSidebar() {
-  const cartSidebar = document.getElementById("cartSidebar");
   console.log("openSidebar called");
+  const cartSidebar = document.getElementById("cartSidebar");
   cartSidebar.classList.add("open");
   const overlay = document.getElementById("overlay");
   overlay.style.display = "block";
@@ -5517,7 +5731,7 @@ function goToCheckout() {
 
 function addToCart(product) {
   console.log("addToCart called");
-  let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
   const existingProductIndex = formDataArry.findIndex(
     (item) => item.id === product.id
@@ -5539,8 +5753,8 @@ function addToCart(product) {
 
   // Uppdatera varukorgsdata i localStorage
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-  updateSidebarCart();
-  openSidebar();
+  // updateSidebarCart();
+  // openSidebar();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -5560,24 +5774,58 @@ document.addEventListener("DOMContentLoaded", function () {
   //   openSidebar();
   // }
 
-  // Update the sidebar cart with items and show mobile notification
-  function updateSidebarCart() {
-    console.log("updateSidebarCart called");
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
-    console.log("Cart contents:", formDataArry);
-    const sidebarCartItems = document.getElementById("sidebarCartItems");
-    const mobileProductCount = document.getElementById("mobileProductCount");
-    const mobileTotalPrice = document.getElementById("mobileTotalPrice");
+  document.addEventListener("DOMContentLoaded", function () {
+    // updateSidebarCart();
+  });
 
-    sidebarCartItems.innerHTML = "";
-    let totalQuantity = 0;
-    let total = 0;
-    const shipping = 49;
+  // updateSidebarCart();
+});
 
-    formDataArry.forEach((item) => {
+// Remove item from the cart, globally available
+function removeFromCart(itemId) {
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  formDataArry = formDataArry.filter((item) => item.id !== itemId);
+
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  // updateSidebarCart();
+}
+
+// globally available quantity change
+function changeQuantity(itemId, change) {
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  const itemIndex = formDataArry.findIndex((item) => item.id === itemId);
+
+  if (itemIndex !== -1) {
+    formDataArry[itemIndex].quantity += change;
+
+    if (formDataArry[itemIndex].quantity <= 0) {
+      removeFromCart(itemId);
+    } else {
+      localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+      // updateSidebarCart();
+    }
+  }
+}
+
+// Update the sidebar cart with items and show mobile notification
+function updateSidebarCart() {
+  console.log("updateSidebarCart called");
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  console.log("Cart contents:", formDataArry);
+  const sidebarCartItems = document.getElementById("sidebarCartItems");
+  const mobileProductCount = document.getElementById("mobileProductCount");
+  const mobileTotalPrice = document.getElementById("mobileTotalPrice");
+
+  sidebarCartItems.innerHTML = "";
+  let totalQuantity = 0;
+  let total = 0;
+  const shipping = 49;
+
+  formDataArry.forEach((item) => {
+    if (formDataArry) {
       const itemTotal = item.price * item.quantity;
       total += itemTotal;
-      totalQuantity += item.quantity;
+      totalQuantity = item.quantity;
 
       const dietImage = item.diet.includes(",")
         ? item.diet
@@ -5589,114 +5837,99 @@ document.addEventListener("DOMContentLoaded", function () {
         : `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
 
       sidebarCartItems.innerHTML += `
-        <section class="col mb-5" id="${item.id}" >
-          <div class="row">
-            <div class="col-4">
-              <div class="imgContainer">
-                <img id="${item.id}" src="${
+          <section class="col mb-5 border-bottom pb-3" id="${item.id}">
+            <div class="row">
+              <div class="col-4">
+                <div class="imgContainer">
+                  <img id="${item.id}" src="${
         item.img
       }" alt="bild på maträtt" class="pro_img cartPayDeliver cropImage"/>
+                </div>
+              </div>
+              <div class="col-4">
+                <h5 style="flex-direction: row; display: flex;">
+                  ${item.title}
+                  <div style="padding: 10px; margin-top: -17px;" class="d-flex">${dietImage}</div>
+                </h5>
+                <p data-bs-toggle="tooltip" data-bs-placement="top" title="${
+                  item.description
+                }" class="food-description sidebar" style="width: 380px; max-height:50px;">
+                  ${item.description}
+                </p>
+              </div>
+              <div class="col-4">
+                <h5 style="cursor: pointer;" onclick="removeFromCart('${
+                  item.id
+                }')" class="ms-auto me-4">
+                  Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i>
+                </h5>
               </div>
             </div>
-            <div class="col-4">
-              <h5 style="flex-direction: row; display: flex;">
-                ${item.title}
-                <div style="padding: 10px; margin-top: -17px;" class="d-flex">${dietImage}</div>
-              </h5>
-              <p data-bs-toggle="tooltip" data-bs-placement="top" title="${
-                item.description
-              }" class="food-description sidebar" style="width: 380px; max-height:50px;">
-                ${item.description}
-              </p>
-            </div>
-            <div class="col-4">
-              <h5 style="cursor: pointer;" onclick="removeFromCart('${
-                item.id
-              }')" class="ms-auto me-4">
-                Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i>
-              </h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-4">
-              <div class="quentity_btn mt-0 btn-sidebar d-flex">
-                <button class="decrease" onclick="changeQuantity('${
-                  item.id
-                }', -1)">
-                  <i style="font-size: 12px;" class="fas fa-minus"></i>
-                </button>
-                <input class="quantity" type="text" value="${
-                  item.quantity
-                }" readonly>
-                <button class="increase" onclick="changeQuantity('${
-                  item.id
-                }', 1)">
-                  <i style="font-size: 12px;" class="fas fa-plus"></i>
-                </button>
+            <div class="row">
+              <div class="col-4">
+                <div class="quentity_btn mt-0 btn-sidebar d-flex">
+                  <button class="decrease" onclick="changeQuantity('${
+                    item.id
+                  }', -1)">
+                    <i style="font-size: 12px;" class="fas fa-minus"></i>
+                  </button>
+                  <input class="quantity" type="text" value="${
+                    item.quantity
+                  }" readonly>
+                  <button class="increase" onclick="changeQuantity('${
+                    item.id
+                  }', 1)" style="padding-left:22px;">
+                    <i style="font-size: 12px;" class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-6 d-flex align-items-center justify-content-end">
+                <h6 class="quantity_price currency mb_0">${
+                  item.price * item.quantity
+                }</h6>
+                <h6 class="currency mb_0">kr</h6>
               </div>
             </div>
-            <div class="col-6 d-flex align-items-center justify-content-end">
-              <h6 class="quantity_price currency mb_0">${
-                item.price * item.quantity
-              }</h6>
-              <h6 class="currency mb_0">kr</h6>
-            </div>
-          </div>
-        </section>`;
-    });
-
-    // Update totals in sidebar and mobile
-    document.getElementById("sidebarShipping").textContent = `${shipping} kr`;
-    document.getElementById("sidebarTotal").textContent = `${
-      total + shipping
-    } kr`;
-    mobileProductCount.textContent = `${totalQuantity} produkter`;
-    mobileTotalPrice.textContent = `${total + shipping} kr`;
-
-    // Show mobile notification when items are added to the cart
-    const mobileCartNotification = document.getElementById(
-      "mobileCartNotification"
-    );
-    if (totalQuantity > 0) {
-      mobileCartNotification.style.display = "flex";
-      openSidebar();
+          </section>`;
     } else {
-      mobileCartNotification.style.display = "none";
-      cartSidebar.classList.remove("open");
-      overlay.style.display = "none";
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+      totalQuantity = item.quantity;
+
+      const dietImage = item.diet.includes(",")
+        ? item.diet
+            .split(",")
+            .map(
+              (diet) => `<img src="${diet}" alt="diet image" class="diet_img"/>`
+            )
+            .join("")
+        : `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
+
+      sidebarCartItems.innerHTML = "";
     }
-  }
-
-  window.changeQuantity = function (itemId, change) {
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
-    const itemIndex = formDataArry.findIndex((item) => item.id === itemId);
-
-    if (itemIndex !== -1) {
-      formDataArry[itemIndex].quantity += change;
-
-      if (formDataArry[itemIndex].quantity <= 0) {
-        removeFromCart(itemId);
-      } else {
-        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-        updateSidebarCart();
-      }
-    }
-  };
-
-  document.addEventListener("DOMContentLoaded", function () {
-    updateSidebarCart();
   });
 
-  // Remove item from the cart
-  window.removeFromCart = function (itemId) {
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
-    formDataArry = formDataArry.filter((item) => item.id !== itemId);
+  // Update totals in sidebar and mobile
+  document.getElementById("sidebarShipping").textContent = `${shipping} kr`;
+  document.getElementById("sidebarTotal").textContent = `${
+    total + shipping
+  } kr`;
+  mobileProductCount.textContent = `${totalQuantity} produkter`;
+  mobileTotalPrice.textContent = `${total + shipping} kr`;
 
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-    updateSidebarCart();
-  };
-  updateSidebarCart();
-});
+  // Show mobile notification when items are added to the cart
+  const mobileCartNotification = document.getElementById(
+    "mobileCartNotification"
+  );
+  if (totalQuantity > 0) {
+    mobileCartNotification.style.display = "flex";
+    // openSidebar();
+  } else {
+    mobileCartNotification.style.display = "none";
+    cartSidebar.classList.remove("open");
+    overlay.style.display = "none";
+  }
+}
 
 // --------------------------------------
 
@@ -5729,11 +5962,9 @@ async function redirectToStripeCheckout() {
       headers: {
         "Content-Type": "application/json",
       },
-          body: JSON.stringify({
-          /*
-        successPaymentUrl: "https://localhost:7023/payment_success.html",
+      body: JSON.stringify({
+        //successPaymentUrl: "https://localhost:7023/payment_success.html",
         //cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-        */
         successPaymentUrl:
           "https://yumfoodsdev.azurewebsites.net/payment_success.html",
         cancelPaymentUrl:

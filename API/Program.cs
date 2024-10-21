@@ -62,9 +62,6 @@ internal class Program
         var blobContainerClient = blobServiceClient.GetBlobContainerClient("yumfoodssertification"); // Your container name
         var blobClient = blobContainerClient.GetBlobClient("DigiCertGlobalRootCA.crt.pem"); // Your certificate file name in Blob Storage
 
-        var blobContainerClient2 = blobServiceClient.GetBlobContainerClient("yumfoodssertification"); // Your container name
-        var blobClient2 = blobContainerClient2.GetBlobClient("DigiCertGlobalRootCA.crt.pem"); // Your certificate file name in Blob Storage
-
         // Download the certificate as a stream
         var certStream = new MemoryStream();
         await blobClient.DownloadToAsync(certStream);

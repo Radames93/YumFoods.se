@@ -17,20 +17,10 @@ public class YumFoodsUserDb : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Company>()
-            .HasKey(c => c.OrganizationNumber);  
+            .HasKey(c => c.OrganizationNumber);
         modelBuilder.Entity<User>()
             .Property(u => u.UserType)
             .HasConversion<string>();
     }
 
 }
-
-
-
-
-
-
-
-
-
-
