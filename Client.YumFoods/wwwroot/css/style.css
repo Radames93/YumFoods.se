@@ -154,10 +154,10 @@ button {
 }
 
 .common_btn {
-  background: var(--colorPrimary);
+  background: #dd3902;
   text-transform: capitalize;
   color: var(--colorWhite);
-  padding: 12px 20px 12px 20px;
+  /* padding: 12px 20px 12px 20px;
   border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
@@ -166,14 +166,14 @@ button {
   -webkit-transition: all linear 0.3s;
   -moz-transition: all linear 0.3s;
   -ms-transition: all linear 0.3s;
-  -o-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s; */
 }
 
 .focus_common_btn {
-  background: var(--paraColor);
+  background: #dd3902;
   text-transform: capitalize;
   color: var(--colorWhite);
-  padding: 12px 40px 12px 40px;
+  /* padding: 12px 40px 12px 40px;
   border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
@@ -182,7 +182,7 @@ button {
   -webkit-transition: all linear 0.3s;
   -moz-transition: all linear 0.3s;
   -ms-transition: all linear 0.3s;
-  -o-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s; */
 }
 
 .menu_details_buttons {
@@ -202,7 +202,7 @@ button {
 }
 
 .common_btn::after {
-  position: absolute;
+  /* position: absolute;
   content: "";
   width: 23px;
   height: 24px;
@@ -227,18 +227,18 @@ button {
   -webkit-transition: all linear 0.3s;
   -moz-transition: all linear 0.3s;
   -ms-transition: all linear 0.3s;
-  -o-transition: all linear 0.3s;
+  -o-transition: all linear 0.3s; */
 }
 
 .common_btn:hover {
-  background: var(--colorBlack);
+  /* background: var(--colorBlack);
   padding: 12px 25px 12px 55px;
-  color: var(--colorWhite);
+  color: var(--colorWhite); */
 }
 
 .common_btn:hover::after {
-  opacity: 1;
-  left: 17px;
+  /* opacity: 1;
+  left: 17px; */
 }
 
 .section_heading {
@@ -280,11 +280,11 @@ button {
   margin: 0 auto;
 }
 
-.section_heading p {
+/* .section_heading p {
   text-align: center;
   margin-top: 10px;
   padding: 0px 60px;
-}
+} */
 
 .form-check-input:focus {
   border-color: #eb002975;
@@ -398,7 +398,7 @@ button {
 .main_menu {
   position: fixed;
   width: 100%;
-  background: var(--colorWhite);
+  background: rgb(249, 249, 249);
   z-index: 999;
   transition: all linear 0.3s;
   -webkit-transition: all linear 0.3s;
@@ -698,7 +698,7 @@ button {
   padding: 10px;
   text-align: center;
   line-height: 22px;
-  margin-left: 15px;
+  /* margin-left: 15px; */
 }
 .dropbtn:hover {
   color: black;
@@ -5722,7 +5722,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .cart-footer {
   bottom: 0;
-  margin-right: 10px;
+  margin-right: 17px;
 }
 
 .cart-body {

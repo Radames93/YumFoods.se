@@ -35,6 +35,10 @@
     -o-transform: translateX(-50%);
   }
 
+  #logInDrop {
+    display: none;
+  }
+
   .main_menu .navbar-toggler .close_icon_close {
     display: none;
   }
@@ -214,6 +218,10 @@
     -moz-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
+  }
+
+  #logInDrop {
+    display: none;
   }
 
   .main_menu .navbar-toggler .close_icon_close {
@@ -650,6 +658,10 @@
     -o-transform: translateX(-50%);
   }
 
+  #logInDrop {
+    display: none;
+  }
+
   .main_menu .navbar-toggler .close_icon_close {
     display: none;
   }
@@ -664,8 +676,8 @@
 
   .main_menu .navbar-nav {
     background: var(--colorWhite);
-    padding-top: 15px;
-    padding-bottom: 15px;
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
     border: none;
   }
 
@@ -1435,10 +1447,14 @@
   }
 
   .main_menu .navbar-nav {
-    line-height: 60px;
+    /* line-height: 60px; */
     background: var(--colorWhite);
-    padding-top: 15px;
-    padding-bottom: 15px;
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
+  }
+
+  #logInDrop {
+    display: none;
   }
 
   .main_menu .navbar-nav .nav-item {
@@ -2574,8 +2590,12 @@
 
   .main_menu .navbar-nav {
     background: var(--colorWhite);
-    padding-top: 15px;
-    padding-bottom: 15px;
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
+  }
+
+  #logInDrop {
+    display: none;
   }
 
   .main_menu .navbar-nav .nav-item {
@@ -4176,8 +4196,8 @@
   }
 
   .main_menu .navbar-nav {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    /* padding-top: 15px;
+    padding-bottom: 15px; */
   }
 
   .main_menu .navbar-nav .nav-item {
@@ -4223,6 +4243,10 @@
 
   .dropbtn {
     display: none;
+  }
+
+  #logInDrop {
+    display: block;
   }
 
   .company {
