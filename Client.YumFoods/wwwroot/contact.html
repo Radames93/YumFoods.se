@@ -22,17 +22,17 @@
   </head>
 
   <body>
-    <!--=============================
+      <!--=============================
         MENU START
     ==============================-->
-    <header-component id="header"></header-component>
-    <!--=============================
+      <header-component id="header"></header-component>
+      <!--=============================
         MENU END
     ==============================-->
-    <!--=============================
+      <!--=============================
         BREADCRUMB START
     ==============================-->
-    <!--
+      <!--
       <section class="page_breadcrumb"
                style="background: url(images/contact-us.png)">
           <div class="breadcrumb_overlay">
@@ -48,223 +48,197 @@
           </div>
       </section>
     -->
-    <!--=============================
+      <!--=============================
         BREADCRUMB END
     ==============================-->
-    <!--=============================
+      <!--=============================
         CONTACT PAGE START
     ==============================-->
 
-    <section class="contact" style="padding-top: 130px">
-      <div class="container">
-        <div class="d-flex flex-column justify-content-center">
-          <div
-            class="section_heading mb_25 d-flex flex-row align-items-center"
-            style="position: relative; right: 30px"
-          >
-            <p class=""><i class="fas fa-arrow-left"></i>Tillbaka</p>
-            <h2 class="mx-auto">Kontakta oss</h2>
-          </div>
-          <p class="text-center fs-4 fw-bolder">
-            Kontakta oss om frågor och intresseanmälan för skräddarsydda
-            tjänster!
-          </p>
-          <div class="d-flex flex-row gap-5 justify-content-center pt-4">
-            <p>
-              <i style="color: #fc5633" class="fas fa-envelope me-2"></i
-              >info@yumfoods.se
-            </p>
-            <p>
-              <i style="color: #fc5633" class="fas fa-phone-alt me-2"></i>+46 76
-              023 49 30
-            </p>
-          </div>
-          <div class="contact_form_area">
-            <div
-              class="col-xl-8 col-md-6 col-lg-7 wow fadeInUp mx-auto"
-              data-wow-duration="1s"
-            >
-              <form
-                id="contact-form"
-                class="contact_form text-center"
-                action="https://api.web3forms.com/submit"
-                method="POST"
-              >
-                <div class="d-flex justify-content-center gap-5">
-                  <button
-                    class="btn border-dark px-4"
-                    id="private_button"
-                    type="button"
-                  >
-                    <span class="">Privat</span>
-                    <i class=""></i>
-                  </button>
-                  <button
-                    class="btn border-dark px-4"
-                    id="company_button"
-                    type="button"
-                  >
-                    <span class="">Företag</span>
-                    <i class=""></i>
-                  </button>
-                </div>
-                <!-- Put back key afterwards -->
-                <!-- value="0984a5c4-eb6b-4bcf-8601-7b83fe4f470a" -->
-                <!-- Test key by Radames 10/18 -->
-                <!-- value="87201e1e-65e7-469c-a4af-2e22c4d9a017" -->
-                <div id="form" class="row">
-                  <div class="col-xl-12">
-                    <input
-                      type="hidden"
-                      name="access_key"
-                      value="0984a5c4-eb6b-4bcf-8601-7b83fe4f470a"
-                    />
-                    <!-- <input
-                      type="hidden"
-                      name="subject"
-                      value="New Submission from Web3Forms"
-                    />
-                    <input
-                      type="checkbox"
-                      name="botcheck"
-                      id=""
-                      style="display: none"
-                    /> -->
-                    <!--
-                                <input
-                                  type="hidden"
-                                  name="recaptcha_response"
-                                  id="recaptchaResponse"
-                                />
-                                -->
-                    <div class="form-group d-flex flex-column mb-3">
-                      <label class="me-auto" for="name">Namn</label>
-                      <input
-                        id="name"
-                        type="text"
-                        class="form-control"
-                        placeholder="T.ex. Johan Johansson"
-                      />
-                    </div>
+      <section class="contact" style="padding-top: 130px">
+          <div class="container">
+              <div class="d-flex flex-column justify-content-center">
+                  <div class="section_heading mb_25 d-flex flex-row align-items-center"
+                       style="position: relative; right: 30px">
+                      <p class=""><i class="fas fa-arrow-left"></i>Tillbaka</p>
+                      <h2 class="mx-auto">Kontakta oss</h2>
                   </div>
-                  <div class="col-md-6 mb-3">
-                    <div class="form-group d-flex flex-column">
-                      <label class="me-auto" for="email">E-postadress</label>
-                      <input
-                        type="text"
-                        class="form-control me-auto"
-                        id="email"
-                        placeholder="T.ex. Yum@yumfoods.se"
-                      />
-                    </div>
+                  <p class="text-center fs-4 fw-bolder">
+                      Kontakta oss om frågor och intresseanmälan för skräddarsydda
+                      tjänster!
+                  </p>
+                  <div class="d-flex flex-row gap-5 justify-content-center pt-4">
+                      <p>
+                          <i style="color: #fc5633" class="fas fa-envelope me-2"></i>info@yumfoods.se
+                      </p>
+                      <p>
+                          <i style="color: #fc5633" class="fas fa-phone-alt me-2"></i>+46 76
+                          023 49 30
+                      </p>
                   </div>
-                  <div class="col-md-6 mb-3">
-                    <div class="form-group d-flex flex-column">
-                      <label class="me-auto" for="phone">Telefonnummer</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="phone"
-                        placeholder="T.ex. 070 123 45 67"
-                      />
-                    </div>
+                  <div class="contact_form_area">
+                      <div class="col-xl-8 col-md-6 col-lg-7 wow fadeInUp mx-auto"
+                           data-wow-duration="1s">
+                          <form id="contact-form"
+                                class="contact_form text-center"
+                                action="https://api.web3forms.com/submit"
+                                method="POST">
+                              <div class="d-flex justify-content-center gap-5">
+                                  <button class="btn border-dark px-4"
+                                          id="private_button"
+                                          type="button">
+                                      <span class="">Privat</span>
+                                      <i class=""></i>
+                                  </button>
+                                  <button class="btn border-dark px-4"
+                                          id="company_button"
+                                          type="button">
+                                      <span class="">Företag</span>
+                                      <i class=""></i>
+                                  </button>
+                              </div>
+                              <!-- Put back key afterwards -->
+                              <!-- value="0984a5c4-eb6b-4bcf-8601-7b83fe4f470a" -->
+                              <!-- Test key by Radames 10/18 -->
+                              <!-- value="87201e1e-65e7-469c-a4af-2e22c4d9a017" -->
+                              <div id="form" class="row">
+                                  <div class="col-xl-12">
+                                      <input type="hidden"
+                                             name="access_key"
+                                             value="87201e1e-65e7-469c-a4af-2e22c4d9a017" />
+                                      <!-- <input
+                                      type="hidden"
+                                      name="subject"
+                                      value="New Submission from Web3Forms"
+                                    />
+                                    <input
+                                      type="checkbox"
+                                      name="botcheck"
+                                      id=""
+                                      style="display: none"
+                                    /> -->
+                                      <!--
+                                                <input
+                                                  type="hidden"
+                                                  name="recaptcha_response"
+                                                  id="recaptchaResponse"
+                                                />
+                                                -->
+                                      <div class="form-group d-flex flex-column mb-3">
+                                          <label class="me-auto" for="name">Namn</label>
+                                          <input name="name"
+                                                 type="text"
+                                                 class="form-control"
+                                                 placeholder="T.ex. Johan Johansson" />
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6 mb-3">
+                                      <div class="form-group d-flex flex-column">
+                                          <label class="me-auto" for="email">E-postadress</label>
+                                          <input type="text"
+                                                 class="form-control me-auto"
+                                                 name="email"
+                                                 placeholder="T.ex. Yum@yumfoods.se" />
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6 mb-3">
+                                      <div class="form-group d-flex flex-column">
+                                          <label class="me-auto" for="phone">Telefonnummer</label>
+                                          <input type="text"
+                                                 class="form-control"
+                                                 name="phone"
+                                                 placeholder="T.ex. 070 123 45 67" />
+                                      </div>
+                                  </div>
+                                  <div id="company"></div>
+                                  <div class="form-group d-flex flex-column mb-3">
+                                      <label class="me-auto" for="subject">Ämne</label>
+                                      <input name="subject"
+                                             type="text"
+                                             class="form-control"
+                                             placeholder="T.ex. Johan Johansson" />
+                                  </div>
+                                  <div class="col-xl-12">
+                                      <div class="mb-3 d-flex flex-column">
+                                          <label class="me-auto" for="message" class="form-label">Meddelande</label>
+                                          <textarea class="form-control"
+                                                    name="message"
+                                                    rows="3"></textarea>
+                                      </div>
+                                      <div class="h-captcha" data-captcha="true"></div>
+                                      <button class="common_btn btn" type="submit">
+                                          skicka meddelande
+                                      </button>
+                                  </div>
+                                  <div id="result"></div>
+                              </div>
+                          </form>
+                      </div>
                   </div>
-                  <div id="company"></div>
-                  <div class="form-group d-flex flex-column mb-3">
-                    <label class="me-auto" for="subject">Ämne</label>
-                    <input
-                      id="subject"
-                      type="text"
-                      class="form-control"
-                      placeholder="T.ex. Johan Johansson"
-                    />
-                  </div>
-                  <div class="col-xl-12">
-                    <div class="mb-3 d-flex flex-column">
-                      <label class="me-auto" for="message" class="form-label"
-                        >Meddelande</label
-                      >
-                      <textarea
-                        class="form-control"
-                        id="message"
-                        rows="3"
-                      ></textarea>
-                    </div>
-                    <div class="h-captcha" data-captcha="true"></div>
-                    <button class="common_btn btn" type="submit">
-                      skicka meddelande
-                    </button>
-                  </div>
-                  <div id="result"></div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="contact_map_area">
-          <div class="row mt_100 xs_mt_70">
-            <div class="col-12 wow fadeInUp" data-wow-duration="1s">
-              <div class="contact_map">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2131.728182484538!2d11.954548677186757!3d57.70408774003664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464ff368082e6509%3A0xad69b995cd02abd!2sResource%20Point%20AB!5e0!3m2!1ssv!2sse!4v1712242569889!5m2!1ssv!2sse"
-                  style="border: 0"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
               </div>
-            </div>
+              <div class="contact_map_area">
+                  <div class="row mt_100 xs_mt_70">
+                      <div class="col-12 wow fadeInUp" data-wow-duration="1s">
+                          <div class="contact_map">
+                              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2131.728182484538!2d11.954548677186757!3d57.70408774003664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464ff368082e6509%3A0xad69b995cd02abd!2sResource%20Point%20AB!5e0!3m2!1ssv!2sse!4v1712242569889!5m2!1ssv!2sse"
+                                      style="border: 0"
+                                      allowfullscreen=""
+                                      loading="lazy"
+                                      referrerpolicy="no-referrer-when-downgrade"></iframe>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
-      </div>
-    </section>
-    <!--=============================
+      </section>
+      <!--=============================
         CONTACT PAGE END
     ==============================-->
-    <!--=============================
+      <!--=============================
         FOOTER START
     ==============================-->
-    <footer-component id="footer"></footer-component>
-    <!--=============================
+      <footer-component id="footer"></footer-component>
+      <!--=============================
         FOOTER END
     ==============================-->
-    <!--=============================
+      <!--=============================
         SCROLL BUTTON START
     ==============================-->
-    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
-    <!--=============================
+      <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+      <!--=============================
         SCROLL BUTTON END
     ==============================-->
-    <!-- hotjar code -->
-    <script src="js/hotjar.js"></script>
-    <!-- swiper slider -->
-    <script src="js/swiper-bundle.min.js" rel="preload"></script>
-    <!--jquery library js-->
-    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
-    <!--main/env js-->
-    <script src="js/env.js"></script>
-    <!--main/custom js-->
-    <script rel="preload" src="js/main.js"></script>
-    <!--bootstrap js-->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- isotop js -->
-    <script src="js/isotope.pkgd.min.js"></script>
-    <!-- counter up js -->
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.countup.min.js"></script>
-    <!-- nice select js -->
-    <script src="js/jquery.nice-select.min.js"></script>
-    <!-- venobox js -->
-    <script src="js/venobox.min.js"></script>
-    <!-- sticky sidebar js -->
-    <script src="js/sticky_sidebar.js"></script>
-    <!-- wow js -->
-    <script src="js/wow.min.js"></script>
-    <!-- ex zoom js -->
-    <script src="js/jquery.exzoom.js"></script>
-    <link rel="stylesheet" href="css/venobox.min.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/jquery.exzoom.css" />
-    <link rel="stylesheet" href="css/nice-select.css" />
+      <!-- hotjar code -->
+      <script src="js/hotjar.js"></script>
+      <!-- swiper slider -->
+      <script src="js/swiper-bundle.min.js" rel="preload"></script>
+      <!--jquery library js-->
+      <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+      <!--main/env js-->
+      <script src="js/env.js"></script>
+      <!--main/custom js-->
+      <script rel="preload" src="js/main.js"></script>
+      <!--bootstrap js-->
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <!-- isotop js -->
+      <script src="js/isotope.pkgd.min.js"></script>
+      <!-- counter up js -->
+      <script src="js/jquery.waypoints.min.js"></script>
+      <script src="js/jquery.countup.min.js"></script>
+      <!-- nice select js -->
+      <script src="js/jquery.nice-select.min.js"></script>
+      <!-- venobox js -->
+      <script src="js/venobox.min.js"></script>
+      <!-- sticky sidebar js -->
+      <script src="js/sticky_sidebar.js"></script>
+      <!-- wow js -->
+      <script src="js/wow.min.js"></script>
+      <!-- ex zoom js -->
+      <script src="js/jquery.exzoom.js"></script>
+      <script src="https://web3forms.com/client/script.js" async defer></script>
+      <link rel="stylesheet" href="css/venobox.min.css" />
+      <link rel="stylesheet" href="css/animate.css" />
+      <link rel="stylesheet" href="css/jquery.exzoom.css" />
+      <link rel="stylesheet" href="css/nice-select.css" />
   </body>
 </html>
