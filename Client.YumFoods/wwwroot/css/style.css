@@ -2320,23 +2320,34 @@ button {
 
 .fa-shopping-basket {
   color: #ffffff;
-  margin-right: 5px;
+  width: 27px;
+  height: 27px;
+}
+.fa-globe{
+    width: 17px;
+    height: 18px;
+}
+
+.fa-angle-down {
+    width: 10px;
+    height: 16px;
+    color: #fa6039;
 }
 
 .menu_add_to_cart::after {
-  position: absolute;
-  content: "";
-  top: -19px;
-  left: 0px;
-  z-index: 1;
-  transition: all linear 0.3s;
-  -webkit-transition: all linear 0.3s;
-  -moz-transition: all linear 0.3s;
-  -ms-transition: all linear 0.3s;
-  -o-transition: all linear 0.3s;
-  width: 0;
-  height: 0;
-  overflow: visible;
+    position: absolute;
+    content: "";
+    top: -19px;
+    left: 0px;
+    z-index: 1;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
+    width: 0;
+    height: 0;
+    overflow: visible;
 }
 
 .menu_add_to_cart:hover {

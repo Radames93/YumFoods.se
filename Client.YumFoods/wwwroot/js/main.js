@@ -98,9 +98,9 @@ function Header() {
           <ul class="navbar-nav">
             <li class="nav-item">
               <a href="#" onclick="myFunction()" class="dropbtn" >
-                <span class="icone"> <i class="fa fa-globe"></i> </span>
+                <span class="icone"> <img src="./images/fontawesome-icons/globe.svg" class="fa-globe"/> </span>
                 <span id="current-lang">SV</span>
-                <span class="icone"> <i class="fa fa-angle-down" ></i></span>
+                <span class="icone"> <img src="./images/fontawesome-icons/arrow-down.svg" class="fa-angle-down"/></span>
               </a>
               <ul class="droap_menu">
                 <li><a href="#">Swedish</a></li>
@@ -142,7 +142,8 @@ function Header() {
           -->
         <li>
           <a class="cart" href="cart_view.html"
-            ><i class="fas fa-shopping-basket"></i> <span id="count"></span
+            ><img src="./images/fontawesome-icons/cart.svg" class="fa-shopping-basket"/>
+            <span id="count"></span
           ></a>
         </li>
         </ul>
@@ -1089,12 +1090,12 @@ if (searchBar !== null) {
 //Fetch items from database
 const loadProducts = async () => {
   try {
-    const API_KEY = variables();
+    //const API_KEY = variables();
     // Fetch the products from the API
 
-    //const response = await fetch(`https://localhost:7216/products`);
+    const response = await fetch(`https://localhost:7216/products`);
 
-    const response = await fetch(`https://${API_KEY}/products`);
+    //const response = await fetch(`https://${API_KEY}/products`);
 
     const data = await response.json();
 
@@ -1321,7 +1322,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
                   data-yum-diet=${yum.dietRef}
-                  onclick='realAddToCart(event);updateSidebarCart();openSidebar()'
+                  onclick='realAddToCart(event)'
                   class="yum_btn"
                   style="border-radius: 12px;
                   padding: 18px 16px;
@@ -5955,20 +5956,22 @@ async function redirectToStripeCheckout() {
     });
 
     // Create a POST request to your backend endpoint to create the Stripe checkout session
-    //const response = await fetch("https://localhost:7216/payments", {
-      const API_KEY = variables();
-      const response = await fetch(`https://${API_KEY}/payments`, {
+    const response = await fetch("https://localhost:7216/payments", {
+      //const API_KEY = variables();
+      //const response = await fetch(`https://${API_KEY}/payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        //successPaymentUrl: "https://localhost:7023/payment_success.html",
-        //cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-        successPaymentUrl:
+        successPaymentUrl: "https://localhost:7023/payment_success.html",
+        cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+          /*
+          successPaymentUrl:
           "https://yumfoodsdev.azurewebsites.net/payment_success.html",
-        cancelPaymentUrl:
+        //cancelPaymentUrl:
           "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+          */
         products: products, // Send the products array
       }),
     });
