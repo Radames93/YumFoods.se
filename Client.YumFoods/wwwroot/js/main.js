@@ -201,7 +201,7 @@ function Header() {
               <a class="nav-link" href="contact.html">Kontakta oss</a>
             </li>
             <li class="nav-item" id="logInDrop">
-              <a class="nav-link" href="contact.html">Logga In</a>
+              <a class="nav-link" href="sign_in.html">Logga In</a>
                 <ul class="droap_menu">
                  <li><a href="sign_in.html">Login</a></li>
                  <li><a href="sign_up.html">Register</a></li>
@@ -5955,9 +5955,9 @@ async function redirectToStripeCheckout() {
     });
 
     // Create a POST request to your backend endpoint to create the Stripe checkout session
-    const response = await fetch("https://localhost:7216/payments", {
-      //const API_KEY = variables();
-      //const response = await fetch(`https://${API_KEY}/payments`, {
+    //const response = await fetch("https://localhost:7216/payments", {
+      const API_KEY = variables();
+      const response = await fetch(`https://${API_KEY}/payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
