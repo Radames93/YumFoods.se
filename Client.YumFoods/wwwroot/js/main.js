@@ -201,7 +201,7 @@ function Header() {
               <a class="nav-link" href="contact.html">Kontakta oss</a>
             </li>
             <li class="nav-item" id="logInDrop">
-              <a class="nav-link" href="contact.html">Logga In</a>
+              <a class="nav-link" href="sign_in.html">Logga In</a>
                 <ul class="droap_menu">
                  <li><a href="sign_in.html">Login</a></li>
                  <li><a href="sign_up.html">Register</a></li>
