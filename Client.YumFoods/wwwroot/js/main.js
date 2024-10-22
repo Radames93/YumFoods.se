@@ -1104,7 +1104,7 @@ if (searchBar !== null) {
 //Fetch items from database
 const loadProducts = async () => {
     try {
-        //const API_KEY = variables();
+        const API_KEY = variables();
         // Fetch the products from the API
 
         //const response = await fetch(`https://localhost:7216/products`);
