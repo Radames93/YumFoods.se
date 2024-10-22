@@ -98,9 +98,9 @@ function Header() {
           <ul class="navbar-nav">
             <li class="nav-item">
               <a href="#" onclick="myFunction()" class="dropbtn" >
-                <span class="icone"> <i class="fa fa-globe"></i> </span>
+                <span class="icone"> <img src="./images/fontawesome-icons/globe.svg" class="fa-globe"/> </span>
                 <span id="current-lang">SV</span>
-                <span class="icone"> <i class="fa fa-angle-down" ></i></span>
+                <span class="icone"> <img src="./images/fontawesome-icons/arrow-down.svg" class="fa-angle-down"/></span>
               </a>
               <ul class="droap_menu">
                 <li><a href="#">Swedish</a></li>
@@ -111,9 +111,11 @@ function Header() {
         </div>
 
         <!-- company button -->
+        <!--
         <div class="companyBtn">
           <button class="company" onclick="window.location.href='contact.html'"> För företag </button>
         </div>
+        -->
       </div>
  
       <div class="navbar-left">
@@ -140,7 +142,8 @@ function Header() {
           -->
         <li>
           <a class="cart" href="cart_view.html"
-            ><i class="fas fa-shopping-basket"></i> <span id="count"></span
+            ><img src="./images/fontawesome-icons/cart.svg" class="fa-shopping-basket"/>
+            <span id="count"></span
           ></a>
         </li>
         </ul>
@@ -157,8 +160,8 @@ function Header() {
           <i class="fa fa-bars menu_icon_bar"></i>
           <i class="fa fa-times close_icon_close"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+        <div class="collapse navbar-collapse wow" id="navbarNav">
+          <ul class="navbar-nav" style="align-items: center;">
             <li class="nav-item">
               <a class="nav-link" href="#"
                 >Meny <i class="fa fa-angle-down"></i
@@ -198,12 +201,54 @@ function Header() {
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Kontakta oss</a>
             </li>
+            <li class="nav-item" id="logInDrop">
+              <a class="nav-link" href="sign_in.html">Logga In</a>
+                <ul class="droap_menu">
+                 <li><a href="sign_in.html">Login</a></li>
+                 <li><a href="sign_up.html">Register</a></li>
+              </ul>
+            </li>
           </ul>
           </div>
         </div>
       </div>
   </nav>
     `;
+
+  if (localStorage.getItem("isLoggedIn") === "true") {
+    const savedUserData = JSON.parse(localStorage.getItem("userData"));
+
+    document.querySelector("#logInDrop").innerHTML = `
+    <a class="nav-link" href="contact.html">
+    ${savedUserData.förnamn}
+    </a>
+    `;
+    document.querySelector(".loginBtn").innerHTML = `
+    <ul class="navbar-nav">
+    <li class="nav-item">
+        <a id="logIn" href="dashboard.html" class="dropbtn">
+        <i class="far fa-user">${savedUserData.förnamn
+          .charAt(0)
+          .toUpperCase()}</i>
+        </a>
+    </li>
+  </ul>
+`;
+  } else {
+    document.querySelector(".loginBtn").innerHTML = `
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a id="logIn" href="#" class="dropbtn">
+                <i class="far fa-user"></i> Logga in
+              </a>
+              <ul class="droap_menu">
+                <li><a href="sign_in.html">Login</a></li>
+                <li><a href="sign_up.html">Register</a></li>
+              </ul>
+            </li>
+          </ul>
+`;
+  }
 }
 
 Header();
@@ -212,38 +257,21 @@ function loggedIn() {
   if (localStorage.getItem("isLoggedIn") === "true") {
     const savedUserData = JSON.parse(localStorage.getItem("userData"));
 
-    if (document.querySelector(".navbar") && savedUserData) {
-      const logInDiv = document.querySelector(".loginBtn");
-      const loginBtn = document.querySelector("#logIn");
-
-      const htmlStringLogging = `
+    document.querySelector(".loginBtn").innerHTML = `
           <ul class="navbar-nav">
           <li class="nav-item">
               <a id="logIn" href="dashboard.html" class="dropbtn">
-              <i class="far fa-user"></i>
-              <div class="spinner-border text-light" role="status">
-              <span class="sr-only">Loading...</span>
-              </div>
+              <i class="far fa-user">${savedUserData.förnamn
+                .charAt(0)
+                .toUpperCase()}</i>
               </a>
           </li>
         </ul>
-      `;
+    `;
 
-      const htmlStringloggedIn = `
-      <ul class="navbar-nav">
-          <li class="nav-item">
-              <a id="logIn" href="dashboard.html" class="dropbtn">
-              <i class="far fa-user"></i>
-              </a>
-          </li>
-        </ul>
-      `;
-      logInDiv.innerHTML = htmlStringloggedIn;
-
-      loginBtn.addEventListener("click", function () {
-        console.log("come on, log in!");
-      });
-    }
+    document.querySelector("#logIn").addEventListener("click", function () {
+      console.log("come on, log in!");
+    });
   }
 }
 
@@ -303,14 +331,106 @@ function toggleAccountType(isPersonal) {
     : "block";
 }
 
+//spara purcahse form
+async function saveAndProceed() {
+  // Försök att spara formulärdata
+  const formSaved = await savePurchaseData();
+
+  if (formSaved) {
+    // Om formulärdata har sparats, gå vidare till betalning
+    window.location.href = "payment.html";
+  } else {
+    alert(
+      "Kunde inte spara formulärdata. Kontrollera att alla fält är korrekt ifyllda."
+    );
+  }
+}
+
+// Purchase form
+async function savePurchaseData() {
+  let houseType = "";
+  const purchaseData = {};
+  const missingFields = [];
+
+  //lägg till leverans datum och tid
+  purchaseData.Adress = document.getElementById("addressInput").value.trim();
+  purchaseData.PostalCode = document
+    .getElementById("postalCodeInput")
+    .value.trim();
+  purchaseData.ort = document.getElementById("cityInput").value.trim();
+  const apartment = document.getElementById("lägenhet").checked;
+  const house = document.getElementById("villa_hus").checked;
+  const radhus = document.getElementById("radhus").checked;
+  const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+  //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
+  purchaseData.firstName = document
+    .getElementById("firstNameInput")
+    .value.trim();
+  purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
+  purchaseData.phone = document.getElementById("phoneInput").value.trim();
+  purchaseData.email = document.getElementById("mailInput").value.trim();
+
+  if (!purchaseData.Adress) missingFields.push("adress");
+  if (!purchaseData.PostalCode) missingFields.push("postnummer");
+  if (!purchaseData.ort) missingFields.push("Ort");
+
+  if (!purchaseData.firstName) missingFields.push("förnamn");
+  if (!purchaseData.lastName) missingFields.push("efternamn");
+  if (!purchaseData.phone) missingFields.push("telefonnummer");
+  if (!purchaseData.email) missingFields.push("email");
+
+  if (apartment) {
+    houseType = "Lägenhet";
+    purchaseData.Port = document.getElementById("portInput").value.trim();
+    purchaseData.Floor = document.getElementById("floorInput").value.trim();
+
+    //if (!purchaseData.Port) missingFields.push("portkod");
+    //if (!purchaseData.Floor) missingFields.push("våningsplan");
+  } else if (house) {
+    houseType = "Villa/Hus";
+  } else if (radhus) {
+    houseType = "Radhus";
+  }
+  purchaseData.houseType = houseType;
+
+  if (missingFields.length > 0) {
+    alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+    return false;
+  }
+  return true;
+
+  console.log(purchaseData);
+
+  //try {
+  //    // Skicka en POST-förfrågan till backend för att spara köpdata
+  //    const response = await fetch("https://localhost:7216/purchase", {
+  //        method: 'POST',
+  //        headers: {
+  //            'Content-Type': 'application/json',
+  //        },
+  //        body: JSON.stringify(purchaseData),
+  //    });
+
+  //    if (response.ok) {
+  //        alert("Horayy");
+  //        purchaseData.clear();
+  //    } else {
+  //        alert("Fel uppstod vid sparandet av köp.");
+  //    }
+  //}
+  //catch (error) {
+  //    console.error('Error:', error);
+  //    alert("Ett fel uppstod: " + error.message);
+
+  //}
+}
+
 //Personal Form
 function saveUserData(event) {
   event.preventDefault();
 
   const accountType = "personal";
-
   const userData = {};
-  const missingFields = [];
 
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
@@ -324,15 +444,8 @@ function saveUserData(event) {
   userData.postnummer = document.getElementById("postnummer").value;
   userData.ort = document.getElementById("ort").value;
   const termsAccepted = document.getElementById("terms1").checked;
-
-    if (!userData.firstName) missingFields.push("first name");
-    if (!userData.lastName) missingFields.push("last name");
-  if (!userData.email) missingFields.push("mail");
-  if (!userData.lösenord) missingFields.push("pass");
-  if (!upprepaLösenord) missingFields.push("pass repeat");
-  if (!userData.gatuadress) missingFields.push("adress");
-  if (!userData.postnummer) missingFields.push("postal code");
-  if (!userData.ort) missingFields.push("location");
+  let currentForm = document.getElementById("signupFormPersonal");
+  let allInputs = currentForm.querySelectorAll("input");
 
   // Validering
   // !userData.username ||
@@ -346,9 +459,33 @@ function saveUserData(event) {
     !userData.postnummer ||
     !userData.ort
   ) {
-    alert(
-      "Alla fält måste fyllas i! det som saknas: " + missingFields.join(", ")
-    );
+    const missingFields = [];
+
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
     return;
   }
 
@@ -358,6 +495,12 @@ function saveUserData(event) {
   }
 
   if (!termsAccepted) {
+    allInputs.forEach((input) => {
+      const warning = input.nextElementSibling;
+      if (warning && warning.classList.contains("warning")) {
+        warning.remove();
+      }
+    });
     alert(
       "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
     );
@@ -382,7 +525,6 @@ function saveUserDataBusiness(event) {
 
   const accountType = "Business";
   const userData = {};
-  const missingFields = [];
 
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
@@ -391,16 +533,13 @@ function saveUserDataBusiness(event) {
   userData.lösenord = document.getElementById("field3B").value.trim();
   const upprepaLösenord = document.getElementById("field4B").value.trim();
   userData.gatuadress = document.getElementById("field5B").value.trim();
-  userData.postnummer = document.getElementById("postnummerB").value.trim();
+  userData.postnummer = document.getElementById("contactName").value.trim();
+  userData.telefon = document.getElementById("phoneB").value.trim();
+  userData.kontakt = document.getElementById("postnummerB").value.trim();
   userData.ort = document.getElementById("ortB").value.trim();
   const termsAccepted = document.getElementById("terms1B").checked;
-
-  if (!userData.email) missingFields.push("mail" + "<br>");
-  if (!userData.lösenord) missingFields.push("pass" + "<br>");
-  if (!upprepaLösenord) missingFields.push("pass repeat" + "<br>");
-  if (!userData.gatuadress) missingFields.push("adress" + "<br>");
-  if (!userData.postnummer) missingFields.push("postal code" + "<br>");
-  if (!userData.ort) missingFields.push("location" + "<br>");
+  let currentForm = document.getElementById("signupFormBusiness");
+  let allInputs = currentForm.querySelectorAll("input");
 
   // Validering
   // !userData.username ||
@@ -410,11 +549,35 @@ function saveUserDataBusiness(event) {
     !upprepaLösenord ||
     !userData.gatuadress ||
     !userData.postnummer ||
-    !userData.ort
+    !userData.ort ||
+    !userData.kontakt ||
+    !userData.telefon
   ) {
-    alert(
-      "Alla fält måste fyllas i! det som saknas: " + missingFields.join(", ")
-    );
+    const missingFields = [];
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
     return;
   }
 
@@ -424,6 +587,12 @@ function saveUserDataBusiness(event) {
   }
 
   if (!termsAccepted) {
+    allInputs.forEach((input) => {
+      const warning = input.nextElementSibling;
+      if (warning && warning.classList.contains("warning")) {
+        warning.remove();
+      }
+    });
     alert(
       "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
     );
@@ -446,6 +615,89 @@ function saveUserDataBusiness(event) {
 
   alert("Dina företagsuppgifter har sparats!");
   window.location.href = "sign_in.html";
+}
+
+// Kontakta oss form
+function sendUserQuery(event) {
+  event.preventDefault();
+
+  const contactData = {};
+
+  contactData.name = document.getElementById("name").value.trim();
+  contactData.email = document.getElementById("email").value.trim();
+  contactData.telefon = document.getElementById("phone").value.trim();
+  contactData.amne = document.getElementById("subject").value.trim();
+  contactData.meddelande = document.getElementById("message").value.trim();
+  let currentForm = document.getElementById("contact-form");
+  let allInputs = currentForm.querySelectorAll("input");
+
+  // Validering
+  // !userData.username ||
+  if (
+    !contactData.name ||
+    !contactData.email ||
+    !contactData.telefon ||
+    !contactData.amne ||
+    !contactData.meddelande
+  ) {
+    const missingFields = [];
+
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
+    return;
+  }
+
+  // if (userData.lösenord !== upprepaLösenord) {
+  //   alert("Lösenorden matchar inte!");
+  //   return;
+  // }
+
+  // if (!termsAccepted) {
+  //   allInputs.forEach((input) => {
+  //     const warning = input.nextElementSibling;
+  //     if (warning && warning.classList.contains("warning")) {
+  //       warning.remove();
+  //     }
+  //   });
+  //   alert(
+  //     "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+  //   );
+  //   return;
+  // }
+
+  // if (accountType === "personal") {
+  //   userData.kontoTyp = "personal";
+  //   userData.förnamn = document.getElementById("field1").value.trim();
+  // }
+
+  // Spara användardata i localStorage
+  localStorage.setItem("contactData", JSON.stringify(contactData));
+
+  // alert("Dina personliga uppgifter har sparats!");
+  // window.location.href = "sign_in.html";
 }
 
 // Event listeners för att växla mellan kontotyper
@@ -725,6 +977,7 @@ function updateTotalPrice() {
 
 //Get elements from the DOM
 let summary = document.getElementById("cost_summary");
+//let products = document.getElementById("products");
 let yum = document.getElementById("yum");
 let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
@@ -763,6 +1016,9 @@ let premiumFiltered = [];
 let subscriptionsFiltered = [];
 let baguetterFiltered = [];
 let all = [];
+
+//The saved user details (passwords and other sensitive data to be excluded in the future)
+let loggedInUser;
 
 //Create a function to enable text field if appropriate radio button is checked
 function ifChecked() {
@@ -851,7 +1107,7 @@ const loadProducts = async () => {
     //const API_KEY = variables();
     // Fetch the products from the API
 
-     const response = await fetch(`https://localhost:7216/products`);
+    //const response = await fetch(`https://localhost:7216/products`);
 
     //const response = await fetch(`https://${API_KEY}/products`);
 
@@ -916,6 +1172,139 @@ const loadProducts = async () => {
 // Call the function to load the products
 loadProducts();
 
+/*
+// Dispay all products
+const showAllProducts = (allProducts) => {
+  if (products !== null) {
+    allProducts.map((yum) => {
+      let filteredProducts = allProducts.filter((products) => {
+        return products.diet.includes(yum.diet)
+      })
+      const htmlString = filteredProducts.map((yum) => {
+        let title = JSON.stringify(yum.title);
+        let description = JSON.stringify(yum.description);
+        let ingredients = JSON.stringify(yum.ingredients);
+        return (`
+        <div class="d-flex">
+        <div>
+            ${yum.diet}
+            </div> -
+             <img alt="dagens-meny-bild" class="img-fluid diet_img" src="${yum.dietRef}" /></div>
+             ${filteredProducts}
+             <div
+          class="wow fadeInUp "
+          data-wow-duration="1s"
+                      >
+        <div class="menu_item yum_product_display_item"
+                style="border: 1px solid var(--Stroke, #CED3D2); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:364px; height:330px; border-radius:12px;"
+                 >
+
+                <div class="yum_item_buttons d-flex flex-column align-items-center">
+                  <button
+                  data-id=` +
+          yum.id +
+          `
+                  data-yum-id=${yum.id}
+                  data-yum-title=${title}
+                  data-yum-price=${yum.price}
+                  data-yum-img=${yum.imgRef}
+                  data-yum-quantity-price=${yum.price}
+                  data-yum-description=${description}
+                  data-yum-diet=${yum.dietRef}
+                  onclick='realAddToCart(event); openSidebar(); '
+                  class="yum_btn"
+                  style="border-radius: 12px;
+                  padding: 18px 16px;
+                  border: 1px solid white;
+                  color: white;
+                  background: var(--Complementary-color, #DD3902);"><i class="fas fa-shopping-basket"></i>Lägg i varukorg</button>
+
+                  <button
+                    data-yum-id=${yum.id}
+                    data-yum-title=${title}
+                    data-yum-price=${yum.price}
+                    data-yum-img=${yum.imgRef}
+                    data-yum-quantity-price=${yum.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${yum.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                  class="yum_btn aboutYumItem"
+                  style="border-radius: 12px;
+                  padding: 13px 7px;
+                  border: 1px solid black;">Läs mer om produkten</button>
+                </div>
+
+                <div class="backOpacity">
+                <div class="menu_item_img" style="border-bottom:solid 1px grey;">
+                  <img
+                    src=` +
+          yum.imgRef +
+          `
+                    alt="yum-meny-bild"
+                    class="img-fluid w-100"
+                    class="title"
+                    href="#"
+                  />
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+
+            </div>
+
+                <div class="menu_item_text m-4">
+                  <a
+                    class="title"
+                    href="#"
+                    data-yum-id=${yum.id}
+                    data-yum-title=${title}
+                    data-yum-price=${yum.price}
+                    data-yum-img=${yum.imgRef}
+                    data-yum-quantity-price=${yum.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${yum.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                    >` +
+          yum.title +
+          `</a>
+                  <div class="d-flex justify-content-between">
+                            <h5 class="price">` +
+          yum.price +
+          `kr</h5>
+                            <img src=` +
+          yum.dietRef +
+          `
+                            alt="dagens-meny-bild"
+                            class="img-fluid diet_img"
+                            href="#"/>
+                    </div>
+            <!--
+            <ul class="d-flex flex-wrap justify-content-end">
+                    <li>
+                      <a href="#"><i class="fa fa-heart"></i></a>
+                    </li>
+                    <li>
+                      <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+                    </li>
+                  </ul>
+                  -->
+
+                </div>
+                </div>
+          </div>
+        </div>
+        ` );
+      })
+        .join("");
+      products.innerHTML = htmlString;
+    })
+  } else {
+    return null;
+  }
+};
+*/
 //Display yum items
 const yumProducts = (yumProductsList) => {
     if (yum !== null) {
@@ -947,7 +1336,7 @@ const yumProducts = (yumProductsList) => {
                   data-yum-quantity-price=${yum.price}
                   data-yum-description=${description}
                   data-yum-diet=${yum.dietRef}
-                  onclick='realAddToCart(event); openSidebar();'
+                  onclick='realAddToCart(event)'
                   class="yum_btn"
                   style="border-radius: 12px;
                   padding: 18px 16px;
@@ -2511,8 +2900,8 @@ function modalAddToCart() {
   var input = document.querySelector(".quantity");
   input.value = 1;
   closeModal();
-  openSidebar();
-  updateSidebarCart();
+  // openSidebar();
+  // updateSidebarCart();
 }
 
 //stäng modalen
@@ -2525,14 +2914,14 @@ let id = "";
 
 //Display items in the cart
 const displayNewCart = () => {
-  const cartSidebar = document.getElementById("cartSidebar");
+  // const cartSidebar = document.getElementById("cartSidebar");
   const tableHead = document.getElementById("table_head");
   const summaryHead = document.getElementById("summary_head");
-  if (cartSidebar) {
-    cartSidebar.classList.add("open");
-  } else {
-    console.error("Cart sidebar element not found");
-  }
+  // if (cartSidebar) {
+  //   cartSidebar.classList.add("open");
+  // } else {
+  //   console.error("Cart sidebar element not found");
+  // }
 
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
@@ -2883,7 +3272,7 @@ totalQuantity();
 ///////////////////////////////
 
 // function callUsers() {
-//    fetch("https://localhost:7216/subs")
+//   fetch("https://localhost:7216/users/9")
 //     .then((resp) => resp.json())
 //     .then((data) => console.log(data));
 // }
@@ -2926,6 +3315,26 @@ function logOut() {
 }
 
 function dash_myProfile() {
+  async function getUser() {
+    try {
+      const response = await fetch(`https://localhost:7216/users/9`);
+      const data = await response.json();
+      console.log(data);
+
+      document.getElementById("fname").value = data.firstName;
+      document.getElementById("lname").value = data.lastName;
+      document.getElementById("email").value = data.email;
+      document.getElementById("country").value = data.city;
+      document.getElementById("phone").value = data.phoneNumber;
+      document.getElementById("orgNumb").value = data.organizationNumber;
+      document.getElementById("postal").value = data.postalCode;
+      document.getElementById("invoice").value = data.adress;
+    } catch (error) {
+      console.error("Could not fetch user " + error);
+    }
+  }
+  getUser();
+
   const myProfile = document.getElementById("contain_user_content");
   const dashAside = document.getElementById("dashboard_aside");
   let linkProfile = document.getElementById("#dash_profile");
@@ -4332,19 +4741,19 @@ timeBox.forEach((btn) => {
 
 {
   /* <div class="d-flex calendar justify-content-center">
-<div class="date-box box1 text-center mx-2">
-  <div class="day">Måndag</div>
-  <div class="date">2 Sep</div>
-</div>
-<div class="date-box text-center mx-2">
-  <div class="day">Tisdag</div>
-  <div class="date">3 Sep</div>
-</div>
-<div class="date-box box3 text-center mx-2">
-  <div class="day">Onsdag</div>
-  <div class="date">4 Sep</div>
-</div>
-</div>  */
+  <div class="date-box box1 text-center mx-2">
+    <div class="day">Måndag</div>
+    <div class="date">2 Sep</div>
+  </div>
+  <div class="date-box text-center mx-2">
+    <div class="day">Tisdag</div>
+    <div class="date">3 Sep</div>
+  </div>
+  <div class="date-box box3 text-center mx-2">
+    <div class="day">Onsdag</div>
+    <div class="date">4 Sep</div>
+  </div>
+  </div>  */
 }
 
 // ----------------------------------
@@ -4575,6 +4984,7 @@ function showCompanyForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = `
+    <!--
                 <div class="col-xl-12">
                   <div for="company name" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
@@ -4585,6 +4995,16 @@ function showCompanyForm() {
                     />
                   </div>
                 </div>
+    -->
+                    <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="company">Företagsnamn</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Företagsnamn"
+                      />
+                    </div>
+    <!--
                 <div class="d-flex contact-input">
                 <div class="col-xl-6 col-sm-12">
                   <div for="role" class="contact_form_input contact-befattning">
@@ -4592,6 +5012,16 @@ function showCompanyForm() {
                     <input name="role" type="text" placeholder="Befattning(bara för företag)" />
                   </div>
                 </div>
+    -->
+                    <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="companyBefatt">Befattning</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Befattning"
+                      />
+                    </div>
+<!--
                 <div class="col-xl-6 col-sm-12">
                   <div for="number of employees" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
@@ -4602,10 +5032,20 @@ function showCompanyForm() {
                     />
                   </div>
                 </div>
+-->
+                      <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="company">Företagsnamn</label>
+                      <input
+                        type="number"
+                        name="number of employees"
+                        class="form-control"
+                        placeholder="Antal Anställda"
+                      />
+                    </div>
                 </div>
                   `;
-    company_button.className = "focus_common_btn";
-    private_button.className = "common_btn";
+    // company_button.className = "focus_common_btn";
+    // private_button.className = "common_btn";
   } else {
     null;
   }
@@ -4616,14 +5056,14 @@ function showPrivateForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = "";
-    private_button.className = "focus_common_btn";
-    company_button.className = "common_btn";
+    // private_button.className = "focus_common_btn";
+    // company_button.className = "common_btn";
   } else {
     null;
   }
 }
 
-// Function to send form to email
+// // Function to send form to email
 const contactForm = document.getElementById("contact-form");
 const form = document.getElementById("form");
 const result = document.getElementById("result");
@@ -4631,6 +5071,7 @@ const result = document.getElementById("result");
 if (contactForm !== null) {
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
+
     const formData = new FormData(contactForm);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
@@ -5158,8 +5599,8 @@ var datesSwipes = new Swiper(".dates_swipe", {
 
 // Show sidebar
 function openSidebar() {
-  const cartSidebar = document.getElementById("cartSidebar");
   console.log("openSidebar called");
+  const cartSidebar = document.getElementById("cartSidebar");
   cartSidebar.classList.add("open");
   const overlay = document.getElementById("overlay");
   overlay.style.display = "block";
@@ -5177,7 +5618,7 @@ function goToCheckout() {
 
 function addToCart(product) {
   console.log("addToCart called");
-  let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
   const existingProductIndex = formDataArry.findIndex(
     (item) => item.id === product.id
@@ -5199,8 +5640,8 @@ function addToCart(product) {
 
   // Uppdatera varukorgsdata i localStorage
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-  updateSidebarCart();
-  openSidebar();
+  // updateSidebarCart();
+  // openSidebar();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -5220,24 +5661,58 @@ document.addEventListener("DOMContentLoaded", function () {
   //   openSidebar();
   // }
 
-  // Update the sidebar cart with items and show mobile notification
-  function updateSidebarCart() {
-    console.log("updateSidebarCart called");
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
-    console.log("Cart contents:", formDataArry);
-    const sidebarCartItems = document.getElementById("sidebarCartItems");
-    const mobileProductCount = document.getElementById("mobileProductCount");
-    const mobileTotalPrice = document.getElementById("mobileTotalPrice");
+  document.addEventListener("DOMContentLoaded", function () {
+    // updateSidebarCart();
+  });
 
-    sidebarCartItems.innerHTML = "";
-    let totalQuantity = 0;
-    let total = 0;
-    const shipping = 49;
+  // updateSidebarCart();
+});
 
-    formDataArry.forEach((item) => {
+// Remove item from the cart, globally available
+function removeFromCart(itemId) {
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  formDataArry = formDataArry.filter((item) => item.id !== itemId);
+
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  // updateSidebarCart();
+}
+
+// globally available quantity change
+function changeQuantity(itemId, change) {
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  const itemIndex = formDataArry.findIndex((item) => item.id === itemId);
+
+  if (itemIndex !== -1) {
+    formDataArry[itemIndex].quantity += change;
+
+    if (formDataArry[itemIndex].quantity <= 0) {
+      removeFromCart(itemId);
+    } else {
+      localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+      // updateSidebarCart();
+    }
+  }
+}
+
+// Update the sidebar cart with items and show mobile notification
+function updateSidebarCart() {
+  console.log("updateSidebarCart called");
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  console.log("Cart contents:", formDataArry);
+  const sidebarCartItems = document.getElementById("sidebarCartItems");
+  const mobileProductCount = document.getElementById("mobileProductCount");
+  const mobileTotalPrice = document.getElementById("mobileTotalPrice");
+
+  sidebarCartItems.innerHTML = "";
+  let totalQuantity = 0;
+  let total = 0;
+  const shipping = 49;
+
+  formDataArry.forEach((item) => {
+    if (formDataArry) {
       const itemTotal = item.price * item.quantity;
       total += itemTotal;
-      totalQuantity += item.quantity;
+      totalQuantity = item.quantity;
 
       const dietImage = item.diet.includes(",")
         ? item.diet
@@ -5249,300 +5724,157 @@ document.addEventListener("DOMContentLoaded", function () {
         : `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
 
       sidebarCartItems.innerHTML += `
-        <section class="col mb-5" id="${item.id}" >
-          <div class="row">
-            <div class="col-4">
-              <div class="imgContainer">
-                <img id="${item.id}" src="${
+          <section class="col mb-5 border-bottom pb-3" id="${item.id}">
+            <div class="row">
+              <div class="col-4">
+                <div class="imgContainer">
+                  <img id="${item.id}" src="${
         item.img
       }" alt="bild på maträtt" class="pro_img cartPayDeliver cropImage"/>
+                </div>
+              </div>
+              <div class="col-4">
+                <h5 style="flex-direction: row; display: flex;">
+                  ${item.title}
+                  <div style="padding: 10px; margin-top: -17px;" class="d-flex">${dietImage}</div>
+                </h5>
+                <p data-bs-toggle="tooltip" data-bs-placement="top" title="${
+                  item.description
+                }" class="food-description sidebar" style="width: 380px; max-height:50px;">
+                  ${item.description}
+                </p>
+              </div>
+              <div class="col-4">
+                <h5 style="cursor: pointer;" onclick="removeFromCart('${
+                  item.id
+                }')" class="ms-auto me-4">
+                  Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i>
+                </h5>
               </div>
             </div>
-            <div class="col-4">
-              <h5 style="flex-direction: row; display: flex;">
-                ${item.title}
-                <div style="padding: 10px; margin-top: -17px;" class="d-flex">${dietImage}</div>
-              </h5>
-              <p data-bs-toggle="tooltip" data-bs-placement="top" title="${
-                item.description
-              }" class="food-description sidebar" style="width: 380px; max-height:50px;">
-                ${item.description}
-              </p>
-            </div>
-            <div class="col-4">
-              <h5 style="cursor: pointer;" onclick="removeFromCart('${
-                item.id
-              }')" class="ms-auto me-4">
-                Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i>
-              </h5>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-4">
-              <div class="quentity_btn mt-0 btn-sidebar d-flex">
-                <button class="decrease" onclick="changeQuantity('${
-                  item.id
-                }', -1)">
-                  <i style="font-size: 12px;" class="fas fa-minus"></i>
-                </button>
-                <input class="quantity" type="text" value="${
-                  item.quantity
-                }" readonly>
-                <button class="increase" onclick="changeQuantity('${
-                  item.id
-                }', 1)">
-                  <i style="font-size: 12px;" class="fas fa-plus"></i>
-                </button>
+            <div class="row">
+              <div class="col-4">
+                <div class="quentity_btn mt-0 btn-sidebar d-flex">
+                  <button class="decrease" onclick="changeQuantity('${
+                    item.id
+                  }', -1)">
+                    <i style="font-size: 12px;" class="fas fa-minus"></i>
+                  </button>
+                  <input class="quantity" type="text" value="${
+                    item.quantity
+                  }" readonly>
+                  <button class="increase" onclick="changeQuantity('${
+                    item.id
+                  }', 1)" style="padding-left:22px;">
+                    <i style="font-size: 12px;" class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-6 d-flex align-items-center justify-content-end">
+                <h6 class="quantity_price currency mb_0">${
+                  item.price * item.quantity
+                }</h6>
+                <h6 class="currency mb_0">kr</h6>
               </div>
             </div>
-            <div class="col-6 d-flex align-items-center justify-content-end">
-              <h6 class="quantity_price currency mb_0">${
-                item.price * item.quantity
-              }</h6>
-              <h6 class="currency mb_0">kr</h6>
-            </div>
-          </div>
-        </section>`;
-    });
-
-
-    // Update totals in sidebar and mobile
-    document.getElementById("sidebarShipping").textContent = `${shipping} kr`;
-    document.getElementById("sidebarTotal").textContent = `${
-      total + shipping
-    } kr`;
-    mobileProductCount.textContent = `${totalQuantity} produkter`;
-    mobileTotalPrice.textContent = `${total + shipping} kr`;
-
-    // Show mobile notification when items are added to the cart
-    const mobileCartNotification = document.getElementById(
-      "mobileCartNotification"
-    );
-    if (totalQuantity > 0) {
-      mobileCartNotification.style.display = "flex";
-      openSidebar();
+          </section>`;
     } else {
-      mobileCartNotification.style.display = "none";
-      cartSidebar.classList.remove("open");
-      overlay.style.display = "none";
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+      totalQuantity = item.quantity;
+
+      const dietImage = item.diet.includes(",")
+        ? item.diet
+            .split(",")
+            .map(
+              (diet) => `<img src="${diet}" alt="diet image" class="diet_img"/>`
+            )
+            .join("")
+        : `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
+
+      sidebarCartItems.innerHTML = "";
     }
-  }
-
-  window.changeQuantity = function (itemId, change) {
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
-    const itemIndex = formDataArry.findIndex((item) => item.id === itemId);
-
-    if (itemIndex !== -1) {
-      formDataArry[itemIndex].quantity += change;
-
-      if (formDataArry[itemIndex].quantity <= 0) {
-        removeFromCart(itemId);
-      } else {
-        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-        updateSidebarCart();
-      }
-    }
-  };
-
-  document.addEventListener("DOMContentLoaded", function () {
-    updateSidebarCart();
   });
 
-  // Remove item from the cart
-  window.removeFromCart = function (itemId) {
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry")) || [];
-    formDataArry = formDataArry.filter((item) => item.id !== itemId);
+  // Update totals in sidebar and mobile
+  document.getElementById("sidebarShipping").textContent = `${shipping} kr`;
+  document.getElementById("sidebarTotal").textContent = `${
+    total + shipping
+  } kr`;
+  mobileProductCount.textContent = `${totalQuantity} produkter`;
+  mobileTotalPrice.textContent = `${total + shipping} kr`;
 
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-    updateSidebarCart();
-  };
-  updateSidebarCart();
-});
+  // Show mobile notification when items are added to the cart
+  const mobileCartNotification = document.getElementById(
+    "mobileCartNotification"
+  );
+  if (totalQuantity > 0) {
+    mobileCartNotification.style.display = "flex";
+    // openSidebar();
+  } else {
+    mobileCartNotification.style.display = "none";
+    cartSidebar.classList.remove("open");
+    overlay.style.display = "none";
+  }
+}
+
+// --------------------------------------
 
 async function redirectToStripeCheckout() {
-    try {
-      // Retrieve cart information from local storage
-      let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-      if (!formDataArry || formDataArry.length === 0) {
-        console.error("No products in the cart.");
-        return;
-      }
-
-      let products = formDataArry.map((item) => {
-        // Retrieve the unit price and total price for the selected quantity
-        let unitPrice = item.price; // Price per item
-        let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
-
-        return {
-          name: item.title, // Product name (title)
-          quantity: item.quantity, // Quantity of the product
-          price: unitPrice, // Unit price for the product
-          total: totalQuantityPrice, // Total price for the quantity
-        };
-      });
-
-      // Create a POST request to your backend endpoint to create the Stripe checkout session
-      const response = await fetch("https://localhost:7216/payments", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          successPaymentUrl: "https://localhost:7023/payment_success.html",
-          cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-          products: products, // Send the products array
-        }),
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        // Redirect to the Stripe checkout session URL
-        window.location.href = result.checkoutUrl;
-        localStorage.clear();
-      } else {
-        console.error("Error creating Stripe session", result);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-};
-
-async function register() {
-    const userData = {};
-
-    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
-    userData.firstName = document.getElementById("field1").value;
-    userData.lastName = document.getElementById("field1.2").value;
-    userData.email = document.getElementById("field2").value;
-    userData.passwordhash = document.getElementById("field3").value;
-    userData.address = document.getElementById("field5").value;
-    userData.postalCode = document.getElementById("postnummer").value;
-    userData.city = document.getElementById("ort").value;
-
-    // Skapa konstanter för att kontrollera lösen och termer
-    const repeatPassword = document.getElementById("field4").value;
-    const termsAccepted = document.getElementById("terms1").checked;
-
-    // Validering
-    if (userData.passwordhash !== repeatPassword) {
-        alert("Lösenorden matchar inte!");
-        return;
+  try {
+    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    if (!formDataArry || formDataArry.length === 0) {
+      console.error("No products in the cart.");
+      return;
     }
 
-    if (!termsAccepted) {
-        alert("Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta.");
-        return;
-    }
+    let products = formDataArry.map((item) => {
+      // Retrieve the unit price and total price for the selected quantity
+      let unitPrice = item.price; // Price per item
+      let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
 
-    // Konvertera obj till sträng
-    localStorage.setItem("userData", JSON.stringify(userData));
-
-    // Tar ut datan
-    const storedUserData = JSON.parse(localStorage.getItem("userData"));
-    
-    // Kontrollera att det finns data i localStorage
-    if (!storedUserData) {
-        console.error("No user data found in localStorage.");
-        return;
-    }
-
-    // Skapa nytt objektet som ska matcha datan i databasen
-    const userToRegister = {
-        firstName: storedUserData.firstName,
-        lastName: storedUserData.lastName,
-        email: storedUserData.email,
-        passwordhash: storedUserData.passwordhash,
-        address: storedUserData.address,
-        postalCode: storedUserData.postalCode,
-        city: storedUserData.city,
-        userType: null,
-        organizationNumber: null,
-        cart: null,
-        phoneNumber: null,
-        subscription: null
-    };
-
-    // Anropa apiet
-    const response = await fetch('https://localhost:7216/users', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userToRegister)
+      return {
+        name: item.title, // Product name (title)
+        quantity: item.quantity, // Quantity of the product
+        price: unitPrice, // Unit price for the product
+        total: totalQuantityPrice, // Total price for the quantity
+      };
     });
 
-    const data = await response.json();
-    alert('Användare registrerad framgångsrikt!');
+    // Create a POST request to your backend endpoint to create the Stripe checkout session
+    //const response = await fetch("https://localhost:7216/payments", {
+      const API_KEY = variables();
+      const response = await fetch(`https://${API_KEY}/payments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+          body: JSON.stringify({
+          /*
+        successPaymentUrl: "https://localhost:7023/payment_success.html",
+        cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+           */
+          successPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+          cancelPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+         
+        products: products, // Send the products array
+      }),
+    });
 
-    // Optionally, clear localStorage
-    localStorage.removeItem("userData");
-
-    // Redirect after successful registration
-    window.location.href = "sign_in.html";
-}
-
-async function login() {
-    // Create an object to hold login data
-    const loginData = {
-        email: document.getElementById("email-login").value.trim(),
-        password: document.getElementById("password-login").value.trim()
-    };
-
-    // Validate the inputs
-    if (!loginData.email || !loginData.password) {
-        alert("Both email and password are required.");
-        return;
+    const result = await response.json();
+    if (response.ok) {
+      // Redirect to the Stripe checkout session URL
+      window.location.href = result.checkoutUrl;
+      localStorage.clear();
+    } else {
+      console.error("Error creating Stripe session", result);
     }
-
-    try {
-
-        const response = await fetch('https://localhost:7216/users/login', {
-            method: 'POST', 
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(loginData)
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log("Response data: ", data); 
-
-            if (data && data.token) { // If a token is received
-                localStorage.setItem('authToken', data.token); // Store the token
-                alert('Login successful!'); // Inform user
-                window.location.href = "dashboard.html"; // Redirect to the dashboard
-            } else {
-                alert('Login failed: No token received from the server.');
-            }
-        } else {
-            // Handle error responses
-            const errorText = await response.text(); // Get error response text
-            alert(`Login failed: ${errorText}`);
-        }
-    } catch (error) {
-        console.error('Network or unexpected error during login:', error);
-        alert('An error occurred during login. Please try again.');
-    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
-// Event listener for the login form
-//kräver detta på denna metod??
-document.getElementById("loginForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
-    login(); // Call the login function
-});
-
-async function updateProfile() {
-
-    const id = localStorage.getItem('userId');
-
-    const updatedUserData = {
-        firstName: document.getElementById("fname").value,
-        lastName: document.getElementById("lname").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("pass").value,
-        phone: document.getElementById("phone").value
-    };
 
     try {
 

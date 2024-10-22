@@ -3,6 +3,7 @@ using Shared.Interfaces;
 
 namespace Shared.StripePayments;
 
+//probably not needed class because this is implemented in frontend instead 20/09
 public class PaymentDirectory(IPaymentService paymentService, ICartService cartService)
 {
     private readonly IPaymentService _paymentService = paymentService;

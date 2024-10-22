@@ -21,53 +21,69 @@
     <link rel="stylesheet" href="css/responsive.css" />
   </head>
   <body>
-      <!--=============================
+    <!--=============================
       MENU START
     ==============================-->
-      <header-component id="header"></header-component>
-      <!--=============================
+    <header-component id="header"></header-component>
+    <!--=============================
       MENU END
     ==============================-->
-      <!--============================
+    <!--============================
       PAYMENT PAGE START
     ==============================-->
-      <section class="cart_view mt_100 xs_mt_70 mb_100 xs_mb_70">
-          <div class="container">
-              <div class="row">
-                  <div class="container2 mx-auto">
-                      <div class="tbl_content">
-                          <div class="accordion" id="customerHandling">
-                              <div class="accordion-item CartPayDeliver rounded-4 border border-greys border-1">
-                                  <h2 class="accordion-header" id="headingThree">
-                                      <button class="accordion-button rounded-2 bg-transparent CartPayDeliver"
-                                              type="button"
-                                              style="box-shadow: none; cursor: default"
-                                              aria-expanded="true"
-                                              id="payment-accordion">
-                                          <i style="color: #fc5633; margin-right: 10px"
-                                             class="fas fa-credit-card"></i>
-                                          Betalning
-                                      </button>
-                                  </h2>
-                                  <div id="collapseThree"
-                                       class="accordion-collapse show accordThree"
-                                       aria-labelledby="headingThree">
-                                      <div style="
+    <section class="cart_view mt_100 xs_mt_70 mb_100 xs_mb_70">
+      <div class="container">
+        <div class="row">
+          <div class="container2 mx-auto">
+            <div class="tbl_content">
+              <div class="accordion" id="customerHandling">
+                <div
+                  class="accordion-item CartPayDeliver rounded-4 border border-greys border-1"
+                >
+                  <h2 class="accordion-header" id="headingThree">
+                    <button
+                      class="accordion-button rounded-2 bg-transparent CartPayDeliver"
+                      type="button"
+                      style="box-shadow: none; cursor: default"
+                      aria-expanded="true"
+                      id="payment-accordion"
+                    >
+                      <i
+                        style="color: #fc5633; margin-right: 10px"
+                        class="fas fa-credit-card"
+                      ></i>
+                      Betalning
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse show accordThree"
+                    aria-labelledby="headingThree"
+                  >
+                    <div
+                      style="
                         border-top: 1px solid #fc5633;
                         margin-left: auto;
                         margin-right: auto;
-                      "></div>
-                                      <div class="accordion-body">
-                                          <div style="margin-top: 40px"
-                                               class="d-flex card mx-auto border-0">
-                                              <div style="width: 480px"
-                                                   class="card-body mx-auto CartPayDeliver">
-                                                  <h4 style="font-weight: 600; font-size: 20px"
-                                                      class="card-title">
-                                                      Välj Betalsätt
-                                                  </h4>
-                                                  <!-- Betala med Kort -->
-                                                  <!--<div class="card CartPayDeliver">
+                      "
+                    ></div>
+                    <div class="accordion-body">
+                      <div
+                        style="margin-top: 40px"
+                        class="d-flex card mx-auto border-0"
+                      >
+                        <div
+                          style="width: 480px"
+                          class="card-body mx-auto CartPayDeliver"
+                        >
+                          <h4
+                            style="font-weight: 600; font-size: 20px"
+                            class="card-title"
+                          >
+                            Välj Betalsätt
+                          </h4>
+                          <!-- Betala med Kort -->
+                          <!--<div class="card CartPayDeliver">
                                                   <div
                                                     class="form-check m-3 d-flex align-items-center ps-0"
                                                   >
@@ -147,184 +163,245 @@
                                                     </div>
                                                   </div>
                                                 </div>-->
-                                                  <!-- Betala med faktura -->
-                                                  <div class="card CartPayDeliver">
-                                                      <div class="form-check m-3 d-flex align-items-center ps-0">
-                                                          <input class="form-check-input me-3 CartPayDeliver"
-                                                                 type="radio"
-                                                                 name="paymentRadio"
-                                                                 id="paymentInvoice"
-                                                                 onclick="togglePaymentMethod()" />
-                                                          <label class="form-check-label"
-                                                                 for="paymentInvoice">
-                                                              Betala med stripe
-                                                          </label>
-                                                          <i style="color: #fc5633; margin-left: auto"
-                                                             class="fas fa-file-invoice"></i>
-                                                      </div>
-                                                      <div id="invoicePaymentSection"
-                                                           style="display: none">
-                                                          <div class="form-group">
-                                                              <section id="d-flex2"
-                                                                       class="d-flex justify-content-evenly CartPayDeliver">
-                                                                  <div class="mx-2 w-50">
-                                                                      <label for="firstName" class="form-label">Förnamn*</label>
-                                                                      <input id="firstName"
-                                                                             type="text"
-                                                                             class="form-control"
-                                                                             placeholder="Ange förnamn" />
-                                                                  </div>
-                                                                  <div class="mx-2 w-50">
-                                                                      <label for="lastName" class="form-label">Efternamn*</label>
-                                                                      <input id="lastName"
-                                                                             type="text"
-                                                                             class="form-control"
-                                                                             placeholder="Ange efternamn" />
-                                                                  </div>
-                                                              </section>
-                                                              <section id="d-flex2"
-                                                                       class="d-flex justify-content-evenly CartPayDeliver mt-3">
-                                                                  <div class="mx-2 w-100">
-                                                                      <label for="country" class="form-label">Land*</label>
-                                                                      <input id="country"
-                                                                             type="text"
-                                                                             class="form-control"
-                                                                             placeholder="Ange land" />
-                                                                  </div>
-                                                              </section>
-                                                              <section id="d-flex2"
-                                                                       class="d-flex justify-content-evenly CartPayDeliver mt-3">
-                                                                  <div class="mx-2 w-100">
-                                                                      <label for="street" class="form-label">Gatuadress*</label>
-                                                                      <input id="street"
-                                                                             type="text"
-                                                                             class="form-control"
-                                                                             placeholder="Ange gatuadress" />
-                                                                  </div>
-                                                              </section>
-                                                              <section id="d-flex2"
-                                                                       class="d-flex justify-content-evenly CartPayDeliver mt-3">
-                                                                  <div class="mx-2 w-100">
-                                                                      <label for="street" class="form-label">C/O (valfritt)</label>
-                                                                      <input id="street"
-                                                                             type="text"
-                                                                             class="form-control"
-                                                                             placeholder="Ange C/O" />
-                                                                  </div>
-                                                              </section>
-                                                              <section id="d-flex2"
-                                                                       style="margin-bottom: 30px"
-                                                                       class="d-flex justify-content-evenly CartPayDeliver mt-3">
-                                                                  <div class="mx-2 w-50">
-                                                                      <label for="zipcode" class="form-label">Postnummer*</label>
-                                                                      <input id="zipcode"
-                                                                             type="text"
-                                                                             class="form-control"
-                                                                             placeholder="Ange postnummer" />
-                                                                  </div>
-                                                                  <div class="mx-2 w-50">
-                                                                      <label for="city" class="form-label">Ort*</label>
-                                                                      <input id="city"
-                                                                             type="text"
-                                                                             class="form-control"
-                                                                             placeholder="Ange ort/stad" />
-                                                                  </div>
-                                                              </section>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <button class="payment-button" onclick="redirectToStripeCheckout()">
-                                              Betala & slutför beställning
-                                          </button>
-                                          <div style="border-top: 1.5px solid #ced3d2"></div>
-                                          <div class="summary"
-                                               style="margin-top: 50px; margin-bottom: 50px">
-                                              <h6 style="
+                          <!-- Betala med faktura -->
+                          <div class="card CartPayDeliver">
+                            <div
+                              class="form-check m-3 d-flex align-items-center ps-0"
+                            >
+                              <input
+                                class="form-check-input me-3 CartPayDeliver"
+                                type="radio"
+                                name="paymentRadio"
+                                id="paymentInvoice"
+                                onclick="togglePaymentMethod()"
+                              />
+                              <label
+                                class="form-check-label"
+                                for="paymentInvoice"
+                              >
+                                Betala med stripe
+                              </label>
+                              <i
+                                style="color: #fc5633; margin-left: auto"
+                                class="fas fa-file-invoice"
+                              ></i>
+                            </div>
+                            <div
+                              id="invoicePaymentSection"
+                              style="display: none"
+                            >
+                              <div class="form-group">
+                                <section
+                                  id="d-flex2"
+                                  class="d-flex justify-content-evenly CartPayDeliver"
+                                >
+                                  <div class="mx-2 w-50">
+                                    <label for="firstName" class="form-label"
+                                      >Förnamn*</label
+                                    >
+                                    <input
+                                      id="firstName"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange förnamn"
+                                    />
+                                  </div>
+                                  <div class="mx-2 w-50">
+                                    <label for="lastName" class="form-label"
+                                      >Efternamn*</label
+                                    >
+                                    <input
+                                      id="lastName"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange efternamn"
+                                    />
+                                  </div>
+                                </section>
+                                <section
+                                  id="d-flex2"
+                                  class="d-flex justify-content-evenly CartPayDeliver mt-3"
+                                >
+                                  <div class="mx-2 w-100">
+                                    <label for="country" class="form-label"
+                                      >Land*</label
+                                    >
+                                    <input
+                                      id="country"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange land"
+                                    />
+                                  </div>
+                                </section>
+                                <section
+                                  id="d-flex2"
+                                  class="d-flex justify-content-evenly CartPayDeliver mt-3"
+                                >
+                                  <div class="mx-2 w-100">
+                                    <label for="street" class="form-label"
+                                      >Gatuadress*</label
+                                    >
+                                    <input
+                                      id="street"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange gatuadress"
+                                    />
+                                  </div>
+                                </section>
+                                <section
+                                  id="d-flex2"
+                                  class="d-flex justify-content-evenly CartPayDeliver mt-3"
+                                >
+                                  <div class="mx-2 w-100">
+                                    <label for="street" class="form-label"
+                                      >C/O (valfritt)</label
+                                    >
+                                    <input
+                                      id="street"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange C/O"
+                                    />
+                                  </div>
+                                </section>
+                                <section
+                                  id="d-flex2"
+                                  style="margin-bottom: 30px"
+                                  class="d-flex justify-content-evenly CartPayDeliver mt-3"
+                                >
+                                  <div class="mx-2 w-50">
+                                    <label for="zipcode" class="form-label"
+                                      >Postnummer*</label
+                                    >
+                                    <input
+                                      id="zipcode"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange postnummer"
+                                    />
+                                  </div>
+                                  <div class="mx-2 w-50">
+                                    <label for="city" class="form-label"
+                                      >Ort*</label
+                                    >
+                                    <input
+                                      id="city"
+                                      type="text"
+                                      class="form-control"
+                                      placeholder="Ange ort/stad"
+                                    />
+                                  </div>
+                                </section>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        class="payment-button"
+                        onclick="redirectToStripeCheckout()"
+                      >
+                        Betala & slutför beställning
+                      </button>
+                      <div style="border-top: 1.5px solid #ced3d2"></div>
+                      <div
+                        class="summary"
+                        style="margin-top: 50px; margin-bottom: 50px"
+                      >
+                        <h6
+                          style="
                             background: rgba(38, 50, 56, 0.1);
                             margin-bottom: 5px;
-                          ">
-                                                  <p style="
+                          "
+                        >
+                          <p
+                            style="
                               padding-top: 5px;
                               padding-bottom: 5px;
                               padding-left: 20px;
                               display: flex;
                               justify-content: space-between;
-                            ">
-                                                      Frakt
-                                                      <span style="padding-right: 20px">39kr</span>
-                                                  </p>
-                                              </h6>
-                                              <h6 style="background-color: rgba(38, 50, 56, 0.1)">
-                                                  <p style="
+                            "
+                          >
+                            Frakt
+                            <span id="shipping" style="padding-right: 20px"
+                              >39kr</span
+                            >
+                          </p>
+                        </h6>
+                        <h6 style="background-color: rgba(38, 50, 56, 0.1)">
+                          <p
+                            style="
                               padding-top: 5px;
                               padding-bottom: 5px;
                               padding-left: 20px;
                               display: flex;
                               justify-content: space-between;
-                            ">
-                                                      Totalt belopp inkl.moms
-                                                      <span style="padding-right: 20px" id="total"></span>
-                                                  </p>
-                                              </h6>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
+                            "
+                          >
+                            Totalt belopp inkl.moms
+                            <span style="padding-right: 20px" id="total"></span>
+                          </p>
+                        </h6>
                       </div>
+                    </div>
                   </div>
+                </div>
               </div>
+            </div>
           </div>
-      </section>
-      <!--============================
+        </div>
+      </div>
+    </section>
+    <!--============================
       PAYMENT PAGE END
     ==============================-->
-      <!--=============================
+    <!--=============================
       FOOTER START
     ==============================-->
-      <footer-component id="footer"></footer-component>
-      <!--=============================
+    <footer-component id="footer"></footer-component>
+    <!--=============================
       FOOTER END
     ==============================-->
-      <!--=============================
+    <!--=============================
       SCROLL BUTTON START
     ==============================-->
-      <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
-      <!--=============================
+    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+    <!--=============================
       SCROLL BUTTON END
     ==============================-->
-      <!-- hotjar code -->
-      <script src="js/hotjar.js"></script>
-      <!-- swiper slider -->
-      <script src="js/swiper-bundle.min.js" rel="preload"></script>
-      <!--jquery library js-->
-      <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
-      <!--main/env js-->
-      <script src="js/env.js"></script>
-      <!--main/custom js-->
-      <script rel="preload" src="js/main.js"></script>
-      <!--bootstrap js-->
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <!-- isotop js -->
-      <script src="js/isotope.pkgd.min.js"></script>
-      <!-- counter up js -->
-      <script src="js/jquery.waypoints.min.js"></script>
-      <script src="js/jquery.countup.min.js"></script>
-      <!-- nice select js -->
-      <script src="js/jquery.nice-select.min.js"></script>
-      <!-- venobox js -->
-      <script src="js/venobox.min.js"></script>
-      <!-- sticky sidebar js -->
-      <script src="js/sticky_sidebar.js"></script>
-      <!-- wow js -->
-      <script src="js/wow.min.js"></script>
-      <!-- ex zoom js -->
-      <script src="js/jquery.exzoom.js"></script>
-      <link rel="stylesheet" href="css/venobox.min.css" />
-      <link rel="stylesheet" href="css/animate.css" />
-      <link rel="stylesheet" href="css/jquery.exzoom.css" />
-      <link rel="stylesheet" href="css/nice-select.css" />
+    <!-- hotjar code -->
+    <script src="js/hotjar.js"></script>
+    <!-- swiper slider -->
+    <script src="js/swiper-bundle.min.js" rel="preload"></script>
+    <!--jquery library js-->
+    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/env js-->
+    <script src="js/env.js"></script>
+    <!--main/custom js-->
+    <script rel="preload" src="js/main.js"></script>
+    <!--bootstrap js-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- isotop js -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- counter up js -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="js/jquery.exzoom.js"></script>
+    <link rel="stylesheet" href="css/venobox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="css/nice-select.css" />
   </body>
 </html>
