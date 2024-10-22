@@ -1,5 +1,6 @@
 ﻿using Shared.Entities;
 using Microsoft.EntityFrameworkCore;
+using Shared.Enums;
 
 namespace DataAccess;
 
@@ -33,6 +34,16 @@ public class YumFoodsDb : DbContext
                     .WithMany()
                     .HasForeignKey("ProductId")
                     .OnDelete(DeleteBehavior.Cascade));
+
+        modelBuilder.Entity<Order>()
+            .Property(o => o.HouseType)
+            .HasConversion<string>();
+        modelBuilder.Entity<Order>()
+            .Property(o => o.HouseType)
+            .HasConversion(
+                v => v.ToString(),     
+                v => (HouseType)Enum.Parse(typeof(HouseType), v) 
+            );
 
     }
 }

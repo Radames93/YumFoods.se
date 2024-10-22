@@ -98,9 +98,9 @@ function Header() {
           <ul class="navbar-nav">
             <li class="nav-item">
               <a href="#" onclick="myFunction()" class="dropbtn" >
-                <span class="icone"> <i class="fa fa-globe"></i> </span>
+                <span class="icone"> <img src="./images/fontawesome-icons/globe.svg" class="fa-globe"/> </span>
                 <span id="current-lang">SV</span>
-                <span class="icone"> <i class="fa fa-angle-down" ></i></span>
+                <span class="icone"> <img src="./images/fontawesome-icons/arrow-down.svg" class="fa-angle-down"/></span>
               </a>
               <ul class="droap_menu">
                 <li><a href="#">Swedish</a></li>
@@ -111,9 +111,11 @@ function Header() {
         </div>
 
         <!-- company button -->
+        <!--
         <div class="companyBtn">
           <button class="company" onclick="window.location.href='contact.html'"> För företag </button>
         </div>
+        -->
       </div>
 
       <div class="navbar-left">
@@ -121,10 +123,12 @@ function Header() {
         <div class="loginBtn">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="#" onclick="myFunction()" class="dropbtn" > <i class="far fa-user"></i> Logga in </a>
+              <a id="logIn" href="#" class="dropbtn">
+                <i class="far fa-user"></i> Logga in
+              </a>
               <ul class="droap_menu">
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="sign_in.html">Login</a></li>
+                <li><a href="sign_up.html">Register</a></li>
               </ul>
             </li>
           </ul>
@@ -138,7 +142,8 @@ function Header() {
           -->
         <li>
           <a class="cart" href="cart_view.html"
-            ><i class="fas fa-shopping-basket"></i> <span id="count"></span
+            ><img src="./images/fontawesome-icons/cart.svg" class="fa-shopping-basket"/>
+            <span id="count"></span
           ></a>
         </li>
         </ul>
@@ -155,8 +160,8 @@ function Header() {
           <i class="fa fa-bars menu_icon_bar"></i>
           <i class="fa fa-times close_icon_close"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
+        <div class="collapse navbar-collapse wow" id="navbarNav">
+          <ul class="navbar-nav" style="align-items: center;">
             <li class="nav-item">
               <a class="nav-link" href="#"
                 >Meny <i class="fa fa-angle-down"></i
@@ -196,15 +201,84 @@ function Header() {
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Kontakta oss</a>
             </li>
+            <li class="nav-item" id="logInDrop">
+              <a class="nav-link" href="sign_in.html">Logga In</a>
+                <ul class="droap_menu">
+                 <li><a href="sign_in.html">Login</a></li>
+                 <li><a href="sign_up.html">Register</a></li>
+              </ul>
+            </li>
           </ul>
           </div>
         </div>
       </div>
   </nav>
     `;
+
+  if (localStorage.getItem("isLoggedIn") === "true") {
+    const savedUserData = JSON.parse(localStorage.getItem("userData"));
+
+    document.querySelector("#logInDrop").innerHTML = `
+    <a class="nav-link" href="contact.html">
+    ${savedUserData.förnamn}
+    </a>
+    `;
+    document.querySelector(".loginBtn").innerHTML = `
+    <ul class="navbar-nav">
+    <li class="nav-item">
+        <a id="logIn" href="dashboard.html" class="dropbtn">
+        <i class="far fa-user">${savedUserData.förnamn
+          .charAt(0)
+          .toUpperCase()}</i>
+        </a>
+    </li>
+  </ul>
+`;
+  } else {
+    document.querySelector(".loginBtn").innerHTML = `
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a id="logIn" href="#" class="dropbtn">
+                <i class="far fa-user"></i> Logga in
+              </a>
+              <ul class="droap_menu">
+                <li><a href="sign_in.html">Login</a></li>
+                <li><a href="sign_up.html">Register</a></li>
+              </ul>
+            </li>
+          </ul>
+`;
+  }
 }
 
 Header();
+
+function loggedIn() {
+  if (localStorage.getItem("isLoggedIn") === "true") {
+    const savedUserData = JSON.parse(localStorage.getItem("userData"));
+
+    document.querySelector(".loginBtn").innerHTML = `
+          <ul class="navbar-nav">
+          <li class="nav-item">
+              <a id="logIn" href="dashboard.html" class="dropbtn">
+              <i class="far fa-user">${savedUserData.förnamn
+                .charAt(0)
+                .toUpperCase()}</i>
+              </a>
+          </li>
+        </ul>
+    `;
+
+    document.querySelector("#logIn").addEventListener("click", function () {
+      console.log("come on, log in!");
+    });
+  }
+}
+
+// Check for logged in user
+document.addEventListener("DOMContentLoaded", function () {
+  loggedIn();
+});
 
 // js for language button in navbar
 function setLanguage(lang) {
@@ -245,6 +319,464 @@ function toggleDropdown() {
 
 function navigateToMenuPage() {
   window.location.href = "/yum_menu.html";
+}
+
+// SIGN UP - Funktion för att visa rätt formulär beroende på kontotyp
+function toggleAccountType(isPersonal) {
+  document.getElementById("personalForm").style.display = isPersonal
+    ? "block"
+    : "none";
+  document.getElementById("businessForm").style.display = isPersonal
+    ? "none"
+    : "block";
+}
+
+//spara purcahse form
+async function saveAndProceed() {
+  // Försök att spara formulärdata
+  const formSaved = await savePurchaseData();
+
+  if (formSaved) {
+    // Om formulärdata har sparats, gå vidare till betalning
+    window.location.href = "payment.html";
+  } else {
+    alert(
+      "Kunde inte spara formulärdata. Kontrollera att alla fält är korrekt ifyllda."
+    );
+  }
+}
+
+// Purchase form
+async function savePurchaseData() {
+  let houseType = "";
+  const purchaseData = {};
+  const missingFields = [];
+
+  //lägg till leverans datum och tid
+  purchaseData.Adress = document.getElementById("addressInput").value.trim();
+  purchaseData.PostalCode = document
+    .getElementById("postalCodeInput")
+    .value.trim();
+  purchaseData.ort = document.getElementById("cityInput").value.trim();
+  const apartment = document.getElementById("lägenhet").checked;
+  const house = document.getElementById("villa_hus").checked;
+  const radhus = document.getElementById("radhus").checked;
+  const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+  //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
+  purchaseData.firstName = document
+    .getElementById("firstNameInput")
+    .value.trim();
+  purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
+  purchaseData.phone = document.getElementById("phoneInput").value.trim();
+  purchaseData.email = document.getElementById("mailInput").value.trim();
+
+  if (!purchaseData.Adress) missingFields.push("adress");
+  if (!purchaseData.PostalCode) missingFields.push("postnummer");
+  if (!purchaseData.ort) missingFields.push("Ort");
+
+  if (!purchaseData.firstName) missingFields.push("förnamn");
+  if (!purchaseData.lastName) missingFields.push("efternamn");
+  if (!purchaseData.phone) missingFields.push("telefonnummer");
+  if (!purchaseData.email) missingFields.push("email");
+
+  if (apartment) {
+    houseType = "Lägenhet";
+    purchaseData.Port = document.getElementById("portInput").value.trim();
+    purchaseData.Floor = document.getElementById("floorInput").value.trim();
+
+    //if (!purchaseData.Port) missingFields.push("portkod");
+    //if (!purchaseData.Floor) missingFields.push("våningsplan");
+  } else if (house) {
+    houseType = "Villa/Hus";
+  } else if (radhus) {
+    houseType = "Radhus";
+  }
+  purchaseData.houseType = houseType;
+
+  if (missingFields.length > 0) {
+    alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+    return false;
+  }
+  return true;
+
+  console.log(purchaseData);
+
+  //try {
+  //    // Skicka en POST-förfrågan till backend för att spara köpdata
+  //    const response = await fetch("https://localhost:7216/purchase", {
+  //        method: 'POST',
+  //        headers: {
+  //            'Content-Type': 'application/json',
+  //        },
+  //        body: JSON.stringify(purchaseData),
+  //    });
+
+  //    if (response.ok) {
+  //        alert("Horayy");
+  //        purchaseData.clear();
+  //    } else {
+  //        alert("Fel uppstod vid sparandet av köp.");
+  //    }
+  //}
+  //catch (error) {
+  //    console.error('Error:', error);
+  //    alert("Ett fel uppstod: " + error.message);
+
+  //}
+}
+
+//Personal Form
+function saveUserData(event) {
+  event.preventDefault();
+
+  const accountType = "personal";
+  const userData = {};
+
+  // För de utkommenterade fälten för användare namn
+  // userData.username = document.getElementById("username").value.trim();
+
+  userData.email = document.getElementById("field2").value.trim();
+  userData.lösenord = document.getElementById("field3").value.trim();
+  const upprepaLösenord = document.getElementById("field4").value.trim();
+  userData.gatuadress = document.getElementById("field5").value.trim();
+  userData.postnummer = document.getElementById("postnummer").value.trim();
+  userData.ort = document.getElementById("ort").value.trim();
+  const termsAccepted = document.getElementById("terms1").checked;
+  let currentForm = document.getElementById("signupFormPersonal");
+  let allInputs = currentForm.querySelectorAll("input");
+
+  // Validering
+  // !userData.username ||
+  if (
+    !userData.email ||
+    !userData.lösenord ||
+    !upprepaLösenord ||
+    !userData.gatuadress ||
+    !userData.postnummer ||
+    !userData.ort
+  ) {
+    const missingFields = [];
+
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
+    return;
+  }
+
+  if (userData.lösenord !== upprepaLösenord) {
+    alert("Lösenorden matchar inte!");
+    return;
+  }
+
+  if (!termsAccepted) {
+    allInputs.forEach((input) => {
+      const warning = input.nextElementSibling;
+      if (warning && warning.classList.contains("warning")) {
+        warning.remove();
+      }
+    });
+    alert(
+      "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+    );
+    return;
+  }
+
+  if (accountType === "personal") {
+    userData.kontoTyp = "personal";
+    userData.förnamn = document.getElementById("field1").value.trim();
+  }
+
+  // Spara användardata i localStorage
+  localStorage.setItem("userData", JSON.stringify(userData));
+
+  alert("Dina personliga uppgifter har sparats!");
+  window.location.href = "sign_in.html";
+}
+
+// Business Form
+function saveUserDataBusiness(event) {
+  event.preventDefault();
+
+  const accountType = "Business";
+  const userData = {};
+
+  // För de utkommenterade fälten för användare namn
+  // userData.username = document.getElementById("username").value.trim();
+
+  userData.email = document.getElementById("field2B").value.trim();
+  userData.lösenord = document.getElementById("field3B").value.trim();
+  const upprepaLösenord = document.getElementById("field4B").value.trim();
+  userData.gatuadress = document.getElementById("field5B").value.trim();
+  userData.postnummer = document.getElementById("contactName").value.trim();
+  userData.telefon = document.getElementById("phoneB").value.trim();
+  userData.kontakt = document.getElementById("postnummerB").value.trim();
+  userData.ort = document.getElementById("ortB").value.trim();
+  const termsAccepted = document.getElementById("terms1B").checked;
+  let currentForm = document.getElementById("signupFormBusiness");
+  let allInputs = currentForm.querySelectorAll("input");
+
+  // Validering
+  // !userData.username ||
+  if (
+    !userData.email ||
+    !userData.lösenord ||
+    !upprepaLösenord ||
+    !userData.gatuadress ||
+    !userData.postnummer ||
+    !userData.ort ||
+    !userData.kontakt ||
+    !userData.telefon
+  ) {
+    const missingFields = [];
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
+    return;
+  }
+
+  if (userData.lösenord !== upprepaLösenord) {
+    alert("Lösenorden matchar inte!");
+    return;
+  }
+
+  if (!termsAccepted) {
+    allInputs.forEach((input) => {
+      const warning = input.nextElementSibling;
+      if (warning && warning.classList.contains("warning")) {
+        warning.remove();
+      }
+    });
+    alert(
+      "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+    );
+    return;
+  }
+
+  if (accountType === "business") {
+    userData.kontoTyp = "business";
+    userData.företagsnamn = document
+      .getElementById("businessName")
+      .value.trim();
+    userData.orgNummer = document.getElementById("orgNumber").value.trim();
+    userData.kontaktperson = document
+      .getElementById("contactName")
+      .value.trim();
+  }
+
+  // Spara användardata i localStorage
+  localStorage.setItem("userData", JSON.stringify(userData));
+
+  alert("Dina företagsuppgifter har sparats!");
+  window.location.href = "sign_in.html";
+}
+
+// Kontakta oss form
+function sendUserQuery(event) {
+  event.preventDefault();
+
+  const contactData = {};
+
+  contactData.name = document.getElementById("name").value.trim();
+  contactData.email = document.getElementById("email").value.trim();
+  contactData.telefon = document.getElementById("phone").value.trim();
+  contactData.amne = document.getElementById("subject").value.trim();
+  contactData.meddelande = document.getElementById("message").value.trim();
+  let currentForm = document.getElementById("contact-form");
+  let allInputs = currentForm.querySelectorAll("input");
+
+  // Validering
+  // !userData.username ||
+  if (
+    !contactData.name ||
+    !contactData.email ||
+    !contactData.telefon ||
+    !contactData.amne ||
+    !contactData.meddelande
+  ) {
+    const missingFields = [];
+
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
+
+        missingFields.push(input.id);
+
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
+
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+
+    console.error(`field missing value! ` + missingFields.join(","));
+
+    alert("Alla fält måste fyllas i!");
+    return;
+  }
+
+  // if (userData.lösenord !== upprepaLösenord) {
+  //   alert("Lösenorden matchar inte!");
+  //   return;
+  // }
+
+  // if (!termsAccepted) {
+  //   allInputs.forEach((input) => {
+  //     const warning = input.nextElementSibling;
+  //     if (warning && warning.classList.contains("warning")) {
+  //       warning.remove();
+  //     }
+  //   });
+  //   alert(
+  //     "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+  //   );
+  //   return;
+  // }
+
+  // if (accountType === "personal") {
+  //   userData.kontoTyp = "personal";
+  //   userData.förnamn = document.getElementById("field1").value.trim();
+  // }
+
+  // Spara användardata i localStorage
+  localStorage.setItem("contactData", JSON.stringify(contactData));
+
+  // alert("Dina personliga uppgifter har sparats!");
+  // window.location.href = "sign_in.html";
+}
+
+// Event listeners för att växla mellan kontotyper
+document.addEventListener("DOMContentLoaded", function () {
+  const btnPersonal = document.getElementById("btnPersonal");
+  const btnBusiness = document.getElementById("btnBusiness");
+
+  if (btnPersonal) {
+    btnPersonal.addEventListener("click", function () {
+      toggleAccountType(true);
+      document.getElementById("accountTitle").textContent = "Skapa konto";
+    });
+  }
+
+  if (btnBusiness) {
+    btnBusiness.addEventListener("click", function () {
+      toggleAccountType(false);
+      document.getElementById("accountTitle").textContent =
+        "Skapa företagskonto";
+    });
+  }
+});
+
+//LOGIN SIDA
+function validateLogin(event) {
+  event.preventDefault();
+
+  const email = document.getElementById("email-login").value.trim();
+  const password = document.getElementById("password-login").value.trim();
+
+  // För de utkommenterade fälten för användare namn
+  // const username = document.getElementById("username-login").value.trim();
+
+  const savedUserData = JSON.parse(localStorage.getItem("userData"));
+
+  if (!savedUserData) {
+    alert("Det finns ingen registrerad användare. Vänligen skapa ett konto.");
+    return;
+  }
+
+  //  || !username
+  if (!email || !password) {
+    alert("Vänligen fyll i alla fält.");
+    return;
+  }
+
+  // && username === savedUserData.username
+  if (email === savedUserData.email && password === savedUserData.lösenord) {
+    if (document.getElementById("rememberMe").checked) {
+      localStorage.setItem(
+        "rememberedUser",
+        JSON.stringify({
+          email: email,
+          lösenord: password,
+          användare: username,
+        })
+      );
+    } else {
+      localStorage.removeItem("rememberedUser");
+    }
+    localStorage.setItem("isLoggedIn", "true");
+    loggedIn();
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Fel e-postadress, lösenord eller användarnamn.");
+  }
+}
+
+// Event listener för inloggningsformuläret
+let loginForm = document.getElementById("loginForm");
+if (loginForm) {
+  loginForm.addEventListener("submit", validateLogin);
+}
+
+// FORGOT PASSWORD IN SIGN IN SIDA
+function showForgotPassword() {
+  document.getElementById("loginBox").style.display = "none";
+  document.getElementById("forgotPasswordBox").style.display = "block";
+}
+
+function showLogin() {
+  document.getElementById("forgotPasswordBox").style.display = "none";
+  document.getElementById("loginBox").style.display = "block";
 }
 
 // secound part of start page
@@ -305,13 +837,15 @@ document.addEventListener("DOMContentLoaded", function () {
     ".quantity-btn button:nth-of-type(1)"
   );
   const infoBox = document.querySelector(".info-box");
-  let currentQuantity = parseInt(quantitySpan.textContent, 10);
-  function updateQuantity(newQuantity) {
-    if (newQuantity >= 10 && newQuantity <= 20) {
-      currentQuantity = newQuantity;
-      quantitySpan.textContent = currentQuantity;
-      updateBox4Selection();
-      updateTotalPrice();
+  if (quantitySpan !== null) {
+    let currentQuantity = parseInt(quantitySpan.textContent, 10);
+    function updateQuantity(newQuantity) {
+      if (newQuantity >= 10 && newQuantity <= 20) {
+        currentQuantity = newQuantity;
+        quantitySpan.textContent = currentQuantity;
+        updateBox4Selection();
+        updateTotalPrice();
+      }
     }
   }
   // update quantity boxes
@@ -361,12 +895,16 @@ document.addEventListener("DOMContentLoaded", function () {
       updateQuantity(boxValue);
     });
   });
-  increaseButton.addEventListener("click", function () {
-    updateQuantity(currentQuantity + 5);
-  });
-  decreaseButton.addEventListener("click", function () {
-    updateQuantity(currentQuantity - 5);
-  });
+  if (increaseButton !== null) {
+    increaseButton.addEventListener("click", function () {
+      updateQuantity(currentQuantity + 5);
+    });
+  }
+  if (decreaseButton !== null) {
+    decreaseButton.addEventListener("click", function () {
+      updateQuantity(currentQuantity - 5);
+    });
+  }
 });
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {
@@ -425,6 +963,7 @@ function updateTotalPrice() {
 
 //Get elements from the DOM
 let summary = document.getElementById("cost_summary");
+//let products = document.getElementById("products");
 let yum = document.getElementById("yum");
 let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
@@ -463,6 +1002,9 @@ let premiumFiltered = [];
 let subscriptionsFiltered = [];
 let baguetterFiltered = [];
 let all = [];
+
+//The saved user details (passwords and other sensitive data to be excluded in the future)
+let loggedInUser;
 
 //Create a function to enable text field if appropriate radio button is checked
 function ifChecked() {
@@ -547,34 +1089,47 @@ if (searchBar !== null) {
 
 //Fetch items from database
 const loadProducts = async () => {
-    try {
-        const API_KEY = variables();
-        // Fetch the products from the API
-        const response = await fetch(`https://${API_KEY}/products`);
+  try {
+    const API_KEY = variables();
+    // Fetch the products from the API
 
-      const data = await response.json();
-    
+    //const response = await fetch(`https://localhost:7216/products`);
+
+    const response = await fetch(`https://${API_KEY}/products`);
+
+    const data = await response.json();
+
     // Check if the response is OK (status code in the 200-299 range)
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
 
     // Parse the response data as JSON
-      const allProducts = data;
+    const allProducts = data;
 
     // Filter the products into different categories
-    const yumProductsList = allProducts.filter((product) => product.category === "Yum");
-    const dailyProductsList = allProducts.filter((product) => product.category === "Dagens");
-    const premiumProductsList = allProducts.filter((product) => product.category === "Premium");
-    const subscriptionsProductsList = allProducts.filter((product) => product.category === "Subscriptions");
-    const baguetterProductsList = allProducts.filter((product) => product.category === "Baguetter");
+    yumProductsList = allProducts.filter(
+      (product) => product.category === "Yum"
+    );
+    dailyProductsList = allProducts.filter(
+      (product) => product.category === "Dagens"
+    );
+    premiumProductsList = allProducts.filter(
+      (product) => product.category === "Premium"
+    );
+    subscriptionsProductsList = allProducts.filter(
+      (product) => product.category === "Subscriptions"
+    );
+    baguetterProductsList = allProducts.filter(
+      (product) => product.category === "Baguetter"
+    );
 
     // Further filtering or categorization
-    const yumFiltered = yumProductsList;
-    const dailyFiltered = dailyProductsList;
-    const premiumFiltered = premiumProductsList;
-    const subscriptionsFiltered = subscriptionsProductsList;
-    const baguetterFiltered = baguetterProductsList;
+    yumFiltered = yumProductsList;
+    dailyFiltered = dailyProductsList;
+    premiumFiltered = premiumProductsList;
+    subscriptionsFiltered = subscriptionsProductsList;
+    baguetterFiltered = baguetterProductsList;
 
     // Combine all categories into one list
     const all = [
@@ -594,7 +1149,6 @@ const loadProducts = async () => {
     CarouselFoodBoxes(yumProductsList);
     CarouselFoodBoxes2(yumProductsList);
     CarouselDietButtons(yumProductsList);
-
   } catch (err) {
     // Handle errors gracefully
     console.error("Error fetching products:", err);
@@ -604,7 +1158,139 @@ const loadProducts = async () => {
 // Call the function to load the products
 loadProducts();
 
+/*
+// Dispay all products
+const showAllProducts = (allProducts) => {
+  if (products !== null) {
+    allProducts.map((yum) => {
+      let filteredProducts = allProducts.filter((products) => {
+        return products.diet.includes(yum.diet)
+      })
+      const htmlString = filteredProducts.map((yum) => {
+        let title = JSON.stringify(yum.title);
+        let description = JSON.stringify(yum.description);
+        let ingredients = JSON.stringify(yum.ingredients);
+        return (`
+        <div class="d-flex">
+        <div>
+            ${yum.diet}
+            </div> -
+             <img alt="dagens-meny-bild" class="img-fluid diet_img" src="${yum.dietRef}" /></div>
+             ${filteredProducts}
+             <div
+          class="wow fadeInUp "
+          data-wow-duration="1s"
+                      >
+        <div class="menu_item yum_product_display_item"
+                style="border: 1px solid var(--Stroke, #CED3D2); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:364px; height:330px; border-radius:12px;"
+                 >
 
+                <div class="yum_item_buttons d-flex flex-column align-items-center">
+                  <button
+                  data-id=` +
+          yum.id +
+          `
+                  data-yum-id=${yum.id}
+                  data-yum-title=${title}
+                  data-yum-price=${yum.price}
+                  data-yum-img=${yum.imgRef}
+                  data-yum-quantity-price=${yum.price}
+                  data-yum-description=${description}
+                  data-yum-diet=${yum.dietRef}
+                  onclick='realAddToCart(event); openSidebar(); '
+                  class="yum_btn"
+                  style="border-radius: 12px;
+                  padding: 18px 16px;
+                  border: 1px solid white;
+                  color: white;
+                  background: var(--Complementary-color, #DD3902);"><i class="fas fa-shopping-basket"></i>Lägg i varukorg</button>
+
+                  <button
+                    data-yum-id=${yum.id}
+                    data-yum-title=${title}
+                    data-yum-price=${yum.price}
+                    data-yum-img=${yum.imgRef}
+                    data-yum-quantity-price=${yum.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${yum.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                  class="yum_btn aboutYumItem"
+                  style="border-radius: 12px;
+                  padding: 13px 7px;
+                  border: 1px solid black;">Läs mer om produkten</button>
+                </div>
+
+                <div class="backOpacity">
+                <div class="menu_item_img" style="border-bottom:solid 1px grey;">
+                  <img
+                    src=` +
+          yum.imgRef +
+          `
+                    alt="yum-meny-bild"
+                    class="img-fluid w-100"
+                    class="title"
+                    href="#"
+                  />
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+
+            </div>
+
+                <div class="menu_item_text m-4">
+                  <a
+                    class="title"
+                    href="#"
+                    data-yum-id=${yum.id}
+                    data-yum-title=${title}
+                    data-yum-price=${yum.price}
+                    data-yum-img=${yum.imgRef}
+                    data-yum-quantity-price=${yum.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${yum.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal"
+                    >` +
+          yum.title +
+          `</a>
+                  <div class="d-flex justify-content-between">
+                            <h5 class="price">` +
+          yum.price +
+          `kr</h5>
+                            <img src=` +
+          yum.dietRef +
+          `
+                            alt="dagens-meny-bild"
+                            class="img-fluid diet_img"
+                            href="#"/>
+                    </div>
+            <!--
+            <ul class="d-flex flex-wrap justify-content-end">
+                    <li>
+                      <a href="#"><i class="fa fa-heart"></i></a>
+                    </li>
+                    <li>
+                      <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+                    </li>
+                  </ul>
+                  -->
+
+                </div>
+                </div>
+          </div>
+        </div>
+        ` );
+      })
+        .join("");
+      products.innerHTML = htmlString;
+    })
+  } else {
+    return null;
+  }
+};
+*/
 //Display yum items
 const yumProducts = (yumProductsList) => {
   if (yum !== null) {
@@ -642,7 +1328,7 @@ const yumProducts = (yumProductsList) => {
                   padding: 18px 16px;
                   border: 1px solid white;
                   color: white;
-                  background: var(--Complementary-color, #DD3902);"><i class="fas fa-shopping-basket"></i></i>Lägg i varukorg</button>
+                  background: var(--Complementary-color, #DD3902);"><i class="fas fa-shopping-basket"></i>Lägg i varukorg</button>
 
                   <button
                     data-yum-id=${yum.id}
@@ -828,7 +1514,7 @@ const yumProducts = (yumProductsList) => {
 
 const carouselContainer = document.getElementById("container");
 const carouselContainer2 = document.getElementById("container2");
-const carouselDietButtons = document.getElementById("dietButtons")
+const carouselDietButtons = document.getElementById("dietButtons");
 
 const CarouselFoodBoxes = (yumProductsList) => {
   if (carouselContainer !== null) {
@@ -998,64 +1684,63 @@ function Matlådor(element) {
 
 function handleBoxClick(element, boxType) {
   if (selectedBox && selectedBox !== element) {
-    const previousCheckmark = selectedBox.querySelector('.check-products img');
+    const previousCheckmark = selectedBox.querySelector(".check-products img");
     if (previousCheckmark) {
-      previousCheckmark.style.display = 'none';
+      previousCheckmark.style.display = "none";
     }
-    selectedBox.style.backgroundColor = '';
-    selectedBox.style.border = '';
+    selectedBox.style.backgroundColor = "";
+    selectedBox.style.border = "";
   }
 
-  const checkmark = element.querySelector('.check-products img');
-  const isDisplayed = checkmark && checkmark.style.display === 'block';
+  const checkmark = element.querySelector(".check-products img");
+  const isDisplayed = checkmark && checkmark.style.display === "block";
 
   if (checkmark) {
-    checkmark.style.display = isDisplayed ? 'none' : 'block';
+    checkmark.style.display = isDisplayed ? "none" : "block";
   }
 
   if (isDisplayed) {
-    element.style.backgroundColor = '';
-    element.style.border = '';
-    selectedBox = null; 
+    element.style.backgroundColor = "";
+    element.style.border = "";
+    selectedBox = null;
   } else {
-    element.style.backgroundColor = '#FFDFCE'; 
-    element.style.border = '2px solid black';
-    selectedBox = element; 
+    element.style.backgroundColor = "#FFDFCE";
+    element.style.border = "2px solid black";
+    selectedBox = element;
   }
 }
 
 // Carousel in product page
-let currentIndex =0;
-const itemsPerPage= 4;
+let currentIndex = 0;
+const itemsPerPage = 4;
 const CarouselDietButtons = (yumProductsList) => {
   if (carouselDietButtons !== null) {
     const dietFiltered = yumProductsList.map((yum) => yum.diet);
-    const uniqueDiets = [...new Set(dietFiltered)]; 
-    
+    const uniqueDiets = [...new Set(dietFiltered)];
+
     const htmlString = uniqueDiets
       .map((diet) => {
-        return (
-          `
+        return `
           <div class="swiper-slide">
-            <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64)" onclick="fetchProductsByDiet('${diet}')">
+            <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64)" onclick="sortingDishDietFunction('${diet}')" >
               ${diet}
             </button>
           </div>
-          `
-        );
+          `;
       })
-      .join(""); 
-  carouselDietButtons.innerHTML = htmlString;  
+      .join("");
+    carouselDietButtons.innerHTML = htmlString;
   } else {
     return null;
- }
+  }
 };
 
+// swiper in product page-first part
 var swiper3 = new Swiper(".slide-content3", {
   centeredSlide: "true",
   fade: "true",
   grabCursor: "true",
-  spaceBetween: 10, 
+  spaceBetween: 10,
   pagination: {
     el: ".swiper-pagination",
     clickable: true,
@@ -1087,41 +1772,41 @@ var swiper3 = new Swiper(".slide-content3", {
   loopedSlides: 4,
   loopAdditionalSlides: 1,
   on: {
-    slideChangeTransitionEnd: function() {
+    slideChangeTransitionEnd: function () {
       if (this.isEnd) {
         this.slideToLoop(0, 0);
       }
-    },}
+    },
+  },
 });
 
-let showPrevBtn = document.getElementById('show-prev-btn')
-let showNextBtn = document.getElementById('show-next-btn')
-if (showPrevBtn !== null){
-  showPrevBtn.addEventListener('click', () => {
+let showPrevBtn = document.getElementById("show-prev-btn");
+let showNextBtn = document.getElementById("show-next-btn");
+if (showPrevBtn !== null) {
+  showPrevBtn.addEventListener("click", () => {
     swiper3.slidePrev();
-});
-} 
-if (showNextBtn !== null){
-showNextBtn.addEventListener('click', () => {
+  });
+}
+if (showNextBtn !== null) {
+  showNextBtn.addEventListener("click", () => {
     swiper3.slideNext();
-}); 
+  });
 }
 
-
 // banner2 i product page
-document.addEventListener('DOMContentLoaded', function () {
-  var SwiperCustom = new Swiper('.mySwiper-custom', {
+document.addEventListener("DOMContentLoaded", function () {
+  var SwiperCustom = new Swiper(".mySwiper-custom", {
     slidesPerView: 4,
     spaceBetween: 5,
     loop: true,
     centeredSlides: true,
     pagination: {
-      el: '.swiper-pagination', 
+      el: ".swiper-pagination",
       clickable: true,
     },
     navigation: {
-      nextEl: '.mySwiper-custom-next',  
-      prevEl: '.mySwiper-custom-prev',
+      nextEl: ".mySwiper-custom-next",
+      prevEl: ".mySwiper-custom-prev",
     },
     breakpoints: {
       640: {
@@ -1153,7 +1838,6 @@ document.addEventListener('DOMContentLoaded', function () {
 //   });
 //   feed.run();
 // });
-
 
 //Function for payment accordions
 function togglePaymentMethod() {
@@ -1867,7 +2551,7 @@ const sortingDishDietFunction = (el) => {
     }
   } else if (option === "cow") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-      return product.diet.includes("Cow");
+      return product.diet === "Cow";
     });
     // const filteredDailyProducts = dailyProductsList.filter((product) => {
     //   let cow = "";
@@ -2331,14 +3015,30 @@ function modalAddToCart() {
   totalQuantity();
   var input = document.querySelector(".quantity");
   input.value = 1;
+  closeModal();
+  // openSidebar();
+  // updateSidebarCart();
+}
+
+//stäng modalen
+function closeModal() {
+  var modal = document.getElementById("modal");
+  modal.style.display = "none";
 }
 
 let id = "";
 
 //Display items in the cart
 const displayNewCart = () => {
+  // const cartSidebar = document.getElementById("cartSidebar");
   const tableHead = document.getElementById("table_head");
   const summaryHead = document.getElementById("summary_head");
+  // if (cartSidebar) {
+  //   cartSidebar.classList.add("open");
+  // } else {
+  //   console.error("Cart sidebar element not found");
+  // }
+
   if (cartItem !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     if (formDataArry === null) {
@@ -2557,7 +3257,6 @@ setTimeout(() => {
       let fullDescrip = item.textContent;
       let text = item.textContent;
       item.textContent = truncateDescrip(text, 60);
-      console.log(item.textContent);
     });
   } else {
     console.error("not available yet");
@@ -2688,6 +3387,25 @@ totalQuantity();
 ///////// Dashboard functionality start ///////////
 ///////////////////////////////
 
+// function callUsers() {
+//   fetch("https://localhost:7216/users/9")
+//     .then((resp) => resp.json())
+//     .then((data) => console.log(data));
+// }
+// callUsers();
+
+if (document.getElementById("dashboard_aside")) {
+  document.querySelectorAll(".dashActive").forEach((link) => {
+    link.addEventListener("click", function (ev) {
+      ev.preventDefault();
+      document
+        .querySelectorAll(".dashActive")
+        .forEach((link) => link.classList.remove("activeLink"));
+      this.classList.add("activeLink");
+    });
+  });
+}
+
 function unlockForms(btn) {
   const dashForm = btn.parentElement.nextElementSibling.closest(".dash_forms");
   const listInputs = dashForm.querySelectorAll("input");
@@ -2706,32 +3424,88 @@ function formCancelEdit(btn) {
   dashForm.querySelector(".dashboard_contact_btns").style.display = "none";
 }
 
+function logOut() {
+  localStorage.removeItem("userData");
+  localStorage.removeItem("isLoggedIn");
+  window.location.href = "sign_up.html";
+}
+
 function dash_myProfile() {
+  async function getUser() {
+    try {
+      const response = await fetch(`https://localhost:7216/users/9`);
+      const data = await response.json();
+      console.log(data);
+
+      document.getElementById("fname").value = data.firstName;
+      document.getElementById("lname").value = data.lastName;
+      document.getElementById("email").value = data.email;
+      document.getElementById("country").value = data.city;
+      document.getElementById("phone").value = data.phoneNumber;
+      document.getElementById("orgNumb").value = data.organizationNumber;
+      document.getElementById("postal").value = data.postalCode;
+      document.getElementById("invoice").value = data.adress;
+    } catch (error) {
+      console.error("Could not fetch user " + error);
+    }
+  }
+  getUser();
+
   const myProfile = document.getElementById("contain_user_content");
   const dashAside = document.getElementById("dashboard_aside");
+  let linkProfile = document.getElementById("#dash_profile");
 
   if (myProfile) {
     myProfile.remove();
-  } else {
-    console.error("Element missing!");
   }
 
   if (!dashAside) {
     console.error("Error! element missing!");
   }
 
+  if (document.getElementById("selectPage")) {
+    document
+      .getElementById("selectPage")
+      .addEventListener("change", function () {
+        const selectedVal = this.value;
+
+        switch (selectedVal) {
+          case "index.html":
+            window.location.href = selectedVal;
+            break;
+          case "2":
+            dash_myProfile();
+            break;
+          case "3":
+            dash_myOrders();
+            break;
+          case "4":
+            dash_mySubs();
+            break;
+          case "5":
+            dash_myDeals();
+            break;
+          case "6":
+            dash_myNotifications();
+            break;
+          default:
+            break;
+        }
+      });
+  }
+
   const htmlString = `
   <section
-        id="contain_user_content"
-        class="flex-grow-1"
-        style="border: 1px solid red; width: 200px; height: fit-content"
-      >
-        <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
-        <section class="p-4">
+  id="contain_user_content"
+  class="flex-grow-1 wow fadeInUp"
+  style="width: 200px; height: fit-content"
+  >
+  <section class="p-4">
+  <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><span class="goBack"><i class="fas fa-arrow-left"></i>Tillbaka</span></p>
           <h2>Min Profil</h2>
 
-          <section class="dashboard_contact">
-            <div class="d-flex">
+          <section id="profilePage" class="dashboard_contact">
+            <div class="d-flex" id="title_icon">
               <h3>Kontaktinformation</h3>
               <i
                 onclick="unlockForms(this)"
@@ -2801,12 +3575,12 @@ function dash_myProfile() {
               <div class="dashboard_contact_btns">
                 <button
                   onclick="formCancelEdit(this)"
-                  class="btn btn-secondary formCancel"
+                  class="btn btn-secondary dashCancel"
                   type="button"
                 >
                   Avbryt
                 </button>
-                <button class="btn btn-secondary" type="button">
+                <button class="btn btn-secondary dashConfirm" type="button">
                   Spara Ändringar
                 </button>
               </div>
@@ -2814,7 +3588,7 @@ function dash_myProfile() {
           </section>
 
           <section class="dashboard_contact" id="företag">
-            <div class="d-flex">
+            <div class="d-flex" id="title_icon">
               <h3>Företagsinformation</h3>
               <i
                 onclick="unlockForms(this)"
@@ -2853,12 +3627,12 @@ function dash_myProfile() {
               <div class="dashboard_contact_btns">
                 <button
                   onclick="formCancelEdit(this)"
-                  class="btn btn-secondary"
+                  class="btn btn-secondary dashCancel"
                   type="button"
                 >
                   Avbryt
                 </button>
-                <button class="btn btn-secondary" type="button">
+                <button class="btn btn-secondary dashConfirm" type="button">
                   Spara Ändringar
                 </button>
               </div>
@@ -2866,7 +3640,7 @@ function dash_myProfile() {
           </section>
 
           <section class="dashboard_contact" id="leverans">
-            <div class="d-flex">
+            <div class="d-flex" id="title_icon">
               <h3>Leveransinformation</h3>
               <i
                 onclick="unlockForms(this)"
@@ -2912,30 +3686,87 @@ function dash_myProfile() {
                   <input disabled type="text" />
                 </div>
               </div>
+
+                <div id="doorSwitch" class="form-check form-switch d-flex align-items-end">
+                <input
+                disabled
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckChecked"
+                />
+                <label
+                  class="form-check-label ms-2"
+                  for="flexSwitchCheckDefault"
+                  >Lämna utanför dörren</label
+                >
+                </div>
+
               <div class="dashboard_contact_btns">
                 <button
                   onclick="formCancelEdit(this)"
-                  class="btn btn-secondary"
+                  class="btn btn-secondary dashCancel"
                   type="button"
                 >
                   Avbryt
                 </button>
-                <button class="btn btn-secondary" type="button">
+                <button class="btn btn-secondary dashConfirm" type="button">
                   Spara Ändringar
                 </button>
               </div>
             </form>
-          </section>
+            </section>
+
+            <div class="d-flex" style="gap:10px; margin-top: 25px;">
+            <button data-bs-toggle="modal" data-bs-target="#deleteUser" style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); color:black; background: white; border-color:black;" type="button" class="btn btn-primary">Radera Konto</button>
+            <button data-bs-toggle="modal" data-bs-target="#logOutUser" style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); color:white; background:black; border-color:black;" type="button" class="btn btn-primary">Logga Ut</button>
+            </div>
+
+
+            <div class="modal fade" id="deleteUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom:none;">
+        <h4 class="modal-title text-center" id="exampleModalLabel">Är du säker på att du vill radera ditt konto?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Din information kommer att raderas, så du kan inte återaktivera kontot igen om du fortsätter.</p>
+      </div>
+      <div class="modal-footer mx-auto" style="border-top:none;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nej, avbryt</button>
+        <button type="button" class="btn btn-primary">Ja, radera kontot</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+            <div class="modal fade" id="logOutUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom:none;">
+        <h4 class="modal-title text-center" id="exampleModalLabel">Är du säker på att du vill logga ut?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer mx-auto" style="border-top:none;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nej, avbryt</button>
+        <button onclick="logOut()" type="button" class="btn btn-primary">Ja, logga ut</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
         </section>
       </section>
   `;
   dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
 }
 
-// if (document.getElementById('dashboard_aside')
-// ) {
-// dash_myProfile();
-// }
+if (document.getElementById("dashboard_aside")) {
+  dash_myProfile();
+}
 
 function dash_myOrders() {
   const dashAside = document.getElementById("dashboard_aside");
@@ -2954,11 +3785,11 @@ function dash_myOrders() {
   const htmlString = `
   <section
         id="contain_user_content"
-        class="flex-grow-1"
-        style="border: 1px solid red; width: 200px; height: fit-content"
+        class="flex-grow-1 wow fadeInUp"
+        style="width: 200px; height: fit-content"
       >
-        <p><i class="fas fa-arrow-left"></i>Tillbaka</p>
-        <section class="p-4">
+      <section class="p-4">
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><span class="goBack"><i class="fas fa-arrow-left"></i>Tillbaka</span></p>
           <h2>Mina beställningar</h2>
 
           <p style="margin-top: 30px; font-weight: 600">
@@ -2981,7 +3812,7 @@ function dash_myOrders() {
                 <li>4st av den här sorten</li>
               </ul>
               <p style="color: var(--Dark-grey, #595959)">
-                du kan aboka din leverans senast den X/9 kl: xx:xx. Avboka här
+                du kan aboka din leverans senast den X/9 kl: xx:xx. <span data-bs-toggle="modal" data-bs-target="#cancelOrder" style="text-decoration: underline; cursor:pointer;">Avboka här.</span>
               </p>
             </div>
           </section>
@@ -3016,16 +3847,589 @@ function dash_myOrders() {
           </section>
         </section>
       </section>
+
+
+      <div class="modal fade" id="cancelOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header"  style="border-bottom: none">
+        <h3 class="modal-title" id="exampleModalLabel">Är du säker på att du vill avboka denna leverans?</h3>
+      </div>
+
+      <div class="modal-body">
+
+                <section class="dashboard_orders">
+            <div class="d-flex">
+              <h3>Dag - Månad - Klocka</h3>
+            </div>
+            <div>
+              <h5>Matlådor - antal(st)</h5>
+              <ul class="dash_list">
+                <li>3st matlådor av denna sort</li>
+                <li>3st av ett annat slag</li>
+                <li>4st av den här sorten</li>
+              </ul>
+            </div>
+          </section>
+
+      </div>
+
+      <div class="modal-footer mx-auto" style="border-top: none">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nej, avbryt</button>
+        <button type="button" class="btn btn-primary">Ja, avboka</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
   `;
   dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
 }
+
+function dash_mySubs() {
+  const dashAside = document.getElementById("dashboard_aside");
+  const myProfile = document.getElementById("contain_user_content");
+
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
+
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
+
+  const htmlString = `
+  <section
+        id="contain_user_content"
+        class="flex-grow-1 wow fadeInUp"
+        style="width: 200px; height: fit-content"
+      >
+      <section class="p-4">
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><span class="goBack"><i class="fas fa-arrow-left"></i>Tillbaka</span></p>
+          <h2>Mina beställningar</h2>
+
+          <section class="dashboard_orders">
+            <div class="d-flex">
+              <h3>Dag - Månad - Klocka</h3>
+              <h3 class="ms-auto align-self-center" style="color: #0eb116">
+                Aktiv
+              </h3>
+            </div>
+            <div>
+              <h5>Matlådor - antal(st)</h5>
+              <ul class="dash_list">
+                <li>3st matlådor av denna sort</li>
+                <li>3st av ett annat slag</li>
+                <li>4st av den här sorten</li>
+              </ul>
+            </div>
+            <div class="d-flex flex-row" style="gap: 10px">
+              <p style="color: #dd3902">Avsluta Prenumeration</p>
+              <p style="color: #dd3902">Pausa Prenumeration</p>
+            </div>
+          </section>
+
+          <section style="margin-top: 20px" class="dashboard_sub_delivery">
+            <div class="d-flex">
+              <h5>Leveransfönster</h5>
+              <i
+                onclick="dashEditDelivTime(this)"
+                class="far fa-edit ms-auto align-self-center unlock_form"
+                style="font-size: 32px; color: #dd3902"
+              ></i>
+            </div>
+            <p>Dag - kl: xx:xx</p>
+          </section>
+
+          <section style="margin-top: 20px" class="dashboard_orders">
+            <div class="d-flex">
+              <h5>Antal Portioner Per Leverans</h5>
+            </div>
+
+            <div
+              class="d-flex flex-row justify-content-center"
+              style="gap: 10px"
+            >
+              <div class="col-3">
+                <div class="box box4" data-value="10">
+                  <img
+                    class="green-check-kost2"
+                    src="images/Eo_circle_green_checkmark.svg.webp"
+                    alt=""
+                  />
+                  <p style="font-weight: 600">10</p>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="box box4" data-value="15">
+                  <img
+                    class="green-check-kost2"
+                    src="images/Eo_circle_green_checkmark.svg.webp"
+                    alt=""
+                  />
+                  <p style="font-weight: 600">15</p>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <div class="box box4" data-value="20">
+                  <img
+                    class="green-check-kost2"
+                    src="images/Eo_circle_green_checkmark.svg.webp"
+                    alt=""
+                  />
+                  <p style="font-weight: 600">20</p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              style="max-width: 388px; display: flex; margin: auto"
+              class="box1 large-box"
+            >
+              <div class="row">
+                <div class="col-7 text">
+                  <h5 style="text-align: left; margin-left: 10px">
+                    Välja ett eget antal
+                  </h5>
+                  <h6
+                    style="
+                      width: 250px;
+                      text-align: left;
+                      margin-left: 10px;
+                      font-size: 15px;
+                    "
+                  >
+                    Minst 10 matlådor per beställning
+                  </h6>
+                </div>
+                <div
+                  style="
+                    margin-left: 40px;
+                    border-radius: 4px;
+                    border: 1px solid #f63;
+                    background: #fff;
+                    width: 110px;
+                    justify-content: center;
+                  "
+                  class="col-3 quantity-btn d-flex align-items-center justify-content-end"
+                >
+                  <button
+                    class="btn btn-light"
+                    style="
+                      background-color: white;
+                      border-color: white;
+                      border-right: 1 px solid #f63 !important;
+                    "
+                  >
+                    -
+                  </button>
+                  <span class="mx-2">10</span>
+                  <button
+                    class="btn btn-light"
+                    style="
+                      background-color: white;
+                      border-color: white;
+                      border-left: 1 px solid #f63 !important;
+                    "
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="dashboard_contact" id="leverans">
+            <div class="d-flex" id="title_icon">
+              <h3>Leveransinformation</h3>
+              <i
+                onclick="unlockForms(this)"
+                class="far fa-edit ms-auto align-self-center"
+                style="font-size: 32px; color: #fc5633"
+              ></i>
+            </div>
+            <form action="" class="dash_forms">
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Förnamn</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Efternamn</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+
+              <div class="dash_inputs">
+                <label for="">Gatuadress</label>
+                <input disabled type="text" />
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Postnummer</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Ort</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+
+              <div class="d-flex flex-direction-row" style="gap: 15px">
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Portkod/Porttelefon</label>
+                  <input disabled type="text" />
+                </div>
+                <div class="dash_inputs flex-grow-1">
+                  <label for="">Våningsplan</label>
+                  <input disabled type="text" />
+                </div>
+              </div>
+
+              <div id="doorSwitch" class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckChecked"
+                />
+                <label
+                  class="form-check-label ms-2"
+                  for="flexSwitchCheckDefault"
+                  >Lämna utanför dörren</label
+                >
+              </div>
+
+              <div class="dashboard_contact_btns">
+                <button
+                  onclick="formCancelEdit(this)"
+                  class="btn btn-secondary dashCancel"
+                  type="button"
+                >
+                  Avbryt
+                </button>
+                <button class="btn btn-secondary dashConfirm" type="button">
+                  Spara Ändringar
+                </button>
+              </div>
+            </form>
+          </section>
+        </section>
+      </section>
+  `;
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
+}
+
+function dash_myDeals() {
+  const dashAside = document.getElementById("dashboard_aside");
+  const myProfile = document.getElementById("contain_user_content");
+
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
+
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
+
+  const htmlString = `
+        <section
+        id="contain_user_content"
+        class="flex-grow-1 wow fadeInUp"
+        style="width: 200px; height: fit-content"
+      >
+      <section class="p-4">
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><span class="goBack"><i class="fas fa-arrow-left"></i>Tillbaka</span></p>
+          <h2>Erbjudanden & Presentkort</h2>
+
+          <div class="mt-5">
+            <h3>Mina Erbjudande</h3>
+            <p class="mt-3 mb-3">
+              Du kan inte kombinera flera rabatter samtidigt
+            </p>
+
+            <div class="coupon_container d-flex flex-row" style="gap: 20px">
+              <section class="dashboard_deals">
+                <div class="d-flex flex-column" style="gap: 10px">
+                  <h4 style="font-weight: bold">
+                    10% på din första kasse när du prenumererar!
+                  </h4>
+                  <p>Lorem ipsum dolor sit amet consectetur</p>
+                  <button
+                    disabled
+                    type="button"
+                    class="btn btn-secondary w-60 mx-auto"
+                  >
+                    Rabatt Aktiverad
+                  </button>
+                </div>
+              </section>
+              <section class="dashboard_deals">
+                <div class="d-flex flex-column" style="gap: 10px">
+                  <h4 style="font-weight: bold">
+                    10% på din första kasse när du prenumererar!
+                  </h4>
+                  <p>Lorem ipsum dolor sit amet consectetur</p>
+                  <button type="button" class="btn btn-secondary w-60 mx-auto">
+                    Aktivera Rabatt
+                  </button>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="mt-3">
+            <p style="color: #252627">Addera en rabattkod</p>
+            <div id="rabatt-kod" class="d-flex">
+              <input
+                id="rabatt-input"
+                class="rounded-left"
+                type="text"
+                style="width: 20%"
+              />
+              <button type="button" class="btn btn-dark rounded-0">
+                Aktivera
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <h3>Kreditvärde</h3>
+            <section style="margin-top: 20px" class="dashboard_deal_invite">
+              <div class="d-flex flex-column" style="gap: 15px">
+                <h5>Bjud in en vän och få rabatt på nästa matkasse!</h5>
+                <p>Bjud in en vän och samla kreditvärde.</p>
+                <div class="dash_inputs">
+                  <label for="fname">Dins väns mejladress</label>
+                  <div class="d-flex flex-row" style="gap: 20px">
+                    <input
+                      class="w-75"
+                      id="fname"
+                      type="email"
+                      placeholder="Ange din väns mejladress"
+                    />
+                    <button type="submit" class="btn btn-primary w-50">
+                      Skicka Inbjudan
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <section style="margin-top: 20px" class="dashboard_deal_invite">
+            <h5>Skickade inbjudningar</h5>
+            <div class="d-flex flex-column" style="gap: 15px">
+              <ul>
+                <li>mejladress vän 1</li>
+                <li>mejladress vän 2</li>
+                <li>mejladress vän 3</li>
+              </ul>
+            </div>
+          </section>
+
+          <div class="mt-5">
+            <h3>Mitt Presentkort</h3>
+            <section style="margin-top: 20px" class="dashboard_deal_invite">
+              <h5>Löst in ett presentkort</h5>
+              <div class="mt-3">
+                <p style="color: #252627">Ange presentkortets ID.</p>
+                <div id="rabatt-kod" class="d-flex">
+                  <input
+                    id="rabatt-input"
+                    class="rounded-left"
+                    type="text"
+                    style="width: 20%"
+                  />
+                  <button type="button" class="btn btn-dark rounded-0">
+                    Aktivera
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section
+              style="margin-top: 20px"
+              class="dashboard_deal_invite d-flex"
+              style="gap: 15px"
+            >
+
+            <div class="d-flex">
+            <h5>Saldo Presentkort</h5>
+            <h5 class="ms-auto" style="color: #0eb116">Aktiv</h5>
+            </div>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p>250:-</p>
+            </section>
+          </div>
+
+          <div class="mt-5">
+            <h3>Ge bort ett presentkort</h3>
+            <section
+              style="margin-top: 20px"
+              class="dashboard_deal_invite d-flex"
+              style="gap: 15px"
+            >
+              <b>Ge bort en smakfull upplevelse</b>
+              <p>
+                Digitalt presentkort - den perfekta gåvan till någon speciell
+              </p>
+            </section>
+          </div>
+        </section>
+      </section>
+  `;
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
+}
+
+function dash_myNotifications() {
+  const dashAside = document.getElementById("dashboard_aside");
+  const myProfile = document.getElementById("contain_user_content");
+
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
+
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
+
+  const htmlString = `
+        <section
+        id="contain_user_content"
+        class="flex-grow-1 wow fadeInUp"
+        style="width: 200px; height: fit-content"
+      >
+      <section class="p-4">
+      <p style="border-bottom: 1px solid lightgrey;" class="mb-4"><span class="goBack"><i class="fas fa-arrow-left"></i>Tillbaka</span></p>
+          <h2>Aviseringar</h2>
+
+          <div class="mt-4">
+            <b>Preferenser för aviseringar via email</b>
+
+            <section
+              class="dashboard_notifications d-flex flex-column mt-3"
+              style="gap: 15px"
+            >
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Nyhetsbrev och tips från kocken</label
+                >
+              </div>
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Rabatter och erbjudanden</label
+                >
+              </div>
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Feedback på måltider</label
+                >
+              </div>
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Feedback till Yumfoods</label
+                >
+              </div>
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Produktuppdateringar om din prenumeration</label
+                >
+              </div>
+              <div class="form-check form-switch d-flex align-items-end">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="flexSwitchCheckDefault"
+                />
+                <label
+                  class="form-check-label ms-3"
+                  for="flexSwitchCheckDefault"
+                  >Alla mejl</label
+                >
+              </div>
+            </section>
+          </div>
+        </section>
+      </section>
+  `;
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
+}
+
+function applyGoBack() {
+  if (document.querySelector(".goBack")) {
+    const backOnePage = document.querySelector(".goBack");
+    backOnePage.style.cursor = "pointer";
+    backOnePage.addEventListener("click", function () {
+      history.back();
+      return false;
+    });
+  }
+}
+applyGoBack();
 
 function dashEditOrder(btn) {
   const currentOrder = document.querySelector(".dashboard_orders");
   const htlmString = `
   <h3>Redigera Beställning</h3>
 
-    <div class="d-flex flex-row justify-content-center" style="gap: 10px; margin-top:20px;">
+    <div class="d-flex flex-row justify-content-center subsTimeEdit" style="gap: 10px; margin-top:20px;">
         <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Veckodag
@@ -3122,6 +4526,46 @@ function dashEditOrder(btn) {
   return (currentOrder.innerHTML = htlmString);
 }
 
+function dashEditDelivTime(btn) {
+  const currentOrder = document.querySelector(".dashboard_sub_delivery");
+  const htlmString = `
+  <h5>Redigera Beställning</h5>
+
+    <div class="d-flex flex-row justify-content-center subsTimeEdit" style="gap: 10px; margin-top:20px;">
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Veckodag
+        </button>
+
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Datum #1</a></li>
+        <li><a class="dropdown-item" href="#">Datum #2</a></li>
+        <li><a class="dropdown-item" href="#">Datum #3</a></li>
+        </ul>
+        </div>
+
+        <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Tidspann
+        </button>
+
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Klocka #1</a></li>
+        <li><a class="dropdown-item" href="#">Klocka #2</a></li>
+        <li><a class="dropdown-item" href="#">Klocka #3</a></li>
+        </ul>
+        </div>
+
+        </div>
+
+        <div class="d-flex flex-row justify-content-center" style="gap:10px; margin-top:15px;">
+        <button onclick="dashCancelEditSub()" type="button" class="btn btn-primary">Avbryt</button>
+        <button onclick="dashConfirmEditSub()" type="button" class="btn btn-primary">Spara Ändringar</button>
+        </div>
+  `;
+  return (currentOrder.innerHTML = htlmString);
+}
+
 function dashCancelEdit() {
   const currentOrder = document.querySelector(".dashboard_orders");
   const htlmString = `
@@ -3149,6 +4593,24 @@ function dashCancelEdit() {
 }
 
 function dashConfirmEdit() {}
+
+function dashCancelEditSub() {
+  const currentOrder = document.querySelector(".dashboard_sub_delivery");
+  const htlmString = `
+            <div class="d-flex">
+              <h5>Leveransfönster</h5>
+              <i
+                onclick="dashEditDelivTime(this)"
+                class="far fa-edit ms-auto align-self-center unlock_form"
+                style="font-size: 32px; color: #dd3902"
+              ></i>
+            </div>
+            <p>Dag - kl: xx:xx</p>
+  `;
+  return (currentOrder.innerHTML = htlmString);
+}
+
+function dashConfirmEditSub() {}
 
 /////////////////////////////////
 ///////// Dashboard functionality end ///////////
@@ -3393,19 +4855,19 @@ timeBox.forEach((btn) => {
 
 {
   /* <div class="d-flex calendar justify-content-center">
-<div class="date-box box1 text-center mx-2">
-  <div class="day">Måndag</div>
-  <div class="date">2 Sep</div>
-</div>
-<div class="date-box text-center mx-2">
-  <div class="day">Tisdag</div>
-  <div class="date">3 Sep</div>
-</div>
-<div class="date-box box3 text-center mx-2">
-  <div class="day">Onsdag</div>
-  <div class="date">4 Sep</div>
-</div>
-</div>  */
+  <div class="date-box box1 text-center mx-2">
+    <div class="day">Måndag</div>
+    <div class="date">2 Sep</div>
+  </div>
+  <div class="date-box text-center mx-2">
+    <div class="day">Tisdag</div>
+    <div class="date">3 Sep</div>
+  </div>
+  <div class="date-box box3 text-center mx-2">
+    <div class="day">Onsdag</div>
+    <div class="date">4 Sep</div>
+  </div>
+  </div>  */
 }
 
 // ----------------------------------
@@ -3636,6 +5098,7 @@ function showCompanyForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = `
+    <!--
                 <div class="col-xl-12">
                   <div for="company name" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
@@ -3646,6 +5109,16 @@ function showCompanyForm() {
                     />
                   </div>
                 </div>
+    -->
+                    <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="company">Företagsnamn</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Företagsnamn"
+                      />
+                    </div>
+    <!--
                 <div class="d-flex contact-input">
                 <div class="col-xl-6 col-sm-12">
                   <div for="role" class="contact_form_input contact-befattning">
@@ -3653,6 +5126,16 @@ function showCompanyForm() {
                     <input name="role" type="text" placeholder="Befattning(bara för företag)" />
                   </div>
                 </div>
+    -->
+                    <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="companyBefatt">Befattning</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Befattning"
+                      />
+                    </div>
+<!--
                 <div class="col-xl-6 col-sm-12">
                   <div for="number of employees" class="contact_form_input">
                     <span><i class="fas fa-user"></i></span>
@@ -3663,10 +5146,20 @@ function showCompanyForm() {
                     />
                   </div>
                 </div>
+-->
+                      <div class="form-group d-flex flex-column mb-3">
+                      <label class="me-auto" for="company">Företagsnamn</label>
+                      <input
+                        type="number"
+                        name="number of employees"
+                        class="form-control"
+                        placeholder="Antal Anställda"
+                      />
+                    </div>
                 </div>
                   `;
-    company_button.className = "focus_common_btn";
-    private_button.className = "common_btn";
+    // company_button.className = "focus_common_btn";
+    // private_button.className = "common_btn";
   } else {
     null;
   }
@@ -3677,14 +5170,14 @@ function showPrivateForm() {
   let contactForm = document.getElementById("company");
   if (contactForm !== null) {
     contactForm.innerHTML = "";
-    private_button.className = "focus_common_btn";
-    company_button.className = "common_btn";
+    // private_button.className = "focus_common_btn";
+    // company_button.className = "common_btn";
   } else {
     null;
   }
 }
 
-// Function to send form to email
+// // Function to send form to email
 const contactForm = document.getElementById("contact-form");
 const form = document.getElementById("form");
 const result = document.getElementById("result");
@@ -3692,6 +5185,7 @@ const result = document.getElementById("result");
 if (contactForm !== null) {
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
+
     const formData = new FormData(contactForm);
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
@@ -4215,17 +5709,233 @@ var datesSwipes = new Swiper(".dates_swipe", {
   },
 });
 
+//SIDE BAR CART
 
+// Show sidebar
+function openSidebar() {
+  console.log("openSidebar called");
+  const cartSidebar = document.getElementById("cartSidebar");
+  cartSidebar.classList.add("open");
+  const overlay = document.getElementById("overlay");
+  overlay.style.display = "block";
+}
+// Redirect to checkout page
+function goToCheckout() {
+  window.location.href = "cart_view.html";
+}
 
+// Funktion för att lägga till produkt i varukorgen
+// function addToCart(product) {
+//   localStorage.setItem('sidebarOpen', 'true');
+//   openSidebar();
+// }
 
+function addToCart(product) {
+  console.log("addToCart called");
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
 
+  const existingProductIndex = formDataArry.findIndex(
+    (item) => item.id === product.id
+  );
 
+  if (existingProductIndex !== -1) {
+    formDataArry[existingProductIndex].quantity += 1;
+  } else {
+    formDataArry.push({
+      id: product.id,
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      quantity: 1,
+      img: product.img,
+      diet: product.diet,
+    });
+  }
 
-const submitCartForm = async (event) => {
-  event.preventDefault();
+  // Uppdatera varukorgsdata i localStorage
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  // updateSidebarCart();
+  // openSidebar();
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const closeSidebarBtn = document.getElementById("closeSidebar");
+  const cartSidebar = document.getElementById("cartSidebar");
+  const overlay = document.getElementById("overlay");
+
+  if (closeSidebarBtn) {
+    closeSidebarBtn.addEventListener("click", function () {
+      cartSidebar.classList.remove("open");
+      overlay.style.display = "none";
+      console.log("Sidebar closed!");
+    });
+  }
+
+  // if (localStorage.getItem('sidebarOpen') === 'true') {
+  //   openSidebar();
+  // }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // updateSidebarCart();
+  });
+
+  // updateSidebarCart();
+});
+
+// Remove item from the cart, globally available
+function removeFromCart(itemId) {
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  formDataArry = formDataArry.filter((item) => item.id !== itemId);
+
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  // updateSidebarCart();
+}
+
+// globally available quantity change
+function changeQuantity(itemId, change) {
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  const itemIndex = formDataArry.findIndex((item) => item.id === itemId);
+
+  if (itemIndex !== -1) {
+    formDataArry[itemIndex].quantity += change;
+
+    if (formDataArry[itemIndex].quantity <= 0) {
+      removeFromCart(itemId);
+    } else {
+      localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+      // updateSidebarCart();
+    }
+  }
+}
+
+// Update the sidebar cart with items and show mobile notification
+function updateSidebarCart() {
+  console.log("updateSidebarCart called");
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  console.log("Cart contents:", formDataArry);
+  const sidebarCartItems = document.getElementById("sidebarCartItems");
+  const mobileProductCount = document.getElementById("mobileProductCount");
+  const mobileTotalPrice = document.getElementById("mobileTotalPrice");
+
+  sidebarCartItems.innerHTML = "";
+  let totalQuantity = 0;
+  let total = 0;
+  const shipping = 49;
+
+  formDataArry.forEach((item) => {
+    if (formDataArry) {
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+      totalQuantity = item.quantity;
+
+      const dietImage = item.diet.includes(",")
+        ? item.diet
+            .split(",")
+            .map(
+              (diet) => `<img src="${diet}" alt="diet image" class="diet_img"/>`
+            )
+            .join("")
+        : `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
+
+      sidebarCartItems.innerHTML += `
+          <section class="col mb-5 border-bottom pb-3" id="${item.id}">
+            <div class="row">
+              <div class="col-4">
+                <div class="imgContainer">
+                  <img id="${item.id}" src="${
+        item.img
+      }" alt="bild på maträtt" class="pro_img cartPayDeliver cropImage"/>
+                </div>
+              </div>
+              <div class="col-4">
+                <h5 style="flex-direction: row; display: flex;">
+                  ${item.title}
+                  <div style="padding: 10px; margin-top: -17px;" class="d-flex">${dietImage}</div>
+                </h5>
+                <p data-bs-toggle="tooltip" data-bs-placement="top" title="${
+                  item.description
+                }" class="food-description sidebar" style="width: 380px; max-height:50px;">
+                  ${item.description}
+                </p>
+              </div>
+              <div class="col-4">
+                <h5 style="cursor: pointer;" onclick="removeFromCart('${
+                  item.id
+                }')" class="ms-auto me-4">
+                  Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i>
+                </h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="quentity_btn mt-0 btn-sidebar d-flex">
+                  <button class="decrease" onclick="changeQuantity('${
+                    item.id
+                  }', -1)">
+                    <i style="font-size: 12px;" class="fas fa-minus"></i>
+                  </button>
+                  <input class="quantity" type="text" value="${
+                    item.quantity
+                  }" readonly>
+                  <button class="increase" onclick="changeQuantity('${
+                    item.id
+                  }', 1)" style="padding-left:22px;">
+                    <i style="font-size: 12px;" class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-6 d-flex align-items-center justify-content-end">
+                <h6 class="quantity_price currency mb_0">${
+                  item.price * item.quantity
+                }</h6>
+                <h6 class="currency mb_0">kr</h6>
+              </div>
+            </div>
+          </section>`;
+    } else {
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+      totalQuantity = item.quantity;
+
+      const dietImage = item.diet.includes(",")
+        ? item.diet
+            .split(",")
+            .map(
+              (diet) => `<img src="${diet}" alt="diet image" class="diet_img"/>`
+            )
+            .join("")
+        : `<img id="diet" src="${item.diet}" alt="specialkost-bild" class="diet_img"/>`;
+
+      sidebarCartItems.innerHTML = "";
+    }
+  });
+
+  // Update totals in sidebar and mobile
+  document.getElementById("sidebarShipping").textContent = `${shipping} kr`;
+  document.getElementById("sidebarTotal").textContent = `${
+    total + shipping
+  } kr`;
+  mobileProductCount.textContent = `${totalQuantity} produkter`;
+  mobileTotalPrice.textContent = `${total + shipping} kr`;
+
+  // Show mobile notification when items are added to the cart
+  const mobileCartNotification = document.getElementById(
+    "mobileCartNotification"
+  );
+  if (totalQuantity > 0) {
+    mobileCartNotification.style.display = "flex";
+    // openSidebar();
+  } else {
+    mobileCartNotification.style.display = "none";
+    cartSidebar.classList.remove("open");
+    overlay.style.display = "none";
+  }
+}
+
+// --------------------------------------
+
 async function redirectToStripeCheckout() {
   try {
-    // Retrieve cart information from local storage
     let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     if (!formDataArry || formDataArry.length === 0) {
       console.error("No products in the cart.");
@@ -4246,14 +5956,23 @@ async function redirectToStripeCheckout() {
     });
 
     // Create a POST request to your backend endpoint to create the Stripe checkout session
-    const response = await fetch("https://localhost:7216/payments", {
+    //const response = await fetch("https://localhost:7216/payments", {
+      const API_KEY = variables();
+      const response = await fetch(`https://${API_KEY}/payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
+          body: JSON.stringify({
+          /*
         successPaymentUrl: "https://localhost:7023/payment_success.html",
         cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+           */
+          successPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+          cancelPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+         
         products: products, // Send the products array
       }),
     });
@@ -4270,114 +5989,128 @@ async function redirectToStripeCheckout() {
     console.error("Error:", error);
   }
 }
-}
 
 function Footer() {
   let footer = document.getElementById("footer");
   footer.innerHTML = `
-      <div class="pt_20 xs_pt_20">
-        <div class="container">
-          <div id="footer-new" class="row justify-content-around pt_50">
-            <div class="col-xxl-2 col-lg-2 col-sm-9 col-md-5">
-              <div class="footer_content">
-                  <img class="footer_logo"
-                    loading="lazy"
-                    src="images/col.png"
-                    alt="footer-logo"
-                    style="width: 140px; height:200px"
-                    class="mb_25"
-                  />
-              </div>
-            </div>
-            <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
-              <p id="contact_title">Yumfoods.se</p>
-              <div class="contacts-content contacts justify-content-center w_40">
-                <div id="footer-phone" class="contacts-box">
-                <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
-                  <p style="margin-left: 10px;">+46 76 023 49 30</p>
-                </div>
-                <div class="contacts-box">
-                <i style="color: #FC5633; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
-                  <p style="margin-left: 10px;">info@yumfoods.se</p>
-                </div>
-                <div id="map-marker" class="contacts-box">
-                <i style="margin-left: 2px; color: #FC5633; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
-                  <p id="location_address" style="margin-left: 14px;">Stora Badhusgatan 18, 411 21 Göteborg</p>
-                </div>
-              </div>
-            </div>
-            <div id="social_links" class="col-xxl-3 col-lg-2 col-sm-5 col-md-4">
-              <div class="footer_content">
-              <h2>Följ oss!</h2>
-                <ul class="social_link d-flex flex-wrap mx_50">
-                  <li style="margin-top: -10px; margin-left: -0px;">
-                    <a
-                      href="https://www.facebook.com/YumFoodsSE"
-                      target="_blank"
-                      aria-label="Länk till facebook sida"
-                      ><i class="fab fa-facebook-f"></i
-                    ></a><p style="margin-top: 8px;">Facebook</p>
-                  </li>
-                  <li style="margin-top: 12px; margin-left: -10px;">
-                    <a
-                      href="https://www.linkedin.com/company/yum-foods/"
-                      target="_blank"
-                      aria-label="Länk till linkedin sida"
-                      ><i class="fab fa-linkedin-in"></i
-                    ></a><p style="margin-top: 8px;">LinkedIn</p>
-                  </li>
-                  <!--
-                  <li>
-                    <a href="#"
-                      ><span class="m_0"><img src="images/twitter.png" /></span
-                    ></a>
-                  </li>
-                  <li>
-                    <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
-                  </li>
-                  -->
-                  <li style="margin-top: 12px;">
-                    <a
-                      href="https://www.instagram.com/yumfoods.se/"
-                      target="_blank"
-                      aria-label="Länk till instagram sida"
-                      ><i class="fab fa-instagram"></i
-                    ></a><p style="margin-top: 8px;">Instagram</p>
-                  </li>
-                  <!--
-                  <li>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                  </li>
-                  -->
-                </ul>
-              </div>
-            </div>
-            <div id="other_links" class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
-              <div class="footer_content">
-              <h2 id="link_title">Hjälp & Villkor</h2>
-              <ul id="faq-ul">
-                  <li><i class="fas fa-question"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html">Få snabbt svar FAQ</a></li>
-                  <li><i style="margin-top: 30px;" class="fab fa-teamspeak"></i><a style="margin-top: -22px;" class="footer_links_1" href="faq.html"> Kontakta kundservice</a></li>
-                  <li><i style="margin-top: 30px;" class="fas fa-file-alt"></i><a style="margin-top: -22px;" class="footer_links_1" href="terms_condition.html">Allmänna villkor</a></li>
-                  <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+     <div class="pt_20 xs_pt_20">
+    <div class="container">
+     <div id="footer-new" class="row justify-content-around pt_50">
+      <div class="col-xxl-2 col-lg-2 col-sm-9 col-md-5">
+       <div class="footer_content">
+         <img class="footer_logo"
+          loading="lazy"
+          src="images/col.png"
+          alt="footer-logo"
+          style="width: 140px; height:200px"
+          class="mb_25"
+         />
+       </div>
       </div>
-      <div class="footer_bottom d-flex flex-wrap">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <div class="footer_bottom_text">
-                <p>Copyright ©<b> Yum Foods</b> 2024. All Rights Reserved</p>
-              </div>
-            </div>
-          </div>
+      <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
+       <p id="contact_title">Yumfoods.se</p>
+       <div class="contacts-content contacts justify-content-center w_40">
+        <div id="footer-phone" class="contacts-box">
+        <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
+         <p style="margin-left: 10px;">+46 76 023 49 30</p>
         </div>
+        <div class="contacts-box">
+        <i style="color: #FC5633; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
+         <p style="margin-left: 10px;">info@yumfoods.se</p>
+        </div>
+        <div id="map-marker" class="contacts-box">
+        <i style="margin-left: 2px; color: #FC5633; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
+         <p id="location_address" style="margin-left: 14px;">Stora Badhusgatan 18, 411 21 Göteborg</p>
+        </div>
+       </div>
       </div>
-    `;
+      <div id="social_links" class="col-xxl-3 col-lg-2 col-sm-5 col-md-4">
+       <div class="footer_content">
+       <h2>Följ oss!</h2>
+        <ul class="social_link d-flex flex-wrap mx_50">
+         <li style="margin-top: -10px; margin-left: -0px;">
+          <a
+           href="https://www.facebook.com/YumFoodsSE"
+           target="_blank"
+           aria-label="Länk till facebook sida"
+           ><i class="fab fa-facebook-f"></i
+          ></a><p style="margin-top: 8px;">Facebook</p>
+         </li>
+         <li style="margin-top: 12px; margin-left: -10px;">
+          <a
+           href="https://www.linkedin.com/company/yum-foods/"
+           target="_blank"
+           aria-label="Länk till linkedin sida"
+           ><i class="fab fa-linkedin-in"></i
+          ></a><p style="margin-top: 8px;">LinkedIn</p>
+         </li>
+         <!--
+         <li>
+          <a href="#"
+           ><span class="m_0"><img src="images/twitter.png" /></span
+          ></a>
+         </li>
+         <li>
+          <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
+         </li>
+         -->
+         <li style="margin-top: 12px;">
+          <a
+           href="https://www.instagram.com/yumfoods.se/"
+           target="_blank"
+           aria-label="Länk till instagram sida"
+           ><i class="fab fa-instagram"></i
+          ></a><p style="margin-top: 8px;">Instagram</p>
+         </li>
+         <!--
+         <li>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+         </li>
+         -->
+        </ul>
+       </div>
+      </div>
+      <div id="other_links" class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
+       <div class="footer_content">
+       <h2 id="link_title">Hjälp & Villkor</h2>
+       <ul id="faq-ul">
+         <li style="margin-bottom: 30px;"><a
+         href="faq.html"
+         target="_blank"
+         aria-label="Länk till instagram sida"
+         ><i class="fas fa-question"></i
+        ></a><p class="terms-p1" style="margin-top: -20px; margin-left: 10px;">Få snabbt svar FAQ</p></li>
+        <li style="margin-bottom: 30px;"><a
+        href="faq.html"
+        target="_blank"
+        aria-label="Länk till instagram sida"
+        ><i class="fab fa-teamspeak"></i
+       ></a><p class="terms-p2" style="margin-top: -20px; margin-left: 10px;">Kontakta kundservice</p></li>
+       <li><a
+       href="terms_condition.html"
+       target="_blank"
+       aria-label="Länk till instagram sida"
+       ><i class="fas fa-file-alt"></i
+      ></a><p class="terms-p3" style="margin-top: -20px; margin-left: 10px;">Allmänna villkor</p></li>
+         <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
+        </ul>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="footer_bottom d-flex flex-wrap">
+    <div class="container">
+     <div class="row">
+      <div class="col-12">
+       <div class="footer_bottom_text">
+        <p>Copyright ©<b> Yum Foods</b> 2024. All Rights Reserved</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  `;
 }
 
 Footer();

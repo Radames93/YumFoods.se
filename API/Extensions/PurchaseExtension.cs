@@ -2,6 +2,7 @@
 using DataAccess.Repositories;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
+using Shared.DTOs;
 
 namespace API.Extensions
 {
@@ -21,6 +22,8 @@ namespace API.Extensions
             YumFoodsDb productDb,  // Assuming this is the DbContext for products
             PurchaseRequest purchaseRequest)
         {
+           
+
             // Fetch existing products from the database using Product IDs in the request
             var productIds = purchaseRequest.Products.Select(p => p.Id).ToList();
             var existingProducts = await productDb.Product
@@ -36,8 +39,9 @@ namespace API.Extensions
             // Create a new Order using existing products from the database
             var newOrder = new Order
             {
+                UserId = purchaseRequest.UserId,
                 OrderDate = DateTime.Now,
-                DeliveryDate = DateTime.Now.AddDays(3),
+                DeliveryDate = purchaseRequest.DeliveryDate,
                 Products = existingProducts, // Use the fetched existing products
                 Quantity = purchaseRequest.Quantity,
                 Total = purchaseRequest.Total
@@ -46,14 +50,14 @@ namespace API.Extensions
             // Create a new OrderDetail from the purchaseRequest
             var newOrderDetail = new OrderDetail
             {
-                DeliveryAdress = purchaseRequest.DeliveryAddress,
+                DeliveryAddress = purchaseRequest.DeliveryAddress,
                 DeliveryCity = purchaseRequest.DeliveryCity,
                 DeliveryPostalCode = purchaseRequest.DeliveryPostalCode,
                 DeliveryCountry = purchaseRequest.DeliveryCountry
             };
 
             // Call the method to add both order and order detail
-            await repo.AddOrderAndDetailsAsync(newOrder, newOrderDetail);
+            await repo.AddOrderAndDetailsAsync(newOrder, newOrderDetail, purchaseRequest.UserId);
 
             return Results.Ok(new { Message = "Purchase completed successfully", OrderId = newOrder.Id });
         }

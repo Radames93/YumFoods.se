@@ -22,145 +22,533 @@
   </head>
 
   <body>
-      <!--=============================
+    <!--=============================
         MENU START
     ==============================-->
-      <header-component id="header"></header-component>
-      <!--=============================
+    <header-component id="header"></header-component>
+    <!--=============================
         MENU END
     ==============================-->
-      <!--=============================
+    <!--=============================
         BREADCRUMB START
     ==============================-->
-      <section class="page_breadcrumb" style="background: url(images/cover.png)">
-          <div class="breadcrumb_overlay">
-              <div class="container">
-                  <div class="breadcrumb_text">
-                      <h1>Bli medlem</h1>
-                      <ul>
-                          <li><a href="index.html">Hem</a></li>
-                          <li><a href="#">Bli medlem</a></li>
-                      </ul>
-                  </div>
-              </div>
+    <!-- <section class="page_breadcrumb" style="background: url(images/cover.png)">
+      <div class="breadcrumb_overlay">
+        <div class="container">
+          <div class="breadcrumb_text">
+            <h1>Bli medlem</h1>
+            <ul>
+              <li><a href="index.html">Hem</a></li>
+              <li><a href="#">Bli medlem</a></li>
+            </ul>
           </div>
-      </section>
-      <!--=============================
+        </div>
+      </div>
+    </section> -->
+    <!--=============================
         BREADCRUMB END
     ==============================-->
-      <!--=========================
+    <!--=========================
         SIGN UP START
     ==========================-->
-      <section class="signin pt_100 xs_pt_70 pb_100 xs_pb_70">
-          <div class="container">
-              <div class="row justify-content-center wow fadeInUp"
-                   data-wow-duration="1s">
-                  <div class="col-xl-5 col-sm-10 col-md-8 col-lg-6">
-                      <div class="login_area">
-                          <h2>Välkommen tillbaka</h2>
-                          <p>Bli medlem för att fortsätta</p>
-                          <form>
-                              <div class="row">
-                                  <div class="col-xl-12">
-                                      <div class="login_imput">
-                                          <input type="text" placeholder="Namn" />
-                                      </div>
-                                  </div>
-                                  <div class="col-xl-12">
-                                      <div class="login_imput">
-                                          <input type="email" placeholder="Melj" />
-                                      </div>
-                                  </div>
-                                  <div class="col-xl-12">
-                                      <div class="login_imput">
-                                          <input type="password" placeholder="Lösenord" />
-                                      </div>
-                                  </div>
-                                  <div class="col-xl-12">
-                                      <div class="login_imput">
-                                          <input type="password" placeholder="Bekräfta Lösenord" />
-                                      </div>
-                                  </div>
-                                  <div class="col-xl-12">
-                                      <div class="login_imput">
-                                          <button type="submit" class="common_btn">
-                                              skapa konto
-                                          </button>
-                                      </div>
-                                  </div>
-                              </div>
-                          </form>
-                          <p class="or"><span>or</span></p>
-                          <ul class="d-flex">
-                              <li>
-                                  <a href="#"><i class="fab fa-facebook-f"></i></a>
-                              </li>
-                              <li>
-                                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                              </li>
-                              <li>
-                                  <a href="#"><i class="fab fa-twitter"></i></a>
-                              </li>
-                              <li>
-                                  <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                              </li>
-                          </ul>
-                          <p class="create_account">
-                              Har du redan ett konto?
-                              <a href="sign_in.html">logga in</a>
-                          </p>
-                      </div>
-                  </div>
+    <!-- Signup Section -->
+    <section class="signup pt_100 xs_pt_70 pb_100 xs_pb_70">
+      <div class="container pt-5">
+        <div class="row justify-content-center">
+          <div class="col-xl-6 col-lg-8 col-md-10">
+            <div class="login_area p-4 shadow rounded">
+              <button
+                class="close-btn btn"
+                style="float: right"
+                onclick="window.location.href='index.html'"
+              >
+                Stäng &times;
+              </button>
+              <div class="text-center mt-5 mb-4">
+                <div>
+                  <h2 class="text-center mt-4 mb-4" id="accountTitle">
+                    Skapa konto
+                  </h2>
+                </div>
+                <button class="btn signup-company mx-2" id="btnPersonal">
+                  Privat
+                </button>
+                <button class="btn signup-company mx-2" id="btnBusiness">
+                  Företag
+                </button>
               </div>
+
+              <!-- Personal Account Form -->
+              <div id="personalForm">
+                <form id="signupFormPersonal" onsubmit="saveUserData(event)">
+                  <div class="row">
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="förnamn">Förnamn och efternamn</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="field1"
+                          placeholder="Ange Förnamn och efternamn"
+                        />
+                      </div>
+                    </div>
+                    <!-- Kommentera tillbaka när användare namn krävs igen -->
+                    <!-- <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="username">Användare namn:</label>
+                        <input type="text" class="form-control signup-input" id="username" placeholder="Ange synligt användar namn" />
+                      </div>
+                    </div> -->
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="email">Email</label>
+                        <input
+                          type="email"
+                          class="form-control signup-input"
+                          id="field2"
+                          placeholder="Enter your email"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="lösenord">Lösenord</label>
+                        <input
+                          type="password"
+                          class="form-control signup-input"
+                          id="field3"
+                          placeholder="Ange lösenord"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="uppdatera lösenord">Upprepa lösenord</label>
+                        <input
+                          type="password"
+                          class="form-control signup-input"
+                          id="field4"
+                          placeholder="Ange lösenord"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="gatuadress">Gatuadress</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="field5"
+                          placeholder="Ange Gatuadress"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="postnummer">Postnummer</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="postnummer"
+                          placeholder="T.ex. 411 19"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="ort">Ort</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="ort"
+                          placeholder="T.ex.Göteborg"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-12 mt-4 mb-2">
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="terms1"
+                        />
+                        <label for="terms1" class="form-check-label">
+                          Jag bekräftar att jag har läst och förstått <br />
+                          <a
+                            href="faq.html"
+                            style="color: red; border-bottom: 1px solid red"
+                            >Användarvillkor och Integritetspolicy.</a
+                          >
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-xl-12">
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="terms2"
+                        />
+                        <label for="terms2" class="form-check-label label2">
+                          Ja, skicka mig nyheter och erbjudanden från Yumfoods
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-xl-12 mt-3">
+                      <div class="d-flex justify-content-center">
+                        <button
+                          type="button"
+                          class="btn btn-light mx-5"
+                          onclick="window.location.href='index.html'"
+                        >
+                          Avbryt
+                        </button>
+                        <button type="submit" class="btn btn-danger mx-5">
+                          Skapa konto
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Business Account Form -->
+              <div id="businessForm" style="display: none">
+                <h3 class="text-center mb-4">Företagsinformation</h3>
+                <form
+                  id="signupFormBusiness"
+                  onsubmit="saveUserDataBusiness(event)"
+                >
+                  <div class="row">
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="businessName">Företagsnamn</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="businessName"
+                          placeholder="Ange företagsnamn"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="orgNumber">Organisationsnummer</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="orgNumber"
+                          placeholder="Ange organisationsnummer"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="field5B">Gatuadress</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="field5B"
+                          placeholder="Ange gatuadress"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="postnummerB">Postnummer</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="postnummerB"
+                          placeholder="T.ex. 411 19"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="ortB">Ort</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="ortB"
+                          placeholder="T.ex. Göteborg"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="field2B">Email</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="field2B"
+                          placeholder="Ange din email"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="field3B">Lösenord</label>
+                        <input
+                          type="password"
+                          class="form-control signup-input"
+                          id="field3B"
+                          placeholder="Ange lösenord"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="field4B">Upprepa lösenord</label>
+                        <input
+                          type="password"
+                          class="form-control signup-input"
+                          id="field4B"
+                          placeholder="Upprepa lösenord"
+                        />
+                      </div>
+                    </div>
+
+                    <h3 class="text-center mb-3 mt-2">Kontaktperson</h3>
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="contactName">Förnamn och efternamn</label>
+                        <input
+                          type="text"
+                          class="form-control signup-input"
+                          id="contactName"
+                          placeholder="Ange förnamn och efternamn"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-xl-12 mb-3">
+                      <div class="form-group signup-form">
+                        <label for="phoneB">Telefon nr</label>
+                        <input
+                          type="number"
+                          class="form-control signup-input"
+                          id="phoneB"
+                          placeholder="Ange din telefonnummer"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="col-xl-12 mt-4 mb-2">
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="terms1B"
+                        />
+                        <label for="terms1" class="form-check-label">
+                          Jag bekräftar att jag har läst och förstått <br />
+                          <a
+                            href="faq.html"
+                            style="color: red; border-bottom: 1px solid red"
+                            >Användarvillkor och Integritetspolicy.</a
+                          >
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-xl-12">
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="terms2"
+                        />
+                        <label for="terms2" class="form-check-label label2">
+                          Ja, skicka mig nyheter och erbjudanden från Yumfoods
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-xl-12 mt-3">
+                      <div class="d-flex justify-content-center">
+                        <button
+                          type="button"
+                          class="btn btn-light mx-5"
+                          onclick="window.location.href='index.html'"
+                        >
+                          Avbryt
+                        </button>
+                        <button type="submit" class="btn btn-danger mx-5">
+                          Skapa konto
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <!-- social media -->
+              <div class="text-center mt-4">
+                <div class="social-icons">
+                  <div class="social-icons sign-up">
+                    <a
+                      href="https://www.facebook.com/yumfoods.se"
+                      target="_blank"
+                      aria-label="Facebook"
+                      ><i
+                        class="fab fa-facebook-f mr-2"
+                        style="
+                          width: 52px;
+                          height: 52px;
+                          margin-top: 14px;
+                          color: rgb(37, 30, 36);
+                          z-index: 2;
+                        "
+                      ></i
+                    ></a>
+                    <a
+                      href="https://www.google.com/yumfoods.se"
+                      target="_blank"
+                      aria-label="Google"
+                      ><i
+                        class="fab fa-google mr-2"
+                        style="margin-top: 14px; color: rgb(37, 30, 36)"
+                      ></i
+                    ></a>
+                    <a
+                      href="https://www.apple.com"
+                      target="_blank"
+                      aria-label="Apple"
+                      ><i
+                        class="fab fa-apple"
+                        style="margin-top: 14px; color: rgb(37, 30, 36)"
+                      ></i
+                    ></a>
+                  </div>
+                </div>
+              </div>
+              <p class="text-center mt-3">
+                Har du redan ett konto?
+                <a
+                  href="sign_in.html"
+                  style="color: red; border-bottom: 1px solid red"
+                  >Logga in</a
+                >
+              </p>
+            </div>
           </div>
-      </section>
-      <!--=========================
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="signin pt_100 xs_pt_70 pb_100 xs_pb_70">
+      <div class="container">
+        <div
+          class="row justify-content-center wow fadeInUp"
+          data-wow-duration="1s"
+        >
+          <div class="col-xl-5 col-sm-10 col-md-8 col-lg-6">
+            <div class="login_area">
+              <h2>Välkommen tillbaka</h2>
+              <p>Bli medlem för att fortsätta</p>
+              <form>
+                <div class="row">
+                  <div class="col-xl-12">
+                    <div class="login_imput">
+                      <input type="text" placeholder="Namn" />
+                    </div>
+                  </div>
+                  <div class="col-xl-12">
+                    <div class="login_imput">
+                      <input type="email" placeholder="Melj" />
+                    </div>
+                  </div>
+                  <div class="col-xl-12">
+                    <div class="login_imput">
+                      <input type="password" placeholder="Lösenord" />
+                    </div>
+                  </div>
+                  <div class="col-xl-12">
+                    <div class="login_imput">
+                      <input type="password" placeholder="Bekräfta Lösenord" />
+                    </div>
+                  </div>
+                  <div class="col-xl-12">
+                    <div class="login_imput">
+                      <button type="submit" class="common_btn">
+                        skapa konto
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <p class="or"><span>or</span></p>
+              <ul class="d-flex">
+                <li>
+                  <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                </li>
+              </ul>
+              <p class="create_account">
+                Har du redan ett konto?
+                <a href="sign_in.html">logga in</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+    <!--=========================
         SIGN UP END
     ==========================-->
-      <!--=============================
+    <!--=============================
         FOOTER START
     ==============================-->
-      <footer-component id="footer"></footer-component>
-      <!--=============================
+    <footer-component id="footer"></footer-component>
+    <!--=============================
         FOOTER END
     ==============================-->
-      <!--=============================
+    <!--=============================
         SCROLL BUTTON START
     ==============================-->
-      <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
-      <!--=============================
+    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+    <!--=============================
         SCROLL BUTTON END
     ==============================-->
-      <!-- hotjar code -->
-      <script src="js/hotjar.js"></script>
-      <!-- swiper slider -->
-      <script src="js/swiper-bundle.min.js" rel="preload"></script>
-      <!--jquery library js-->
-      <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
-      <!--main/env js-->
-      <script src="js/env.js"></script>
-      <!--main/custom js-->
-      <script rel="preload" src="js/main.js"></script>
-      <!--bootstrap js-->
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <!-- isotop js -->
-      <script src="js/isotope.pkgd.min.js"></script>
-      <!-- counter up js -->
-      <script src="js/jquery.waypoints.min.js"></script>
-      <script src="js/jquery.countup.min.js"></script>
-      <!-- nice select js -->
-      <script src="js/jquery.nice-select.min.js"></script>
-      <!-- venobox js -->
-      <script src="js/venobox.min.js"></script>
-      <!-- sticky sidebar js -->
-      <script src="js/sticky_sidebar.js"></script>
-      <!-- wow js -->
-      <script src="js/wow.min.js"></script>
-      <!-- ex zoom js -->
-      <script src="js/jquery.exzoom.js"></script>
-      <link rel="stylesheet" href="css/venobox.min.css" />
-      <link rel="stylesheet" href="css/animate.css" />
-      <link rel="stylesheet" href="css/jquery.exzoom.css" />
-      <link rel="stylesheet" href="css/nice-select.css" />
+    <!-- hotjar code -->
+    <script src="js/hotjar.js"></script>
+    <!-- swiper slider -->
+    <script src="js/swiper-bundle.min.js" rel="preload"></script>
+    <!--jquery library js-->
+    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/env js-->
+    <script src="js/env.js"></script>
+    <!--main/custom js-->
+    <script rel="preload" src="js/main.js"></script>
+    <!--bootstrap js-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- isotop js -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- counter up js -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="js/jquery.exzoom.js"></script>
+    <link rel="stylesheet" href="css/venobox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="css/nice-select.css" />
   </body>
 </html>
