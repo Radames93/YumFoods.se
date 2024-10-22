@@ -96,7 +96,7 @@ namespace DataAccess.Repositories
                     UserId = order.UserId,
                     Products = order.Products.ToList(),
                     OrderDate = order.OrderDate,
-                    DeliveryDate = order.DeliveryDate,
+                    DeliveryDate = DateOnly.FromDateTime(order.OrderDate),
                     Quantity = order.Quantity,
                     PaymentMethod = order.PaymentMethod,
                     Total = order.Total,

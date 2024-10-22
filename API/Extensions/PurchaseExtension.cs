@@ -42,7 +42,7 @@ namespace API.Extensions
             {
                 UserId = purchaseRequest.UserId,
                 OrderDate = purchaseRequest.OrderDate,
-                DeliveryDate = purchaseRequest.DeliveryDate,
+                DeliveryDate = DateOnly.FromDateTime(purchaseRequest.OrderDate),
                 DeliveryTime = purchaseRequest.DeliveryTime,
                 Products = existingProducts, // Use the fetched existing products
                 Quantity = purchaseRequest.Quantity,

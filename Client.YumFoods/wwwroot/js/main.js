@@ -5433,10 +5433,12 @@ async function savePurchaseData(event) {
     const missingFields = [];
     const selectedDateElement = document.querySelector(".box1.box-selected");
     if (selectedDateElement) {
-        const dayText = selectedDateElement.querySelector(".day").textContent;
         const dateText = selectedDateElement.querySelector(".date").textContent;
         const fullDateString = `${dayText}${dateText}`;
         //purchaseData.deliveryDate = new Date(selectedDate).toISOString().split('T')[0];
+        const [day, month] = dateText.split(" ");
+        const currentYear = new Date().getFullYear();
+        const fullDateString = `${day} ${month} ${currentYear}`;
         const selectedDate = new Date(fullDateString);
 
         if (!isNaN(selectedDate.getTime())) {
@@ -5542,7 +5544,7 @@ async function savePurchaseData(event) {
         portCode: storedPurchaseData.port,
         leaveAtDoor: storedPurchaseData.LeaveAtDoor
     };
-
+    console.log(storedPurchaseData);
     const response = await fetch(`https://localhost:7216/purchase`, {
         method: 'POST',
         headers: {
