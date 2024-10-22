@@ -1103,70 +1103,70 @@ if (searchBar !== null) {
 
 //Fetch items from database
 const loadProducts = async () => {
-  try {
-    //const API_KEY = variables();
-    // Fetch the products from the API
+    try {
+        //const API_KEY = variables();
+        // Fetch the products from the API
 
-    //const response = await fetch(`https://localhost:7216/products`);
+        //const response = await fetch(`https://localhost:7216/products`);
 
-    //const response = await fetch(`https://${API_KEY}/products`);
+        const response = await fetch(`https://${API_KEY}/products`);
 
-    const data = await response.json();
+        const data = await response.json();
 
-    // Check if the response is OK (status code in the 200-299 range)
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
+        // Check if the response is OK (status code in the 200-299 range)
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        // Parse the response data as JSON
+        const allProducts = data;
+
+        // Filter the products into different categories
+        yumProductsList = allProducts.filter(
+            (product) => product.category === "Yum"
+        );
+        dailyProductsList = allProducts.filter(
+            (product) => product.category === "Dagens"
+        );
+        premiumProductsList = allProducts.filter(
+            (product) => product.category === "Premium"
+        );
+        subscriptionsProductsList = allProducts.filter(
+            (product) => product.category === "Subscriptions"
+        );
+        baguetterProductsList = allProducts.filter(
+            (product) => product.category === "Baguetter"
+        );
+
+        // Further filtering or categorization
+        yumFiltered = yumProductsList;
+        dailyFiltered = dailyProductsList;
+        premiumFiltered = premiumProductsList;
+        subscriptionsFiltered = subscriptionsProductsList;
+        baguetterFiltered = baguetterProductsList;
+
+        // Combine all categories into one list
+        const all = [
+            ...yumProductsList,
+            ...dailyProductsList,
+            ...premiumProductsList,
+            ...subscriptionsProductsList,
+            ...baguetterProductsList,
+        ];
+
+        // Pass the lists to UI functions
+        yumProducts(yumProductsList);
+        dailyProducts(dailyProductsList);
+        premiumProducts(premiumProductsList);
+        subscriptionsProducts(subscriptionsProductsList);
+        baguetterProducts(baguetterProductsList);
+        CarouselFoodBoxes(yumProductsList);
+        CarouselFoodBoxes2(yumProductsList);
+        CarouselDietButtons(yumProductsList);
+    } catch (err) {
+        // Handle errors gracefully
+        console.error("Error fetching products:", err);
     }
-
-    // Parse the response data as JSON
-    const allProducts = data;
-
-    // Filter the products into different categories
-    yumProductsList = allProducts.filter(
-      (product) => product.category === "Yum"
-    );
-    dailyProductsList = allProducts.filter(
-      (product) => product.category === "Dagens"
-    );
-    premiumProductsList = allProducts.filter(
-      (product) => product.category === "Premium"
-    );
-    subscriptionsProductsList = allProducts.filter(
-      (product) => product.category === "Subscriptions"
-    );
-    baguetterProductsList = allProducts.filter(
-      (product) => product.category === "Baguetter"
-    );
-
-    // Further filtering or categorization
-    yumFiltered = yumProductsList;
-    dailyFiltered = dailyProductsList;
-    premiumFiltered = premiumProductsList;
-    subscriptionsFiltered = subscriptionsProductsList;
-    baguetterFiltered = baguetterProductsList;
-
-    // Combine all categories into one list
-    const all = [
-      ...yumProductsList,
-      ...dailyProductsList,
-      ...premiumProductsList,
-      ...subscriptionsProductsList,
-      ...baguetterProductsList,
-    ];
-
-    // Pass the lists to UI functions
-    yumProducts(yumProductsList);
-    dailyProducts(dailyProductsList);
-    premiumProducts(premiumProductsList);
-    subscriptionsProducts(subscriptionsProductsList);
-    baguetterProducts(baguetterProductsList);
-    CarouselFoodBoxes(yumProductsList);
-    CarouselFoodBoxes2(yumProductsList);
-    CarouselDietButtons(yumProductsList);
-  } catch (err) {
-    // Handle errors gracefully
-    console.error("Error fetching products:", err);
-  }
 };
 
 // Call the function to load the products
@@ -1305,6 +1305,7 @@ const showAllProducts = (allProducts) => {
   }
 };
 */
+
 //Display yum items
 const yumProducts = (yumProductsList) => {
     if (yum !== null) {
@@ -5811,61 +5812,54 @@ function updateSidebarCart() {
 // --------------------------------------
 
 async function redirectToStripeCheckout() {
-  try {
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    if (!formDataArry || formDataArry.length === 0) {
-      console.error("No products in the cart.");
-      return;
+    try {
+        // Retrieve cart information from local storage
+        let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+        if (!formDataArry || formDataArry.length === 0) {
+            console.error("No products in the cart.");
+            return;
+        }
+
+        let products = formDataArry.map((item) => {
+            // Retrieve the unit price and total price for the selected quantity
+            let unitPrice = item.price; // Price per item
+            let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
+
+            return {
+                name: item.title, // Product name (title)
+                quantity: item.quantity, // Quantity of the product
+                price: unitPrice, // Unit price for the product
+                total: totalQuantityPrice, // Total price for the quantity
+            };
+        });
+
+        // Create a POST request to your backend endpoint to create the Stripe checkout session
+        const response = await fetch("https://localhost:7216/payments", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                successPaymentUrl:
+                    "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+                cancelPaymentUrl:
+                    "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+                products: products, // Send the products array
+            }),
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            // Redirect to the Stripe checkout session URL
+            window.location.href = result.checkoutUrl;
+            localStorage.clear();
+        } else {
+            console.error("Error creating Stripe session", result);
+        }
+    } catch (error) {
+        console.error("Error:", error);
     }
-
-    let products = formDataArry.map((item) => {
-      // Retrieve the unit price and total price for the selected quantity
-      let unitPrice = item.price; // Price per item
-      let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
-
-      return {
-        name: item.title, // Product name (title)
-        quantity: item.quantity, // Quantity of the product
-        price: unitPrice, // Unit price for the product
-        total: totalQuantityPrice, // Total price for the quantity
-      };
-    });
-
-    // Create a POST request to your backend endpoint to create the Stripe checkout session
-    //const response = await fetch("https://localhost:7216/payments", {
-      const API_KEY = variables();
-      const response = await fetch(`https://${API_KEY}/payments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-          body: JSON.stringify({
-          /*
-        successPaymentUrl: "https://localhost:7023/payment_success.html",
-        cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
-           */
-          successPaymentUrl:
-          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
-          cancelPaymentUrl:
-          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
-         
-        products: products, // Send the products array
-      }),
-    });
-
-    const result = await response.json();
-    if (response.ok) {
-      // Redirect to the Stripe checkout session URL
-      window.location.href = result.checkoutUrl;
-      localStorage.clear();
-    } else {
-      console.error("Error creating Stripe session", result);
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
-
+};
 function displayOrder(order) {
     const orderDetailsDiv = document.getElementById("orderDetails");
 
@@ -5925,13 +5919,12 @@ async function register() {
         city: storedUserData.city,
         userType: null,
         organizationNumber: null,
-        cart: null,
         phoneNumber: null,
         subscription: null
     };
 
     // Anropa apiet
-    const response = await fetch('https://localhost:7216/users', {
+    const response = await fetch(`https://${API_KEY}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -5964,7 +5957,7 @@ async function login() {
 
     try {
 
-        const response = await fetch('https://localhost:7216/users/login', {
+        const response = await fetch(`https://${API_KEY}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
