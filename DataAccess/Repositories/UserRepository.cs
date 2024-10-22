@@ -36,7 +36,7 @@ public class UserRepository(YumFoodsUserDb context)
     {
         var user = await context.User.FirstOrDefaultAsync(u => u.Email == email);
 
-        return user?.UserType;
+        return user?.UserType.ToString();
     }
 
     public async Task<bool> ValidateUserAsync(LoginModel login)
@@ -89,7 +89,6 @@ public class UserRepository(YumFoodsUserDb context)
             Address = newUser.Address,
             City = newUser.City,
             PostalCode = newUser.PostalCode,
-            Cart = newUser.Cart,
             Subscription = newUser.Subscription,
             PasswordHash = hashedPassword
         };
@@ -108,7 +107,6 @@ public class UserRepository(YumFoodsUserDb context)
 
         oldUser.FirstName = newUser.FirstName ?? oldUser.FirstName;
         oldUser.LastName = newUser.LastName ?? oldUser.LastName;
-        oldUser.UserType = newUser.UserType ?? oldUser.UserType;
         oldUser.OrganizationNumber = newUser.OrganizationNumber ?? oldUser.OrganizationNumber;
         oldUser.Email = newUser.Email ?? oldUser.Email;
         oldUser.PhoneNumber = newUser.PhoneNumber ?? oldUser.PhoneNumber;

@@ -3436,16 +3436,6 @@ function dash_myProfile() {
                   placeholder="Ange lösenord"
                 />
               </div>
-              //<div class="d-flex flex-direction-row" style="gap: 15px">
-              //  <div class="dash_inputs flex-grow-1">
-              //    <label for="country">Land</label>
-              //    <input
-              //      disabled
-              //      id="country"
-              //      type="text"
-              //      placeholder="Sverige +46"
-              //    />
-              //  </div>
                 <div class="dash_inputs flex-grow-1">
                   <label for="phone">Telefonnumer</label>
                   <input
@@ -5876,6 +5866,152 @@ async function redirectToStripeCheckout() {
   }
 }
 
+function displayOrder(order) {
+    const orderDetailsDiv = document.getElementById("orderDetails");
+
+    if (!order) {
+        orderDetailsDiv.innerHTML = "No order found.";
+        return;
+    }
+}
+
+async function register() {
+    const userData = {};
+
+    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
+    userData.firstName = document.getElementById("field1").value;
+    userData.lastName = document.getElementById("field1.2").value;
+    userData.email = document.getElementById("field2").value;
+    userData.passwordhash = document.getElementById("field3").value;
+    userData.address = document.getElementById("field5").value;
+    userData.postalCode = document.getElementById("postnummer").value;
+    userData.city = document.getElementById("ort").value;
+
+    // Skapa konstanter för att kontrollera lösen och termer
+    const repeatPassword = document.getElementById("field4").value;
+    const termsAccepted = document.getElementById("terms1").checked;
+
+    // Validering
+    if (userData.passwordhash !== repeatPassword) {
+        alert("Lösenorden matchar inte!");
+        return;
+    }
+
+    if (!termsAccepted) {
+        alert("Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta.");
+        return;
+    }
+
+    // Konvertera obj till sträng
+    localStorage.setItem("userData", JSON.stringify(userData));
+
+    // Tar ut datan
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+
+    // Kontrollera att det finns data i localStorage
+    if (!storedUserData) {
+        console.error("No user data found in localStorage.");
+        return;
+    }
+
+    // Skapa nytt objektet som ska matcha datan i databasen
+    const userToRegister = {
+        firstName: storedUserData.firstName,
+        lastName: storedUserData.lastName,
+        email: storedUserData.email,
+        passwordhash: storedUserData.passwordhash,
+        address: storedUserData.address,
+        postalCode: storedUserData.postalCode,
+        city: storedUserData.city,
+        userType: null,
+        organizationNumber: null,
+        cart: null,
+        phoneNumber: null,
+        subscription: null
+    };
+
+    // Anropa apiet
+    const response = await fetch('https://localhost:7216/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userToRegister)
+    });
+
+    const data = await response.json();
+    alert('Användare registrerad framgångsrikt!');
+
+    // Optionally, clear localStorage
+    localStorage.removeItem("userData");
+
+    // Redirect after successful registration
+    window.location.href = "sign_in.html";
+}
+
+async function login() {
+    // Create an object to hold login data
+    const loginData = {
+        email: document.getElementById("email-login").value.trim(),
+        password: document.getElementById("password-login").value.trim()
+    };
+
+    // Validate the inputs
+    if (!loginData.email || !loginData.password) {
+        alert("Both email and password are required.");
+        return;
+    }
+
+    try {
+
+        const response = await fetch('https://localhost:7216/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Response data: ", data);
+
+            if (data && data.token) { // If a token is received
+                localStorage.setItem('authToken', data.token); // Store the token
+                alert('Login successful!'); // Inform user
+                window.location.href = "dashboard.html"; // Redirect to the dashboard
+            } else {
+                alert('Login failed: No token received from the server.');
+            }
+        } else {
+            // Handle error responses
+            const errorText = await response.text(); // Get error response text
+            alert(`Login failed: ${errorText}`);
+        }
+    } catch (error) {
+        console.error('Network or unexpected error during login:', error);
+        alert('An error occurred during login. Please try again.');
+    }
+}
+// Event listener for the login form
+//kräver detta på denna metod??
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+    login(); // Call the login function
+});
+
+async function updateProfile() {
+
+    const id = localStorage.getItem('userId');
+
+    const updatedUserData = {
+        firstName: document.getElementById("fname").value,
+        lastName: document.getElementById("lname").value,
+        email: document.getElementById("email").value,
+        password: document.getElementById("pass").value,
+        phone: document.getElementById("phone").value
+    };
+
     try {
 
         const response = await fetch(`https://localhost:7216/users/${id}`, {
@@ -5901,72 +6037,6 @@ async function redirectToStripeCheckout() {
         alert('An error occurred. Please try again.');
     }
 }
-
-//KOPPLA DETTA DOCK TILL USER
-async function getOrderById() {
-    const orderId = document.getElementById("").value;
-
-    if (!orderId) {
-        alert("Please enter an order ID");
-        return;
-    }
-
-    try {
-        const response = await fetch(`https://localhost:7216/orders/${userId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-
-        if (response.ok) {
-            const orderData = await response.json();
-            displayOrder(orderData); // Function to display order details
-        } else {
-            alert(`Error: ${response.statusText}`);
-        }
-    } catch (error) {
-        console.error("Error fetching the order:", error);
-        alert('Failed to fetch order. Please try again.');
-    }
-}
-
-async function getOrderDetialById() {
-    const orderDetailId = document.getElementById("").value;
-
-    if (!orderDetailId) {
-        alert("Please enter an order ID");
-        return;
-    }
-
-    try {
-        const response = await fetch(`https://localhost:7216/orders/${userId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        });
-
-        if (response.ok) {
-            const orderData = await response.json();
-            displayOrder(orderData); // Function to display order details
-        } else {
-            alert(`Error: ${response.statusText}`);
-        }
-    } catch (error) {
-        console.error("Error fetching the order:", error);
-        alert('Failed to fetch order. Please try again.');
-    }
-}
-
-
-function displayOrder(order) {
-    const orderDetailsDiv = document.getElementById("orderDetails");
-
-    if (!order) {
-        orderDetailsDiv.innerHTML = "No order found.";
-        return;
-    }
 
 
 function Footer() {
