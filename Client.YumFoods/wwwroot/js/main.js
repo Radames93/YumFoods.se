@@ -3318,7 +3318,8 @@ function logOut() {
 function dash_myProfile() {
   async function getUser() {
     try {
-      const response = await fetch(`https://localhost:7216/users/9`);
+        //const response = await fetch(`https://localhost:7216/users/9`);
+        const response = await fetch(`https://${API_KEY}/users/9`);
       const data = await response.json();
       console.log(data);
 
@@ -5925,7 +5926,8 @@ async function register() {
   };
 
   // Anropa apiet
-  const response = await fetch(`https://${API_KEY}/users`, {
+    const response = await fetch(`https://${API_KEY}/users`, {
+    //const response = await fetch(`https://localhost:7216/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -5957,7 +5959,8 @@ async function login() {
   }
 
   try {
-    const response = await fetch(`https://${API_KEY}/login`, {
+      const response = await fetch(`https://${API_KEY}/login`, {
+      //const response = await fetch(`https://localhost:7216/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
