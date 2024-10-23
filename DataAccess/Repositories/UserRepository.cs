@@ -6,7 +6,7 @@ using Shared.Entities;
 namespace DataAccess.Repositories;
 
 
-public class UserRepository(YumFoodsUserDb context)
+public class UserRepository(YumFoodsDb context)
 {
     public async Task<List<User>> GetAllUsersAsync()
     {
