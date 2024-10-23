@@ -1,4 +1,5 @@
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using API.Extensions;
 using API.Stripe;
 using Azure.Identity;
@@ -6,7 +7,9 @@ using Azure.Security.KeyVault.Secrets;
 using Azure.Storage.Blobs;
 using DataAccess;
 using DataAccess.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Shared.Entities;
 using Shared.Interfaces;
 
@@ -87,12 +90,12 @@ internal class Program
         // Configure your DbContext to use MySQL with the retrieved connection string
         builder.Services.AddDbContext<YumFoodsDb>(options =>
         {
-            options.UseMySql(localConn1, ServerVersion.AutoDetect(localConn1));
+            options.UseMySql(completeConnectionString, ServerVersion.AutoDetect(completeConnectionString));
         });
 
         builder.Services.AddDbContext<YumFoodsUserDb>(options =>
         {
-            options.UseMySql(localConn2, ServerVersion.AutoDetect(localConn2));
+            options.UseMySql(completeConnectionString2, ServerVersion.AutoDetect(completeConnectionString2));
         });
 
         // CORS policy configuration
@@ -110,6 +113,29 @@ internal class Program
         builder.Services.AddScoped<StripeClient>();
 
         builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"], // From appsettings.json
+            ValidAudience = builder.Configuration["Jwt:Audience"], // From appsettings.json
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
+
+        //Add the AuthenticationService
+
+        builder.Services.AddSingleton(new AuthenticationService(
+            builder.Configuration["Jwt:Key"],
+            builder.Configuration["Jwt:Issuer"],
+            builder.Configuration["Jwt:Audience"]
+        ));
 
         var app = builder.Build();
 
@@ -144,3 +170,4 @@ internal class Program
         }
     }
 }
+
