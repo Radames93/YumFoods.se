@@ -82,8 +82,8 @@ internal class Program
         var completeConnectionString2 = $"{connectionString2};SslMode=VerifyCA;SslCa={tempFilePath}";
 
         //vivians strings
-        var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
-        var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
+        var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\padov\\Desktop\\ca-cert.pem;";
+        var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\padov\\Desktop\\ca-cert.pem;";
         var localConn1 = "Server=localhost;Database=yumfoodsdb;Uid=root;Pwd=admin;";
         var localConn2 = "Server=localhost;Database=yumfoods.userdb;Uid=root;Pwd=admin;";
 
