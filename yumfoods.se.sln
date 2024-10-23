@@ -6,6 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7B7709F7-EBEC-44CE-AB1B-68FB303B043F}"
 	ProjectSection(SolutionItems) = preProject
 		Client.YumFoods\.gitignore = Client.YumFoods\.gitignore
+		API\appsettings.Development.json = API\appsettings.Development.json
+		API\appsettings.json = API\appsettings.json
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject

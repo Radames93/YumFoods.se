@@ -90,7 +90,8 @@ public class UserRepository(YumFoodsUserDb context)
             City = newUser.City,
             PostalCode = newUser.PostalCode,
             Subscription = newUser.Subscription,
-            PasswordHash = hashedPassword
+            PasswordHash = hashedPassword,
+            Orders = newUser.Orders
         };
 
         await context.User.AddAsync(user);
@@ -115,6 +116,7 @@ public class UserRepository(YumFoodsUserDb context)
         oldUser.PostalCode = newUser.PostalCode ?? oldUser.PostalCode;
         oldUser.Subscription = newUser.Subscription ?? oldUser.Subscription;
         oldUser.PasswordHash = newUser.PasswordHash ?? oldUser.PasswordHash;
+        oldUser.Orders = newUser.Orders ?? oldUser.Orders;
 
         await context.SaveChangesAsync();
     }

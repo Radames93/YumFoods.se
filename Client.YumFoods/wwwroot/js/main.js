@@ -1104,8 +1104,8 @@ if (searchBar !== null) {
 //Fetch items from database
 const loadProducts = async () => {
     try {
+
         const API_KEY = variables();
-        // Fetch the products from the API
 
         //const response = await fetch(`https://localhost:7216/products`);
 
@@ -5876,6 +5876,7 @@ async function register() {
     userData.firstName = document.getElementById("field1").value;
     userData.lastName = document.getElementById("field1.2").value;
     userData.email = document.getElementById("field2").value;
+    userData.phoneNumber = document.getElementById("field2.1").value;
     userData.passwordhash = document.getElementById("field3").value;
     userData.address = document.getElementById("field5").value;
     userData.postalCode = document.getElementById("postnummer").value;
@@ -5916,15 +5917,16 @@ async function register() {
         passwordhash: storedUserData.passwordhash,
         address: storedUserData.address,
         postalCode: storedUserData.postalCode,
+        phoneNumber: storedUserData.phoneNumber,
         city: storedUserData.city,
         userType: null,
         organizationNumber: null,
-        phoneNumber: null,
+        orders: null,
         subscription: null
     };
 
     // Anropa apiet
-    const response = await fetch(`https://${API_KEY}/users`, {
+    const response = await fetch('https://localhost:7216/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -5941,6 +5943,10 @@ async function register() {
     // Redirect after successful registration
     window.location.href = "sign_in.html";
 }
+document.getElementById("personalForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the form from submitting the traditional way
+    register(); // Call the login function
+});
 
 async function login() {
     // Create an object to hold login data
@@ -5957,7 +5963,7 @@ async function login() {
 
     try {
 
-        const response = await fetch(`https://${API_KEY}/login`, {
+        const response = await fetch('https://localhost:7216/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -5986,8 +5992,8 @@ async function login() {
         alert('An error occurred during login. Please try again.');
     }
 }
+
 // Event listener for the login form
-//kräver detta på denna metod??
 document.getElementById("loginForm").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
     login(); // Call the login function
