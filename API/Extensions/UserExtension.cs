@@ -10,26 +10,26 @@ namespace API.Extensions;
 
 public static class UserExtension
 {
-        public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
-        {
-            var group = app.MapGroup("/users");
+    public static IEndpointRouteBuilder MapUserEndpoints(this IEndpointRouteBuilder app)
+    {
+        var group = app.MapGroup("/users");
 
-            group.MapGet("/", GetAllUsersAsync);
-            group.MapGet("/{id}", GetUserByIdAsync);
-            group.MapGet("/user/{name}", GetUserByNameAsync);
-            group.MapGet("/email/{email}", GetUserByEmailAsync);
-            group.MapGet("/org/{organization}", GetUserByOrganizationAsync);
+        group.MapGet("/", GetAllUsersAsync);
+        group.MapGet("/{id}", GetUserByIdAsync);
+        group.MapGet("/user/{name}", GetUserByNameAsync);
+        group.MapGet("/email/{email}", GetUserByEmailAsync);
+        group.MapGet("/org/{organization}", GetUserByOrganizationAsync);
 
-            group.MapGet("/type/{email}", GetUserTypeByEmailAsync);
+        group.MapGet("/type/{email}", GetUserTypeByEmailAsync);
 
-            group.MapPost("/", AddUserAsync);
-            group.MapPost("/login", LoginUserAsync);
+        group.MapPost("/", AddUserAsync);
+        group.MapPost("/login", LoginUserAsync);
 
-            group.MapPatch("/{id}", UpdateUserAsync);
+        group.MapPatch("/{id}", UpdateUserAsync);
 
-            group.MapDelete("/{id}", DeleteUserAsync);
-            return app;
-        }
+        group.MapDelete("/{id}", DeleteUserAsync);
+        return app;
+    }
     private static async Task<IResult> GetAllUsersAsync(UserRepository repo)
     {
         var user = await repo.GetAllUsersAsync();
