@@ -5832,7 +5832,8 @@ async function redirectToStripeCheckout() {
     });
 
     // Create a POST request to your backend endpoint to create the Stripe checkout session
-    const response = await fetch("https://localhost:7216/payments", {
+      //const response = await fetch("https://localhost:7216/payments", {
+      const response = await fetch(`https://${API_KEY}/payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -6005,9 +6006,8 @@ async function updateProfile() {
     password: document.getElementById("pass").value,
     phone: document.getElementById("phone").value,
   };
-
   try {
-    const response = await fetch(`https://localhost:7216/users/${id}`, {
+      const response = await fetch(`https://${API_KEY}/users/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
