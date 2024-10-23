@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace API.NewFolder;
+namespace API.Handlers;
 
 public class JsonHandler  : JsonConverter<DateOnly>
 {

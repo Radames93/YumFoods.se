@@ -5432,26 +5432,26 @@ async function savePurchaseData(event) {
     const purchaseData = {};
     const missingFields = [];
     const selectedDateElement = document.querySelector(".box1.box-selected");
-    if (selectedDateElement) {
-        const dateText = selectedDateElement.querySelector(".date").textContent;
-        const fullDateString = `${dayText}${dateText}`;
-        //purchaseData.deliveryDate = new Date(selectedDate).toISOString().split('T')[0];
-        const [day, month] = dateText.split(" ");
-        const currentYear = new Date().getFullYear();
-        const fullDateString = `${day} ${month} ${currentYear}`;
-        const selectedDate = new Date(fullDateString);
+    //if (selectedDateElement) {
+    //    const dateText = selectedDateElement.querySelector(".date").textContent;
+    //    const fullDateString = `${dayText}${dateText}`;
+    //    //purchaseData.deliveryDate = new Date(selectedDate).toISOString().split('T')[0];
+    //    const [day, month] = dateText.split(" ");
+    //    const currentYear = new Date().getFullYear();
+    //    const fullDateString = `${day} ${month} ${currentYear}`;
+    //    const selectedDate = new Date(fullDateString);
 
-        if (!isNaN(selectedDate.getTime())) {
-            purchaseData.deliveryDate = selectedDate.toISOString().split('T')[0];  // Endast datum
-        } else {
-            console.error("Invalid date format:", fullDateString);
-            alert("Ogiltigt leveransdatum. Vänligen välj ett giltigt datum.");
-            return false;
-        }
+    //    if (!isNaN(selectedDate.getTime())) {
+    //        purchaseData.deliveryDate = selectedDate.toISOString().split('T')[0];  // Endast datum
+    //    } else {
+    //        console.error("Invalid date format:", fullDateString);
+    //        alert("Ogiltigt leveransdatum. Vänligen välj ett giltigt datum.");
+    //        return false;
+    //    }
 
-    } else {
-        missingFields.push("leveransdatum");
-    }
+    //} else {
+    //    missingFields.push("leveransdatum");
+    //}
 
     const selectedTime = document.querySelector(".tid-box.tid-box-selected");
     if (selectedTime) {
