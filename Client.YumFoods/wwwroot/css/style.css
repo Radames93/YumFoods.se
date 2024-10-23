@@ -154,10 +154,12 @@ button {
 }
 
 .common_btn {
-  background: #dd3902;
-  text-transform: capitalize;
-  color: var(--colorWhite);
-  /* padding: 12px 20px 12px 20px;
+    background: #dd3902;
+    text-transform: capitalize;
+    color: var(--colorWhite);
+    border-radius: 12px;
+    padding: 18px 16px
+    /* padding: 12px 20px 12px 20px;
   border-radius: 30px;
   font-size: 16px;
   font-weight: 600;
@@ -2320,23 +2322,39 @@ button {
 
 .fa-shopping-basket {
   color: #ffffff;
-  margin-right: 5px;
+  width: 27px;
+  height: 27px;
+}
+.fa-globe{
+    width: 17px;
+    height: 18px;
+}
+
+.fa-angle-down {
+    width: 10px;
+    height: 16px;
+    color: #fa6039;
+}
+
+.fa-user{
+    width: 16px;
+    height: 18px;
 }
 
 .menu_add_to_cart::after {
-  position: absolute;
-  content: "";
-  top: -19px;
-  left: 0px;
-  z-index: 1;
-  transition: all linear 0.3s;
-  -webkit-transition: all linear 0.3s;
-  -moz-transition: all linear 0.3s;
-  -ms-transition: all linear 0.3s;
-  -o-transition: all linear 0.3s;
-  width: 0;
-  height: 0;
-  overflow: visible;
+    position: absolute;
+    content: "";
+    top: -19px;
+    left: 0px;
+    z-index: 1;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
+    width: 0;
+    height: 0;
+    overflow: visible;
 }
 
 .menu_add_to_cart:hover {
@@ -3634,7 +3652,7 @@ footer {
 
 .footer_logo {
   margin-left: -0px;
-  margin-top: -10px;
+  padding-right: 40px;
 }
 
 .footer_content h2 {

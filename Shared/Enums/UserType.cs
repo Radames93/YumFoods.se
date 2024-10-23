@@ -6,5 +6,4 @@ public enum UserType
     Company,
     Private,
     Admin
-
 }
