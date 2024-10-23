@@ -124,7 +124,7 @@ function Header() {
           <ul class="navbar-nav">
             <li class="nav-item">
               <a id="logIn" href="#" class="dropbtn">
-                <i class="far fa-user"></i> Logga in
+                <img src="./images/fontawesome-icons/user.svg" class="far fa-user" /> Logga in
               </a>
               <ul class="droap_menu">
                 <li><a href="sign_in.html">Login</a></li>
@@ -227,9 +227,9 @@ function Header() {
     <ul class="navbar-nav">
     <li class="nav-item">
         <a id="logIn" href="dashboard.html" class="dropbtn">
-        <i class="far fa-user">${savedUserData.förnamn
+        <img src="./images/fontawesome-icons/user.svg" class="fa-user"${savedUserData.förnamn
           .charAt(0)
-          .toUpperCase()}</i>
+          .toUpperCase()} />
         </a>
     </li>
   </ul>
@@ -239,7 +239,7 @@ function Header() {
           <ul class="navbar-nav">
             <li class="nav-item">
               <a id="logIn" href="#" class="dropbtn">
-                <i class="far fa-user"></i> Logga in
+                <img src="./images/fontawesome-icons/user.svg" class="fa-user" /> Logga in
               </a>
               <ul class="droap_menu">
                 <li><a href="sign_in.html">Login</a></li>
@@ -1090,12 +1090,12 @@ if (searchBar !== null) {
 //Fetch items from database
 const loadProducts = async () => {
   try {
-    const API_KEY = variables();
+    //const API_KEY = variables();
     // Fetch the products from the API
 
-    //const response = await fetch(`https://localhost:7216/products`);
+    const response = await fetch(`https://localhost:7216/products`);
 
-    const response = await fetch(`https://${API_KEY}/products`);
+    //const response = await fetch(`https://${API_KEY}/products`);
 
     const data = await response.json();
 
@@ -1595,8 +1595,8 @@ const CarouselFoodBoxes = (yumProductsList) => {
 };
 
 const CarouselFoodBoxes2 = (yumProductsList) => {
-  if (carouselContainer2 !== null) {
-    const htmlString = yumProductsList
+    if (carouselContainer2 !== null) {
+        const htmlString = baguetterProductsList
       .map((yum) => {
         let title = JSON.stringify(yum.title);
         let description = JSON.stringify(yum.description);
@@ -6000,9 +6000,9 @@ function Footer() {
        <div class="footer_content">
          <img class="footer_logo"
           loading="lazy"
-          src="images/col.png"
+          src="images/footer_logo2.png"
           alt="footer-logo"
-          style="width: 140px; height:200px"
+          style="height:200px"
           class="mb_25"
          />
        </div>
