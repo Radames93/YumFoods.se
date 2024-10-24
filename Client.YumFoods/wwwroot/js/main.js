@@ -5870,135 +5870,130 @@ function displayOrder(order) {
 }
 
 async function register() {
-  const userData = {};
+    const userData = {};
 
-  // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
-  userData.firstName = document.getElementById("field1").value;
-  userData.lastName = document.getElementById("field1.2").value;
-  userData.email = document.getElementById("field2").value;
-  userData.passwordhash = document.getElementById("field3").value;
-  userData.address = document.getElementById("field5").value;
-  userData.postalCode = document.getElementById("postnummer").value;
-  userData.city = document.getElementById("ort").value;
+    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
+    userData.firstName = document.getElementById("field1").value;
+    userData.lastName = document.getElementById("field1.2").value;
+    userData.email = document.getElementById("field2").value;
+    userData.phoneNumber = document.getElementById("field2.1").value;
+    userData.passwordhash = document.getElementById("field3").value;
+    userData.address = document.getElementById("field5").value;
+    userData.postalCode = document.getElementById("postnummer").value;
+    userData.city = document.getElementById("ort").value;
 
-  // Skapa konstanter för att kontrollera lösen och termer
-  const repeatPassword = document.getElementById("field4").value;
-  const termsAccepted = document.getElementById("terms1").checked;
+    // Skapa konstanter för att kontrollera lösen och termer
+    const repeatPassword = document.getElementById("field4").value;
+    const termsAccepted = document.getElementById("terms1").checked;
 
-  // Validering
-  if (userData.passwordhash !== repeatPassword) {
-    alert("Lösenorden matchar inte!");
-    return;
-  }
+    // Validering
+    if (userData.passwordhash !== repeatPassword) {
+        alert("Lösenorden matchar inte!");
+        return;
+    }
 
-  if (!termsAccepted) {
-    alert(
-      "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
-    );
-    return;
-  }
+    if (!termsAccepted) {
+        alert("Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta.");
+        return;
+    }
 
-  // Konvertera obj till sträng
-  localStorage.setItem("userData", JSON.stringify(userData));
+    // Konvertera obj till sträng
+    localStorage.setItem("userData", JSON.stringify(userData));
 
-  // Tar ut datan
-  const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    // Tar ut datan
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
 
-  // Kontrollera att det finns data i localStorage
-  if (!storedUserData) {
-    console.error("No user data found in localStorage.");
-    return;
-  }
+    // Kontrollera att det finns data i localStorage
+    if (!storedUserData) {
+        console.error("No user data found in localStorage.");
+        return;
+    }
 
-  // Skapa nytt objektet som ska matcha datan i databasen
-  const userToRegister = {
-    firstName: storedUserData.firstName,
-    lastName: storedUserData.lastName,
-    email: storedUserData.email,
-    passwordhash: storedUserData.passwordhash,
-    address: storedUserData.address,
-    postalCode: storedUserData.postalCode,
-    city: storedUserData.city,
-    userType: null,
-    organizationNumber: null,
-    phoneNumber: null,
-    subscription: null,
-  };
+    // Skapa nytt objektet som ska matcha datan i databasen
+    const userToRegister = {
+        firstName: storedUserData.firstName,
+        lastName: storedUserData.lastName,
+        email: storedUserData.email,
+        passwordhash: storedUserData.passwordhash,
+        address: storedUserData.address,
+        postalCode: storedUserData.postalCode,
+        phoneNumber: storedUserData.phoneNumber,
+        city: storedUserData.city,
+        userType: null,
+        organizationNumber: null,
+        orders: null,
+        subscription: null
+    };
 
-  // Anropa apiet
+    // Anropa apiet
     const response = await fetch(`https://${API_KEY}/users`, {
-    //const response = await fetch(`https://localhost:7216/users`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userToRegister),
-  });
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userToRegister)
+    });
 
-  const data = await response.json();
-  alert("Användare registrerad framgångsrikt!");
+    const data = await response.json();
+    alert('Användare registrerad framgångsrikt!');
 
-  // Optionally, clear localStorage
-  localStorage.removeItem("userData");
+    // Optionally, clear localStorage
+    localStorage.removeItem("userData");
 
-  // Redirect after successful registration
-  window.location.href = "sign_in.html";
+    // Redirect after successful registration
+    window.location.href = "sign_in.html";
 }
 
 async function login() {
-  // Create an object to hold login data
-  const loginData = {
-    email: document.getElementById("email-login").value.trim(),
-    password: document.getElementById("password-login").value.trim(),
-  };
+    // Create an object to hold login data
+    const loginData = {
+        email: document.getElementById("email-login").value.trim(),
+        password: document.getElementById("password-login").value.trim()
+    };
 
-  // Validate the inputs
-  if (!loginData.email || !loginData.password) {
-    alert("Both email and password are required.");
-    return;
-  }
-
-  try {
-      const response = await fetch(`https://${API_KEY}/login`, {
-      //const response = await fetch(`https://localhost:7216/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Response data: ", data);
-
-      if (data && data.token) {
-        // If a token is received
-        localStorage.setItem("authToken", data.token); // Store the token
-        alert("Login successful!"); // Inform user
-        window.location.href = "dashboard.html"; // Redirect to the dashboard
-      } else {
-        alert("Login failed: No token received from the server.");
-      }
-    } else {
-      // Handle error responses
-      const errorText = await response.text(); // Get error response text
-      alert(`Login failed: ${errorText}`);
+    // Validate the inputs
+    if (!loginData.email || !loginData.password) {
+        alert("Both email and password are required.");
+        return;
     }
-  } catch (error) {
-    console.error("Network or unexpected error during login:", error);
-    alert("An error occurred during login. Please try again.");
-  }
+
+    try {
+
+        const response = await fetch(`https://${API_KEY}/users/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log("Response data: ", data);
+
+            if (data && data.token) { // If a token is received
+                localStorage.setItem('authToken', data.token); // Store the token
+                alert('Login successful!'); // Inform user
+                window.location.href = "dashboard.html"; // Redirect to the dashboard
+            } else {
+                alert('Login failed: No token received from the server.');
+            }
+        } else {
+            // Handle error responses
+            const errorText = await response.text(); // Get error response text
+            alert(`Login failed: ${errorText}`);
+        }
+    } catch (error) {
+        console.error('Network or unexpected error during login:', error);
+        alert('An error occurred during login. Please try again.');
+    }
 }
+
 // Event listener for the login form
-//kräver detta på denna metod??
-document
-  .getElementById("loginForm")
-  .addEventListener("submit", function (event) {
+document.getElementById("loginForm").addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
     login(); // Call the login function
-  });
-
+});
 async function updateProfile() {
   const id = localStorage.getItem("userId");
 
