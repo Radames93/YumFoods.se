@@ -9,7 +9,6 @@ public class Order
     public DateTime OrderDate { get; set; }
     public DateOnly DeliveryDate { get; set; }
     public string DeliveryTime { get; set; }
-    //public TimeOnly DeliveryTime { get; set; }
     public ICollection<Product> Products { get; set; } = new List<Product>();
     public int Quantity { get; set; }
     public string? PaymentMethod { get; set; }

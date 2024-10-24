@@ -23,7 +23,7 @@ namespace API.Extensions
             YumFoodsDb productDb,  // Assuming this is the DbContext for products
             PurchaseRequest purchaseRequest)
         {
-            var deliverySlots = new List<string> { "10:00-12:00", "12:00-14:00", "14:00-16:00", "16:00-18:00" };
+            var deliverySlots = new List<string> { "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00" };
             if (!deliverySlots.Contains(purchaseRequest.DeliveryTime))
             {
                 return Results.BadRequest();
@@ -48,9 +48,10 @@ namespace API.Extensions
                 OrderDate = purchaseRequest.OrderDate,
                 DeliveryDate = purchaseRequest.DeliveryDate,
                 DeliveryTime = purchaseRequest.DeliveryTime,
-                Products = existingProducts, // Use the fetched existing products
+                Products = existingProducts,
                 Quantity = purchaseRequest.Quantity,
                 Total = purchaseRequest.Total,
+                PaymentMethod = purchaseRequest.PaymentMethod,
                 Floor = purchaseRequest.Floor,
                 PortCode = purchaseRequest.PortCode
             };

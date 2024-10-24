@@ -830,14 +830,6 @@ if (searchBar !== null) {
     removeEventListener("keyup", search);
 }
 
-const loadUsers = async () => {
-    //const API_Key = variables();
-    //const response = await fetch(`https://${API_KEY}/users`);
-    const response = await fetch(`https://localhost:7216/users`);
-    const data = await response.json();
-    console.log(data);
-}
-loadUsers();
 
 //Fetch items from database
 const loadProducts = async () => {
@@ -4440,7 +4432,7 @@ function nextAccord2() {
 // and finally increment the dates with '1' for the next loop with setDate
 
 const dates = new Date();
-const options = { day: "numeric", month: "short", weekday: "long" };
+const options = { day: "numeric", month: "numeric", weekday: "long", year: "numeric" };
 const twoWeeks = 17;
 
 let threeDaysAhead = [];
@@ -4459,13 +4451,13 @@ console.log("Available dates: " + threeDaysAhead);
 
 const dateStrings = threeDaysAhead
     .map((day) => {
-        const [weekday, days, month] = day.split(" ");
+        const [weekday, days] = day.split(" ");
         return `
 
         <div class="swiper-slide date">
             <div class="date-box box1 text-center date">
               <div class="day">${weekday}</div>
-              <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
+              <div class="date"><span id="deliveryDateSpan" style="margin-right: 5px;">${days}</span></div>
             </div>
         </div>
 
@@ -4479,14 +4471,16 @@ if (deliveryDates !== null) {
 }
 
 const theBox = document.querySelectorAll(".box1");
-
+let selectedDeliveryDate = null;
 theBox.forEach((btn) => {
     btn.addEventListener("click", function () {
         theBox.forEach((b) => b.classList.remove("box-selected"));
         btn.classList.add("box-selected");
-        const dayText = btn.querySelector(".day");
-        const dateText = btn.querySelector(".date");
-        console.log(dayText.textContent + " " + dateText.textContent);
+        const dayText = btn.querySelector(".day").textContent;
+        const dateText = btn.querySelector(".date").textContent;
+        selectedDeliveryDate = `${dayText} ${dateText}`;
+
+        console.log("vald datum", selectedDeliveryDate);
     });
 });
 
@@ -4501,6 +4495,18 @@ timeBox.forEach((btn) => {
         console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
     });
 });
+
+// Format the delivery date to send to backend
+function formatDeliveryDate(dateString) {
+    const split = dateString.split(" ");
+    const days = split[1].replace(/[^\d]/g, '');
+    const month = split[2];
+    const year = new Date().getFullYear();
+
+    const formatted = new Date(`${year}-${monthMonth}-${day}`);
+    //const formattedDate = new Date(year, month, days);
+    return formatted.toISOString();
+}
 
 // theBox.addEventListener('click', function() {
 // theBox.classList.toggle("box-selected");
@@ -5423,35 +5429,11 @@ async function cartNextBtnProceed() {
 }
 
 // Save form in Cart_view
-async function savePurchaseData(event) {
-
-    totalSum();
-    totalQuantity();
+async function savePurchaseData() {
 
     let houseType = "";
     const purchaseData = {};
     const missingFields = [];
-    const selectedDateElement = document.querySelector(".box1.box-selected");
-    //if (selectedDateElement) {
-    //    const dateText = selectedDateElement.querySelector(".date").textContent;
-    //    const fullDateString = `${dayText}${dateText}`;
-    //    //purchaseData.deliveryDate = new Date(selectedDate).toISOString().split('T')[0];
-    //    const [day, month] = dateText.split(" ");
-    //    const currentYear = new Date().getFullYear();
-    //    const fullDateString = `${day} ${month} ${currentYear}`;
-    //    const selectedDate = new Date(fullDateString);
-
-    //    if (!isNaN(selectedDate.getTime())) {
-    //        purchaseData.deliveryDate = selectedDate.toISOString().split('T')[0];  // Endast datum
-    //    } else {
-    //        console.error("Invalid date format:", fullDateString);
-    //        alert("Ogiltigt leveransdatum. Vänligen välj ett giltigt datum.");
-    //        return false;
-    //    }
-
-    //} else {
-    //    missingFields.push("leveransdatum");
-    //}
 
     const selectedTime = document.querySelector(".tid-box.tid-box-selected");
     if (selectedTime) {
@@ -5462,8 +5444,8 @@ async function savePurchaseData(event) {
     } else {
         missingFields.push("leveranstid");
     }
-
-    purchaseData.adress = document.getElementById("addressInput").value;
+    purchaseData.deliveryDate = document.getElementById("deliveryDateSpan").textContent;
+    purchaseData.address = document.getElementById("addressInput").value;
     purchaseData.postalCode = document.getElementById("postalCodeInput").value;
     purchaseData.ort = document.getElementById("cityInput").value;
     const apartment = document.getElementById("lägenhet").checked;
@@ -5477,14 +5459,15 @@ async function savePurchaseData(event) {
     purchaseData.email = document.getElementById("mailInput").value;
 
 
-    if (!purchaseData.adress) missingFields.push("adress");
-    if (!purchaseData.postalCode) missingFields.push("postnummer");
-    if (!purchaseData.ort) missingFields.push("Ort");
+    const requiredFields = ['address', 'postalCode', 'ort', 'firstName', 'lastName', 'phone', 'email'];
+    requiredFields.forEach(field => {
+        if (!purchaseData[field]) missingFields.push(field);
+    });
 
-    if (!purchaseData.firstName) missingFields.push("förnamn");
-    if (!purchaseData.lastName) missingFields.push("efternamn");
-    if (!purchaseData.phone) missingFields.push("telefonnummer");
-    if (!purchaseData.email) missingFields.push("email");
+    if (missingFields.length > 0) {
+        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+        return false;
+    }
 
     if (apartment) {
         houseType = "Lägenhet";
@@ -5501,50 +5484,39 @@ async function savePurchaseData(event) {
     purchaseData.houseType = houseType;
     purchaseData.LeaveAtDoor = LeaveAtDoor;
 
-    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    purchaseData.products = formDataArry.map((item) => {
-        let unitPrice = item.price;  // Pris per enhet
-        let totalQuantityPrice = item.quantity * item.price;  // Totalpris för kvantiteten
+    const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    purchaseData.products = formDataArry.map(item => ({
+        id: parseInt(item.id),
+        name: item.title,
+        quantity: parseInt(item.quantity),
+        price: item.Price
+    }));
 
-        return {
-            name: item.title,
-            quantity: item.quantity,
-            price: unitPrice,
-            total: totalQuantityPrice
-        };
-    });
     purchaseData.total = localStorage.getItem("sum");
     purchaseData.quantity = localStorage.getItem("totalQuantity");
-    purchaseData.orderDate = new Date().toISOString(); // Dagens datum för beställningen
 
-    if (missingFields.length > 0) {
-        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
-        return false;
-    }
-
-
-    console.log(purchaseData);
     localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
 
     const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
     const postPurchaseData = {
-        userId: 2,
-        products: storedPurchaseData.products,
-        quantity: storedPurchaseData.quantity,
-        total: storedPurchaseData.total,
-        paymentMethod: null,
-        orderDate: storedPurchaseData.orderDate,
-        deliveryDate: storedPurchaseData.deliveryDate,
-        deliveryTime: storedPurchaseData.deliveryTime,
-        deliveryAddress: storedPurchaseData.deliveryAddress,
-        deliveryCity: storedPurchaseData.ort,
-        deliveryPostalCode: storedPurchaseData.deliveryPostalCode,
-        deliveryCountry: storedPurchaseData.deliveryCountry,
-        floor: storedPurchaseData.floor,
-        portCode: storedPurchaseData.port,
-        leaveAtDoor: storedPurchaseData.LeaveAtDoor
+        userId: 11,
+        products: purchaseData.products,
+        quantity: parseInt(purchaseData.quantity),
+        total: parseFloat(purchaseData.total),
+        paymentMethod: "card",
+        orderDate: new Date().toISOString(),
+        deliveryDate: purchaseData.deliveryDate,
+        deliveryTime: purchaseData.deliveryTime,
+        deliveryAddress: purchaseData.address,
+        deliveryCity: purchaseData.ort,
+        deliveryPostalCode: purchaseData.postalCode,
+        floor: purchaseData.floor,
+        portCode: purchaseData.port,
+        leaveAtDoor: purchaseData.LeaveAtDoor
     };
-    console.log(storedPurchaseData);
+       console.log("Products: ", postPurchaseData.products);
+console.log("Quantity: ", postPurchaseData.quantity);
+console.log("Total: ", postPurchaseData.total);
     const response = await fetch(`https://localhost:7216/purchase`, {
         method: 'POST',
         headers: {
@@ -5552,40 +5524,14 @@ async function savePurchaseData(event) {
         },
         body: JSON.stringify(postPurchaseData),
     });
-    console.log('Full response:', response);
 
     if (response.ok) {
         const data = await response.json();
-        console.log('Data:', data);
         alert('Horay');
     } else {
         const errorText = await response.text(); // Hämta felmeddelande som text
-        console.error('Error from server:', errorText);
         alert('Ett fel uppstod: ' + errorText);
     }
-    //    try {
-    //        // Skicka en POST-förfrågan till backend för att spara köpdata
-    //        const response = await fetch(`https://localhost:7216/purchase`, {
-    //            method: 'POST',
-    //            headers: {
-    //                'Content-Type': 'application/json',
-    //            },
-    //            body: JSON.stringify(purchaseData),
-    //        });
-
-    //        if (response.ok) {
-    //            alert("Horayy");
-    //            purchaseData.clear();
-    //        } else {
-    //            alert("Fel uppstod vid sparandet av köp.");
-    //        }
-    //    }
-    //    catch (error) {
-    //        console.error('Error:', error);
-    //        alert("Ett fel uppstod: " + error.message);
-
-    //    }
-    //      return true;
 }
 
 
