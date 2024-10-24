@@ -1105,6 +1105,7 @@ if (searchBar !== null) {
   removeEventListener("keyup", search);
 }
 
+
 //Fetch items from database
 const loadProducts = async () => {
   try {
@@ -4588,7 +4589,7 @@ function nextAccord2() {
 // and finally increment the dates with '1' for the next loop with setDate
 
 const dates = new Date();
-const options = { day: "numeric", month: "short", weekday: "long" };
+const options = { day: "numeric", month: "numeric", weekday: "long", year: "numeric" };
 const twoWeeks = 17;
 
 let threeDaysAhead = [];
@@ -4613,7 +4614,7 @@ const dateStrings = threeDaysAhead
         <div class="swiper-slide date">
             <div class="date-box box1 text-center date">
               <div class="day">${weekday}</div>
-              <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
+              <div class="date"><span id="deliveryDateSpan" style="margin-right: 5px;">${days}</span></div>
             </div>
         </div>
 
@@ -4627,7 +4628,7 @@ if (deliveryDates !== null) {
 }
 
 const theBox = document.querySelectorAll(".box1");
-
+let selectedDeliveryDate = null;
 theBox.forEach((btn) => {
   btn.addEventListener("click", function () {
     theBox.forEach((b) => b.classList.remove("box-selected"));
@@ -4649,6 +4650,18 @@ timeBox.forEach((btn) => {
     console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
   });
 });
+
+// Format the delivery date to send to backend
+function formatDeliveryDate(dateString) {
+    const split = dateString.split(" ");
+    const days = split[1].replace(/[^\d]/g, '');
+    const month = split[2];
+    const year = new Date().getFullYear();
+
+    const formatted = new Date(`${year}-${monthMonth}-${day}`);
+    //const formattedDate = new Date(year, month, days);
+    return formatted.toISOString();
+}
 
 // theBox.addEventListener('click', function() {
 // theBox.classList.toggle("box-selected");
@@ -5587,6 +5600,125 @@ var datesSwipes = new Swiper(".dates_swipe", {
   },
 });
 
+//Direct to payment when purchase form is saved
+async function cartNextBtnProceed() {
+    // Försök att spara formulärdata
+    const purchaseDataSaved = await savePurchaseData();
+
+    if (purchaseDataSaved) {
+        // Om formulärdata har sparats, gå vidare till betalning
+        window.location.href = 'payment.html';
+    } else {
+        alert("Något gick fel. Vänligen fyll i fälten korrekt.");
+    }
+}
+
+// Save form in Cart_view
+async function savePurchaseData() {
+
+    let houseType = "";
+    const purchaseData = {};
+    const missingFields = [];
+
+    const selectedTime = document.querySelector(".tid-box.tid-box-selected");
+    if (selectedTime) {
+        const deliverClock = selectedTime.querySelector(".time").textContent;
+        const deliverShipping = selectedTime.querySelector(".price").textContent;
+        purchaseData.deliveryTime = deliverClock;  
+        purchaseData.deliveryPrice = deliverShipping;
+    } else {
+        missingFields.push("leveranstid");
+    }
+    purchaseData.deliveryDate = document.getElementById("deliveryDateSpan").textContent;
+    purchaseData.address = document.getElementById("addressInput").value;
+    purchaseData.postalCode = document.getElementById("postalCodeInput").value;
+    purchaseData.ort = document.getElementById("cityInput").value;
+    const apartment = document.getElementById("lägenhet").checked;
+    const house = document.getElementById("villa_hus").checked;
+    const radhus = document.getElementById("radhus").checked;
+    const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+    purchaseData.text = document.getElementById("floatingTextarea").value.trim();
+    purchaseData.firstName = document.getElementById("firstNameInput").value;
+    purchaseData.lastName = document.getElementById("lastNameInput").value;
+    purchaseData.phone = document.getElementById("phoneInput").value;
+    purchaseData.email = document.getElementById("mailInput").value;
+
+
+    const requiredFields = ['address', 'postalCode', 'ort', 'firstName', 'lastName', 'phone', 'email'];
+    requiredFields.forEach(field => {
+        if (!purchaseData[field]) missingFields.push(field);
+    });
+
+    if (missingFields.length > 0) {
+        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+        return false;
+    }
+
+    if (apartment) {
+        houseType = "Lägenhet";
+        purchaseData.port = document.getElementById("portInput").value.trim();
+        purchaseData.floor = document.getElementById("floorInput").value.trim();
+
+        //if (!purchaseData.Port) missingFields.push("portkod");
+        //if (!purchaseData.Floor) missingFields.push("våningsplan");
+    } else if (house) {
+        houseType = "Villa/Hus";
+    } else if (radhus) {
+        houseType = "Radhus";
+    }
+    purchaseData.houseType = houseType;
+    purchaseData.LeaveAtDoor = LeaveAtDoor;
+
+    const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    purchaseData.products = formDataArry.map(item => ({
+        id: parseInt(item.id),
+        name: item.title,
+        quantity: parseInt(item.quantity),
+        price: item.Price
+    }));
+
+    purchaseData.total = localStorage.getItem("sum");
+    purchaseData.quantity = localStorage.getItem("totalQuantity");
+
+    localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
+
+    const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
+    const postPurchaseData = {
+        userId: 11,
+        products: purchaseData.products,
+        quantity: parseInt(purchaseData.quantity),
+        total: parseFloat(purchaseData.total),
+        paymentMethod: "card",
+        orderDate: new Date().toISOString(),
+        deliveryDate: purchaseData.deliveryDate,
+        deliveryTime: purchaseData.deliveryTime,
+        deliveryAddress: purchaseData.address,
+        deliveryCity: purchaseData.ort,
+        deliveryPostalCode: purchaseData.postalCode,
+        floor: purchaseData.floor,
+        portCode: purchaseData.port,
+        leaveAtDoor: purchaseData.LeaveAtDoor
+    };
+
+    const response = await fetch(`https://localhost:7216/purchase`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postPurchaseData),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        alert('Horay');
+    } else {
+        const errorText = await response.text(); // Hämta felmeddelande som text
+        alert('Ett fel uppstod: ' + errorText);
+    }
+}
+
+
+
 //SIDE BAR CART
 
 // Show sidebar
@@ -5635,6 +5767,8 @@ function addToCart(product) {
   // updateSidebarCart();
   // openSidebar();
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const closeSidebarBtn = document.getElementById("closeSidebar");
