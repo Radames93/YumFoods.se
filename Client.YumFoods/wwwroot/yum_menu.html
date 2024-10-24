@@ -540,55 +540,42 @@
         Side bar cart start
     ==============================-->
     <section>
-      <div id="overlay" class="overlay"></div>
+        <div id="overlay" class="overlay"></div>
 
-      <div id="cartSidebar" class="cart-sidebar">
-        <div
-          class="cart-header d-flex justify-content-between align-items-center p-3 bg-light"
-        >
-          <div>
-            <i class="fa fa-shopping-cart" style="color: orangered"></i>
-            Varukorg
-          </div>
-          <button
-            class="btn-close"
-            id="closeSidebar"
-            aria-label="Close"
-          ></button>
-        </div>
+        <div id="cartSidebar" class="cart-sidebar">
+            <div class="cart-header d-flex justify-content-between align-items-center p-3 bg-light">
+                <div>
+                    <i class="fa fa-shopping-cart" style="color: orangered"></i>
+                    Varukorg
+                </div>
+                <button class="btn-close"
+                        id="closeSidebar"
+                        aria-label="Close"></button>
+            </div>
 
-        <div
-          id="sidebarCartItems"
-          class="cart-body p-3"
-          style="padding-bottom: 9em !important"
-        >
-          <!-- Cart items will be populated here -->
-        </div>
+            <div id="sidebarCartItems"
+                 class="cart-body p-3"
+                 style="padding-bottom: 9em !important">
+                <!-- Cart items will be populated here -->
+            </div>
 
-        <div
-          class="row cart-footer p-3"
-          style="margin-left: 0; position: fixed; margin-bottom: 0px"
-        >
-          <div
-            class="col-12 d-flex mb-2 justify-content-between"
-            style="background: rgba(38, 50, 56, 0.1)"
-          >
-            <span>Frakt</span>
-            <span id="sidebarShipping"> kr</span>
-          </div>
-          <div
-            class="col-12 d-flex justify-content-between"
-            style="background: rgba(38, 50, 56, 0.1)"
-          >
-            <span
-              >Totalt belopp inkl.moms <i class="fa fa-angle-down"></i
-            ></span>
-            <span id="sidebarTotal"> kr</span>
-          </div>
-          <div class="col-12 d-flex text-center">
-            <button
-              class="btn btn-danger Fortsätt-Btn mt-3"
-              style="
+            <div class="row cart-footer p-3"
+                 style="margin-left: 0; position: fixed; margin-bottom: 0px">
+                <div class="col-12 d-flex mb-2 justify-content-between"
+                     style="background: rgba(38, 50, 56, 0.1)">
+                    <span>Frakt</span>
+                    <span id="sidebarShipping"> kr</span>
+                </div>
+                <div class="col-12 d-flex justify-content-between"
+                     style="background: rgba(38, 50, 56, 0.1)">
+                    <span>
+                        Totalt belopp inkl.moms <i class="fa fa-angle-down"></i>
+                    </span>
+                    <span id="sidebarTotal"> kr</span>
+                </div>
+                <div class="col-12 d-flex text-center">
+                    <button class="btn btn-danger Fortsätt-Btn mt-3"
+                            style="
                 border-radius: 6px;
                 background: var(--Complementary-color, #dd3902);
                 display: flex;
@@ -601,85 +588,83 @@
                 margin-bottom: 40px;
                 box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
               "
-              onclick="goToCheckout()"
-            >
-              Fortsätt
-            </button>
-          </div>
+                            onclick="goToCheckout()">
+                        Fortsätt
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <!-- Mobile Cart Notification -->
-      <div id="mobileCartNotification" class="mobile-cart-notification">
-        <div class="row d-flex justify-content-between align-items-center">
-          <div class="col-3"><span id="mobileProductCount">1 </span></div>
-          <div class="col-3">
-            <button
-              class="text-center btn see-cart-btn"
-              onclick="goToCheckout()"
-            >
-              Se din varukorg
-            </button>
+        <!-- Mobile Cart Notification -->
+        <!--
+          <div id="mobileCartNotification" class="mobile-cart-notification">
+            <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-3"><span id="mobileProductCount">1 </span></div>
+              <div class="col-3">
+                <button
+                  class="text-center btn see-cart-btn"
+                  onclick="goToCheckout()"
+                >
+                  Se din varukorg
+                </button>
+              </div>
+
+              <div class="col-3"><span id="mobileTotalPrice">0 kr</span></div>
+            </div>
           </div>
-
-          <div class="col-3"><span id="mobileTotalPrice">0 kr</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!--=============================
+        </section>
+        -->
+        <!--=============================
         side bar cart END
     ==============================-->
-
-    <!--=============================
+        <!--=============================
         MENU PAGE END
     ==============================-->
-
-    <!--=============================
+        <!--=============================
         FOOTER START
     ==============================-->
-    <footer-component id="footer"></footer-component>
-    <!--=============================
+        <footer-component id="footer"></footer-component>
+        <!--=============================
         FOOTER END
     ==============================-->
-    <!--=============================
+        <!--=============================
         SCROLL BUTTON START
     ==============================-->
-    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
-    <!--=============================
+        <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+        <!--=============================
         SCROLL BUTTON END
     ==============================-->
-    <!-- hotjar code -->
-    <script src="js/hotjar.js"></script>
-    <!-- swiper slider -->
-    <script src="js/swiper-bundle.min.js" rel="preload"></script>
-    <!--jquery library js-->
-    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
-    <!--main/env js-->
-    <script src="js/env.js"></script>
-    <!--main/custom js-->
-    <script rel="preload" src="js/main.js"></script>
-    <!--bootstrap js-->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- isotop js -->
-    <script src="js/isotope.pkgd.min.js"></script>
-    <!-- counter up js -->
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.countup.min.js"></script>
-    <!-- nice select js -->
-    <script src="js/jquery.nice-select.min.js"></script>
-    <!-- venobox js -->
-    <script src="js/venobox.min.js"></script>
-    <!-- sticky sidebar js -->
-    <script src="js/sticky_sidebar.js"></script>
-    <!-- wow js -->
-    <script src="js/wow.min.js"></script>
-    <!-- ex zoom js -->
-    <script src="js/jquery.exzoom.js"></script>
-    <link rel="stylesheet" href="css/venobox.min.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/jquery.exzoom.css" />
-    <link rel="stylesheet" href="css/nice-select.css" />
-    <!-- <script src="https://cdn.jsdelivr.net/npm/instafeed.js@2.0.0/dist/instafeed.min.js"></script> -->
-  </body>
+        <!-- hotjar code -->
+        <script src="js/hotjar.js"></script>
+        <!-- swiper slider -->
+        <script src="js/swiper-bundle.min.js" rel="preload"></script>
+        <!--jquery library js-->
+        <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+        <!--main/env js-->
+        <script src="js/env.js"></script>
+        <!--main/custom js-->
+        <script rel="preload" src="js/main.js"></script>
+        <!--bootstrap js-->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- isotop js -->
+        <script src="js/isotope.pkgd.min.js"></script>
+        <!-- counter up js -->
+        <script src="js/jquery.waypoints.min.js"></script>
+        <script src="js/jquery.countup.min.js"></script>
+        <!-- nice select js -->
+        <script src="js/jquery.nice-select.min.js"></script>
+        <!-- venobox js -->
+        <script src="js/venobox.min.js"></script>
+        <!-- sticky sidebar js -->
+        <script src="js/sticky_sidebar.js"></script>
+        <!-- wow js -->
+        <script src="js/wow.min.js"></script>
+        <!-- ex zoom js -->
+        <script src="js/jquery.exzoom.js"></script>
+        <link rel="stylesheet" href="css/venobox.min.css" />
+        <link rel="stylesheet" href="css/animate.css" />
+        <link rel="stylesheet" href="css/jquery.exzoom.css" />
+        <link rel="stylesheet" href="css/nice-select.css" />
+        <!-- <script src="https://cdn.jsdelivr.net/npm/instafeed.js@2.0.0/dist/instafeed.min.js"></script> -->
+</body>
 </html>

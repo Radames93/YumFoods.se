@@ -163,16 +163,18 @@ function Header() {
         <div class="collapse navbar-collapse wow" id="navbarNav">
           <ul class="navbar-nav" style="align-items: center;">
             <li class="nav-item">
-              <a class="nav-link" href="#"
-                >Meny <i class="fa fa-angle-down"></i
-              ></a>
+              <a class="nav-link" href="yum_menu.html"
+                >Meny <!--<i class="fa fa-angle-down"></i
+              >--></a>
+              <!--
               <ul class="droap_menu">
-                <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
-                <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
+                <li><a href="baguette_menu.html">Baguetter</a></li>
+                <li><a href="bamba_menu.html">Bamba-rätter</a></li>
                 <li><a href="yum_menu.html">Yum</a></li>
               <li><a href="daily_menu.html">Dagens</a></li>
                 <li><a href="premium_menu.html">Premium</a></li>
               </ul>
+              -->
             </li>
             <!--
             <li class="nav-item">
@@ -219,8 +221,8 @@ function Header() {
     const savedUserData = JSON.parse(localStorage.getItem("userData"));
 
     document.querySelector("#logInDrop").innerHTML = `
-    <a class="nav-link" href="contact.html">
-    ${savedUserData.förnamn}
+    <a class="nav-link" href="sign_in.html">
+    Inloggad
     </a>
     `;
     document.querySelector(".loginBtn").innerHTML = `
@@ -1160,8 +1162,8 @@ const loadProducts = async () => {
     premiumProducts(premiumProductsList);
     subscriptionsProducts(subscriptionsProductsList);
     baguetterProducts(baguetterProductsList);
-    CarouselFoodBoxes(yumProductsList);
-    CarouselFoodBoxes2(yumProductsList);
+      CarouselFoodBoxes(yumProductsList);
+      CarouselFoodBoxes2(baguetterProductsList);
     CarouselDietButtons(yumProductsList);
   } catch (err) {
     // Handle errors gracefully
@@ -1609,9 +1611,9 @@ const CarouselFoodBoxes = (yumProductsList) => {
   }
 };
 
-const CarouselFoodBoxes2 = (yumProductsList) => {
-  if (carouselContainer2 !== null) {
-    const htmlString = yumProductsList
+const CarouselFoodBoxes2 = (baguetterProductsList) => {
+    if (carouselContainer2 !== null) {
+        const htmlString = baguetterProductsList
       .map((yum) => {
         let title = JSON.stringify(yum.title);
         let description = JSON.stringify(yum.description);
@@ -5482,11 +5484,10 @@ var swiper1 = new Swiper(".slide-content", {
     clickable: true,
     dynamicBullets: true,
   },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-
+    autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+    },
   breakpoints: {
     0: {
       slidesPerView: 1,
@@ -5521,11 +5522,10 @@ var swiper2 = new Swiper(".slide-content2", {
     clickable: true,
     dynamicBullets: true,
   },
-  navigation: {
-    nextEl: ".swiper-button-next2",
-    prevEl: ".swiper-button-prev2",
-  },
-
+    autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+    },
   breakpoints: {
     0: {
       slidesPerView: 1,
@@ -5990,10 +5990,13 @@ async function login() {
 }
 
 // Event listener for the login form
-document.getElementById("loginForm").addEventListener("submit", function (event) {
+let loginForm = document.getElementById("loginForm")
+if (loginForm !== null) {
+loginForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
     login(); // Call the login function
 });
+}
 async function updateProfile() {
   const id = localStorage.getItem("userId");
 

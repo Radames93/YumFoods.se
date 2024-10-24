@@ -2316,10 +2316,6 @@ button {
   padding-bottom: 40px;
 }
 
-.fa-cart-plus {
-  color: #ffffff;
-}
-
 .fa-shopping-basket {
   color: #ffffff;
   width: 27px;
@@ -3113,7 +3109,6 @@ button {
 .carousel-section {
   width: 100%;
   background-color: #ffdfce;
-  height: 1750px;
   margin-top: 100px;
   margin-bottom: -100px;
 }
@@ -3143,7 +3138,7 @@ button {
 
 .carousel-box {
   width: 70%;
-  height: 1500px;
+  height: 1450px;
   background-color: white;
   margin-left: auto;
   margin-right: auto;
