@@ -94,6 +94,7 @@ function Header() {
           </a>
 
         <!-- language button-->
+        <!--
         <div class="langBtn">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -109,6 +110,7 @@ function Header() {
             </li>
           </ul>
         </div>
+        -->
 
         <!-- company button -->
         <!--
