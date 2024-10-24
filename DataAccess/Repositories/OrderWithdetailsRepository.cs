@@ -61,7 +61,8 @@ namespace DataAccess.Repositories
                     await _orderContext.SaveChangesAsync();
                 }
 
-                throw new Exception("Error adding order and order details: " + ex.Message);
+                Console.WriteLine($"Error {ex.Message}");
+                throw;
             }
         }
 
@@ -110,10 +111,8 @@ namespace DataAccess.Repositories
                     Total = order.Total,
                     //OrderDetails = orderDetails.Where(od => od.OrderId == order.Id).ToList() // Matcha orderdetaljer
                 };
-
                 result.Add(orderWithDetails);
             }
-
             return result;
         }
 

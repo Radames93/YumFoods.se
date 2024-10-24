@@ -5439,7 +5439,7 @@ async function savePurchaseData() {
     if (selectedTime) {
         const deliverClock = selectedTime.querySelector(".time").textContent;
         const deliverShipping = selectedTime.querySelector(".price").textContent;
-        purchaseData.deliveryTime = deliverClock;  // T.ex. "10.00-12.00"
+        purchaseData.deliveryTime = deliverClock;  
         purchaseData.deliveryPrice = deliverShipping;
     } else {
         missingFields.push("leveranstid");
@@ -5514,9 +5514,7 @@ async function savePurchaseData() {
         portCode: purchaseData.port,
         leaveAtDoor: purchaseData.LeaveAtDoor
     };
-       console.log("Products: ", postPurchaseData.products);
-console.log("Quantity: ", postPurchaseData.quantity);
-console.log("Total: ", postPurchaseData.total);
+
     const response = await fetch(`https://localhost:7216/purchase`, {
         method: 'POST',
         headers: {

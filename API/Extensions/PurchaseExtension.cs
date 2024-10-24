@@ -49,7 +49,7 @@ namespace API.Extensions
                 DeliveryDate = purchaseRequest.DeliveryDate,
                 DeliveryTime = purchaseRequest.DeliveryTime,
                 Products = existingProducts,
-                Quantity = purchaseRequest.Quantity,
+                Quantity = purchaseRequest.Quantity > 0 ? purchaseRequest.Quantity : 1,
                 Total = purchaseRequest.Total,
                 PaymentMethod = purchaseRequest.PaymentMethod,
                 Floor = purchaseRequest.Floor,
