@@ -23,13 +23,13 @@ namespace API.Extensions
             YumFoodsDb productDb,  // Assuming this is the DbContext for products
             PurchaseRequest purchaseRequest)
         {
-            var deliverySlots = new List<string> { "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00" };
-            if (!deliverySlots.Contains(purchaseRequest.DeliveryTime))
-            {
-                return Results.BadRequest();
-            }
+            //var deliverySlots = new List<string> { "10.00-12.00", "12.00-14.00", "14.00-16.00", "16.00-18.00" };
+            //if (!deliverySlots.Contains(purchaseRequest.DeliveryTime))
+            //{
+            //    return Results.BadRequest();
+            //}
 
-            // Fetch existing products from the database using Product IDs in the request
+            //Fetch existing products from the database using Product IDs in the request
             var productIds = purchaseRequest.Products.Select(p => p.Id).ToList();
             var existingProducts = await productDb.Product
                                                   .Where(p => productIds.Contains(p.Id))
@@ -49,20 +49,22 @@ namespace API.Extensions
                 DeliveryDate = purchaseRequest.DeliveryDate,
                 DeliveryTime = purchaseRequest.DeliveryTime,
                 Products = existingProducts,
-                Quantity = purchaseRequest.Quantity > 0 ? purchaseRequest.Quantity : 1,
+                Quantity = purchaseRequest.Quantity,
                 Total = purchaseRequest.Total,
                 PaymentMethod = purchaseRequest.PaymentMethod,
+                HouseType = purchaseRequest.HouseType,
                 Floor = purchaseRequest.Floor,
-                PortCode = purchaseRequest.PortCode
+                PortCode = purchaseRequest.PortCode,
+                DiscountTotal = purchaseRequest.DiscountTotal,
+                LeaveAtDoor = purchaseRequest.LeaveAtDoor
             };
 
             // Create a new OrderDetail from the purchaseRequest
             var newOrderDetail = new OrderDetail
             {
                 DeliveryAddress = purchaseRequest.DeliveryAddress,
-                DeliveryCity = purchaseRequest.DeliveryCity,
-                DeliveryPostalCode = purchaseRequest.DeliveryPostalCode,
-                DeliveryCountry = purchaseRequest.DeliveryCountry
+                //DeliveryCity = purchaseRequest.DeliveryCity,
+                DeliveryPostalCode = purchaseRequest.DeliveryPostalCode
             };
 
             // Call the method to add both order and order detail
