@@ -75,6 +75,12 @@ public static class UserExtension
             return null;
         }
 
+        var existingUser = await repo.GetUserByEmailAsync(newUser.Email);
+        if (existingUser != null)
+        {
+            return Results.BadRequest("An account with this email already exists.");
+        }
+
         await repo.AddUserAsync(newUser);
         return Results.Ok(newUser);
     }
