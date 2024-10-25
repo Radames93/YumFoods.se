@@ -218,12 +218,13 @@ function Header() {
       </div>
   </nav>
     `;
+
   let authToken = localStorage.getItem("authToken");
   if (authToken !== null) {
     //const savedUserData = JSON.parse(localStorage.getItem("userData"));
 
     document.querySelector("#logInDrop").innerHTML = `
-    <a class="nav-link" href="sign_in.html">
+    <a class="nav-link" href="dashboard.html">
     Inloggad
     </a>
     `;
@@ -231,7 +232,7 @@ function Header() {
     <ul class="navbar-nav">
     <li class="nav-item">
         <a id="logIn" href="dashboard.html" class="dropbtn">
-        <img src="./images/fontawesome-icons/user.svg" class="fa-user"/>
+        <img src="./images/fontawesome-icons/user.svg" class="fa-user" />
         </a>
     </li>
   </ul>
@@ -3415,16 +3416,16 @@ function formCancelEdit(btn) {
 }
 
 function logOut() {
-  localStorage.removeItem("userData");
-  localStorage.removeItem("isLoggedIn");
+  localStorage.clear();
   window.location.href = "sign_up.html";
 }
 
 function dash_myProfile() {
   async function getUser() {
     try {
-      //const response = await fetch(`https://localhost:7216/users/9`);
-      const response = await fetch(`https://${API_KEY}/users/9`);
+        //const response = await fetch(`https://localhost:7216/email/email`);
+      const email = localStorage.getItem("email")
+      const response = await fetch(`https://${API_KEY}/users/email/${email}`);
       const data = await response.json();
       console.log(data);
 
@@ -3747,6 +3748,40 @@ function dash_myProfile() {
 
 if (document.getElementById("dashboard_aside")) {
   dash_myProfile();
+}
+
+function modal() {
+    const dashAside = document.getElementById("dashboard_aside");
+    const myProfile = document.getElementById("contain_user_content");
+
+    if (myProfile) {
+        myProfile.remove();
+    } else {
+        console.error("Element missing!");
+    }
+
+    if (!dashAside) {
+        console.error("Error! element missing!");
+    }
+
+    const htmlString = `
+             <div class="modal fade" id="logOutUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom:none;">
+        <h4 class="modal-title text-center" id="exampleModalLabel">Är du säker på att du vill logga ut?</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer mx-auto" style="border-top:none;">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nej, avbryt</button>
+        <button onclick="logOut()" type="button" class="btn btn-primary">Ja, logga ut</button>
+      </div>
+    </div>
+  </div>
+</div>
+  `;
+    dashAside.insertAdjacentHTML("afterend", htmlString);
+    applyGoBack();
 }
 
 function dash_myOrders() {
@@ -6106,82 +6141,85 @@ function displayOrder(order) {
 }
 
 async function register() {
-  const userData = {};
+    const userData = {};
 
-  // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
-  userData.firstName = document.getElementById("field1").value;
-  userData.lastName = document.getElementById("field1.2").value;
-  userData.email = document.getElementById("field2").value;
-  userData.phoneNumber = document.getElementById("field2.1").value;
-  userData.passwordhash = document.getElementById("field3").value;
-  userData.address = document.getElementById("field5").value;
-  userData.postalCode = document.getElementById("postnummer").value;
-  userData.city = document.getElementById("ort").value;
+    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
+    userData.firstName = document.getElementById("field1").value;
+    userData.lastName = document.getElementById("field1.2").value;
+    userData.email = document.getElementById("field2").value;
+    userData.phoneNumber = document.getElementById("field2.1").value;
+    userData.passwordhash = document.getElementById("field3").value;
+    userData.address = document.getElementById("field5").value;
+    userData.postalCode = document.getElementById("postnummer").value;
+    userData.city = document.getElementById("ort").value;
 
-  // Skapa konstanter för att kontrollera lösen och termer
-  const repeatPassword = document.getElementById("field4").value;
-  const termsAccepted = document.getElementById("terms1").checked;
+    // Skapa konstanter för att kontrollera lösen och termer
+    const repeatPassword = document.getElementById("field4").value;
+    const termsAccepted = document.getElementById("terms1").checked;
 
-  // Validering
-  if (userData.passwordhash !== repeatPassword) {
-    alert("Lösenorden matchar inte!");
-    return;
-  }
+    // Validering
+    if (userData.passwordhash !== repeatPassword) {
+        alert("Lösenorden matchar inte!");
+        return;
+    }
 
-  if (!termsAccepted) {
-    alert(
-      "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
-    );
-    return;
-  }
+    if (!termsAccepted) {
+        alert(
+            "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+        );
+        return;
+    }
 
-  // Konvertera obj till sträng
-  localStorage.setItem("userData", JSON.stringify(userData));
+    // Konvertera obj till sträng
+    localStorage.setItem("userData", JSON.stringify(userData));
 
-  // Tar ut datan
-  const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    // Tar ut datan
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
 
-  // Kontrollera att det finns data i localStorage
-  if (!storedUserData) {
-    console.error("No user data found in localStorage.");
-    return;
-  }
+    // Kontrollera att det finns data i localStorage
+    if (!storedUserData) {
+        console.error("No user data found in localStorage.");
+        return;
+    }
 
-  // Skapa nytt objektet som ska matcha datan i databasen
-  const userToRegister = {
-    firstName: storedUserData.firstName,
-    lastName: storedUserData.lastName,
-    email: storedUserData.email,
-    passwordhash: storedUserData.passwordhash,
-    address: storedUserData.address,
-    postalCode: storedUserData.postalCode,
-    phoneNumber: storedUserData.phoneNumber,
-    city: storedUserData.city,
-    userType: null,
-    organizationNumber: null,
-    orders: null,
-    subscription: null,
-  };
+    // Skapa nytt objektet som ska matcha datan i databasen
+    const userToRegister = {
+        firstName: storedUserData.firstName,
+        lastName: storedUserData.lastName,
+        email: storedUserData.email,
+        passwordhash: storedUserData.passwordhash,
+        address: storedUserData.address,
+        postalCode: storedUserData.postalCode,
+        phoneNumber: storedUserData.phoneNumber,
+        city: storedUserData.city,
+        userType: null,
+        organizationNumber: null,
+        orders: null,
+        subscription: null,
+    };
 
-  // Anropa apiet
-  const response = await fetch(`https://${API_KEY}/users`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userToRegister),
-  });
+    // Anropa apiet
+    const response = await fetch(`https://${API_KEY}/users`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userToRegister),
+    });
 
-  const data = await response.json();
-  alert("Användare registrerad framgångsrikt!");
-
-  // Optionally, clear localStorage
-  localStorage.removeItem("userData");
-
-  // Redirect after successful registration
-  window.location.href = "sign_in.html";
+    if (response.ok) {
+        alert("Användare registrerad framgångsrikt!");
+        localStorage.removeItem("userData");
+        window.location.href = "sign_in.html";
+    } else if (response.status === 400) {
+        const errorData = await response.json();
+        alert(`Fel: ${errorData.message || 'Ogiltiga indata!'}`);
+    } else if (response.status === 500) {
+        alert("Ett konto med denna e-postadress finns redan.");
+    } else {
+        alert("Ett oväntat fel inträffade. Vänligen försök igen.");
+    }
 }
-
 async function login() {
   // Create an object to hold login data
   const loginData = {
@@ -6210,7 +6248,8 @@ async function login() {
 
       if (data && data.token) {
         // If a token is received
-        localStorage.setItem("authToken", data.token); // Store the token
+          localStorage.setItem("authToken", data.token); // Store the token
+          localStorage.setItem("email", loginData.email); // Store the mail
         alert("Login successful!"); // Inform user
         window.location.href = "dashboard.html"; // Redirect to the dashboard
       } else {
@@ -6236,7 +6275,7 @@ if (loginForm !== null) {
   });
 }
 async function updateProfile() {
-  const id = localStorage.getItem("userId");
+    const email = localStorage.getItem("email");
 
   const updatedUserData = {
     firstName: document.getElementById("fname").value,
@@ -6246,7 +6285,7 @@ async function updateProfile() {
     phone: document.getElementById("phone").value,
   };
   try {
-    const response = await fetch(`https://${API_KEY}/users/${id}`, {
+      const response = await fetch(`https://${API_KEY}/users/email/${email}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
