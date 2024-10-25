@@ -94,6 +94,7 @@ function Header() {
           </a>
 
         <!-- language button-->
+        <!--
         <div class="langBtn">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -109,6 +110,7 @@ function Header() {
             </li>
           </ul>
         </div>
+        -->
 
         <!-- company button -->
         <!--
@@ -124,7 +126,7 @@ function Header() {
           <ul class="navbar-nav">
             <li class="nav-item">
               <a id="logIn" href="#" class="dropbtn">
-                <i class="far fa-user"></i> Logga in
+                <img src="./images/fontawesome-icons/user.svg" class="far fa-user" /> Logga in
               </a>
               <ul class="droap_menu">
                 <li><a href="sign_in.html">Login</a></li>
@@ -163,16 +165,18 @@ function Header() {
         <div class="collapse navbar-collapse wow" id="navbarNav">
           <ul class="navbar-nav" style="align-items: center;">
             <li class="nav-item">
-              <a class="nav-link" href="#"
-                >Meny <i class="fa fa-angle-down"></i
-              ></a>
+              <a class="nav-link" href="yum_menu.html"
+                >Meny <!--<i class="fa fa-angle-down"></i
+              >--></a>
+              <!--
               <ul class="droap_menu">
-                <!--<li><a href="baguette_menu.html">Baguetter</a></li>-->
-                <!-- <li><a href="bamba_menu.html">Bamba-rätter</a></li>-->
+                <li><a href="baguette_menu.html">Baguetter</a></li>
+                <li><a href="bamba_menu.html">Bamba-rätter</a></li>
                 <li><a href="yum_menu.html">Yum</a></li>
               <li><a href="daily_menu.html">Dagens</a></li>
                 <li><a href="premium_menu.html">Premium</a></li>
               </ul>
+              -->
             </li>
             <!--
             <li class="nav-item">
@@ -214,22 +218,20 @@ function Header() {
       </div>
   </nav>
     `;
-
-  if (localStorage.getItem("isLoggedIn") === "true") {
-    const savedUserData = JSON.parse(localStorage.getItem("userData"));
+  let authToken = localStorage.getItem("authToken");
+  if (authToken !== null) {
+    //const savedUserData = JSON.parse(localStorage.getItem("userData"));
 
     document.querySelector("#logInDrop").innerHTML = `
-    <a class="nav-link" href="contact.html">
-    ${savedUserData.förnamn}
+    <a class="nav-link" href="sign_in.html">
+    Inloggad
     </a>
     `;
     document.querySelector(".loginBtn").innerHTML = `
     <ul class="navbar-nav">
     <li class="nav-item">
         <a id="logIn" href="dashboard.html" class="dropbtn">
-        <i class="far fa-user">${savedUserData.förnamn
-          .charAt(0)
-          .toUpperCase()}</i>
+        <img src="./images/fontawesome-icons/user.svg" class="fa-user"/>
         </a>
     </li>
   </ul>
@@ -239,7 +241,7 @@ function Header() {
           <ul class="navbar-nav">
             <li class="nav-item">
               <a id="logIn" href="#" class="dropbtn">
-                <i class="far fa-user"></i> Logga in
+                <img src="./images/fontawesome-icons/user.svg" class="fa-user" /> Logga in
               </a>
               <ul class="droap_menu">
                 <li><a href="sign_in.html">Login</a></li>
@@ -435,9 +437,9 @@ function saveUserData(event) {
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
 
-    userData.firstname = document.getElementById("field1").value,
-   userData.lastname = document.getElementById("field1.2").value,
-  userData.email = document.getElementById("field2").value;
+  (userData.firstname = document.getElementById("field1").value),
+    (userData.lastname = document.getElementById("field1.2").value),
+    (userData.email = document.getElementById("field2").value);
   userData.lösenord = document.getElementById("field3").value;
   const upprepaLösenord = document.getElementById("field4").value;
   userData.gatuadress = document.getElementById("field5").value;
@@ -449,9 +451,9 @@ function saveUserData(event) {
 
   // Validering
   // !userData.username ||
-    if (
-        !userData.firstName ||
-        !userData.lastName ||
+  if (
+    !userData.firstName ||
+    !userData.lastName ||
     !userData.email ||
     !userData.lösenord ||
     !upprepaLösenord ||
@@ -1101,72 +1103,73 @@ if (searchBar !== null) {
   removeEventListener("keyup", search);
 }
 
+
 //Fetch items from database
 const loadProducts = async () => {
-    try {
+  try {
+    const API_KEY = variables();
+    // Fetch the products from the API
 
-        const API_KEY = variables();
+    //const response = await fetch(`https://localhost:7216/products`);
 
-        //const response = await fetch(`https://localhost:7216/products`);
+    const response = await fetch(`https://${API_KEY}/products`);
 
-        const response = await fetch(`https://${API_KEY}/products`);
+    const data = await response.json();
 
-        const data = await response.json();
-
-        // Check if the response is OK (status code in the 200-299 range)
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-
-        // Parse the response data as JSON
-        const allProducts = data;
-
-        // Filter the products into different categories
-        yumProductsList = allProducts.filter(
-            (product) => product.category === "Yum"
-        );
-        dailyProductsList = allProducts.filter(
-            (product) => product.category === "Dagens"
-        );
-        premiumProductsList = allProducts.filter(
-            (product) => product.category === "Premium"
-        );
-        subscriptionsProductsList = allProducts.filter(
-            (product) => product.category === "Subscriptions"
-        );
-        baguetterProductsList = allProducts.filter(
-            (product) => product.category === "Baguetter"
-        );
-
-        // Further filtering or categorization
-        yumFiltered = yumProductsList;
-        dailyFiltered = dailyProductsList;
-        premiumFiltered = premiumProductsList;
-        subscriptionsFiltered = subscriptionsProductsList;
-        baguetterFiltered = baguetterProductsList;
-
-        // Combine all categories into one list
-        const all = [
-            ...yumProductsList,
-            ...dailyProductsList,
-            ...premiumProductsList,
-            ...subscriptionsProductsList,
-            ...baguetterProductsList,
-        ];
-
-        // Pass the lists to UI functions
-        yumProducts(yumProductsList);
-        dailyProducts(dailyProductsList);
-        premiumProducts(premiumProductsList);
-        subscriptionsProducts(subscriptionsProductsList);
-        baguetterProducts(baguetterProductsList);
-        CarouselFoodBoxes(yumProductsList);
-        CarouselFoodBoxes2(yumProductsList);
-        CarouselDietButtons(yumProductsList);
-    } catch (err) {
-        // Handle errors gracefully
-        console.error("Error fetching products:", err);
+    // Check if the response is OK (status code in the 200-299 range)
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
+
+    // Parse the response data as JSON
+    const allProducts = data;
+
+    // Filter the products into different categories
+    yumProductsList = allProducts.filter(
+      (product) => product.category === "Yum"
+    );
+    dailyProductsList = allProducts.filter(
+      (product) => product.category === "Dagens"
+    );
+    premiumProductsList = allProducts.filter(
+      (product) => product.category === "Premium"
+    );
+    subscriptionsProductsList = allProducts.filter(
+      (product) => product.category === "Subscriptions"
+    );
+    baguetterProductsList = allProducts.filter(
+      (product) => product.category === "Baguetter"
+    );
+
+    // Further filtering or categorization
+    yumFiltered = yumProductsList;
+    dailyFiltered = dailyProductsList;
+    premiumFiltered = premiumProductsList;
+    subscriptionsFiltered = subscriptionsProductsList;
+    baguetterFiltered = baguetterProductsList;
+
+    // Combine all categories into one list
+    const all = [
+      ...yumProductsList,
+      ...dailyProductsList,
+      ...premiumProductsList,
+      ...subscriptionsProductsList,
+      ...baguetterProductsList,
+    ];
+
+    // Pass the lists to UI functions
+    yumProducts(yumProductsList);
+    dailyProducts(dailyProductsList);
+    premiumProducts(premiumProductsList);
+    subscriptionsProducts(subscriptionsProductsList);
+    baguetterProducts(baguetterProductsList);
+    CarouselFoodBoxes(yumProductsList);
+    CarouselFoodBoxes2(baguetterProductsList);
+    CarouselDietButtons(yumProductsList);
+  } catch (err) {
+    // Handle errors gracefully
+    console.error("Error fetching products:", err);
+  }
 };
 
 // Call the function to load the products
@@ -1308,14 +1311,14 @@ const showAllProducts = (allProducts) => {
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
-    if (yum !== null) {
-        const htmlString = yumProductsList
-            .map((yum) => {
-                let title = JSON.stringify(yum.title);
-                let description = JSON.stringify(yum.description);
-                let ingredients = JSON.stringify(yum.ingredients);
-                return (
-                    `
+  if (yum !== null) {
+    const htmlString = yumProductsList
+      .map((yum) => {
+        let title = JSON.stringify(yum.title);
+        let description = JSON.stringify(yum.description);
+        let ingredients = JSON.stringify(yum.ingredients);
+        return (
+          `
 
           <div
           class="wow fadeInUp "
@@ -1328,8 +1331,8 @@ const yumProducts = (yumProductsList) => {
                 <div class="yum_item_buttons d-flex flex-column align-items-center">
                   <button
                   data-id=` +
-                    yum.id +
-                    `
+          yum.id +
+          `
                   data-yum-id=${yum.id}
                   data-yum-title=${title}
                   data-yum-price=${yum.price}
@@ -1366,8 +1369,8 @@ const yumProducts = (yumProductsList) => {
                 <div class="menu_item_img" style="border-bottom:solid 1px grey;">
                   <img
                     src=` +
-                    yum.imgRef +
-                    `
+          yum.imgRef +
+          `
                     alt="yum-meny-bild"
                     class="img-fluid w-100"
                     class="title"
@@ -1393,15 +1396,15 @@ const yumProducts = (yumProductsList) => {
                     data-bs-toggle="modal"
                     data-bs-target="#modal"
                     >` +
-                    yum.title +
-                    `</a>
+          yum.title +
+          `</a>
                   <div class="d-flex justify-content-between">
                             <h5 class="price">` +
-                    yum.price +
-                    `kr</h5>
+          yum.price +
+          `kr</h5>
                             <img src=` +
-                    yum.dietRef +
-                    `
+          yum.dietRef +
+          `
                             alt="dagens-meny-bild"
                             class="img-fluid diet_img"
                             href="#"/>
@@ -1609,9 +1612,9 @@ const CarouselFoodBoxes = (yumProductsList) => {
   }
 };
 
-const CarouselFoodBoxes2 = (yumProductsList) => {
+const CarouselFoodBoxes2 = (baguetterProductsList) => {
   if (carouselContainer2 !== null) {
-    const htmlString = yumProductsList
+    const htmlString = baguetterProductsList
       .map((yum) => {
         let title = JSON.stringify(yum.title);
         let description = JSON.stringify(yum.description);
@@ -1874,14 +1877,14 @@ window.onload = function () {
 
 //Display daily items
 const dailyProducts = (dailyProductsList) => {
-    if (daily !== null) {
-        const htmlString = dailyProductsList
-            .map((daily) => {
-                let title = JSON.stringify(daily.title);
-                let description = JSON.stringify(daily.description);
-                let ingredients = JSON.stringify(daily.ingredients);
-                return (
-                    `<div
+  if (daily !== null) {
+    const htmlString = dailyProductsList
+      .map((daily) => {
+        let title = JSON.stringify(daily.title);
+        let description = JSON.stringify(daily.description);
+        let ingredients = JSON.stringify(daily.ingredients);
+        return (
+          `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -1898,8 +1901,8 @@ const dailyProducts = (dailyProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-                    daily.imgRef +
-                    `
+          daily.imgRef +
+          `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -1911,16 +1914,16 @@ const dailyProducts = (dailyProductsList) => {
                <div class="d-flex">
                <img
                   src=` +
-                    daily.dietRef +
-                    `
+          daily.dietRef +
+          `
                   alt="dagens-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
 
                 /></div>
                 <a class="category" href="#">` +
-                    daily.category +
-                    `</a>
+          daily.category +
+          `</a>
           </div>
               <div class="menu_item_text">
                 <a
@@ -1937,15 +1940,15 @@ const dailyProducts = (dailyProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-                    daily.title.replace(/'/g, "") +
-                    `</a
+          daily.title.replace(/'/g, "") +
+          `</a
                 >
                 <h5 class="price">` +
-                    daily.price +
-                    `kr</h5>` +
-                    "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='amenu_add_to_cart' data - id=" +
-                    daily.id +
-                    `
+          daily.price +
+          `kr</h5>` +
+          "<div class='add_to_cart'>Kommer snart</div><!-- <button id = 'cart-button' class='amenu_add_to_cart' data - id=" +
+          daily.id +
+          `
           data-yum-id=${daily.id}
           data-yum-title=${title}
           data-yum-price=${daily.price}
@@ -1954,8 +1957,8 @@ const dailyProducts = (dailyProductsList) => {
           data-yum-description=${description}
           data-yum-diet=${daily.dietRef}    
           ` +
-                    ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
-                    `<!--
+          ") onclick='realAddToCart(event)''>Lägg till     <i class='fas fa-cart-plus' onclick='realAddToCart(event)' ></i></button>-->" +
+          `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -1968,25 +1971,25 @@ const dailyProducts = (dailyProductsList) => {
               </div>
             </div>
           </div>`
-                );
-            })
-            .join("");
-        daily.innerHTML = htmlString;
-    } else {
-        return null;
-    }
+        );
+      })
+      .join("");
+    daily.innerHTML = htmlString;
+  } else {
+    return null;
+  }
 };
 
 //Display premium items
 const premiumProducts = (premiumProductsList) => {
-    if (premium !== null) {
-        const htmlString = premiumProductsList
-            .map((premium) => {
-                let title = JSON.stringify(premium.title);
-                let description = JSON.stringify(premium.description);
-                let ingredients = JSON.stringify(premium.ingredients);
-                return (
-                    `<div
+  if (premium !== null) {
+    const htmlString = premiumProductsList
+      .map((premium) => {
+        let title = JSON.stringify(premium.title);
+        let description = JSON.stringify(premium.description);
+        let ingredients = JSON.stringify(premium.ingredients);
+        return (
+          `<div
             class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
             data-wow-duration="1s"
                         >
@@ -2003,8 +2006,8 @@ const premiumProducts = (premiumProductsList) => {
               <div class="menu_item_img">
                 <img
                   src=` +
-                    premium.imgRef +
-                    `
+          premium.imgRef +
+          `
                   alt="premium-meny-bild"
                   class="img-fluid w-100"
                   class="title"
@@ -2016,16 +2019,16 @@ const premiumProducts = (premiumProductsList) => {
                <div class="d-flex">
                <img
                   src=` +
-                    premium.dietRef +
-                    `
+          premium.dietRef +
+          `
                   alt="premium-meny-bild"
                   class="img-fluid w-100 diet_img"
                   href="#"
 
                 /></div>
                 <a class="category" href="#">` +
-                    premium.category +
-                    `</a>
+          premium.category +
+          `</a>
           </div>
               <div class="menu_item_text">
                 <a
@@ -2042,15 +2045,15 @@ const premiumProducts = (premiumProductsList) => {
                   data-bs-toggle="modal"
                   data-bs-target="#modal"
                   >` +
-                    premium.title.replace(/'/g, "") +
-                    `</a
+          premium.title.replace(/'/g, "") +
+          `</a
                 >
                 <h5 class="price">` +
-                    premium.price +
-                    `kr</h5>` +
-                    "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='menu_add_to_cart' data-id=" +
-                    premium.id +
-                    `
+          premium.price +
+          `kr</h5>` +
+          "<div class='add_to_cart'>Kommer snart</div><!--<button id='cart-button' class='menu_add_to_cart' data-id=" +
+          premium.id +
+          `
           data-yum-id=${premium.id}
           data-yum-title=${title}
           data-yum-price=${premium.price}
@@ -2059,8 +2062,8 @@ const premiumProducts = (premiumProductsList) => {
           data-yum-description=${description}
           data-yum-diet=${premium.dietRef}
           ` +
-                    ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
-                    `<!--
+          ") onclick='realAddToCart(event)'>Lägg till  <i class='fas fa-cart-plus' ></i></button>-->" +
+          `<!--
           <ul class="d-flex flex-wrap justify-content-end">
                   <li>
                     <a href="#"><i class="fa fa-heart"></i></a>
@@ -2073,13 +2076,13 @@ const premiumProducts = (premiumProductsList) => {
               </div>
             </div>
           </div>`
-                );
-            })
-            .join("");
-        premium.innerHTML = htmlString;
-    } else {
-        return null;
-    }
+        );
+      })
+      .join("");
+    premium.innerHTML = htmlString;
+  } else {
+    return null;
+  }
 };
 
 //Show baguetter
@@ -2384,352 +2387,454 @@ const sortingNamePriceFunction = (el) => {
 
 //Sort function for diet
 const sortingDishDietFunction = (el) => {
-  const option = el.value;
-  if (option === "vegan") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let vegan = "";
-      product.diet.map((img) => {
-        vegan = img.toLowerCase().includes(option);
-      });
-      return vegan;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let vegan = "";
-      product.diet.map((img) => {
-        vegan = img.toLowerCase().includes(option);
-      });
-      return vegan;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let vegan = "";
-      product.diet.map((img) => {
-        vegan = img.toLowerCase().includes(option);
-      });
-      return vegan;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let vegan = "";
-        product.diet.map((img) => {
-          vegan = img.toLowerCase().includes(option);
+    const option = el;
+    if (option === "Vegan") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet.includes("Vegan");
         });
-        return vegan;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "AL") {
-    const sortedYumArray = yumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedDailyArray = dailyFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    yumProducts(sortedYumArray);
-    dailyProducts(sortedDailyArray);
-    premiumProducts(sortedPremiumArray);
-    baguetterProducts(sortedBaguetterArray);
-    if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "vegetarian") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let vegetarian = "";
-      product.diet.map((img) => {
-        vegetarian = img.toLowerCase().includes(option);
-      });
-      return vegetarian;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let vegetarian = "";
-      product.diet.map((img) => {
-        vegetarian = img.toLowerCase().includes(option);
-      });
-      return vegetarian;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let vegetarian = "";
-      product.diet.map((img) => {
-        vegetarian = img.toLowerCase().includes(option);
-      });
-      return vegetarian;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let vegetarian = "";
-        product.diet.map((img) => {
-          vegetarian = img.toLowerCase().includes(option);
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let vegan = "";
+        //   product.diet.map((img) => {
+        //     vegan = img.toLowerCase().includes(option);
+        //   });
+        //   return vegan;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let vegan = "";
+        //   product.diet.map((img) => {
+        //     vegan = img.toLowerCase().includes(option);
+        //   });
+        //   return vegan;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let vegan = "";
+        //     product.diet.map((img) => {
+        //       vegan = img.toLowerCase().includes(option);
+        //     });
+        //     return vegan;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "AL") {
+        const sortedYumArray = yumFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedDailyArray = dailyFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        yumProducts(sortedYumArray);
+        dailyProducts(sortedDailyArray);
+        premiumProducts(sortedPremiumArray);
+        baguetterProducts(sortedBaguetterArray);
+        if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Vegetarian") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet.includes("Vegetarian");
         });
-        return vegetarian;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "cow") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      return product.diet === "Cow";
-    });
-    // const filteredDailyProducts = dailyProductsList.filter((product) => {
-    //   let cow = "";
-    //   product.diet.map((img) => {
-    //     cow = img.toLowerCase().includes(option);
-    //   });
-    //   return cow;
-    // });
-    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
-    //   let cow = "";
-    //   product.diet.map((img) => {
-    //     cow = img.toLowerCase().includes(option);
-    //   });
-    //   return cow;
-    // });
-    // const filteredBaguetterProducts = baguetterProductsList.filter(
-    //   (product) => {
-    //     let cow = "";
-    //     product.diet.map((img) => {
-    //       cow = img.toLowerCase().includes(option);
-    //     });
-    //     return cow;
-    //   }
-    // );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "fish") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let fish = "";
-      product.diet.map((img) => {
-        fish = img.toLowerCase().includes(option);
-      });
-      return fish;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let fish = "";
-      product.diet.map((img) => {
-        fish = img.toLowerCase().includes(option);
-      });
-      return fish;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let fish = "";
-      product.diet.map((img) => {
-        fish = img.toLowerCase().includes(option);
-      });
-      return fish;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let fish = "";
-        product.diet.map((img) => {
-          fish = img.toLowerCase().includes(option);
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let vegetarian = "";
+        //   product.diet.map((img) => {
+        //     vegetarian = img.toLowerCase().includes(option);
+        //   });
+        //   return vegetarian;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let vegetarian = "";
+        //   product.diet.map((img) => {
+        //     vegetarian = img.toLowerCase().includes(option);
+        //   });
+        //   return vegetarian;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let vegetarian = "";
+        //     product.diet.map((img) => {
+        //       vegetarian = img.toLowerCase().includes(option);
+        //     });
+        //     return vegetarian;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Cow") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet === "Cow";
         });
-        return fish;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "chicken") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let chicken = "";
-      product.diet.map((img) => {
-        chicken = img.toLowerCase().includes(option);
-      });
-      return chicken;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let chicken = "";
-      product.diet.map((img) => {
-        chicken = img.toLowerCase().includes(option);
-      });
-      return chicken;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let chicken = "";
-      product.diet.map((img) => {
-        chicken = img.toLowerCase().includes(option);
-      });
-      return chicken;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let chicken = "";
-        product.diet.map((img) => {
-          chicken = img.toLowerCase().includes(option);
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let cow = "";
+        //   product.diet.map((img) => {
+        //     cow = img.toLowerCase().includes(option);
+        //   });
+        //   return cow;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let cow = "";
+        //   product.diet.map((img) => {
+        //     cow = img.toLowerCase().includes(option);
+        //   });
+        //   return cow;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let cow = "";
+        //     product.diet.map((img) => {
+        //       cow = img.toLowerCase().includes(option);
+        //     });
+        //     return cow;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Fish") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet.includes("Fish");
         });
-        return chicken;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let fish = "";
+        //   product.diet.map((img) => {
+        //     fish = img.toLowerCase().includes(option);
+        //   });
+        //   return fish;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let fish = "";
+        //   product.diet.map((img) => {
+        //     fish = img.toLowerCase().includes(option);
+        //   });
+        //   return fish;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let fish = "";
+        //     product.diet.map((img) => {
+        //       fish = img.toLowerCase().includes(option);
+        //     });
+        //     return fish;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Pork") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet === "Pork";
+        });
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let fish = "";
+        //   product.diet.map((img) => {
+        //     fish = img.toLowerCase().includes(option);
+        //   });
+        //   return fish;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let fish = "";
+        //   product.diet.map((img) => {
+        //     fish = img.toLowerCase().includes(option);
+        //   });
+        //   return fish;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let fish = "";
+        //     product.diet.map((img) => {
+        //       fish = img.toLowerCase().includes(option);
+        //     });
+        //     return fish;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Chicken") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet.includes("Chicken");
+        });
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let chicken = "";
+        //   product.diet.map((img) => {
+        //     chicken = img.toLowerCase().includes(option);
+        //   });
+        //   return chicken;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let chicken = "";
+        //   product.diet.map((img) => {
+        //     chicken = img.toLowerCase().includes(option);
+        //   });
+        //   return chicken;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let chicken = "";
+        //     product.diet.map((img) => {
+        //       chicken = img.toLowerCase().includes(option);
+        //     });
+        //     return chicken;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Pork, Cow") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet.includes("Pork, Cow");
+        });
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let chicken = "";
+        //   product.diet.map((img) => {
+        //     chicken = img.toLowerCase().includes(option);
+        //   });
+        //   return chicken;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let chicken = "";
+        //   product.diet.map((img) => {
+        //     chicken = img.toLowerCase().includes(option);
+        //   });
+        //   return chicken;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let chicken = "";
+        //     product.diet.map((img) => {
+        //       chicken = img.toLowerCase().includes(option);
+        //     });
+        //     return chicken;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
     }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  }
 };
 loadProducts();
 
@@ -3318,7 +3423,8 @@ function logOut() {
 function dash_myProfile() {
   async function getUser() {
     try {
-      const response = await fetch(`https://localhost:7216/users/9`);
+      //const response = await fetch(`https://localhost:7216/users/9`);
+      const response = await fetch(`https://${API_KEY}/users/9`);
       const data = await response.json();
       console.log(data);
 
@@ -4583,7 +4689,7 @@ function nextAccord2() {
 // and finally increment the dates with '1' for the next loop with setDate
 
 const dates = new Date();
-const options = { day: "numeric", month: "short", weekday: "long" };
+const options = { day: "numeric", month: "numeric", weekday: "long", year: "numeric" };
 const twoWeeks = 17;
 
 let threeDaysAhead = [];
@@ -4608,7 +4714,7 @@ const dateStrings = threeDaysAhead
         <div class="swiper-slide date">
             <div class="date-box box1 text-center date">
               <div class="day">${weekday}</div>
-              <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
+              <div class="date"><span id="deliveryDateSpan" style="margin-right: 5px;">${days}</span></div>
             </div>
         </div>
 
@@ -4622,33 +4728,44 @@ if (deliveryDates !== null) {
 }
 
 const theBox = document.querySelectorAll(".box1");
-
+let selectedDeliveryDate = null;
 theBox.forEach((btn) => {
   btn.addEventListener("click", function () {
     theBox.forEach((b) => b.classList.remove("box-selected"));
-      btn.classList.add("box-selected");
-      const dayText = btn.querySelector(".day");
-      const dateText = btn.querySelector(".date");
-      console.log(dayText.textContent + " " + dateText.textContent);
+    btn.classList.add("box-selected");
+    const dayText = btn.querySelector(".day");
+    const dateText = btn.querySelector(".date");
+    console.log(dayText.textContent + " " + dateText.textContent);
   });
 });
 
 const timeBox = document.querySelectorAll(".tid-box");
 
 timeBox.forEach((btn) => {
-    btn.addEventListener("click", function () {
-        timeBox.forEach((b) => b.classList.remove("tid-box-selected"));
-        btn.classList.add("tid-box-selected");
-        const deliverClock = btn.childNodes[1].textContent;
-        const deliverShipping = btn.childNodes[3].textContent;
-        console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
-    });
+  btn.addEventListener("click", function () {
+    timeBox.forEach((b) => b.classList.remove("tid-box-selected"));
+    btn.classList.add("tid-box-selected");
+    const deliverClock = btn.childNodes[1].textContent;
+    const deliverShipping = btn.childNodes[3].textContent;
+    console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
+  });
 });
+
+// Format the delivery date to send to backend
+function formatDeliveryDate(dateString) {
+    const split = dateString.split(" ");
+    const days = split[1].replace(/[^\d]/g, '');
+    const month = split[2];
+    const year = new Date().getFullYear();
+
+    const formatted = new Date(`${year}-${monthMonth}-${day}`);
+    //const formattedDate = new Date(year, month, days);
+    return formatted.toISOString();
+}
 
 // theBox.addEventListener('click', function() {
 // theBox.classList.toggle("box-selected");
 // })
-
 
 // Arrow buttons, add a click function to move it left and right whilst checking the clip-path to dynamically
 // move it left and right depending where the element is being moved in order to ensure only the middle is visible
@@ -4721,7 +4838,6 @@ timeBox.forEach((btn) => {
 
 /////////////////////////// Gamla lösning End//////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-
 
 // <div>
 //     <button style="padding:5px; width:100px;">
@@ -5483,11 +5599,10 @@ var swiper1 = new Swiper(".slide-content", {
     clickable: true,
     dynamicBullets: true,
   },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
+  autoplay: {
+    delay: 2000,
+    disableOnInteraction: false,
   },
-
   breakpoints: {
     0: {
       slidesPerView: 1,
@@ -5522,9 +5637,45 @@ var swiper2 = new Swiper(".slide-content2", {
     clickable: true,
     dynamicBullets: true,
   },
+  autoplay: {
+    delay: 2000,
+    disableOnInteraction: false,
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+    },
+    576: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    992: {
+      slidesPerView: 2,
+    },
+    1120: {
+      slidesPerView: 3,
+    },
+    1400: {
+      slidesPerView: 3,
+    },
+  },
+});
+
+var datesSwipes = new Swiper(".dates_swipe", {
+  slidesPerView: 3,
+  spaceBetween: 10,
+  loop: false,
+  slidesPerGroup: 3,
+  slidesOffsetBefore: -6,
+  slidesOffsetAfter: 8,
+  roundLengths: true,
+  fade: true,
+  grabCursor: false,
   navigation: {
-    nextEl: ".swiper-button-next2",
-    prevEl: ".swiper-button-prev2",
+    nextEl: ".swiper-button-next-dates",
+    prevEl: ".swiper-button-prev-dates",
   },
 
   breakpoints: {
@@ -5549,42 +5700,124 @@ var swiper2 = new Swiper(".slide-content2", {
   },
 });
 
-var datesSwipes = new Swiper(".dates_swipe", {
-    slidesPerView: 3,
-    spaceBetween: 10,
-    loop: false,
-    slidesPerGroup: 3,
-    slidesOffsetBefore: -6,
-    slidesOffsetAfter: 8,
-    roundLengths: true,
-    fade: true,
-    grabCursor: false,
-    navigation: {
-        nextEl: ".swiper-button-next-dates",
-        prevEl: ".swiper-button-prev-dates",
-    },
+//Direct to payment when purchase form is saved
+async function cartNextBtnProceed() {
+    // Försök att spara formulärdata
+    const purchaseDataSaved = await savePurchaseData();
 
-    breakpoints: {
-        0: {
-            slidesPerView: 1,
+    if (purchaseDataSaved) {
+        // Om formulärdata har sparats, gå vidare till betalning
+        window.location.href = 'payment.html';
+    } else {
+        alert("Något gick fel. Vänligen fyll i fälten korrekt.");
+    }
+}
+
+// Save form in Cart_view
+async function savePurchaseData() {
+
+    let houseType = "";
+    const purchaseData = {};
+    const missingFields = [];
+
+    const selectedTime = document.querySelector(".tid-box.tid-box-selected");
+    if (selectedTime) {
+        const deliverClock = selectedTime.querySelector(".time").textContent;
+        const deliverShipping = selectedTime.querySelector(".price").textContent;
+        purchaseData.deliveryTime = deliverClock;  
+        purchaseData.deliveryPrice = deliverShipping;
+    } else {
+        missingFields.push("leveranstid");
+    }
+    purchaseData.deliveryDate = document.getElementById("deliveryDateSpan").textContent;
+    purchaseData.address = document.getElementById("addressInput").value;
+    purchaseData.postalCode = document.getElementById("postalCodeInput").value;
+    purchaseData.ort = document.getElementById("cityInput").value;
+    const apartment = document.getElementById("lägenhet").checked;
+    const house = document.getElementById("villa_hus").checked;
+    const radhus = document.getElementById("radhus").checked;
+    const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+    purchaseData.text = document.getElementById("floatingTextarea").value.trim();
+    purchaseData.firstName = document.getElementById("firstNameInput").value;
+    purchaseData.lastName = document.getElementById("lastNameInput").value;
+    purchaseData.phone = document.getElementById("phoneInput").value;
+    purchaseData.email = document.getElementById("mailInput").value;
+
+
+    const requiredFields = ['address', 'postalCode', 'ort', 'firstName', 'lastName', 'phone', 'email'];
+    requiredFields.forEach(field => {
+        if (!purchaseData[field]) missingFields.push(field);
+    });
+
+    if (missingFields.length > 0) {
+        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+        return false;
+    }
+
+    if (apartment) {
+        houseType = "Lägenhet";
+        purchaseData.port = document.getElementById("portInput").value.trim();
+        purchaseData.floor = document.getElementById("floorInput").value.trim();
+
+        //if (!purchaseData.Port) missingFields.push("portkod");
+        //if (!purchaseData.Floor) missingFields.push("våningsplan");
+    } else if (house) {
+        houseType = "Villa/Hus";
+    } else if (radhus) {
+        houseType = "Radhus";
+    }
+    purchaseData.houseType = houseType;
+    purchaseData.LeaveAtDoor = LeaveAtDoor;
+
+    const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    purchaseData.products = formDataArry.map(item => ({
+        id: parseInt(item.id),
+        name: item.title,
+        quantity: parseInt(item.quantity),
+        price: item.Price
+    }));
+
+    purchaseData.total = localStorage.getItem("sum");
+    purchaseData.quantity = localStorage.getItem("totalQuantity");
+
+    localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
+
+    const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
+    const postPurchaseData = {
+        userId: 11,
+        products: purchaseData.products,
+        quantity: parseInt(purchaseData.quantity),
+        total: parseFloat(purchaseData.total),
+        paymentMethod: "card",
+        orderDate: new Date().toISOString(),
+        deliveryDate: purchaseData.deliveryDate,
+        deliveryTime: purchaseData.deliveryTime,
+        deliveryAddress: purchaseData.address,
+        deliveryCity: purchaseData.ort,
+        deliveryPostalCode: purchaseData.postalCode,
+        floor: purchaseData.floor,
+        portCode: purchaseData.port,
+        leaveAtDoor: purchaseData.LeaveAtDoor
+    };
+
+    const response = await fetch(`https://localhost:7216/purchase`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
-        576: {
-            slidesPerView: 1,
-        },
-        768: {
-            slidesPerView: 2,
-        },
-        992: {
-            slidesPerView: 2,
-        },
-        1120: {
-            slidesPerView: 3,
-        },
-        1400: {
-            slidesPerView: 3,
-        },
-    },
-});
+        body: JSON.stringify(postPurchaseData),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        alert('Horay');
+    } else {
+        const errorText = await response.text(); // Hämta felmeddelande som text
+        alert('Ett fel uppstod: ' + errorText);
+    }
+}
+
+
 
 //SIDE BAR CART
 
@@ -5634,6 +5867,8 @@ function addToCart(product) {
   // updateSidebarCart();
   // openSidebar();
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const closeSidebarBtn = document.getElementById("closeSidebar");
@@ -5812,231 +6047,228 @@ function updateSidebarCart() {
 // --------------------------------------
 
 async function redirectToStripeCheckout() {
-    try {
-        // Retrieve cart information from local storage
-        let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-        if (!formDataArry || formDataArry.length === 0) {
-            console.error("No products in the cart.");
-            return;
-        }
-
-        let products = formDataArry.map((item) => {
-            // Retrieve the unit price and total price for the selected quantity
-            let unitPrice = item.price; // Price per item
-            let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
-
-            return {
-                name: item.title, // Product name (title)
-                quantity: item.quantity, // Quantity of the product
-                price: unitPrice, // Unit price for the product
-                total: totalQuantityPrice, // Total price for the quantity
-            };
-        });
-
-        // Create a POST request to your backend endpoint to create the Stripe checkout session
-        const response = await fetch("https://localhost:7216/payments", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                successPaymentUrl:
-                    "https://yumfoodsdev.azurewebsites.net/payment_success.html",
-                cancelPaymentUrl:
-                    "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
-                products: products, // Send the products array
-            }),
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-            // Redirect to the Stripe checkout session URL
-            window.location.href = result.checkoutUrl;
-            localStorage.clear();
-        } else {
-            console.error("Error creating Stripe session", result);
-        }
-    } catch (error) {
-        console.error("Error:", error);
+  try {
+    // Retrieve cart information from local storage
+    let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    if (!formDataArry || formDataArry.length === 0) {
+      console.error("No products in the cart.");
+      return;
     }
-};
+
+    let products = formDataArry.map((item) => {
+      // Retrieve the unit price and total price for the selected quantity
+      let unitPrice = item.price; // Price per item
+      let totalQuantityPrice = item.quantity * item.price; // Total for the quantity
+
+      return {
+        name: item.title, // Product name (title)
+        quantity: item.quantity, // Quantity of the product
+        price: unitPrice, // Unit price for the product
+        total: totalQuantityPrice, // Total price for the quantity
+      };
+    });
+
+    // Create a POST request to your backend endpoint to create the Stripe checkout session
+    //const response = await fetch("https://localhost:7216/payments", {
+    const response = await fetch(`https://${API_KEY}/payments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        successPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+        cancelPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+        products: products, // Send the products array
+      }),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      // Redirect to the Stripe checkout session URL
+      window.location.href = result.checkoutUrl;
+      localStorage.clear();
+    } else {
+      console.error("Error creating Stripe session", result);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
 function displayOrder(order) {
-    const orderDetailsDiv = document.getElementById("orderDetails");
+  const orderDetailsDiv = document.getElementById("orderDetails");
 
-    if (!order) {
-        orderDetailsDiv.innerHTML = "No order found.";
-        return;
-    }
+  if (!order) {
+    orderDetailsDiv.innerHTML = "No order found.";
+    return;
+  }
 }
 
 async function register() {
-    const userData = {};
+  const userData = {};
 
-    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
-    userData.firstName = document.getElementById("field1").value;
-    userData.lastName = document.getElementById("field1.2").value;
-    userData.email = document.getElementById("field2").value;
-    userData.phoneNumber = document.getElementById("field2.1").value;
-    userData.passwordhash = document.getElementById("field3").value;
-    userData.address = document.getElementById("field5").value;
-    userData.postalCode = document.getElementById("postnummer").value;
-    userData.city = document.getElementById("ort").value;
+  // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
+  userData.firstName = document.getElementById("field1").value;
+  userData.lastName = document.getElementById("field1.2").value;
+  userData.email = document.getElementById("field2").value;
+  userData.phoneNumber = document.getElementById("field2.1").value;
+  userData.passwordhash = document.getElementById("field3").value;
+  userData.address = document.getElementById("field5").value;
+  userData.postalCode = document.getElementById("postnummer").value;
+  userData.city = document.getElementById("ort").value;
 
-    // Skapa konstanter för att kontrollera lösen och termer
-    const repeatPassword = document.getElementById("field4").value;
-    const termsAccepted = document.getElementById("terms1").checked;
+  // Skapa konstanter för att kontrollera lösen och termer
+  const repeatPassword = document.getElementById("field4").value;
+  const termsAccepted = document.getElementById("terms1").checked;
 
-    // Validering
-    if (userData.passwordhash !== repeatPassword) {
-        alert("Lösenorden matchar inte!");
-        return;
-    }
+  // Validering
+  if (userData.passwordhash !== repeatPassword) {
+    alert("Lösenorden matchar inte!");
+    return;
+  }
 
-    if (!termsAccepted) {
-        alert("Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta.");
-        return;
-    }
+  if (!termsAccepted) {
+    alert(
+      "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+    );
+    return;
+  }
 
-    // Konvertera obj till sträng
-    localStorage.setItem("userData", JSON.stringify(userData));
+  // Konvertera obj till sträng
+  localStorage.setItem("userData", JSON.stringify(userData));
 
-    // Tar ut datan
-    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+  // Tar ut datan
+  const storedUserData = JSON.parse(localStorage.getItem("userData"));
 
-    // Kontrollera att det finns data i localStorage
-    if (!storedUserData) {
-        console.error("No user data found in localStorage.");
-        return;
-    }
+  // Kontrollera att det finns data i localStorage
+  if (!storedUserData) {
+    console.error("No user data found in localStorage.");
+    return;
+  }
 
-    // Skapa nytt objektet som ska matcha datan i databasen
-    const userToRegister = {
-        firstName: storedUserData.firstName,
-        lastName: storedUserData.lastName,
-        email: storedUserData.email,
-        passwordhash: storedUserData.passwordhash,
-        address: storedUserData.address,
-        postalCode: storedUserData.postalCode,
-        phoneNumber: storedUserData.phoneNumber,
-        city: storedUserData.city,
-        userType: null,
-        organizationNumber: null,
-        orders: null,
-        subscription: null
-    };
+  // Skapa nytt objektet som ska matcha datan i databasen
+  const userToRegister = {
+    firstName: storedUserData.firstName,
+    lastName: storedUserData.lastName,
+    email: storedUserData.email,
+    passwordhash: storedUserData.passwordhash,
+    address: storedUserData.address,
+    postalCode: storedUserData.postalCode,
+    phoneNumber: storedUserData.phoneNumber,
+    city: storedUserData.city,
+    userType: null,
+    organizationNumber: null,
+    orders: null,
+    subscription: null,
+  };
 
-    // Anropa apiet
-    const response = await fetch('https://localhost:7216/users', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userToRegister)
-    });
+  // Anropa apiet
+  const response = await fetch(`https://${API_KEY}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userToRegister),
+  });
 
-    const data = await response.json();
-    alert('Användare registrerad framgångsrikt!');
+  const data = await response.json();
+  alert("Användare registrerad framgångsrikt!");
 
-    // Optionally, clear localStorage
-    localStorage.removeItem("userData");
+  // Optionally, clear localStorage
+  localStorage.removeItem("userData");
 
-    // Redirect after successful registration
-    window.location.href = "sign_in.html";
+  // Redirect after successful registration
+  window.location.href = "sign_in.html";
 }
-document.getElementById("personalForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
-    register(); // Call the login function
-});
 
 async function login() {
-    // Create an object to hold login data
-    const loginData = {
-        email: document.getElementById("email-login").value.trim(),
-        password: document.getElementById("password-login").value.trim()
-    };
+  // Create an object to hold login data
+  const loginData = {
+    email: document.getElementById("email-login").value.trim(),
+    password: document.getElementById("password-login").value.trim(),
+  };
 
-    // Validate the inputs
-    if (!loginData.email || !loginData.password) {
-        alert("Both email and password are required.");
-        return;
+  // Validate the inputs
+  if (!loginData.email || !loginData.password) {
+    alert("Both email and password are required.");
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://${API_KEY}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Response data: ", data);
+
+      if (data && data.token) {
+        // If a token is received
+        localStorage.setItem("authToken", data.token); // Store the token
+        alert("Login successful!"); // Inform user
+        window.location.href = "dashboard.html"; // Redirect to the dashboard
+      } else {
+        alert("Login failed: No token received from the server.");
+      }
+    } else {
+      // Handle error responses
+      const errorText = await response.text(); // Get error response text
+      alert(`Login failed: ${errorText}`);
     }
-
-    try {
-
-        const response = await fetch('https://localhost:7216/users/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(loginData)
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log("Response data: ", data);
-
-            if (data && data.token) { // If a token is received
-                localStorage.setItem('authToken', data.token); // Store the token
-                alert('Login successful!'); // Inform user
-                window.location.href = "dashboard.html"; // Redirect to the dashboard
-            } else {
-                alert('Login failed: No token received from the server.');
-            }
-        } else {
-            // Handle error responses
-            const errorText = await response.text(); // Get error response text
-            alert(`Login failed: ${errorText}`);
-        }
-    } catch (error) {
-        console.error('Network or unexpected error during login:', error);
-        alert('An error occurred during login. Please try again.');
-    }
+  } catch (error) {
+    console.error("Network or unexpected error during login:", error);
+    alert("An error occurred during login. Please try again.");
+  }
 }
 
 // Event listener for the login form
-document.getElementById("loginForm").addEventListener("submit", function (event) {
+let loginForm = document.getElementById("loginForm");
+if (loginForm !== null) {
+  loginForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
     login(); // Call the login function
-});
-
-async function updateProfile() {
-
-    const id = localStorage.getItem('userId');
-
-    const updatedUserData = {
-        firstName: document.getElementById("fname").value,
-        lastName: document.getElementById("lname").value,
-        email: document.getElementById("email").value,
-        password: document.getElementById("pass").value,
-        phone: document.getElementById("phone").value
-    };
-
-    try {
-
-        const response = await fetch(`https://localhost:7216/users/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${authToken}`
-            },
-            body: JSON.stringify(updatedUserData)
-        });
-
-        // Handle the response
-        if (response.ok) {
-            const data = await response.json();
-            alert('Profile updated successfully!');
-            console.log("Updated User Data: ", data);
-        } else {
-            const errorText = await response.text();
-            alert(`Failed to update profile: ${errorText}`);
-        }
-    } catch (error) {
-        console.error('Error while updating profile:', error);
-        alert('An error occurred. Please try again.');
-    }
+  });
 }
+async function updateProfile() {
+  const id = localStorage.getItem("userId");
 
+  const updatedUserData = {
+    firstName: document.getElementById("fname").value,
+    lastName: document.getElementById("lname").value,
+    email: document.getElementById("email").value,
+    password: document.getElementById("pass").value,
+    phone: document.getElementById("phone").value,
+  };
+  try {
+    const response = await fetch(`https://${API_KEY}/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
+      body: JSON.stringify(updatedUserData),
+    });
+
+    // Handle the response
+    if (response.ok) {
+      const data = await response.json();
+      alert("Profile updated successfully!");
+      console.log("Updated User Data: ", data);
+    } else {
+      const errorText = await response.text();
+      alert(`Failed to update profile: ${errorText}`);
+    }
+  } catch (error) {
+    console.error("Error while updating profile:", error);
+    alert("An error occurred. Please try again.");
+  }
+}
 
 function Footer() {
   let footer = document.getElementById("footer");
@@ -6048,9 +6280,9 @@ function Footer() {
        <div class="footer_content">
          <img class="footer_logo"
           loading="lazy"
-          src="images/col.png"
+          src="images/footer_logo2.png"
           alt="footer-logo"
-          style="width: 140px; height:200px"
+          style="height:200px"
           class="mb_25"
          />
        </div>

@@ -33,16 +33,23 @@ namespace DataAccess.Repositories
                 await _orderDetailContext.OrderDetail.AddAsync(newOrderDetail);
                 await _orderDetailContext.SaveChangesAsync();
 
-                var user = await _orderDetailContext.User.FindAsync(userId);
-                if (user != null)
+                var user = _orderDetailContext
+                    .User
+                    .FirstOrDefault(u => u.Id == userId);
+                if (user is null)
+                {
+                    await _orderDetailContext.User.AddAsync(user);
+                    await _orderDetailContext.SaveChangesAsync();
+                }
+                else if (user != null)
                 {
                     if (user.Orders is null)
                     {
                         user.Orders = new List<Order>(); 
                     }
-                    user.Orders.Add(newOrder);
-                    await _orderDetailContext.SaveChangesAsync();
                 }
+                user.Orders.Add(newOrder);
+                await _orderDetailContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {
@@ -54,7 +61,8 @@ namespace DataAccess.Repositories
                     await _orderContext.SaveChangesAsync();
                 }
 
-                throw new Exception("Error adding order and order details: " + ex.Message);
+                Console.WriteLine($"Error {ex.Message}");
+                throw;
             }
         }
 
@@ -97,15 +105,14 @@ namespace DataAccess.Repositories
                     Products = order.Products.ToList(),
                     OrderDate = order.OrderDate,
                     DeliveryDate = order.DeliveryDate,
+                    DeliveryTime = order.DeliveryTime,
                     Quantity = order.Quantity,
                     PaymentMethod = order.PaymentMethod,
                     Total = order.Total,
                     //OrderDetails = orderDetails.Where(od => od.OrderId == order.Id).ToList() // Matcha orderdetaljer
                 };
-
                 result.Add(orderWithDetails);
             }
-
             return result;
         }
 

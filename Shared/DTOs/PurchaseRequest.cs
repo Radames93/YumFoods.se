@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.JavaScript;
 using System.Text;
 using System.Threading.Tasks;
 using Shared.Entities;
@@ -15,7 +16,7 @@ namespace Shared.DTOs
         public double Total { get; set; }              // Total price of the order
         public string? PaymentMethod { get; set; }
         public DateTime OrderDate { get; set; }
-        public DateTime DeliveryDate { get; set; }
+        public DateOnly DeliveryDate { get; set; }
         public string DeliveryTime { get; set; }
         public List<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 

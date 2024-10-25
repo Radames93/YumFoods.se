@@ -13,6 +13,7 @@ public class YumFoodsDb : DbContext
     public DbSet<Product> Product { get; set; }
     public DbSet<Order> Order { get; set; }
     public DbSet<Subscription> Subscription { get; set; }
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

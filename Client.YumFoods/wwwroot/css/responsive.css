@@ -5821,10 +5821,6 @@
     padding-bottom: 20px;
   }
 
-  .slide-container {
-    height: 300px;
-  }
-
   /* =====================
       SIDE BAR START
     =======================*/
@@ -5849,15 +5845,19 @@
     font-size: 16px;
   }
 
-  /* =====================
+    #yum-menu-btn {
+        text-align: center;
+        margin-top: -20px;
+    }
+        /* =====================
         LEVERANS START
     =======================*/
-  /* .calendar{
+        /* .calendar{
     display: flex;
     flex-direction: column;
   } */
 
-  .calendar .date-box {
+        .calendar .date-box {
     width: 80px;
   }
 
@@ -5924,9 +5924,7 @@
   #d-flex1 {
     flex-direction: column;
   }
-  .w-100 {
-    margin-left: 50px;
-  }
+  
   .w-75 {
     width: 50%;
     margin-left: auto;
@@ -5962,6 +5960,21 @@
   #d-flex2 {
     flex-direction: column;
   }
+  .box-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+        width: 270px;
+        font-size: 20px;
+        font-weight: 600;
+        text-align: center;
+    }
+    .box-title {
+        padding-top: 30px;
+        text-align: center;
+        line-height: 2;
+        font-size: 30px;
+        font-weight: 600;
+    }
   /* =====================
     PAYMENT PAGE END
   =======================*/
