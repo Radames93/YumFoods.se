@@ -1,4 +1,5 @@
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using API.Extensions;
 using API.Stripe;
 using Azure.Identity;
@@ -6,7 +7,9 @@ using Azure.Security.KeyVault.Secrets;
 using Azure.Storage.Blobs;
 using DataAccess;
 using DataAccess.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Shared.Entities;
 using Shared.Interfaces;
 
@@ -79,8 +82,8 @@ internal class Program
         var completeConnectionString2 = $"{connectionString2};SslMode=VerifyCA;SslCa={tempFilePath}";
 
         //vivians strings
-        var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
-        var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\Vivian\\Desktop\\ca-cert.pem;";
+        var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\padov\\Desktop\\ca-cert.pem;";
+        var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\padov\\Desktop\\ca-cert.pem;";
         var localConn1 = "Server=localhost;Database=yumfoodsdb;Uid=root;Pwd=admin;";
         var localConn2 = "Server=localhost;Database=yumfoods.userdb;Uid=root;Pwd=admin;";
 
@@ -110,6 +113,29 @@ internal class Program
         builder.Services.AddScoped<StripeClient>();
 
         builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"], // From appsettings.json
+            ValidAudience = builder.Configuration["Jwt:Audience"], // From appsettings.json
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
+
+        //Add the AuthenticationService
+
+        builder.Services.AddSingleton(new AuthenticationService(
+            builder.Configuration["Jwt:Key"],
+            builder.Configuration["Jwt:Issuer"],
+            builder.Configuration["Jwt:Audience"]
+        ));
 
         var app = builder.Build();
 
@@ -144,3 +170,4 @@ internal class Program
         }
     }
 }
+//test 

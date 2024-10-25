@@ -131,7 +131,6 @@ namespace DataAccess.Repositories
                 Address = newUser.Address,
                 City = newUser.City,
                 PostalCode = newUser.PostalCode,
-                Country = newUser.Country,
                 Subscription = newUser.Subscription,
                 PasswordHash = hashedPassword,
                 Orders = new List<Order>()
