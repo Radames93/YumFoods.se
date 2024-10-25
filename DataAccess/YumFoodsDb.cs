@@ -38,12 +38,12 @@ public class YumFoodsDb : DbContext
         modelBuilder.Entity<Order>()
             .Property(o => o.HouseType)
             .HasConversion<string>();
-        modelBuilder.Entity<Order>()
-            .Property(o => o.HouseType)
-            .HasConversion(
-                v => v.ToString(),     
-                v => (HouseType)Enum.Parse(typeof(HouseType), v) 
-            );
+        //modelBuilder.Entity<Order>()
+        //    .Property(o => o.HouseType)
+        //    .HasConversion(
+        //        v => v.ToString(),     
+        //        v => (HouseType)Enum.Parse(typeof(HouseType), v) 
+        //    );
 
     }
 }
