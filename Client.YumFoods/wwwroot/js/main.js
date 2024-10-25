@@ -214,22 +214,19 @@ function Header() {
       </div>
   </nav>
     `;
+    let authToken = localStorage.getItem("authToken")
+    if (authToken !== null) {
+    //const savedUserData = JSON.parse(localStorage.getItem("userData"));
 
-  if (localStorage.getItem("isLoggedIn") === "true") {
-    const savedUserData = JSON.parse(localStorage.getItem("userData"));
-
-    document.querySelector("#logInDrop").innerHTML = `
+    /*document.querySelector("#logInDrop").innerHTML = `
     <a class="nav-link" href="contact.html">
     ${savedUserData.förnamn}
-    </a>
-    `;
+    </a>*/
     document.querySelector(".loginBtn").innerHTML = `
     <ul class="navbar-nav">
     <li class="nav-item">
         <a id="logIn" href="dashboard.html" class="dropbtn">
-        <img src="./images/fontawesome-icons/user.svg" class="fa-user"${savedUserData.förnamn
-          .charAt(0)
-          .toUpperCase()} />
+        <img src="./images/fontawesome-icons/user.svg" class="fa-user" />
         </a>
     </li>
   </ul>
@@ -3318,8 +3315,8 @@ function logOut() {
 function dash_myProfile() {
   async function getUser() {
     try {
-        //const response = await fetch(`https://localhost:7216/users/9`);
-        const response = await fetch(`https://${API_KEY}/users/9`);
+        //const response = await fetch(`https://localhost:7216/users/`);
+        const response = await fetch(`https://${API_KEY}/users/email/${email}`);
       const data = await response.json();
       console.log(data);
 
@@ -3373,6 +3370,7 @@ function dash_myProfile() {
             break;
           case "6":
             dash_myNotifications();
+
             break;
           default:
             break;
