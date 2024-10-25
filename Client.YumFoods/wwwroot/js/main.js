@@ -218,16 +218,7 @@ function Header() {
       </div>
   </nav>
     `;
-<<<<<<< HEAD
-    let authToken = localStorage.getItem("authToken")
-    if (authToken !== null) {
-    //const savedUserData = JSON.parse(localStorage.getItem("userData"));
 
-    /*document.querySelector("#logInDrop").innerHTML = `
-    <a class="nav-link" href="contact.html">
-    ${savedUserData.förnamn}
-    </a>*/
-=======
   let authToken = localStorage.getItem("authToken");
   if (authToken !== null) {
     //const savedUserData = JSON.parse(localStorage.getItem("userData"));
@@ -237,16 +228,11 @@ function Header() {
     Inloggad
     </a>
     `;
->>>>>>> 93c52d07c2a3f67ec57c240ad604ae0d4c5f8f73
     document.querySelector(".loginBtn").innerHTML = `
     <ul class="navbar-nav">
     <li class="nav-item">
         <a id="logIn" href="dashboard.html" class="dropbtn">
-<<<<<<< HEAD
         <img src="./images/fontawesome-icons/user.svg" class="fa-user" />
-=======
-        <img src="./images/fontawesome-icons/user.svg" class="fa-user"/>
->>>>>>> 93c52d07c2a3f67ec57c240ad604ae0d4c5f8f73
         </a>
     </li>
   </ul>
@@ -3436,14 +3422,9 @@ function logOut() {
 function dash_myProfile() {
   async function getUser() {
     try {
-<<<<<<< HEAD
-        //const response = await fetch(`https://localhost:7216/users/`);
-        const response = await fetch(`https://${API_KEY}/users/email/${email}`);
-=======
         //const response = await fetch(`https://localhost:7216/email/email`);
       const email = localStorage.getItem("email")
       const response = await fetch(`https://${API_KEY}/users/email/${email}`);
->>>>>>> 93c52d07c2a3f67ec57c240ad604ae0d4c5f8f73
       const data = await response.json();
       console.log(data);
 
@@ -3497,15 +3478,7 @@ function dash_myProfile() {
             break;
           case "6":
             dash_myNotifications();
-<<<<<<< HEAD
-
             break;
-=======
-                break;
-          case "7":
-            modal();
-                break;
->>>>>>> 93c52d07c2a3f67ec57c240ad604ae0d4c5f8f73
           default:
             break;
         }
@@ -6033,7 +6006,7 @@ function displayOrder(order) {
   }
 }
 
-sync function register() {
+async function register() {
     const userData = {};
 
     // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
