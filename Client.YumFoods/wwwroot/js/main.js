@@ -218,9 +218,9 @@ function Header() {
       </div>
   </nav>
     `;
-
-  if (localStorage.getItem("isLoggedIn") === "true") {
-    const savedUserData = JSON.parse(localStorage.getItem("userData"));
+  let authToken = localStorage.getItem("authToken");
+  if (authToken !== null) {
+    //const savedUserData = JSON.parse(localStorage.getItem("userData"));
 
     document.querySelector("#logInDrop").innerHTML = `
     <a class="nav-link" href="sign_in.html">
@@ -231,9 +231,7 @@ function Header() {
     <ul class="navbar-nav">
     <li class="nav-item">
         <a id="logIn" href="dashboard.html" class="dropbtn">
-        <img src="./images/fontawesome-icons/user.svg" class="fa-user"${savedUserData.förnamn
-          .charAt(0)
-          .toUpperCase()} />
+        <img src="./images/fontawesome-icons/user.svg" class="fa-user"/>
         </a>
     </li>
   </ul>
@@ -1164,8 +1162,8 @@ const loadProducts = async () => {
     premiumProducts(premiumProductsList);
     subscriptionsProducts(subscriptionsProductsList);
     baguetterProducts(baguetterProductsList);
-      CarouselFoodBoxes(yumProductsList);
-      CarouselFoodBoxes2(baguetterProductsList);
+    CarouselFoodBoxes(yumProductsList);
+    CarouselFoodBoxes2(baguetterProductsList);
     CarouselDietButtons(yumProductsList);
   } catch (err) {
     // Handle errors gracefully
@@ -1614,8 +1612,8 @@ const CarouselFoodBoxes = (yumProductsList) => {
 };
 
 const CarouselFoodBoxes2 = (baguetterProductsList) => {
-    if (carouselContainer2 !== null) {
-        const htmlString = baguetterProductsList
+  if (carouselContainer2 !== null) {
+    const htmlString = baguetterProductsList
       .map((yum) => {
         let title = JSON.stringify(yum.title);
         let description = JSON.stringify(yum.description);
@@ -2388,352 +2386,454 @@ const sortingNamePriceFunction = (el) => {
 
 //Sort function for diet
 const sortingDishDietFunction = (el) => {
-  const option = el.value;
-  if (option === "vegan") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let vegan = "";
-      product.diet.map((img) => {
-        vegan = img.toLowerCase().includes(option);
-      });
-      return vegan;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let vegan = "";
-      product.diet.map((img) => {
-        vegan = img.toLowerCase().includes(option);
-      });
-      return vegan;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let vegan = "";
-      product.diet.map((img) => {
-        vegan = img.toLowerCase().includes(option);
-      });
-      return vegan;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let vegan = "";
-        product.diet.map((img) => {
-          vegan = img.toLowerCase().includes(option);
+    const option = el;
+    if (option === "Vegan") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet.includes("Vegan");
         });
-        return vegan;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "AL") {
-    const sortedYumArray = yumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedDailyArray = dailyFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-    );
-    yumProducts(sortedYumArray);
-    dailyProducts(sortedDailyArray);
-    premiumProducts(sortedPremiumArray);
-    baguetterProducts(sortedBaguetterArray);
-    if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "vegetarian") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let vegetarian = "";
-      product.diet.map((img) => {
-        vegetarian = img.toLowerCase().includes(option);
-      });
-      return vegetarian;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let vegetarian = "";
-      product.diet.map((img) => {
-        vegetarian = img.toLowerCase().includes(option);
-      });
-      return vegetarian;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let vegetarian = "";
-      product.diet.map((img) => {
-        vegetarian = img.toLowerCase().includes(option);
-      });
-      return vegetarian;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let vegetarian = "";
-        product.diet.map((img) => {
-          vegetarian = img.toLowerCase().includes(option);
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let vegan = "";
+        //   product.diet.map((img) => {
+        //     vegan = img.toLowerCase().includes(option);
+        //   });
+        //   return vegan;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let vegan = "";
+        //   product.diet.map((img) => {
+        //     vegan = img.toLowerCase().includes(option);
+        //   });
+        //   return vegan;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let vegan = "";
+        //     product.diet.map((img) => {
+        //       vegan = img.toLowerCase().includes(option);
+        //     });
+        //     return vegan;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "AL") {
+        const sortedYumArray = yumFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedDailyArray = dailyFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+        );
+        yumProducts(sortedYumArray);
+        dailyProducts(sortedDailyArray);
+        premiumProducts(sortedPremiumArray);
+        baguetterProducts(sortedBaguetterArray);
+        if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Vegetarian") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet.includes("Vegetarian");
         });
-        return vegetarian;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "cow") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      return product.diet === "Cow";
-    });
-    // const filteredDailyProducts = dailyProductsList.filter((product) => {
-    //   let cow = "";
-    //   product.diet.map((img) => {
-    //     cow = img.toLowerCase().includes(option);
-    //   });
-    //   return cow;
-    // });
-    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
-    //   let cow = "";
-    //   product.diet.map((img) => {
-    //     cow = img.toLowerCase().includes(option);
-    //   });
-    //   return cow;
-    // });
-    // const filteredBaguetterProducts = baguetterProductsList.filter(
-    //   (product) => {
-    //     let cow = "";
-    //     product.diet.map((img) => {
-    //       cow = img.toLowerCase().includes(option);
-    //     });
-    //     return cow;
-    //   }
-    // );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "fish") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let fish = "";
-      product.diet.map((img) => {
-        fish = img.toLowerCase().includes(option);
-      });
-      return fish;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let fish = "";
-      product.diet.map((img) => {
-        fish = img.toLowerCase().includes(option);
-      });
-      return fish;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let fish = "";
-      product.diet.map((img) => {
-        fish = img.toLowerCase().includes(option);
-      });
-      return fish;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let fish = "";
-        product.diet.map((img) => {
-          fish = img.toLowerCase().includes(option);
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let vegetarian = "";
+        //   product.diet.map((img) => {
+        //     vegetarian = img.toLowerCase().includes(option);
+        //   });
+        //   return vegetarian;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let vegetarian = "";
+        //   product.diet.map((img) => {
+        //     vegetarian = img.toLowerCase().includes(option);
+        //   });
+        //   return vegetarian;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let vegetarian = "";
+        //     product.diet.map((img) => {
+        //       vegetarian = img.toLowerCase().includes(option);
+        //     });
+        //     return vegetarian;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Cow") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet === "Cow";
         });
-        return fish;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
-    }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  } else if (option === "chicken") {
-    const filteredYumProducts = yumProductsList.filter((product) => {
-      let chicken = "";
-      product.diet.map((img) => {
-        chicken = img.toLowerCase().includes(option);
-      });
-      return chicken;
-    });
-    const filteredDailyProducts = dailyProductsList.filter((product) => {
-      let chicken = "";
-      product.diet.map((img) => {
-        chicken = img.toLowerCase().includes(option);
-      });
-      return chicken;
-    });
-    const filteredPremiumProducts = premiumProductsList.filter((product) => {
-      let chicken = "";
-      product.diet.map((img) => {
-        chicken = img.toLowerCase().includes(option);
-      });
-      return chicken;
-    });
-    const filteredBaguetterProducts = baguetterProductsList.filter(
-      (product) => {
-        let chicken = "";
-        product.diet.map((img) => {
-          chicken = img.toLowerCase().includes(option);
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let cow = "";
+        //   product.diet.map((img) => {
+        //     cow = img.toLowerCase().includes(option);
+        //   });
+        //   return cow;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let cow = "";
+        //   product.diet.map((img) => {
+        //     cow = img.toLowerCase().includes(option);
+        //   });
+        //   return cow;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let cow = "";
+        //     product.diet.map((img) => {
+        //       cow = img.toLowerCase().includes(option);
+        //     });
+        //     return cow;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Fish") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet.includes("Fish");
         });
-        return chicken;
-      }
-    );
-    yumProducts(filteredYumProducts);
-    dailyProducts(filteredDailyProducts);
-    premiumProducts(filteredPremiumProducts);
-    baguetterProducts(filteredBaguetterProducts);
-    if (yum && yum.innerHTML === "") {
-      yumFilterMessage.classList.remove("hide");
-      yumFilterMessage.classList.add("show");
-    } else if (yum && yum.innerHTML !== "") {
-      yumFilterMessage.classList.remove("show");
-      yumFilterMessage.classList.add("hide");
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let fish = "";
+        //   product.diet.map((img) => {
+        //     fish = img.toLowerCase().includes(option);
+        //   });
+        //   return fish;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let fish = "";
+        //   product.diet.map((img) => {
+        //     fish = img.toLowerCase().includes(option);
+        //   });
+        //   return fish;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let fish = "";
+        //     product.diet.map((img) => {
+        //       fish = img.toLowerCase().includes(option);
+        //     });
+        //     return fish;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Pork") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet === "Pork";
+        });
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let fish = "";
+        //   product.diet.map((img) => {
+        //     fish = img.toLowerCase().includes(option);
+        //   });
+        //   return fish;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let fish = "";
+        //   product.diet.map((img) => {
+        //     fish = img.toLowerCase().includes(option);
+        //   });
+        //   return fish;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let fish = "";
+        //     product.diet.map((img) => {
+        //       fish = img.toLowerCase().includes(option);
+        //     });
+        //     return fish;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Chicken") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet.includes("Chicken");
+        });
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let chicken = "";
+        //   product.diet.map((img) => {
+        //     chicken = img.toLowerCase().includes(option);
+        //   });
+        //   return chicken;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let chicken = "";
+        //   product.diet.map((img) => {
+        //     chicken = img.toLowerCase().includes(option);
+        //   });
+        //   return chicken;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let chicken = "";
+        //     product.diet.map((img) => {
+        //       chicken = img.toLowerCase().includes(option);
+        //     });
+        //     return chicken;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
+    } else if (option === "Pork, Cow") {
+        const filteredYumProducts = yumProductsList.filter((product) => {
+            return product.diet.includes("Pork, Cow");
+        });
+        // const filteredDailyProducts = dailyProductsList.filter((product) => {
+        //   let chicken = "";
+        //   product.diet.map((img) => {
+        //     chicken = img.toLowerCase().includes(option);
+        //   });
+        //   return chicken;
+        // });
+        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+        //   let chicken = "";
+        //   product.diet.map((img) => {
+        //     chicken = img.toLowerCase().includes(option);
+        //   });
+        //   return chicken;
+        // });
+        // const filteredBaguetterProducts = baguetterProductsList.filter(
+        //   (product) => {
+        //     let chicken = "";
+        //     product.diet.map((img) => {
+        //       chicken = img.toLowerCase().includes(option);
+        //     });
+        //     return chicken;
+        //   }
+        // );
+        yumProducts(filteredYumProducts);
+        // dailyProducts(filteredDailyProducts);
+        // premiumProducts(filteredPremiumProducts);
+        // baguetterProducts(filteredBaguetterProducts);
+        if (yum && yum.innerHTML === "") {
+            yumFilterMessage.classList.remove("hide");
+            yumFilterMessage.classList.add("show");
+        } else if (yum && yum.innerHTML !== "") {
+            yumFilterMessage.classList.remove("show");
+            yumFilterMessage.classList.add("hide");
+        }
+        if (daily && daily.innerHTML === "") {
+            dailyFilterMessage.classList.remove("hide");
+            dailyFilterMessage.classList.add("show");
+        } else if (daily && daily.innerHTML !== "") {
+            dailyFilterMessage.classList.remove("show");
+            dailyFilterMessage.classList.add("hide");
+        }
+        if (premium && premium.innerHTML === "") {
+            premiumFilterMessage.classList.remove("hide");
+            premiumFilterMessage.classList.add("show");
+        } else if (premium && premium.innerHTML !== "") {
+            premiumFilterMessage.classList.remove("show");
+            premiumFilterMessage.classList.add("hide");
+        }
+        if (baguetter && baguetter.innerHTML === "") {
+            baguetterFilterMessage.classList.remove("hide");
+            baguetterFilterMessage.classList.add("show");
+        } else if (baguetter && baguetter.innerHTML !== "") {
+            baguetterFilterMessage.classList.remove("show");
+            baguetterFilterMessage.classList.add("hide");
+        }
     }
-    if (daily && daily.innerHTML === "") {
-      dailyFilterMessage.classList.remove("hide");
-      dailyFilterMessage.classList.add("show");
-    } else if (daily && daily.innerHTML !== "") {
-      dailyFilterMessage.classList.remove("show");
-      dailyFilterMessage.classList.add("hide");
-    }
-    if (premium && premium.innerHTML === "") {
-      premiumFilterMessage.classList.remove("hide");
-      premiumFilterMessage.classList.add("show");
-    } else if (premium && premium.innerHTML !== "") {
-      premiumFilterMessage.classList.remove("show");
-      premiumFilterMessage.classList.add("hide");
-    }
-    if (baguetter && baguetter.innerHTML === "") {
-      baguetterFilterMessage.classList.remove("hide");
-      baguetterFilterMessage.classList.add("show");
-    } else if (baguetter && baguetter.innerHTML !== "") {
-      baguetterFilterMessage.classList.remove("show");
-      baguetterFilterMessage.classList.add("hide");
-    }
-  }
 };
 loadProducts();
 
@@ -3322,8 +3422,8 @@ function logOut() {
 function dash_myProfile() {
   async function getUser() {
     try {
-        //const response = await fetch(`https://localhost:7216/users/9`);
-        const response = await fetch(`https://${API_KEY}/users/9`);
+      //const response = await fetch(`https://localhost:7216/users/9`);
+      const response = await fetch(`https://${API_KEY}/users/9`);
       const data = await response.json();
       console.log(data);
 
@@ -5486,10 +5586,10 @@ var swiper1 = new Swiper(".slide-content", {
     clickable: true,
     dynamicBullets: true,
   },
-    autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-    },
+  autoplay: {
+    delay: 2000,
+    disableOnInteraction: false,
+  },
   breakpoints: {
     0: {
       slidesPerView: 1,
@@ -5524,10 +5624,10 @@ var swiper2 = new Swiper(".slide-content2", {
     clickable: true,
     dynamicBullets: true,
   },
-    autoplay: {
-        delay: 2000,
-        disableOnInteraction: false,
-    },
+  autoplay: {
+    delay: 2000,
+    disableOnInteraction: false,
+  },
   breakpoints: {
     0: {
       slidesPerView: 1,
@@ -5835,8 +5935,8 @@ async function redirectToStripeCheckout() {
     });
 
     // Create a POST request to your backend endpoint to create the Stripe checkout session
-      //const response = await fetch("https://localhost:7216/payments", {
-      const response = await fetch(`https://${API_KEY}/payments`, {
+    //const response = await fetch("https://localhost:7216/payments", {
+    const response = await fetch(`https://${API_KEY}/payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -5872,132 +5972,134 @@ function displayOrder(order) {
 }
 
 async function register() {
-    const userData = {};
+  const userData = {};
 
-    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
-    userData.firstName = document.getElementById("field1").value;
-    userData.lastName = document.getElementById("field1.2").value;
-    userData.email = document.getElementById("field2").value;
-    userData.phoneNumber = document.getElementById("field2.1").value;
-    userData.passwordhash = document.getElementById("field3").value;
-    userData.address = document.getElementById("field5").value;
-    userData.postalCode = document.getElementById("postnummer").value;
-    userData.city = document.getElementById("ort").value;
+  // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
+  userData.firstName = document.getElementById("field1").value;
+  userData.lastName = document.getElementById("field1.2").value;
+  userData.email = document.getElementById("field2").value;
+  userData.phoneNumber = document.getElementById("field2.1").value;
+  userData.passwordhash = document.getElementById("field3").value;
+  userData.address = document.getElementById("field5").value;
+  userData.postalCode = document.getElementById("postnummer").value;
+  userData.city = document.getElementById("ort").value;
 
-    // Skapa konstanter för att kontrollera lösen och termer
-    const repeatPassword = document.getElementById("field4").value;
-    const termsAccepted = document.getElementById("terms1").checked;
+  // Skapa konstanter för att kontrollera lösen och termer
+  const repeatPassword = document.getElementById("field4").value;
+  const termsAccepted = document.getElementById("terms1").checked;
 
-    // Validering
-    if (userData.passwordhash !== repeatPassword) {
-        alert("Lösenorden matchar inte!");
-        return;
-    }
+  // Validering
+  if (userData.passwordhash !== repeatPassword) {
+    alert("Lösenorden matchar inte!");
+    return;
+  }
 
-    if (!termsAccepted) {
-        alert("Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta.");
-        return;
-    }
+  if (!termsAccepted) {
+    alert(
+      "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+    );
+    return;
+  }
 
-    // Konvertera obj till sträng
-    localStorage.setItem("userData", JSON.stringify(userData));
+  // Konvertera obj till sträng
+  localStorage.setItem("userData", JSON.stringify(userData));
 
-    // Tar ut datan
-    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+  // Tar ut datan
+  const storedUserData = JSON.parse(localStorage.getItem("userData"));
 
-    // Kontrollera att det finns data i localStorage
-    if (!storedUserData) {
-        console.error("No user data found in localStorage.");
-        return;
-    }
+  // Kontrollera att det finns data i localStorage
+  if (!storedUserData) {
+    console.error("No user data found in localStorage.");
+    return;
+  }
 
-    // Skapa nytt objektet som ska matcha datan i databasen
-    const userToRegister = {
-        firstName: storedUserData.firstName,
-        lastName: storedUserData.lastName,
-        email: storedUserData.email,
-        passwordhash: storedUserData.passwordhash,
-        address: storedUserData.address,
-        postalCode: storedUserData.postalCode,
-        phoneNumber: storedUserData.phoneNumber,
-        city: storedUserData.city,
-        userType: null,
-        organizationNumber: null,
-        orders: null,
-        subscription: null
-    };
+  // Skapa nytt objektet som ska matcha datan i databasen
+  const userToRegister = {
+    firstName: storedUserData.firstName,
+    lastName: storedUserData.lastName,
+    email: storedUserData.email,
+    passwordhash: storedUserData.passwordhash,
+    address: storedUserData.address,
+    postalCode: storedUserData.postalCode,
+    phoneNumber: storedUserData.phoneNumber,
+    city: storedUserData.city,
+    userType: null,
+    organizationNumber: null,
+    orders: null,
+    subscription: null,
+  };
 
-    // Anropa apiet
-    const response = await fetch(`https://${API_KEY}/users`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userToRegister)
-    });
+  // Anropa apiet
+  const response = await fetch(`https://${API_KEY}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userToRegister),
+  });
 
-    const data = await response.json();
-    alert('Användare registrerad framgångsrikt!');
+  const data = await response.json();
+  alert("Användare registrerad framgångsrikt!");
 
-    // Optionally, clear localStorage
-    localStorage.removeItem("userData");
+  // Optionally, clear localStorage
+  localStorage.removeItem("userData");
 
-    // Redirect after successful registration
-    window.location.href = "sign_in.html";
+  // Redirect after successful registration
+  window.location.href = "sign_in.html";
 }
 
 async function login() {
-    // Create an object to hold login data
-    const loginData = {
-        email: document.getElementById("email-login").value.trim(),
-        password: document.getElementById("password-login").value.trim()
-    };
+  // Create an object to hold login data
+  const loginData = {
+    email: document.getElementById("email-login").value.trim(),
+    password: document.getElementById("password-login").value.trim(),
+  };
 
-    // Validate the inputs
-    if (!loginData.email || !loginData.password) {
-        alert("Both email and password are required.");
-        return;
+  // Validate the inputs
+  if (!loginData.email || !loginData.password) {
+    alert("Both email and password are required.");
+    return;
+  }
+
+  try {
+    const response = await fetch(`https://${API_KEY}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Response data: ", data);
+
+      if (data && data.token) {
+        // If a token is received
+        localStorage.setItem("authToken", data.token); // Store the token
+        alert("Login successful!"); // Inform user
+        window.location.href = "dashboard.html"; // Redirect to the dashboard
+      } else {
+        alert("Login failed: No token received from the server.");
+      }
+    } else {
+      // Handle error responses
+      const errorText = await response.text(); // Get error response text
+      alert(`Login failed: ${errorText}`);
     }
-
-    try {
-
-        const response = await fetch(`https://${API_KEY}/users/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(loginData)
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            console.log("Response data: ", data);
-
-            if (data && data.token) { // If a token is received
-                localStorage.setItem('authToken', data.token); // Store the token
-                alert('Login successful!'); // Inform user
-                window.location.href = "dashboard.html"; // Redirect to the dashboard
-            } else {
-                alert('Login failed: No token received from the server.');
-            }
-        } else {
-            // Handle error responses
-            const errorText = await response.text(); // Get error response text
-            alert(`Login failed: ${errorText}`);
-        }
-    } catch (error) {
-        console.error('Network or unexpected error during login:', error);
-        alert('An error occurred during login. Please try again.');
-    }
+  } catch (error) {
+    console.error("Network or unexpected error during login:", error);
+    alert("An error occurred during login. Please try again.");
+  }
 }
 
 // Event listener for the login form
-let loginForm = document.getElementById("loginForm")
+let loginForm = document.getElementById("loginForm");
 if (loginForm !== null) {
-loginForm.addEventListener("submit", function (event) {
+  loginForm.addEventListener("submit", function (event) {
     event.preventDefault(); // Prevent the form from submitting the traditional way
     login(); // Call the login function
-});
+  });
 }
 async function updateProfile() {
   const id = localStorage.getItem("userId");
@@ -6010,7 +6112,7 @@ async function updateProfile() {
     phone: document.getElementById("phone").value,
   };
   try {
-      const response = await fetch(`https://${API_KEY}/users/${id}`, {
+    const response = await fetch(`https://${API_KEY}/users/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
