@@ -336,16 +336,8 @@ function toggleAccountType(isPersonal) {
 //spara purcahse form
 async function saveAndProceed() {
   // Försök att spara formulärdata
-  const formSaved = await savePurchaseData();
-
-  if (formSaved) {
-    // Om formulärdata har sparats, gå vidare till betalning
-    window.location.href = "payment.html";
-  } else {
-    alert(
-      "Kunde inte spara formulärdata. Kontrollera att alla fält är korrekt ifyllda."
-    );
-  }
+  await savePurchaseData();
+  window.location.href = "payment.html";
 }
 
 // Purchase form
@@ -403,28 +395,28 @@ async function savePurchaseData() {
 
   console.log(purchaseData);
 
-  //try {
-  //    // Skicka en POST-förfrågan till backend för att spara köpdata
-  //    const response = await fetch("https://localhost:7216/purchase", {
-  //        method: 'POST',
-  //        headers: {
-  //            'Content-Type': 'application/json',
-  //        },
-  //        body: JSON.stringify(purchaseData),
-  //    });
+  try {
+      // Skicka en POST-förfrågan till backend för att spara köpdata
+      const response = await fetch("https://localhost:7216/purchase", {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(purchaseData),
+      });
 
-  //    if (response.ok) {
-  //        alert("Horayy");
-  //        purchaseData.clear();
-  //    } else {
-  //        alert("Fel uppstod vid sparandet av köp.");
-  //    }
-  //}
-  //catch (error) {
-  //    console.error('Error:', error);
-  //    alert("Ett fel uppstod: " + error.message);
+      if (response.ok) {
+          alert("Horayy");
+          purchaseData.clear();
+      } else {
+          alert("Fel uppstod vid sparandet av köp.");
+      }
+  }
+  catch (error) {
+      console.error('Error:', error);
+      alert("Ett fel uppstod: " + error.message);
 
-  //}
+  }
 }
 
 //Personal Form
@@ -5701,17 +5693,17 @@ var datesSwipes = new Swiper(".dates_swipe", {
 });
 
 //Direct to payment when purchase form is saved
-async function cartNextBtnProceed() {
-    // Försök att spara formulärdata
-    const purchaseDataSaved = await savePurchaseData();
+//async function cartNextBtnProceed() {
+//    // Försök att spara formulärdata
+//    const purchaseDataSaved = await savePurchaseData();
 
-    if (purchaseDataSaved) {
-        // Om formulärdata har sparats, gå vidare till betalning
-        window.location.href = 'payment.html';
-    } else {
-        alert("Något gick fel.");
-    }
-}
+//    if (purchaseDataSaved) {
+//        // Om formulärdata har sparats, gå vidare till betalning
+//        window.location.href = 'payment.html';
+//    } else {
+//        alert("Något gick fel.");
+//    }
+//}
 
 // Save form in Cart_view
 async function savePurchaseData() {
@@ -5799,7 +5791,7 @@ async function savePurchaseData() {
         leaveAtDoor: storedPurchaseData.LeaveAtDoor,
         discountTotal: 0
     };
-
+    console.log(postPurchaseData);
     const response = await fetch(`https://localhost:7216/purchase`, {
         method: 'POST',
         headers: {
@@ -5810,7 +5802,8 @@ async function savePurchaseData() {
 
     if (response.ok) {
         const data = await response.json();
-        alert('Horay');
+        redirectToStripeCheckout();
+        //alert('Horay');
     } else {
         const errorText = await response.text(); // Hämta felmeddelande som text
         alert('Ett fel uppstod: ' + errorText);
@@ -6069,17 +6062,17 @@ async function redirectToStripeCheckout() {
     });
 
     // Create a POST request to your backend endpoint to create the Stripe checkout session
-    //const response = await fetch("https://localhost:7216/payments", {
-    const response = await fetch(`https://${API_KEY}/payments`, {
+    const response = await fetch("https://localhost:7216/payments", {
+    //const response = await fetch(`https://${API_KEY}/payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        successPaymentUrl:
-          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
-        cancelPaymentUrl:
-          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+        successPaymentUrl: "https://localhost:7023/payment_success.html",
+          //"https://yumfoodsdev.azurewebsites.net/payment_success.html",
+        cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+          //"https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
         products: products, // Send the products array
       }),
     });
@@ -6088,7 +6081,6 @@ async function redirectToStripeCheckout() {
     if (response.ok) {
       // Redirect to the Stripe checkout session URL
       window.location.href = result.checkoutUrl;
-      localStorage.clear();
     } else {
       console.error("Error creating Stripe session", result);
     }
