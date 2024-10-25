@@ -69,6 +69,13 @@ public class UserRepository(YumFoodsUserDb context)
             throw new ArgumentException("Password cannot be null or empty.");
         }
 
+        var existingUser = await context.User
+                                     .FirstOrDefaultAsync(u => u.Email == newUser.Email);
+        if (existingUser != null)
+        {
+            throw new ArgumentException("An account with this email already exists.");
+        }
+
         var pwHasher = new PasswordEncryption();
         var hashedPassword = pwHasher.HashPassword(newUser.PasswordHash);
 
@@ -90,7 +97,8 @@ public class UserRepository(YumFoodsUserDb context)
             City = newUser.City,
             PostalCode = newUser.PostalCode,
             Subscription = newUser.Subscription,
-            PasswordHash = hashedPassword
+            PasswordHash = hashedPassword,
+            Orders = newUser.Orders
         };
 
         await context.User.AddAsync(user);
