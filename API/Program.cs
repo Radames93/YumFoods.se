@@ -97,12 +97,12 @@ internal class Program
         // Configure your DbContext to use MySQL with the retrieved connection string
         builder.Services.AddDbContext<YumFoodsDb>(options =>
         {
-            options.UseMySql(localConn1, ServerVersion.AutoDetect(localConn1));
+            options.UseMySql(completeConnectionString, ServerVersion.AutoDetect(completeConnectionString));
         });
 
         builder.Services.AddDbContext<YumFoodsUserDb>(options =>
         {
-            options.UseMySql(localConn2, ServerVersion.AutoDetect(localConn2));
+            options.UseMySql(completeConnectionString2, ServerVersion.AutoDetect(completeConnectionString2));
         });
 
         // CORS policy configuration
