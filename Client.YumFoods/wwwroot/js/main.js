@@ -337,16 +337,8 @@ function toggleAccountType(isPersonal) {
 //spara purcahse form
 async function saveAndProceed() {
   // Försök att spara formulärdata
-  const formSaved = await savePurchaseData();
-
-  if (formSaved) {
-    // Om formulärdata har sparats, gå vidare till betalning
-    window.location.href = "payment.html";
-  } else {
-    alert(
-      "Kunde inte spara formulärdata. Kontrollera att alla fält är korrekt ifyllda."
-    );
-  }
+  await savePurchaseData();
+  window.location.href = "payment.html";
 }
 
 // Purchase form
@@ -404,28 +396,28 @@ async function savePurchaseData() {
 
   console.log(purchaseData);
 
-  //try {
-  //    // Skicka en POST-förfrågan till backend för att spara köpdata
-  //    const response = await fetch("https://localhost:7216/purchase", {
-  //        method: 'POST',
-  //        headers: {
-  //            'Content-Type': 'application/json',
-  //        },
-  //        body: JSON.stringify(purchaseData),
-  //    });
+  try {
+      // Skicka en POST-förfrågan till backend för att spara köpdata
+      const response = await fetch("https://localhost:7216/purchase", {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(purchaseData),
+      });
 
-  //    if (response.ok) {
-  //        alert("Horayy");
-  //        purchaseData.clear();
-  //    } else {
-  //        alert("Fel uppstod vid sparandet av köp.");
-  //    }
-  //}
-  //catch (error) {
-  //    console.error('Error:', error);
-  //    alert("Ett fel uppstod: " + error.message);
+      if (response.ok) {
+          alert("Horayy");
+          purchaseData.clear();
+      } else {
+          alert("Fel uppstod vid sparandet av köp.");
+      }
+  }
+  catch (error) {
+      console.error('Error:', error);
+      alert("Ett fel uppstod: " + error.message);
 
-  //}
+  }
 }
 
 //Personal Form
@@ -1103,6 +1095,7 @@ if (searchBar !== null) {
 } else {
   removeEventListener("keyup", search);
 }
+
 
 //Fetch items from database
 const loadProducts = async () => {
@@ -4723,7 +4716,7 @@ function nextAccord2() {
 // and finally increment the dates with '1' for the next loop with setDate
 
 const dates = new Date();
-const options = { day: "numeric", month: "short", weekday: "long" };
+const options = { day: "numeric", month: "numeric", weekday: "long", year: "numeric" };
 const twoWeeks = 17;
 
 let threeDaysAhead = [];
@@ -4748,7 +4741,7 @@ const dateStrings = threeDaysAhead
         <div class="swiper-slide date">
             <div class="date-box box1 text-center date">
               <div class="day">${weekday}</div>
-              <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
+              <div class="date"><span id="deliveryDateSpan" style="margin-right: 5px;">${days}</span></div>
             </div>
         </div>
 
@@ -4762,7 +4755,7 @@ if (deliveryDates !== null) {
 }
 
 const theBox = document.querySelectorAll(".box1");
-
+let selectedDeliveryDate = null;
 theBox.forEach((btn) => {
   btn.addEventListener("click", function () {
     theBox.forEach((b) => b.classList.remove("box-selected"));
@@ -4784,6 +4777,18 @@ timeBox.forEach((btn) => {
     console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
   });
 });
+
+// Format the delivery date to send to backend
+function formatDeliveryDate(dateString) {
+    const split = dateString.split(" ");
+    const days = split[1].replace(/[^\d]/g, '');
+    const month = split[2];
+    const year = new Date().getFullYear();
+
+    const formatted = new Date(`${year}-${monthMonth}-${day}`);
+    //const formattedDate = new Date(year, month, days);
+    return formatted.toISOString();
+}
 
 // theBox.addEventListener('click', function() {
 // theBox.classList.toggle("box-selected");
@@ -5722,6 +5727,126 @@ var datesSwipes = new Swiper(".dates_swipe", {
   },
 });
 
+//Direct to payment when purchase form is saved
+//async function cartNextBtnProceed() {
+//    // Försök att spara formulärdata
+//    const purchaseDataSaved = await savePurchaseData();
+
+//    if (purchaseDataSaved) {
+//        // Om formulärdata har sparats, gå vidare till betalning
+//        window.location.href = 'payment.html';
+//    } else {
+//        alert("Något gick fel.");
+//    }
+//}
+
+// Save form in Cart_view
+async function savePurchaseData() {
+
+    let houseType = "";
+    const purchaseData = {};
+    const missingFields = [];
+
+    const selectedTime = document.querySelector(".tid-box.tid-box-selected");
+    if (selectedTime) {
+        const deliverClock = selectedTime.querySelector(".time").textContent;
+        const deliverShipping = selectedTime.querySelector(".price").textContent;
+        purchaseData.deliveryTime = deliverClock;  
+        purchaseData.deliveryPrice = deliverShipping;
+    } else {
+        missingFields.push("leveranstid");
+    }
+    purchaseData.deliveryDate = document.getElementById("deliveryDateSpan").textContent;
+    purchaseData.address = document.getElementById("addressInput").value;
+    purchaseData.postalCode = document.getElementById("postalCodeInput").value;
+    purchaseData.ort = document.getElementById("cityInput").value;
+    const apartment = document.getElementById("lägenhet").checked;
+    const house = document.getElementById("villa_hus").checked;
+    const radhus = document.getElementById("radhus").checked;
+    const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+    purchaseData.text = document.getElementById("floatingTextarea").value.trim();
+    purchaseData.firstName = document.getElementById("firstNameInput").value;
+    purchaseData.lastName = document.getElementById("lastNameInput").value;
+    purchaseData.phone = document.getElementById("phoneInput").value;
+    purchaseData.email = document.getElementById("mailInput").value;
+
+
+    const requiredFields = ['address', 'postalCode', 'ort', 'firstName', 'lastName', 'phone', 'email'];
+    requiredFields.forEach(field => {
+        if (!purchaseData[field]) missingFields.push(field);
+    });
+
+    if (missingFields.length > 0) {
+        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+        return false;
+    }
+
+    if (apartment) {
+        houseType = "Apartment";
+        purchaseData.port = document.getElementById("portInput").value.trim();
+        purchaseData.floor = document.getElementById("floorInput").value.trim();
+        if (!purchaseData.Port) missingFields.push("portkod");
+        if (!purchaseData.Floor) missingFields.push("våningsplan");
+    } else if (house) {
+        houseType = "Villa/Hus";
+    } else if (radhus) {
+        houseType = "Radhus";
+    }
+    purchaseData.houseType = houseType;
+    purchaseData.LeaveAtDoor = LeaveAtDoor;
+
+    const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    purchaseData.products = formDataArry.map(item => ({
+        id: parseInt(item.id),
+        name: item.title,
+        quantity: parseInt(item.quantity),
+        price: item.Price
+    }));
+
+    purchaseData.total = localStorage.getItem("sum");
+    purchaseData.quantity = localStorage.getItem("totalQuantity");
+
+    localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
+
+    const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
+    const postPurchaseData = {
+        userId: 11,
+        products: storedPurchaseData.products,
+        quantity: parseInt(storedPurchaseData.quantity),
+        total: parseFloat(storedPurchaseData.total),
+        paymentMethod: "card",
+        orderDate: new Date().toISOString(),
+        deliveryDate: storedPurchaseData.deliveryDate,
+        deliveryTime: storedPurchaseData.deliveryTime,
+        deliveryAddress: storedPurchaseData.address,
+        deliveryPostalCode: storedPurchaseData.postalCode,
+        floor: parseInt(storedPurchaseData.floor),
+        portCode: parseInt(storedPurchaseData.port),
+        houseType: storedPurchaseData.houseType,
+        leaveAtDoor: storedPurchaseData.LeaveAtDoor,
+        discountTotal: 0
+    };
+    console.log(postPurchaseData);
+    const response = await fetch(`https://localhost:7216/purchase`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postPurchaseData),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        redirectToStripeCheckout();
+        //alert('Horay');
+    } else {
+        const errorText = await response.text(); // Hämta felmeddelande som text
+        alert('Ett fel uppstod: ' + errorText);
+    }
+}
+
+
+
 //SIDE BAR CART
 
 // Show sidebar
@@ -5770,6 +5895,8 @@ function addToCart(product) {
   // updateSidebarCart();
   // openSidebar();
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const closeSidebarBtn = document.getElementById("closeSidebar");
@@ -5970,17 +6097,17 @@ async function redirectToStripeCheckout() {
     });
 
     // Create a POST request to your backend endpoint to create the Stripe checkout session
-    //const response = await fetch("https://localhost:7216/payments", {
-    const response = await fetch(`https://${API_KEY}/payments`, {
+    const response = await fetch("https://localhost:7216/payments", {
+    //const response = await fetch(`https://${API_KEY}/payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        successPaymentUrl:
-          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
-        cancelPaymentUrl:
-          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+        successPaymentUrl: "https://localhost:7023/payment_success.html",
+          //"https://yumfoodsdev.azurewebsites.net/payment_success.html",
+        cancelPaymentUrl: "https://localhost:7023/payment_cancel.html",
+          //"https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
         products: products, // Send the products array
       }),
     });
@@ -5989,7 +6116,6 @@ async function redirectToStripeCheckout() {
     if (response.ok) {
       // Redirect to the Stripe checkout session URL
       window.location.href = result.checkoutUrl;
-      localStorage.clear();
     } else {
       console.error("Error creating Stripe session", result);
     }

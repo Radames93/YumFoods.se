@@ -161,7 +161,7 @@
                                                           bokning.
                                                       </p>
 
-                                                      <form id="purchase" onsubmit="savePurchaseData(event)">
+                                                      <form id="purchase" onsubmit="savePurchaseData()">
                                                           <div class="mb-4">
                                                               <div class="d-flex flex-row deliverDate">
                                                                   <div class="swiper-button-prev-dates calender-arrow">
@@ -405,7 +405,7 @@
                                               </div>
                                               <button class="font-fix"
                                                       id="cart-next-btn"
-                                                      onclick="window.location.href='payment.html'"
+                                                      onclick="saveAndProceed()"
                                                       type="button"
                                                       data-bs-toggle="collapse"
                                                       data-bs-target="#collapseOne"
