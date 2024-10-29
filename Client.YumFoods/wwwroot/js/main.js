@@ -343,82 +343,59 @@ async function saveAndProceed() {
 
 // Purchase form
 async function savePurchaseData() {
-  let houseType = "";
-  const purchaseData = {};
-  const missingFields = [];
+    let houseType = "";
+    const purchaseData = {};
+    const missingFields = [];
 
-  //lägg till leverans datum och tid
-  purchaseData.Adress = document.getElementById("addressInput").value.trim();
-  purchaseData.PostalCode = document
-    .getElementById("postalCodeInput")
-    .value.trim();
-  purchaseData.ort = document.getElementById("cityInput").value.trim();
-  const apartment = document.getElementById("lägenhet").checked;
-  const house = document.getElementById("villa_hus").checked;
-  const radhus = document.getElementById("radhus").checked;
-  const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
-  //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
-  purchaseData.firstName = document
-    .getElementById("firstNameInput")
-    .value.trim();
-  purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
-  purchaseData.phone = document.getElementById("phoneInput").value.trim();
-  purchaseData.email = document.getElementById("mailInput").value.trim();
+    //lägg till leverans datum och tid
+    purchaseData.Adress = document.getElementById("addressInput").value.trim();
+    purchaseData.PostalCode = document
+        .getElementById("postalCodeInput")
+        .value.trim();
+    purchaseData.ort = document.getElementById("cityInput").value.trim();
+    const apartment = document.getElementById("lägenhet").checked;
+    const house = document.getElementById("villa_hus").checked;
+    const radhus = document.getElementById("radhus").checked;
+    const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+    //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
+    purchaseData.firstName = document
+        .getElementById("firstNameInput")
+        .value.trim();
+    purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
+    purchaseData.phone = document.getElementById("phoneInput").value.trim();
+    purchaseData.email = document.getElementById("mailInput").value.trim();
 
-  if (!purchaseData.Adress) missingFields.push("adress");
-  if (!purchaseData.PostalCode) missingFields.push("postnummer");
-  if (!purchaseData.ort) missingFields.push("Ort");
+    if (!purchaseData.Adress) missingFields.push("adress");
+    if (!purchaseData.PostalCode) missingFields.push("postnummer");
+    if (!purchaseData.ort) missingFields.push("Ort");
 
-  if (!purchaseData.firstName) missingFields.push("förnamn");
-  if (!purchaseData.lastName) missingFields.push("efternamn");
-  if (!purchaseData.phone) missingFields.push("telefonnummer");
-  if (!purchaseData.email) missingFields.push("email");
+    if (!purchaseData.firstName) missingFields.push("förnamn");
+    if (!purchaseData.lastName) missingFields.push("efternamn");
+    if (!purchaseData.phone) missingFields.push("telefonnummer");
+    if (!purchaseData.email) missingFields.push("email");
 
-  if (apartment) {
-    houseType = "Lägenhet";
-    purchaseData.Port = document.getElementById("portInput").value.trim();
-    purchaseData.Floor = document.getElementById("floorInput").value.trim();
+    if (apartment) {
+        houseType = "Lägenhet";
+        purchaseData.Port = document.getElementById("portInput").value.trim();
+        purchaseData.Floor = document.getElementById("floorInput").value.trim();
 
-    //if (!purchaseData.Port) missingFields.push("portkod");
-    //if (!purchaseData.Floor) missingFields.push("våningsplan");
-  } else if (house) {
-    houseType = "Villa/Hus";
-  } else if (radhus) {
-    houseType = "Radhus";
-  }
-  purchaseData.houseType = houseType;
+        //if (!purchaseData.Port) missingFields.push("portkod");
+        //if (!purchaseData.Floor) missingFields.push("våningsplan");
+    } else if (house) {
+        houseType = "Villa/Hus";
+    } else if (radhus) {
+        houseType = "Radhus";
+    }
+    purchaseData.houseType = houseType;
 
-  if (missingFields.length > 0) {
-    alert("Följande fält måste fyllas i: " + missingFields.join(", "));
-    return false;
-  }
-  return true;
+    if (missingFields.length > 0) {
+        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+        return false;
+    }
+    return true;
 
-  console.log(purchaseData);
-
-  try {
-      // Skicka en POST-förfrågan till backend för att spara köpdata
-      //const response = await fetch("https://localhost:7216/purchase", {
-      const response = await fetch(`https://${API_KEY}/purchase`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(purchaseData),
-      });
-
-      if (response.ok) {
-          alert("Horayy");
-          purchaseData.clear();
-      } else {
-          alert("Fel uppstod vid sparandet av köp.");
-      }
-  }
-  catch (error) {
-      console.error('Error:', error);
-      alert("Ett fel uppstod: " + error.message);
-
-  }
+    console.log(purchaseData);
+    localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
 }
 
 //Personal Form
@@ -5828,23 +5805,7 @@ async function savePurchaseData() {
         discountTotal: 0
     };
     console.log(postPurchaseData);
-    //const response = await fetch(`https://localhost:7216/purchase`, {
-    const response = await fetch(`https://${API_KEY}/purchase`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(postPurchaseData),
-    });
-
-    if (response.ok) {
-        const data = await response.json();
-        redirectToStripeCheckout();
-        //alert('Horay');
-    } else {
-        const errorText = await response.text(); // Hämta felmeddelande som text
-        alert('Ett fel uppstod: ' + errorText);
-    }
+    localStorage.setItem("newPurchaseData", JSON.stringify(postPurchaseData));
 }
 
 
@@ -6106,10 +6067,10 @@ async function redirectToStripeCheckout() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-          successPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_success.html",
-          //"https://localhost:7023/payment_success.html",          
-          cancelPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
-          //"https://localhost:7023/payment_cancel.html",
+          successPaymentUrl: //"https://yumfoodsdev.azurewebsites.net/payment_success.html",
+          "https://localhost:7023/payment_success.html",          
+          cancelPaymentUrl: //"https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+          "https://localhost:7023/payment_cancel.html",
         products: products, // Send the products array
       }),
     });
