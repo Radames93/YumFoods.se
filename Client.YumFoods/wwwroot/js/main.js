@@ -421,18 +421,18 @@ function saveUserData(event) {
   let currentForm = document.getElementById("signupFormPersonal");
   let allInputs = currentForm.querySelectorAll("input");
 
-  // Validering
-  // !userData.username ||
-  if (
-    !userData.firstName ||
-    !userData.lastName ||
-    !userData.email ||
-    !userData.lösenord ||
-    !upprepaLösenord ||
-    !userData.gatuadress ||
-    !userData.postnummer ||
-    !userData.ort
-  ) {
+    // Validering
+    // !userData.username ||
+    if (
+        !userData.email ||
+        !userData.lösenord ||
+        !upprepaLösenord ||
+        !userData.gatuadress ||
+        !userData.postnummer ||
+        !userData.ort ||
+        !userData.kontakt ||
+        !userData.telefon
+    ) {
         const missingFields = [];
         allInputs.forEach((input) => {
             if (!input.value) {
@@ -466,8 +466,18 @@ function saveUserData(event) {
         return;
     }
 
-  
-
+    if (!termsAccepted) {
+        allInputs.forEach((input) => {
+            const warning = input.nextElementSibling;
+            if (warning && warning.classList.contains("warning")) {
+                warning.remove();
+            }
+        });
+        alert(
+            "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+        );
+        return;
+    }
 
   if (accountType === "personal") {
     userData.kontoTyp = "personal";
@@ -6065,10 +6075,10 @@ async function redirectToStripeCheckout() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-          successPaymentUrl: //"https://yumfoodsdev.azurewebsites.net/payment_success.html",
-          "https://localhost:7023/payment_success.html",          
-          cancelPaymentUrl: //"https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
-          "https://localhost:7023/payment_cancel.html",
+          successPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+          //"https://localhost:7023/payment_success.html",          
+          cancelPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+          //"https://localhost:7023/payment_cancel.html",
         products: products, // Send the products array
       }),
     });
@@ -6199,12 +6209,6 @@ async function registerGuest() {
         return;
     }
 
-    // Kontrollera att det finns data i localStorage
-    if (!storedUserData) {
-        console.error("No user data found in localStorage.");
-        return;
-    }
-
     // Skapa nytt objektet som ska matcha datan i databasen
     const userToRegister = {
         firstName: userData.firstName,
@@ -6235,7 +6239,7 @@ async function registerGuest() {
     if (response.ok) {
         const data = await response.json();
     } else {
-        alert("Användaren inte skapas");
+        return
     }
 }
 
