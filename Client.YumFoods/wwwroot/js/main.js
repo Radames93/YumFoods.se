@@ -6209,12 +6209,6 @@ async function registerGuest() {
         return;
     }
 
-    // Kontrollera att det finns data i localStorage
-    if (!storedUserData) {
-        console.error("No user data found in localStorage.");
-        return;
-    }
-
     // Skapa nytt objektet som ska matcha datan i databasen
     const userToRegister = {
         firstName: userData.firstName,
@@ -6245,7 +6239,7 @@ async function registerGuest() {
     if (response.ok) {
         const data = await response.json();
     } else {
-        alert("Användaren inte skapas");
+        return
     }
 }
 
