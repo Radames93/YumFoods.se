@@ -1,141 +1,122 @@
-﻿using DataAccess.Security;
+﻿using DataAccess;
+using DataAccess.Security;
 using Microsoft.EntityFrameworkCore;
 using Shared.DTOs;
 using Shared.Entities;
+using Shared.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace DataAccess.Repositories;
-
-
-public class UserRepository(YumFoodsUserDb context)
+namespace DataAccess.Repositories
 {
-    public async Task<List<User>> GetAllUsersAsync()
+    public class UserRepository : IUserRepository<User>
     {
-        return await context.User.ToListAsync();
-    }
+        private readonly YumFoodsUserDb _context;
 
-    public async Task<User?> GetUserByIdAsync(int id)
-    {
-        return await context.User.FindAsync(id);
-    }
-
-    public async Task<User?> GetUserByNameAsync(string name)
-    {
-        return await context.User.FirstOrDefaultAsync(p => p.FirstName == name);
-    }
-
-    public async Task<User?> GetUserByOrganizationAsync(int organizationNumber)
-    {
-        return await context.User.FirstOrDefaultAsync(p => p.OrganizationNumber == organizationNumber);
-    }
-    public async Task<User?> GetUserByEmailAsync(string email)
-    {
-        return await context.User.FirstOrDefaultAsync(p => p.Email == email);
-    }
-
-    public async Task<string?> GetUserTypeByEmailAsync(string email)
-    {
-        var user = await context.User.FirstOrDefaultAsync(u => u.Email == email);
-
-        return user?.UserType.ToString();
-    }
-
-    public async Task<bool> ValidateUserAsync(LoginModel login)
-    {
-        var user = await GetUserByEmailAsync(login.Email);
-
-        if (user == null)
+        public UserRepository(YumFoodsUserDb context)
         {
-            Console.WriteLine($"User not found for email: {login.Email}");
-            return false;
+            _context = context;
         }
 
-        var passwordVerification = new PasswordVerification();
-
-        // Verify the password
-        bool isPasswordValid = passwordVerification.VerifyPassword(login.Password, user.PasswordHash);
-
-        if (!isPasswordValid)
+        public async Task<List<User>> GetAllUsersAsync()
         {
-            Console.WriteLine($"Invalid password for email: {login.Email}");
+            return await _context.User.ToListAsync();
         }
 
-        return isPasswordValid;
-    }
-
-    public async Task AddUserAsync(User newUser)
-    {
-        if (string.IsNullOrEmpty(newUser.PasswordHash))
+        public async Task<User?> GetUserByIdAsync(int id)
         {
-            throw new ArgumentException("Password cannot be null or empty.");
+            return await _context.User.FindAsync(id);
         }
 
-        var existingUser = await context.User
-                                     .FirstOrDefaultAsync(u => u.Email == newUser.Email);
-        if (existingUser != null)
+        public async Task<User?> GetUserByNameAsync(string name)
         {
-            throw new ArgumentException("An account with this email already exists.");
+            return await _context.User.FirstOrDefaultAsync(p => p.FirstName == name);
         }
 
-        var pwHasher = new PasswordEncryption();
-        var hashedPassword = pwHasher.HashPassword(newUser.PasswordHash);
-
-        var maxId = await context.User
-                       .MaxAsync(o => (int?)o.Id);
-
-        var newId = (maxId ?? 0) + 1;
-
-        var user = new User()
+        public async Task<User?> GetUserByOrganizationAsync(int organizationNumber)
         {
-            Id = newId,
-            FirstName = newUser.FirstName,
-            LastName = newUser.LastName,
-            UserType = newUser.UserType,
-            OrganizationNumber = newUser.OrganizationNumber,
-            Email = newUser.Email,
-            PhoneNumber = newUser.PhoneNumber,
-            Address = newUser.Address,
-            City = newUser.City,
-            PostalCode = newUser.PostalCode,
-            Subscription = newUser.Subscription,
-            PasswordHash = hashedPassword,
-            Orders = newUser.Orders
-        };
-
-        await context.User.AddAsync(user);
-        await context.SaveChangesAsync();
-    }
-
-    public async Task UpdateUserAsync(int id, User newUser)
-    {
-        var oldUser = await context.User.FindAsync(id);
-        if (oldUser is null)
-        {
-            return;
+            return await _context.User.FirstOrDefaultAsync(p => p.OrganizationNumber == organizationNumber);
         }
 
-        oldUser.FirstName = newUser.FirstName ?? oldUser.FirstName;
-        oldUser.LastName = newUser.LastName ?? oldUser.LastName;
-        oldUser.OrganizationNumber = newUser.OrganizationNumber ?? oldUser.OrganizationNumber;
-        oldUser.Email = newUser.Email ?? oldUser.Email;
-        oldUser.PhoneNumber = newUser.PhoneNumber ?? oldUser.PhoneNumber;
-        oldUser.Address = newUser.Address ?? oldUser.Address;
-        oldUser.City = newUser.City ?? oldUser.City;
-        oldUser.PostalCode = newUser.PostalCode ?? oldUser.PostalCode;
-        oldUser.Subscription = newUser.Subscription ?? oldUser.Subscription;
-        oldUser.PasswordHash = newUser.PasswordHash ?? oldUser.PasswordHash;
-
-        await context.SaveChangesAsync();
-    }
-
-    public async Task DeleteUserAsync(int id)
-    {
-        var user = await context.User.FindAsync(id);
-        if (user is null)
+        public async Task<User?> GetUserByEmailAsync(string email)
         {
-            return;
+            return await _context.User.FirstOrDefaultAsync(p => p.Email == email);
         }
 
-        context.User.Remove(user);
-        await context.SaveChangesAsync();
+        public async Task<string?> GetUserTypeByEmailAsync(string email)
+        {
+            var user = await GetUserByEmailAsync(email);
+            return user?.UserType.ToString();
+        }
+
+        public async Task<bool> ValidateUserAsync(LoginModel login)
+        {
+            var user = await GetUserByEmailAsync(login.Email);
+            if (user == null)
+            {
+                Console.WriteLine($"User not found for email: {login.Email}");
+                return false;
+            }
+
+            var passwordVerification = new PasswordVerification();
+            bool isPasswordValid = passwordVerification.VerifyPassword(login.Password, user.PasswordHash);
+
+            if (!isPasswordValid)
+            {
+                Console.WriteLine($"Invalid password for email: {login.Email}");
+            }
+
+            return isPasswordValid;
+        }
+
+        public async Task AddUserAsync(User newUser)
+        {
+            if (string.IsNullOrEmpty(newUser.PasswordHash))
+            {
+                throw new ArgumentException("Password cannot be null or empty.");
+            }
+
+            var existingUser = await _context.User
+                .FirstOrDefaultAsync(u => u.Email == newUser.Email);
+            if (existingUser != null)
+            {
+                throw new ArgumentException("An account with this email already exists.");
+            }
+
+            var pwHasher = new PasswordEncryption();
+            newUser.PasswordHash = pwHasher.HashPassword(newUser.PasswordHash);
+
+            await _context.User.AddAsync(newUser);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateUserAsync(int id, User newUser)
+        {
+            var existingUser = await _context.User.FindAsync(id);
+            if (existingUser == null) return;
+
+            existingUser.FirstName = newUser.FirstName ?? existingUser.FirstName;
+            existingUser.LastName = newUser.LastName ?? existingUser.LastName;
+            existingUser.OrganizationNumber = newUser.OrganizationNumber ?? existingUser.OrganizationNumber;
+            existingUser.Email = newUser.Email ?? existingUser.Email;
+            existingUser.PhoneNumber = newUser.PhoneNumber ?? existingUser.PhoneNumber;
+            existingUser.Address = newUser.Address ?? existingUser.Address;
+            existingUser.City = newUser.City ?? existingUser.City;
+            existingUser.PostalCode = newUser.PostalCode ?? existingUser.PostalCode;
+            existingUser.Subscription = newUser.Subscription ?? existingUser.Subscription;
+            existingUser.PasswordHash = newUser.PasswordHash ?? existingUser.PasswordHash;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteUserAsync(int id)
+        {
+            var user = await _context.User.FindAsync(id);
+            if (user == null) return;
+
+            _context.User.Remove(user);
+            await _context.SaveChangesAsync();
+        }
     }
 }
