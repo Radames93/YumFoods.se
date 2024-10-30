@@ -336,9 +336,10 @@ function toggleAccountType(isPersonal) {
 
 //spara purcahse form
 async function saveAndProceed() {
-  // Försök att spara formulärdata
-  await savePurchaseData();
-  window.location.href = "payment.html";
+    // Försök att spara formulärdata
+    await registerGuest();
+    await savePurchaseData();
+    window.location.href="payment.html"
 }
 
 // Purchase form
@@ -408,9 +409,9 @@ function saveUserData(event) {
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
 
-  (userData.firstname = document.getElementById("field1").value),
-    (userData.lastname = document.getElementById("field1.2").value),
-    (userData.email = document.getElementById("field2").value);
+  userData.firstname = document.getElementById("field1").value,
+  userData.lastname = document.getElementById("field1.2").value,
+  userData.email = document.getElementById("field2").value;
   userData.lösenord = document.getElementById("field3").value;
   const upprepaLösenord = document.getElementById("field4").value;
   userData.gatuadress = document.getElementById("field5").value;
@@ -432,53 +433,41 @@ function saveUserData(event) {
     !userData.postnummer ||
     !userData.ort
   ) {
-    const missingFields = [];
+        const missingFields = [];
+        allInputs.forEach((input) => {
+            if (!input.value) {
+                const warning = input.nextElementSibling;
 
-    allInputs.forEach((input) => {
-      if (!input.value) {
-        const warning = input.nextElementSibling;
+                missingFields.push(input.id);
 
-        missingFields.push(input.id);
+                if (!warning || !warning.classList.contains("warning")) {
+                    const paragraph = document.createElement("p");
+                    paragraph.textContent = "Fält får inte lämnas tomt!";
+                    paragraph.style.color = "red";
+                    paragraph.classList.add("warning");
+                    input.after(paragraph);
+                }
+            } else {
+                const warning = input.nextElementSibling;
 
-        if (!warning || !warning.classList.contains("warning")) {
-          const paragraph = document.createElement("p");
-          paragraph.textContent = "Fält får inte lämnas tomt!";
-          paragraph.style.color = "red";
-          paragraph.classList.add("warning");
-          input.after(paragraph);
-        }
-      } else {
-        const warning = input.nextElementSibling;
+                if (warning && warning.classList.contains("warning")) {
+                    warning.remove();
+                }
+            }
+        });
+        console.error(`field missing value! ` + missingFields.join(","));
 
-        if (warning && warning.classList.contains("warning")) {
-          warning.remove();
-        }
-      }
-    });
+        alert("Alla fält måste fyllas i!");
+        return;
+    }
 
-    console.error(`field missing value! ` + missingFields.join(","));
+    if (userData.lösenord !== upprepaLösenord) {
+        alert("Lösenorden matchar inte!");
+        return;
+    }
 
-    alert("Alla fält måste fyllas i!");
-    return;
-  }
+  
 
-  if (userData.lösenord !== upprepaLösenord) {
-    alert("Lösenorden matchar inte!");
-    return;
-  }
-
-  if (!termsAccepted) {
-    allInputs.forEach((input) => {
-      const warning = input.nextElementSibling;
-      if (warning && warning.classList.contains("warning")) {
-        warning.remove();
-      }
-    });
-    alert(
-      "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
-    );
-    return;
-  }
 
   if (accountType === "personal") {
     userData.kontoTyp = "personal";
@@ -5717,7 +5706,16 @@ var datesSwipes = new Swiper(".dates_swipe", {
 //        alert("Något gick fel.");
 //    }
 //}
-
+async function getUserId() {
+        const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
+    const email = storedPurchaseData.email;
+        console.log(email)
+        //const response = await fetch(`https://localhost:7216/email/email`);
+        const response = await fetch(`https://${API_KEY}/users/email/${email}`);
+        const data = await response.json();
+        let userId = data.id
+    return userId
+}
 // Save form in Cart_view
 async function savePurchaseData() {
 
@@ -5788,7 +5786,7 @@ async function savePurchaseData() {
 
     const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
     const postPurchaseData = {
-        userId: 11,
+        userId: await getUserId(),
         products: storedPurchaseData.products,
         quantity: parseInt(storedPurchaseData.quantity),
         total: parseFloat(storedPurchaseData.total),
@@ -6175,6 +6173,72 @@ async function register() {
         alert("Ett oväntat fel inträffade. Vänligen försök igen.");
     }
 }
+
+async function registerGuest() {
+    const userData = {};
+
+    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
+    userData.firstName = document.getElementById("firstNameInput").value;
+    userData.lastName = document.getElementById("lastNameInput").value;
+    userData.email = document.getElementById("mailInput").value;
+    userData.phoneNumber = document.getElementById("phoneInput").value;
+    userData.address = document.getElementById("addressInput").value;
+    userData.postalCode = document.getElementById("postalCodeInput").value;
+    userData.city = document.getElementById("cityInput").value;
+
+
+    // Konvertera obj till sträng
+    localStorage.setItem("userData", JSON.stringify(userData));
+
+    // Tar ut datan
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+
+    // Kontrollera att det finns data i localStorage
+    if (!storedUserData) {
+        console.error("No user data found in localStorage.");
+        return;
+    }
+
+    // Kontrollera att det finns data i localStorage
+    if (!storedUserData) {
+        console.error("No user data found in localStorage.");
+        return;
+    }
+
+    // Skapa nytt objektet som ska matcha datan i databasen
+    const userToRegister = {
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        email: userData.email,
+        passwordhash: "default",
+        address: userData.address,
+        postalCode: userData.postalCode,
+        phoneNumber: userData.phoneNumber,
+        city: userData.city,
+        userType: null,
+        organizationNumber: null,
+        orders: null,
+        subscription: null,
+    };
+    console.log(userToRegister)
+
+    // Anropa apiet
+    const response = await fetch(`https://${API_KEY}/users`, {
+     //const response = await fetch(`https://localhost:7216/users`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userToRegister),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+    } else {
+        alert("Användaren inte skapas");
+    }
+}
+
 async function login() {
   // Create an object to hold login data
   const loginData = {
