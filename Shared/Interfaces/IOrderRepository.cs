@@ -1,9 +1,14 @@
-﻿namespace Shared.Interfaces;
+﻿using System.Threading.Tasks;
+using System.Collections.Generic;
 
-public interface IOrderRepository<T> where T : class
+namespace Shared.Interfaces
 {
-    Task<List<T>> GetAllOrdersAsync();
-    Task<T?> GetOrderByIdAsync(int id);
-    Task AddOrderAsync(T newOrder);
-    Task DeleteOrderAsync(int id);
+    public interface IOrderRepository<T> where T : class
+    {
+        Task<List<T>> GetAllOrdersAsync();
+        Task<T?> GetOrderByIdAsync(int id);
+        Task AddOrderAsync(T newOrder, string customerEmail, string adminEmail); // Updated signature
+        Task DeleteOrderAsync(int id);
+        // Other method signatures...
+    }
 }
