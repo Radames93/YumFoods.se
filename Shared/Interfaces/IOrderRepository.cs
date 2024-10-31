@@ -7,7 +7,7 @@ namespace Shared.Interfaces
     {
         Task<List<T>> GetAllOrdersAsync();
         Task<T?> GetOrderByIdAsync(int id);
-        Task AddOrderAsync(T newOrder, string customerEmail, string adminEmail); // Updated signature
+        Task AddOrderAsync(T newOrder, string customerEmail); // Updated signature
         Task DeleteOrderAsync(int id);
         // Other method signatures...
     }

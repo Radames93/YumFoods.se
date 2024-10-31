@@ -2,29 +2,34 @@
 using Shared.Entities;
 using Shared.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-
+using System;
 
 namespace DataAccess.Repositories
 {
     public class OrderRepository : IOrderRepository<Order>
     {
         private readonly YumFoodsDb context;
-        private readonly IProductRepository<Product> _productRepository; // Product repository
+        private readonly IProductRepository<Product> _productRepository;
+        private readonly UserRepository _userRepository;
+        private readonly IOrderDetailRepository<OrderDetail> _orderDetailRepository;
 
-        public OrderRepository(YumFoodsDb context, IProductRepository<Product> productRepository)
+        public OrderRepository(YumFoodsDb context, IProductRepository<Product> productRepository, UserRepository userRepository, IOrderDetailRepository<OrderDetail> orderDetailRepository)
         {
             this.context = context;
-            _productRepository = productRepository;  // Initialize product repository
+            _productRepository = productRepository;
+            _userRepository = userRepository;
+            _orderDetailRepository = orderDetailRepository; // Ensure it's initialized
         }
 
         /// <summary>
-        /// Adds a new order into the database.
+        /// Adds a new order into the database and notifies stakeholders via LogicApp.
         /// </summary>
         /// <param name="newOrder">The new order object.</param>
         /// <param name="customerEmail">Email of the customer.</param>
         /// <param name="adminEmail">Email of the admin.</param>
-        public async Task AddOrderAsync(Order newOrder, string customerEmail, string adminEmail)
+        public async Task AddOrderAsync(Order newOrder, string customerEmail )
         {
             var maxId = await context.Order.MaxAsync(o => (int?)o.Id);
             var newId = (maxId ?? 0) + 1;
@@ -46,6 +51,7 @@ namespace DataAccess.Repositories
                 Products = new List<Product>()
             };
 
+            // Add products to the order by verifying each product
             foreach (var prod in newOrder.Products)
             {
                 var existingProd = await context.Product.FindAsync(prod.Id);
@@ -58,24 +64,37 @@ namespace DataAccess.Repositories
             await context.Order.AddAsync(order);
             await context.SaveChangesAsync();
 
-            // Create an instance of LogicApp to notify stakeholders
-            var logicApp = new LogicApp(this, _productRepository);
-            await logicApp.NotifyOrderPlacedAsync(order, customerEmail, adminEmail);
+            // Notify stakeholders using LogicApp
+            var logicApp = new LogicApp(this, _orderDetailRepository, _productRepository, _userRepository);
+            await logicApp.NotifyOrderPlacedAsync(order, customerEmail);
         }
 
+        /// <summary>
+        /// Retrieves all orders from the database.
+        /// </summary>
         public async Task<List<Order>> GetAllOrdersAsync()
         {
-            return await context.Order.ToListAsync();
+            return await context.Order.Include(o => o.Products).ToListAsync();
         }
 
+        /// <summary>
+        /// Retrieves a specific order by its ID.
+        /// </summary>
+        /// <param name="id">The order ID.</param>
         public async Task<Order?> GetOrderByIdAsync(int id)
         {
-            return await context.Order.FindAsync(id);
+            return await context.Order
+                                .Include(o => o.Products)
+                                .FirstOrDefaultAsync(o => o.Id == id);
         }
 
+        /// <summary>
+        /// Deletes an order from the database by its ID.
+        /// </summary>
+        /// <param name="id">The order ID.</param>
         public async Task DeleteOrderAsync(int id)
         {
-            var order = await context.Order.FirstOrDefaultAsync(p => p.Id == id);
+            var order = await context.Order.FindAsync(id);
             if (order != null)
             {
                 context.Order.Remove(order);
@@ -83,6 +102,6 @@ namespace DataAccess.Repositories
             }
         }
 
-        // Other methods...
+        // Additional methods (e.g., update order) can be added here as needed
     }
 }
