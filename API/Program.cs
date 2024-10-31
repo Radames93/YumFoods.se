@@ -1,6 +1,7 @@
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using API.Extensions;
+using API.Handlers;
 using API.Stripe;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
@@ -22,6 +23,12 @@ internal class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddControllers();
+
+        builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonHandler());
+            });
 
         builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
         builder.Services.AddScoped<IOrderRepository<Order>, OrderRepository>();

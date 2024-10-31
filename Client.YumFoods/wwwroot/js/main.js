@@ -218,6 +218,7 @@ function Header() {
       </div>
   </nav>
     `;
+
   let authToken = localStorage.getItem("authToken");
   if (authToken !== null) {
     //const savedUserData = JSON.parse(localStorage.getItem("userData"));
@@ -231,7 +232,7 @@ function Header() {
     <ul class="navbar-nav">
     <li class="nav-item">
         <a id="logIn" href="dashboard.html" class="dropbtn">
-        <img src="./images/fontawesome-icons/user.svg" class="fa-user"/>
+        <img src="./images/fontawesome-icons/user.svg" class="fa-user" />
         </a>
     </li>
   </ul>
@@ -335,96 +336,67 @@ function toggleAccountType(isPersonal) {
 
 //spara purcahse form
 async function saveAndProceed() {
-  // Försök att spara formulärdata
-  const formSaved = await savePurchaseData();
-
-  if (formSaved) {
-    // Om formulärdata har sparats, gå vidare till betalning
-    window.location.href = "payment.html";
-  } else {
-    alert(
-      "Kunde inte spara formulärdata. Kontrollera att alla fält är korrekt ifyllda."
-    );
-  }
+    // Försök att spara formulärdata
+    await registerGuest();
+    await savePurchaseData();
+    window.location.href="payment.html"
 }
 
 // Purchase form
 async function savePurchaseData() {
-  let houseType = "";
-  const purchaseData = {};
-  const missingFields = [];
+    let houseType = "";
+    const purchaseData = {};
+    const missingFields = [];
 
-  //lägg till leverans datum och tid
-  purchaseData.Adress = document.getElementById("addressInput").value.trim();
-  purchaseData.PostalCode = document
-    .getElementById("postalCodeInput")
-    .value.trim();
-  purchaseData.ort = document.getElementById("cityInput").value.trim();
-  const apartment = document.getElementById("lägenhet").checked;
-  const house = document.getElementById("villa_hus").checked;
-  const radhus = document.getElementById("radhus").checked;
-  const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
-  //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
-  purchaseData.firstName = document
-    .getElementById("firstNameInput")
-    .value.trim();
-  purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
-  purchaseData.phone = document.getElementById("phoneInput").value.trim();
-  purchaseData.email = document.getElementById("mailInput").value.trim();
+    //lägg till leverans datum och tid
+    purchaseData.Adress = document.getElementById("addressInput").value.trim();
+    purchaseData.PostalCode = document
+        .getElementById("postalCodeInput")
+        .value.trim();
+    purchaseData.ort = document.getElementById("cityInput").value.trim();
+    const apartment = document.getElementById("lägenhet").checked;
+    const house = document.getElementById("villa_hus").checked;
+    const radhus = document.getElementById("radhus").checked;
+    const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+    //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
+    purchaseData.firstName = document
+        .getElementById("firstNameInput")
+        .value.trim();
+    purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
+    purchaseData.phone = document.getElementById("phoneInput").value.trim();
+    purchaseData.email = document.getElementById("mailInput").value.trim();
 
-  if (!purchaseData.Adress) missingFields.push("adress");
-  if (!purchaseData.PostalCode) missingFields.push("postnummer");
-  if (!purchaseData.ort) missingFields.push("Ort");
+    if (!purchaseData.Adress) missingFields.push("adress");
+    if (!purchaseData.PostalCode) missingFields.push("postnummer");
+    if (!purchaseData.ort) missingFields.push("Ort");
 
-  if (!purchaseData.firstName) missingFields.push("förnamn");
-  if (!purchaseData.lastName) missingFields.push("efternamn");
-  if (!purchaseData.phone) missingFields.push("telefonnummer");
-  if (!purchaseData.email) missingFields.push("email");
+    if (!purchaseData.firstName) missingFields.push("förnamn");
+    if (!purchaseData.lastName) missingFields.push("efternamn");
+    if (!purchaseData.phone) missingFields.push("telefonnummer");
+    if (!purchaseData.email) missingFields.push("email");
 
-  if (apartment) {
-    houseType = "Lägenhet";
-    purchaseData.Port = document.getElementById("portInput").value.trim();
-    purchaseData.Floor = document.getElementById("floorInput").value.trim();
+    if (apartment) {
+        houseType = "Lägenhet";
+        purchaseData.Port = document.getElementById("portInput").value.trim();
+        purchaseData.Floor = document.getElementById("floorInput").value.trim();
 
-    //if (!purchaseData.Port) missingFields.push("portkod");
-    //if (!purchaseData.Floor) missingFields.push("våningsplan");
-  } else if (house) {
-    houseType = "Villa/Hus";
-  } else if (radhus) {
-    houseType = "Radhus";
-  }
-  purchaseData.houseType = houseType;
+        //if (!purchaseData.Port) missingFields.push("portkod");
+        //if (!purchaseData.Floor) missingFields.push("våningsplan");
+    } else if (house) {
+        houseType = "Villa/Hus";
+    } else if (radhus) {
+        houseType = "Radhus";
+    }
+    purchaseData.houseType = houseType;
 
-  if (missingFields.length > 0) {
-    alert("Följande fält måste fyllas i: " + missingFields.join(", "));
-    return false;
-  }
-  return true;
+    if (missingFields.length > 0) {
+        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+        return false;
+    }
+    return true;
 
-  console.log(purchaseData);
-
-  //try {
-  //    // Skicka en POST-förfrågan till backend för att spara köpdata
-  //    const response = await fetch("https://localhost:7216/purchase", {
-  //        method: 'POST',
-  //        headers: {
-  //            'Content-Type': 'application/json',
-  //        },
-  //        body: JSON.stringify(purchaseData),
-  //    });
-
-  //    if (response.ok) {
-  //        alert("Horayy");
-  //        purchaseData.clear();
-  //    } else {
-  //        alert("Fel uppstod vid sparandet av köp.");
-  //    }
-  //}
-  //catch (error) {
-  //    console.error('Error:', error);
-  //    alert("Ett fel uppstod: " + error.message);
-
-  //}
+    console.log(purchaseData);
+    localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
 }
 
 //Personal Form
@@ -437,9 +409,9 @@ function saveUserData(event) {
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
 
-  (userData.firstname = document.getElementById("field1").value),
-    (userData.lastname = document.getElementById("field1.2").value),
-    (userData.email = document.getElementById("field2").value);
+  userData.firstname = document.getElementById("field1").value,
+  userData.lastname = document.getElementById("field1.2").value,
+  userData.email = document.getElementById("field2").value;
   userData.lösenord = document.getElementById("field3").value;
   const upprepaLösenord = document.getElementById("field4").value;
   userData.gatuadress = document.getElementById("field5").value;
@@ -449,65 +421,63 @@ function saveUserData(event) {
   let currentForm = document.getElementById("signupFormPersonal");
   let allInputs = currentForm.querySelectorAll("input");
 
-  // Validering
-  // !userData.username ||
-  if (
-    !userData.firstName ||
-    !userData.lastName ||
-    !userData.email ||
-    !userData.lösenord ||
-    !upprepaLösenord ||
-    !userData.gatuadress ||
-    !userData.postnummer ||
-    !userData.ort
-  ) {
-    const missingFields = [];
+    // Validering
+    // !userData.username ||
+    if (
+        !userData.email ||
+        !userData.lösenord ||
+        !upprepaLösenord ||
+        !userData.gatuadress ||
+        !userData.postnummer ||
+        !userData.ort ||
+        !userData.kontakt ||
+        !userData.telefon
+    ) {
+        const missingFields = [];
+        allInputs.forEach((input) => {
+            if (!input.value) {
+                const warning = input.nextElementSibling;
 
-    allInputs.forEach((input) => {
-      if (!input.value) {
-        const warning = input.nextElementSibling;
+                missingFields.push(input.id);
 
-        missingFields.push(input.id);
+                if (!warning || !warning.classList.contains("warning")) {
+                    const paragraph = document.createElement("p");
+                    paragraph.textContent = "Fält får inte lämnas tomt!";
+                    paragraph.style.color = "red";
+                    paragraph.classList.add("warning");
+                    input.after(paragraph);
+                }
+            } else {
+                const warning = input.nextElementSibling;
 
-        if (!warning || !warning.classList.contains("warning")) {
-          const paragraph = document.createElement("p");
-          paragraph.textContent = "Fält får inte lämnas tomt!";
-          paragraph.style.color = "red";
-          paragraph.classList.add("warning");
-          input.after(paragraph);
-        }
-      } else {
-        const warning = input.nextElementSibling;
+                if (warning && warning.classList.contains("warning")) {
+                    warning.remove();
+                }
+            }
+        });
+        console.error(`field missing value! ` + missingFields.join(","));
 
-        if (warning && warning.classList.contains("warning")) {
-          warning.remove();
-        }
-      }
-    });
+        alert("Alla fält måste fyllas i!");
+        return;
+    }
 
-    console.error(`field missing value! ` + missingFields.join(","));
+    if (userData.lösenord !== upprepaLösenord) {
+        alert("Lösenorden matchar inte!");
+        return;
+    }
 
-    alert("Alla fält måste fyllas i!");
-    return;
-  }
-
-  if (userData.lösenord !== upprepaLösenord) {
-    alert("Lösenorden matchar inte!");
-    return;
-  }
-
-  if (!termsAccepted) {
-    allInputs.forEach((input) => {
-      const warning = input.nextElementSibling;
-      if (warning && warning.classList.contains("warning")) {
-        warning.remove();
-      }
-    });
-    alert(
-      "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
-    );
-    return;
-  }
+    if (!termsAccepted) {
+        allInputs.forEach((input) => {
+            const warning = input.nextElementSibling;
+            if (warning && warning.classList.contains("warning")) {
+                warning.remove();
+            }
+        });
+        alert(
+            "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+        );
+        return;
+    }
 
   if (accountType === "personal") {
     userData.kontoTyp = "personal";
@@ -1102,6 +1072,7 @@ if (searchBar !== null) {
 } else {
   removeEventListener("keyup", search);
 }
+
 
 //Fetch items from database
 const loadProducts = async () => {
@@ -3477,10 +3448,7 @@ function dash_myProfile() {
             break;
           case "6":
             dash_myNotifications();
-                break;
-          case "7":
-            modal();
-                break;
+            break;
           default:
             break;
         }
@@ -4725,7 +4693,7 @@ function nextAccord2() {
 // and finally increment the dates with '1' for the next loop with setDate
 
 const dates = new Date();
-const options = { day: "numeric", month: "short", weekday: "long" };
+const options = { day: "numeric", month: "numeric", weekday: "long", year: "numeric" };
 const twoWeeks = 17;
 
 let threeDaysAhead = [];
@@ -4750,7 +4718,7 @@ const dateStrings = threeDaysAhead
         <div class="swiper-slide date">
             <div class="date-box box1 text-center date">
               <div class="day">${weekday}</div>
-              <div class="date"><span style="margin-right: 5px;">${days}</span>${month}</div>
+              <div class="date"><span id="deliveryDateSpan" style="margin-right: 5px;">${days}</span></div>
             </div>
         </div>
 
@@ -4764,7 +4732,7 @@ if (deliveryDates !== null) {
 }
 
 const theBox = document.querySelectorAll(".box1");
-
+let selectedDeliveryDate = null;
 theBox.forEach((btn) => {
   btn.addEventListener("click", function () {
     theBox.forEach((b) => b.classList.remove("box-selected"));
@@ -4786,6 +4754,18 @@ timeBox.forEach((btn) => {
     console.log("kl:" + deliverClock + " / " + "frakt:" + deliverShipping);
   });
 });
+
+// Format the delivery date to send to backend
+function formatDeliveryDate(dateString) {
+    const split = dateString.split(" ");
+    const days = split[1].replace(/[^\d]/g, '');
+    const month = split[2];
+    const year = new Date().getFullYear();
+
+    const formatted = new Date(`${year}-${monthMonth}-${day}`);
+    //const formattedDate = new Date(year, month, days);
+    return formatted.toISOString();
+}
 
 // theBox.addEventListener('click', function() {
 // theBox.classList.toggle("box-selected");
@@ -5724,6 +5704,120 @@ var datesSwipes = new Swiper(".dates_swipe", {
   },
 });
 
+//Direct to payment when purchase form is saved
+//async function cartNextBtnProceed() {
+//    // Försök att spara formulärdata
+//    const purchaseDataSaved = await savePurchaseData();
+
+//    if (purchaseDataSaved) {
+//        // Om formulärdata har sparats, gå vidare till betalning
+//        window.location.href = 'payment.html';
+//    } else {
+//        alert("Något gick fel.");
+//    }
+//}
+async function getUserId() {
+        const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
+    const email = storedPurchaseData.email;
+        console.log(email)
+        //const response = await fetch(`https://localhost:7216/email/email`);
+        const response = await fetch(`https://${API_KEY}/users/email/${email}`);
+        const data = await response.json();
+        let userId = data.id
+    return userId
+}
+// Save form in Cart_view
+async function savePurchaseData() {
+
+    let houseType = "";
+    const purchaseData = {};
+    const missingFields = [];
+
+    const selectedTime = document.querySelector(".tid-box.tid-box-selected");
+    if (selectedTime) {
+        const deliverClock = selectedTime.querySelector(".time").textContent;
+        const deliverShipping = selectedTime.querySelector(".price").textContent;
+        purchaseData.deliveryTime = deliverClock;  
+        purchaseData.deliveryPrice = deliverShipping;
+    } else {
+        missingFields.push("leveranstid");
+    }
+    purchaseData.deliveryDate = document.getElementById("deliveryDateSpan").textContent;
+    purchaseData.address = document.getElementById("addressInput").value;
+    purchaseData.postalCode = document.getElementById("postalCodeInput").value;
+    purchaseData.ort = document.getElementById("cityInput").value;
+    const apartment = document.getElementById("lägenhet").checked;
+    const house = document.getElementById("villa_hus").checked;
+    const radhus = document.getElementById("radhus").checked;
+    const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+    purchaseData.text = document.getElementById("floatingTextarea").value.trim();
+    purchaseData.firstName = document.getElementById("firstNameInput").value;
+    purchaseData.lastName = document.getElementById("lastNameInput").value;
+    purchaseData.phone = document.getElementById("phoneInput").value;
+    purchaseData.email = document.getElementById("mailInput").value;
+
+
+    const requiredFields = ['address', 'postalCode', 'ort', 'firstName', 'lastName', 'phone', 'email'];
+    requiredFields.forEach(field => {
+        if (!purchaseData[field]) missingFields.push(field);
+    });
+
+    if (missingFields.length > 0) {
+        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+        return false;
+    }
+
+    if (apartment) {
+        houseType = "Apartment";
+        purchaseData.port = document.getElementById("portInput").value.trim();
+        purchaseData.floor = document.getElementById("floorInput").value.trim();
+        if (!purchaseData.Port) missingFields.push("portkod");
+        if (!purchaseData.Floor) missingFields.push("våningsplan");
+    } else if (house) {
+        houseType = "Villa/Hus";
+    } else if (radhus) {
+        houseType = "Radhus";
+    }
+    purchaseData.houseType = houseType;
+    purchaseData.LeaveAtDoor = LeaveAtDoor;
+
+    const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    purchaseData.products = formDataArry.map(item => ({
+        id: parseInt(item.id),
+        name: item.title,
+        quantity: parseInt(item.quantity),
+        price: item.Price
+    }));
+
+    purchaseData.total = localStorage.getItem("sum");
+    purchaseData.quantity = localStorage.getItem("totalQuantity");
+
+    localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
+
+    const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
+    const postPurchaseData = {
+        userId: await getUserId(),
+        products: storedPurchaseData.products,
+        quantity: parseInt(storedPurchaseData.quantity),
+        total: parseFloat(storedPurchaseData.total),
+        paymentMethod: "card",
+        orderDate: new Date().toISOString(),
+        deliveryDate: storedPurchaseData.deliveryDate,
+        deliveryTime: storedPurchaseData.deliveryTime,
+        deliveryAddress: storedPurchaseData.address,
+        deliveryPostalCode: storedPurchaseData.postalCode,
+        floor: parseInt(storedPurchaseData.floor),
+        portCode: parseInt(storedPurchaseData.port),
+        houseType: storedPurchaseData.houseType,
+        leaveAtDoor: storedPurchaseData.LeaveAtDoor,
+        discountTotal: 0
+    };
+    console.log(postPurchaseData);
+    localStorage.setItem("newPurchaseData", JSON.stringify(postPurchaseData));
+}
+
+
+
 //SIDE BAR CART
 
 // Show sidebar
@@ -5772,6 +5866,8 @@ function addToCart(product) {
   // updateSidebarCart();
   // openSidebar();
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   const closeSidebarBtn = document.getElementById("closeSidebar");
@@ -5979,10 +6075,10 @@ async function redirectToStripeCheckout() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        successPaymentUrl:
-          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
-        cancelPaymentUrl:
-          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+          successPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+          //"https://localhost:7023/payment_success.html",          
+          cancelPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+          //"https://localhost:7023/payment_cancel.html",
         products: products, // Send the products array
       }),
     });
@@ -5991,7 +6087,6 @@ async function redirectToStripeCheckout() {
     if (response.ok) {
       // Redirect to the Stripe checkout session URL
       window.location.href = result.checkoutUrl;
-      localStorage.clear();
     } else {
       console.error("Error creating Stripe session", result);
     }
@@ -6009,80 +6104,143 @@ function displayOrder(order) {
 }
 
 async function register() {
-  const userData = {};
+    const userData = {};
 
-  // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
-  userData.firstName = document.getElementById("field1").value;
-  userData.lastName = document.getElementById("field1.2").value;
-  userData.email = document.getElementById("field2").value;
-  userData.phoneNumber = document.getElementById("field2.1").value;
-  userData.passwordhash = document.getElementById("field3").value;
-  userData.address = document.getElementById("field5").value;
-  userData.postalCode = document.getElementById("postnummer").value;
-  userData.city = document.getElementById("ort").value;
+    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
+    userData.firstName = document.getElementById("field1").value;
+    userData.lastName = document.getElementById("field1.2").value;
+    userData.email = document.getElementById("field2").value;
+    userData.phoneNumber = document.getElementById("field2.1").value;
+    userData.passwordhash = document.getElementById("field3").value;
+    userData.address = document.getElementById("field5").value;
+    userData.postalCode = document.getElementById("postnummer").value;
+    userData.city = document.getElementById("ort").value;
 
-  // Skapa konstanter för att kontrollera lösen och termer
-  const repeatPassword = document.getElementById("field4").value;
-  const termsAccepted = document.getElementById("terms1").checked;
+    // Skapa konstanter för att kontrollera lösen och termer
+    const repeatPassword = document.getElementById("field4").value;
+    const termsAccepted = document.getElementById("terms1").checked;
 
-  // Validering
-  if (userData.passwordhash !== repeatPassword) {
-    alert("Lösenorden matchar inte!");
-    return;
-  }
+    // Validering
+    if (userData.passwordhash !== repeatPassword) {
+        alert("Lösenorden matchar inte!");
+        return;
+    }
 
-  if (!termsAccepted) {
-    alert(
-      "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
-    );
-    return;
-  }
+    if (!termsAccepted) {
+        alert(
+            "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+        );
+        return;
+    }
 
-  // Konvertera obj till sträng
-  localStorage.setItem("userData", JSON.stringify(userData));
+    // Konvertera obj till sträng
+    localStorage.setItem("userData", JSON.stringify(userData));
 
-  // Tar ut datan
-  const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    // Tar ut datan
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
 
-  // Kontrollera att det finns data i localStorage
-  if (!storedUserData) {
-    console.error("No user data found in localStorage.");
-    return;
-  }
+    // Kontrollera att det finns data i localStorage
+    if (!storedUserData) {
+        console.error("No user data found in localStorage.");
+        return;
+    }
 
-  // Skapa nytt objektet som ska matcha datan i databasen
-  const userToRegister = {
-    firstName: storedUserData.firstName,
-    lastName: storedUserData.lastName,
-    email: storedUserData.email,
-    passwordhash: storedUserData.passwordhash,
-    address: storedUserData.address,
-    postalCode: storedUserData.postalCode,
-    phoneNumber: storedUserData.phoneNumber,
-    city: storedUserData.city,
-    userType: null,
-    organizationNumber: null,
-    orders: null,
-    subscription: null,
-  };
+    // Skapa nytt objektet som ska matcha datan i databasen
+    const userToRegister = {
+        firstName: storedUserData.firstName,
+        lastName: storedUserData.lastName,
+        email: storedUserData.email,
+        passwordhash: storedUserData.passwordhash,
+        address: storedUserData.address,
+        postalCode: storedUserData.postalCode,
+        phoneNumber: storedUserData.phoneNumber,
+        city: storedUserData.city,
+        userType: null,
+        organizationNumber: null,
+        orders: null,
+        subscription: null,
+    };
 
-  // Anropa apiet
-  const response = await fetch(`https://${API_KEY}/users`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userToRegister),
-  });
+    // Anropa apiet
+    const response = await fetch(`https://${API_KEY}/users`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userToRegister),
+    });
 
-  const data = await response.json();
-  alert("Användare registrerad framgångsrikt!");
+    if (response.ok) {
+        alert("Användare registrerad framgångsrikt!");
+        localStorage.removeItem("userData");
+        window.location.href = "sign_in.html";
+    } else if (response.status === 400) {
+        const errorData = await response.json();
+        alert(`Fel: ${errorData.message || 'Ogiltiga indata!'}`);
+    } else if (response.status === 500) {
+        alert("Ett konto med denna e-postadress finns redan.");
+    } else {
+        alert("Ett oväntat fel inträffade. Vänligen försök igen.");
+    }
+}
 
-  // Optionally, clear localStorage
-  localStorage.removeItem("userData");
+async function registerGuest() {
+    const userData = {};
 
-  // Redirect after successful registration
-  window.location.href = "sign_in.html";
+    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
+    userData.firstName = document.getElementById("firstNameInput").value;
+    userData.lastName = document.getElementById("lastNameInput").value;
+    userData.email = document.getElementById("mailInput").value;
+    userData.phoneNumber = document.getElementById("phoneInput").value;
+    userData.address = document.getElementById("addressInput").value;
+    userData.postalCode = document.getElementById("postalCodeInput").value;
+    userData.city = document.getElementById("cityInput").value;
+
+
+    // Konvertera obj till sträng
+    localStorage.setItem("userData", JSON.stringify(userData));
+
+    // Tar ut datan
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+
+    // Kontrollera att det finns data i localStorage
+    if (!storedUserData) {
+        console.error("No user data found in localStorage.");
+        return;
+    }
+
+    // Skapa nytt objektet som ska matcha datan i databasen
+    const userToRegister = {
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        email: userData.email,
+        passwordhash: "default",
+        address: userData.address,
+        postalCode: userData.postalCode,
+        phoneNumber: userData.phoneNumber,
+        city: userData.city,
+        userType: null,
+        organizationNumber: null,
+        orders: null,
+        subscription: null,
+    };
+    console.log(userToRegister)
+
+    // Anropa apiet
+    const response = await fetch(`https://${API_KEY}/users`, {
+     //const response = await fetch(`https://localhost:7216/users`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userToRegister),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+    } else {
+        return
+    }
 }
 
 async function login() {
