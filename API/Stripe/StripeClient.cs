@@ -44,6 +44,7 @@ public class StripeClient
                 "card",
                 "klarna",
                 "paypal",
+                "swish"
             },
             SuccessUrl = request.SuccessPaymentUrl,
             CancelUrl = request.CancelPaymentUrl,

@@ -1131,7 +1131,7 @@ if (searchBar !== null) {
 //Fetch items from database
 const loadProducts = async () => {
   try {
-    const API_KEY = variables();
+      const API_KEY = variables();
     // Fetch the products from the API
 
     //const response = await fetch(`https://localhost:7216/products`);
@@ -5855,7 +5855,7 @@ async function savePurchaseData() {
         quantity: parseInt(storedPurchaseData.quantity),
         total: parseFloat(storedPurchaseData.total),
         paymentMethod: "card",
-        orderDate: new Date().toISOString(),
+        orderDate: new Date().toISOString().slice(0, 10),
         deliveryDate: storedPurchaseData.deliveryDate,
         deliveryTime: storedPurchaseData.deliveryTime,
         deliveryAddress: storedPurchaseData.address,
@@ -5920,8 +5920,6 @@ function addToCart(product) {
   // updateSidebarCart();
   // openSidebar();
 }
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const closeSidebarBtn = document.getElementById("closeSidebar");
