@@ -6350,7 +6350,7 @@ function Footer() {
        </div>
       </div>
       <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
-       <p id="contact_title">Yumfoods.se</p>
+       <h1 id="contact_title" style="white-space: nowrap; width: auto;">Yum Foods</h1>
        <div class="contacts-content contacts justify-content-center w_40">
         <div id="footer-phone" class="contacts-box">
         <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
