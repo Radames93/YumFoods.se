@@ -2563,9 +2563,9 @@ const sortingDishDietFunction = (el) => {
             baguetterFilterMessage.classList.remove("show");
             baguetterFilterMessage.classList.add("hide");
         }
-    } else if (option === "Cow") {
+    } else if (option === "Nöt") {
         const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet === "Cow";
+            return product.diet === "Nöt";
         });
         // const filteredDailyProducts = dailyProductsList.filter((product) => {
         //   let cow = "";
@@ -2622,9 +2622,9 @@ const sortingDishDietFunction = (el) => {
             baguetterFilterMessage.classList.remove("show");
             baguetterFilterMessage.classList.add("hide");
         }
-    } else if (option === "Fish") {
+    } else if (option === "Fisk") {
         const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet.includes("Fish");
+            return product.diet.includes("Fisk");
         });
         // const filteredDailyProducts = dailyProductsList.filter((product) => {
         //   let fish = "";
@@ -2681,9 +2681,9 @@ const sortingDishDietFunction = (el) => {
             baguetterFilterMessage.classList.remove("show");
             baguetterFilterMessage.classList.add("hide");
         }
-    } else if (option === "Pork") {
+    } else if (option === "Fläsk") {
         const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet === "Pork";
+            return product.diet === "Fläsk";
         });
         // const filteredDailyProducts = dailyProductsList.filter((product) => {
         //   let fish = "";
@@ -2740,9 +2740,9 @@ const sortingDishDietFunction = (el) => {
             baguetterFilterMessage.classList.remove("show");
             baguetterFilterMessage.classList.add("hide");
         }
-    } else if (option === "Chicken") {
+    } else if (option === "Kyckling") {
         const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet.includes("Chicken");
+            return product.diet.includes("Kyckling");
         });
         // const filteredDailyProducts = dailyProductsList.filter((product) => {
         //   let chicken = "";
@@ -2799,9 +2799,9 @@ const sortingDishDietFunction = (el) => {
             baguetterFilterMessage.classList.remove("show");
             baguetterFilterMessage.classList.add("hide");
         }
-    } else if (option === "Pork, Cow") {
+    } else if (option === "Fläsk, Nöt") {
         const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet.includes("Pork, Cow");
+            return product.diet.includes("Fläsk, Nöt");
         });
         // const filteredDailyProducts = dailyProductsList.filter((product) => {
         //   let chicken = "";
