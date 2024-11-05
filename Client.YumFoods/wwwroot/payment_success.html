@@ -40,7 +40,7 @@
     />
   </head>
 
-  <body onLoad="start()">
+  <body>
       <!--=============================
         MENU START
     ==============================-->
@@ -123,7 +123,6 @@
       <script type="text/javascript">
           async function SaveToDatabase() {
               purchaseData = JSON.parse(localStorage.getItem("purchaseData"));
-              console.log(purchaseData)
               // Skicka en POST-förfrågan till backend för att spara köpdata
               const API_KEY = variables();
               const response = await fetch(`https://${API_KEY}/purchase`, {
@@ -145,7 +144,6 @@
           }
           async function SaveToDatabase2() {
               postPurchaseData = JSON.parse(localStorage.getItem("newPurchaseData"));
-              console.log(postPurchaseData)
               //const response = await fetch(`https://localhost:7216/purchase`, {
               const API_KEY = variables();
               const response = await fetch(`https://${API_KEY}/purchase`, {
@@ -158,29 +156,103 @@
 
               if (response.ok) {
                   const data = await response.json();
-                  //alert('Horay');
-                  localStorage.removeItem("newPurchaseData");
-                  localStorage.removeItem("userData");
-                  localStorage.removeItem("formDataArry");
-                  localStorage.removeItem("sum");
-                  localStorage.removeItem("totalQuantity");
               } else {
                   console.log(response)
                   const errorText = await response.text(); // Hämta felmeddelande som text
                   //alert("Ett fel uppstod: " + errorText);
               }
           }
-       
-           SaveToDatabase();
-           SaveToDatabase2();
-          function start() {
-                SaveToDatabase();
-                SaveToDatabase2();
-          }
-          setTimeout(() => {
-              window.location.href = 'index.html'; // Or another URL
+
+          async function logicApp() {
+              const purchaseData = JSON.parse(localStorage.getItem("newPurchaseData"));
+              const userData = JSON.parse(localStorage.getItem("userData"));
+              const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+              const sum = JSON.parse(localStorage.getItem("sum"));
+              if (!purchaseData) {
+                  console.warn("No purchase data found.");
+                  return;
+              }
+              let mergedTitleArray = [];
+              let mergedQuantityArray = [];
+              let mergedQuantityPriceArray = [];
+              for (i = 0; i < formDataArry.length; i++) {
+                  let titleArray = formDataArry[i].title;
+                  let quantityArray = formDataArry[i].quantity;
+                  let quantityPriceArray = formDataArry[i].quantityPrice;
+                  mergedTitleArray.push(JSON.stringify(titleArray));
+                  mergedQuantityArray.push(JSON.stringify(quantityArray));
+                  mergedQuantityPriceArray.push(JSON.stringify(quantityPriceArray + "kr"));
+              }
+              let titleValue = mergedTitleArray.join(", ");
+              let quantityValue = mergedQuantityArray.join(", ");
+              let quantityPriceValue = mergedQuantityPriceArray.join(", ");
+              console.log(titleValue, quantityValue, quantityPriceValue)
+              console.log("Sending purchase data:", purchaseData);
+
+              async function getOrderId() {
+                  const userId = purchaseData.userId
+
+                  const response = await fetch(`https://${API_KEY}/orders`);
+                  const data = await response.json();
+                  let orderId;
+                  data.map((item) => {
+                      if (item.userId === userId) {
+                          return orderId = item.id
+                      } else {
+                          null
+                      }
+                  })
+                  return orderId
+              }
+              let total = sum + "kr"
+              const LOGIC_APP_KEY = logicAppKey()
+                  try {
+                      const response = await fetch(`https://${LOGIC_APP_KEY}`, {
+                          method: "POST",
+                          headers: {
+                              "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify({
+                              orderId: await getOrderId(),
+                              first_name: userData.firstName,
+                              last_name: userData.lastName,
+                              customerEmail: userData.email,
+                              telefon: userData.phoneNumber,
+                              adminEmail: "sales@yumfoods.se",
+                              delivery_date: purchaseData.deliveryDate,
+                              delivery_time: purchaseData.deliveryTime,
+                              order_date: purchaseData.orderDate,
+                              delivery_address: purchaseData.deliveryAddress,
+                              house_type: purchaseData.houseType,
+                              door_code: purchaseData.portCode,
+                              floor: purchaseData.floor,
+                              //leave_at_door: purchaseData.leaveAtDoor,
+                              product_name: titleValue,
+                              product_price: quantityPriceValue,
+                              product_quantity: quantityValue,
+                              total: total
+                          }),
+                      });
+                      if (response.ok) {
+                          console.log("Purchase data sent successfully.")
+                      } else {
+                          console.error("Failed to send purchase data:", await response.text());
+                      }
+                  } catch (error) {
+                      console.error("Error occurred while sending purchase data:", error);
+                  }
+              }
+          SaveToDatabase();
+          SaveToDatabase2();
+          setTimeout(function () { logicApp(); }, 2500);
+            setTimeout(() => {
+                window.location.href = 'index.html'; // Or another URL
+                localStorage.removeItem("formDataArry")
+                localStorage.removeItem("newPurchaseData")
+                localStorage.removeItem("userData")
+                localStorage.removeItem("sum")
+                localStorage.removeItem("total")
           }, 5000);
-         
       </script>
   </body>
 </html>

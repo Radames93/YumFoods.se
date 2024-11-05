@@ -399,39 +399,31 @@ async function savePurchaseData() {
     localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
 }
 
-//Personal Form
-function saveUserData(event) {
+//Cart validation
+function cartValidation(event) {
     event.preventDefault();
 
-    const accountType = "personal";
     const userData = {};
 
     // För de utkommenterade fälten för användare namn
     // userData.username = document.getElementById("username").value.trim();
 
-    userData.firstname = document.getElementById("field1").value,
-        userData.lastname = document.getElementById("field1.2").value,
-        userData.email = document.getElementById("field2").value;
-    userData.lösenord = document.getElementById("field3").value;
-    const upprepaLösenord = document.getElementById("field4").value;
-    userData.gatuadress = document.getElementById("field5").value;
-    userData.postnummer = document.getElementById("postnummer").value;
-    userData.ort = document.getElementById("ort").value;
-    const termsAccepted = document.getElementById("terms1").checked;
-    let currentForm = document.getElementById("signupFormPersonal");
+    userData.adress = document.getElementById("addressInput").value;
+    userData.lösenord = document.getElementById("field3B").value.trim();
+    const upprepaLösenord = document.getElementById("field4B").value.trim();
+    userData.gatuadress = document.getElementById("field5B").value.trim();
+    userData.postnummer = document.getElementById("contactName").value.trim();
+    userData.telefon = document.getElementById("phoneB").value.trim();
+    userData.kontakt = document.getElementById("postnummerB").value.trim();
+    userData.ort = document.getElementById("ortB").value.trim();
+    const termsAccepted = document.getElementById("terms1B").checked;
+    let currentForm = document.getElementById("purchase");
     let allInputs = currentForm.querySelectorAll("input");
 
     // Validering
     // !userData.username ||
     if (
-        !userData.email ||
-        !userData.lösenord ||
-        !upprepaLösenord ||
-        !userData.gatuadress ||
-        !userData.postnummer ||
-        !userData.ort ||
-        !userData.kontakt ||
-        !userData.telefon
+        !userdata.adress
     ) {
         const missingFields = [];
         allInputs.forEach((input) => {
@@ -460,6 +452,67 @@ function saveUserData(event) {
         alert("Alla fält måste fyllas i!");
         return;
     }
+}
+
+//Personal Form
+function saveUserData(event) {
+    event.preventDefault();
+
+    const accountType = "personal";
+    const userData = {};
+
+    // För de utkommenterade fälten för användare namn
+    // userData.username = document.getElementById("username").value.trim();
+
+    userData.email = document.getElementById("field2").value.trim();
+    userData.lösenord = document.getElementById("field3").value.trim();
+    const upprepaLösenord = document.getElementById("field4").value.trim();
+    userData.gatuadress = document.getElementById("field5").value.trim();
+    userData.postnummer = document.getElementById("postnummer").value.trim();
+    userData.ort = document.getElementById("ort").value.trim();
+    const termsAccepted = document.getElementById("terms1").checked;
+    let currentForm = document.getElementById("signupFormPersonal");
+    let allInputs = currentForm.querySelectorAll("input");
+
+    // Validering
+    // !userData.username ||
+    if (
+        !userData.email ||
+        !userData.lösenord ||
+        !upprepaLösenord ||
+        !userData.gatuadress ||
+        !userData.postnummer ||
+        !userData.ort
+    ) {
+        const missingFields = [];
+
+        allInputs.forEach((input) => {
+            if (!input.value) {
+                const warning = input.nextElementSibling;
+
+                missingFields.push(input.id);
+
+                if (!warning || !warning.classList.contains("warning")) {
+                    const paragraph = document.createElement("p");
+                    paragraph.textContent = "Fält får inte lämnas tomt!";
+                    paragraph.style.color = "red";
+                    paragraph.classList.add("warning");
+                    input.after(paragraph);
+                }
+            } else {
+                const warning = input.nextElementSibling;
+
+                if (warning && warning.classList.contains("warning")) {
+                    warning.remove();
+                }
+            }
+        });
+
+        console.error(`field missing value! ` + missingFields.join(","));
+
+        alert("Alla fält måste fyllas i!");
+        return;
+    }
 
     if (userData.lösenord !== upprepaLösenord) {
         alert("Lösenorden matchar inte!");
@@ -481,7 +534,7 @@ function saveUserData(event) {
 
     if (accountType === "personal") {
         userData.kontoTyp = "personal";
-        userData.firstName = document.getElementById("field1").value;
+        userData.förnamn = document.getElementById("field1").value.trim();
     }
 
     // Spara användardata i localStorage
@@ -490,6 +543,7 @@ function saveUserData(event) {
     alert("Dina personliga uppgifter har sparats!");
     window.location.href = "sign_in.html";
 }
+
 
 // Business Form
 function saveUserDataBusiness(event) {
@@ -1076,9 +1130,9 @@ if (searchBar !== null) {
 
 //Fetch items from database
 const loadProducts = async () => {
-    try {
-        const API_KEY = variables();
-        // Fetch the products from the API
+  try {
+      const API_KEY = variables();
+    // Fetch the products from the API
 
         //const response = await fetch(`https://localhost:7216/products`);
 
@@ -5801,7 +5855,7 @@ async function savePurchaseData() {
         quantity: parseInt(storedPurchaseData.quantity),
         total: parseFloat(storedPurchaseData.total),
         paymentMethod: "card",
-        orderDate: new Date().toISOString(),
+        orderDate: new Date().toISOString().slice(0, 10),
         deliveryDate: storedPurchaseData.deliveryDate,
         deliveryTime: storedPurchaseData.deliveryTime,
         deliveryAddress: storedPurchaseData.address,
@@ -5866,8 +5920,6 @@ function addToCart(product) {
     // updateSidebarCart();
     // openSidebar();
 }
-
-
 
 document.addEventListener("DOMContentLoaded", function () {
     const closeSidebarBtn = document.getElementById("closeSidebar");
@@ -6059,21 +6111,22 @@ async function redirectToStripeCheckout() {
             };
         });
 
-        // Create a POST request to your backend endpoint to create the Stripe checkout session
-        //const response = await fetch("https://localhost:7216/payments", {
-        const response = await fetch(`https://${API_KEY}/payments`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                successPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_success.html",
-                //"https://localhost:7023/payment_success.html",          
-                cancelPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
-                //"https://localhost:7023/payment_cancel.html",
-                products: products, // Send the products array
-            }),
-        });
+    // Create a POST request to your backend endpoint to create the Stripe checkout session
+      //const response = await fetch("https://localhost:7216/payments", {
+     const API_KEY = variables();
+    const response = await fetch(`https://${API_KEY}/payments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+          successPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+          //"https://localhost:7023/payment_success.html",          
+          cancelPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+          //"https://localhost:7023/payment_cancel.html",
+        products: products, // Send the products array
+      }),
+    });
 
         const result = await response.json();
         if (response.ok) {
@@ -6112,18 +6165,6 @@ async function register() {
     const repeatPassword = document.getElementById("field4").value;
     const termsAccepted = document.getElementById("terms1").checked;
 
-    // Validering
-    if (userData.passwordhash !== repeatPassword) {
-        alert("Lösenorden matchar inte!");
-        return;
-    }
-
-    if (!termsAccepted) {
-        alert(
-            "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
-        );
-        return;
-    }
 
     // Konvertera obj till sträng
     localStorage.setItem("userData", JSON.stringify(userData));
@@ -6169,12 +6210,8 @@ async function register() {
     } else if (response.status === 400) {
         const errorData = await response.json();
         alert(`Fel: ${errorData.message || 'Ogiltiga indata!'}`);
-    } else if (response.status === 500) {
-        alert("Ett konto med denna e-postadress finns redan.");
-    } else {
-        alert("Ett oväntat fel inträffade. Vänligen försök igen.");
     }
-}
+    }
 
 async function registerGuest() {
     const userData = {};
