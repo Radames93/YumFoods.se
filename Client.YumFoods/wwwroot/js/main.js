@@ -871,12 +871,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const decreaseButton = document.querySelector(
     ".quantity-btn button:nth-of-type(1)"
   );
-  const infoBox = document.querySelector(".info-box");
+    const infoBox = document.querySelector(".info-box");
+
   if (quantitySpan !== null) {
-    let currentQuantity = parseInt(quantitySpan.textContent, 10);
+
     function updateQuantity(newQuantity) {
       if (newQuantity >= 10 && newQuantity <= 20) {
-        currentQuantity = newQuantity;
+          currentQuantity = newQuantity;
         quantitySpan.textContent = currentQuantity;
         updateBox4Selection();
         updateTotalPrice();
@@ -892,8 +893,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         box.classList.remove("selected", "selected-border");
       }
-    });
-    infoBox.style.display = "block";
+    })
   }
 
   // update categorie boxes
@@ -943,6 +943,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+// Step 1: Define the category names and food items
+// Step 1: Define the category names and food items
+// Step 1: Define the category names and food items
+const categoryFoodNames = {
+    "Hälsosammakassen": [
+        "fisk i vitvinssås",
+        "grillad kyckling",
+        "Tikka Masala",
+        "laxpasta m wokade grönsaker",
+        "Kyckling pasta"
+    ],
+    "Familjekassen": [
+        "fisk i vitvinssås",
+        "Kyckling i krämig currysås",
+        "spagetti köttfärssås",
+        "flygande Jakob",
+        "Boueff bourguinon"
+    ]
+};
+
+let quantityOrder = document.getElementById("quantityOrder")
+let names = document.getElementById("product-container")
+
+
 //Display vegetarian Alternatives
 const vegetarianAlternatives = () => {
   const dishList = document.getElementById("dish-list");
@@ -982,7 +1006,6 @@ function updateTotalPrice() {
   );
   const totalPrice = calculateTotalPrice(quantity);
   const totalPriceElement = document.querySelector(".col-5.price");
-  totalPriceElement.innerHTML = `<p>${totalPrice} kr</p>`;
 }
 
 //end of secound part
@@ -1032,6 +1055,7 @@ let baguetterFilterMessage = document.getElementById(
 let yumProductsList = [];
 let dailyProductsList = [];
 let premiumProductsList = [];
+let healthyArray = [];
 let subscriptionsProductsList = [];
 let categoriesProductsList = [];
 let baguetterProductsList = [];
@@ -1041,7 +1065,7 @@ let dailyFiltered = [];
 let premiumFiltered = [];
 let subscriptionsFiltered = [];
 let baguetterFiltered = [];
-let all = [];
+let allProducts1 = [];
 
 //The saved user details (passwords and other sensitive data to be excluded in the future)
 let loggedInUser;
@@ -1146,7 +1170,7 @@ const loadProducts = async () => {
     }
 
     // Parse the response data as JSON
-    const allProducts = data;
+      const allProducts = data;
 
     // Filter the products into different categories
     yumProductsList = allProducts.filter(
@@ -1173,7 +1197,7 @@ const loadProducts = async () => {
     baguetterFiltered = baguetterProductsList;
 
     // Combine all categories into one list
-    const all = [
+    const allProducts1 = [
       ...yumProductsList,
       ...dailyProductsList,
       ...premiumProductsList,
@@ -1181,7 +1205,7 @@ const loadProducts = async () => {
       ...baguetterProductsList,
     ];
 
-    // Pass the lists to UI functions
+      // Pass the lists to UI functions
     yumProducts(yumProductsList);
     dailyProducts(dailyProductsList);
     premiumProducts(premiumProductsList);
@@ -1189,7 +1213,7 @@ const loadProducts = async () => {
     baguetterProducts(baguetterProductsList);
     CarouselFoodBoxes(yumProductsList);
     CarouselFoodBoxes2(baguetterProductsList);
-    CarouselDietButtons(yumProductsList);
+      CarouselDietButtons(yumProductsList);
   } catch (err) {
     // Handle errors gracefully
     console.error("Error fetching products:", err);
@@ -1199,6 +1223,53 @@ const loadProducts = async () => {
 // Call the function to load the products
 loadProducts();
 
+async function Healthy() {
+    const response = await fetch(`https://${API_KEY}/products`);
+
+    const data = await response.json();
+
+    // Check if the response is OK (status code in the 200-299 range)
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
+    }
+
+    // Parse the response data as JSON
+    const allProducts = data;
+
+    allProducts
+        .map((category) => {
+            if (category.id === 3 || category.id === 6 || category.id === 10 || category.id === 24 || category.id === 5) {
+                quantity = 1
+                formDataArry.push(
+                    {
+                        id: category.id,
+                        description: category.description,
+                        diet: category.dietRef,
+                        img: category.imgRef,
+                        price: category.price,
+                        quantity: quantity,
+                        quantityPrice: category.price * quantity,
+                        title: category.title
+                    }
+                )
+                localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+            } else {
+                return null
+            }
+    })
+};
+
+function chooseQuantity() {
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    formDataArry
+        .map((dish) => {
+            console.log(dish.quantity)
+            dish.quantity = dish.quantity * 2
+            dish.quantityPrice = dish.quantityPrice * 2
+        })
+    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+
+}
 /*
 // Dispay all products
 const showAllProducts = (allProducts) => {
@@ -2306,6 +2377,7 @@ const subscriptionsProducts = (subscriptionsProductsList) => {
   }
 };
 
+
 //Sort function by name and price
 const sortingNamePriceFunction = (el) => {
   const option = el.value;
@@ -2861,6 +2933,8 @@ const sortingDishDietFunction = (el) => {
     }
 };
 loadProducts();
+
+
 
 // Make modal fetch data from json file
 var cardModal = document.getElementById("modal");
