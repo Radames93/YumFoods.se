@@ -1,32 +1,42 @@
 <!DOCTYPE html>
 <html lang="sv">
-  <head>
+    <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi" />
     <title>YumFoods</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="images/favicon-32x32.png"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="./images/aboutus.png"
-      imagesrcset="./images/aboutus.png 1600w, ./images/aboutus-mobile.png 335w"
-      imagesizes="(max-width: 1100px) 100vw, 1100px"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/custom_spacing.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
-  </head>
+
+    <style>
+        /* Remove margin/padding from header */
+        header, header-component {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            position: relative;
+        }
+
+        /* Reset body and html margin and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Optional: Make the header fixed to the top */
+        header, header-component {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+    </style>
+</head>
 
   <body>
       <!--=============================
@@ -67,7 +77,6 @@
       <div class="container">
         <div class="row about-us title align-items-center pt-5">
           <div class="col-6 text-left link pt-5" >
-            <a href="index.html"><i class="fa fa-arrow-left"></i> Tillbaka</a>
           </div>
           <div class="col-6 text-center">
             <h1>Om Oss</h1>
