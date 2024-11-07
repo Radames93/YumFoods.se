@@ -51,7 +51,7 @@ internal class Program
         {
             throw new Exception("One or more KeyVault configuration values are missing.");
         }
-
+        //
         // Use ClientSecretCredential for Azure Key Vault authentication
         var credential = new ClientSecretCredential(keyVaultDirectoryID, keyVaultClientId, keyVaultClientSecret);
 
