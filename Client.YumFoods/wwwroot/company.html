@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ärligt Betalsystem - Yum Foods</title>
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="images/favicon-32x32.png" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom_spacing.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
     <link rel="stylesheet" href="styles.css" />
     <style>
         /* Basic Reset */
@@ -12,89 +22,12 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-color: #ffffff; /* Changed background color to white */
             color: #333;
         }
-
-        /* Navbar styles new */
-        .navbar {
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: fixed; /* Keep the navbar at the top of the page */
-            top: 0;
-            width: 100%;
-            z-index: 1000; /* Ensure navbar stays above other content */
-        }
-
-            .navbar .container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px 20px;
-            }
-
-        .navbar-brand img {
-            width: 150px; /* Set a fixed size for the logo */
-        }
-
-        .navbar-left ul {
-            display: flex;
-            gap: 15px;
-        }
-
-        .navbar-nav li a {
-            text-decoration: none;
-            color: #333;
-            padding: 8px 15px;
-            font-size: 16px;
-        }
-
-            .navbar-nav li a:hover {
-                background-color: #dd3902;
-                color: white;
-                border-radius: 4px;
-            }
-
-        .navbar-toggler {
-            background-color: transparent;
-            border: none;
-            display: none; /* Hide it by default, will show in mobile view */
-        }
-
-        .navbar-collapse {
-            display: flex;
-            flex-grow: 1;
-            justify-content: flex-end;
-        }
-
-            .navbar-collapse ul {
-                display: flex;
-                gap: 20px;
-            }
-
-        .cart {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-            .cart span {
-                position: absolute;
-                top: -5px;
-                right: -5px;
-                background-color: red;
-                color: white;
-                font-size: 12px;
-                border-radius: 50%;
-                width: 18px;
-                height: 18px;
-                text-align: center;
-                line-height: 18px;
-            }
 
         /* Content and Section styles */
         .container {
@@ -109,55 +42,50 @@
             padding-top: 80px; /* Adjust based on navbar height */
         }
 
-        .section_heading {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+		.section_heading {
+			text-align: center;
+			margin-bottom: 30px;
+			padding-top: 40px; /* Add padding to create space between header and h2 */
+		}
 
-            .section_heading h2 {
-                font-size: 2.5em;
-                color: #dd3902;
-            }
+
+			.section_heading h2 {
+				font-size: 2.5em;
+				color: #dd3902;
+				margin-top: 20px; /* This will add space above the h2 */
+			}
+
 
             .section_heading h3 {
                 font-size: 1.5em;
                 color: #666;
             }
 
-        .content {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-            .content p {
-                font-size: 1.1em;
-                line-height: 1.6;
-                margin-bottom: 20px;
-                color: #555;
-            }
-
-            .content a {
-                color: #dd3902;
+            /* Style for links inside .section_heading */
+            .section_heading a {
+                font-weight: bold; /* Make link bold */
                 text-decoration: none;
-                font-weight: bold;
             }
 
-                .content a:hover {
+                .section_heading a:hover {
                     text-decoration: underline;
                 }
 
-        /* Footer styles */
-        footer {
-            text-align: center;
-            padding: 20px 0;
-            background-color: #333;
-            color: #fff;
+        .content p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
         }
 
-            footer i {
-                margin-right: 10px;
+        .content a {
+            color: #dd3902;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+            .content a:hover {
+                text-decoration: underline;
             }
 
         /* Trusted Clients Section */
@@ -179,17 +107,13 @@
                 max-width: 150px;
                 height: auto;
             }
+
+		.bold-link {
+			font-weight: bold; /* This will make the text bold */
+			color: #dd3902;
+		}
+
     </style>
-    <link rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="images/favicon-32x32.png" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/custom_spacing.css" />
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
 </head>
 
 <body>
@@ -205,22 +129,25 @@
         <div class="container">
             <div class="section_heading">
                 <h2>Enkel och ärlig matleverans direkt till ditt kylskåp!</h2>
-                <h3>Vi litar på att våra kunder betalar, därför erbjuder vi ett enkelt system utan krångel.</h3>
             </div>
 
-            <div class="content">
-                <p>Vi fyller ditt kylskåp—ta bara en matlåda och betala via Swish-koden på ditt kylskåp.</p>
-                <p>Inget behov av att oroa sig för matsvinn; våra matlådor har en hållbarhet på upp till två veckor i kylen!</p>
-                <p>Anslut dig till vårt ärlighetsbaserade betalsystem idag och få dina matlådor levererade nästa vecka!</p>
-                <p>Osäker på hur många lådor du behöver varje vecka? <a href="contact.html">Kontakta oss</a>, så hjälper vi dig att hitta rätt antal!</p>
+            <div>
+                <p>
+                    Vi litar på att våra kunder betalar, därför erbjuder vi ett enkelt system utan krångel.
+                    Vi fyller ditt kylskåp—ta bara en matlåda och betala via Swish-koden på ditt kylskåp.
+                    Inget behov av att oroa sig för matsvinn; våra matlådor har en hållbarhet på upp till två veckor i kylen!
+                    Anslut dig till vårt ärlighetsbaserade betalsystem idag och få dina matlådor levererade nästa vecka!
+                    Osäker på hur många lådor du behöver varje vecka? <br><br>
+                    <a class="section_heading bold-link" href="contact.html">Kontakta oss</a>, så hjälper vi dig att hitta det bästa upplägget för dina behov!<br><br>
+                    Betrodd av våra kunder för deras dagliga måltider på kontoret:
+                </p>
             </div>
         </div>
     </section>
-    <!---->
+
     <!-- Trusted Clients Section -->
     <section class="trusted-clients">
         <div class="container">
-            <h3>Betrodd av våra kunder för deras dagliga måltider på kontoret:</h3>
             <div class="client-logos">
                 <!-- Image logos -->
                 <img src="/images/NCC_(Unternehmen)_logo.svg.png" alt="NCC Logo">
@@ -230,31 +157,41 @@
         </div>
     </section>
 
-    <!--=============================
-        FOOTER START
-    ==============================-->
     <footer-component id="footer"></footer-component>
     <!--=============================
         FOOTER END
     ==============================-->
-    <!-- Scripts -->
+    <!-- hotjar code -->
     <script src="js/hotjar.js"></script>
+    <!-- swiper slider -->
     <script src="js/swiper-bundle.min.js" rel="preload"></script>
+    <!--jquery library js-->
     <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/env js-->
     <script src="js/env.js"></script>
+    <!--main/custom js-->
     <script rel="preload" src="js/main.js"></script>
+    <!--bootstrap js-->
     <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- isotop js -->
     <script src="js/isotope.pkgd.min.js"></script>
+    <!-- counter up js -->
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
     <script src="js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
     <script src="js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
     <script src="js/sticky_sidebar.js"></script>
+    <!-- wow js -->
     <script src="js/wow.min.js"></script>
+    <!-- ex zoom js -->
     <script src="js/jquery.exzoom.js"></script>
     <link rel="stylesheet" href="css/venobox.min.css" />
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/jquery.exzoom.css" />
     <link rel="stylesheet" href="css/nice-select.css" />
+
 </body>
 </html>
