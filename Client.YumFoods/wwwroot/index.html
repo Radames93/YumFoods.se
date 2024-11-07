@@ -181,20 +181,15 @@
                           </div>
                       </div>
                       <div class="col-6">
-                          <div class="box box2 kost" data-category="veg">
+                          <div class="box box2 kost" onclick="Family(allProducts1)" data-category="veg">
                               <p>Familjekassen</p>
                           </div>
                       </div>
                   </div>
                   <div class="row mb-4">
                       <div class="col-6">
-                          <div class="box box2 kost" data-category="fisk">
+                          <div class="box box2 kost" onclick="Halal(allProducts1)" data-category="fisk">
                               <p>Halal kassen</p>
-                          </div>
-                      </div>
-                      <div class="col-6">
-                          <div class="box box2 kost" data-category="vegetarisk">
-                              <p>Vegetariska kassen</p>
                           </div>
                       </div>
                   </div>
@@ -203,19 +198,19 @@
                   <h4 class="text-center mb-4">2. Välj antal matlådor</h4>
                   <div class="row" id="quantityOrder">
                       <div class="col-4">
-                          <div class="box box4" data-value="10" onclick="chooseQuantity()">
+                          <div id="first" class="box box4" data-value="10" onclick="chooseQuantity10()">
                               <img class="green-check-kost2" src="images/Eo_circle_green_checkmark.svg.webp" alt="" />
                               <p style="font-weight: 600">10</p>
                           </div>
                       </div>
                       <div class="col-4">
-                          <div class="box box4" data-value="15">
+                          <div id="second" class="box box4" data-value="15"  onclick="chooseQuantity15()">
                               <img class="green-check-kost2" src="images/Eo_circle_green_checkmark.svg.webp" alt="" />
                               <p style="font-weight: 600">15</p>
                           </div>
                       </div>
                       <div class="col-4">
-                          <div class="box box4" data-value="20">
+                          <div id="third" class="box box4" data-value="20" onclick="chooseQuantity20()">
                               <img class="green-check-kost2" src="images/Eo_circle_green_checkmark.svg.webp" alt="" />
                               <p style="font-weight: 600">20</p>
                           </div>
@@ -244,24 +239,20 @@
                       <div style="width: 412px" class="col-12">
                           <div class="box3 info-box">
                               <div class="row mb-4">
-                                  <div class="col-4 d-flex align-items-center">
-                                      <img src="images/Ikon-veg.jpg" alt="Bild" class="img-fluid w-25" style="width: 60px; margin-right: 10px;" />
-                                      <p id="bundleName" class="fw-bolder"></p>
-                                      <h5 style="font-size: 16px; width: 100px; margin-left: 35px; line-height: 1.5;">
-                                          Ta bort
-                                          <button style="background-color: white" type="button" class="close btn2">
-                                              <i class="fa fa-times"></i>
-                                          </button>
-                                      </h5>
+                                  <div class="col-12 d-flex justify-content-between align-items-center">
+                                      <p id="bundleName" class="fw-bold" style="font-size: 20px; margin-right: auto;"></p>
+                                      <button style="background-color: white; border: none;" type="button" class="close btn2">
+                                          <i class="fa fa-times" style="font-size: 18px; color: #f63;"></i> Ta bort
+                                      </button>
                                   </div>
                               </div>
+
                               <div class="row">
-                                  <div class="col-5"></div>
-                                  <div class="col-5 mb-5">
-                                      <div id="product-container">
-                                      </div>
+                                  <div class="col-12 mb-5">
+                                      <div id="product-container" class="single-column-container"></div>
                                   </div>
                               </div>
+
                               <div style="width: 300px; margin-left: auto; margin-right: auto" class="justify-content-between">
                                   <div class="row bg-light mb-1 mt-1">
                                       <div class="col-5 frakt">
@@ -276,20 +267,12 @@
                                           <p style="text-align: left; font-weight: 600">Att betala</p>
                                       </div>
                                       <div style="text-align: right" class="col-5 price">
-                                          <p>0 kr</p>
-                                      </div>
-                                  </div>
-                                  <div class="row bg-light">
-                                      <div class="col-5 frakt">
-                                          <p style="text-align: left">Moms</p>
-                                      </div>
-                                      <div style="text-align: right" class="col-5 price2">
-                                          <p>173 kr</p>
+                                          <p id="orderSum"></p>
                                       </div>
                                   </div>
                               </div>
                               <div class="mt-5 mb-4">
-                                  <button class="btn btn-danger" onclick="window.location.href='payment.html'">Vidare till kassan</button>
+                                  <button class="btn btn-danger" onclick="window.location.href='cart_view.html'">Vidare till kassan</button>
                               </div>
                           </div>
                       </div>

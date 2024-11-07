@@ -1253,22 +1253,170 @@ async function Healthy() {
                     }
                 )
                 localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-            } else {
-                return null
             }
-    })
-};
+        })
+}
 
-function chooseQuantity() {
+
+            async function Family() {
+                const response = await fetch(`https://${API_KEY}/products`);
+
+                const data = await response.json();
+
+                // Check if the response is OK (status code in the 200-299 range)
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+
+                // Parse the response data as JSON
+                const allProducts = data;
+
+                allProducts
+                    .map((category) => {
+
+                        if (category.id === 3 || category.id === 16 || category.id === 11 || category.id === 2 || category.id === 5) {
+                            quantity = 1
+                            formDataArry.push(
+                                {
+                                    id: category.id,
+                                    description: category.description,
+                                    diet: category.dietRef,
+                                    img: category.imgRef,
+                                    price: category.price,
+                                    quantity: quantity,
+                                    quantityPrice: category.price * quantity,
+                                    title: category.title
+                                }
+                            )
+                            localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+
+                        }
+                    })
+            }
+
+            async function Halal() {
+                const response = await fetch(`https://${API_KEY}/products`);
+
+                const data = await response.json();
+
+                // Check if the response is OK (status code in the 200-299 range)
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+
+                // Parse the response data as JSON
+                const allProducts = data;
+
+                allProducts
+                    .map((category) => {
+                         if (category.id === 2 || category.id === 6 || category.id === 24 || category.id === 16 || category.id === 14) {
+                            quantity = 1
+                            formDataArry.push(
+                                {
+                                    id: category.id,
+                                    description: category.description,
+                                    diet: category.dietRef,
+                                    img: category.imgRef,
+                                    price: category.price,
+                                    quantity: quantity,
+                                    quantityPrice: category.price * quantity,
+                                    title: category.title
+                                }
+                            )
+                            localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+                        }
+                    })
+            };
+
+function chooseQuantity10() {
+            formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+            formDataArry
+                .map((dish) => {
+                    console.log(dish.quantity)
+                    dish.quantity = 1
+                    dish.quantity = dish.quantity * 2
+                    dish.quantityPrice = dish.quantityPrice * 2
+                })
+    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+    displayOrderItems()
+}
+
+function chooseQuantity15() {
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    formDataArry
+        .map((dish) => {
+            dish.quantity = 1
+            dish.quantity = dish.quantity * 3
+            dish.quantityPrice = dish.quantityPrice * 3
+        })
+    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+    displayOrderItems();
+}
+
+function chooseQuantity20() {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     formDataArry
         .map((dish) => {
             console.log(dish.quantity)
-            dish.quantity = dish.quantity * 2
-            dish.quantityPrice = dish.quantityPrice * 2
+            dish.quantity = 1
+            dish.quantity = dish.quantity * 4
+            dish.quantityPrice = dish.quantityPrice * 4
         })
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+    displayOrderItems();
+}
 
+
+function displayOrderItems() {
+    if (JSON.parse(localStorage.getItem("formDataArry")) !== null) {
+        formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+        let productOrder = document.getElementById("product-container")
+        let mergedTitleArray = [];
+        let mergedPriceArray = [];
+        let mergedQuantityArray = [];
+        for (i = 0; i < formDataArry.length; i++) {
+            let titleArray = formDataArry[i].title;
+            let quantityArray = formDataArry[i].quantity;
+            let priceArray = formDataArry[i].price;
+            mergedTitleArray.push(JSON.stringify(titleArray));
+            mergedQuantityArray.push(JSON.stringify(quantityArray));
+            mergedPriceArray.push(JSON.stringify(priceArray + "kr"));
+        }
+        let titleValue = mergedTitleArray.join(", ");
+        let quantityValue = mergedQuantityArray.join(", ");
+        let priceValue = mergedPriceArray.join(", ");
+        let htmlString = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>Namn</th>
+                        <th>Kvantitet</th>
+                        <th>Pris</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+
+        // Loop through each product in the array to generate table rows
+        formDataArry.forEach(item => {
+            htmlString += `
+                <tr>
+                    <td>${item.title}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.price} kr</td>
+                </tr>
+            `;
+        });
+
+        // Close the table structure
+        htmlString += `
+                </tbody>
+            </table >
+        `;
+
+        // Insert the generated HTML into the container element
+        productOrder.innerHTML = htmlString;
+    }
 }
 /*
 // Dispay all products
