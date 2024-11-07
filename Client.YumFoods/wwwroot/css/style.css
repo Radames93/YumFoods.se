@@ -3300,19 +3300,23 @@ button {
   justify-content: space-between;
 }
 .learn-more-button {
-  background: #dd3902;
-  color: var(--white);
-  padding: 12px 40px;
-  border-radius: 10px;
-  font-size: 25px;
-  font-weight: 600;
-  transition: all linear 0.3s;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  border: none;
-  z-index: 0;
+    background: #dd3902;
+    color: var(--white);
+    padding: 12px 40px;
+    border-radius: 10px;
+    font-size: 25px;
+    font-weight: 600;
+    transition: all linear 0.3s;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: none;
+    z-index: 10; /* Ensure it’s above other elements */
+    display: inline-block !important; /* Force display */
+    visibility: visible !important; /* Force visibility */
+    opacity: 1 !important; /* Force opacity */
 }
+
 .learn-more-description {
   position: relative;
   display: block;
