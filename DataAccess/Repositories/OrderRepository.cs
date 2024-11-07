@@ -1,47 +1,37 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Shared.Entities;
 using Shared.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System;
 
 namespace DataAccess.Repositories
 {
-    public class OrderRepository(YumFoodsDb context) : IOrderRepository<Order>
+    public class OrderRepository : IOrderRepository<Order>
     {
-        /// <summary>
-        /// Gives a list of all orders.
-        /// </summary>
-        /// <returns>The list of all orders from the database.</returns>
-        public async Task<List<Order>> GetAllOrdersAsync()
+        private readonly YumFoodsDb context;
+        private readonly IProductRepository<Product> _productRepository;
+        private readonly UserRepository _userRepository;
+        private readonly IOrderDetailRepository<OrderDetail> _orderDetailRepository;
+
+        public OrderRepository(YumFoodsDb context, IProductRepository<Product> productRepository, UserRepository userRepository, IOrderDetailRepository<OrderDetail> orderDetailRepository)
         {
-            return await context.Order.ToListAsync();
+            this.context = context;
+            _productRepository = productRepository;
+            _userRepository = userRepository;
+            _orderDetailRepository = orderDetailRepository; // Ensure it's initialized
         }
 
         /// <summary>
-        /// Gives a specific order with the matching id 
+        /// Adds a new order into the database and notifies stakeholders via LogicApp.
         /// </summary>
-        /// <param name="id">The id of the order.</param>
-        /// <returns>The sum of the two integers.</returns>
-        public async Task<Order?> GetOrderByIdAsync(int id)
+        /// <param name="newOrder">The new order object.</param>
+        /// <param name="customerEmail">Email of the customer.</param>
+        /// <param name="adminEmail">Email of the admin.</param>
+        public async Task AddOrderAsync(Order newOrder, string customerEmail )
         {
-            return await context.Order.FindAsync(id);
-        }
-
-        //koppling till kund databasen så att kunden kan se sina ordrar
-        //public async Task<List<Order>> GetOrdersByEmailAsync(string email)
-        //{
-        //    return await context.Order.Include(order => order.Products).Where(o => o.Email == email).ToListAsync();
-        //}
-
-        /// <summary>
-        /// Adds a new object into the database.
-        /// </summary>
-        /// <param name="newOrder">The object newOrder.</param>
-
-        public async Task AddOrderAsync(Order newOrder)
-        {
-            var maxId = await context.Order
-                .MaxAsync(o => (int?)o.Id);
-
+            var maxId = await context.Order.MaxAsync(o => (int?)o.Id);
             var newId = (maxId ?? 0) + 1;
 
             var order = new Order()
@@ -61,6 +51,7 @@ namespace DataAccess.Repositories
                 Products = new List<Product>()
             };
 
+            // Add products to the order by verifying each product
             foreach (var prod in newOrder.Products)
             {
                 var existingProd = await context.Product.FindAsync(prod.Id);
@@ -69,25 +60,48 @@ namespace DataAccess.Repositories
                     order.Products.Add(existingProd);
                 }
             }
+
             await context.Order.AddAsync(order);
             await context.SaveChangesAsync();
+
+            // Notify stakeholders using LogicApp
+            var logicApp = new LogicApp(this, _orderDetailRepository, _productRepository, _userRepository);
+            await logicApp.NotifyOrderPlacedAsync(order, customerEmail);
         }
 
         /// <summary>
-        /// Deletes a specific order from the database.
+        /// Retrieves all orders from the database.
         /// </summary>
-        /// <param name="id">The id of the specific order.</param>
-        public async Task DeleteOrderAsync(int id)
+        public async Task<List<Order>> GetAllOrdersAsync()
         {
-            var order = await context.Order.FirstOrDefaultAsync(p => p.Id == id);
-            if (order is null)
-            {
-                return;
-            }
-
-            context.Order.Remove(order);
-            await context.SaveChangesAsync();
+            return await context.Order.Include(o => o.Products).ToListAsync();
         }
 
+        /// <summary>
+        /// Retrieves a specific order by its ID.
+        /// </summary>
+        /// <param name="id">The order ID.</param>
+        public async Task<Order?> GetOrderByIdAsync(int id)
+        {
+            return await context.Order
+                                .Include(o => o.Products)
+                                .FirstOrDefaultAsync(o => o.Id == id);
+        }
+
+        /// <summary>
+        /// Deletes an order from the database by its ID.
+        /// </summary>
+        /// <param name="id">The order ID.</param>
+        public async Task DeleteOrderAsync(int id)
+        {
+            var order = await context.Order.FindAsync(id);
+            if (order != null)
+            {
+                context.Order.Remove(order);
+                await context.SaveChangesAsync();
+            }
+        }
+
+        // Additional methods (e.g., update order) can be added here as needed
     }
 }

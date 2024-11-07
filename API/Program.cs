@@ -36,6 +36,8 @@ internal class Program
         builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
         builder.Services.AddScoped<UserRepository>();
         builder.Services.AddScoped<OrderWithDetailsRepository>();
+        builder.Services.AddScoped<LogicApp>();
+
 
         // Retrieve KeyVault settings from appsettings.json
         var keyVaultURL = builder.Configuration["KeyVault:KeyVaultURL"];
@@ -49,7 +51,7 @@ internal class Program
         {
             throw new Exception("One or more KeyVault configuration values are missing.");
         }
-
+        //
         // Use ClientSecretCredential for Azure Key Vault authentication
         var credential = new ClientSecretCredential(keyVaultDirectoryID, keyVaultClientId, keyVaultClientSecret);
 
@@ -89,8 +91,8 @@ internal class Program
         var completeConnectionString2 = $"{connectionString2};SslMode=VerifyCA;SslCa={tempFilePath}";
 
         //vivians strings
-        var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\padov\\Desktop\\ca-cert.pem;";
-        var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\padov\\Desktop\\ca-cert.pem;";
+        var conn1 = "Server=192.168.11.85;Database=yumfoodsdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\tomya\\Downloads\\ca-cert.pem;";
+        var conn2 = "Server=192.168.11.85;Database=yumfoodsuserdb;Uid=root;Pwd=admin;SslMode=VerifyCA;SslCa=C:\\Users\\tomya\\Downloads\\ca-cert.pem;";
         var localConn1 = "Server=localhost;Database=yumfoodsdb;Uid=root;Pwd=admin;";
         var localConn2 = "Server=localhost;Database=yumfoods.userdb;Uid=root;Pwd=admin;";
 
@@ -147,7 +149,7 @@ internal class Program
         var app = builder.Build();
 
         app.MapProductEndpoints();
-        app.MapOrderEndpoints();
+        app.MapOrderEndpoints(); // Register order endpoints
         app.MapOrderDetailEndpoints();
         app.MapSubscriptionEndpoints();
         app.MapPaymentsEndPoints();
