@@ -729,7 +729,9 @@ function sendUserQuery(event) {
 // Event listeners för att växla mellan kontotyper
 document.addEventListener("DOMContentLoaded", function () {
   const btnPersonal = document.getElementById("btnPersonal");
-  const btnBusiness = document.getElementById("btnBusiness");
+    const btnBusiness = document.getElementById("btnBusiness");
+  const foodBoxes = document.getElementById("yum");
+    const bundles = document.getElementById("bundles");
 
   if (btnPersonal) {
     btnPersonal.addEventListener("click", function () {
@@ -744,7 +746,19 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("accountTitle").textContent =
         "Skapa företagskonto";
     });
-  }
+    }
+
+    if (foodBoxes) {
+        foodBoxes.addEventListener("click", function () {
+            toggleMenuType(true);
+        });
+    }
+
+    if (bundles) {
+        bundles.addEventListener("click", function () {
+            toggleMenuType(false);
+        });
+    }
 });
 
 //LOGIN SIDA
@@ -1005,6 +1019,7 @@ function updateTotalPrice() {
 let summary = document.getElementById("cost_summary");
 //let products = document.getElementById("products");
 let yum = document.getElementById("yum");
+let bundles = document.getElementById("bundles");
 let daily = document.getElementById("daily");
 let premium = document.getElementById("premium");
 let subscriptions = document.getElementById("subscription");
@@ -1030,6 +1045,7 @@ let baguetterFilterMessage = document.getElementById(
 
 //Create empty array to populate with products
 let yumProductsList = [];
+let bundlesList = [];
 let dailyProductsList = [];
 let premiumProductsList = [];
 let subscriptionsProductsList = [];
@@ -1163,14 +1179,18 @@ const loadProducts = async () => {
     );
     baguetterProductsList = allProducts.filter(
       (product) => product.category === "Baguetter"
-    );
+      );
+   bundlesList = allProducts.filter(
+          (product) => product.category === "Bundles"
+      );
 
     // Further filtering or categorization
     yumFiltered = yumProductsList;
     dailyFiltered = dailyProductsList;
     premiumFiltered = premiumProductsList;
     subscriptionsFiltered = subscriptionsProductsList;
-    baguetterFiltered = baguetterProductsList;
+      baguetterFiltered = baguetterProductsList;
+      bundlesListFiltered = bundlesList;
 
     // Combine all categories into one list
     const all = [
@@ -1178,7 +1198,8 @@ const loadProducts = async () => {
       ...dailyProductsList,
       ...premiumProductsList,
       ...subscriptionsProductsList,
-      ...baguetterProductsList,
+        ...baguetterProductsList,
+        ...bundlesList
     ];
 
     // Pass the lists to UI functions
@@ -1190,6 +1211,7 @@ const loadProducts = async () => {
     CarouselFoodBoxes(yumProductsList);
     CarouselFoodBoxes2(baguetterProductsList);
     CarouselDietButtons(yumProductsList);
+    BundlesList(bundlesList);
   } catch (err) {
     // Handle errors gracefully
     console.error("Error fetching products:", err);
@@ -1332,6 +1354,16 @@ const showAllProducts = (allProducts) => {
   }
 };
 */
+
+// MENY - Funktion för att visa matlådor eller matkassor beroende på knappen
+function toggleMenuType(isPersonal) {
+    document.getElementById("yum").style.display = isPersonal
+        ? "grid"
+        : "none";
+    document.getElementById("bundle").style.display = isPersonal
+        ? "none"
+        : "grid";
+}
 
 //Display yum items
 const yumProducts = (yumProductsList) => {
@@ -1554,6 +1586,226 @@ const yumProducts = (yumProductsList) => {
   }
 };
 
+const BundlesList = (bundlesList) => {
+    if (bundles !== null) {
+        const htmlString = bundlesList
+            .map((bundles) => {
+                let title = JSON.stringify(bundles.title);
+                let description = JSON.stringify(bundles.description);
+                let ingredients = JSON.stringify(bundles.ingredients);
+                return (
+                    `
+
+          <div
+          class="wow fadeInUp "
+          data-wow-duration="1s"
+                      >
+        <div class="menu_item yum_product_display_item"
+                style="border: 1px solid var(--Stroke, #CED3D2); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:364px; height:330px; border-radius:12px;"
+                 >
+
+                <div class="yum_item_buttons d-flex flex-column align-items-center">
+                  <button
+                  data-id=` +
+                    bundles.id +
+                    `
+                  data-yum-id=${bundles.id}
+                  data-yum-title=${title}
+                  data-yum-price=${bundles.price}
+                  data-yum-img=${bundles.imgRef}
+                  data-yum-quantity-price=${bundles.price}
+                  data-yum-description=${description}
+                  data-yum-diet=${bundles.dietRef}
+                  onclick='realAddToCart(event)'
+                  class="yum_btn"
+                  style="border-radius: 12px;
+                  padding: 18px 16px;
+                  border: 1px solid white;
+                  color: white;
+                  background: var(--Complementary-color, #DD3902);"><i class="fas fa-shopping-basket"></i>Lägg i varukorg</button>
+
+                  <button
+                    data-yum-id=${bundles.id}
+                    data-yum-title=${title}
+                    data-yum-price=${bundles.price}
+                    data-yum-img=${bundles.imgRef}
+                    data-yum-quantity-price=${bundles.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${bundles.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#bundle"
+                  class="yum_btn aboutYumItem"
+                  style="border-radius: 12px;
+                  padding: 13px 7px;
+                  border: 1px solid black;">Läs mer om produkten</button>
+                </div>
+
+                <div class="backOpacity">
+                <div class="menu_item_img" style="border-bottom:solid 1px grey;">
+                  <img
+                    src=` +
+                    bundles.imgRef +
+                    `
+                    alt="yum-meny-bild"
+                    class="img-fluid w-100"
+                    class="title"
+                    href="#"
+                  />
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+
+            </div>
+
+                <div class="menu_item_text m-4">
+                  <a
+                    class="title"
+                    href="#"
+                    data-yum-id=${bundles.id}
+                    data-yum-title=${title}
+                    data-yum-price=${bundles.price}
+                    data-yum-img=${bundles.imgRef}
+                    data-yum-quantity-price=${bundles.price}
+                    data-yum-description=${description}
+                    data-yum-ingredients=${ingredients}
+                    data-yum-diet=${bundles.dietRef}
+                    data-bs-toggle="modal"
+                    data-bs-target="#bundle"
+                    >` +
+                    bundles.title +
+                    `</a>
+                  <div class="d-flex justify-content-between">
+                            <h5 class="price">` +
+                    bundles.price +
+                    `kr</h5>
+                            <img src=` +
+                    bundles.dietRef +
+                    `
+                            alt="dagens-meny-bild"
+                            class="img-fluid diet_img"
+                            href="#"/>
+                    </div>
+            <!--
+            <ul class="d-flex flex-wrap justify-content-end">
+                    <li>
+                      <a href="#"><i class="fa fa-heart"></i></a>
+                    </li>
+                    <li>
+                      <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+                    </li>
+                  </ul>
+                  -->
+
+                </div>
+
+                </div>
+
+          </div>
+        </div>
+
+        `
+
+                    /////////////////////////////// Backup start /////////////////////////////
+
+                    // `<div
+                    //   class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
+                    //   data-wow-duration="1s"
+                    //               >
+                    // <div class="menu_item"
+                    //         data-yum-id=${yum.id}
+                    //         data-yum-title=${title}
+                    //         data-yum-price=${yum.price}
+                    //         data-yum-img=${yum.imgRef}
+                    //         data-yum-quantity-price=${yum.price}
+                    //         data-yum-description=${description}
+                    //         data-yum-ingredients=${ingredients}
+                    //         data-yum-diet=${yum.dietRef}
+                    //         data-bs-toggle="modal"
+                    //         data-bs-target="#modal">
+                    //     <div class="menu_item_img">
+                    //       <img
+                    //         src=` +
+                    // yum.imgRef +
+                    // `
+                    //         alt="yum-meny-bild"
+                    //         class="img-fluid w-100"
+                    //         class="title"
+                    //         href="#"
+                    //       />
+                    //     </div>
+                    //     <div class="d-flex justify-content-between align-items-center">
+                    //     <div class="d-flex"><img
+                    //         src=` +
+                    // yum.dietRef +
+                    // `
+                    //         alt="dagens-meny-bild"
+                    //         class="img-fluid w-100 diet_img"
+                    //         href="#"
+
+                    //       /></div>
+                    //       <a class="category" href="#">` +
+                    // yum.category +
+                    // `</a>
+                    // </div>
+                    //     <div class="menu_item_text">
+                    //       <a
+                    //         class="title"
+                    //         href="#"
+                    //         data-yum-id=${yum.id}
+                    //         data-yum-title=${title}
+                    //         data-yum-price=${yum.price}
+                    //         data-yum-img=${yum.imgRef}
+                    //         data-yum-quantity-price=${yum.price}
+                    //         data-yum-description=${description}
+                    //         data-yum-ingredients=${ingredients}
+                    //         data-yum-diet=${yum.dietRef}
+                    //         data-bs-toggle="modal"
+                    //         data-bs-target="#modal"
+                    //         >` +
+                    // yum.title +
+                    // `</a
+                    //       >
+                    //       <h5 class="price">` +
+                    // yum.price +
+                    // `kr</h5>
+                    // <!--
+                    // <ul class="d-flex flex-wrap justify-content-end">
+                    //         <li>
+                    //           <a href="#"><i class="fa fa-heart"></i></a>
+                    //         </li>
+                    //         <li>
+                    //           <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+                    //         </li>
+                    //       </ul>
+                    //       -->
+                    //     </div>
+                    //   </div>
+                    //   ` +
+                    // "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+                    // yum.id +
+                    // `
+                    // data-yum-id=${yum.id}
+                    // data-yum-title=${title}
+                    // data-yum-price=${yum.price}
+                    // data-yum-img=${yum.imgRef}
+                    // data-yum-quantity-price=${yum.price}
+                    // data-yum-description=${description}
+                    // data-yum-diet=${yum.dietRef}
+                    // ` +
+                    // ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+                    // `
+                    // </div>`
+
+                    /////////////////////////////// Backup end /////////////////////////////
+                );
+            })
+            .join("");
+        bundles.innerHTML = htmlString;
+    } else {
+        return null;
+    }
+};
+
 const carouselContainer = document.getElementById("container");
 const carouselContainer2 = document.getElementById("container2");
 const carouselDietButtons = document.getElementById("dietButtons");
@@ -1714,10 +1966,20 @@ const CarouselFoodBoxes2 = (baguetterProductsList) => {
   }
 };
 
+function showFoodBoxes() {
+    yum.style.display = "grid";
+    bundles.style.display = "none"
+}
+
+function showBundles() {
+    yum.style.display = "none";
+    bundles.style.display = "grid"
+}
+
 // product page( Färdigamatkassar & matlådor)
 let selectedBox = null;
 function FärdigaMatkassar(element) {
-  handleBoxClick(element, "FärdigaMatkassar");
+    handleBoxClick(element, "FärdigaMatkassar");
 }
 
 function Matlådor(element) {
@@ -2912,6 +3174,46 @@ if (cardModal !== null) {
   null;
 }
 
+// Make modal fetch data from json file
+var bundleModal = document.getElementById("bundle");
+if (bundleModal !== null) {
+    bundleModal.addEventListener("show.bs.modal", function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute("data-yum-id");
+        var title = button.getAttribute("data-yum-title");
+        var price = button.getAttribute("data-yum-price");
+        var img = button.getAttribute("data-yum-img");
+        var description = button.getAttribute("data-yum-description");
+        var ingredients = button.getAttribute("data-yum-ingredients");
+        var dietRef = button.getAttribute("data-yum-diet");
+
+        var modalTitle = bundleModal.querySelector(".title");
+        var modalPrice = bundleModal.querySelector(".price");
+        var modalImg = bundleModal.querySelector(".dish_img");
+        var modalDescription = bundleModal.querySelector(".description");
+        var modalIngredients = bundleModal.querySelector(".ingredients");
+        var modalDiet = bundleModal.querySelector(".diet_img");
+
+        localStorage.setItem("id", id);
+        localStorage.setItem("title", (modalTitle.textContent = title));
+        localStorage.setItem("price", (modalPrice.innerHTML = price));
+
+        localStorage.setItem("img", (modalImg.src = img));
+        localStorage.setItem(
+            "ingredients",
+            (modalIngredients.innerHTML = ingredients)
+        );
+        localStorage.setItem(
+            "description",
+            (modalDescription.textContent = description)
+        );
+        localStorage.setItem("diet", (modalDiet.src = dietRef));
+        hideDiv();
+    });
+} else {
+    null;
+}
+
 //Show ingredients div
 function showDiv() {
   var x = document.getElementById("welcomeDiv");
@@ -2927,6 +3229,22 @@ function hideDiv() {
   if (x.style.display === "block") {
     x.style.display = "none";
   }
+}
+
+function showBundleDiv() {
+    var x = document.getElementById("welcomeBundle");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+function hideBundleDiv() {
+    var x = document.getElementById("welcomeBundle");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    }
 }
 
 //Show data into menu_details page based on the modal clicked
