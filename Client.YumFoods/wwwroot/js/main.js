@@ -336,214 +336,211 @@ function toggleAccountType(isPersonal) {
 
 //spara purcahse form
 async function saveAndProceed() {
-    // Försök att spara formulärdata
-    await registerGuest();
-    await savePurchaseData();
-    window.location.href="payment.html"
+  // Försök att spara formulärdata
+  await registerGuest();
+  await savePurchaseData();
+  window.location.href = "payment.html";
 }
 
 // Purchase form
 async function savePurchaseData() {
-    let houseType = "";
-    const purchaseData = {};
-    const missingFields = [];
+  let houseType = "";
+  const purchaseData = {};
+  const missingFields = [];
 
-    //lägg till leverans datum och tid
-    purchaseData.Adress = document.getElementById("addressInput").value.trim();
-    purchaseData.PostalCode = document
-        .getElementById("postalCodeInput")
-        .value.trim();
-    purchaseData.ort = document.getElementById("cityInput").value.trim();
-    const apartment = document.getElementById("lägenhet").checked;
-    const house = document.getElementById("villa_hus").checked;
-    const radhus = document.getElementById("radhus").checked;
-    const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
-    //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
-    purchaseData.firstName = document
-        .getElementById("firstNameInput")
-        .value.trim();
-    purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
-    purchaseData.phone = document.getElementById("phoneInput").value.trim();
-    purchaseData.email = document.getElementById("mailInput").value.trim();
+  //lägg till leverans datum och tid
+  purchaseData.Adress = document.getElementById("addressInput").value.trim();
+  purchaseData.PostalCode = document
+    .getElementById("postalCodeInput")
+    .value.trim();
+  purchaseData.ort = document.getElementById("cityInput").value.trim();
+  const apartment = document.getElementById("lägenhet").checked;
+  const house = document.getElementById("villa_hus").checked;
+  const radhus = document.getElementById("radhus").checked;
+  const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+  //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
+  purchaseData.firstName = document
+    .getElementById("firstNameInput")
+    .value.trim();
+  purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
+  purchaseData.phone = document.getElementById("phoneInput").value.trim();
+  purchaseData.email = document.getElementById("mailInput").value.trim();
 
-    if (!purchaseData.Adress) missingFields.push("adress");
-    if (!purchaseData.PostalCode) missingFields.push("postnummer");
-    if (!purchaseData.ort) missingFields.push("Ort");
+  if (!purchaseData.Adress) missingFields.push("adress");
+  if (!purchaseData.PostalCode) missingFields.push("postnummer");
+  if (!purchaseData.ort) missingFields.push("Ort");
 
-    if (!purchaseData.firstName) missingFields.push("förnamn");
-    if (!purchaseData.lastName) missingFields.push("efternamn");
-    if (!purchaseData.phone) missingFields.push("telefonnummer");
-    if (!purchaseData.email) missingFields.push("email");
+  if (!purchaseData.firstName) missingFields.push("förnamn");
+  if (!purchaseData.lastName) missingFields.push("efternamn");
+  if (!purchaseData.phone) missingFields.push("telefonnummer");
+  if (!purchaseData.email) missingFields.push("email");
 
-    if (apartment) {
-        houseType = "Lägenhet";
-        purchaseData.Port = document.getElementById("portInput").value.trim();
-        purchaseData.Floor = document.getElementById("floorInput").value.trim();
+  if (apartment) {
+    houseType = "Lägenhet";
+    purchaseData.Port = document.getElementById("portInput").value.trim();
+    purchaseData.Floor = document.getElementById("floorInput").value.trim();
 
-        //if (!purchaseData.Port) missingFields.push("portkod");
-        //if (!purchaseData.Floor) missingFields.push("våningsplan");
-    } else if (house) {
-        houseType = "Villa/Hus";
-    } else if (radhus) {
-        houseType = "Radhus";
-    }
-    purchaseData.houseType = houseType;
+    //if (!purchaseData.Port) missingFields.push("portkod");
+    //if (!purchaseData.Floor) missingFields.push("våningsplan");
+  } else if (house) {
+    houseType = "Villa/Hus";
+  } else if (radhus) {
+    houseType = "Radhus";
+  }
+  purchaseData.houseType = houseType;
 
-    if (missingFields.length > 0) {
-        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
-        return false;
-    }
-    return true;
+  if (missingFields.length > 0) {
+    alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+    return false;
+  }
+  return true;
 
-    console.log(purchaseData);
-    localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
+  console.log(purchaseData);
+  localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
 }
 
 //Cart validation
 function cartValidation(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const userData = {};
+  const userData = {};
 
-    // För de utkommenterade fälten för användare namn
-    // userData.username = document.getElementById("username").value.trim();
+  // För de utkommenterade fälten för användare namn
+  // userData.username = document.getElementById("username").value.trim();
 
-    userData.adress = document.getElementById("addressInput").value;
-    userData.lösenord = document.getElementById("field3B").value.trim();
-    const upprepaLösenord = document.getElementById("field4B").value.trim();
-    userData.gatuadress = document.getElementById("field5B").value.trim();
-    userData.postnummer = document.getElementById("contactName").value.trim();
-    userData.telefon = document.getElementById("phoneB").value.trim();
-    userData.kontakt = document.getElementById("postnummerB").value.trim();
-    userData.ort = document.getElementById("ortB").value.trim();
-    const termsAccepted = document.getElementById("terms1B").checked;
-    let currentForm = document.getElementById("purchase");
-    let allInputs = currentForm.querySelectorAll("input");
+  userData.adress = document.getElementById("addressInput").value;
+  userData.lösenord = document.getElementById("field3B").value.trim();
+  const upprepaLösenord = document.getElementById("field4B").value.trim();
+  userData.gatuadress = document.getElementById("field5B").value.trim();
+  userData.postnummer = document.getElementById("contactName").value.trim();
+  userData.telefon = document.getElementById("phoneB").value.trim();
+  userData.kontakt = document.getElementById("postnummerB").value.trim();
+  userData.ort = document.getElementById("ortB").value.trim();
+  const termsAccepted = document.getElementById("terms1B").checked;
+  let currentForm = document.getElementById("purchase");
+  let allInputs = currentForm.querySelectorAll("input");
 
-    // Validering
-    // !userData.username ||
-    if (
-        !userdata.adress
-    ) {
-        const missingFields = [];
-        allInputs.forEach((input) => {
-            if (!input.value) {
-                const warning = input.nextElementSibling;
+  // Validering
+  // !userData.username ||
+  if (!userdata.adress) {
+    const missingFields = [];
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
 
-                missingFields.push(input.id);
+        missingFields.push(input.id);
 
-                if (!warning || !warning.classList.contains("warning")) {
-                    const paragraph = document.createElement("p");
-                    paragraph.textContent = "Fält får inte lämnas tomt!";
-                    paragraph.style.color = "red";
-                    paragraph.classList.add("warning");
-                    input.after(paragraph);
-                }
-            } else {
-                const warning = input.nextElementSibling;
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
 
-                if (warning && warning.classList.contains("warning")) {
-                    warning.remove();
-                }
-            }
-        });
-        console.error(`field missing value! ` + missingFields.join(","));
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
+    console.error(`field missing value! ` + missingFields.join(","));
 
-        alert("Alla fält måste fyllas i!");
-        return;
-    }
+    alert("Alla fält måste fyllas i!");
+    return;
+  }
 }
 
 //Personal Form
 function saveUserData(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const accountType = "personal";
-    const userData = {};
+  const accountType = "personal";
+  const userData = {};
 
-    // För de utkommenterade fälten för användare namn
-    // userData.username = document.getElementById("username").value.trim();
+  // För de utkommenterade fälten för användare namn
+  // userData.username = document.getElementById("username").value.trim();
 
-    userData.email = document.getElementById("field2").value.trim();
-    userData.lösenord = document.getElementById("field3").value.trim();
-    const upprepaLösenord = document.getElementById("field4").value.trim();
-    userData.gatuadress = document.getElementById("field5").value.trim();
-    userData.postnummer = document.getElementById("postnummer").value.trim();
-    userData.ort = document.getElementById("ort").value.trim();
-    const termsAccepted = document.getElementById("terms1").checked;
-    let currentForm = document.getElementById("signupFormPersonal");
-    let allInputs = currentForm.querySelectorAll("input");
+  userData.email = document.getElementById("field2").value.trim();
+  userData.lösenord = document.getElementById("field3").value.trim();
+  const upprepaLösenord = document.getElementById("field4").value.trim();
+  userData.gatuadress = document.getElementById("field5").value.trim();
+  userData.postnummer = document.getElementById("postnummer").value.trim();
+  userData.ort = document.getElementById("ort").value.trim();
+  const termsAccepted = document.getElementById("terms1").checked;
+  let currentForm = document.getElementById("signupFormPersonal");
+  let allInputs = currentForm.querySelectorAll("input");
 
-    // Validering
-    // !userData.username ||
-    if (
-        !userData.email ||
-        !userData.lösenord ||
-        !upprepaLösenord ||
-        !userData.gatuadress ||
-        !userData.postnummer ||
-        !userData.ort
-    ) {
-        const missingFields = [];
+  // Validering
+  // !userData.username ||
+  if (
+    !userData.email ||
+    !userData.lösenord ||
+    !upprepaLösenord ||
+    !userData.gatuadress ||
+    !userData.postnummer ||
+    !userData.ort
+  ) {
+    const missingFields = [];
 
-        allInputs.forEach((input) => {
-            if (!input.value) {
-                const warning = input.nextElementSibling;
+    allInputs.forEach((input) => {
+      if (!input.value) {
+        const warning = input.nextElementSibling;
 
-                missingFields.push(input.id);
+        missingFields.push(input.id);
 
-                if (!warning || !warning.classList.contains("warning")) {
-                    const paragraph = document.createElement("p");
-                    paragraph.textContent = "Fält får inte lämnas tomt!";
-                    paragraph.style.color = "red";
-                    paragraph.classList.add("warning");
-                    input.after(paragraph);
-                }
-            } else {
-                const warning = input.nextElementSibling;
+        if (!warning || !warning.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Fält får inte lämnas tomt!";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          input.after(paragraph);
+        }
+      } else {
+        const warning = input.nextElementSibling;
 
-                if (warning && warning.classList.contains("warning")) {
-                    warning.remove();
-                }
-            }
-        });
+        if (warning && warning.classList.contains("warning")) {
+          warning.remove();
+        }
+      }
+    });
 
-        console.error(`field missing value! ` + missingFields.join(","));
+    console.error(`field missing value! ` + missingFields.join(","));
 
-        alert("Alla fält måste fyllas i!");
-        return;
-    }
+    alert("Alla fält måste fyllas i!");
+    return;
+  }
 
-    if (userData.lösenord !== upprepaLösenord) {
-        alert("Lösenorden matchar inte!");
-        return;
-    }
+  if (userData.lösenord !== upprepaLösenord) {
+    alert("Lösenorden matchar inte!");
+    return;
+  }
 
-    if (!termsAccepted) {
-        allInputs.forEach((input) => {
-            const warning = input.nextElementSibling;
-            if (warning && warning.classList.contains("warning")) {
-                warning.remove();
-            }
-        });
-        alert(
-            "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
-        );
-        return;
-    }
+  if (!termsAccepted) {
+    allInputs.forEach((input) => {
+      const warning = input.nextElementSibling;
+      if (warning && warning.classList.contains("warning")) {
+        warning.remove();
+      }
+    });
+    alert(
+      "Du måste acceptera Användarvillkor och Integritetspolicy för att fortsätta."
+    );
+    return;
+  }
 
-    if (accountType === "personal") {
-        userData.kontoTyp = "personal";
-        userData.förnamn = document.getElementById("field1").value.trim();
-    }
+  if (accountType === "personal") {
+    userData.kontoTyp = "personal";
+    userData.förnamn = document.getElementById("field1").value.trim();
+  }
 
-    // Spara användardata i localStorage
-    localStorage.setItem("userData", JSON.stringify(userData));
+  // Spara användardata i localStorage
+  localStorage.setItem("userData", JSON.stringify(userData));
 
-    alert("Dina personliga uppgifter har sparats!");
-    window.location.href = "sign_in.html";
+  alert("Dina personliga uppgifter har sparats!");
+  window.location.href = "sign_in.html";
 }
-
 
 // Business Form
 function saveUserDataBusiness(event) {
@@ -729,9 +726,9 @@ function sendUserQuery(event) {
 // Event listeners för att växla mellan kontotyper
 document.addEventListener("DOMContentLoaded", function () {
   const btnPersonal = document.getElementById("btnPersonal");
-    const btnBusiness = document.getElementById("btnBusiness");
+  const btnBusiness = document.getElementById("btnBusiness");
   const foodBoxes = document.getElementById("yum");
-    const bundles = document.getElementById("bundles");
+  const bundles = document.getElementById("bundles");
 
   if (btnPersonal) {
     btnPersonal.addEventListener("click", function () {
@@ -746,19 +743,19 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("accountTitle").textContent =
         "Skapa företagskonto";
     });
-    }
+  }
 
-    if (foodBoxes) {
-        foodBoxes.addEventListener("click", function () {
-            toggleMenuType(true);
-        });
-    }
+  if (foodBoxes) {
+    foodBoxes.addEventListener("click", function () {
+      toggleMenuType(true);
+    });
+  }
 
-    if (bundles) {
-        bundles.addEventListener("click", function () {
-            toggleMenuType(false);
-        });
-    }
+  if (bundles) {
+    bundles.addEventListener("click", function () {
+      toggleMenuType(false);
+    });
+  }
 });
 
 //LOGIN SIDA
@@ -1055,6 +1052,7 @@ let offeredServicesList = [];
 let yumFiltered = [];
 let dailyFiltered = [];
 let premiumFiltered = [];
+let bundlesListFiltered = [];
 let subscriptionsFiltered = [];
 let baguetterFiltered = [];
 let all = [];
@@ -1143,11 +1141,10 @@ if (searchBar !== null) {
   removeEventListener("keyup", search);
 }
 
-
 //Fetch items from database
 const loadProducts = async () => {
   try {
-      const API_KEY = variables();
+    const API_KEY = variables();
     // Fetch the products from the API
 
     //const response = await fetch(`https://localhost:7216/products`);
@@ -1179,18 +1176,18 @@ const loadProducts = async () => {
     );
     baguetterProductsList = allProducts.filter(
       (product) => product.category === "Baguetter"
-      );
-   bundlesList = allProducts.filter(
-          (product) => product.category === "Bundles"
-      );
+    );
+    bundlesList = allProducts.filter(
+      (product) => product.category === "Bundles"
+    );
 
     // Further filtering or categorization
     yumFiltered = yumProductsList;
     dailyFiltered = dailyProductsList;
     premiumFiltered = premiumProductsList;
     subscriptionsFiltered = subscriptionsProductsList;
-      baguetterFiltered = baguetterProductsList;
-      bundlesListFiltered = bundlesList;
+    baguetterFiltered = baguetterProductsList;
+    bundlesListFiltered = bundlesList;
 
     // Combine all categories into one list
     const all = [
@@ -1198,8 +1195,8 @@ const loadProducts = async () => {
       ...dailyProductsList,
       ...premiumProductsList,
       ...subscriptionsProductsList,
-        ...baguetterProductsList,
-        ...bundlesList
+      ...baguetterProductsList,
+      ...bundlesList,
     ];
 
     // Pass the lists to UI functions
@@ -1357,12 +1354,10 @@ const showAllProducts = (allProducts) => {
 
 // MENY - Funktion för att visa matlådor eller matkassor beroende på knappen
 function toggleMenuType(isPersonal) {
-    document.getElementById("yum").style.display = isPersonal
-        ? "grid"
-        : "none";
-    document.getElementById("bundle").style.display = isPersonal
-        ? "none"
-        : "grid";
+  document.getElementById("yum").style.display = isPersonal ? "grid" : "none";
+  document.getElementById("bundle").style.display = isPersonal
+    ? "none"
+    : "grid";
 }
 
 //Display yum items
@@ -1587,14 +1582,14 @@ const yumProducts = (yumProductsList) => {
 };
 
 const BundlesList = (bundlesList) => {
-    if (bundles !== null) {
-        const htmlString = bundlesList
-            .map((bundles) => {
-                let title = JSON.stringify(bundles.title);
-                let description = JSON.stringify(bundles.description);
-                let ingredients = JSON.stringify(bundles.ingredients);
-                return (
-                    `
+  if (bundles !== null) {
+    const htmlString = bundlesList
+      .map((bundles) => {
+        let title = JSON.stringify(bundles.title);
+        let description = JSON.stringify(bundles.description);
+        let ingredients = JSON.stringify(bundles.ingredients);
+        return (
+          `
 
           <div
           class="wow fadeInUp "
@@ -1607,8 +1602,8 @@ const BundlesList = (bundlesList) => {
                 <div class="yum_item_buttons d-flex flex-column align-items-center">
                   <button
                   data-id=` +
-                    bundles.id +
-                    `
+          bundles.id +
+          `
                   data-yum-id=${bundles.id}
                   data-yum-title=${title}
                   data-yum-price=${bundles.price}
@@ -1645,8 +1640,8 @@ const BundlesList = (bundlesList) => {
                 <div class="menu_item_img" style="border-bottom:solid 1px grey;">
                   <img
                     src=` +
-                    bundles.imgRef +
-                    `
+          bundles.imgRef +
+          `
                     alt="yum-meny-bild"
                     class="img-fluid w-100"
                     class="title"
@@ -1672,15 +1667,15 @@ const BundlesList = (bundlesList) => {
                     data-bs-toggle="modal"
                     data-bs-target="#bundle"
                     >` +
-                    bundles.title +
-                    `</a>
+          bundles.title +
+          `</a>
                   <div class="d-flex justify-content-between">
                             <h5 class="price">` +
-                    bundles.price +
-                    `kr</h5>
+          bundles.price +
+          `kr</h5>
                             <img src=` +
-                    bundles.dietRef +
-                    `
+          bundles.dietRef +
+          `
                             alt="dagens-meny-bild"
                             class="img-fluid diet_img"
                             href="#"/>
@@ -1705,105 +1700,105 @@ const BundlesList = (bundlesList) => {
 
         `
 
-                    /////////////////////////////// Backup start /////////////////////////////
+          /////////////////////////////// Backup start /////////////////////////////
 
-                    // `<div
-                    //   class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
-                    //   data-wow-duration="1s"
-                    //               >
-                    // <div class="menu_item"
-                    //         data-yum-id=${yum.id}
-                    //         data-yum-title=${title}
-                    //         data-yum-price=${yum.price}
-                    //         data-yum-img=${yum.imgRef}
-                    //         data-yum-quantity-price=${yum.price}
-                    //         data-yum-description=${description}
-                    //         data-yum-ingredients=${ingredients}
-                    //         data-yum-diet=${yum.dietRef}
-                    //         data-bs-toggle="modal"
-                    //         data-bs-target="#modal">
-                    //     <div class="menu_item_img">
-                    //       <img
-                    //         src=` +
-                    // yum.imgRef +
-                    // `
-                    //         alt="yum-meny-bild"
-                    //         class="img-fluid w-100"
-                    //         class="title"
-                    //         href="#"
-                    //       />
-                    //     </div>
-                    //     <div class="d-flex justify-content-between align-items-center">
-                    //     <div class="d-flex"><img
-                    //         src=` +
-                    // yum.dietRef +
-                    // `
-                    //         alt="dagens-meny-bild"
-                    //         class="img-fluid w-100 diet_img"
-                    //         href="#"
+          // `<div
+          //   class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
+          //   data-wow-duration="1s"
+          //               >
+          // <div class="menu_item"
+          //         data-yum-id=${yum.id}
+          //         data-yum-title=${title}
+          //         data-yum-price=${yum.price}
+          //         data-yum-img=${yum.imgRef}
+          //         data-yum-quantity-price=${yum.price}
+          //         data-yum-description=${description}
+          //         data-yum-ingredients=${ingredients}
+          //         data-yum-diet=${yum.dietRef}
+          //         data-bs-toggle="modal"
+          //         data-bs-target="#modal">
+          //     <div class="menu_item_img">
+          //       <img
+          //         src=` +
+          // yum.imgRef +
+          // `
+          //         alt="yum-meny-bild"
+          //         class="img-fluid w-100"
+          //         class="title"
+          //         href="#"
+          //       />
+          //     </div>
+          //     <div class="d-flex justify-content-between align-items-center">
+          //     <div class="d-flex"><img
+          //         src=` +
+          // yum.dietRef +
+          // `
+          //         alt="dagens-meny-bild"
+          //         class="img-fluid w-100 diet_img"
+          //         href="#"
 
-                    //       /></div>
-                    //       <a class="category" href="#">` +
-                    // yum.category +
-                    // `</a>
-                    // </div>
-                    //     <div class="menu_item_text">
-                    //       <a
-                    //         class="title"
-                    //         href="#"
-                    //         data-yum-id=${yum.id}
-                    //         data-yum-title=${title}
-                    //         data-yum-price=${yum.price}
-                    //         data-yum-img=${yum.imgRef}
-                    //         data-yum-quantity-price=${yum.price}
-                    //         data-yum-description=${description}
-                    //         data-yum-ingredients=${ingredients}
-                    //         data-yum-diet=${yum.dietRef}
-                    //         data-bs-toggle="modal"
-                    //         data-bs-target="#modal"
-                    //         >` +
-                    // yum.title +
-                    // `</a
-                    //       >
-                    //       <h5 class="price">` +
-                    // yum.price +
-                    // `kr</h5>
-                    // <!--
-                    // <ul class="d-flex flex-wrap justify-content-end">
-                    //         <li>
-                    //           <a href="#"><i class="fa fa-heart"></i></a>
-                    //         </li>
-                    //         <li>
-                    //           <a href="menu_details.html"><i class="fa fa-eye"></i></a>
-                    //         </li>
-                    //       </ul>
-                    //       -->
-                    //     </div>
-                    //   </div>
-                    //   ` +
-                    // "<button id='cart-button' class='menu_add_to_cart' data-id=" +
-                    // yum.id +
-                    // `
-                    // data-yum-id=${yum.id}
-                    // data-yum-title=${title}
-                    // data-yum-price=${yum.price}
-                    // data-yum-img=${yum.imgRef}
-                    // data-yum-quantity-price=${yum.price}
-                    // data-yum-description=${description}
-                    // data-yum-diet=${yum.dietRef}
-                    // ` +
-                    // ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
-                    // `
-                    // </div>`
+          //       /></div>
+          //       <a class="category" href="#">` +
+          // yum.category +
+          // `</a>
+          // </div>
+          //     <div class="menu_item_text">
+          //       <a
+          //         class="title"
+          //         href="#"
+          //         data-yum-id=${yum.id}
+          //         data-yum-title=${title}
+          //         data-yum-price=${yum.price}
+          //         data-yum-img=${yum.imgRef}
+          //         data-yum-quantity-price=${yum.price}
+          //         data-yum-description=${description}
+          //         data-yum-ingredients=${ingredients}
+          //         data-yum-diet=${yum.dietRef}
+          //         data-bs-toggle="modal"
+          //         data-bs-target="#modal"
+          //         >` +
+          // yum.title +
+          // `</a
+          //       >
+          //       <h5 class="price">` +
+          // yum.price +
+          // `kr</h5>
+          // <!--
+          // <ul class="d-flex flex-wrap justify-content-end">
+          //         <li>
+          //           <a href="#"><i class="fa fa-heart"></i></a>
+          //         </li>
+          //         <li>
+          //           <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+          //         </li>
+          //       </ul>
+          //       -->
+          //     </div>
+          //   </div>
+          //   ` +
+          // "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+          // yum.id +
+          // `
+          // data-yum-id=${yum.id}
+          // data-yum-title=${title}
+          // data-yum-price=${yum.price}
+          // data-yum-img=${yum.imgRef}
+          // data-yum-quantity-price=${yum.price}
+          // data-yum-description=${description}
+          // data-yum-diet=${yum.dietRef}
+          // ` +
+          // ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+          // `
+          // </div>`
 
-                    /////////////////////////////// Backup end /////////////////////////////
-                );
-            })
-            .join("");
-        bundles.innerHTML = htmlString;
-    } else {
-        return null;
-    }
+          /////////////////////////////// Backup end /////////////////////////////
+        );
+      })
+      .join("");
+    bundles.innerHTML = htmlString;
+  } else {
+    return null;
+  }
 };
 
 const carouselContainer = document.getElementById("container");
@@ -1967,19 +1962,21 @@ const CarouselFoodBoxes2 = (baguetterProductsList) => {
 };
 
 function showFoodBoxes() {
-    yum.style.display = "grid";
-    bundles.style.display = "none"
+  yum.style.display = "grid";
+  bundles.style.display = "none";
+  foodBoxes.style.display = "block";
 }
 
 function showBundles() {
-    yum.style.display = "none";
-    bundles.style.display = "grid"
+  yum.style.display = "none";
+  bundles.style.display = "grid";
+  foodBoxes.style.display = "none";
 }
 
 // product page( Färdigamatkassar & matlådor)
 let selectedBox = null;
 function FärdigaMatkassar(element) {
-    handleBoxClick(element, "FärdigaMatkassar");
+  handleBoxClick(element, "FärdigaMatkassar");
 }
 
 function Matlådor(element) {
@@ -2673,454 +2670,454 @@ const sortingNamePriceFunction = (el) => {
 
 //Sort function for diet
 const sortingDishDietFunction = (el) => {
-    const option = el;
-    if (option === "Vegan") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet.includes("Vegan");
-        });
-        // const filteredDailyProducts = dailyProductsList.filter((product) => {
-        //   let vegan = "";
-        //   product.diet.map((img) => {
-        //     vegan = img.toLowerCase().includes(option);
-        //   });
-        //   return vegan;
-        // });
-        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
-        //   let vegan = "";
-        //   product.diet.map((img) => {
-        //     vegan = img.toLowerCase().includes(option);
-        //   });
-        //   return vegan;
-        // });
-        // const filteredBaguetterProducts = baguetterProductsList.filter(
-        //   (product) => {
-        //     let vegan = "";
-        //     product.diet.map((img) => {
-        //       vegan = img.toLowerCase().includes(option);
-        //     });
-        //     return vegan;
-        //   }
-        // );
-        yumProducts(filteredYumProducts);
-        // dailyProducts(filteredDailyProducts);
-        // premiumProducts(filteredPremiumProducts);
-        // baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "AL") {
-        const sortedYumArray = yumFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedDailyArray = dailyFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedPremiumArray = premiumFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
-            a.id > b.id ? 1 : b.id > a.id ? -1 : 0
-        );
-        yumProducts(sortedYumArray);
-        dailyProducts(sortedDailyArray);
-        premiumProducts(sortedPremiumArray);
-        baguetterProducts(sortedBaguetterArray);
-        if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "Vegetarian") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet.includes("Vegetarian");
-        });
-        // const filteredDailyProducts = dailyProductsList.filter((product) => {
-        //   let vegetarian = "";
-        //   product.diet.map((img) => {
-        //     vegetarian = img.toLowerCase().includes(option);
-        //   });
-        //   return vegetarian;
-        // });
-        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
-        //   let vegetarian = "";
-        //   product.diet.map((img) => {
-        //     vegetarian = img.toLowerCase().includes(option);
-        //   });
-        //   return vegetarian;
-        // });
-        // const filteredBaguetterProducts = baguetterProductsList.filter(
-        //   (product) => {
-        //     let vegetarian = "";
-        //     product.diet.map((img) => {
-        //       vegetarian = img.toLowerCase().includes(option);
-        //     });
-        //     return vegetarian;
-        //   }
-        // );
-        yumProducts(filteredYumProducts);
-        // dailyProducts(filteredDailyProducts);
-        // premiumProducts(filteredPremiumProducts);
-        // baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "Cow") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet === "Cow";
-        });
-        // const filteredDailyProducts = dailyProductsList.filter((product) => {
-        //   let cow = "";
-        //   product.diet.map((img) => {
-        //     cow = img.toLowerCase().includes(option);
-        //   });
-        //   return cow;
-        // });
-        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
-        //   let cow = "";
-        //   product.diet.map((img) => {
-        //     cow = img.toLowerCase().includes(option);
-        //   });
-        //   return cow;
-        // });
-        // const filteredBaguetterProducts = baguetterProductsList.filter(
-        //   (product) => {
-        //     let cow = "";
-        //     product.diet.map((img) => {
-        //       cow = img.toLowerCase().includes(option);
-        //     });
-        //     return cow;
-        //   }
-        // );
-        yumProducts(filteredYumProducts);
-        // dailyProducts(filteredDailyProducts);
-        // premiumProducts(filteredPremiumProducts);
-        // baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "Fish") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet.includes("Fish");
-        });
-        // const filteredDailyProducts = dailyProductsList.filter((product) => {
-        //   let fish = "";
-        //   product.diet.map((img) => {
-        //     fish = img.toLowerCase().includes(option);
-        //   });
-        //   return fish;
-        // });
-        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
-        //   let fish = "";
-        //   product.diet.map((img) => {
-        //     fish = img.toLowerCase().includes(option);
-        //   });
-        //   return fish;
-        // });
-        // const filteredBaguetterProducts = baguetterProductsList.filter(
-        //   (product) => {
-        //     let fish = "";
-        //     product.diet.map((img) => {
-        //       fish = img.toLowerCase().includes(option);
-        //     });
-        //     return fish;
-        //   }
-        // );
-        yumProducts(filteredYumProducts);
-        // dailyProducts(filteredDailyProducts);
-        // premiumProducts(filteredPremiumProducts);
-        // baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "Pork") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet === "Pork";
-        });
-        // const filteredDailyProducts = dailyProductsList.filter((product) => {
-        //   let fish = "";
-        //   product.diet.map((img) => {
-        //     fish = img.toLowerCase().includes(option);
-        //   });
-        //   return fish;
-        // });
-        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
-        //   let fish = "";
-        //   product.diet.map((img) => {
-        //     fish = img.toLowerCase().includes(option);
-        //   });
-        //   return fish;
-        // });
-        // const filteredBaguetterProducts = baguetterProductsList.filter(
-        //   (product) => {
-        //     let fish = "";
-        //     product.diet.map((img) => {
-        //       fish = img.toLowerCase().includes(option);
-        //     });
-        //     return fish;
-        //   }
-        // );
-        yumProducts(filteredYumProducts);
-        // dailyProducts(filteredDailyProducts);
-        // premiumProducts(filteredPremiumProducts);
-        // baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "Chicken") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet.includes("Chicken");
-        });
-        // const filteredDailyProducts = dailyProductsList.filter((product) => {
-        //   let chicken = "";
-        //   product.diet.map((img) => {
-        //     chicken = img.toLowerCase().includes(option);
-        //   });
-        //   return chicken;
-        // });
-        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
-        //   let chicken = "";
-        //   product.diet.map((img) => {
-        //     chicken = img.toLowerCase().includes(option);
-        //   });
-        //   return chicken;
-        // });
-        // const filteredBaguetterProducts = baguetterProductsList.filter(
-        //   (product) => {
-        //     let chicken = "";
-        //     product.diet.map((img) => {
-        //       chicken = img.toLowerCase().includes(option);
-        //     });
-        //     return chicken;
-        //   }
-        // );
-        yumProducts(filteredYumProducts);
-        // dailyProducts(filteredDailyProducts);
-        // premiumProducts(filteredPremiumProducts);
-        // baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
-    } else if (option === "Pork, Cow") {
-        const filteredYumProducts = yumProductsList.filter((product) => {
-            return product.diet.includes("Pork, Cow");
-        });
-        // const filteredDailyProducts = dailyProductsList.filter((product) => {
-        //   let chicken = "";
-        //   product.diet.map((img) => {
-        //     chicken = img.toLowerCase().includes(option);
-        //   });
-        //   return chicken;
-        // });
-        // const filteredPremiumProducts = premiumProductsList.filter((product) => {
-        //   let chicken = "";
-        //   product.diet.map((img) => {
-        //     chicken = img.toLowerCase().includes(option);
-        //   });
-        //   return chicken;
-        // });
-        // const filteredBaguetterProducts = baguetterProductsList.filter(
-        //   (product) => {
-        //     let chicken = "";
-        //     product.diet.map((img) => {
-        //       chicken = img.toLowerCase().includes(option);
-        //     });
-        //     return chicken;
-        //   }
-        // );
-        yumProducts(filteredYumProducts);
-        // dailyProducts(filteredDailyProducts);
-        // premiumProducts(filteredPremiumProducts);
-        // baguetterProducts(filteredBaguetterProducts);
-        if (yum && yum.innerHTML === "") {
-            yumFilterMessage.classList.remove("hide");
-            yumFilterMessage.classList.add("show");
-        } else if (yum && yum.innerHTML !== "") {
-            yumFilterMessage.classList.remove("show");
-            yumFilterMessage.classList.add("hide");
-        }
-        if (daily && daily.innerHTML === "") {
-            dailyFilterMessage.classList.remove("hide");
-            dailyFilterMessage.classList.add("show");
-        } else if (daily && daily.innerHTML !== "") {
-            dailyFilterMessage.classList.remove("show");
-            dailyFilterMessage.classList.add("hide");
-        }
-        if (premium && premium.innerHTML === "") {
-            premiumFilterMessage.classList.remove("hide");
-            premiumFilterMessage.classList.add("show");
-        } else if (premium && premium.innerHTML !== "") {
-            premiumFilterMessage.classList.remove("show");
-            premiumFilterMessage.classList.add("hide");
-        }
-        if (baguetter && baguetter.innerHTML === "") {
-            baguetterFilterMessage.classList.remove("hide");
-            baguetterFilterMessage.classList.add("show");
-        } else if (baguetter && baguetter.innerHTML !== "") {
-            baguetterFilterMessage.classList.remove("show");
-            baguetterFilterMessage.classList.add("hide");
-        }
+  const option = el;
+  if (option === "Vegan") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.includes("Vegan");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let vegan = "";
+    //   product.diet.map((img) => {
+    //     vegan = img.toLowerCase().includes(option);
+    //   });
+    //   return vegan;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let vegan = "";
+    //   product.diet.map((img) => {
+    //     vegan = img.toLowerCase().includes(option);
+    //   });
+    //   return vegan;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let vegan = "";
+    //     product.diet.map((img) => {
+    //       vegan = img.toLowerCase().includes(option);
+    //     });
+    //     return vegan;
+    //   }
+    // );
+      yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
     }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "AL") {
+    const sortedYumArray = yumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedDailyArray = dailyFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedPremiumArray = premiumFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    const sortedBaguetterArray = baguetterFiltered.sort((a, b) =>
+      a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+    );
+    yumProducts(sortedYumArray);
+    dailyProducts(sortedDailyArray);
+    premiumProducts(sortedPremiumArray);
+    baguetterProducts(sortedBaguetterArray);
+    if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "Vegetarian") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+      return product.diet.includes("Vegetarian");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let vegetarian = "";
+    //   product.diet.map((img) => {
+    //     vegetarian = img.toLowerCase().includes(option);
+    //   });
+    //   return vegetarian;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let vegetarian = "";
+    //   product.diet.map((img) => {
+    //     vegetarian = img.toLowerCase().includes(option);
+    //   });
+    //   return vegetarian;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let vegetarian = "";
+    //     product.diet.map((img) => {
+    //       vegetarian = img.toLowerCase().includes(option);
+    //     });
+    //     return vegetarian;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "Not") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+        return product.diet === "Not";
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let cow = "";
+    //   product.diet.map((img) => {
+    //     cow = img.toLowerCase().includes(option);
+    //   });
+    //   return cow;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let cow = "";
+    //   product.diet.map((img) => {
+    //     cow = img.toLowerCase().includes(option);
+    //   });
+    //   return cow;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let cow = "";
+    //     product.diet.map((img) => {
+    //       cow = img.toLowerCase().includes(option);
+    //     });
+    //     return cow;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "Fisk") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+        return product.diet.includes("Fisk");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let fish = "";
+    //   product.diet.map((img) => {
+    //     fish = img.toLowerCase().includes(option);
+    //   });
+    //   return fish;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let fish = "";
+    //   product.diet.map((img) => {
+    //     fish = img.toLowerCase().includes(option);
+    //   });
+    //   return fish;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let fish = "";
+    //     product.diet.map((img) => {
+    //       fish = img.toLowerCase().includes(option);
+    //     });
+    //     return fish;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "Fläsk") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+        return product.diet === "Fläsk";
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let fish = "";
+    //   product.diet.map((img) => {
+    //     fish = img.toLowerCase().includes(option);
+    //   });
+    //   return fish;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let fish = "";
+    //   product.diet.map((img) => {
+    //     fish = img.toLowerCase().includes(option);
+    //   });
+    //   return fish;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let fish = "";
+    //     product.diet.map((img) => {
+    //       fish = img.toLowerCase().includes(option);
+    //     });
+    //     return fish;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "Kyckling") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+        return product.diet.includes("Kyckling");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let chicken = "";
+    //   product.diet.map((img) => {
+    //     chicken = img.toLowerCase().includes(option);
+    //   });
+    //   return chicken;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let chicken = "";
+    //   product.diet.map((img) => {
+    //     chicken = img.toLowerCase().includes(option);
+    //   });
+    //   return chicken;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let chicken = "";
+    //     product.diet.map((img) => {
+    //       chicken = img.toLowerCase().includes(option);
+    //     });
+    //     return chicken;
+    //   }
+    // );
+      yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  } else if (option === "Fläsk, Nöt") {
+    const filteredYumProducts = yumProductsList.filter((product) => {
+        return product.diet.includes("Fläsk, Nöt");
+    });
+    // const filteredDailyProducts = dailyProductsList.filter((product) => {
+    //   let chicken = "";
+    //   product.diet.map((img) => {
+    //     chicken = img.toLowerCase().includes(option);
+    //   });
+    //   return chicken;
+    // });
+    // const filteredPremiumProducts = premiumProductsList.filter((product) => {
+    //   let chicken = "";
+    //   product.diet.map((img) => {
+    //     chicken = img.toLowerCase().includes(option);
+    //   });
+    //   return chicken;
+    // });
+    // const filteredBaguetterProducts = baguetterProductsList.filter(
+    //   (product) => {
+    //     let chicken = "";
+    //     product.diet.map((img) => {
+    //       chicken = img.toLowerCase().includes(option);
+    //     });
+    //     return chicken;
+    //   }
+    // );
+    yumProducts(filteredYumProducts);
+    // dailyProducts(filteredDailyProducts);
+    // premiumProducts(filteredPremiumProducts);
+    // baguetterProducts(filteredBaguetterProducts);
+    if (yum && yum.innerHTML === "") {
+      yumFilterMessage.classList.remove("hide");
+      yumFilterMessage.classList.add("show");
+    } else if (yum && yum.innerHTML !== "") {
+      yumFilterMessage.classList.remove("show");
+      yumFilterMessage.classList.add("hide");
+    }
+    if (daily && daily.innerHTML === "") {
+      dailyFilterMessage.classList.remove("hide");
+      dailyFilterMessage.classList.add("show");
+    } else if (daily && daily.innerHTML !== "") {
+      dailyFilterMessage.classList.remove("show");
+      dailyFilterMessage.classList.add("hide");
+    }
+    if (premium && premium.innerHTML === "") {
+      premiumFilterMessage.classList.remove("hide");
+      premiumFilterMessage.classList.add("show");
+    } else if (premium && premium.innerHTML !== "") {
+      premiumFilterMessage.classList.remove("show");
+      premiumFilterMessage.classList.add("hide");
+    }
+    if (baguetter && baguetter.innerHTML === "") {
+      baguetterFilterMessage.classList.remove("hide");
+      baguetterFilterMessage.classList.add("show");
+    } else if (baguetter && baguetter.innerHTML !== "") {
+      baguetterFilterMessage.classList.remove("show");
+      baguetterFilterMessage.classList.add("hide");
+    }
+  }
 };
 loadProducts();
 
@@ -3177,41 +3174,81 @@ if (cardModal !== null) {
 // Make modal fetch data from json file
 var bundleModal = document.getElementById("bundle");
 if (bundleModal !== null) {
-    bundleModal.addEventListener("show.bs.modal", function (event) {
-        var button = event.relatedTarget;
-        var id = button.getAttribute("data-yum-id");
-        var title = button.getAttribute("data-yum-title");
-        var price = button.getAttribute("data-yum-price");
-        var img = button.getAttribute("data-yum-img");
-        var description = button.getAttribute("data-yum-description");
-        var ingredients = button.getAttribute("data-yum-ingredients");
-        var dietRef = button.getAttribute("data-yum-diet");
+  bundleModal.addEventListener("show.bs.modal", function (event) {
+    var button = event.relatedTarget;
+    var id = button.getAttribute("data-yum-id");
+    var title = button.getAttribute("data-yum-title");
+    var price = button.getAttribute("data-yum-price");
+    var img = button.getAttribute("data-yum-img");
+    var description = button.getAttribute("data-yum-description");
+    var ingredients = button.getAttribute("data-yum-ingredients");
+    var dietRef = button.getAttribute("data-yum-diet");
 
-        var modalTitle = bundleModal.querySelector(".title");
-        var modalPrice = bundleModal.querySelector(".price");
-        var modalImg = bundleModal.querySelector(".dish_img");
-        var modalDescription = bundleModal.querySelector(".description");
-        var modalIngredients = bundleModal.querySelector(".ingredients");
-        var modalDiet = bundleModal.querySelector(".diet_img");
+    var modalTitle = bundleModal.querySelector(".title");
+    var modalPrice = bundleModal.querySelector(".price");
+    var modalImg = bundleModal.querySelector(".dish_img");
+    var modalDescription = bundleModal.querySelector(".description");
+    var modalIngredients = bundleModal.querySelector(".ingredients");
+    var modalDiet = bundleModal.querySelector(".diet_img");
 
-        localStorage.setItem("id", id);
-        localStorage.setItem("title", (modalTitle.textContent = title));
-        localStorage.setItem("price", (modalPrice.innerHTML = price));
+    localStorage.setItem("id", id);
+    localStorage.setItem("title", (modalTitle.textContent = title));
+    localStorage.setItem("price", (modalPrice.innerHTML = price));
 
-        localStorage.setItem("img", (modalImg.src = img));
-        localStorage.setItem(
-            "ingredients",
-            (modalIngredients.innerHTML = ingredients)
-        );
-        localStorage.setItem(
-            "description",
-            (modalDescription.textContent = description)
-        );
-        localStorage.setItem("diet", (modalDiet.src = dietRef));
-        hideDiv();
-    });
+    localStorage.setItem("img", (modalImg.src = img));
+    localStorage.setItem(
+      "ingredients",
+      (modalIngredients.innerHTML = ingredients)
+    );
+    localStorage.setItem(
+      "description",
+      (modalDescription.textContent = description)
+    );
+    localStorage.setItem("diet", (modalDiet.src = dietRef));
+    hideDiv();
+  });
 } else {
-    null;
+  null;
+}
+
+// Make modal fetch data from json file
+var bundleModal = document.getElementById("bundle");
+if (bundleModal !== null) {
+  bundleModal.addEventListener("show.bs.modal", function (event) {
+    var button = event.relatedTarget;
+    var id = button.getAttribute("data-yum-id");
+    var title = button.getAttribute("data-yum-title");
+    var price = button.getAttribute("data-yum-price");
+    var img = button.getAttribute("data-yum-img");
+    var description = button.getAttribute("data-yum-description");
+    var ingredients = button.getAttribute("data-yum-ingredients");
+    var dietRef = button.getAttribute("data-yum-diet");
+
+    var modalTitle = bundleModal.querySelector(".title");
+    var modalPrice = bundleModal.querySelector(".price");
+    var modalImg = bundleModal.querySelector(".dish_img");
+    var modalDescription = bundleModal.querySelector(".description");
+    var modalIngredients = bundleModal.querySelector(".ingredients");
+    var modalDiet = bundleModal.querySelector(".diet_img");
+
+    localStorage.setItem("id", id);
+    localStorage.setItem("title", (modalTitle.textContent = title));
+    localStorage.setItem("price", (modalPrice.innerHTML = price));
+
+    localStorage.setItem("img", (modalImg.src = img));
+    localStorage.setItem(
+      "ingredients",
+      (modalIngredients.innerHTML = ingredients)
+    );
+    localStorage.setItem(
+      "description",
+      (modalDescription.textContent = description)
+    );
+    localStorage.setItem("diet", (modalDiet.src = dietRef));
+    hideDiv();
+  });
+} else {
+  null;
 }
 
 //Show ingredients div
@@ -3232,19 +3269,35 @@ function hideDiv() {
 }
 
 function showBundleDiv() {
-    var x = document.getElementById("welcomeBundle");
-    if (x.style.display === "none") {
-        x.style.display = "block";
-    } else {
-        x.style.display = "none";
-    }
+  var x = document.getElementById("welcomeBundle");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
 }
 
 function hideBundleDiv() {
-    var x = document.getElementById("welcomeBundle");
-    if (x.style.display === "block") {
-        x.style.display = "none";
-    }
+  var x = document.getElementById("welcomeBundle");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  }
+}
+
+function showBundleDiv() {
+  var x = document.getElementById("welcomeBundle");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function hideBundleDiv() {
+  var x = document.getElementById("welcomeBundle");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+  }
 }
 
 //Show data into menu_details page based on the modal clicked
@@ -3764,8 +3817,8 @@ function logOut() {
 function dash_myProfile() {
   async function getUser() {
     try {
-        //const response = await fetch(`https://localhost:7216/email/email`);
-      const email = localStorage.getItem("email")
+      //const response = await fetch(`https://localhost:7216/email/email`);
+      const email = localStorage.getItem("email");
       const response = await fetch(`https://${API_KEY}/users/email/${email}`);
       const data = await response.json();
       console.log(data);
@@ -4092,20 +4145,20 @@ if (document.getElementById("dashboard_aside")) {
 }
 
 function modal() {
-    const dashAside = document.getElementById("dashboard_aside");
-    const myProfile = document.getElementById("contain_user_content");
+  const dashAside = document.getElementById("dashboard_aside");
+  const myProfile = document.getElementById("contain_user_content");
 
-    if (myProfile) {
-        myProfile.remove();
-    } else {
-        console.error("Element missing!");
-    }
+  if (myProfile) {
+    myProfile.remove();
+  } else {
+    console.error("Element missing!");
+  }
 
-    if (!dashAside) {
-        console.error("Error! element missing!");
-    }
+  if (!dashAside) {
+    console.error("Error! element missing!");
+  }
 
-    const htmlString = `
+  const htmlString = `
              <div class="modal fade" id="logOutUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -4121,8 +4174,8 @@ function modal() {
   </div>
 </div>
   `;
-    dashAside.insertAdjacentHTML("afterend", htmlString);
-    applyGoBack();
+  dashAside.insertAdjacentHTML("afterend", htmlString);
+  applyGoBack();
 }
 
 function dash_myOrders() {
@@ -5065,7 +5118,12 @@ function nextAccord2() {
 // and finally increment the dates with '1' for the next loop with setDate
 
 const dates = new Date();
-const options = { day: "numeric", month: "numeric", weekday: "long", year: "numeric" };
+const options = {
+  day: "numeric",
+  month: "numeric",
+  weekday: "long",
+  year: "numeric",
+};
 const twoWeeks = 17;
 
 let threeDaysAhead = [];
@@ -5129,14 +5187,14 @@ timeBox.forEach((btn) => {
 
 // Format the delivery date to send to backend
 function formatDeliveryDate(dateString) {
-    const split = dateString.split(" ");
-    const days = split[1].replace(/[^\d]/g, '');
-    const month = split[2];
-    const year = new Date().getFullYear();
+  const split = dateString.split(" ");
+  const days = split[1].replace(/[^\d]/g, "");
+  const month = split[2];
+  const year = new Date().getFullYear();
 
-    const formatted = new Date(`${year}-${monthMonth}-${day}`);
-    //const formattedDate = new Date(year, month, days);
-    return formatted.toISOString();
+  const formatted = new Date(`${year}-${monthMonth}-${day}`);
+  //const formattedDate = new Date(year, month, days);
+  return formatted.toISOString();
 }
 
 // theBox.addEventListener('click', function() {
@@ -6089,106 +6147,111 @@ var datesSwipes = new Swiper(".dates_swipe", {
 //    }
 //}
 async function getUserId() {
-        const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
-    const email = storedPurchaseData.email;
-        console.log(email)
-        //const response = await fetch(`https://localhost:7216/email/email`);
-        const response = await fetch(`https://${API_KEY}/users/email/${email}`);
-        const data = await response.json();
-        let userId = data.id
-    return userId
+  const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
+  const email = storedPurchaseData.email;
+  console.log(email);
+  //const response = await fetch(`https://localhost:7216/email/email`);
+  const response = await fetch(`https://${API_KEY}/users/email/${email}`);
+  const data = await response.json();
+  let userId = data.id;
+  return userId;
 }
 // Save form in Cart_view
 async function savePurchaseData() {
+  let houseType = "";
+  const purchaseData = {};
+  const missingFields = [];
 
-    let houseType = "";
-    const purchaseData = {};
-    const missingFields = [];
+  const selectedTime = document.querySelector(".tid-box.tid-box-selected");
+  if (selectedTime) {
+    const deliverClock = selectedTime.querySelector(".time").textContent;
+    const deliverShipping = selectedTime.querySelector(".price").textContent;
+    purchaseData.deliveryTime = deliverClock;
+    purchaseData.deliveryPrice = deliverShipping;
+  } else {
+    missingFields.push("leveranstid");
+  }
+  purchaseData.deliveryDate =
+    document.getElementById("deliveryDateSpan").textContent;
+  purchaseData.address = document.getElementById("addressInput").value;
+  purchaseData.postalCode = document.getElementById("postalCodeInput").value;
+  purchaseData.ort = document.getElementById("cityInput").value;
+  const apartment = document.getElementById("lägenhet").checked;
+  const house = document.getElementById("villa_hus").checked;
+  const radhus = document.getElementById("radhus").checked;
+  const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+  purchaseData.text = document.getElementById("floatingTextarea").value.trim();
+  purchaseData.firstName = document.getElementById("firstNameInput").value;
+  purchaseData.lastName = document.getElementById("lastNameInput").value;
+  purchaseData.phone = document.getElementById("phoneInput").value;
+  purchaseData.email = document.getElementById("mailInput").value;
 
-    const selectedTime = document.querySelector(".tid-box.tid-box-selected");
-    if (selectedTime) {
-        const deliverClock = selectedTime.querySelector(".time").textContent;
-        const deliverShipping = selectedTime.querySelector(".price").textContent;
-        purchaseData.deliveryTime = deliverClock;  
-        purchaseData.deliveryPrice = deliverShipping;
-    } else {
-        missingFields.push("leveranstid");
-    }
-    purchaseData.deliveryDate = document.getElementById("deliveryDateSpan").textContent;
-    purchaseData.address = document.getElementById("addressInput").value;
-    purchaseData.postalCode = document.getElementById("postalCodeInput").value;
-    purchaseData.ort = document.getElementById("cityInput").value;
-    const apartment = document.getElementById("lägenhet").checked;
-    const house = document.getElementById("villa_hus").checked;
-    const radhus = document.getElementById("radhus").checked;
-    const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
-    purchaseData.text = document.getElementById("floatingTextarea").value.trim();
-    purchaseData.firstName = document.getElementById("firstNameInput").value;
-    purchaseData.lastName = document.getElementById("lastNameInput").value;
-    purchaseData.phone = document.getElementById("phoneInput").value;
-    purchaseData.email = document.getElementById("mailInput").value;
+  const requiredFields = [
+    "address",
+    "postalCode",
+    "ort",
+    "firstName",
+    "lastName",
+    "phone",
+    "email",
+  ];
+  requiredFields.forEach((field) => {
+    if (!purchaseData[field]) missingFields.push(field);
+  });
 
+  if (missingFields.length > 0) {
+    alert("Följande fält måste fyllas i: " + missingFields.join(", "));
+    return false;
+  }
 
-    const requiredFields = ['address', 'postalCode', 'ort', 'firstName', 'lastName', 'phone', 'email'];
-    requiredFields.forEach(field => {
-        if (!purchaseData[field]) missingFields.push(field);
-    });
+  if (apartment) {
+    houseType = "Apartment";
+    purchaseData.port = document.getElementById("portInput").value.trim();
+    purchaseData.floor = document.getElementById("floorInput").value.trim();
+    if (!purchaseData.Port) missingFields.push("portkod");
+    if (!purchaseData.Floor) missingFields.push("våningsplan");
+  } else if (house) {
+    houseType = "Villa/Hus";
+  } else if (radhus) {
+    houseType = "Radhus";
+  }
+  purchaseData.houseType = houseType;
+  purchaseData.LeaveAtDoor = LeaveAtDoor;
 
-    if (missingFields.length > 0) {
-        alert("Följande fält måste fyllas i: " + missingFields.join(", "));
-        return false;
-    }
+  const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  purchaseData.products = formDataArry.map((item) => ({
+    id: parseInt(item.id),
+    name: item.title,
+    quantity: parseInt(item.quantity),
+    price: item.Price,
+  }));
 
-    if (apartment) {
-        houseType = "Apartment";
-        purchaseData.port = document.getElementById("portInput").value.trim();
-        purchaseData.floor = document.getElementById("floorInput").value.trim();
-        if (!purchaseData.Port) missingFields.push("portkod");
-        if (!purchaseData.Floor) missingFields.push("våningsplan");
-    } else if (house) {
-        houseType = "Villa/Hus";
-    } else if (radhus) {
-        houseType = "Radhus";
-    }
-    purchaseData.houseType = houseType;
-    purchaseData.LeaveAtDoor = LeaveAtDoor;
+  purchaseData.total = localStorage.getItem("sum");
+  purchaseData.quantity = localStorage.getItem("totalQuantity");
 
-    const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    purchaseData.products = formDataArry.map(item => ({
-        id: parseInt(item.id),
-        name: item.title,
-        quantity: parseInt(item.quantity),
-        price: item.Price
-    }));
+  localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
 
-    purchaseData.total = localStorage.getItem("sum");
-    purchaseData.quantity = localStorage.getItem("totalQuantity");
-
-    localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
-
-    const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
-    const postPurchaseData = {
-        userId: await getUserId(),
-        products: storedPurchaseData.products,
-        quantity: parseInt(storedPurchaseData.quantity),
-        total: parseFloat(storedPurchaseData.total),
-        paymentMethod: "card",
-        orderDate: new Date().toISOString().slice(0, 10),
-        deliveryDate: storedPurchaseData.deliveryDate,
-        deliveryTime: storedPurchaseData.deliveryTime,
-        deliveryAddress: storedPurchaseData.address,
-        deliveryPostalCode: storedPurchaseData.postalCode,
-        floor: parseInt(storedPurchaseData.floor),
-        portCode: parseInt(storedPurchaseData.port),
-        houseType: storedPurchaseData.houseType,
-        leaveAtDoor: storedPurchaseData.LeaveAtDoor,
-        discountTotal: 0
-    };
-    console.log(postPurchaseData);
-    localStorage.setItem("newPurchaseData", JSON.stringify(postPurchaseData));
+  const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
+  const postPurchaseData = {
+    userId: await getUserId(),
+    products: storedPurchaseData.products,
+    quantity: parseInt(storedPurchaseData.quantity),
+    total: parseFloat(storedPurchaseData.total),
+    paymentMethod: "card",
+    orderDate: new Date().toISOString().slice(0, 10),
+    deliveryDate: storedPurchaseData.deliveryDate,
+    deliveryTime: storedPurchaseData.deliveryTime,
+    deliveryAddress: storedPurchaseData.address,
+    deliveryPostalCode: storedPurchaseData.postalCode,
+    floor: parseInt(storedPurchaseData.floor),
+    portCode: parseInt(storedPurchaseData.port),
+    houseType: storedPurchaseData.houseType,
+    leaveAtDoor: storedPurchaseData.LeaveAtDoor,
+    discountTotal: 0,
+  };
+  console.log(postPurchaseData);
+  localStorage.setItem("newPurchaseData", JSON.stringify(postPurchaseData));
 }
-
-
 
 //SIDE BAR CART
 
@@ -6438,18 +6501,20 @@ async function redirectToStripeCheckout() {
     });
 
     // Create a POST request to your backend endpoint to create the Stripe checkout session
-      //const response = await fetch("https://localhost:7216/payments", {
-     const API_KEY = variables();
+    //const response = await fetch("https://localhost:7216/payments", {
+    const API_KEY = variables();
     const response = await fetch(`https://${API_KEY}/payments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-          successPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_success.html",
-          //"https://localhost:7023/payment_success.html",          
-          cancelPaymentUrl: "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
-          //"https://localhost:7023/payment_cancel.html",
+        successPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+        //"https://localhost:7023/payment_success.html",
+        cancelPaymentUrl:
+          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+        //"https://localhost:7023/payment_cancel.html",
         products: products, // Send the products array
       }),
     });
@@ -6475,127 +6540,125 @@ function displayOrder(order) {
 }
 
 async function register() {
-    const userData = {};
+  const userData = {};
 
-    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
-    userData.firstName = document.getElementById("field1").value;
-    userData.lastName = document.getElementById("field1.2").value;
-    userData.email = document.getElementById("field2").value;
-    userData.phoneNumber = document.getElementById("field2.1").value;
-    userData.passwordhash = document.getElementById("field3").value;
-    userData.address = document.getElementById("field5").value;
-    userData.postalCode = document.getElementById("postnummer").value;
-    userData.city = document.getElementById("ort").value;
+  // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
+  userData.firstName = document.getElementById("field1").value;
+  userData.lastName = document.getElementById("field1.2").value;
+  userData.email = document.getElementById("field2").value;
+  userData.phoneNumber = document.getElementById("field2.1").value;
+  userData.passwordhash = document.getElementById("field3").value;
+  userData.address = document.getElementById("field5").value;
+  userData.postalCode = document.getElementById("postnummer").value;
+  userData.city = document.getElementById("ort").value;
 
-    // Skapa konstanter för att kontrollera lösen och termer
-    const repeatPassword = document.getElementById("field4").value;
-    const termsAccepted = document.getElementById("terms1").checked;
+  // Skapa konstanter för att kontrollera lösen och termer
+  const repeatPassword = document.getElementById("field4").value;
+  const termsAccepted = document.getElementById("terms1").checked;
 
+  // Konvertera obj till sträng
+  localStorage.setItem("userData", JSON.stringify(userData));
 
-    // Konvertera obj till sträng
-    localStorage.setItem("userData", JSON.stringify(userData));
+  // Tar ut datan
+  const storedUserData = JSON.parse(localStorage.getItem("userData"));
 
-    // Tar ut datan
-    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+  // Kontrollera att det finns data i localStorage
+  if (!storedUserData) {
+    console.error("No user data found in localStorage.");
+    return;
+  }
 
-    // Kontrollera att det finns data i localStorage
-    if (!storedUserData) {
-        console.error("No user data found in localStorage.");
-        return;
-    }
+  // Skapa nytt objektet som ska matcha datan i databasen
+  const userToRegister = {
+    firstName: storedUserData.firstName,
+    lastName: storedUserData.lastName,
+    email: storedUserData.email,
+    passwordhash: storedUserData.passwordhash,
+    address: storedUserData.address,
+    postalCode: storedUserData.postalCode,
+    phoneNumber: storedUserData.phoneNumber,
+    city: storedUserData.city,
+    userType: null,
+    organizationNumber: null,
+    orders: null,
+    subscription: null,
+  };
 
-    // Skapa nytt objektet som ska matcha datan i databasen
-    const userToRegister = {
-        firstName: storedUserData.firstName,
-        lastName: storedUserData.lastName,
-        email: storedUserData.email,
-        passwordhash: storedUserData.passwordhash,
-        address: storedUserData.address,
-        postalCode: storedUserData.postalCode,
-        phoneNumber: storedUserData.phoneNumber,
-        city: storedUserData.city,
-        userType: null,
-        organizationNumber: null,
-        orders: null,
-        subscription: null,
-    };
+  // Anropa apiet
+  const response = await fetch(`https://${API_KEY}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userToRegister),
+  });
 
-    // Anropa apiet
-    const response = await fetch(`https://${API_KEY}/users`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userToRegister),
-    });
-
-    if (response.ok) {
-        alert("Användare registrerad framgångsrikt!");
-        localStorage.removeItem("userData");
-        window.location.href = "sign_in.html";
-    } else if (response.status === 400) {
-        const errorData = await response.json();
-        alert(`Fel: ${errorData.message || 'Ogiltiga indata!'}`);
-    }
-    }
+  if (response.ok) {
+    alert("Användare registrerad framgångsrikt!");
+    localStorage.removeItem("userData");
+    window.location.href = "sign_in.html";
+  } else if (response.status === 400) {
+    const errorData = await response.json();
+    alert(`Fel: ${errorData.message || "Ogiltiga indata!"}`);
+  }
+}
 
 async function registerGuest() {
-    const userData = {};
+  const userData = {};
 
-    // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
-    userData.firstName = document.getElementById("firstNameInput").value;
-    userData.lastName = document.getElementById("lastNameInput").value;
-    userData.email = document.getElementById("mailInput").value;
-    userData.phoneNumber = document.getElementById("phoneInput").value;
-    userData.address = document.getElementById("addressInput").value;
-    userData.postalCode = document.getElementById("postalCodeInput").value;
-    userData.city = document.getElementById("cityInput").value;
+  // Ta ut värde från local storage genom metoden saveUserData (userData) och sätt in i array {}
+  userData.firstName = document.getElementById("firstNameInput").value;
+  userData.lastName = document.getElementById("lastNameInput").value;
+  userData.email = document.getElementById("mailInput").value;
+  userData.phoneNumber = document.getElementById("phoneInput").value;
+  userData.address = document.getElementById("addressInput").value;
+  userData.postalCode = document.getElementById("postalCodeInput").value;
+  userData.city = document.getElementById("cityInput").value;
 
+  // Konvertera obj till sträng
+  localStorage.setItem("userData", JSON.stringify(userData));
 
-    // Konvertera obj till sträng
-    localStorage.setItem("userData", JSON.stringify(userData));
+  // Tar ut datan
+  const storedUserData = JSON.parse(localStorage.getItem("userData"));
 
-    // Tar ut datan
-    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+  // Kontrollera att det finns data i localStorage
+  if (!storedUserData) {
+    console.error("No user data found in localStorage.");
+    return;
+  }
 
-    // Kontrollera att det finns data i localStorage
-    if (!storedUserData) {
-        console.error("No user data found in localStorage.");
-        return;
-    }
+  // Skapa nytt objektet som ska matcha datan i databasen
+  const userToRegister = {
+    firstName: userData.firstName,
+    lastName: userData.lastName,
+    email: userData.email,
+    passwordhash: "default",
+    address: userData.address,
+    postalCode: userData.postalCode,
+    phoneNumber: userData.phoneNumber,
+    city: userData.city,
+    userType: null,
+    organizationNumber: null,
+    orders: null,
+    subscription: null,
+  };
+  console.log(userToRegister);
 
-    // Skapa nytt objektet som ska matcha datan i databasen
-    const userToRegister = {
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        email: userData.email,
-        passwordhash: "default",
-        address: userData.address,
-        postalCode: userData.postalCode,
-        phoneNumber: userData.phoneNumber,
-        city: userData.city,
-        userType: null,
-        organizationNumber: null,
-        orders: null,
-        subscription: null,
-    };
-    console.log(userToRegister)
+  // Anropa apiet
+  const response = await fetch(`https://${API_KEY}/users`, {
+    //const response = await fetch(`https://localhost:7216/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userToRegister),
+  });
 
-    // Anropa apiet
-    const response = await fetch(`https://${API_KEY}/users`, {
-     //const response = await fetch(`https://localhost:7216/users`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userToRegister),
-    });
-
-    if (response.ok) {
-        const data = await response.json();
-    } else {
-        return
-    }
+  if (response.ok) {
+    const data = await response.json();
+  } else {
+    return;
+  }
 }
 
 async function login() {
@@ -6626,8 +6689,8 @@ async function login() {
 
       if (data && data.token) {
         // If a token is received
-          localStorage.setItem("authToken", data.token); // Store the token
-          localStorage.setItem("email", loginData.email); // Store the mail
+        localStorage.setItem("authToken", data.token); // Store the token
+        localStorage.setItem("email", loginData.email); // Store the mail
         alert("Login successful!"); // Inform user
         window.location.href = "dashboard.html"; // Redirect to the dashboard
       } else {
@@ -6653,7 +6716,7 @@ if (loginForm !== null) {
   });
 }
 async function updateProfile() {
-    const email = localStorage.getItem("email");
+  const email = localStorage.getItem("email");
 
   const updatedUserData = {
     firstName: document.getElementById("fname").value,
@@ -6663,7 +6726,7 @@ async function updateProfile() {
     phone: document.getElementById("phone").value,
   };
   try {
-      const response = await fetch(`https://${API_KEY}/users/email/${email}`, {
+    const response = await fetch(`https://${API_KEY}/users/email/${email}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
