@@ -1,5 +1,5 @@
 ﻿function variables() {
-    return API_KEY = "yumfoodswebapi.azurewebsites.net";
+    return API_KEY = "yumfoodsproductionapi-gmhwbrdvavacgydn.westeurope-01.azurewebsites.net";
     console.log(API_KEY);
 }
 
