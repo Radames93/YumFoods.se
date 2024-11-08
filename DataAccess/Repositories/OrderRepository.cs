@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Runtime.InteropServices.JavaScript;
+using Microsoft.EntityFrameworkCore;
 using Shared.Entities;
 using Shared.Interfaces;
 
@@ -47,13 +48,27 @@ namespace DataAccess.Repositories
             {
                 Id = newId,
                 UserId = newOrder.UserId,
-                OrderDate = newOrder.OrderDate,
+                OrderDate = DateTime.UtcNow,
                 DeliveryDate = newOrder.DeliveryDate,
-                Products = newOrder.Products,
+                DeliveryTime = newOrder.DeliveryTime,
                 Quantity = newOrder.Quantity,
-                Total = newOrder.Total
+                PaymentMethod = newOrder.PaymentMethod,
+                Total = newOrder.Total,
+                DiscountTotal = newOrder.DiscountTotal,
+                HouseType = newOrder.HouseType,
+                PortCode = newOrder.PortCode,
+                Floor = newOrder.Floor,
+                Products = new List<Product>()
             };
 
+            foreach (var prod in newOrder.Products)
+            {
+                var existingProd = await context.Product.FindAsync(prod.Id);
+                if (existingProd != null)
+                {
+                    order.Products.Add(existingProd);
+                }
+            }
             await context.Order.AddAsync(order);
             await context.SaveChangesAsync();
         }
@@ -73,5 +88,6 @@ namespace DataAccess.Repositories
             context.Order.Remove(order);
             await context.SaveChangesAsync();
         }
+
     }
 }

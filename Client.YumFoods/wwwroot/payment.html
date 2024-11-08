@@ -22,17 +22,16 @@
   </head>
   <body>
     <!--=============================
-    MENU START
-  ==============================-->
+      MENU START
+    ==============================-->
     <header-component id="header"></header-component>
     <!--=============================
-    MENU END
-  ==============================-->
-
+      MENU END
+    ==============================-->
     <!--============================
-    PAYMENT PAGE START
-  ==============================-->
-    <section class="cart_view mt_100 xs_mt_70 mb_100 xs_mb_70">
+      PAYMENT PAGE START
+    ==============================-->
+    <section class="cart_view xs_mt_70 mb_100 xs_mb_70 pt_100">
       <div class="container">
         <div class="row">
           <div class="container2 mx-auto">
@@ -84,86 +83,86 @@
                             Välj Betalsätt
                           </h4>
                           <!-- Betala med Kort -->
-                          <div class="card CartPayDeliver">
-                            <div
-                              class="form-check m-3 d-flex align-items-center ps-0"
-                            >
-                              <input
-                                class="form-check-input me-3 CartPayDeliver"
-                                type="radio"
-                                name="paymentRadio"
-                                id="paymentCard"
-                                checked
-                                onclick="togglePaymentMethod()"
-                              />
-                              <label class="form-check-label" for="paymentCard">
-                                Betala med Kort
-                              </label>
-                              <i
-                                style="color: #fc5633; margin-left: auto"
-                                class="fas fa-credit-card"
-                              ></i>
-                            </div>
-                            <div id="cardPaymentSection">
-                              <p id="card-payment-description">
-                                Fyll i dina kortuppgifter
-                              </p>
-                              <div class="form-group">
-                                <section
-                                  id="d-flex1"
-                                  class="d-flex justify-content-evenly CartPayDeliver"
-                                >
-                                  <div class="mx-2 w-75 cardfield">
-                                    <label for="cardNumber" class="form-label"
-                                      >Kortnummer</label
-                                    >
-                                    <div class="input-group mb-4">
-                                      <input
-                                        id="cardNumber"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="1234 1234 1234 1234"
-                                        aria-label="Cardnumber"
-                                        aria-describedby="addon1"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div class="mx-2 w-50 expireField">
-                                    <label for="expiration" class="form-label"
-                                      >Utgångsdatum</label
-                                    >
-                                    <div class="input-group mb-4">
-                                      <input
-                                        id="expiration"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="MM/YY"
-                                        aria-label="Expiration"
-                                        aria-describedby="addon2"
-                                        maxlength="5"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div class="mx-2 w-50 cvcField">
-                                    <label for="cvc" class="form-label"
-                                      >CVC/CVV</label
-                                    >
-                                    <div class="input-group mb-4">
-                                      <input
-                                        id="cvc"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="123"
-                                        aria-label="CVC"
-                                        aria-describedby="addon3"
-                                        maxlength="3"
-                                      />
-                                    </div>
-                                  </div>
-                                </section>
-                              </div>
-                            </div>
-                          </div>
+                          <!--<div class="card CartPayDeliver">
+                                                  <div
+                                                    class="form-check m-3 d-flex align-items-center ps-0"
+                                                  >
+                                                    <input
+                                                      class="form-check-input me-3 CartPayDeliver"
+                                                      type="radio"
+                                                      name="paymentRadio"
+                                                      id="paymentCard"
+                                                      checked
+                                                      onclick="togglePaymentMethod()"
+                                                    />
+                                                    <label class="form-check-label" for="paymentCard">
+                                                      Betala med Kort
+                                                    </label>
+                                                    <i
+                                                      style="color: #fc5633; margin-left: auto"
+                                                      class="fas fa-credit-card"
+                                                    ></i>
+                                                  </div>
+                                                  <div id="cardPaymentSection">
+                                                    <p id="card-payment-description">
+                                                      Fyll i dina kortuppgifter
+                                                    </p>
+                                                    <div class="form-group">
+                                                      <section
+                                                        id="d-flex1"
+                                                        class="d-flex justify-content-evenly CartPayDeliver"
+                                                      >
+                                                        <div class="mx-2 w-75 cardfield">
+                                                          <label for="cardNumber" class="form-label"
+                                                            >Kortnummer</label
+                                                          >
+                                                          <div class="input-group mb-4">
+                                                            <input
+                                                              id="cardNumber"
+                                                              type="text"
+                                                              class="form-control"
+                                                              placeholder="1234 1234 1234 1234"
+                                                              aria-label="Cardnumber"
+                                                              aria-describedby="addon1"
+                                                            />
+                                                          </div>
+                                                        </div>
+                                                        <div class="mx-2 w-50 expireField">
+                                                          <label for="expiration" class="form-label"
+                                                            >Utgångsdatum</label
+                                                          >
+                                                          <div class="input-group mb-4">
+                                                            <input
+                                                              id="expiration"
+                                                              type="text"
+                                                              class="form-control"
+                                                              placeholder="MM/YY"
+                                                              aria-label="Expiration"
+                                                              aria-describedby="addon2"
+                                                              maxlength="5"
+                                                            />
+                                                          </div>
+                                                        </div>
+                                                        <div class="mx-2 w-50 cvcField">
+                                                          <label for="cvc" class="form-label"
+                                                            >CVC/CVV</label
+                                                          >
+                                                          <div class="input-group mb-4">
+                                                            <input
+                                                              id="cvc"
+                                                              type="text"
+                                                              class="form-control"
+                                                              placeholder="123"
+                                                              aria-label="CVC"
+                                                              aria-describedby="addon3"
+                                                              maxlength="3"
+                                                            />
+                                                          </div>
+                                                        </div>
+                                                      </section>
+                                                    </div>
+                                                  </div>
+                                                </div>-->
                           <!-- Betala med faktura -->
                           <div class="card CartPayDeliver">
                             <div
@@ -180,7 +179,7 @@
                                 class="form-check-label"
                                 for="paymentInvoice"
                               >
-                                Betala med faktura
+                                Betala med stripe
                               </label>
                               <i
                                 style="color: #fc5633; margin-left: auto"
@@ -300,11 +299,12 @@
                           </div>
                         </div>
                       </div>
-                      <a style="display: flex" href="order_correct.html">
-                        <button class="payment-button">
-                          Betala & slutför beställning
-                        </button></a
+                      <button
+                        class="payment-button"
+                        onclick="redirectToStripeCheckout()"
                       >
+                        Betala & slutför beställning
+                      </button>
                       <div style="border-top: 1.5px solid #ced3d2"></div>
                       <div
                         class="summary"
@@ -326,7 +326,9 @@
                             "
                           >
                             Frakt
-                            <span style="padding-right: 20px">39kr</span>
+                            <span id="shipping" style="padding-right: 20px"
+                              >39kr</span
+                            >
                           </p>
                         </h6>
                         <h6 style="background-color: rgba(38, 50, 56, 0.1)">
@@ -354,28 +356,30 @@
       </div>
     </section>
     <!--============================
-    PAYMENT PAGE END
-  ==============================-->
+      PAYMENT PAGE END
+    ==============================-->
     <!--=============================
-    FOOTER START
-  ==============================-->
+      FOOTER START
+    ==============================-->
     <footer-component id="footer"></footer-component>
     <!--=============================
-    FOOTER END
-  ==============================-->
+      FOOTER END
+    ==============================-->
     <!--=============================
-    SCROLL BUTTON START
-  ==============================-->
+      SCROLL BUTTON START
+    ==============================-->
     <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
     <!--=============================
-    SCROLL BUTTON END
-  ==============================-->
+      SCROLL BUTTON END
+    ==============================-->
     <!-- hotjar code -->
     <script src="js/hotjar.js"></script>
     <!-- swiper slider -->
     <script src="js/swiper-bundle.min.js" rel="preload"></script>
     <!--jquery library js-->
     <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/env js-->
+    <script src="js/env.js"></script>
     <!--main/custom js-->
     <script rel="preload" src="js/main.js"></script>
     <!--bootstrap js-->

@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi" />
+    <title>YumFoods</title>
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="images/favicon-32x32.png" />
+    <link rel="preload"
+          as="image"
+          href="./images/index.jpg"
+          imagesrcset="./images/hero.jpg 1600w, ./images/hero-mobile.jpg 335w"
+          imagesizes="(max-width: 1100px) 100vw, 1100px" />
+    <link rel="preload"
+          as="image"
+          href="./images/category/yumrattercategory.jpg" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom_spacing.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="preload"
+          href="js/products.json"
+          as="fetch"
+          type="application/json"
+          crossorigin="anonymous" />
+</head>
+
+<body>
+    <!--=============================
+        MENU START
+    ==============================-->
+    <header-component id="header"></header-component>
+
+    <!--=============================
+        MENU END
+    ==============================-->
+    <!--=============================
+        ORDER CORRECT START
+    ==============================-->
+
+    <section style="padding-top: 150px; margin-bottom: 200px">
+        <div class="order-confirm">
+            <img src="images/footagecrate-green-checkmark-icon@3X.webp" alt="" />
+            <h1>Tack för din order!</h1>
+        </div>
+        <div style="margin-left: auto; margin-right: auto; width: 300px"
+             class="step-button">
+            <a href="index.html">
+                <button class="steps-button" style="text-transform: none">
+                    <span style="font-size: 20px; width: 210px"
+                          class="steps-description">
+                        Tillbaka till startsidan
+                    </span>
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!--=============================
+        ORDER CORRECT END
+    ==============================-->
+    <!--============================
+        FOOTER START
+    ==============================-->
+    <footer-component id="footer"></footer-component>
+    <!--=============================
+        FOOTER END
+    ==============================-->
+    <!--=============================
+        SCROLL BUTTON START
+    ==============================-->
+    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+    <!--=============================
+        SCROLL BUTTON END
+    ==============================-->
+    <!-- hotjar code -->
+    <script src="js/hotjar.js"></script>
+    <!-- swiper slider -->
+    <script src="js/swiper-bundle.min.js" rel="preload"></script>
+    <!--jquery library js-->
+    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+    <!--main/env js-->
+    <script src="js/env.js"></script>
+    <!--main/custom js-->
+    <script rel="preload" src="js/main.js"></script>
+    <!--bootstrap js-->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <!-- isotop js -->
+    <script src="js/isotope.pkgd.min.js"></script>
+    <!-- counter up js -->
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/jquery.countup.min.js"></script>
+    <!-- nice select js -->
+    <script src="js/jquery.nice-select.min.js"></script>
+    <!-- venobox js -->
+    <script src="js/venobox.min.js"></script>
+    <!-- sticky sidebar js -->
+    <script src="js/sticky_sidebar.js"></script>
+    <!-- wow js -->
+    <script src="js/wow.min.js"></script>
+    <!-- ex zoom js -->
+    <script src="js/jquery.exzoom.js"></script>
+
+    <link rel="stylesheet" href="css/venobox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/jquery.exzoom.css" />
+    <link rel="stylesheet" href="css/nice-select.css" />
+    <script type="text/javascript">
+        async function SaveToDatabase() {
+            purchaseData = JSON.parse(localStorage.getItem("purchaseData"));
+            // Skicka en POST-förfrågan till backend för att spara köpdata
+            const API_KEY = variables();
+            const response = await fetch(`https://${API_KEY}/purchase`, {
+                //const response = await fetch(`https://localhost:7216/purchase`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(purchaseData),
+            });
+
+            if (response.ok) {
+                //alert("Horayy");
+            } else {
+                console.log(response)
+                //alert("Fel uppstod vid sparandet av köp.");
+                localStorage.removeItem("purchaseData");
+            }
+        }
+        async function SaveToDatabase2() {
+            postPurchaseData = JSON.parse(localStorage.getItem("newPurchaseData"));
+            //const response = await fetch(`https://localhost:7216/purchase`, {
+            const API_KEY = variables();
+            const response = await fetch(`https://${API_KEY}/purchase`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(postPurchaseData),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+            } else {
+                console.log(response)
+                const errorText = await response.text(); // Hämta felmeddelande som text
+                //alert("Ett fel uppstod: " + errorText);
+            }
+        }
+
+        async function logicApp() {
+            const purchaseData = JSON.parse(localStorage.getItem("newPurchaseData"));
+            const userData = JSON.parse(localStorage.getItem("userData"));
+            const formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+            const sum = JSON.parse(localStorage.getItem("sum"));
+            if (!purchaseData) {
+                console.warn("No purchase data found.");
+                return;
+            }
+            let mergedTitleArray = [];
+            let mergedQuantityArray = [];
+            let mergedQuantityPriceArray = [];
+            for (i = 0; i < formDataArry.length; i++) {
+                let titleArray = formDataArry[i].title;
+                let quantityArray = formDataArry[i].quantity;
+                let quantityPriceArray = formDataArry[i].quantityPrice;
+                mergedTitleArray.push(JSON.stringify(titleArray));
+                mergedQuantityArray.push(JSON.stringify(quantityArray));
+                mergedQuantityPriceArray.push(JSON.stringify(quantityPriceArray + "kr"));
+            }
+            let titleValue = mergedTitleArray.join(", ");
+            let quantityValue = mergedQuantityArray.join(", ");
+            let quantityPriceValue = mergedQuantityPriceArray.join(", ");
+            console.log(titleValue, quantityValue, quantityPriceValue)
+            console.log("Sending purchase data:", purchaseData);
+
+            async function getOrderId() {
+                const userId = purchaseData.userId
+
+                const response = await fetch(`https://${API_KEY}/orders`);
+                //const response = await fetch(`https://localhost:7216/orders`);
+                const data = await response.json();
+                let orderId;
+                data.map((item) => {
+                    if (item.userId === userId) {
+                        return orderId = item.id
+                    } else {
+                        null
+                    }
+                })
+                return orderId
+            }
+            let total = sum + "kr"
+            const LOGIC_APP_KEY = logicAppKey()
+            try {
+                const response = await fetch(`https://${LOGIC_APP_KEY}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        orderId: await getOrderId(),
+                        first_name: userData.firstName,
+                        last_name: userData.lastName,
+                        customerEmail: userData.email,
+                        telefon: userData.phoneNumber,
+                        adminEmail: "sales@yumfoods.se",
+                        delivery_date: purchaseData.deliveryDate,
+                        delivery_time: purchaseData.deliveryTime,
+                        order_date: purchaseData.orderDate,
+                        delivery_address: purchaseData.deliveryAddress,
+                        house_type: purchaseData.houseType,
+                        door_code: purchaseData.portCode,
+                        floor: purchaseData.floor,
+                        //leave_at_door: purchaseData.leaveAtDoor,
+                        product_name: titleValue,
+                        product_price: quantityPriceValue,
+                        product_quantity: quantityValue,
+                        total: total
+                    }),
+                });
+                if (response.ok) {
+                    console.log("Purchase data sent successfully.")
+                } else {
+                    console.error("Failed to send purchase data:", await response.text());
+                }
+            } catch (error) {
+                console.error("Error occurred while sending purchase data:", error);
+            }
+        }
+        SaveToDatabase();
+        SaveToDatabase2();
+        setTimeout(function () { logicApp(); }, 2500);
+        setTimeout(() => {
+            window.location.href = 'www.yumfoods.se/beta/index.html'; // Or another URL
+            localStorage.removeItem("formDataArry")
+            localStorage.removeItem("newPurchaseData")
+            localStorage.removeItem("userData")
+            localStorage.removeItem("sum")
+            localStorage.removeItem("total")
+        }, 5000);
+        
+    </script>
+</body>
+</html>

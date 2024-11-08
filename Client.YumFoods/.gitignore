@@ -143,3 +143,4 @@ Message backend-dev
 /DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfo.cs
 /DataAccess/obj/Debug/net8.0/DataAccess.AssemblyInfoInputs.cache
 /DataAccess/obj/Debug/net8.0/DataAccess.csproj.AssemblyReference.cache
+/Client.YumFoods/wwwroot/js/env.js

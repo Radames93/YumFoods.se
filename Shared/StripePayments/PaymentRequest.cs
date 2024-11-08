@@ -9,5 +9,4 @@ public class PaymentRequest
    public string? SuccessPaymentUrl { get; set; }
 
    public string? CancelPaymentUrl { get; set; }
-
 }

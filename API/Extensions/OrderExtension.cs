@@ -1,3 +1,4 @@
+using DataAccess.Repositories;
 using Shared.Entities;
 using Shared.Interfaces;
 
@@ -18,12 +19,18 @@ namespace API.Extensions
 
             group.MapGet("/{id}", GetOrderByIdAsync);
 
-            //group.MapGet("/{email}", GetOrderByEmailAsync);
+            group.MapGet("/userId/{userId}", GetOrdersByUserIdAsync);
 
             group.MapPost("/", PostOrderAsync);
 
             group.MapDelete("/{id}", DeleteOrderAsync);
             return app;
+        }
+
+        private static async Task<IResult> GetOrdersByUserIdAsync(OrderWithDetailsRepository repo, int userId)
+        {
+            var purchase = await repo.GetOrdersByUserIdAsync(userId);
+            return Results.Ok(purchase);
         }
 
         /// <summary>
@@ -50,7 +57,7 @@ namespace API.Extensions
             return Results.Ok(order);
         }
 
-        //v√§nta med denna tills koppling till user db √§r set
+        //v‰nta med denna tills koppling till user db ‰r set
 
         //private static Task GetOrderByEmailAsync(OrderRepository repo, string email)
         //{

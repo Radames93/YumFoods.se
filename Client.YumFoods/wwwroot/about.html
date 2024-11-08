@@ -1,46 +1,55 @@
 <!DOCTYPE html>
 <html lang="sv">
-  <head>
+    <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi" />
     <title>YumFoods</title>
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="images/favicon-32x32.png"
-    />
-    <link
-      rel="preload"
-      as="image"
-      href="./images/aboutus.png"
-      imagesrcset="./images/aboutus.png 1600w, ./images/aboutus-mobile.png 335w"
-      imagesizes="(max-width: 1100px) 100vw, 1100px"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/custom_spacing.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
-  </head>
+
+    <style>
+        /* Remove margin/padding from header */
+        header, header-component {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+            position: relative;
+        }
+
+        /* Reset body and html margin and padding */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Optional: Make the header fixed to the top */
+        header, header-component {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+    </style>
+</head>
 
   <body>
-    <!--=============================
+      <!--=============================
         MENU START
     ==============================-->
-    <header-component id="header"></header-component>
-    <!--=============================
+      <header-component id="header"></header-component>
+      <!--=============================
         MENU END
     ==============================-->
-
-    <!--=============================
+      <!--=============================
         BREADCRUMB START
     ==============================-->
-    <!-- <section
+      <!-- <section
       class="about_us_page_breadcrumb"
       style="background-image: url('../images/aboutus.png')"
       alt="hero-image"
@@ -57,19 +66,17 @@
         </div>
       </div>
     </section> -->
-    <!--=============================
+      <!--=============================
         BREADCRUMB END
     ==============================-->
-
-    <!--=============================
+      <!--=============================
         ABOUT PAGE START
     ==============================-->
 
     <section class="about_us_page mt-5">
       <div class="container">
-        <div class="row about-us title align-items-center">
-          <div class="col-6 text-left link">
-            <a href="index.html"><i class="fa fa-arrow-left"></i> Tillbaka</a>
+        <div class="row about-us title align-items-center pt-5">
+          <div class="col-6 text-left link pt-5" >
           </div>
           <div class="col-6 text-center">
             <h1>Om Oss</h1>
@@ -134,27 +141,26 @@
         <div class="row about-us-box2 mt-5 mb-5">
           <div class="col-md-5 justify-content-center about-us part1">
             <img
-                        class=""
-                        src="/images/aboutus-3.png"
+                        class="prenum-img"
+                        src="./images/aboutus-3.png"
                         alt="aboutus"
-                        style="width: 547px; height: 471px; margin-left: -10px;"
                       />
           </div>
-          <div class="col-md-5 justify-content-center about-us part3" style="width: 547px; height: 471px; ">
+          <div class="col-md-5 prenum-info justify-content-center about-us part3">
             <h1 class="about-title-part3">Prenumeration</h1>
             <p class="about-text-part3">Vill du som företag eller privatperson prenumerera på våra Yum måltider? Kontakta oss så kommer vi med daglig eller veckobasis och fyller på ert kylskåp med era favoriträtter.</p>
             <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
-              <div class="contacts-content contacts justify-content-center w_40" style="margin-top: -40px; margin-left: 50px;">
+              <div class="contacts-content contacts about-contacats justify-content-center w_40" style="margin-top: -40px; margin-left: 50px;">
                 <div id="footer-phone" class="contacts-box">
-                <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
+                  <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
                   <p style="margin-left: 10px;">+46 76 023 49 30</p>
                 </div>
                 <div class="contacts-box">
-                <i style="color: #FC5633; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
+                  <i style="color: #FC5633; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
                   <p style="margin-left: 10px;">info@yumfoods.se</p>
                 </div>
                 <div id="map-marker" class="contacts-box">
-                <i style="margin-left: 2px; color: #FC5633; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
+                  <i style="margin-left: 2px; color: #FC5633; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
                   <p id="location_address" style="margin-left: 14px;">Stora Badhusgatan 18, 411 21 Göteborg</p>
                 </div>
               </div>
@@ -168,7 +174,7 @@
     <section>
       <div class="container mb-5 about-us-part4">
         <div class="row about-us-box2 part4">
-          <div class="col-5">
+          <div class="col-5 miljö-info">
             <h1 class="about-title-part3">Miljö</h1>
             <h3 class="about-title-part4">Närproducerat</h3>
             <p class="about-text-part3">Vi väljer noggrant ut närproducerade maträtter av välrenommerade leverantörer med högkvalitativa råvaror. Det är viktigt för oss att veta kvalitén på våra rätter och vi strävar alltid efter samarbeten med exklusiva lokala partners.</p>
@@ -177,8 +183,8 @@
           </div>
           <div class="col-5">
             <img
-                style="width: 520px; height: 333px;"
-                src="/images/aboutus-4.png"
+                class="miljö-img"
+                src="./images/aboutus-4.png"
                 alt="aboutus"
             />
           </div>
@@ -187,53 +193,53 @@
     </section>
     
 
-    <!--=============================
+      <!--=============================
         ABOUT PAGE END
     ==============================-->
-
-    <!--=============================
+      <!--=============================
         FOOTER START
     ==============================-->
-    <footer-component id="footer"></footer-component>
-    <!--=============================
+      <footer-component id="footer"></footer-component>
+      <!--=============================
         FOOTER END
     ==============================-->
-
-    <!--=============================
+      <!--=============================
         SCROLL BUTTON START
     ==============================-->
-    <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
-    <!--=============================
-        SCROLL BUTTON END 
+      <div class="scroll_btn"><i class="fas fa-hand-pointer"></i></div>
+      <!--=============================
+        SCROLL BUTTON END
     ==============================-->
-    <!-- hotjar code -->
-    <script src="js/hotjar.js"></script>
-    <!-- swiper slider -->
-    <script src="js/swiper-bundle.min.js" rel="preload"></script>
-    <!--jquery library js-->
-    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
-    <!--main/custom js-->
-    <script rel="preload" src="js/main.js"></script>
-    <!--bootstrap js-->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- isotop js -->
-    <script src="js/isotope.pkgd.min.js"></script>
-    <!-- counter up js -->
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.countup.min.js"></script>
-    <!-- nice select js -->
-    <script src="js/jquery.nice-select.min.js"></script>
-    <!-- venobox js -->
-    <script src="js/venobox.min.js"></script>
-    <!-- sticky sidebar js -->
-    <script src="js/sticky_sidebar.js"></script>
-    <!-- wow js -->
-    <script src="js/wow.min.js"></script>
-    <!-- ex zoom js -->
-    <script src="js/jquery.exzoom.js"></script>
-    <link rel="stylesheet" href="css/venobox.min.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/jquery.exzoom.css" />
-    <link rel="stylesheet" href="css/nice-select.css" />
+      <!-- hotjar code -->
+      <script src="js/hotjar.js"></script>
+      <!-- swiper slider -->
+      <script src="js/swiper-bundle.min.js" rel="preload"></script>
+      <!--jquery library js-->
+      <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
+      <!--main/env js-->
+      <script src="js/env.js"></script>
+      <!--main/custom js-->
+      <script rel="preload" src="js/main.js"></script>
+      <!--bootstrap js-->
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <!-- isotop js -->
+      <script src="js/isotope.pkgd.min.js"></script>
+      <!-- counter up js -->
+      <script src="js/jquery.waypoints.min.js"></script>
+      <script src="js/jquery.countup.min.js"></script>
+      <!-- nice select js -->
+      <script src="js/jquery.nice-select.min.js"></script>
+      <!-- venobox js -->
+      <script src="js/venobox.min.js"></script>
+      <!-- sticky sidebar js -->
+      <script src="js/sticky_sidebar.js"></script>
+      <!-- wow js -->
+      <script src="js/wow.min.js"></script>
+      <!-- ex zoom js -->
+      <script src="js/jquery.exzoom.js"></script>
+      <link rel="stylesheet" href="css/venobox.min.css" />
+      <link rel="stylesheet" href="css/animate.css" />
+      <link rel="stylesheet" href="css/jquery.exzoom.css" />
+      <link rel="stylesheet" href="css/nice-select.css" />
   </body>
 </html>
