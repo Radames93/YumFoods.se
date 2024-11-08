@@ -25,7 +25,7 @@ public class StripeClient
         _stripeConfig = stripeConfig.Value;
         _logger = logger;
 
-        StripeConfiguration.ApiKey = _stripeConfig.TestKey;
+        StripeConfiguration.ApiKey = _stripeConfig.SecretKey;
     }
 
     /// <summary>
@@ -44,7 +44,6 @@ public class StripeClient
                 "card",
                 "klarna",
                 "paypal",
-                "swish"
             },
             SuccessUrl = request.SuccessPaymentUrl,
             CancelUrl = request.CancelPaymentUrl,

@@ -57,7 +57,7 @@ namespace API.Extensions
             return Results.Ok(order);
         }
 
-        //v√§nta med denna tills koppling till user db √§r set
+        //v‰nta med denna tills koppling till user db ‰r set
 
         //private static Task GetOrderByEmailAsync(OrderRepository repo, string email)
         //{

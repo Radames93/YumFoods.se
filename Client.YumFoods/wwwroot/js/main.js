@@ -6304,7 +6304,7 @@ async function getUserId() {
   const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
   const email = storedPurchaseData.email;
   console.log(email);
-  //const response = await fetch(`https://localhost:7216/email/email`);
+ // const response = await fetch(`https://localhost:7216/email/email`);
   const response = await fetch(`https://${API_KEY}/users/email/${email}`);
   const data = await response.json();
   let userId = data.id;
@@ -6664,11 +6664,11 @@ async function redirectToStripeCheckout() {
       },
       body: JSON.stringify({
         successPaymentUrl:
-          //"https://yumfoodsdev.azurewebsites.net/payment_success.html",
-          "https://localhost:7023/payment_success.html",
+          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+          //"https://localhost:7023/payment_success.html",
         cancelPaymentUrl:
-          //"https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
-        "https://localhost:7023/payment_cancel.html",
+          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+        //"https://localhost:7023/payment_cancel.html",
         products: products, // Send the products array
       }),
     });

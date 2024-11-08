@@ -1,6 +1,6 @@
 ﻿namespace Shared.Interfaces;
 
-public interface IProductRepository<T> where T : class 
+public interface IProductRepository<T> where T : class
 {
     Task<List<T>> GetAllProductsAsync();
     Task<T?> GetProductByIdAsync(int id);
