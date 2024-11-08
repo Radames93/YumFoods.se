@@ -25,7 +25,7 @@ public class StripeClient
         _stripeConfig = stripeConfig.Value;
         _logger = logger;
 
-        StripeConfiguration.ApiKey = _stripeConfig.SecretKey;
+        StripeConfiguration.ApiKey = _stripeConfig.TestKey;
     }
 
     /// <summary>
