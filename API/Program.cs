@@ -36,7 +36,6 @@ internal class Program
         builder.Services.AddScoped<ISubscriptionRepository<Subscription>, SubscriptionRepository>();
         builder.Services.AddScoped<UserRepository>();
         builder.Services.AddScoped<OrderWithDetailsRepository>();
-        builder.Services.AddScoped<LogicApp>();
 
 
         // Retrieve KeyVault settings from appsettings.json
