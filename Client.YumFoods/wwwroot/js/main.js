@@ -6651,11 +6651,13 @@ async function redirectToStripeCheckout() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        successPaymentUrl:
-          "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+          successPaymentUrl:
+              "https://www.yumfoods.se/beta/payment_success.html",
+         // "https://yumfoodsdev.azurewebsites.net/payment_success.html",
           //"https://localhost:7023/payment_success.html",
-        cancelPaymentUrl:
-          "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+          cancelPaymentUrl:
+              "https://www.yumfoods.se/beta/payment_cancel.html",
+          //"https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
         //"https://localhost:7023/payment_cancel.html",
         products: products, // Send the products array
       }),
