@@ -61,10 +61,10 @@ internal class Program
         var client = new SecretClient(new Uri(keyVaultURL), credential);
 
         // Retrieve the database connection strings from Azure Key Vault
-        var secretResponse = await client.GetSecretAsync("KeyYumfoodsdb");
+        var secretResponse = await client.GetSecretAsync("yumfoodsp");
         var connectionString = secretResponse.Value.Value;
 
-        var secretResponse2 = await client.GetSecretAsync("KeyYumfoodUserdb");
+        var secretResponse2 = await client.GetSecretAsync("yumfoodsusers");
         var connectionString2 = secretResponse2.Value.Value;
 
         // Blob Storage configuration
