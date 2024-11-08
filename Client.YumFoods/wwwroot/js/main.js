@@ -975,27 +975,6 @@ const updateDishList = () => {
   vegetarianAlternatives();
 };
 
-// total price
-function calculateTotalPrice(quantity) {
-  const vegetarianProducts = yumProductsList.filter((product) =>
-    product.diet.includes("images/icons/vegetarian.png")
-  );
-  const totalPrice = vegetarianProducts.reduce(
-    (sum, product) => sum + product.price * quantity,
-    0
-  );
-  return totalPrice;
-}
-
-function updateTotalPrice() {
-  const quantity = parseInt(
-    document.querySelector(".quantity-btn span").textContent,
-    10
-  );
-  const totalPrice = calculateTotalPrice(quantity);
-  const totalPriceElement = document.querySelector(".col-5.price");
-  totalPriceElement.innerHTML = `<p>${totalPrice} kr</p>`;
-}
 
 //end of secound part
 
@@ -1333,6 +1312,7 @@ function chooseQuantity10() {
             dish.quantityPrice = dish.quantityPrice * 2
         })
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+    totalQuantity();
     displayOrderItems()
 }
 
@@ -1345,6 +1325,7 @@ function chooseQuantity15() {
             dish.quantityPrice = dish.quantityPrice * 3
         })
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+    totalQuantity();
     displayOrderItems();
 }
 
@@ -1358,17 +1339,21 @@ function chooseQuantity20() {
             dish.quantityPrice = dish.quantityPrice * 4
         })
     localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+    totalQuantity();
     displayOrderItems();
 }
 
 
 function displayOrderItems() {
     if (JSON.parse(localStorage.getItem("formDataArry")) !== null) {
+        let orderSum = document.getElementById("order-sum")
+        console.log(orderSum)
         formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
         let productOrder = document.getElementById("product-container")
         let mergedTitleArray = [];
         let mergedPriceArray = [];
         let mergedQuantityArray = [];
+        let sum = 0;
         for (i = 0; i < formDataArry.length; i++) {
             let titleArray = formDataArry[i].title;
             let quantityArray = formDataArry[i].quantity;
@@ -1376,6 +1361,7 @@ function displayOrderItems() {
             mergedTitleArray.push(JSON.stringify(titleArray));
             mergedQuantityArray.push(JSON.stringify(quantityArray));
             mergedPriceArray.push(JSON.stringify(priceArray + "kr"));
+            sum += formDataArry[i].quantityPrice
         }
         let titleValue = mergedTitleArray.join(", ");
         let quantityValue = mergedQuantityArray.join(", ");
@@ -1411,6 +1397,7 @@ function displayOrderItems() {
 
         // Insert the generated HTML into the container element
         productOrder.innerHTML = htmlString;
+        orderSum.textContent = sum + (" kr")
     }
 }
 /*
@@ -1782,16 +1769,16 @@ function realAddToCartBundle(event) {
     var id = event.target.closest("button").dataset.id;
     console.log(id);
     if (id == 38) {
-        Healthy(); totalQuantity();
-        setTimeout(function () { chooseQuantity10(); }, 1000);
+        Healthy();
+        setTimeout(function () { chooseQuantity10(); }, 100);
 
     } else if (id == 39) {
         Family();
-        setTimeout(function () { chooseQuantity10();}, 1000);
+        setTimeout(function () { chooseQuantity10();}, 100);
 
     } else if (id == 40) {
         Halal(); 
-        setTimeout(function () { chooseQuantity10();}, 1000);
+        setTimeout(function () { chooseQuantity10();}, 100);
     }
 }
 
@@ -2183,6 +2170,7 @@ function showFoodBoxes() {
 function showBundles() {
   yum.style.display = "none";
   bundles.style.display = "grid";
+  foodBoxes.style.display = "none";
 }
 
 // product page( Färdigamatkassar & matlådor)
