@@ -183,6 +183,7 @@
                 const userId = purchaseData.userId
 
                 const response = await fetch(`https://${API_KEY}/orders`);
+                //const response = await fetch(`https://localhost:7216/orders`);
                 const data = await response.json();
                 let orderId;
                 data.map((item) => {
@@ -243,6 +244,7 @@
             localStorage.removeItem("sum")
             localStorage.removeItem("total")
         }, 5000);
+        
     </script>
 </body>
 </html>
