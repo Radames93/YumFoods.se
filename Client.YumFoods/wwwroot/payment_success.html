@@ -237,12 +237,15 @@
         SaveToDatabase2();
         setTimeout(function () { logicApp(); }, 2500);
         setTimeout(() => {
-            window.location.href = 'www.yumfoods.se/beta/index.html'; // Or another URL
+            //window.location.href = 'www.yumfoods.se/beta/index.html'; // Or another URL
+            window.location.href="index.html"
             localStorage.removeItem("formDataArry")
             localStorage.removeItem("newPurchaseData")
             localStorage.removeItem("userData")
             localStorage.removeItem("sum")
             localStorage.removeItem("total")
+            localStorage.removeItem("bundle")
+            localStorage.removeItem("totalQuantity")
         }, 5000);
         
     </script>

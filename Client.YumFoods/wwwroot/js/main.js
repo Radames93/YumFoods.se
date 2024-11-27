@@ -119,9 +119,9 @@ function Header() {
         </div>
         -->
       </div>
- 
       <div class="navbar-left">
         <!--login button-->
+        <!--
         <div class="loginBtn">
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -135,7 +135,7 @@ function Header() {
             </li>
           </ul>
         </div>
-
+           -->
         <ul>
         <!--
           <li>
@@ -205,6 +205,7 @@ function Header() {
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Kontakta oss</a>
             </li>
+            <!--
             <li class="nav-item" id="logInDrop">
               <a class="nav-link" href="sign_in.html">Logga In</a>
                 <ul class="droap_menu">
@@ -212,13 +213,14 @@ function Header() {
                  <li><a href="sign_up.html">Register</a></li>
               </ul>
             </li>
+            -->
           </ul>
           </div>
         </div>
       </div>
   </nav>
     `;
-
+  /*
   let authToken = localStorage.getItem("authToken");
   if (authToken !== null) {
     //const savedUserData = JSON.parse(localStorage.getItem("userData"));
@@ -252,6 +254,7 @@ function Header() {
           </ul>
 `;
   }
+*/
 }
 
 Header();
@@ -334,12 +337,30 @@ function toggleAccountType(isPersonal) {
     : "block";
 }
 
+function checkCartLength() {
+  let formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  let totalQuantity = parseInt(localStorage.getItem("totalQuantity"));
+  let orderButton = document.getElementById("orderButton");
+  if (formDataArry !== null && orderButton !== null) {
+    console.log(totalQuantity);
+    if (totalQuantity >= 10) {
+      orderButton.removeAttribute("disabled");
+    } else {
+      orderButton.setAttribute("disabled", "disabled");
+    }
+  }
+}
+checkCartLength();
 //spara purcahse form
 async function saveAndProceed() {
-  // Försök att spara formulärdata
-  await registerGuest();
-  await savePurchaseData();
-  window.location.href = "payment.html";
+  if (cartValidation(event)) {
+    // Försök att spara formulärdata
+    await registerGuest();
+    await savePurchaseData();
+    window.location.href = "payment.html";
+  } else {
+    return null;
+  }
 }
 
 // Purchase form
@@ -389,41 +410,170 @@ async function savePurchaseData() {
   }
   purchaseData.houseType = houseType;
 
-  if (missingFields.length > 0) {
-    alert("Följande fält måste fyllas i: " + missingFields.join(", "));
-    return false;
-  }
-  return true;
-
   console.log(purchaseData);
   localStorage.setItem("purchaseData", JSON.stringify(purchaseData));
+}
+
+function checkNumberInputLenght() {
+  let postalCode = document.getElementById("postalCodeInput");
+  let phone = document.getElementById("phoneInput");
+  let doorCode = document.getElementById("portInput");
+  let floor = document.getElementById("floorInput");
+
+  if (postalCode.value.length !== 5) {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Skriv ett odentlig postnummer";
+    paragraph.style.color = "red";
+    paragraph.classList.add("warning");
+    postalCode.after(paragraph);
+  } else if (phone.value.length !== 10) {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Skriv ett odentlig telefonnummer";
+    paragraph.style.color = "red";
+    paragraph.classList.add("warning");
+    phone.after(paragraph);
+  } else if (doorCode.value.length !== 5) {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Skriv ett odentlig dörrkod";
+    paragraph.style.color = "red";
+    paragraph.classList.add("warning");
+    doorCode.after(paragraph);
+  } else if (floor.value.length !== 1 || floor.value.length !== 2) {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "Skriv ett odentlig våning";
+    paragraph.style.color = "red";
+    paragraph.classList.add("warning");
+    doorCode.after(paragraph);
+  }
 }
 
 //Cart validation
 function cartValidation(event) {
   event.preventDefault();
 
-  const userData = {};
+  const purchaseData = {};
 
   // För de utkommenterade fälten för användare namn
   // userData.username = document.getElementById("username").value.trim();
+  const selectedTime = document.querySelector(".tid-box.tid-box-selected");
+  if (selectedTime) {
+    const deliverClock = selectedTime.querySelector(".time").textContent;
+    const deliverShipping = selectedTime.querySelector(".price").textContent;
+    purchaseData.deliveryTime = deliverClock;
+    purchaseData.deliveryPrice = deliverShipping;
+  }
+  purchaseData.deliveryDate =
+    document.getElementById("deliveryDateSpan").textContent;
+  purchaseData.Adress = document.getElementById("addressInput").value.trim();
+  purchaseData.PostalCode = document
+    .getElementById("postalCodeInput")
+    .value.trim();
+  purchaseData.ort = document.getElementById("cityInput").value.trim();
+  const apartment = document.getElementById("lägenhet").checked;
+  const house = document.getElementById("villa_hus").checked;
+  const radhus = document.getElementById("radhus").checked;
+  const LeaveAtDoor = document.getElementById("flexSwitchCheckDefault").checked;
+  //purchaseData.Text = document.getElementById("floatingTextarea").value.trim();
+  purchaseData.firstName = document
+    .getElementById("firstNameInput")
+    .value.trim();
+  purchaseData.lastName = document.getElementById("lastNameInput").value.trim();
+  purchaseData.phone = document.getElementById("phoneInput").value.trim();
+  purchaseData.email = document.getElementById("mailInput").value.trim();
+  if (apartment) {
+    houseType = "Lägenhet";
+    purchaseData.houseType = houseType;
+    purchaseData.Port = document.getElementById("portInput").value.trim();
+    purchaseData.Floor = document.getElementById("floorInput").value.trim();
 
-  userData.adress = document.getElementById("addressInput").value;
-  userData.lösenord = document.getElementById("field3B").value.trim();
-  const upprepaLösenord = document.getElementById("field4B").value.trim();
-  userData.gatuadress = document.getElementById("field5B").value.trim();
-  userData.postnummer = document.getElementById("contactName").value.trim();
-  userData.telefon = document.getElementById("phoneB").value.trim();
-  userData.kontakt = document.getElementById("postnummerB").value.trim();
-  userData.ort = document.getElementById("ortB").value.trim();
-  const termsAccepted = document.getElementById("terms1B").checked;
+    //if (!purchaseData.Port) missingFields.push("portkod");
+    //if (!purchaseData.Floor) missingFields.push("våningsplan");
+  } else if (house) {
+    houseType = "Villa/Hus";
+    purchaseData.houseType = houseType;
+  } else if (radhus) {
+    houseType = "Radhus";
+    purchaseData.houseType = houseType;
+  }
   let currentForm = document.getElementById("purchase");
   let allInputs = currentForm.querySelectorAll("input");
 
   // Validering
   // !userData.username ||
-  if (!userdata.adress) {
+  if (
+    !purchaseData.Adress ||
+    !purchaseData.PostalCode ||
+    !purchaseData.ort ||
+    !purchaseData.houseType ||
+    !purchaseData.firstName ||
+    !purchaseData.lastName ||
+    !purchaseData.phone ||
+    !purchaseData.email
+  ) {
     const missingFields = [];
+
+    function checkDayAndTime() {
+      let searchEles = document.getElementById("date");
+      let searchTime = document.getElementById("time");
+      if (!searchEles.classList.contains("box-selected")) {
+        const dates = document.getElementById("dates");
+        const times = document.getElementById("times");
+        const warningDate = dates.nextElementSibling;
+        const warningTime = times.nextElementSibling;
+
+        if (!warningDate || !warningDate.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Välj ett datum";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          dates.after(paragraph);
+        } else {
+          const warningDate = dates.nextElementSibling;
+
+          if (warningDate && warningDate.classList.contains("warning")) {
+            warningDate.remove();
+          }
+        }
+
+        if (!warningTime || !warningTime.classList.contains("warning")) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "Välj en tid";
+          paragraph.style.color = "red";
+          paragraph.classList.add("warning");
+          times.after(paragraph);
+        } else {
+          const warningTime = times.nextElementSibling;
+
+          if (warningTime && warningTime.classList.contains("warning")) {
+            warningTime.remove();
+          }
+        }
+      }
+    }
+
+    function checkRadioButtons() {
+      for (i = 0; i < document.getElementsByName("housing").length; i++) {
+        if (!document.getElementsByName("housing")[i].checked) {
+          const houseType = document.getElementById("houseTypeBtn");
+          const warning = houseType.nextElementSibling;
+
+          if (!warning || !warning.classList.contains("warning")) {
+            const paragraph = document.createElement("p");
+            paragraph.textContent = "Välj en bostadstyp";
+            paragraph.style.color = "red";
+            paragraph.classList.add("warning");
+            houseType.after(paragraph);
+          }
+        } else {
+          const warning = houseType.nextElementSibling;
+
+          if (warning && warning.classList.contains("warning")) {
+            warning.remove();
+          }
+        }
+      }
+    }
+
     allInputs.forEach((input) => {
       if (!input.value) {
         const warning = input.nextElementSibling;
@@ -448,7 +598,12 @@ function cartValidation(event) {
     console.error(`field missing value! ` + missingFields.join(","));
 
     alert("Alla fält måste fyllas i!");
-    return;
+    checkRadioButtons();
+    checkDayAndTime();
+    checkNumberInputLenght();
+    return false;
+  } else {
+    return true;
   }
 }
 
@@ -729,6 +884,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const btnBusiness = document.getElementById("btnBusiness");
   const foodBoxes = document.getElementById("yum");
   const bundles = document.getElementById("bundles");
+  const payingOrder = document.getElementById("orderNowButton");
+  const requestOrder = document.getElementById("requestOrderButton");
 
   if (btnPersonal) {
     btnPersonal.addEventListener("click", function () {
@@ -754,6 +911,18 @@ document.addEventListener("DOMContentLoaded", function () {
   if (bundles) {
     bundles.addEventListener("click", function () {
       toggleMenuType(false);
+    });
+  }
+
+  if (payingOrder) {
+    payingOrder.addEventListener("click", function () {
+      togglePaymentsMethods(true);
+    });
+  }
+
+  if (requestOrder) {
+    requestOrder.addEventListener("click", function () {
+      togglePaymentsMethods(false);
     });
   }
 });
@@ -874,84 +1043,82 @@ const chooseAntalbox = antalBoxes.forEach((box, index) => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const quantitySpan = document.querySelector(".quantity-btn span");
-    const increaseButton = document.querySelector(
-        ".quantity-btn button:nth-of-type(2)"
-    );
-    const decreaseButton = document.querySelector(
-        ".quantity-btn button:nth-of-type(1)"
-    );
-    const infoBox = document.querySelector(".info-box");
+  const quantitySpan = document.querySelector(".quantity-btn span");
+  const increaseButton = document.querySelector(
+    ".quantity-btn button:nth-of-type(2)"
+  );
+  const decreaseButton = document.querySelector(
+    ".quantity-btn button:nth-of-type(1)"
+  );
+  const infoBox = document.querySelector(".info-box");
 
-    if (quantitySpan !== null) {
-
-        function updateQuantity(newQuantity) {
-            if (newQuantity >= 10 && newQuantity <= 20) {
-                currentQuantity = newQuantity;
-                quantitySpan.textContent = currentQuantity;
-                updateBox4Selection();
-                updateTotalPrice();
-            }
-        }
+  if (quantitySpan !== null) {
+    function updateQuantity(newQuantity) {
+      if (newQuantity >= 10 && newQuantity <= 20) {
+        currentQuantity = newQuantity;
+        quantitySpan.textContent = currentQuantity;
+        updateBox4Selection();
+      }
     }
-    // update quantity boxes
-    function updateBox4Selection() {
-        document.querySelectorAll(".box4").forEach((box) => {
-            const boxValue = parseInt(box.getAttribute("data-value"), 10);
-            if (boxValue === currentQuantity) {
-                box.classList.add("selected", "selected-border");
-            } else {
-                box.classList.remove("selected", "selected-border");
-            }
-        })
-    }
+  }
+  // update quantity boxes
+  function updateBox4Selection() {
+    document.querySelectorAll(".box4").forEach((box) => {
+      const boxValue = parseInt(box.getAttribute("data-value"), 10);
+      if (boxValue === currentQuantity) {
+        box.classList.add("selected", "selected-border");
+      } else {
+        box.classList.remove("selected", "selected-border");
+      }
+    });
+  }
 
-    // update categorie boxes
-    const boxes2 = document.querySelectorAll(".box2");
-    function updateBoxSelection(currentCategory) {
-        boxes2.forEach((box) => {
-            const boxValue = box.getAttribute("data-category");
-
-            if (boxValue === currentCategory) {
-                box.classList.add("selected");
-                box.classList.add("selected-border");
-            } else {
-                box.classList.remove("selected");
-                box.classList.remove("selected-border");
-            }
-        });
-    }
-    const boxes4 = document.querySelectorAll(".box4");
+  // update categorie boxes
+  const boxes2 = document.querySelectorAll(".box2");
+  function updateBoxSelection(currentCategory) {
     boxes2.forEach((box) => {
-        box.addEventListener("click", () => {
-            const currentCategory = box.getAttribute("data-category");
-            updateBoxSelection(currentCategory);
-            boxes4.forEach((box4) => {
-                box4.addEventListener("click", () => {
-                    const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
-                    updateBox4Selection(currentQuantity);
-                });
-            });
-        });
-    });
+      const boxValue = box.getAttribute("data-category");
 
-    // currentQuantity, increase , decrease
-    document.querySelectorAll(".row .box").forEach((box) => {
-        box.addEventListener("click", function () {
-            const boxValue = parseInt(this.textContent, 10);
-            updateQuantity(boxValue);
-        });
+      if (boxValue === currentCategory) {
+        box.classList.add("selected");
+        box.classList.add("selected-border");
+      } else {
+        box.classList.remove("selected");
+        box.classList.remove("selected-border");
+      }
     });
-    if (increaseButton !== null) {
-        increaseButton.addEventListener("click", function () {
-            updateQuantity(currentQuantity + 5);
+  }
+  const boxes4 = document.querySelectorAll(".box4");
+  boxes2.forEach((box) => {
+    box.addEventListener("click", () => {
+      const currentCategory = box.getAttribute("data-category");
+      updateBoxSelection(currentCategory);
+      boxes4.forEach((box4) => {
+        box4.addEventListener("click", () => {
+          const currentQuantity = parseInt(box4.getAttribute("data-value"), 10);
+          updateBox4Selection(currentQuantity);
         });
-    }
-    if (decreaseButton !== null) {
-        decreaseButton.addEventListener("click", function () {
-            updateQuantity(currentQuantity - 5);
-        });
-    }
+      });
+    });
+  });
+
+  // currentQuantity, increase , decrease
+  document.querySelectorAll(".row .box").forEach((box) => {
+    box.addEventListener("click", function () {
+      const boxValue = parseInt(this.textContent, 10);
+      updateQuantity(boxValue);
+    });
+  });
+  if (increaseButton !== null) {
+    increaseButton.addEventListener("click", function () {
+      updateQuantity(currentQuantity + 5);
+    });
+  }
+  if (decreaseButton !== null) {
+    decreaseButton.addEventListener("click", function () {
+      updateQuantity(currentQuantity - 5);
+    });
+  }
 });
 
 //handle click on quantity buttons
@@ -974,7 +1141,6 @@ const vegetarianAlternatives = () => {
 const updateDishList = () => {
   vegetarianAlternatives();
 };
-
 
 //end of secound part
 
@@ -1019,6 +1185,8 @@ let premiumFilterMessage = document.getElementById("filter-premium-message");
 let baguetterFilterMessage = document.getElementById(
   "filter-baguetter-message"
 );
+let payingOrder = document.getElementById("orderNow");
+let requestOrder = document.getElementById("requestOrder");
 
 //Create empty array to populate with products
 let yumProductsList = [];
@@ -1099,18 +1267,30 @@ const search = () => {
     if (yum && yum.innerHTML === "") {
       yumSearchMessage.classList.remove("hide");
       yumSearchMessage.classList.add("show");
+    } else {
+      yumSearchMessage.classList.remove("show");
+      yumSearchMessage.classList.add("hide");
     }
     if (daily && daily.innerHTML === "") {
       dailySearchMessage.classList.remove("hide");
       dailySearchMessage.classList.add("show");
+    } else {
+      dailySearchMessage.classList.remove("show");
+      dailySearchMessage.classList.add("hide");
     }
     if (premium && premium.innerHTML === "") {
       premiumSearchMessage.classList.remove("hide");
       premiumSearchMessage.classList.add("show");
+    } else {
+      premiumSearchMessage.classList.remove("show");
+      premiumSearchMessage.classList.add("hide");
     }
     if (baguetter && baguetter.innerHTML === "") {
       baguetterSearchMessage.classList.remove("hide");
       baguetterSearchMessage.classList.add("show");
+    } else {
+      baguetterSearchMessage.classList.remove("show");
+      baguetterSearchMessage.classList.add("hide");
     }
   });
 };
@@ -1169,7 +1349,7 @@ const loadProducts = async () => {
     bundlesListFiltered = bundlesList;
 
     // Combine all categories into one list
-      const allProducts1 = [
+    const allProducts1 = [
       ...yumProductsList,
       ...dailyProductsList,
       ...premiumProductsList,
@@ -1197,208 +1377,263 @@ const loadProducts = async () => {
 // Call the function to load the products
 loadProducts();
 
+function showHealthyImage() {
+  let bundleImage = document.getElementById("bundleImage");
+  let healthyButton = document.querySelector("#healthyButton");
+  console.log(healthyButton);
+  const htmlString = bundlesList
+    .map((bundle) => {
+      if (bundle.id == 38) {
+        return `
+            <img class="img-fluid w-100" src="${bundle.imgRef}" alt="bundle-image" />
+      `;
+      }
+    })
+    .join("");
+  bundleImage.innerHTML = htmlString;
+  localStorage.setItem("bundle", htmlString);
+}
+function showFamilyImage() {
+  let bundleImage = document.getElementById("bundleImage");
+  let familyButton = document.querySelector("#familyButton");
+  const htmlString = bundlesList
+    .map((bundle) => {
+      if (bundle.id == 39) {
+        return `
+            <img class="img-fluid w-100" src="${bundle.imgRef}" alt="bundle-image" />
+      `;
+      }
+    })
+    .join("");
+  bundleImage.innerHTML = htmlString;
+  localStorage.setItem("bundle", htmlString);
+}
+function showHalalImage() {
+  let bundleImage = document.getElementById("bundleImage");
+  let halalButton = document.querySelector("#halalButton");
+  console.log(halalButton);
+  const htmlString = bundlesList
+    .map((bundle) => {
+      if (bundle.id == 40) {
+        return `
+            <img class="img-fluid w-100" src="${bundle.imgRef}" alt="bundle-image" />
+      `;
+      }
+    })
+    .join("");
+  bundleImage.innerHTML = htmlString;
+  localStorage.setItem("bundle", htmlString);
+}
 async function Healthy() {
-    const response = await fetch(`https://${API_KEY}/products`);
+  const response = await fetch(`https://${API_KEY}/products`);
 
-    const data = await response.json();
+  const data = await response.json();
 
-    // Check if the response is OK (status code in the 200-299 range)
-    if (!response.ok) {
-        throw new Error("Network response was not ok");
+  // Check if the response is OK (status code in the 200-299 range)
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  // Parse the response data as JSON
+  const allProducts = data;
+
+  allProducts.map((category) => {
+    if (
+      category.id === 3 ||
+      category.id === 6 ||
+      category.id === 10 ||
+      category.id === 13 ||
+      category.id === 7
+    ) {
+      quantity = 1;
+      formDataArry.push({
+        id: category.id,
+        description: category.description,
+        diet: category.dietRef,
+        img: category.imgRef,
+        price: category.price,
+        quantity: quantity,
+        quantityPrice: category.price * quantity,
+        title: category.title,
+      });
+      localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
     }
-
-    // Parse the response data as JSON
-    const allProducts = data;
-
-    allProducts
-        .map((category) => {
-            if (category.id === 3 || category.id === 6 || category.id === 10 || category.id === 24 || category.id === 5) {
-                quantity = 1
-                formDataArry.push(
-                    {
-                        id: category.id,
-                        description: category.description,
-                        diet: category.dietRef,
-                        img: category.imgRef,
-                        price: category.price,
-                        quantity: quantity,
-                        quantityPrice: category.price * quantity,
-                        title: category.title
-                    }
-                )
-                localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-            }
-        })
+  });
+  showHealthyImage();
 }
 
-
 async function Family() {
-    const response = await fetch(`https://${API_KEY}/products`);
+  const response = await fetch(`https://${API_KEY}/products`);
 
-    const data = await response.json();
+  const data = await response.json();
 
-    // Check if the response is OK (status code in the 200-299 range)
-    if (!response.ok) {
-        throw new Error("Network response was not ok");
+  // Check if the response is OK (status code in the 200-299 range)
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  // Parse the response data as JSON
+  const allProducts = data;
+
+  allProducts.map((category) => {
+    if (
+      category.id === 3 ||
+      category.id === 16 ||
+      category.id === 28 ||
+      category.id === 2 ||
+      category.id === 41
+    ) {
+      quantity = 1;
+      formDataArry.push({
+        id: category.id,
+        description: category.description,
+        diet: category.dietRef,
+        img: category.imgRef,
+        price: category.price,
+        quantity: quantity,
+        quantityPrice: category.price * quantity,
+        title: category.title,
+      });
+      localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
     }
-
-    // Parse the response data as JSON
-    const allProducts = data;
-
-    allProducts
-        .map((category) => {
-
-            if (category.id === 3 || category.id === 16 || category.id === 11 || category.id === 2 || category.id === 5) {
-                quantity = 1
-                formDataArry.push(
-                    {
-                        id: category.id,
-                        description: category.description,
-                        diet: category.dietRef,
-                        img: category.imgRef,
-                        price: category.price,
-                        quantity: quantity,
-                        quantityPrice: category.price * quantity,
-                        title: category.title
-                    }
-                )
-                localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-
-            }
-        })
+  });
+  showFamilyImage();
 }
 
 async function Halal() {
-    const response = await fetch(`https://${API_KEY}/products`);
+  const response = await fetch(`https://${API_KEY}/products`);
 
-    const data = await response.json();
+  const data = await response.json();
 
-    // Check if the response is OK (status code in the 200-299 range)
-    if (!response.ok) {
-        throw new Error("Network response was not ok");
+  // Check if the response is OK (status code in the 200-299 range)
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  // Parse the response data as JSON
+  const allProducts = data;
+
+  allProducts.map((category) => {
+    if (
+      category.id === 2 ||
+      category.id === 6 ||
+      category.id === 13 ||
+      category.id === 16 ||
+      category.id === 14
+    ) {
+      quantity = 1;
+      formDataArry.push({
+        id: category.id,
+        description: category.description,
+        diet: category.dietRef,
+        img: category.imgRef,
+        price: category.price,
+        quantity: quantity,
+        quantityPrice: category.price * quantity,
+        title: category.title,
+      });
+      localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
     }
-
-    // Parse the response data as JSON
-    const allProducts = data;
-
-    allProducts
-        .map((category) => {
-            if (category.id === 2 || category.id === 6 || category.id === 24 || category.id === 16 || category.id === 14) {
-                quantity = 1
-                formDataArry.push(
-                    {
-                        id: category.id,
-                        description: category.description,
-                        diet: category.dietRef,
-                        img: category.imgRef,
-                        price: category.price,
-                        quantity: quantity,
-                        quantityPrice: category.price * quantity,
-                        title: category.title
-                    }
-                )
-                localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-            }
-        })
-};
+  });
+  showHalalImage();
+}
 
 function chooseQuantity10() {
-    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    formDataArry
-        .map((dish) => {
-            console.log(dish.quantity)
-            dish.quantity = 1
-            dish.quantity = dish.quantity * 2
-            dish.quantityPrice = dish.quantityPrice * 2
-        })
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-    totalQuantity();
-    displayOrderItems()
+  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  formDataArry.map((dish) => {
+    dish.quantity = 1;
+    dish.quantity = dish.quantity * 2;
+    dish.quantityPrice = dish.quantityPrice * 2;
+  });
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  totalQuantity();
+  displayOrderItems();
 }
 
 function chooseQuantity15() {
-    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    formDataArry
-        .map((dish) => {
-            dish.quantity = 1
-            dish.quantity = dish.quantity * 3
-            dish.quantityPrice = dish.quantityPrice * 3
-        })
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-    totalQuantity();
-    displayOrderItems();
+  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  formDataArry.map((dish) => {
+    dish.quantity = 1;
+    dish.quantity = dish.quantity * 3;
+    dish.quantityPrice = dish.quantityPrice * 3;
+  });
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  totalQuantity();
+  displayOrderItems();
 }
 
 function chooseQuantity20() {
-    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-    formDataArry
-        .map((dish) => {
-            console.log(dish.quantity)
-            dish.quantity = 1
-            dish.quantity = dish.quantity * 4
-            dish.quantityPrice = dish.quantityPrice * 4
-        })
-    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-    totalQuantity();
-    displayOrderItems();
+  formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+  formDataArry.map((dish) => {
+    dish.quantity = 1;
+    dish.quantity = dish.quantity * 4;
+    dish.quantityPrice = dish.quantityPrice * 4;
+  });
+  localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+  totalQuantity();
+  displayOrderItems();
 }
-
-
 function displayOrderItems() {
-    if (JSON.parse(localStorage.getItem("formDataArry")) !== null) {
-        let orderSum = document.getElementById("order-sum")
-        console.log(orderSum)
-        formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
-        let productOrder = document.getElementById("product-container")
-        let mergedTitleArray = [];
-        let mergedPriceArray = [];
-        let mergedQuantityArray = [];
-        let sum = 0;
-        for (i = 0; i < formDataArry.length; i++) {
-            let titleArray = formDataArry[i].title;
-            let quantityArray = formDataArry[i].quantity;
-            let priceArray = formDataArry[i].price;
-            mergedTitleArray.push(JSON.stringify(titleArray));
-            mergedQuantityArray.push(JSON.stringify(quantityArray));
-            mergedPriceArray.push(JSON.stringify(priceArray + "kr"));
-            sum += formDataArry[i].quantityPrice
-        }
-        let titleValue = mergedTitleArray.join(", ");
-        let quantityValue = mergedQuantityArray.join(", ");
-        let priceValue = mergedPriceArray.join(", ");
-        let htmlString = `
-            <table>
-                <thead>
-                    <tr>
-                        <th>Namn</th>
-                        <th>Kvantitet</th>
-                        <th>Pris</th>
+  if (JSON.parse(localStorage.getItem("formDataArry")) !== null) {
+    let productOrder = document.getElementById("product-container");
+    let orderSum = document.getElementById("order-sum");
+    formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
+    let mergedTitleArray = [];
+    let mergedPriceArray = [];
+    let mergedQuantityArray = [];
+    let sum = 0;
+    for (i = 0; i < formDataArry.length; i++) {
+      let titleArray = formDataArry[i].title;
+      let quantityArray = formDataArry[i].quantity;
+      let priceArray = formDataArry[i].price;
+      mergedTitleArray.push(JSON.stringify(titleArray));
+      mergedQuantityArray.push(JSON.stringify(quantityArray));
+      mergedPriceArray.push(JSON.stringify(priceArray + "kr"));
+      sum += formDataArry[i].quantityPrice;
+    }
+    let titleValue = mergedTitleArray.join(", ");
+    let quantityValue = mergedQuantityArray.join(", ");
+    let priceValue = mergedPriceArray.join(", ");
+    let htmlString = `
+            <div class="container2">
+            <div class="tbl_content">
+              <table class="tbl">
+                <thead id="table_head">
+                  <tr>
+                    <th class="pro_name1">Namn</th>
+                    <th class="pro_select1">Kvantitet</th>
+                    <th class="pro_status1">Pris</th>
                     </tr>
                 </thead>
-                <tbody>
+                </tbody>
         `;
 
-        // Loop through each product in the array to generate table rows
-        formDataArry.forEach(item => {
-            htmlString += `
+    // Loop through each product in the array to generate table rows
+    formDataArry.forEach((item) => {
+      let title = truncateDescrip(item.title, 15);
+      htmlString += `
                 <tr>
-                    <td>${item.title}</td>
-                    <td>${item.quantity}</td>
-                    <td>${item.price} kr</td>
+                    <td data-label="Namn" class="pro_name1">${title}</td>
+                    <td data-label="Kvantitet" class="pro_select1">${item.quantity}</td>
+                    <td  data-label="Pris" class="pro_status1">${item.price} kr</td>
                 </tr>
             `;
-        });
+    });
 
-        // Close the table structure
-        htmlString += `
+    // Close the table structure
+    htmlString += `
                 </tbody>
-            </table >
+            </table>
+            </div>
+            </div>
         `;
 
-        // Insert the generated HTML into the container element
-        productOrder.innerHTML = htmlString;
-        orderSum.textContent = sum + (" kr")
+    // Insert the generated HTML into the container element
+    if (productOrder !== null) {
+      productOrder.innerHTML = htmlString;
+      orderSum.textContent = sum + " kr";
     }
+  }
 }
 /*
 
@@ -1542,6 +1777,15 @@ function toggleMenuType(isPersonal) {
   document.getElementById("bundles").style.display = isPersonal
     ? "none"
     : "grid";
+}
+// MENY - Funktion för att visa betalning eller förfrågan beroende på knappen
+function togglePaymentMethods(isPersonal) {
+  document.getElementById("orderNow").style.display = isPersonal
+    ? "block"
+    : "none";
+  document.getElementById("requestOrder").style.display = isPersonal
+    ? "none"
+    : "block";
 }
 
 //Display yum items
@@ -1766,31 +2010,72 @@ const yumProducts = (yumProductsList) => {
 };
 
 function realAddToCartBundle(event) {
-    var id = event.target.closest("button").dataset.id;
-    console.log(id);
-    if (id == 38) {
-        Healthy();
-        setTimeout(function () { chooseQuantity10(); }, 100);
+  var buttonId = event.target.closest("button").dataset.id;
+  console.log(buttonId);
+  if (buttonId == 38) {
+    Healthy();
+    setTimeout(function () {
+      chooseQuantity10();
+    }, 150);
+  } else if (buttonId == 39) {
+    Family();
+    setTimeout(function () {
+      chooseQuantity10();
+    }, 150);
+  }
+  if (buttonId == 40) {
+    Halal();
+    setTimeout(function () {
+      chooseQuantity10();
+    }, 150);
+  }
+}
 
-    } else if (id == 39) {
-        Family();
-        setTimeout(function () { chooseQuantity10();}, 100);
+function realAddToCartBundleModal() {
+  var modalId = localStorage.getItem("id");
+  console.log(modalId);
+  if (modalId == 38) {
+    Healthy();
+    setTimeout(function () {
+      chooseQuantity10();
+    }, 150);
+    closeBudlesModal();
+  } else if (modalId == 39) {
+    Family();
+    setTimeout(function () {
+      chooseQuantity10();
+    }, 150);
+    closeBudlesModal();
+  } else if (modalId == 40) {
+    Halal();
+    setTimeout(function () {
+      chooseQuantity10();
+    }, 150);
+    closeBudlesModal();
+  }
+}
 
-    } else if (id == 40) {
-        Halal(); 
-        setTimeout(function () { chooseQuantity10();}, 100);
-    }
+function closeBudlesModal() {
+  setTimeout(() => {
+    var myModal = bootstrap.Modal.getOrCreateInstance(
+      document.getElementById("bundlePop"),
+      {
+        keyboard: false,
+      }
+    );
+    myModal.hide();
+  }, 150);
 }
 
 const BundlesList = (bundlesList) => {
-    if (bundles !== null) {
-        const htmlString = bundlesList
-            .map((bundle) => {
-                let title = JSON.stringify(bundle.title);
-                let description = JSON.stringify(bundle.description);
-                let ingredients = JSON.stringify(bundle.ingredients);
-                return (
-                    `
+  if (bundles !== null) {
+    const htmlString = bundlesList
+      .map((bundle) => {
+        let title = JSON.stringify(bundle.title);
+        let description = JSON.stringify(bundle.description);
+        let ingredients = JSON.stringify(bundle.ingredients);
+        return (
+          `
           <div
           class="wow fadeInUp "
           data-wow-duration="1s"
@@ -1802,8 +2087,8 @@ const BundlesList = (bundlesList) => {
                 <div class="yum_item_buttons d-flex flex-column align-items-center">
                   <button
                   data-id=` +
-                    bundle.id +
-                    `
+          bundle.id +
+          `
                   data-yum-id=${bundle.id}
                   data-yum-title=${title}
                   data-yum-price=${bundle.price}
@@ -1840,8 +2125,8 @@ const BundlesList = (bundlesList) => {
                 <div class="menu_item_img" style="border-bottom:solid 1px grey;">
                   <img
                     src=` +
-                    bundle.imgRef +
-                    `
+          bundle.imgRef +
+          `
                     alt="yum-meny-bild"
                     class="img-fluid w-100"
                     class="title"
@@ -1867,15 +2152,15 @@ const BundlesList = (bundlesList) => {
                     data-bs-toggle="modal"
                     data-bs-target="#bundlePop"
                     >` +
-                    bundle.title +
-                    `</a>
+          bundle.title +
+          `</a>
                   <div class="d-flex justify-content-between">
                             <h5 class="price">` +
-                    bundle.price +
-                    `kr</h5>
+          bundle.price +
+          `kr</h5>
                             <img src=` +
-                    bundle.dietRef +
-                    `
+          bundle.dietRef +
+          `
                             alt="dagens-meny-bild"
                             class="img-fluid diet_img"
                             href="#"/>
@@ -1900,106 +2185,105 @@ const BundlesList = (bundlesList) => {
 
         `
 
-                    /////////////////////////////// Backup start /////////////////////////////
+          /////////////////////////////// Backup start /////////////////////////////
 
-                    // `<div
-                    //   class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
-                    //   data-wow-duration="1s"
-                    //               >
-                    // <div class="menu_item"
-                    //         data-yum-id=${yum.id}
-                    //         data-yum-title=${title}
-                    //         data-yum-price=${yum.price}
-                    //         data-yum-img=${yum.imgRef}
-                    //         data-yum-quantity-price=${yum.price}
-                    //         data-yum-description=${description}
-                    //         data-yum-ingredients=${ingredients}
-                    //         data-yum-diet=${yum.dietRef}
-                    //         data-bs-toggle="modal"
-                    //         data-bs-target="#modal">
-                    //     <div class="menu_item_img">
-                    //       <img
-                    //         src=` +
-                    // yum.imgRef +
-                    // `
-                    //         alt="yum-meny-bild"
-                    //         class="img-fluid w-100"
-                    //         class="title"
-                    //         href="#"
-                    //       />
-                    //     </div>
-                    //     <div class="d-flex justify-content-between align-items-center">
-                    //     <div class="d-flex"><img
-                    //         src=` +
-                    // yum.dietRef +
-                    // `
-                    //         alt="dagens-meny-bild"
-                    //         class="img-fluid w-100 diet_img"
-                    //         href="#"
+          // `<div
+          //   class="col-xl-4 col-sm-6 col-lg-4 wow fadeInUp "
+          //   data-wow-duration="1s"
+          //               >
+          // <div class="menu_item"
+          //         data-yum-id=${yum.id}
+          //         data-yum-title=${title}
+          //         data-yum-price=${yum.price}
+          //         data-yum-img=${yum.imgRef}
+          //         data-yum-quantity-price=${yum.price}
+          //         data-yum-description=${description}
+          //         data-yum-ingredients=${ingredients}
+          //         data-yum-diet=${yum.dietRef}
+          //         data-bs-toggle="modal"
+          //         data-bs-target="#modal">
+          //     <div class="menu_item_img">
+          //       <img
+          //         src=` +
+          // yum.imgRef +
+          // `
+          //         alt="yum-meny-bild"
+          //         class="img-fluid w-100"
+          //         class="title"
+          //         href="#"
+          //       />
+          //     </div>
+          //     <div class="d-flex justify-content-between align-items-center">
+          //     <div class="d-flex"><img
+          //         src=` +
+          // yum.dietRef +
+          // `
+          //         alt="dagens-meny-bild"
+          //         class="img-fluid w-100 diet_img"
+          //         href="#"
 
-                    //       /></div>
-                    //       <a class="category" href="#">` +
-                    // yum.category +
-                    // `</a>
-                    // </div>
-                    //     <div class="menu_item_text">
-                    //       <a
-                    //         class="title"
-                    //         href="#"
-                    //         data-yum-id=${yum.id}
-                    //         data-yum-title=${title}
-                    //         data-yum-price=${yum.price}
-                    //         data-yum-img=${yum.imgRef}
-                    //         data-yum-quantity-price=${yum.price}
-                    //         data-yum-description=${description}
-                    //         data-yum-ingredients=${ingredients}
-                    //         data-yum-diet=${yum.dietRef}
-                    //         data-bs-toggle="modal"
-                    //         data-bs-target="#modal"
-                    //         >` +
-                    // yum.title +
-                    // `</a
-                    //       >
-                    //       <h5 class="price">` +
-                    // yum.price +
-                    // `kr</h5>
-                    // <!--
-                    // <ul class="d-flex flex-wrap justify-content-end">
-                    //         <li>
-                    //           <a href="#"><i class="fa fa-heart"></i></a>
-                    //         </li>
-                    //         <li>
-                    //           <a href="menu_details.html"><i class="fa fa-eye"></i></a>
-                    //         </li>
-                    //       </ul>
-                    //       -->
-                    //     </div>
-                    //   </div>
-                    //   ` +
-                    // "<button id='cart-button' class='menu_add_to_cart' data-id=" +
-                    // yum.id +
-                    // `
-                    // data-yum-id=${yum.id}
-                    // data-yum-title=${title}
-                    // data-yum-price=${yum.price}
-                    // data-yum-img=${yum.imgRef}
-                    // data-yum-quantity-price=${yum.price}
-                    // data-yum-description=${description}
-                    // data-yum-diet=${yum.dietRef}
-                    // ` +
-                    // ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
-                    // `
-                    // </div>`
+          //       /></div>
+          //       <a class="category" href="#">` +
+          // yum.category +
+          // `</a>
+          // </div>
+          //     <div class="menu_item_text">
+          //       <a
+          //         class="title"
+          //         href="#"
+          //         data-yum-id=${yum.id}
+          //         data-yum-title=${title}
+          //         data-yum-price=${yum.price}
+          //         data-yum-img=${yum.imgRef}
+          //         data-yum-quantity-price=${yum.price}
+          //         data-yum-description=${description}
+          //         data-yum-ingredients=${ingredients}
+          //         data-yum-diet=${yum.dietRef}
+          //         data-bs-toggle="modal"
+          //         data-bs-target="#modal"
+          //         >` +
+          // yum.title +
+          // `</a
+          //       >
+          //       <h5 class="price">` +
+          // yum.price +
+          // `kr</h5>
+          // <!--
+          // <ul class="d-flex flex-wrap justify-content-end">
+          //         <li>
+          //           <a href="#"><i class="fa fa-heart"></i></a>
+          //         </li>
+          //         <li>
+          //           <a href="menu_details.html"><i class="fa fa-eye"></i></a>
+          //         </li>
+          //       </ul>
+          //       -->
+          //     </div>
+          //   </div>
+          //   ` +
+          // "<button id='cart-button' class='menu_add_to_cart' data-id=" +
+          // yum.id +
+          // `
+          // data-yum-id=${yum.id}
+          // data-yum-title=${title}
+          // data-yum-price=${yum.price}
+          // data-yum-img=${yum.imgRef}
+          // data-yum-quantity-price=${yum.price}
+          // data-yum-description=${description}
+          // data-yum-diet=${yum.dietRef}
+          // ` +
+          // ") onclick='realAddToCart(event)''>Lägg till <i class='fas fa-cart-plus' ></i></button>" +
+          // `
+          // </div>`
 
-                    /////////////////////////////// Backup end /////////////////////////////
-                );
-            })
-            .join("");
-        bundles.innerHTML = htmlString;
-    } else {
-        return null;
-    }
-  
+          /////////////////////////////// Backup end /////////////////////////////
+        );
+      })
+      .join("");
+    bundles.innerHTML = htmlString;
+  } else {
+    return null;
+  }
 };
 
 const carouselContainer = document.getElementById("container");
@@ -2012,6 +2296,7 @@ const CarouselFoodBoxes = (yumProductsList) => {
       .map((yum) => {
         let title = JSON.stringify(yum.title);
         let description = JSON.stringify(yum.description);
+        newDescription = truncateDescrip(description, 40);
         let ingredients = JSON.stringify(yum.ingredients);
         return (
           `
@@ -2055,7 +2340,7 @@ const CarouselFoodBoxes = (yumProductsList) => {
                   >` +
           yum.title.replace(/'/g, "") +
           `</a>
-                <p class="description">In the new era of technology we look in the future with certainty and pride for our life.</p>
+                <p class="description">${newDescription}</p>
                 <h5 class="price">` +
           yum.price +
           ` kr</h5>
@@ -2090,6 +2375,7 @@ const CarouselFoodBoxes2 = (baguetterProductsList) => {
       .map((yum) => {
         let title = JSON.stringify(yum.title);
         let description = JSON.stringify(yum.description);
+        newDescription = truncateDescrip(description, 40);
         let ingredients = JSON.stringify(yum.ingredients);
         return (
           `
@@ -2133,7 +2419,7 @@ const CarouselFoodBoxes2 = (baguetterProductsList) => {
                   >` +
           yum.title.replace(/'/g, "") +
           `</a>
-                <p class="description">In the new era of technology we look in the future with certainty and pride for our life.</p>
+                <p class="description">${newDescription}</p>
                 <h5 class="price">` +
           yum.price +
           ` kr</h5>
@@ -2165,6 +2451,7 @@ const CarouselFoodBoxes2 = (baguetterProductsList) => {
 function showFoodBoxes() {
   yum.style.display = "grid";
   bundles.style.display = "none";
+  foodBoxes.style.display = "block";
 }
 
 function showBundles() {
@@ -2173,6 +2460,15 @@ function showBundles() {
   foodBoxes.style.display = "none";
 }
 
+function showPaymentNow() {
+  payingOrder.style.display = "block";
+  requestOrder.style.display = "none";
+}
+
+function showRequestOrder() {
+  payingOrder.style.display = "none";
+  requestOrder.style.display = "block";
+}
 // product page( Färdigamatkassar & matlådor)
 let selectedBox = null;
 function FärdigaMatkassar(element) {
@@ -2868,11 +3164,22 @@ const sortingNamePriceFunction = (el) => {
   }
 };
 
+function clearFilter() {
+  const sortedYumArray = yumFiltered.sort((a, b) =>
+    a.id > b.id ? 1 : b.id > a.id ? -1 : 0
+  );
+  yumProducts(sortedYumArray);
+  let clearFilter = document.getElementById("clear-filter");
+  clearFilter.style.display = "none";
+}
+
 //Sort function for diet
 const sortingDishDietFunction = (el) => {
   const option = el;
+  let clearFilter = document.getElementById("clear-filter");
   if (option === "Vegan") {
     const filteredYumProducts = yumProductsList.filter((product) => {
+      clearFilter.style.display = "flex";
       return product.diet.includes("Vegan");
     });
     // const filteredDailyProducts = dailyProductsList.filter((product) => {
@@ -2965,6 +3272,7 @@ const sortingDishDietFunction = (el) => {
     }
   } else if (option === "Vegetarian") {
     const filteredYumProducts = yumProductsList.filter((product) => {
+      clearFilter.style.display = "flex";
       return product.diet.includes("Vegetarian");
     });
     // const filteredDailyProducts = dailyProductsList.filter((product) => {
@@ -3022,9 +3330,10 @@ const sortingDishDietFunction = (el) => {
       baguetterFilterMessage.classList.remove("show");
       baguetterFilterMessage.classList.add("hide");
     }
-  } else if (option === "Not") {
+  } else if (option === "Nöt") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-        return product.diet === "Not";
+      clearFilter.style.display = "flex";
+      return product.diet === "Nöt";
     });
     // const filteredDailyProducts = dailyProductsList.filter((product) => {
     //   let cow = "";
@@ -3083,7 +3392,8 @@ const sortingDishDietFunction = (el) => {
     }
   } else if (option === "Fisk") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-        return product.diet.includes("Fisk");
+      clearFilter.style.display = "flex";
+      return product.diet.includes("Fisk");
     });
     // const filteredDailyProducts = dailyProductsList.filter((product) => {
     //   let fish = "";
@@ -3142,7 +3452,8 @@ const sortingDishDietFunction = (el) => {
     }
   } else if (option === "Fläsk") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-        return product.diet === "Fläsk";
+      clearFilter.style.display = "flex";
+      return product.diet === "Fläsk";
     });
     // const filteredDailyProducts = dailyProductsList.filter((product) => {
     //   let fish = "";
@@ -3201,7 +3512,8 @@ const sortingDishDietFunction = (el) => {
     }
   } else if (option === "Kyckling") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-        return product.diet.includes("Kyckling");
+      clearFilter.style.display = "flex";
+      return product.diet.includes("Kyckling");
     });
     // const filteredDailyProducts = dailyProductsList.filter((product) => {
     //   let chicken = "";
@@ -3260,7 +3572,8 @@ const sortingDishDietFunction = (el) => {
     }
   } else if (option === "Fläsk, Nöt") {
     const filteredYumProducts = yumProductsList.filter((product) => {
-        return product.diet.includes("Fläsk, Nöt");
+      clearFilter.style.display = "flex";
+      return product.diet.includes("Fläsk, Nöt");
     });
     // const filteredDailyProducts = dailyProductsList.filter((product) => {
     //   let chicken = "";
@@ -3558,17 +3871,24 @@ function modalAddToCart() {
 
   localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
   totalQuantity();
-  var input = document.querySelector(".quantity");
-  input.value = 1;
-  closeModal();
+  //var input = document.querySelector(".quantity");
+  //input.value = 1;
+  closeFoodBoxesModal();
   // openSidebar();
   // updateSidebarCart();
 }
 
 //stäng modalen
-function closeModal() {
-  var modal = document.getElementById("modal");
-  modal.style.display = "none";
+function closeFoodBoxesModal() {
+  setTimeout(() => {
+    var myModal = bootstrap.Modal.getOrCreateInstance(
+      document.getElementById("modal"),
+      {
+        keyboard: false,
+      }
+    );
+    myModal.hide();
+  }, 100);
 }
 
 let id = "";
@@ -3607,9 +3927,7 @@ const displayNewCart = () => {
       summaryHead.classList.add("block");
       const htmlString = formDataArry
         .map((item) => {
-          let diet = "";
           let value = "";
-          console.log(item);
           id = item.id;
           let quantity;
           description = item.title;
@@ -3617,38 +3935,6 @@ const displayNewCart = () => {
             quantity = localStorage.getItem("quantity");
           } else {
             quantity = item.quantity;
-          }
-          if (Array.isArray(item.diet)) {
-            var obj = item.diet;
-            value = JSON.stringify(obj);
-            const imageTags = item.diet.map((img) => {
-              console.log(img);
-              return (
-                `<img id="diet"
-                  src=
-                  ` +
-                img +
-                `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `
-              );
-            });
-            diet = imageTags;
-          } else {
-            const singleImage =
-              `<img id="diet"
-                  src=
-                  ` +
-              item.diet +
-              `
-                  alt="specialkost-bild"
-                  class="diet_img"
-                />
-                `;
-            diet = singleImage;
-            value = item.diet;
           }
           //  item(s) used: item.img / item.id / item.title / item.price / item.quantityPrice / item.id / quantity
           return (
@@ -3667,18 +3953,19 @@ const displayNewCart = () => {
 
       <div class="cartDetailContain d-flex flex-column">
 
-      <div class="d-flex flex-row">
+      <div class="d-flex flex-row mobile_cart_items">
           <h5 id="" style="flex-direction: row; display: flex;" class="">` +
             item.title +
             `
-            <div style="padding: 10px; margin-top: -17px;" class="d-flex">` +
-            diet +
-            `</div>
-
+            <div style="padding: 10px; margin-top: -17px;" class="d-flex">
+             <img class="img-fluid diet_img" src="` +
+            item.diet +
+            `"/>
+            </div>
           </h5>
           <h5 style="cursor: pointer;" onclick="removeItem(` +
             item.id +
-            `)" class="ms-auto me-4">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
+            `)" class="ms-auto me-4 mobile_remove">Ta bort <i id="ta-bort-x" style="transform: rotate(45deg); margin-bottom: 20px;" class="fas fa-plus"></i></h5>
       </div>
 
         <p class="food-description" style="width: 400px; max-height:50px; overflow-y:scroll;">
@@ -3787,7 +4074,7 @@ const displayNewCart = () => {
 };
 
 let itemDescrip = document.querySelectorAll(".food-description");
-
+let foodDescrip = document.querySelectorAll(".description");
 function truncateDescrip(str, maxLength) {
   if (str.length > maxLength) {
     return str.slice(0, maxLength - 3) + "...";
@@ -3970,7 +4257,7 @@ function formCancelEdit(btn) {
 }
 
 function logOut() {
-  localStorage.clear();
+  localStorage.removeItem("AuthToken");
   window.location.href = "sign_up.html";
 }
 
@@ -5306,7 +5593,7 @@ const dateStrings = threeDaysAhead
     return `
 
         <div class="swiper-slide date">
-            <div class="date-box box1 text-center date">
+            <div id="date" class="date-box box1 text-center date">
               <div class="day">${weekday}</div>
               <div class="date"><span id="deliveryDateSpan" style="margin-right: 5px;">${days}</span></div>
             </div>
@@ -5692,13 +5979,13 @@ function showCompanyForm() {
                     <input
                       name="company name"
                       type="text"
-                      placeholder="Företagsnamn(bara för företag)"
+                      placeholder="Företagsnamn (bara för företag)"
                     />
                   </div>
                 </div>
     -->
                     <div class="form-group d-flex flex-column mb-3">
-                      <label class="me-auto" for="company">Företagsnamn</label>
+                      <label class="me-auto" for="company">Företagsnamn *</label>
                       <input
                         type="text"
                         class="form-control"
@@ -5715,7 +6002,7 @@ function showCompanyForm() {
                 </div>
     -->
                     <div class="form-group d-flex flex-column mb-3">
-                      <label class="me-auto" for="companyBefatt">Befattning</label>
+                      <label class="me-auto" for="companyBefatt">Befattning *</label>
                       <input
                         type="text"
                         class="form-control"
@@ -5735,12 +6022,12 @@ function showCompanyForm() {
                 </div>
 -->
                       <div class="form-group d-flex flex-column mb-3">
-                      <label class="me-auto" for="company">Företagsnamn</label>
+                      <label class="me-auto" for="company">Antal anställda *</label>
                       <input
                         type="number"
                         name="number of employees"
                         class="form-control"
-                        placeholder="Antal Anställda"
+                        placeholder="Antal anställda"
                       />
                     </div>
                 </div>
@@ -5821,15 +6108,17 @@ if (contactForm !== null) {
 
 //popup in start page
 document.addEventListener("DOMContentLoaded", function () {
-  let deliveryModal = document.getElementById("deliveryModal");
-  if (deliveryModal !== null) {
-    var myModal = bootstrap.Modal.getOrCreateInstance(
-      document.getElementById("deliveryModal"),
-      {
-        keyboard: false,
-      }
-    );
-    myModal.show();
+  if (!localStorage.getItem("Postcode")) {
+    let deliveryModal = document.getElementById("deliveryModal");
+    if (deliveryModal !== null) {
+      var myModal = bootstrap.Modal.getOrCreateInstance(
+        document.getElementById("deliveryModal"),
+        {
+          keyboard: false,
+        }
+      );
+      myModal.show();
+    }
   }
 });
 let confirmButton = document.getElementById("confirmButton");
@@ -5847,7 +6136,15 @@ if (confirmButton !== null) {
       document.getElementById("wrong-message2").style.display = "none";
       document.getElementById("no-place").style.display = "none";
       localStorage.setItem("Postcode", postcode);
-      console.log(localStorage.getItem("Postcode"));
+      setTimeout(() => {
+        var myModal = bootstrap.Modal.getOrCreateInstance(
+          document.getElementById("deliveryModal"),
+          {
+            keyboard: false,
+          }
+        );
+        myModal.hide();
+      }, 2000);
     } else {
       document.getElementById("wrong-message").style.display = "block";
       document.getElementById("confirmationMessage").style.display = "none";
@@ -5874,7 +6171,7 @@ if (findLocation !== null) {
         .then((data) => {
           if (data.status === "OK") {
             var address = data.results[0].formatted_address;
-            alert("Platsen hittades: " + address);
+            localStorage.setItem("address", address);
           } else {
             document.getElementById("no-place").style.display = "block";
             document.getElementById("wrong-message").style.display = "none";
@@ -5898,14 +6195,20 @@ if (findLocation !== null) {
 
 // Calculate and display total sum in the cart total
 function totalSum() {
-  let totalPrice = document.getElementById("total");
-  let sum = 0;
+    let totalPrice = document.getElementById("total");
+    let totalShipping = document.getElementById("shipping");
+    let shipping = 39
+    if (totalShipping !== null) {
+        totalShipping.innerHTML = shipping + "kr";
+    }
+    let sum = 0;
   if (totalPrice !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     if (formDataArry !== null) {
       for (let i = 0; i < formDataArry.length; i++) {
         sum += parseInt(formDataArry[i].quantityPrice);
-      }
+        }
+      sum = sum + shipping
       totalPrice.innerHTML = sum + "kr";
       localStorage.setItem("sum", sum);
     } else {
@@ -5926,9 +6229,11 @@ function totalQuantity() {
       }
       count.innerHTML = totalQuantity;
       localStorage.setItem("totalQuantity", totalQuantity);
+      checkCartLength();
     } else {
       count.innerHTML = totalQuantity;
       formDataArry = [];
+      checkCartLength();
     }
   }
 }
@@ -6141,7 +6446,7 @@ if (sendCartInfo !== null) {
           `;
           localStorage.clear();
           setTimeout(() => {
-            window.location.reload();
+            window.location.href = "index.html";
           }, 5000);
         } else {
           console.log(response);
@@ -6163,18 +6468,40 @@ if (sendCartInfo !== null) {
   null;
 }
 
+let removeOrder = document.getElementById("removeQuickOrder");
+function clear() {
+  let bundleImage = document.getElementById("bundleImage");
+  localStorage.removeItem("formDataArry");
+  localStorage.removeItem("totalQuantity");
+  localStorage.removeItem("bundle");
+  infoBox.style.display = "none";
+  bundleImage.innerHTML = "";
+  const antalBoxes = document.querySelectorAll(".box4");
+  const dietBoxes = document.querySelectorAll(".box2");
+  const chooseAntalbox = antalBoxes.forEach((b) => {
+    if ((b.hasClass = "selected")) {
+      b.classList.remove("selected");
+      b.classList.remove("selected-border");
+    }
+  });
+  const chooseDietbox = dietBoxes.forEach((b) => {
+    if ((b.hasClass = "selected")) {
+      b.classList.remove("selected");
+      b.classList.remove("selected-border");
+    }
+  });
+  totalQuantity();
+}
+if (removeOrder !== null) {
+  removeOrder.addEventListener("click", clear);
+}
+
 var swiper1 = new Swiper(".slide-content", {
   slidesPerView: 3,
   spaceBetween: 25,
-  loop: true,
   centerSlide: "true",
   fade: "true",
   grabCursor: "true",
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-    dynamicBullets: true,
-  },
   autoplay: {
     delay: 2000,
     disableOnInteraction: false,
@@ -6201,18 +6528,12 @@ var swiper1 = new Swiper(".slide-content", {
   },
 });
 
-var swiper2 = new Swiper(".slide-content2", {
+var swiper1 = new Swiper(".slide-content2", {
   slidesPerView: 3,
   spaceBetween: 25,
-  loop: true,
   centerSlide: "true",
   fade: "true",
   grabCursor: "true",
-  pagination: {
-    el: ".swiper-pagination2",
-    clickable: true,
-    dynamicBullets: true,
-  },
   autoplay: {
     delay: 2000,
     disableOnInteraction: false,
@@ -6257,21 +6578,27 @@ var datesSwipes = new Swiper(".dates_swipe", {
   breakpoints: {
     0: {
       slidesPerView: 1,
+      slidesPerGroup: 1,
     },
     576: {
-      slidesPerView: 1,
+      slidesPerView: 2,
+      slidesPerGroup: 2,
     },
     768: {
       slidesPerView: 2,
+      slidesPerGroup: 2,
     },
     992: {
       slidesPerView: 2,
+      slidesPerGroup: 2,
     },
     1120: {
       slidesPerView: 3,
+      slidesPerGroup: 3,
     },
     1400: {
       slidesPerView: 3,
+      slidesPerGroup: 3,
     },
   },
 });
@@ -6289,20 +6616,21 @@ var datesSwipes = new Swiper(".dates_swipe", {
 //    }
 //}
 async function getUserId() {
-  const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
-  const email = storedPurchaseData.email;
-  console.log(email);
- // const response = await fetch(`https://localhost:7216/email/email`);
-  const response = await fetch(`https://${API_KEY}/users/email/${email}`);
-  const data = await response.json();
-  let userId = data.id;
-  return userId;
+  if (localStorage.getItem("purchaseData")) {
+    const storedPurchaseData = JSON.parse(localStorage.getItem("purchaseData"));
+    const email = storedPurchaseData.email;
+    console.log(email);
+    // const response = await fetch(`https://localhost:7216/email/email`);
+    const response = await fetch(`https://${API_KEY}/users/email/${email}`);
+    const data = await response.json();
+    let userId = data.id;
+    return userId;
+  }
 }
 // Save form in Cart_view
 async function savePurchaseData() {
   let houseType = "";
   const purchaseData = {};
-  const missingFields = [];
 
   const selectedTime = document.querySelector(".tid-box.tid-box-selected");
   if (selectedTime) {
@@ -6310,8 +6638,6 @@ async function savePurchaseData() {
     const deliverShipping = selectedTime.querySelector(".price").textContent;
     purchaseData.deliveryTime = deliverClock;
     purchaseData.deliveryPrice = deliverShipping;
-  } else {
-    missingFields.push("leveranstid");
   }
   purchaseData.deliveryDate =
     document.getElementById("deliveryDateSpan").textContent;
@@ -6328,30 +6654,10 @@ async function savePurchaseData() {
   purchaseData.phone = document.getElementById("phoneInput").value;
   purchaseData.email = document.getElementById("mailInput").value;
 
-  const requiredFields = [
-    "address",
-    "postalCode",
-    "ort",
-    "firstName",
-    "lastName",
-    "phone",
-    "email",
-  ];
-  requiredFields.forEach((field) => {
-    if (!purchaseData[field]) missingFields.push(field);
-  });
-
-  if (missingFields.length > 0) {
-    alert("Följande fält måste fyllas i: " + missingFields.join(", "));
-    return false;
-  }
-
   if (apartment) {
     houseType = "Apartment";
     purchaseData.port = document.getElementById("portInput").value.trim();
     purchaseData.floor = document.getElementById("floorInput").value.trim();
-    if (!purchaseData.Port) missingFields.push("portkod");
-    if (!purchaseData.Floor) missingFields.push("våningsplan");
   } else if (house) {
     houseType = "Villa/Hus";
   } else if (radhus) {
@@ -6653,12 +6959,12 @@ async function redirectToStripeCheckout() {
       body: JSON.stringify({
           successPaymentUrl:
               "https://www.yumfoods.se/beta/payment_success.html",
-         // "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+          //"https://yumfoodsdev.azurewebsites.net/payment_success.html",
           //"https://localhost:7023/payment_success.html",
           cancelPaymentUrl:
               "https://www.yumfoods.se/beta/payment_cancel.html",
           //"https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
-        //"https://localhost:7023/payment_cancel.html",
+          //"https://localhost:7023/payment_cancel.html",
         products: products, // Send the products array
       }),
     });
@@ -6894,126 +7200,181 @@ async function updateProfile() {
   }
 }
 
+function displayOrderItemsIfExists() {
+  let infoBox = document.querySelector(".info-box");
+  let productOrder = document.getElementById("product-container");
+  if (productOrder !== null) {
+    if (productOrder.innerHTML !== "") {
+      infoBox.style.display = "block";
+      displayOrderItems();
+    }
+  }
+}
+displayOrderItems();
+displayOrderItemsIfExists();
+if (document.getElementById("bundleImage") !== null) {
+  bundleImage.innerHTML = localStorage.getItem("bundle");
+}
+
 function Footer() {
   let footer = document.getElementById("footer");
   footer.innerHTML = `
      <div class="pt_20 xs_pt_20">
-    <div class="container">
-     <div id="footer-new" class="row justify-content-around pt_50">
-      <div class="col-xxl-2 col-lg-2 col-sm-9 col-md-5">
-       <div class="footer_content">
-         <img class="footer_logo"
-          loading="lazy"
-          src="images/footer_logo2.png"
-          alt="footer-logo"
-          style="height:200px"
-          class="mb_25"
-         />
-       </div>
-      </div>
-      <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
-       <h1 id="contact_title" style="white-space: nowrap; width: auto;">Yum Foods</h1>
-       <div class="contacts-content contacts justify-content-center w_40">
-        <div id="footer-phone" class="contacts-box">
-        <i style="color: #FC5633; margin-top: 4px;" class="fas fa-phone fa-lg"></i>
-         <p style="margin-left: 10px;">+46 76 023 49 30</p>
+      <div class="container">
+        <div id="footer-new" class="row justify-content-around pt_50">
+          <div class="col-xxl-2 col-lg-2 col-sm-9 col-md-5">
+            <div class="footer_content">
+              <img
+                class="footer_logo"
+                loading="lazy"
+                src="images/footer-logo-multiculti.png"
+                alt="footer-logo"
+                style="height: 200px"
+                class="mb_25"
+              />
+            </div>
+          </div>
+          <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
+            <h1 id="contact_title" style="white-space: nowrap; width: auto">
+              Yum Foods
+            </h1>
+            <div class="contacts-content contacts justify-content-center w_40">
+              <div id="footer-phone" class="contacts-box">
+                <i
+                  style="color: #fc5633; margin-top: 4px"
+                  class="fas fa-phone fa-lg"
+                ></i>
+                <p style="margin-left: 10px">+46 76 023 49 30</p>
+              </div>
+              <div class="contacts-box">
+                <i
+                  style="color: #fc5633; margin-top: 4px"
+                  class="fas fa-envelope fa-lg"
+                ></i>
+                <p style="margin-left: 10px">info@yumfoods.se</p>
+              </div>
+              <div id="map-marker" class="contacts-box">
+                <i
+                  style="margin-left: 2px; color: #fc5633; margin-top: 2px"
+                  class="fas fa-map-marker-alt fa-lg"
+                ></i>
+                <p id="location_address" style="margin-left: 14px">
+                  Stora Badhusgatan 18, 411 21 Göteborg
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            id="social_links"
+            class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4"
+          >
+            <div class="footer_content">
+              <h2 id="link_title" class="link_padding">Följ oss</h2>
+              <ul id="faq-ul" class="social_new">
+                <li style="margin-bottom: 30px">
+                  <a
+                    href="https://www.facebook.com/YumFoodsSE"
+                    target="_blank"
+                    aria-label="Länk till facebook sida"
+                    ><i class="fab fa-facebook-f"></i
+                  ></a>
+                  <p
+                    class="mobil-terms-p1"
+                    style="margin-top: -20px; margin-left: 10px"
+                  >
+                    Facebook
+                  </p>
+                </li>
+                <li style="margin-bottom: 30px">
+                  <a
+                    href="https://www.linkedin.com/company/yum-foods/"
+                    target="_blank"
+                    aria-label="Länk till linkedin sida"
+                    ><i class="fab fa-linkedin-in"></i
+                  ></a>
+                  <p
+                    class="mobil-terms-p2"
+                    style="margin-top: -20px; margin-left: 10px"
+                  >
+                    Linkedin
+                  </p>
+                </li>
+                <li>
+                  <a
+                    href="https://www.instagram.com/yumfoods.se/"
+                    target="_blank"
+                    aria-label="Länk till instagram sida"
+                    ><i class="fab fa-instagram"></i
+                  ></a>
+                  <p
+                    class="mobil-terms-p3"
+                    style="margin-top: -20px; margin-left: 10px"
+                  >
+                    Instagram
+                  </p>
+                </li>
+                <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
+              </ul>
+            </div>
+          </div>
+          <div
+            id="other_links"
+            class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4"
+          >
+            <div class="footer_content">
+              <h2 id="link_title">Hjälp & Villkor</h2>
+              <ul id="faq-ul">
+                <li style="margin-bottom: 30px">
+                  <a href="faq.html" aria-label="Snabb svar">
+                    <i class="fas fa-question"></i>
+                  </a>
+                  <p
+                    class="terms-p1"
+                    style="margin-top: -20px; margin-left: 10px"
+                  >
+                    Få snabbt svar FAQ
+                  </p>
+                </li>
+                <li style="margin-bottom: 30px">
+                  <a href="faq.html" aria-label="snabb svar">
+                    <i class="fab fa-teamspeak"></i>
+                  </a>
+                  <p
+                    class="terms-p2"
+                    style="margin-top: -20px; margin-left: 10px"
+                  >
+                    Kontakta kundservice
+                  </p>
+                </li>
+                <li>
+                  <a href="terms_condition.html" aria-label="Allmäna villkor">
+                    <i class="fas fa-file-alt"></i>
+                  </a>
+                  <p
+                    class="terms-p3"
+                    style="margin-top: -20px; margin-left: 10px"
+                  >
+                    Allmänna villkor
+                  </p>
+                </li>
+                <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="contacts-box">
-        <i style="color: #FC5633; margin-top: 4px;" class="fas fa-envelope fa-lg"></i>
-         <p style="margin-left: 10px;">info@yumfoods.se</p>
-        </div>
-        <div id="map-marker" class="contacts-box">
-        <i style="margin-left: 2px; color: #FC5633; margin-top: 2px;" class="fas fa-map-marker-alt fa-lg"></i>
-         <p id="location_address" style="margin-left: 14px;">Stora Badhusgatan 18, 411 21 Göteborg</p>
-        </div>
-       </div>
       </div>
-      <div id="social_links" class="col-xxl-3 col-lg-2 col-sm-5 col-md-4">
-       <div class="footer_content">
-       <h2>Följ oss!</h2>
-        <ul class="social_link d-flex flex-wrap mx_50">
-         <li style="margin-top: -10px; margin-left: -0px;">
-          <a
-           href="https://www.facebook.com/YumFoodsSE"
-           target="_blank"
-           aria-label="Länk till facebook sida"
-           ><i class="fab fa-facebook-f"></i
-          ></a><p style="margin-top: 8px;">Facebook</p>
-         </li>
-         <li style="margin-top: 12px; margin-left: -10px;">
-          <a
-           href="https://www.linkedin.com/company/yum-foods/"
-           target="_blank"
-           aria-label="Länk till linkedin sida"
-           ><i class="fab fa-linkedin-in"></i
-          ></a><p style="margin-top: 8px;">LinkedIn</p>
-         </li>
-         <!--
-         <li>
-          <a href="#"
-           ><span class="m_0"><img src="images/twitter.png" /></span
-          ></a>
-         </li>
-         <li>
-          <a href="#"><i class="fab fa-youtube fa-lg"></i></a>
-         </li>
-         -->
-         <li style="margin-top: 12px;">
-          <a
-           href="https://www.instagram.com/yumfoods.se/"
-           target="_blank"
-           aria-label="Länk till instagram sida"
-           ><i class="fab fa-instagram"></i
-          ></a><p style="margin-top: 8px;">Instagram</p>
-         </li>
-         <!--
-         <li>
-          <a href="#"><i class="fab fa-tiktok"></i></a>
-         </li>
-         -->
-        </ul>
-       </div>
-      </div>
-      <div id="other_links" class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4">
-       <div class="footer_content">
-       <h2 id="link_title">Hjälp & Villkor</h2>
-       <ul id="faq-ul">
-         <li style="margin-bottom: 30px;"><a
-         href="faq.html"
-         target="_blank"
-         aria-label="Länk till instagram sida"
-         ><i class="fas fa-question"></i
-        ></a><p class="terms-p1" style="margin-top: -20px; margin-left: 10px;">Få snabbt svar FAQ</p></li>
-        <li style="margin-bottom: 30px;"><a
-        href="faq.html"
-        target="_blank"
-        aria-label="Länk till instagram sida"
-        ><i class="fab fa-teamspeak"></i
-       ></a><p class="terms-p2" style="margin-top: -20px; margin-left: 10px;">Kontakta kundservice</p></li>
-       <li><a
-       href="terms_condition.html"
-       target="_blank"
-       aria-label="Länk till instagram sida"
-       ><i class="fas fa-file-alt"></i
-      ></a><p class="terms-p3" style="margin-top: -20px; margin-left: 10px;">Allmänna villkor</p></li>
-         <!--<li><a href="privacy_policy.html">Integritetspolicy</a></li>-->
-        </ul>
-       </div>
-      </div>
-     </div>
     </div>
-   </div>
-   <div class="footer_bottom d-flex flex-wrap">
-    <div class="container">
-     <div class="row">
-      <div class="col-12">
-       <div class="footer_bottom_text">
-        <p>Copyright ©<b> Yum Foods</b> 2024. All Rights Reserved</p>
-       </div>
+    <div class="footer_bottom d-flex flex-wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="footer_bottom_text">
+              <p>Copyright ©<b> Yum Foods</b> 2024. All Rights Reserved</p>
+            </div>
+          </div>
+        </div>
       </div>
-     </div>
     </div>
-   </div>
   `;
 }
 
