@@ -1,121 +1,120 @@
 ﻿<!DOCTYPE html>
 <html lang="sv">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ärligt Betalsystem - Yum Foods</title>
-    <link rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="images/favicon-32x32.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/custom_spacing.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
-    <link rel="stylesheet" href="styles.css" />
     <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff; /* Changed background color to white */
-            color: #333;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff; /* Changed background color to white */
+        color: #333;
+      }
 
-        /* Content and Section styles */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
+      /* Content and Section styles */
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 0;
+      }
 
-        /* Add top padding to main content section to prevent overlap with fixed navbar */
-        #honesty-payment {
-            padding-top: 80px; /* Adjust based on navbar height */
-        }
+      /* Add top padding to main content section to prevent overlap with fixed navbar */
+      #honesty-payment {
+        padding-top: 80px; /* Adjust based on navbar height */
+      }
 
-        .section_heading {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-top: 40px; /* Add padding to create space between header and h2 */
-        }
+      .section_heading {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-top: 40px; /* Add padding to create space between header and h2 */
+      }
 
+      .section_heading h2 {
+        font-size: 2.5em;
+        color: #dd3902;
+        margin-top: 20px; /* This will add space above the h2 */
+      }
 
-            .section_heading h2 {
-                font-size: 2.5em;
-                color: #dd3902;
-                margin-top: 20px; /* This will add space above the h2 */
-            }
+      .section_heading h3 {
+        font-size: 1.5em;
+        color: #666;
+      }
 
+      /* Style for links inside .section_heading */
+      .section_heading a {
+        font-weight: bold; /* Make link bold */
+        text-decoration: none;
+      }
 
-            .section_heading h3 {
-                font-size: 1.5em;
-                color: #666;
-            }
+      .section_heading a:hover {
+        text-decoration: underline;
+      }
 
-            /* Style for links inside .section_heading */
-            .section_heading a {
-                font-weight: bold; /* Make link bold */
-                text-decoration: none;
-            }
+      .content p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        color: #555;
+      }
 
-                .section_heading a:hover {
-                    text-decoration: underline;
-                }
+      .content a {
+        color: #dd3902;
+        text-decoration: none;
+        font-weight: bold;
+      }
 
-        .content p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #555;
-        }
+      .content a:hover {
+        text-decoration: underline;
+      }
 
-        .content a {
-            color: #dd3902;
-            text-decoration: none;
-            font-weight: bold;
-        }
+      /* Trusted Clients Section */
+      .trusted-clients {
+        background-color: #fff;
+        padding: 40px 0;
+        text-align: center;
+      }
 
-            .content a:hover {
-                text-decoration: underline;
-            }
+      .client-logos {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
 
-        /* Trusted Clients Section */
-        .trusted-clients {
-            background-color: #fff;
-            padding: 40px 0;
-            text-align: center;
-        }
+      .client-logos img {
+        max-width: 150px;
+        height: auto;
+      }
 
-        .client-logos {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-            .client-logos img {
-                max-width: 150px;
-                height: auto;
-            }
-
-        .bold-link {
-            font-weight: bold; /* This will make the text bold */
-            color: #dd3902;
-        }
+      .bold-link {
+        font-weight: bold; /* This will make the text bold */
+        color: #dd3902;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!--=============================
         MENU START
     ==============================-->
@@ -124,42 +123,61 @@
         MENU END
     ==============================-->
     <!-- Main Content Section -->
-    <section id="honesty-payment">
-        <div class="container">
-            <div class="section_heading">
-                <h2>Enkel och ärlig matleverans direkt till ditt kylskåp!</h2>
-            </div>
-
-            <div>
-                <p>
-                    Vi litar på att våra kunder betalar, därför erbjuder vi ett enkelt system utan krångel.
-                    Vi fyller ditt kylskåp—ta bara en matlåda och betala via Swish-koden på ditt kylskåp.
-                    Inget behov av att oroa sig för matsvinn; våra matlådor har en hållbarhet på upp till två veckor i kylen!
-                    Anslut dig till vårt ärlighetsbaserade betalsystem idag och få dina matlådor levererade nästa vecka!
-                    Osäker på hur många lådor du behöver varje vecka? <br><br>
-                    <a class="section_heading bold-link" href="contact.html">Kontakta oss</a>, så hjälper vi dig att hitta det bästa upplägget för dina behov!<br><br>
-                    Betrodd av våra kunder för deras dagliga måltider på kontoret:
-                </p>
-            </div>
+    <section class="about_choose pt_100">
+      <div class="container">
+        <div
+          class="col-xxl-8 col-lg-7 wow fadeInLeft"
+          style="margin: 0 auto"
+          data-wow-duration="1s"
+        >
+          <div class="section_heading mb_25" style="text-align: center">
+            <h2>Enkel och ärlig matleverans direkt till ditt kylskåp!</h2>
+          </div>
+          <div class="about_choose_text">
+            <p>
+              Vi litar på att våra kunder betalar, därför erbjuder vi ett enkelt
+              system utan krångel. Vi fyller ditt kylskåp—ta bara en matlåda och
+              betala via Swish-koden på ditt kylskåp. Inget behov av att oroa
+              sig för matsvinn; våra matlådor har en hållbarhet på upp till två
+              veckor i kylen! Anslut dig till vårt ärlighetsbaserade betalsystem
+              idag och få dina matlådor levererade nästa vecka! Osäker på hur
+              många lådor du behöver varje vecka? <br /><br />
+              <a class="section_heading bold-link" href="contact.html"
+                >Kontakta oss</a
+              >, så hjälper vi dig att hitta det bästa upplägget för dina
+              behov!<br /><br />
+              Betrodd av våra kunder för deras dagliga måltider på kontoret:
+            </p>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Trusted Clients Section -->
     <section class="trusted-clients">
-        <div class="container">
-            <div class="client-logos">
-                <!-- Image logos -->
-                <img src="/images/NCC_(Unternehmen)_logo.svg.png" alt="NCC Logo">
-                <img src="/images/prove-sponsorlogo-web.png" alt="Prove Logo">
-                <img src="/images/iths.png" alt="ITHS Logo">
-            </div>
+      <div class="container">
+        <div class="client-logos">
+          <!-- Image logos -->
+          <img
+            src="/images/customers/NCC_(Unternehmen)_logo.svg.png"
+            alt="NCC Logo"
+          />
+          <img
+            src="/images/customers/prove-sponsorlogo-web.png"
+            alt="Prove Logo"
+          />
+          <img src="/images/customers/iths.png" alt="ITHS Logo" />
+          <img src="/images/customers/Resource-Point-Logo.png" alt="RP Logo" />
         </div>
+      </div>
     </section>
-
+    <!--=============================
+            FOOTER START
+        ==============================-->
     <footer-component id="footer"></footer-component>
     <!--=============================
-        FOOTER END
-    ==============================-->
+            FOOTER END
+        ==============================-->
     <!-- hotjar code -->
     <script src="js/hotjar.js"></script>
     <!-- swiper slider -->
@@ -191,202 +209,5 @@
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/jquery.exzoom.css" />
     <link rel="stylesheet" href="css/nice-select.css" />
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ärligt Betalsystem - Yum Foods</title>
-    <link rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="images/favicon-32x32.png" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/custom_spacing.css" />
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff; /* Changed background color to white */
-            color: #333;
-        }
-
-        /* Content and Section styles */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-
-        /* Add top padding to main content section to prevent overlap with fixed navbar */
-        #honesty-payment {
-            padding-top: 80px; /* Adjust based on navbar height */
-        }
-
-        .section_heading {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-top: 40px; /* Add padding to create space between header and h2 */
-        }
-
-
-            .section_heading h2 {
-                font-size: 2.5em;
-                color: #dd3902;
-                margin-top: 20px; /* This will add space above the h2 */
-            }
-
-
-            .section_heading h3 {
-                font-size: 1.5em;
-                color: #666;
-            }
-
-            /* Style for links inside .section_heading */
-            .section_heading a {
-                font-weight: bold; /* Make link bold */
-                text-decoration: none;
-            }
-
-                .section_heading a:hover {
-                    text-decoration: underline;
-                }
-
-        .content p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            color: #555;
-        }
-
-        .content a {
-            color: #dd3902;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-            .content a:hover {
-                text-decoration: underline;
-            }
-
-        /* Trusted Clients Section */
-        .trusted-clients {
-            background-color: #fff;
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .client-logos {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-            .client-logos img {
-                max-width: 150px;
-                height: auto;
-            }
-
-        .bold-link {
-            font-weight: bold; /* This will make the text bold */
-            color: #dd3902;
-        }
-    </style>
-</head>
-
-<body>
-    <!--=============================
-        MENU START
-    ==============================-->
-    <header-component id="header"></header-component>
-    <!--=============================
-        MENU END
-    ==============================-->
-    <!-- Main Content Section -->
-    <section id="honesty-payment">
-        <div class="container">
-            <div class="section_heading">
-                <h2>Enkel och ärlig matleverans direkt till ditt kylskåp!</h2>
-            </div>
-
-            <div>
-                <p>
-                    Vi litar på att våra kunder betalar, därför erbjuder vi ett enkelt system utan krångel.
-                    Vi fyller ditt kylskåp—ta bara en matlåda och betala via Swish-koden på ditt kylskåp.
-                    Inget behov av att oroa sig för matsvinn; våra matlådor har en hållbarhet på upp till två veckor i kylen!
-                    Anslut dig till vårt ärlighetsbaserade betalsystem idag och få dina matlådor levererade nästa vecka!
-                    Osäker på hur många lådor du behöver varje vecka? <br><br>
-                    <a class="section_heading bold-link" href="contact.html">Kontakta oss</a>, så hjälper vi dig att hitta det bästa upplägget för dina behov!<br><br>
-                    Betrodd av våra kunder för deras dagliga måltider på kontoret:
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trusted Clients Section -->
-    <section class="trusted-clients">
-        <div class="container">
-            <div class="client-logos">
-                <!-- Image logos -->
-                <img src="/images/NCC_(Unternehmen)_logo.svg.png" alt="NCC Logo">
-                <img src="/images/prove-sponsorlogo-web.png" alt="Prove Logo">
-                <img src="/images/iths.png" alt="ITHS Logo">
-            </div>
-        </div>
-    </section>
-
-    <footer-component id="footer"></footer-component>
-    <!--=============================
-        FOOTER END
-    ==============================-->
-    <!-- hotjar code -->
-    <script src="js/hotjar.js"></script>
-    <!-- swiper slider -->
-    <script src="js/swiper-bundle.min.js" rel="preload"></script>
-    <!--jquery library js-->
-    <script src="js/jquery-3.6.0.min.js" rel="preload"></script>
-    <!--main/env js-->
-    <script src="js/env.js"></script>
-    <!--main/custom js-->
-    <script rel="preload" src="js/main.js"></script>
-    <!--bootstrap js-->
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <!-- isotop js -->
-    <script src="js/isotope.pkgd.min.js"></script>
-    <!-- counter up js -->
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.countup.min.js"></script>
-    <!-- nice select js -->
-    <script src="js/jquery.nice-select.min.js"></script>
-    <!-- venobox js -->
-    <script src="js/venobox.min.js"></script>
-    <!-- sticky sidebar js -->
-    <script src="js/sticky_sidebar.js"></script>
-    <!-- wow js -->
-    <script src="js/wow.min.js"></script>
-    <!-- ex zoom js -->
-    <script src="js/jquery.exzoom.js"></script>
-    <link rel="stylesheet" href="css/venobox.min.css" />
-    <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/jquery.exzoom.css" />
-    <link rel="stylesheet" href="css/nice-select.css" />
-
-</body>
+  </body>
 </html>
