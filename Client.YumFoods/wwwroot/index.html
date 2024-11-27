@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, target-densityDpi=device-dpi"
+    />
     <title>YumFoods</title>
-    <link rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="images/favicon-32x32.png" />
-    <link rel="preload"
-          as="image"
-          href="./images/index.jpg"
-          imagesrcset="./images/hero.jpg 1600w, ./images/hero-mobile.jpg 335w"
-          imagesizes="(max-width: 1100px) 100vw, 1100px" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="./images/frontpage.png"
+      imagesrcset="./images/frontpage.png 1600w, ./images/frontpage-mobile.png 335w"
+      imagesizes="(max-width: 1100px) 100vw, 1100px"
+    />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/custom_spacing.css" />
     <link rel="stylesheet" href="css/all.min.css" />
     <link rel="stylesheet" href="css/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/responsive.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <!--=============================
         MENU START
     ==============================-->
@@ -32,99 +38,123 @@
         MENU END
     ==============================-->
     <!-- Popup Modal -->
-    <div class="modal modal-section fade"
-         id="deliveryModal"
-         tabindex="-1"
-         aria-labelledby="deliveryModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog custom-modal-size">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+    <div
+      class="modal modal-section fade"
+      id="deliveryModal"
+      tabindex="-1"
+      aria-labelledby="deliveryModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog custom-modal-size">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center">
+            <h5 class="modal-title" id="deliveryModalLabel">
+              Vi levererar endast inom Göteborgsområdet.
+            </h5>
+            <p>Ange ditt postnummer för att se om vi levererar till dig.</p>
+            <div class="mb-3">
+              <label
+                for="postcodeInput"
+                class="form-label text-start w-100 mt-3"
+                >Postnummer</label
+              >
+              <div class="input-group startpage-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="postcodeInput"
+                  placeholder="t.ex 411 03"
+                />
+                <button
+                  class="btn-adress"
+                  type="button"
+                  id="findLocationButton"
+                >
+                  <i class="far fa-location"></i>Hitta min plats
+                </button>
+                <div class="ml-3">
+                  <button
+                    class="btn btn-danger"
+                    type="button"
+                    id="confirmButton"
+                  >
+                    Bekräfta
+                  </button>
                 </div>
-                <div class="modal-body text-center">
-                    <h5 class="modal-title" id="deliveryModalLabel">
-                        Vi levererar endast inom Göteborgsområdet.
-                    </h5>
-                    <p>Ange ditt postnummer för att se om vi levererar till dig.</p>
-                    <div class="mb-3">
-                        <label for="postcodeInput"
-                               class="form-label text-start w-100 mt-3">Postnummer</label>
-                        <div class="input-group startpage-group">
-                            <input type="text"
-                                   class="form-control"
-                                   id="postcodeInput"
-                                   placeholder="t.ex 411 03" />
-                            <button class="btn-adress"
-                                    type="button"
-                                    id="findLocationButton">
-                                <i class="far fa-location"></i>Hitta min plats
-                            </button>
-                            <div class="ml-3">
-                                <button class="btn btn-danger"
-                                        type="button"
-                                        id="confirmButton">
-                                    Bekräfta
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3" id="confirmationMessage" style="display: none">
-                        <i class="fa fa-check-circle" style="color: green"></i> Adress
-                        godkänd för leverans!
-                    </div>
-                    <div id="wrong-message"
-                         style="display: none; color: rgb(228, 29, 29)">
-                        Ej godkänd adress
-                    </div>
-                    <div id="wrong-message2"
-                         style="display: none; color: rgb(228, 29, 29)">
-                        Vänligen ange ett postnummer.
-                    </div>
-                    <div id="no-place" style="display: none; color: rgb(228, 29, 29)">
-                        Ingen plats hittades för det postnumret.
-                    </div>
-                </div>
+              </div>
             </div>
+            <div class="mt-3" id="confirmationMessage" style="display: none">
+              <i class="fa fa-check-circle" style="color: green"></i> Adress
+              godkänd för leverans!
+            </div>
+            <div
+              id="wrong-message"
+              style="display: none; color: rgb(228, 29, 29)"
+            >
+              Ej godkänd adress
+            </div>
+            <div
+              id="wrong-message2"
+              style="display: none; color: rgb(228, 29, 29)"
+            >
+              Vänligen ange ett postnummer.
+            </div>
+            <div id="no-place" style="display: none; color: rgb(228, 29, 29)">
+              Ingen plats hittades för det postnumret.
+            </div>
+          </div>
         </div>
+      </div>
     </div>
     <!--Popup finished -->
     <!--=============================
         BANNER START
     ==============================-->
     <section class="banner">
-        <div class="banner_overlay">
-            <div class="banner_slider">
-                <div class="banner_slider_overlay">
-                    <div class="hero"
-                         style="
-                background-image: url('./images/hero2-.jpg');
+      <div class="banner_overlay">
+        <div class="banner_slider">
+          <div class="banner_slider_overlay">
+            <div
+              class="hero"
+              style="
+                background-image: url('./images/frontpage.png');
                 background-size: cover;
                 background-position: center;
                 padding: 100px;
                 text-align: center;
               "
-                         alt="hero-image">
-                        <div class="hero-box"
-                             style="max-width: 1000px; margin: 50px auto">
-                            <h1 class="hero-text"
-                                style="word-wrap: normal; overflow-wrap: break-word">
-                                Billiga veckomåltider till din dörr
-                            </h1>
-                            <p class="hero-slogan">Lite Billigare, Lika Yum</p>
-                            <div class="first-page-button">
-                                <a href="yum_menu.html">
-                                    <button class="first-page-button1"
-                                            style="text-transform: none">
-                                        <span class="first-page-description"> Se matlådor </span>
-                                    </button>
-                                </a>
-                            </div>
+              alt="hero-image"
+            >
+              <div class="hero-box" style="margin: 20px auto">
+                <h1
+                  class="hero-text"
+                  style="word-wrap: normal; overflow-wrap: break-word"
+                >
+                  Välj din matkasse och få den levererad direkt till dörren!
+                </h1>
+                <h2 class="hero-slogan">
+                  Din lösning för en snabb lunch eller middag!
+                </h2>
+                <div class="first-page-button">
+                  <a href="yum_menu.html">
+                    <button
+                      class="first-page-button1"
+                      style="text-transform: none"
+                    >
+                      <span class="first-page-description"> Se matlådor </span>
+                    </button>
+                  </a>
+                </div>
 
-                            <!-- <p class="hero-slogan2" style="text-align: left; font-size: 20px; color: #110404; word-wrap: normal; overflow-wrap: break-word;" >Vi levererar endast inom Göteborgsområdet. Ange din adress för att se om vi leverera hem till dig</p>
+                <!-- <p class="hero-slogan2" style="text-align: left; font-size: 20px; color: #110404; word-wrap: normal; overflow-wrap: break-word;" >Vi levererar endast inom Göteborgsområdet. Ange din adress för att se om vi leverera hem till dig</p>
                                       <div class="address-container" style="text-align: left; margin-top: 2px;">
                                         <p style="font-size: large;"><strong>Adress</strong></p>
                                       </div>
@@ -134,9 +164,9 @@
                                           <span class="hero-description"> Vidare till menyer <i class="fa fa-angle-right"></i> </span>
                                         </button>
                                       </div>  -->
-                        </div>
-                    </div>
-                    <!--
+              </div>
+            </div>
+            <!--
                           <div class="vector_item_box">
                             <input
                               onclick="location.href = 'sign_in.html';"
@@ -152,9 +182,9 @@
                             />
                           </div>
                           -->
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </section>
     <!--=============================
         BANNER END
@@ -164,115 +194,269 @@
     ==============================-->
 
     <div class="container mt-5 mb-4">
-        <h2 class="text-center mb-4">Bråttom? Handla en färdig kasse!</h2>
-        <section class="row justify-content-center secound-part">
-            <div class="col-md-6 left-part">
-                <h4 class="text-center mb-4">1. Välj kosttyp</h4>
-                <div id="bundle" class="row mb-4">
-                    <div class="col-6">
-                        <div class="box box2 kost" onclick="Healthy(allProducts1)" data-category="Proteinrik">
-                            <p>Hälsosamma kassen</p>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="box box2 kost" onclick="Family(allProducts1)" data-category="veg">
-                            <p>Familjekassen</p>
-                        </div>
-                    </div>
+      <h1
+        class="text-center mb-4 mobileh1Font"
+        style="
+          text-align: left;
+          font-weight: 900;
+          font-size: 30px;
+          color: #252627;
+        "
+      >
+        Bråttom? Beställ din snabba veckomeny
+      </h1>
+      <section class="row justify-content-center secound-part">
+        <div class="col-md-7 left-part">
+          <h4
+            class="text-center mb-4 mobileh4Font"
+            style="font-weight: 700; font-size: 20px"
+          >
+            1. Välj din matkassa
+          </h4>
+          <div id="bundle" class="row mb-4">
+            <div class="col-4">
+              <div
+                id="healthyButton"
+                class="box box2 kost"
+                onclick="Healthy(allProducts1)"
+                data-category="healthy"
+              >
+                <img
+                  class="green-check-kost2"
+                  src="images/Eo_circle_green_checkmark.svg.webp"
+                  alt=""
+                />
+                <p>Hälsosam mat</p>
+              </div>
+            </div>
+            <div class="col-4">
+              <div
+                id="familyButton"
+                class="box box2 kost"
+                onclick="Family(allProducts1)"
+                data-category="family"
+              >
+                <img
+                  class="green-check-kost2"
+                  src="images/Eo_circle_green_checkmark.svg.webp"
+                  alt=""
+                />
+                <p>Familjemat</p>
+              </div>
+            </div>
+            <div class="col-4">
+              <div
+                id="halalButton"
+                class="box box2 kost"
+                onclick="Halal(allProducts1)"
+                data-category="halal"
+              >
+                <img
+                  class="green-check-kost2"
+                  src="images/Eo_circle_green_checkmark.svg.webp"
+                  alt=""
+                />
+                <p>Halalmat</p>
+              </div>
+            </div>
+          </div>
+          <div id="bundleImage"></div>
+          <div id="yum-menu-btn" style="text-align: left">
+            <a
+              style="margin-top: 30px; margin-bottom: 30px"
+              href="yum_menu.html"
+            >
+              <button class="contact-us-button" style="text-transform: none">
+                <span class="contact-us-description">
+                  Se våra färdiga kassar
+                </span>
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-5 right-part">
+          <h4
+            class="text-center mb-4 mobileh4Font"
+            style="font-weight: 700; font-size: 20px"
+          >
+            2. Välj antal matlådor
+          </h4>
+          <div class="row" id="quantityOrder">
+            <div class="col-4">
+              <div
+                id="first"
+                class="box box4"
+                data-value="10"
+                onclick="chooseQuantity10()"
+              >
+                <img
+                  class="green-check-kost2"
+                  src="images/Eo_circle_green_checkmark.svg.webp"
+                  alt=""
+                />
+                <p style="font-weight: 600">10</p>
+              </div>
+            </div>
+            <div class="col-4">
+              <div
+                id="second"
+                class="box box4"
+                data-value="15"
+                onclick="chooseQuantity15()"
+              >
+                <img
+                  class="green-check-kost2"
+                  src="images/Eo_circle_green_checkmark.svg.webp"
+                  alt=""
+                />
+                <p style="font-weight: 600">15</p>
+              </div>
+            </div>
+            <div class="col-4">
+              <div
+                id="third"
+                class="box box4"
+                data-value="20"
+                onclick="chooseQuantity20()"
+              >
+                <img
+                  class="green-check-kost2"
+                  src="images/Eo_circle_green_checkmark.svg.webp"
+                  alt=""
+                />
+                <p style="font-weight: 600">20</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div style="width: 388px; display: none" class="box1 large-box">
+                <div class="row">
+                  <div class="col-7 text">
+                    <h5 style="text-align: left; margin-left: 10px">
+                      Välja ett eget antal
+                    </h5>
+                    <h6
+                      style="
+                        width: 250px;
+                        text-align: left;
+                        margin-left: 10px;
+                        font-size: 15px;
+                      "
+                    >
+                      Minst 10 matlådor per beställning
+                    </h6>
+                  </div>
+                  <div
+                    style="
+                      margin-left: 20px;
+                      border-radius: 4px;
+                      border: 1px solid #f63;
+                      background: #fff;
+                      width: 110px;
+                      justify-content: center;
+                    "
+                    class="col-5 quantity-btn d-flex align-items-center justify-content-end"
+                  >
+                    <button
+                      class="btn btn-light"
+                      style="
+                        background-color: white;
+                        border-color: white;
+                        border-right: 1px solid #f63 !important;
+                      "
+                    >
+                      -
+                    </button>
+                    <span class="mx-2">10</span>
+                    <button
+                      class="btn btn-light"
+                      style="
+                        background-color: white;
+                        border-color: white;
+                        border-left: 1px solid #f63 !important;
+                      "
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="box3 info-box">
                 <div class="row mb-4">
-                    <div class="col-6">
-                        <div class="box box2 kost" onclick="Halal(allProducts1)" data-category="fisk">
-                            <p>Halal kassen</p>
-                        </div>
-                    </div>
+                  <div
+                    class="col-12 d-flex justify-content-between align-items-center"
+                  >
+                    <p
+                      id="bundleName"
+                      class="fw-bold"
+                      style="font-size: 20px; margin-right: auto"
+                    ></p>
+                    <button
+                      id="removeQuickOrder"
+                      style="background-color: white; border: none"
+                      type="button"
+                      class="close btn2"
+                      onclick="clear()"
+                    >
+                      <i
+                        class="fa fa-times"
+                        style="font-size: 18px; color: #f63"
+                      ></i>
+                      Ta bort
+                    </button>
+                  </div>
                 </div>
-            </div>
-            <div class="col-md-6 right-part">
-                <h4 class="text-center mb-4">2. Välj antal matlådor</h4>
-                <div class="row" id="quantityOrder">
-                    <div class="col-4">
-                        <div id="first" class="box box4" data-value="10" onclick="chooseQuantity10()">
-                            <img class="green-check-kost2" src="images/Eo_circle_green_checkmark.svg.webp" alt="" />
-                            <p style="font-weight: 600">10</p>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div id="second" class="box box4" data-value="15" onclick="chooseQuantity15()">
-                            <img class="green-check-kost2" src="images/Eo_circle_green_checkmark.svg.webp" alt="" />
-                            <p style="font-weight: 600">15</p>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div id="third" class="box box4" data-value="20" onclick="chooseQuantity20()">
-                            <img class="green-check-kost2" src="images/Eo_circle_green_checkmark.svg.webp" alt="" />
-                            <p style="font-weight: 600">20</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <div style="width: 388px; display: none;" class="box1 large-box">
-                            <div class="row">
-                                <div class="col-7 text">
-                                    <h5 style="text-align: left; margin-left: 10px">Välja ett eget antal</h5>
-                                    <h6 style="width: 250px; text-align: left; margin-left: 10px; font-size: 15px;">
-                                        Minst 10 matlådor per beställning
-                                    </h6>
-                                </div>
-                                <div style="margin-left: 20px; border-radius: 4px; border: 1px solid #f63; background: #fff; width: 110px; justify-content: center;" class="col-5 quantity-btn d-flex align-items-center justify-content-end">
-                                    <button class="btn btn-light" style="background-color: white; border-color: white; border-right: 1px solid #f63 !important;">-</button>
-                                    <span class="mx-2">10</span>
-                                    <button class="btn btn-light" style="background-color: white; border-color: white; border-left: 1px solid #f63 !important;">+</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div style="width: 412px" class="col-12">
-                        <div class="box3 info-box">
-                            <div class="row mb-4">
-                                <div class="col-12 d-flex justify-content-between align-items-center">
-                                    <p id="bundleName" class="fw-bold" style="font-size: 20px; margin-right: auto;"></p>
-                                    <button style="background-color: white; border: none;" type="button" class="close btn2">
-                                        <i class="fa fa-times" style="font-size: 18px; color: #f63;"></i> Ta bort
-                                    </button>
-                                </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-12 mb-5">
-                                    <div id="product-container" class="single-column-container"></div>
-                                </div>
-                            </div>
-
-                            <div style="width: 300px; margin-left: auto; margin-right: auto" class="justify-content-between">
-                                <div class="row bg-light mb-1 mt-1">
-                                    <div class="col-5 frakt">
-                                        <p style="text-align: left">Frakt</p>
-                                    </div>
-                                    <div style="text-align: right" class="col-5 price2">
-                                        <p>39 kr</p>
-                                    </div>
-                                </div>
-                                <div class="row bg-light">
-                                    <div class="col-5 frakt">
-                                        <p style="text-align: left; font-weight: 600">Att betala</p>
-                                    </div>
-                                    <div style="text-align: right" class="col-5 price">
-                                        <p id="order-sum"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-5 mb-4">
-                                <button class="btn btn-danger" onclick="window.location.href='cart_view.html'">Vidare till kassan</button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row">
+                  <div class="col-12 mb-5">
+                    <div
+                      id="product-container"
+                      class="single-column-container"
+                    ></div>
+                  </div>
                 </div>
+
+                <div
+                  style="width: 300px; margin-left: auto; margin-right: auto"
+                  class="justify-content-between"
+                >
+                  <div class="row bg-light mb-1 mt-1">
+                    <div class="col-5 frakt">
+                      <p style="text-align: left">Frakt</p>
+                    </div>
+                    <div style="text-align: right" class="col-5 price2">
+                      <p>39 kr</p>
+                    </div>
+                  </div>
+                  <div class="row bg-light">
+                    <div class="col-5 frakt">
+                      <p style="text-align: left; font-weight: 600">
+                        Att betala
+                      </p>
+                    </div>
+                    <div style="text-align: right" class="col-5 price">
+                      <p id="order-sum"></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-5 mb-4">
+                  <button
+                    class="btn btn-danger"
+                    onclick="window.location.href='cart_view.html'"
+                  >
+                    Vidare till kassan
+                  </button>
+                </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!--=============================
@@ -283,57 +467,76 @@
     ==============================-->
 
     <section class="carousel-section">
-        <h2 id="carousel-title">Välj din matlösning</h2>
-        <div id="hemlagat">
-            <h3>Få hemlagade rätter levererade direkt till dig!</h3>
+      <h2 id="carousel-title">Välj din matlösning</h2>
+      <div id="hemlagat">
+        <h3>Få hemlagade rätter levererade direkt till dig!</h3>
+      </div>
+      <div class="carousel-box">
+        <h2 class="box-title">Populära matlådor</h2>
+        <p class="box-subtitle">
+          <i
+            style="color: #fc5633; font-size: 25px; margin-right: 20px"
+            class="fas fa-hamburger"
+          ></i>
+          Beställ enstaka eller flera matlådor för en snabb och smidig
+          måltidslösning
+        </p>
+        <!--<div class="swiper_swap">-->
+        <div class="slide-container swiper">
+          <div class="slide-content">
+            <div id="container" class="card-wrapper swiper-wrapper"></div>
+          </div>
         </div>
-        <div class="carousel-box">
-            <h2 class="box-title">Populära matlådor</h2>
-            <p class="box-subtitle">
-                <i style="color: #fc5633; font-size: 25px; margin-right: 20px"
-                   class="fas fa-hamburger"></i>
-                Beställ enstaka eller flera matlådor för en snabb och smidig
-                måltidslösning
-            </p>
-            <div class="slider-items">
-                <div class="slide-container swiper">
-                    <div class="slide-content">
-                        <div id="container" class="card-wrapper swiper-wrapper"></div>
-                    </div>
-                </div>
-            </div>
-            <div id="yum-menu-btn">
-                <a style="margin-top: 60px; margin-bottom: -10px"
-                   href="yum_menu.html">
-                    <button class="contact-us-button" style="text-transform: none">
-                        <span class="contact-us-description"> Se våra matlådor</span>
-                    </button>
-                </a>
-            </div>
-            <h2 class="box-title">Våra baguetter</h2>
-            <p class="box-subtitle">
-                <i style="color: #fc5633; font-size: 25px; margin-right: 20px"
-                   class="fas fa-shopping-bag"></i>
-                Upptäck våra färdiga baguetter - perfekt för de dagar då du vill spara
-                tid
-            </p>
-            <div class="slider-items">
-                <div class="slide-container2 swiper">
-                    <div class="slide-content2">
-                        <div id="container2" class="card-wrapper swiper-wrapper"></div>
-                    </div>
-                </div>
-            </div>
-            <div id="yum-menu-btn">
-                <a style="margin-top: 60px; margin-bottom: -10px" href="yum_menu.html">
-                    <button class="contact-us-button" style="text-transform: none">
-                        <span class="contact-us-description">
-                            Se våra färdiga kassar
-                        </span>
-                    </button>
-                </a>
-            </div>
+        <!--
+          <div class="carousel-arrows-positioning">
+            <div class="first-swiper-button-prev"></div>
+            <div class="first-swiper-button-next"></div>
+          </div>
         </div>
+        -->
+        <div id="yum-menu-btn">
+          <a
+            style="margin-top: 60px; margin-bottom: -10px"
+            href="yum_menu.html"
+          >
+            <button class="contact-us-button" style="text-transform: none">
+              <span class="contact-us-description"> Se våra matlådor</span>
+            </button>
+          </a>
+        </div>
+        <h2 class="box-title">Våra baguetter</h2>
+        <p class="box-subtitle">
+          <i
+            style="color: #fc5633; font-size: 25px; margin-right: 20px"
+            class="fas fa-shopping-bag"
+          ></i>
+          Upptäck våra färdiga baguetter och ät direkt - perfekta för en snabb
+          lunch eller middag!
+        </p>
+        <!--<div class="swiper_swap">-->
+        <div class="slide-container swiper">
+          <div class="slide-content2">
+            <div id="container2" class="card-wrapper swiper-wrapper"></div>
+          </div>
+        </div>
+        <!--
+          <div class="carousel-arrows-positioning">
+            <div class="second-swiper-button-prev"></div>
+            <div class="second-swiper-button-next"></div>
+          </div>
+          </div>-->
+        <!--
+    <div id="yum-menu-btn">
+        <a style="margin-top: 60px; margin-bottom: -10px" href="yum_menu.html">
+            <button class="contact-us-button" style="text-transform: none">
+                <span class="contact-us-description">
+                    Se våra färdiga kassar
+                </span>
+            </button>
+        </a>
+    </div>
+        -->
+      </div>
     </section>
 
     <!--=============================
@@ -343,113 +546,117 @@
         BLOG START
     ==============================-->
     <section id="blog-podcast" class="blog pt_95 xs_pt_65 pb_65 xs_pb_35">
-        <div class="container">
-            <div class="wow fadeInUp" data-wow-duration="1s">
-                <div>
-                    <div class="section_heading mb_25">
-                        <h2>Vi erbjuder även unika tjänster</h2>
-                    </div>
-                    <h3>Ska du anordna ett event? Vi fixar allt du behöver!</h3>
-                </div>
+      <div class="container">
+        <div class="wow fadeInUp" data-wow-duration="1s">
+          <div>
+            <div class="section_heading mb_25">
+              <h2>Vi erbjuder även unika tjänster för företag och evenemang</h2>
             </div>
-            <div class="blog_slider">
-                <div id="first-grid2" data-wow-duration="1s">
-                    <img id="food-img-blog" src="images/Ellipse 109.png" alt="" />
-                </div>
-                <div id="first-grid" data-wow-duration="1s">
-                    <div class="single_blog">
-                        <!-- Make the image clickable -->
-                        <div class="single_blog_img">
-                            <a href="company.html">
-                                <img src="images/unsplash_5U_28ojjgms.png"
-                                     alt="blogg-bild"
-                                     class="img-fluid w-100" />
-                            </a>
-                        </div>
-                        <div class="single_blog_author">
-                            <div class="text"></div>
-                        </div>
-                        <div class="single_blog_text">
-                            <!-- Clickable title text -->
-                            <a href="company.html" class="title">Vi fyller kylen med matlådor!</a>
-                            <div class="single_blog_footer">
-                                <p>
-                                    Som företagskund kan vi leverera och fylla era kylar med
-                                    matlådor regelbundet.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-                <div class="slider-background"></div>
-                <div id="first-grid" data-wow-duration="1s">
-                    <div class="single_blog">
-                        <div class="single_blog_img">
-                            <a href="events.html">
-                                <img src="images/pexels-suzy-hazelwood-2966196 1.png"
-                                     alt="blogg-bild"
-                                     class="img-fluid w-100" />
-                            </a>
-                        </div>
-
-                        <div class="single_blog_author">
-                            <div class="text"></div>
-                        </div>
-                        <div class="single_blog_text">
-                            <p class="title">Dags för event? Vi fixar maten!</p>
-                            <div class="single_blog_footer">
-                                <p>
-                                    Vi tar emot större ordrar för events och fester!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog_slider2">
-                    <div id="first-grid2" data-wow-duration="1s">
-                        <img id="food-img-blog2" src="images/Ellipse 108.png" alt="" />
-                    </div>
-                </div>
-            </div>
-            <div class="services-contact">
-                <p id="first-p">
-                    Kontakta oss så kan vi hjälpa dig hitta bästa lösningen för just din
-                    leverans!
-                </p>
-                <a style="margin-top: 30px" href="contact.html">
-                    <button class="contact-us-button" style="text-transform: none">
-                        <span class="contact-us-description"> Kontakta oss!</span>
-                    </button>
+            <h3>Vi fixar allt du behöver!</h3>
+          </div>
+        </div>
+        <div class="blog_slider">
+          <div id="first-grid2" data-wow-duration="1s">
+            <img id="food-img-blog" src="images/plate1SecondHalf.png" alt="" />
+          </div>
+          <div id="first-grid" data-wow-duration="1s">
+            <div class="single_blog">
+              <!-- Make the image clickable -->
+              <div class="single_blog_img">
+                <a href="company.html">
+                  <img
+                    src="images/unsplash_5U_28ojjgms.png"
+                    alt="blogg-bild"
+                    class="img-fluid w-100"
+                  />
                 </a>
+              </div>
+              <div class="single_blog_author">
+                <div class="text"></div>
+              </div>
+              <div class="single_blog_text">
+                <p class="title">Vi fyller kylen med matlådor!</p>
+                <div class="single_blog_footer">
+                  <p>
+                    Som företagskund kan vi leverera och fylla era kylar med
+                    matlådor regelbundet.
+                  </p>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="slider-background"></div>
+          <div id="first-grid" data-wow-duration="1s">
+            <div class="single_blog">
+              <div class="single_blog_img">
+                <a href="events.html">
+                  <img
+                    src="images/events.jfif"
+                    alt="blogg-bild"
+                    class="img-fluid w-100"
+                  />
+                </a>
+              </div>
 
-            <div class="services-info2">
-                <div class="services-info">
-                    <i style="color: #fc5633; margin-top: 4px"
-                       class="fas fa-phone fa-lg"></i>
-                    <p style="margin-left: 10px">+46 76 023 49 30</p>
+              <div class="single_blog_author">
+                <div class="text"></div>
+              </div>
+              <div class="single_blog_text">
+                <p class="title">Dags för event? Vi fixar maten!</p>
+                <div class="single_blog_footer">
+                  <p>Vi tar emot större ordrar för events och fester!</p>
                 </div>
-                <div class="services-info">
-                    <i style="color: #fc5633; margin-top: 4px"
-                       class="fas fa-envelope fa-lg"></i>
-                    <p style="margin-left: 10px">info@yumfoods.se</p>
-                </div>
-                <div class="services-info">
-                    <i style="margin-left: 2px; color: #fc5633; margin-top: 2px"
-                       class="fas fa-map-marker-alt fa-lg"></i>
-                    <p id="location_address2" style="margin-left: 14px">
-                        Stora Badhusgatan 18, 411 21 Göteborg
-                    </p>
-                </div>
+              </div>
             </div>
+          </div>
+          <div class="blog_slider2">
+            <div id="first-grid2" data-wow-duration="1s">
+              <img
+                id="food-img-blog2"
+                src="images/plate1FirstHalf.png"
+                alt=""
+              />
+            </div>
+          </div>
         </div>
+        <div class="services-contact">
+          <p id="first-p">
+            Kontakta oss så kan vi hjälpa dig hitta bästa lösningen för just din
+            leverans!
+          </p>
+          <a style="margin-top: 30px" href="contact.html">
+            <button class="contact-us-button" style="text-transform: none">
+              <span class="contact-us-description"> Kontakta oss!</span>
+            </button>
+          </a>
         </div>
+
+        <div class="services-info2">
+          <div class="services-info">
+            <i
+              style="color: #fc5633; margin-top: 4px"
+              class="fas fa-phone fa-lg"
+            ></i>
+            <p style="margin-left: 10px">+46 76 023 49 30</p>
+          </div>
+          <div class="services-info">
+            <i
+              style="color: #fc5633; margin-top: 4px"
+              class="fas fa-envelope fa-lg"
+            ></i>
+            <p style="margin-left: 10px">info@yumfoods.se</p>
+          </div>
+          <div class="services-info">
+            <i
+              style="margin-left: 2px; color: #fc5633; margin-top: 2px"
+              class="fas fa-map-marker-alt fa-lg"
+            ></i>
+            <p id="location_address2" style="margin-left: 14px">
+              Stora Badhusgatan 18, 411 21 Göteborg
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
     <!--=============================
         BLOG END
@@ -459,21 +666,21 @@
     ==============================-->
 
     <section class="steps-page">
-        <h1>Hur det fungerar</h1>
-        <div class="steps">
-            <div class="steps-item"><img src="images/plan1.png" alt="" /></div>
-            <div class="steps-item"><img src="images/plan2.png" alt="" /></div>
-            <div class="steps-item"><img src="images/plan3.png" alt="" /></div>
-            <div class="steps-item"><img src="images/plan4.png" alt="" /></div>
-        </div>
-        <p>Ta första steget idag!</p>
-        <div class="step-button">
-            <a href="yum_menu.html">
-                <button class="steps-button" style="text-transform: none">
-                    <span class="steps-description"> Välj matlådor </span>
-                </button>
-            </a>
-        </div>
+      <h1>Hur det fungerar</h1>
+      <div class="steps">
+        <div class="steps-item"><img src="images/plan1.png" alt="" /></div>
+        <div class="steps-item"><img src="images/plan2.png" alt="" /></div>
+        <div class="steps-item"><img src="images/plan3.png" alt="" /></div>
+        <div class="steps-item"><img src="images/plan4.png" alt="" /></div>
+      </div>
+      <p>Ta första steget idag!</p>
+      <div class="step-button">
+        <a href="yum_menu.html">
+          <button class="steps-button" style="text-transform: none">
+            <span class="steps-description"> Välj matlådor </span>
+          </button>
+        </a>
+      </div>
     </section>
 
     <!--=============================
@@ -483,293 +690,337 @@
         FAQ START
     ==============================-->
 
-    <section style="background-color: #ffdfce; margin-top: 100px"
-             class="faq pt_75 xs_pt_45 pb_100">
-        <div class="container">
-            <div class="col-xl-7 col-md-8 col-lg-7 mx-auto wow fadeInLeft"
-                 data-wow-duration="1s">
-                <h1>Frågor och svar</h1>
-                <div class="faq_area">
-                    <div class="faq-buttons">
-                        <div class="faq-buttons2" id="om-webbplatsen" role="button">
-                            <i class="fas fa-window-maximize"></i> Om webbplatsen
-                        </div>
-                        <div class="faq-buttons2" id="betalning" role="button">
-                            <i class="fas fa-money-check"></i> Betalning
-                        </div>
-                        <div class="faq-buttons2" id="menyer-allergier" role="button">
-                            <i class="fas fa-utensils"></i> Menyer & Allergier
-                        </div>
-                    </div>
-                    <div id="om-webbplatsen-accordion">
-                        <h2>Om webbplatsen</h2>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button collapsed"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne"
-                                            aria-expanded="false"
-                                            aria-controls="collapseOne">
-                                        01. Var har ni er verksamhet?
-                                    </button>
-                                </h2>
-                                <div id="collapseOne"
-                                     class="accordion-collapse collapse"
-                                     aria-labelledby="headingOne"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <p>
-                                            Vi har vårt kontor i Göteborg och erbjuder
-                                            premiumleverans från våra utvalda kök till företag,
-                                            skolor och organisationer i närområdet.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseTwo"
-                                            aria-expanded="false"
-                                            aria-controls="collapseTwo">
-                                        02. Vart levererar ni maten?
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo"
-                                     class="accordion-collapse collapse"
-                                     aria-labelledby="headingTwo"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <p>Vi levererar maten till dig i Göteborg.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingThree">
-                                    <button class="accordion-button collapsed"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseThree"
-                                            aria-expanded="false"
-                                            aria-controls="collapseThree">
-                                        03. Vilka restauranger samarbetar ni med?
-                                    </button>
-                                </h2>
-                                <div id="collapseThree"
-                                     class="accordion-collapse collapse"
-                                     aria-labelledby="headingThree"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <p>
-                                            Vi samarbetar med exklusivt utvalda kök och restauranger
-                                            i Göteborg. Vi är noggranna med att maten ska ha hög
-                                            kvalitet, vilket gör att vi testar maten och har nära
-                                            samarbeten med restauranger och kök.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFour">
-                                    <button class="accordion-button collapsed"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseFour"
-                                            aria-expanded="false"
-                                            aria-controls="collapseFour">
-                                        04. Hur mycket ska jag betala för leveransen?
-                                    </button>
-                                </h2>
-                                <div id="collapseFour"
-                                     class="accordion-collapse collapse"
-                                     aria-labelledby="headingFour"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <p>
-                                            Vid ett ordervärde av 1000 kr är det fri leverans. Om
-                                            ordervärdet är mindre kan vi inte leverera eller läggs
-                                            en leveranskostnad på för mellanskillnaden.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingFive">
-                                    <button class="accordion-button collapsed"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseFive"
-                                            aria-expanded="false"
-                                            aria-controls="collapseFive">
-                                        05. Vad är leveransväntetiden?
-                                    </button>
-                                </h2>
-                                <div id="collapseFive"
-                                     class="accordion-collapse collapse"
-                                     aria-labelledby="headingFive"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <p>
-                                            Beställningar ska göras 3 dagar innan utsatt
-                                            leveransdatum.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="betalning-accordion" style="display: none">
-                        <h2>Betalning</h2>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingSix">
-                                    <button class="accordion-button collapsed"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseSix"
-                                            aria-expanded="false"
-                                            aria-controls="collapseSix">
-                                        01. Hur gör jag min betalning?
-                                    </button>
-                                </h2>
-                                <div id="collapseSix"
-                                     class="accordion-collapse collapse"
-                                     aria-labelledby="headingSix"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <p>
-                                            Du kan betala via Swish eller faktura. Vi kommer även
-                                            lägga till fler betalningsmetoder i snar framtid!
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingSeven">
-                                    <button class="accordion-button collapsed"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseSeven"
-                                            aria-expanded="false"
-                                            aria-controls="collapseSeven">
-                                        02. Vart ska jag kontakta angående betalningsproblem?
-                                    </button>
-                                </h2>
-                                <div id="collapseSeven"
-                                     class="accordion-collapse collapse"
-                                     aria-labelledby="headingSeven"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <p>
-                                            Om du stöter på några betalningsproblem eller problem
-                                            med fakturering, mejla info@yumfoods.se.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingEight">
-                                    <button class="accordion-button collapsed"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseEight"
-                                            aria-expanded="false"
-                                            aria-controls="collapseEight">
-                                        03. Jag är inte nöjd med maten. Vart ska jag lämna in ett
-                                        klagomål, och kan jag få kompensation?
-                                    </button>
-                                </h2>
-                                <div id="collapseEight"
-                                     class="accordion-collapse collapse"
-                                     aria-labelledby="headingEight"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <p>
-                                            Du kan mejla info@yumfoods.se om fel, klagomål och för
-                                            all typ av feedback.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="allergier-accordion" style="display: none">
-                        <h2>Menyer & Allergier</h2>
-                        <div class="accordion" id="accordionExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingNine">
-                                    <button class="accordion-button collapsed"
-                                            type="button"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#collapseNine"
-                                            aria-expanded="false"
-                                            aria-controls="collapseNine">
-                                        01. Vart kan jag skriva mina allergier eller
-                                        specialbeställningar?
-                                    </button>
-                                </h2>
-                                <div id="collapseNine"
-                                     class="accordion-collapse collapse"
-                                     aria-labelledby="headingNine"
-                                     data-bs-parent="#accordionExample">
-                                    <div class="accordion-body">
-                                        <p>
-                                            Du kan skriva dem i beställningsfältet, vi kommer höra
-                                            av oss ifall vi inte kan genomföra din förfrågan. Om ni
-                                            har fler frågor angående maten, leverans, betalning,
-                                            allergier kan ni mejla info@yumfoods.se
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <h2 id="more-faq">Fick du inte svar på frågan?</h2>
-                    <div id="faq-contact-button">
-                        <a style="margin-top: 30px" href="./contact.html">
-                            <button class="contact-us-button" style="text-transform: none">
-                                <span class="contact-us-description"> Kontakta oss!</span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
+    <section
+      style="background-color: #ffdfce; margin-top: 100px"
+      class="faq pt_75 xs_pt_45 pb_100"
+    >
+      <div class="container">
+        <div
+          class="col-xl-7 col-md-8 col-lg-7 mx-auto wow fadeInLeft"
+          data-wow-duration="1s"
+        >
+          <h1>Frågor och svar</h1>
+          <div class="faq_area">
+            <div class="faq-buttons">
+              <div class="faq-buttons2" id="om-webbplatsen" role="button">
+                <i class="fas fa-window-maximize"></i> Om webbplatsen
+              </div>
+              <div class="faq-buttons2" id="betalning" role="button">
+                <i class="fas fa-money-check"></i> Betalning
+              </div>
+              <div class="faq-buttons2" id="menyer-allergier" role="button">
+                <i class="fas fa-utensils"></i> Menyer & Allergier
+              </div>
             </div>
+            <div id="om-webbplatsen-accordion">
+              <h2>Om webbplatsen</h2>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="false"
+                      aria-controls="collapseOne"
+                    >
+                      01. Var har ni er verksamhet?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Vi har vårt kontor i Göteborg och erbjuder
+                        premiumleverans från våra utvalda kök till företag,
+                        skolor och organisationer i närområdet.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseTwo"
+                      aria-expanded="false"
+                      aria-controls="collapseTwo"
+                    >
+                      02. Vart levererar ni maten?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseTwo"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingTwo"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>Vi levererar maten till dig i Göteborg.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseThree"
+                      aria-expanded="false"
+                      aria-controls="collapseThree"
+                    >
+                      03. Vilka restauranger samarbetar ni med?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseThree"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingThree"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Vi samarbetar med exklusivt utvalda kök och restauranger
+                        i Göteborg. Vi är noggranna med att maten ska ha hög
+                        kvalitet, vilket gör att vi testar maten och har nära
+                        samarbeten med restauranger och kök.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingFour">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFour"
+                      aria-expanded="false"
+                      aria-controls="collapseFour"
+                    >
+                      04. Hur mycket ska jag betala för leveransen?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFour"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingFour"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Vid ett ordervärde av 1000 kr är det fri leverans. Om
+                        ordervärdet är mindre kan vi inte leverera eller läggs
+                        en leveranskostnad på för mellanskillnaden.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingFive">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseFive"
+                      aria-expanded="false"
+                      aria-controls="collapseFive"
+                    >
+                      05. Vad är leveransväntetiden?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseFive"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingFive"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Beställningar ska göras 3 dagar innan utsatt
+                        leveransdatum.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="betalning-accordion" style="display: none">
+              <h2>Betalning</h2>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingSix">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSix"
+                      aria-expanded="false"
+                      aria-controls="collapseSix"
+                    >
+                      01. Hur gör jag min betalning?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSix"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingSix"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Du kan betala via Swish eller faktura. Vi kommer även
+                        lägga till fler betalningsmetoder i snar framtid!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingSeven">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseSeven"
+                      aria-expanded="false"
+                      aria-controls="collapseSeven"
+                    >
+                      02. Vart ska jag kontakta angående betalningsproblem?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseSeven"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingSeven"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Om du stöter på några betalningsproblem eller problem
+                        med fakturering, mejla info@yumfoods.se.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingEight">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseEight"
+                      aria-expanded="false"
+                      aria-controls="collapseEight"
+                    >
+                      03. Jag är inte nöjd med maten. Vart ska jag lämna in ett
+                      klagomål, och kan jag få kompensation?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseEight"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingEight"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Du kan mejla info@yumfoods.se om fel, klagomål och för
+                        all typ av feedback.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="allergier-accordion" style="display: none">
+              <h2>Menyer & Allergier</h2>
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingNine">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseNine"
+                      aria-expanded="false"
+                      aria-controls="collapseNine"
+                    >
+                      01. Vart kan jag skriva mina allergier eller
+                      specialbeställningar?
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseNine"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="headingNine"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <p>
+                        Du kan skriva dem i beställningsfältet, vi kommer höra
+                        av oss ifall vi inte kan genomföra din förfrågan. Om ni
+                        har fler frågor angående maten, leverans, betalning,
+                        allergier kan ni mejla info@yumfoods.se
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 id="more-faq">Fick du inte svar på frågan?</h2>
+            <div id="faq-contact-button">
+              <a style="margin-top: 30px" href="./contact.html">
+                <button class="contact-us-button" style="text-transform: none">
+                  <span class="contact-us-description"> Kontakta oss!</span>
+                </button>
+              </a>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
     <!--=============================
         FAQ END
     ==============================-->
     <!-- CART POPUT START -->
     <div class="cart_popup">
-        <div class="modal fade"
-             id="modal"
-             tabindex="-1"
-             aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog .modal-xl">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close">
-                            <i class="fa fa-times"></i>
-                        </button>
-                        <div class="cart_popup_img">
-                            <img src="" class="img-fluid w-100 dish_img" />
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="#" class="cart_popup_title title"></a>
-                            <div class="diet">
-                                <img src="" class="img-fluid w-100 diet_img" />
-                            </div>
-                        </div>
-                        <div class="cart_popup_text">
-                            <!--
+      <div
+        class="modal fade"
+        id="modal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog .modal-xl">
+          <div class="modal-content">
+            <div class="modal-body">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              >
+                <i class="fa fa-times"></i>
+              </button>
+              <div class="cart_popup_img">
+                <img src="" class="img-fluid w-100 dish_img" />
+              </div>
+              <div class="d-flex justify-content-between align-items-center">
+                <a href="#" class="cart_popup_title title"></a>
+                <div class="diet">
+                  <img src="" class="img-fluid w-100 diet_img" />
+                </div>
+              </div>
+              <div class="cart_popup_text">
+                <!--
                                       <p class="rating">
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
@@ -779,67 +1030,71 @@
                                         <span>(201)</span>
                                       </p>
                                       -->
-                            <div class="d-flex">
-                                <h4 class="price"></h4>
-                                <h4 class="currency">kr</h4>
-                            </div>
-                            <!--
+                <div class="d-flex">
+                  <h4 class="price"></h4>
+                  <h4 class="currency">kr</h4>
+                </div>
+                <!--
                                       <div
                                         class="details_quentity d-flex justify-content-between align-items-start"
                                       >
                                       -->
-                            <div class="mb_25">
-                                <h5>Beskrivning:</h5>
-                                <p class="description"></p>
-                            </div>
-                            <div>
-                                <button style="text-transform: none"
-                                        class="common_btn mb_25"
-                                        onclick="showDiv()">
-                                    Visa ingredienser
-                                </button>
-                                <div id="welcomeDiv" class="hide ingredients"></div>
-                            </div>
-                        </div>
-                        <div class="details_quentity">
-                            <h5>Välj kvantitet</h5>
-                            <div class="quentity_btn_area d-flex flex-wrapa align-items-center">
-                                <div class="quentity_btn">
-                                    <button class="decrease">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                    <input class="quantity" type="text" value="1" />
-                                    <button class="increase">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>
-                                <div class="d-flex justify-content-around align-items-center">
-                                    <h3 class="quantity_price"></h3>
-                                    <h3 class="ml_0">kr</h3>
-                                </div>
-                            </div>
-                            <!--
+                <div class="mb_25">
+                  <h5>Beskrivning:</h5>
+                  <p class="description"></p>
+                </div>
+                <div>
+                  <button
+                    style="text-transform: none"
+                    class="common_btn mb_25"
+                    onclick="showDiv()"
+                  >
+                    Visa ingredienser
+                  </button>
+                  <div id="welcomeDiv" class="hide ingredients"></div>
+                </div>
+              </div>
+              <div class="details_quentity">
+                <h5>Välj kvantitet</h5>
+                <div
+                  class="quentity_btn_area d-flex flex-wrapa align-items-center"
+                >
+                  <div class="quentity_btn">
+                    <button class="decrease">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                    <input class="quantity" type="text" value="1" />
+                    <button class="increase">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </div>
+                  <div class="d-flex justify-content-around align-items-center">
+                    <h3 class="quantity_price"></h3>
+                    <h3 class="ml_0">kr</h3>
+                  </div>
+                </div>
+                <!--
                                       </div>
                                       -->
-                            <ul>
-                                <li>
-                                    <button class="common_btn" onclick="modalAddToCart()">
-                                        lägg till <i class="fas fa-cart-plus"></i>
-                                    </button>
-                                </li>
-                                <!--
+                <ul>
+                  <li>
+                    <button class="common_btn" onclick="modalAddToCart()">
+                      lägg till <i class="fas fa-cart-plus"></i>
+                    </button>
+                  </li>
+                  <!--
                                               <li>
                                                 <a class="common_btn" href="menu_details.html"
                                                   >visa alla detaljer</a
                                                 >
                                               </li>
                                               -->
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                </ul>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- CART POPUT END -->
     <!--============================
@@ -887,5 +1142,5 @@
     <link rel="stylesheet" href="css/animate.css" />
     <link rel="stylesheet" href="css/jquery.exzoom.css" />
     <link rel="stylesheet" href="css/nice-select.css" />
-</body>
+  </body>
 </html>

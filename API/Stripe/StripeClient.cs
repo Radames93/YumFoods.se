@@ -46,7 +46,7 @@ public class StripeClient
             },
             SuccessUrl = request.SuccessPaymentUrl,
             CancelUrl = request.CancelPaymentUrl,
-            LineItems = request.Products.Select(product => new SessionLineItemOptions()
+        LineItems = request.Products.Select(product => new SessionLineItemOptions()
             {
                 Quantity = product.Quantity,
                 PriceData = new SessionLineItemPriceDataOptions()
@@ -58,7 +58,17 @@ public class StripeClient
                         Name = product.Name
                     }
                 }
-            }).ToList()
+            }).ToList(),
+            // Add shipping options
+            // Add shipping options
+            ShippingOptions = new List<SessionShippingOptionOptions>
+        {
+            new SessionShippingOptionOptions
+            {
+                //ShippingRate = "shr_1QPPXWBS2XjiV4xQmSICOdoT" // Shipping rate test
+                ShippingRate = "shr_1QPQzWBS2XjiV4xQnz40ygCX" // Shipping rate live
+            }
+        }
         };
 
         var checkoutSession = await new SessionService().CreateAsync(options);
