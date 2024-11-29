@@ -111,7 +111,7 @@ internal class Program
         {
             options.AddPolicy("AllowSpecificOrigins", policy =>
             {
-                policy.WithOrigins("https://localhost:7023", "https://yumfoodsdev.azurewebsites.net", "https://www.yumfoods.se")
+                policy.WithOrigins("https://localhost:7023", "https://yumfoodsdev.azurewebsites.net", "https://www.yumfoods.se/beta")
                     .AllowAnyMethod()
                     .AllowAnyHeader();
             });
