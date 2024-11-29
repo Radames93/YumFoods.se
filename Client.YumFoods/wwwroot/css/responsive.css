@@ -4838,6 +4838,7 @@
     align-items: center;
     gap: 20px;
   }
+
   .partners_images {
     max-width: 100px;
     height: auto;
@@ -5380,6 +5381,7 @@
   .blog_slider {
     gap: 0;
     padding: 0 10px;
+    width: 240px;
   }
 
   .single_blog {
@@ -5387,8 +5389,10 @@
   }
 
   #first-grid {
-    width: 210px;
+    padding-top: 25px;
+    width: 190px;
     margin-right: 0px;
+    align-self: flex-start;
   }
 
   .single_blog_text p {
@@ -5409,18 +5413,17 @@
   }
 
   #blog-podcast h3 {
-    margin-bottom: 0px;
+    margin-bottom: 20px;
     font-size: 20px;
   }
 
   .slider-background {
-    width: 500px;
-    height: 200px;
+    width: 100%;
     background: #fc5633;
     z-index: -1;
     position: absolute;
-    margin-left: -100px;
-    margin-top: 115px;
+    margin-top: 10px;
+    margin-left: -90px;
   }
 
   .services-contact {
@@ -6302,12 +6305,10 @@
   }
 
   .product-box {
-    margin-left: 0;
-    margin-right: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 400px;
+    width: 300px;
   }
 
   .col-4 {
@@ -6324,15 +6325,16 @@
     width: 50px;
     height: auto;
   }
+
   .menu_container {
     margin: 0 auto;
-    width: 400px;
+    width: 300px;
   }
 
   .products-title-utforska {
     font-size: 25px !important;
     line-height: 40px !important;
-    max-width: 400px;
+    width: 300px;
     margin: 0 auto;
   }
 
@@ -6388,7 +6390,7 @@
 
   .swiper-content {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .btn-productmeny {
@@ -6398,10 +6400,12 @@
 
   .btn-productmeny.btn2 {
     margin-right: 70px;
+    padding-top: 15px;
   }
 
   .btn-productmeny.btn1 {
     margin-left: 40px;
+    padding-top: 15px;
   }
 
   .check-products img {
@@ -6410,6 +6414,13 @@
     width: 15px;
     height: 15px;
   }
+
+    .mobile_grid {
+        width: 330px !important;
+        gap: 10px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
 
   .product-sök {
     margin-left: -40px;
@@ -6450,8 +6461,8 @@
   }
 
   .products-banner-1 {
-    width: 100%;
-    max-width: 480px;
+    width: 90%;
+    max-width: 350px;
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -6819,16 +6830,19 @@
   .post_and_place {
     flex-direction: column !important;
   }
+
   .inputCart {
     margin-left: 0;
     width: 100% !important;
   }
+
   .partners_images_container {
     width: 100%;
     flex-direction: column;
     align-items: center;
     gap: 20px;
   }
+
   .partners_images {
     max-width: 100px;
     height: auto;

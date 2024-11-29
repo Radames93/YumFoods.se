@@ -2332,7 +2332,6 @@ button {
 .swiper-slide {
   position: relative;
   overflow: visible;
-  padding-bottom: 40px;
 }
 
 .fa-shopping-basket {
@@ -8793,10 +8792,6 @@ table tbody tr td span {
 .date-box:hover {
   cursor: pointer;
   background: var(--Secondary-color, #ffdfce);
-}
-
-.swiper-wrapper .swiper-slide {
-  padding-bottom: 0px;
 }
 
 .box-selected {

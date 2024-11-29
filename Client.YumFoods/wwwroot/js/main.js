@@ -1425,123 +1425,243 @@ function showHalalImage() {
   localStorage.setItem("bundle", htmlString);
 }
 async function Healthy() {
-  const response = await fetch(`https://${API_KEY}/products`);
+    if (formDataArry === null) {
+        const response = await fetch(`https://${API_KEY}/products`);
 
-  const data = await response.json();
+        const data = await response.json();
 
-  // Check if the response is OK (status code in the 200-299 range)
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
+        // Check if the response is OK (status code in the 200-299 range)
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
 
-  // Parse the response data as JSON
-  const allProducts = data;
+        // Parse the response data as JSON
+        const allProducts = data;
 
-  allProducts.map((category) => {
-    if (
-      category.id === 3 ||
-      category.id === 6 ||
-      category.id === 10 ||
-      category.id === 13 ||
-      category.id === 7
-    ) {
-      quantity = 1;
-      formDataArry.push({
-        id: category.id,
-        description: category.description,
-        diet: category.dietRef,
-        img: category.imgRef,
-        price: category.price,
-        quantity: quantity,
-        quantityPrice: category.price * quantity,
-        title: category.title,
-      });
-      localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+        allProducts.map((category) => {
+            if (
+                category.id === 3 ||
+                category.id === 6 ||
+                category.id === 10 ||
+                category.id === 13 ||
+                category.id === 7
+            ) {
+                quantity = 1;
+                formDataArry.push({
+                    id: category.id,
+                    description: category.description,
+                    diet: category.dietRef,
+                    img: category.imgRef,
+                    price: category.price,
+                    quantity: quantity,
+                    quantityPrice: category.price * quantity,
+                    title: category.title,
+                });
+                localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+            }
+        });
+        showHealthyImage();
     }
-  });
-  showHealthyImage();
-}
+    else if (formDataArry !== null) {
+        formDataArry = [];
+            const response = await fetch(`https://${API_KEY}/products`);
+
+            const data = await response.json();
+
+            // Check if the response is OK (status code in the 200-299 range)
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            // Parse the response data as JSON
+            const allProducts = data;
+
+            allProducts.map((category) => {
+                if (
+                    category.id === 3 ||
+                    category.id === 6 ||
+                    category.id === 10 ||
+                    category.id === 13 ||
+                    category.id === 7
+                ) {
+                    quantity = 1;
+                    formDataArry.push({
+                        id: category.id,
+                        description: category.description,
+                        diet: category.dietRef,
+                        img: category.imgRef,
+                        price: category.price,
+                        quantity: quantity,
+                        quantityPrice: category.price * quantity,
+                        title: category.title,
+                    });
+                    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+                }
+            });
+            showHealthyImage();
+        }
+    }
 
 async function Family() {
-  const response = await fetch(`https://${API_KEY}/products`);
+    if (formDataArry === null) {
+        const response = await fetch(`https://${API_KEY}/products`);
 
-  const data = await response.json();
+        const data = await response.json();
 
-  // Check if the response is OK (status code in the 200-299 range)
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
+        // Check if the response is OK (status code in the 200-299 range)
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
 
-  // Parse the response data as JSON
-  const allProducts = data;
+        // Parse the response data as JSON
+        const allProducts = data;
 
-  allProducts.map((category) => {
-    if (
-      category.id === 3 ||
-      category.id === 16 ||
-      category.id === 28 ||
-      category.id === 2 ||
-      category.id === 41
-    ) {
-      quantity = 1;
-      formDataArry.push({
-        id: category.id,
-        description: category.description,
-        diet: category.dietRef,
-        img: category.imgRef,
-        price: category.price,
-        quantity: quantity,
-        quantityPrice: category.price * quantity,
-        title: category.title,
-      });
-      localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+        allProducts.map((category) => {
+            if (
+                category.id === 3 ||
+                category.id === 16 ||
+                category.id === 28 ||
+                category.id === 2 ||
+                category.id === 41
+            ) {
+                quantity = 1;
+                formDataArry.push({
+                    id: category.id,
+                    description: category.description,
+                    diet: category.dietRef,
+                    img: category.imgRef,
+                    price: category.price,
+                    quantity: quantity,
+                    quantityPrice: category.price * quantity,
+                    title: category.title,
+                });
+                localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+            }
+        });
+        showFamilyImage();
+    } else if (formDataArry !== null) {
+        formDataArry = [];
+        const response = await fetch(`https://${API_KEY}/products`);
+
+        const data = await response.json();
+
+        // Check if the response is OK (status code in the 200-299 range)
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        // Parse the response data as JSON
+        const allProducts = data;
+
+        allProducts.map((category) => {
+            if (
+                category.id === 3 ||
+                category.id === 16 ||
+                category.id === 28 ||
+                category.id === 2 ||
+                category.id === 41
+            ) {
+                quantity = 1;
+                formDataArry.push({
+                    id: category.id,
+                    description: category.description,
+                    diet: category.dietRef,
+                    img: category.imgRef,
+                    price: category.price,
+                    quantity: quantity,
+                    quantityPrice: category.price * quantity,
+                    title: category.title,
+                });
+                localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+            }
+        });
     }
-  });
-  showFamilyImage();
+    showFamilyImage();
 }
 
 async function Halal() {
-  const response = await fetch(`https://${API_KEY}/products`);
+    if (formDataArry === null) {
+    const response = await fetch(`https://${API_KEY}/products`);
 
-  const data = await response.json();
+    const data = await response.json();
 
-  // Check if the response is OK (status code in the 200-299 range)
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  // Parse the response data as JSON
-  const allProducts = data;
-
-  allProducts.map((category) => {
-    if (
-      category.id === 2 ||
-      category.id === 6 ||
-      category.id === 13 ||
-      category.id === 16 ||
-      category.id === 14
-    ) {
-      quantity = 1;
-      formDataArry.push({
-        id: category.id,
-        description: category.description,
-        diet: category.dietRef,
-        img: category.imgRef,
-        price: category.price,
-        quantity: quantity,
-        quantityPrice: category.price * quantity,
-        title: category.title,
-      });
-      localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+    // Check if the response is OK (status code in the 200-299 range)
+    if (!response.ok) {
+        throw new Error("Network response was not ok");
     }
-  });
-  showHalalImage();
+
+    // Parse the response data as JSON
+    const allProducts = data;
+
+    allProducts.map((category) => {
+        if (
+            category.id === 2 ||
+            category.id === 6 ||
+            category.id === 13 ||
+            category.id === 16 ||
+            category.id === 14
+        ) {
+            quantity = 1;
+            formDataArry.push({
+                id: category.id,
+                description: category.description,
+                diet: category.dietRef,
+                img: category.imgRef,
+                price: category.price,
+                quantity: quantity,
+                quantityPrice: category.price * quantity,
+                title: category.title,
+            });
+            localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+        }
+    });
+    showHalalImage();
+}
+        else if (formDataArry !== null) {
+            formDataArry = [];
+            const response = await fetch(`https://${API_KEY}/products`);
+
+            const data = await response.json();
+
+            // Check if the response is OK (status code in the 200-299 range)
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            // Parse the response data as JSON
+            const allProducts = data;
+
+            allProducts.map((category) => {
+                if (
+                    category.id === 2 ||
+                    category.id === 6 ||
+                    category.id === 13 ||
+                    category.id === 16 ||
+                    category.id === 14
+                ) {
+                    quantity = 1;
+                    formDataArry.push({
+                        id: category.id,
+                        description: category.description,
+                        diet: category.dietRef,
+                        img: category.imgRef,
+                        price: category.price,
+                        quantity: quantity,
+                        quantityPrice: category.price * quantity,
+                        title: category.title,
+                    });
+                    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+                }
+            });
+            showHalalImage();
+    }
 }
 
 function chooseQuantity10() {
   formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
   formDataArry.map((dish) => {
-    dish.quantity = 1;
+      dish.quantity = 1;
+      dish.quantityPrice = 75;
     dish.quantity = dish.quantity * 2;
     dish.quantityPrice = dish.quantityPrice * 2;
   });
@@ -1553,7 +1673,8 @@ function chooseQuantity10() {
 function chooseQuantity15() {
   formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
   formDataArry.map((dish) => {
-    dish.quantity = 1;
+      dish.quantity = 1;
+      dish.quantityPrice = 75;
     dish.quantity = dish.quantity * 3;
     dish.quantityPrice = dish.quantityPrice * 3;
   });
@@ -1565,7 +1686,8 @@ function chooseQuantity15() {
 function chooseQuantity20() {
   formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
   formDataArry.map((dish) => {
-    dish.quantity = 1;
+      dish.quantity = 1;
+      dish.quantityPrice = 75;
     dish.quantity = dish.quantity * 4;
     dish.quantityPrice = dish.quantityPrice * 4;
   });
@@ -1803,7 +1925,7 @@ const yumProducts = (yumProductsList) => {
           class="wow fadeInUp "
           data-wow-duration="1s"
                       >
-        <div class="menu_item yum_product_display_item"
+        <div class="mobile_grid menu_item yum_product_display_item"
                 style="border: 1px solid var(--Stroke, #CED3D2); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:364px; height:330px; border-radius:12px;"
                  >
 
@@ -2080,7 +2202,7 @@ const BundlesList = (bundlesList) => {
           class="wow fadeInUp "
           data-wow-duration="1s"
                       >
-        <div class="menu_item yum_product_display_item"
+        <div class="mobile_grid menu_item yum_product_display_item"
                 style="border: 1px solid var(--Stroke, #CED3D2); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); width:364px; height:330px; border-radius:12px;"
                  >
 
@@ -6499,7 +6621,6 @@ if (removeOrder !== null) {
 var swiper1 = new Swiper(".slide-content", {
   slidesPerView: 3,
   spaceBetween: 25,
-  centerSlide: "true",
   fade: "true",
   grabCursor: "true",
   autoplay: {
@@ -6508,10 +6629,14 @@ var swiper1 = new Swiper(".slide-content", {
   },
   breakpoints: {
     0: {
-      slidesPerView: 1,
+          slidesPerView: 1,
+          slidesPerGroup: 1,
+          spaceBetween: 0,
     },
     576: {
-      slidesPerView: 1,
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
     },
     768: {
       slidesPerView: 2,
@@ -6539,11 +6664,15 @@ var swiper1 = new Swiper(".slide-content2", {
     disableOnInteraction: false,
   },
   breakpoints: {
-    0: {
-      slidesPerView: 1,
+      0: {
+          slidesPerView: 1,
+          slidesPerGroup: 1,
+          spaceBetween: 0,
     },
     576: {
-      slidesPerView: 1,
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+        spaceBetween: 0,
     },
     768: {
       slidesPerView: 2,
