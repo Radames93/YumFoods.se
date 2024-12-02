@@ -1,6 +1,6 @@
 ﻿function variables() {
-    //return API_KEY = "yumfoodswebapi.azurewebsites.net";
-    return API_KEY = "yumfoodsproductionapi.azurewebsites.net";
+    return API_KEY = "yumfoodswebapi.azurewebsites.net";
+    //return API_KEY = "yumfoodsproductionapi.azurewebsites.net";
     console.log(API_KEY);
 }
 
