@@ -1425,243 +1425,259 @@ function showHalalImage() {
   localStorage.setItem("bundle", htmlString);
 }
 async function Healthy() {
-    if (formDataArry === null) {
-        const response = await fetch(`https://${API_KEY}/products`);
-
-        const data = await response.json();
-
-        // Check if the response is OK (status code in the 200-299 range)
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-
-        // Parse the response data as JSON
-        const allProducts = data;
-
-        allProducts.map((category) => {
-            if (
-                category.id === 3 ||
-                category.id === 6 ||
-                category.id === 10 ||
-                category.id === 13 ||
-                category.id === 7
-            ) {
-                quantity = 1;
-                formDataArry.push({
-                    id: category.id,
-                    description: category.description,
-                    diet: category.dietRef,
-                    img: category.imgRef,
-                    price: category.price,
-                    quantity: quantity,
-                    quantityPrice: category.price * quantity,
-                    title: category.title,
-                });
-                localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-            }
-        });
-        showHealthyImage();
-    }
-    else if (formDataArry !== null) {
-        formDataArry = [];
-            const response = await fetch(`https://${API_KEY}/products`);
-
-            const data = await response.json();
-
-            // Check if the response is OK (status code in the 200-299 range)
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-
-            // Parse the response data as JSON
-            const allProducts = data;
-
-            allProducts.map((category) => {
-                if (
-                    category.id === 3 ||
-                    category.id === 6 ||
-                    category.id === 10 ||
-                    category.id === 13 ||
-                    category.id === 7
-                ) {
-                    quantity = 1;
-                    formDataArry.push({
-                        id: category.id,
-                        description: category.description,
-                        diet: category.dietRef,
-                        img: category.imgRef,
-                        price: category.price,
-                        quantity: quantity,
-                        quantityPrice: category.price * quantity,
-                        title: category.title,
-                    });
-                    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-                }
-            });
-            showHealthyImage();
-        }
-    }
-
-async function Family() {
-    if (formDataArry === null) {
-        const response = await fetch(`https://${API_KEY}/products`);
-
-        const data = await response.json();
-
-        // Check if the response is OK (status code in the 200-299 range)
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-
-        // Parse the response data as JSON
-        const allProducts = data;
-
-        allProducts.map((category) => {
-            if (
-                category.id === 3 ||
-                category.id === 16 ||
-                category.id === 28 ||
-                category.id === 2 ||
-                category.id === 41
-            ) {
-                quantity = 1;
-                formDataArry.push({
-                    id: category.id,
-                    description: category.description,
-                    diet: category.dietRef,
-                    img: category.imgRef,
-                    price: category.price,
-                    quantity: quantity,
-                    quantityPrice: category.price * quantity,
-                    title: category.title,
-                });
-                localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-            }
-        });
-        showFamilyImage();
-    } else if (formDataArry !== null) {
-        formDataArry = [];
-        const response = await fetch(`https://${API_KEY}/products`);
-
-        const data = await response.json();
-
-        // Check if the response is OK (status code in the 200-299 range)
-        if (!response.ok) {
-            throw new Error("Network response was not ok");
-        }
-
-        // Parse the response data as JSON
-        const allProducts = data;
-
-        allProducts.map((category) => {
-            if (
-                category.id === 3 ||
-                category.id === 16 ||
-                category.id === 28 ||
-                category.id === 2 ||
-                category.id === 41
-            ) {
-                quantity = 1;
-                formDataArry.push({
-                    id: category.id,
-                    description: category.description,
-                    diet: category.dietRef,
-                    img: category.imgRef,
-                    price: category.price,
-                    quantity: quantity,
-                    quantityPrice: category.price * quantity,
-                    title: category.title,
-                });
-                localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-            }
-        });
-    }
-    showFamilyImage();
-}
-
-async function Halal() {
-    if (formDataArry === null) {
+  if (formDataArry === null) {
     const response = await fetch(`https://${API_KEY}/products`);
 
     const data = await response.json();
 
     // Check if the response is OK (status code in the 200-299 range)
     if (!response.ok) {
-        throw new Error("Network response was not ok");
+      throw new Error("Network response was not ok");
     }
 
     // Parse the response data as JSON
     const allProducts = data;
 
     allProducts.map((category) => {
-        if (
-            category.id === 2 ||
-            category.id === 6 ||
-            category.id === 13 ||
-            category.id === 16 ||
-            category.id === 14
-        ) {
-            quantity = 1;
-            formDataArry.push({
-                id: category.id,
-                description: category.description,
-                diet: category.dietRef,
-                img: category.imgRef,
-                price: category.price,
-                quantity: quantity,
-                quantityPrice: category.price * quantity,
-                title: category.title,
-            });
-            localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-        }
+      if (
+        category.id === 3 ||
+        category.id === 6 ||
+        category.id === 10 ||
+        category.id === 13 ||
+        category.id === 7
+      ) {
+        quantity = 1;
+        formDataArry.push({
+          id: category.id,
+          description: category.description,
+          diet: category.dietRef,
+          img: category.imgRef,
+          price: category.price,
+          quantity: quantity,
+          quantityPrice: category.price * quantity,
+          title: category.title,
+        });
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+      }
+    });
+    showHealthyImage();
+  } else if (formDataArry !== null) {
+    formDataArry = [];
+    antalBoxes.forEach((b) => {
+      if ((b.hasClass = "selected")) {
+        b.classList.remove("selected");
+        b.classList.remove("selected-border");
+      }
+    });
+    const response = await fetch(`https://${API_KEY}/products`);
+
+    const data = await response.json();
+
+    // Check if the response is OK (status code in the 200-299 range)
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    // Parse the response data as JSON
+    const allProducts = data;
+
+    allProducts.map((category) => {
+      if (
+        category.id === 3 ||
+        category.id === 6 ||
+        category.id === 10 ||
+        category.id === 13 ||
+        category.id === 7
+      ) {
+        quantity = 1;
+        formDataArry.push({
+          id: category.id,
+          description: category.description,
+          diet: category.dietRef,
+          img: category.imgRef,
+          price: category.price,
+          quantity: quantity,
+          quantityPrice: category.price * quantity,
+          title: category.title,
+        });
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+      }
+    });
+    showHealthyImage();
+  }
+}
+
+async function Family() {
+  if (formDataArry === null) {
+    const response = await fetch(`https://${API_KEY}/products`);
+
+    const data = await response.json();
+
+    // Check if the response is OK (status code in the 200-299 range)
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    // Parse the response data as JSON
+    const allProducts = data;
+
+    allProducts.map((category) => {
+      if (
+        category.id === 3 ||
+        category.id === 16 ||
+        category.id === 28 ||
+        category.id === 2 ||
+        category.id === 41
+      ) {
+        quantity = 1;
+        formDataArry.push({
+          id: category.id,
+          description: category.description,
+          diet: category.dietRef,
+          img: category.imgRef,
+          price: category.price,
+          quantity: quantity,
+          quantityPrice: category.price * quantity,
+          title: category.title,
+        });
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+      }
+    });
+    showFamilyImage();
+  } else if (formDataArry !== null) {
+    formDataArry = [];
+    antalBoxes.forEach((b) => {
+      if ((b.hasClass = "selected")) {
+        b.classList.remove("selected");
+        b.classList.remove("selected-border");
+      }
+    });
+    const response = await fetch(`https://${API_KEY}/products`);
+
+    const data = await response.json();
+
+    // Check if the response is OK (status code in the 200-299 range)
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    // Parse the response data as JSON
+    const allProducts = data;
+
+    allProducts.map((category) => {
+      if (
+        category.id === 3 ||
+        category.id === 16 ||
+        category.id === 28 ||
+        category.id === 2 ||
+        category.id === 41
+      ) {
+        quantity = 1;
+        formDataArry.push({
+          id: category.id,
+          description: category.description,
+          diet: category.dietRef,
+          img: category.imgRef,
+          price: category.price,
+          quantity: quantity,
+          quantityPrice: category.price * quantity,
+          title: category.title,
+        });
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+      }
+    });
+  }
+  showFamilyImage();
+}
+
+async function Halal() {
+  if (formDataArry === null) {
+    const response = await fetch(`https://${API_KEY}/products`);
+
+    const data = await response.json();
+
+    // Check if the response is OK (status code in the 200-299 range)
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    // Parse the response data as JSON
+    const allProducts = data;
+
+    allProducts.map((category) => {
+      if (
+        category.id === 2 ||
+        category.id === 6 ||
+        category.id === 13 ||
+        category.id === 16 ||
+        category.id === 14
+      ) {
+        quantity = 1;
+        formDataArry.push({
+          id: category.id,
+          description: category.description,
+          diet: category.dietRef,
+          img: category.imgRef,
+          price: category.price,
+          quantity: quantity,
+          quantityPrice: category.price * quantity,
+          title: category.title,
+        });
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+      }
     });
     showHalalImage();
-}
-        else if (formDataArry !== null) {
-            formDataArry = [];
-            const response = await fetch(`https://${API_KEY}/products`);
+  } else if (formDataArry !== null) {
+    formDataArry = [];
+    antalBoxes.forEach((b) => {
+      if ((b.hasClass = "selected")) {
+        b.classList.remove("selected");
+        b.classList.remove("selected-border");
+      }
+    });
+    const response = await fetch(`https://${API_KEY}/products`);
 
-            const data = await response.json();
+    const data = await response.json();
 
-            // Check if the response is OK (status code in the 200-299 range)
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-
-            // Parse the response data as JSON
-            const allProducts = data;
-
-            allProducts.map((category) => {
-                if (
-                    category.id === 2 ||
-                    category.id === 6 ||
-                    category.id === 13 ||
-                    category.id === 16 ||
-                    category.id === 14
-                ) {
-                    quantity = 1;
-                    formDataArry.push({
-                        id: category.id,
-                        description: category.description,
-                        diet: category.dietRef,
-                        img: category.imgRef,
-                        price: category.price,
-                        quantity: quantity,
-                        quantityPrice: category.price * quantity,
-                        title: category.title,
-                    });
-                    localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
-                }
-            });
-            showHalalImage();
+    // Check if the response is OK (status code in the 200-299 range)
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
+
+    // Parse the response data as JSON
+    const allProducts = data;
+
+    allProducts.map((category) => {
+      if (
+        category.id === 2 ||
+        category.id === 6 ||
+        category.id === 13 ||
+        category.id === 16 ||
+        category.id === 14
+      ) {
+        quantity = 1;
+        formDataArry.push({
+          id: category.id,
+          description: category.description,
+          diet: category.dietRef,
+          img: category.imgRef,
+          price: category.price,
+          quantity: quantity,
+          quantityPrice: category.price * quantity,
+          title: category.title,
+        });
+        localStorage.setItem("formDataArry", JSON.stringify(formDataArry));
+      }
+    });
+    showHalalImage();
+  }
 }
 
 function chooseQuantity10() {
   formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
   formDataArry.map((dish) => {
-      dish.quantity = 1;
-      dish.quantityPrice = 75;
+    dish.quantity = 1;
+    dish.quantityPrice = 75;
     dish.quantity = dish.quantity * 2;
     dish.quantityPrice = dish.quantityPrice * 2;
   });
@@ -1673,8 +1689,8 @@ function chooseQuantity10() {
 function chooseQuantity15() {
   formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
   formDataArry.map((dish) => {
-      dish.quantity = 1;
-      dish.quantityPrice = 75;
+    dish.quantity = 1;
+    dish.quantityPrice = 75;
     dish.quantity = dish.quantity * 3;
     dish.quantityPrice = dish.quantityPrice * 3;
   });
@@ -1686,8 +1702,8 @@ function chooseQuantity15() {
 function chooseQuantity20() {
   formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
   formDataArry.map((dish) => {
-      dish.quantity = 1;
-      dish.quantityPrice = 75;
+    dish.quantity = 1;
+    dish.quantityPrice = 75;
     dish.quantity = dish.quantity * 4;
     dish.quantityPrice = dish.quantityPrice * 4;
   });
@@ -6317,20 +6333,20 @@ if (findLocation !== null) {
 
 // Calculate and display total sum in the cart total
 function totalSum() {
-    let totalPrice = document.getElementById("total");
-    let totalShipping = document.getElementById("shipping");
-    let shipping = 39
-    if (totalShipping !== null) {
-        totalShipping.innerHTML = shipping + "kr";
-    }
-    let sum = 0;
+  let totalPrice = document.getElementById("total");
+  let totalShipping = document.getElementById("shipping");
+  let shipping = 39;
+  if (totalShipping !== null) {
+    totalShipping.innerHTML = shipping + "kr";
+  }
+  let sum = 0;
   if (totalPrice !== null) {
     formDataArry = JSON.parse(localStorage.getItem("formDataArry"));
     if (formDataArry !== null) {
       for (let i = 0; i < formDataArry.length; i++) {
         sum += parseInt(formDataArry[i].quantityPrice);
-        }
-      sum = sum + shipping
+      }
+      sum = sum + shipping;
       totalPrice.innerHTML = sum + "kr";
       localStorage.setItem("sum", sum);
     } else {
@@ -6629,14 +6645,14 @@ var swiper1 = new Swiper(".slide-content", {
   },
   breakpoints: {
     0: {
-          slidesPerView: 1,
-          slidesPerGroup: 1,
-          spaceBetween: 0,
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 0,
     },
     576: {
-        slidesPerView: 1,
-        slidesPerGroup: 1,
-        spaceBetween: 0,
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 0,
     },
     768: {
       slidesPerView: 2,
@@ -6664,15 +6680,15 @@ var swiper1 = new Swiper(".slide-content2", {
     disableOnInteraction: false,
   },
   breakpoints: {
-      0: {
-          slidesPerView: 1,
-          slidesPerGroup: 1,
-          spaceBetween: 0,
+    0: {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 0,
     },
     576: {
-        slidesPerView: 1,
-        slidesPerGroup: 1,
-        spaceBetween: 0,
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 0,
     },
     768: {
       slidesPerView: 2,
@@ -7086,14 +7102,12 @@ async function redirectToStripeCheckout() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-          successPaymentUrl:
-              "https://www.yumfoods.se/beta/payment_success.html",
-          //"https://yumfoodsdev.azurewebsites.net/payment_success.html",
-          //"https://localhost:7023/payment_success.html",
-          cancelPaymentUrl:
-              "https://www.yumfoods.se/beta/payment_cancel.html",
-          //"https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
-          //"https://localhost:7023/payment_cancel.html",
+        successPaymentUrl: "https://www.yumfoods.se/beta/payment_success.html",
+        //"https://yumfoodsdev.azurewebsites.net/payment_success.html",
+        //"https://localhost:7023/payment_success.html",
+        cancelPaymentUrl: "https://www.yumfoods.se/beta/payment_cancel.html",
+        //"https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+        //"https://localhost:7023/payment_cancel.html",
         products: products, // Send the products array
       }),
     });
@@ -7351,19 +7365,18 @@ function Footer() {
      <div class="pt_20 xs_pt_20">
       <div class="container">
         <div id="footer-new" class="row justify-content-around pt_50">
-          <div class="col-xxl-2 col-lg-2 col-sm-9 col-md-5">
+          <div class="col-xxl-3 col-xl-2 col-lg-2 col-md-6 col-sm-6">
             <div class="footer_content">
               <img
                 class="footer_logo"
                 loading="lazy"
                 src="images/footer-logo-multiculti.png"
                 alt="footer-logo"
-                style="height: 200px"
                 class="mb_25"
               />
             </div>
           </div>
-          <div id="contact_info" class="col-xxl-3 col-lg-2 col-xl-12">
+          <div id="contact_info" class="col-xxl-3 col-xl-2 col-lg-2 col-md-6">
             <h1 id="contact_title" style="white-space: nowrap; width: auto">
               Yum Foods
             </h1>
@@ -7395,7 +7408,7 @@ function Footer() {
           </div>
           <div
             id="social_links"
-            class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4"
+            class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-6 order-md-4"
           >
             <div class="footer_content">
               <h2 id="link_title" class="link_padding">Följ oss</h2>
@@ -7448,10 +7461,10 @@ function Footer() {
           </div>
           <div
             id="other_links"
-            class="col-xxl-2 col-lg-2 col-sm-6 col-md-3 order-md-4"
+            class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-sm-6 order-md-4"
           >
             <div class="footer_content">
-              <h2 id="link_title">Hjälp & Villkor</h2>
+              <h2 id="link_title" class="link_padding">Hjälp & Villkor</h2>
               <ul id="faq-ul">
                 <li style="margin-bottom: 30px">
                   <a href="faq.html" aria-label="Snabb svar">
