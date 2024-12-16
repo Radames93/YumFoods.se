@@ -561,19 +561,6 @@
   .swiper-content {
     margin-top: -45px;
   }
-
-  .slide-content3 {
-    margin-left: 60px;
-  }
-
-  .btn-productmeny.btn1 {
-    margin-left: 300px;
-  }
-
-  .btn-productmeny.btn2 {
-    margin-right: 60px;
-  }
-
   /* banner2 */
   .swiper-container4 .swiper-wrapper {
     margin-right: 0px;
@@ -1165,18 +1152,6 @@
     margin-top: -45px;
   }
 
-  .slide-content3 {
-    margin-left: 60px;
-  }
-
-  .btn-productmeny.btn1 {
-    margin-left: 300px;
-  }
-
-  .btn-productmeny.btn2 {
-    margin-right: 60px;
-  }
-
   /* banner2 */
   .swiper-container4 .swiper-wrapper {
     margin-right: 0px;
@@ -1543,7 +1518,7 @@
   .slider-background {
     width: 900px;
     height: 300px;
-    background: #fc5633;
+    background: #ffdfce;
     z-index: -1;
     position: absolute;
     margin-left: auto;
@@ -1912,16 +1887,15 @@
     margin-top: -45px;
   }
 
-  .btn-productmeny.btn1 {
-    margin-left: 275px;
+  .column-flex {
+    display: flex;
+    width: 50%;
+    flex-grow: 1;
   }
 
-  .btn-productmeny.btn2 {
-    margin-right: 110px;
-  }
-
-  .container4 {
-    max-width: 1140px;
+  .products-alternative {
+    width: 750px;
+    max-width: 960px;
   }
 
   /* banner2 */
@@ -2158,7 +2132,8 @@
     text-align: left;
     justify-content: flex-start;
     width: 500px;
-    gap: 30px;
+    gap: 20px;
+    top: 0;
   }
 
   .vectorButton {
@@ -2441,7 +2416,7 @@
   .slider-background {
     width: 700px;
     height: 250px;
-    background: #fc5633;
+    background: #ffdfce;
     z-index: -1;
     position: absolute;
     margin-left: -100px;
@@ -2999,18 +2974,6 @@
     margin-left: 40px;
   }
 
-  .btn-productmeny.btn1 {
-    display: flex;
-    margin-left: 220px;
-    margin-top: -45px;
-    z-index: 2;
-  }
-
-  .btn-productmeny.btn2 {
-    margin-top: -45px;
-    margin-right: -5px;
-  }
-
   /* banner i product page */
   .custom-img-3 {
     height: 140px;
@@ -3048,6 +3011,17 @@
 
   .banner1-p {
     padding-left: 50px;
+  }
+
+  .column-flex {
+    display: flex;
+    width: 50%;
+    flex-grow: 1;
+  }
+
+  .products-alternative {
+    width: 700px;
+    max-width: 720px;
   }
 
   /* banner2 */
@@ -3390,6 +3364,12 @@
 
   /* baner start */
 
+  #yum-menu-btn {
+    text-align: center !important;
+    padding-top: 40px;
+    margin-top: unset;
+  }
+
   .content {
     display: flex;
     justify-content: center;
@@ -3724,6 +3704,13 @@
     text-align: center;
   }
 
+  .first-swiper-button-next,
+  .second-swiper-button-next,
+  .first-swiper-button-prev,
+  .second-swiper-button-prev {
+    display: none;
+  }
+
   /* =====================
           CAROUSEL END
       =======================*/
@@ -3779,7 +3766,7 @@
   .slider-background {
     width: 500px;
     height: 200px;
-    background: #fc5633;
+    background: #ffdfce;
     z-index: -1;
     position: absolute;
     margin-left: -100px;
@@ -4562,29 +4549,14 @@
     margin-top: 70px;
   }
 
-  .product-sök {
-    width: 180px;
-  }
-
   .swiper-products {
     max-width: 300px;
     margin-top: -45px;
     margin-left: -15px;
   }
 
-  .btn-productmeny.btn1 {
-    display: flex;
-    margin-left: 220px;
-    margin-top: -45px;
-  }
-
-  .btn-productmeny.btn2 {
-    margin-top: -45px;
-    margin-right: 10px;
-  }
-
-  .slide-content3 {
-    margin-left: 30px;
+  .products-alternative {
+    flex-direction: column !important;
   }
 
   /* banner i product page */
@@ -4630,6 +4602,21 @@
 
   .products-banner-1 {
     padding-left: 20px;
+  }
+
+  .column-flex {
+    display: flex;
+    width: 75%;
+    flex-grow: 1;
+    padding-top: 20px;
+  }
+  .meny-option {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .mobile-search {
+    width: 75%;
   }
 
   /* banner2 */
@@ -4783,6 +4770,7 @@
   .imgContainer img {
     width: 50px;
     padding-right: 20px;
+    min-width: 120px;
   }
 
   /* =====================
@@ -5461,7 +5449,7 @@
 
   .slider-background {
     width: 100%;
-    background: #fc5633;
+    background: #ffdfce;
     z-index: -1;
     position: absolute;
     margin-top: 10px;
@@ -5496,10 +5484,6 @@
   #location_address2 {
     width: 150px;
     margin-right: -18px;
-  }
-
-  .contact-us-button {
-    margin-left: -25px;
   }
 
   #first-p {
@@ -5552,20 +5536,11 @@
   }
 
   #contact_title {
-    margin-left: -0px;
+    text-align: center;
   }
 
   #contact_info {
-    margin-top: -230px;
-    margin-left: 220px;
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100px;
-  }
-
-  #contact_info {
-    margin-top: -10px;
+    margin-top: 0;
     margin-left: auto;
     margin-right: auto;
   }
@@ -5940,8 +5915,7 @@
 
   .about-us-preBtn {
     height: 10px;
-    margin-top: 20px;
-    margin-left: -80px;
+    margin: 25px 0 0 75px;
   }
 
   .certified2 p {
@@ -6403,12 +6377,9 @@
     margin-top: 0;
   }
 
-  .slide-content3 {
-    margin-left: 10px;
-  }
-
   .meny-option {
     width: 100% !important;
+    margin: 0 !important;
   }
 
   .product-first-banner {
@@ -6440,16 +6411,6 @@
     height: 30px;
   }
 
-  .btn-productmeny.btn2 {
-    margin-right: 70px;
-    padding-top: 15px;
-  }
-
-  .btn-productmeny.btn1 {
-    margin-left: 40px;
-    padding-top: 15px;
-  }
-
   .check-products img {
     margin-right: 0;
     display: none;
@@ -6462,10 +6423,6 @@
     gap: 10px;
     margin: 0 auto;
     margin-top: 20px;
-  }
-
-  .product-sök {
-    margin-left: -40px;
   }
 
   /* banner i product page */
@@ -6665,6 +6622,7 @@
     height: 80px;
     width: 50px;
     margin-left: 20px;
+    min-width: 80px;
   }
 
   .food-description {
@@ -6706,7 +6664,8 @@
 
   #yum-menu-btn {
     text-align: center !important;
-    margin-top: -20px;
+    padding-top: 60px;
+    margin-top: unset;
   }
   /* =====================
         LEVERANS START
@@ -6843,6 +6802,13 @@
     text-align: center;
   }
 
+  .first-swiper-button-next,
+  .second-swiper-button-next,
+  .first-swiper-button-prev,
+  .second-swiper-button-prev {
+    display: none;
+  }
+
   .box-title {
     padding-top: 30px;
     text-align: center;
@@ -6893,6 +6859,9 @@
   /* =====================
     PAYMENT PAGE END
   =======================*/
+  .mobile-search {
+    width: 75%;
+  }
 }
 
 @media (min-width: 375px) and (max-width: 991.99px) {
