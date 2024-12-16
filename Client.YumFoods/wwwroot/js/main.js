@@ -2434,7 +2434,7 @@ const CarouselFoodBoxes = (yumProductsList) => {
       .map((yum) => {
         let title = JSON.stringify(yum.title);
         let description = JSON.stringify(yum.description);
-        newDescription = truncateDescrip(description, 40);
+        let newDescription = truncateDescrip(description, 40);
         let ingredients = JSON.stringify(yum.ingredients);
         return (
           `
@@ -2494,14 +2494,14 @@ const CarouselFoodBoxes = (yumProductsList) => {
               data-yum-quantity-price=${yum.price}
               data-yum-description=${description}
               data-yum-diet=${yum.dietRef}
-              onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
+              onclick='realAddToCart(event)'"><i class='fas fa-cart-plus'></i> Lägg i varukorg 
             </button>
           </div>
         `
         );
       })
       .join("");
-    carouselContainer.insertAdjacentHTML("afterbegin", htmlString);
+    carouselContainer.innerHTML = htmlString;
   } else {
     return null;
   }
@@ -2513,7 +2513,7 @@ const CarouselFoodBoxes2 = (baguetterProductsList) => {
       .map((yum) => {
         let title = JSON.stringify(yum.title);
         let description = JSON.stringify(yum.description);
-        newDescription = truncateDescrip(description, 40);
+        let newDescription = truncateDescrip(description, 40);
         let ingredients = JSON.stringify(yum.ingredients);
         return (
           `
@@ -2573,14 +2573,14 @@ const CarouselFoodBoxes2 = (baguetterProductsList) => {
               data-yum-quantity-price=${yum.price}
               data-yum-description=${description}
               data-yum-diet=${yum.dietRef}
-              onclick='realAddToCart(event)'><i class='fas fa-cart-plus'></i> Lägg i varukorg 
+              onclick='realAddToCart(event)'"><i class='fas fa-cart-plus'></i> Lägg i varukorg 
             </button>
           </div>
         `
         );
       })
       .join("");
-    carouselContainer2.insertAdjacentHTML("afterbegin", htmlString);
+    carouselContainer2.innerHTML = htmlString;
   } else {
     return null;
   }
@@ -2657,7 +2657,7 @@ const CarouselDietButtons = (yumProductsList) => {
       .map((diet) => {
         return `
           <div class="swiper-slide">
-            <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64)" onclick="sortingDishDietFunction('${diet}')" >
+            <button class="btn meny-option" style="border:1px solid rgb(65, 64, 64); margin: 0 20px" onclick="sortingDishDietFunction('${diet}')" >
               ${diet}
             </button>
           </div>
@@ -2665,30 +2665,34 @@ const CarouselDietButtons = (yumProductsList) => {
       })
       .join("");
     carouselDietButtons.innerHTML = htmlString;
+    if (swiper3) {
+      swiper3.update(); // Update swiper after content change
+    }
   } else {
     return null;
   }
 };
 
-// swiper in product page-first part
 var swiper3 = new Swiper(".slide-content3", {
-  centeredSlide: "true",
-  fade: "true",
-  grabCursor: "true",
-  spaceBetween: 10,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-    dynamicBullets: true,
+  slidesPerView: 3,
+  spaceBetween: 25,
+  fade: true,
+  grabCursor: true,
+  navigation: {
+    nextEl: ".swiper-button-next-diet",
+    prevEl: ".swiper-button-prev-diet",
+    disabledClass: "disabled_swiper_button",
   },
-  loop: true,
-  slidesPerView: "auto",
   breakpoints: {
     0: {
       slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 0,
     },
     576: {
       slidesPerView: 1,
+      slidesPerGroup: 1,
+      spaceBetween: 0,
     },
     768: {
       slidesPerView: 2,
@@ -2697,36 +2701,18 @@ var swiper3 = new Swiper(".slide-content3", {
       slidesPerView: 2,
     },
     1120: {
-      slidesPerView: 3,
+      slidesPerView: 5,
     },
     1400: {
-      slidesPerView: 3,
+      slidesPerView: 5,
     },
   },
-  loopFillGroupWithBlank: false,
-  loopedSlides: 4,
-  loopAdditionalSlides: 1,
   on: {
-    slideChangeTransitionEnd: function () {
-      if (this.isEnd) {
-        this.slideToLoop(0, 0);
-      }
+    slideChange: function () {
+      console.log("Active slide index:", this.activeIndex); // Debug active index
     },
   },
 });
-
-let showPrevBtn = document.getElementById("show-prev-btn");
-let showNextBtn = document.getElementById("show-next-btn");
-if (showPrevBtn !== null) {
-  showPrevBtn.addEventListener("click", () => {
-    swiper3.slidePrev();
-  });
-}
-if (showNextBtn !== null) {
-  showNextBtn.addEventListener("click", () => {
-    swiper3.slideNext();
-  });
-}
 
 // banner2 i product page
 document.addEventListener("DOMContentLoaded", function () {
@@ -3864,50 +3850,48 @@ if (bundleModal !== null) {
 
 //Show ingredients div
 function showDiv() {
+  let ingredientsButton = document.getElementById("ingredientsButton");
   var x = document.getElementById("welcomeDiv");
   if (x.style.display === "none") {
     x.style.display = "block";
+    ingredientsButton.innerText = "Dölj ingredienser";
   } else {
     x.style.display = "none";
+    ingredientsButton.innerText = "Visa ingredienser";
   }
 }
 
 function hideDiv() {
+  let ingredientsButton = document.getElementById("ingredientsButton");
   var x = document.getElementById("welcomeDiv");
   if (x.style.display === "block") {
     x.style.display = "none";
+    ingredientsButton.innerText = "Visa ingredienser";
   }
 }
 
 function showBundleDiv() {
+  let bundleIngredientsButton = document.getElementById(
+    "bundleIngredientsButton"
+  );
   var x = document.getElementById("welcomeBundle");
   if (x.style.display === "none") {
     x.style.display = "block";
+    bundleIngredientsButton.innerText = "Dölj matlådor";
   } else {
     x.style.display = "none";
+    bundleIngredientsButton.innerText = "Visa matlådor";
   }
 }
 
 function hideBundleDiv() {
+  let bundleIngredientsButton = document.getElementById(
+    "bundleIngredientsButton"
+  );
   var x = document.getElementById("welcomeBundle");
   if (x.style.display === "block") {
     x.style.display = "none";
-  }
-}
-
-function showBundleDiv() {
-  var x = document.getElementById("welcomeBundle");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
-}
-
-function hideBundleDiv() {
-  var x = document.getElementById("welcomeBundle");
-  if (x.style.display === "block") {
-    x.style.display = "none";
+    bundleIngredientsButton.innerText = "Visa matlådor";
   }
 }
 
@@ -6637,11 +6621,12 @@ if (removeOrder !== null) {
 var swiper1 = new Swiper(".slide-content", {
   slidesPerView: 3,
   spaceBetween: 25,
-  fade: "true",
-  grabCursor: "true",
-  autoplay: {
-    delay: 2000,
-    disableOnInteraction: false,
+  fade: true,
+  grabCursor: true,
+  navigation: {
+    nextEl: ".first-swiper-button-next",
+    prevEl: ".first-swiper-button-prev",
+    disabledClass: "disabled_swiper_button",
   },
   breakpoints: {
     0: {
@@ -6673,11 +6658,12 @@ var swiper1 = new Swiper(".slide-content2", {
   slidesPerView: 3,
   spaceBetween: 25,
   centerSlide: "true",
-  fade: "true",
-  grabCursor: "true",
-  autoplay: {
-    delay: 2000,
-    disableOnInteraction: false,
+  fade: true,
+  grabCursor: true,
+  navigation: {
+    nextEl: ".second-swiper-button-next",
+    prevEl: ".second-swiper-button-prev",
+    disabledClass: "disabled_swiper_button",
   },
   breakpoints: {
     0: {
@@ -7102,11 +7088,11 @@ async function redirectToStripeCheckout() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        successPaymentUrl: //"https://www.yumfoods.se/beta/payment_success.html",
-        "https://yumfoodsdev.azurewebsites.net/payment_success.html",
+        successPaymentUrl: "https://www.yumfoods.se/beta/payment_success.html",
+        //"https://yumfoodsdev.azurewebsites.net/payment_success.html",
         //"https://localhost:7023/payment_success.html",
-        cancelPaymentUrl: //"https://www.yumfoods.se/beta/payment_cancel.html",
-        "https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
+        cancelPaymentUrl: "https://www.yumfoods.se/beta/payment_cancel.html",
+        //"https://yumfoodsdev.azurewebsites.net/payment_cancel.html",
         //"https://localhost:7023/payment_cancel.html",
         products: products, // Send the products array
       }),

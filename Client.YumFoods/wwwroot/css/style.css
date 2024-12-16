@@ -1412,6 +1412,12 @@ button {
   flex-direction: row;
 }
 
+.column-flex {
+  display: flex;
+  width: 75%;
+  align-items: center;
+}
+
 .slider-items2 {
   overflow: hidden;
 }
@@ -1843,7 +1849,7 @@ button {
   line-height: 30px;
   text-align: center;
   font-size: 17px;
-  background: var(--colorPrimary);
+  background: var(--colorRed);
   border-radius: 50%;
   opacity: 1;
   color: var(--colorWhite);
@@ -2319,7 +2325,7 @@ button {
   border-radius: 12px;
   border: 1px solid grey;
   background: #fff;
-  margin-left: 100px;
+  margin: 0 auto;
   transition: all linear 0.1s;
   top: -20px;
   position: relative;
@@ -3233,6 +3239,7 @@ button {
   background: var(--colorWhite);
   border: 2px solid #dbdfd0;
   height: 350px;
+  margin: 10px 20px;
   transition: all linear 0.3s;
   box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
   -webkit-transition: all linear 0.3s;
@@ -3458,6 +3465,12 @@ button {
   content: "\f054";
 }
 
+.disabled_swiper_button {
+  opacity: 0;
+  cursor: auto;
+  pointer-events: none;
+}
+
 #blog-podcast h2 {
   text-align: center;
   margin-left: auto;
@@ -3494,7 +3507,7 @@ button {
 .slider-background {
   width: 1441px;
   height: 350px;
-  background: #fc5633;
+  background: #ffdfce;
   z-index: -1;
   position: absolute;
   margin-left: auto;
@@ -3794,7 +3807,7 @@ footer {
 }
 
 .footer_logo {
- padding-top: 50px;
+  padding-top: 50px;
 }
 
 .footer_content h2 {
@@ -5587,7 +5600,6 @@ footer {
   justify-content: start;
   border: solid 1px #ff6633;
   border-radius: 7px;
-  margin-top: 40px;
 }
 
 .quentity_btn,
@@ -5626,6 +5638,10 @@ footer {
 
 .fa-minus::before {
   margin-right: 18px;
+}
+
+.fa-plus::before {
+  margin-left: 18px;
 }
 
 .quentity_btn input {
@@ -6192,8 +6208,8 @@ house_input + label {
 
 .pro_img {
   width: 40%;
-  padding: 10px;
   min-width: 150px;
+  margin-left: 35px;
 }
 
 .pro_name {
