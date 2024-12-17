@@ -118,6 +118,9 @@ _NCrunch*
 # Ignore build output directories
 bin/
 obj/
+/Client.YumFoods/wwwroot/js/env.js
+/API/appsettings.Development.json
+/API/appsettings.json
 
 
 
